@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generator Tabel PDF untuk WordPress Classic</title>
+<meta name="description" content="Buat tabel PDF rapi di WordPress Classic Editor tanpa ribet. Generator ini membantu Anda mengonversi data tabel menjadi dokumen PDF yang siap unduh.">
+<link rel="canonical" href="https://dalam.web.id/tools/generator-tabel-pdf-wordpress-classic.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bikin Tabel PDF di WordPress Classic Editor Jadi Mudah!">
+<meta property="og:description" content="Solusi cepat buat kamu yang mau cetak tabel PDF langsung dari WordPress Classic. Coba generator tabel PDF instan ini dan lihat hasilnya!">
+<meta property="og:url" content="https://dalam.web.id/tools/generator-tabel-pdf-wordpress-classic.html">
+<meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/Gemini_Generated_Image_5aa7bi5aa7bi5aa7.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Generator Tabel PDF WordPress Classic Terbaik">
+<meta name="twitter:description" content="Nggak usah pusing coding manual. Pakai generator ini buat bikin tabel PDF ciamik di WordPress Classic Editor dalam hitungan detik.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/Gemini_Generated_Image_5aa7bi5aa7bi5aa7.png">
+
+<meta name="news_keywords" content="wordpress classic editor, generator tabel pdf, buat tabel pdf wordpress, plugin tabel pdf wordpress, tools wordpress">
+<meta property="article:tag" content="WordPress">
+<meta property="article:tag" content="Web Development">
+<meta property="article:tag" content="Tools">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --page-bg: #f5f7fb;
+      --card-bg: #ffffff;
+      --text: #172033;
+      --muted: #5d667a;
+      --border: #d8deea;
+      --soft: #eef3fb;
+      --soft-2: #f8fafc;
+      --accent: #1d4ed8;
+      --accent-2: #0f766e;
+      --danger: #b42318;
+      --warning: #b45309;
+      --code-bg: #111827;
+      --code-text: #e5e7eb;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page-bg: #0f1117;
+        --card-bg: #171a22;
+        --text: #f5f7fb;
+        --muted: #b8c0d0;
+        --border: #33394a;
+        --soft: #202637;
+        --soft-2: #1d2230;
+        --accent: #60a5fa;
+        --accent-2: #34d399;
+        --danger: #f87171;
+        --warning: #fbbf24;
+        --code-bg: #090b10;
+        --code-text: #f3f4f6;
+        --shadow: none;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    .app {
+      width: min(1180px, calc(100% - 24px));
+      margin: 32px auto;
+    }
+
+    .hero,
+    .panel,
+    .preview-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.7rem, 4vw, 2.5rem);
+      line-height: 1.15;
+    }
+
+    .hero p {
+      max-width: 850px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    .panel h2 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+    }
+
+    .section {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--soft-2);
+      margin-bottom: 14px;
+    }
+
+    .section h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .hint {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    textarea,
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--card-bg);
+      color: var(--text);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 190px;
+      padding: 12px;
+      resize: vertical;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      padding: 10px 11px;
+    }
+
+    input[type="file"] {
+      width: 100%;
+      padding: 11px;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      background: var(--card-bg);
+      color: var(--text);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .form-grid.three {
+      grid-template-columns: 0.35fr 1fr 1.1fr;
+    }
+
+    .checks {
+      display: grid;
+      gap: 8px;
+    }
+
+    .check {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .check input {
+      margin-top: 0.35rem;
+    }
+
+    .btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: #ffffff;
+      background: var(--accent);
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    button:hover,
+    button:focus {
+      opacity: 0.88;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .secondary {
+      background: var(--accent-2);
+    }
+
+    .ghost {
+      border: 1px solid var(--border);
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    .danger {
+      background: var(--danger);
+    }
+
+    .warning {
+      background: var(--warning);
+    }
+
+    .manual-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .manual-row {
+      display: grid;
+      grid-template-columns: 0.3fr 1fr 1fr 1.4fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card-bg);
+    }
+
+    .manual-row button {
+      padding: 9px 11px;
+    }
+
+    .status {
+      min-height: 1.4rem;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .status strong {
+      color: var(--accent);
+    }
+
+    .output {
+      min-height: 520px;
+      background: var(--code-bg);
+      color: var(--code-text);
+      border-color: transparent;
+      white-space: pre;
+    }
+
+    .preview-card {
+      padding: 18px;
+      margin-top: 18px;
+    }
+
+    .preview-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+    }
+
+    .preview-box {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--soft-2);
+      overflow-x: auto;
+    }
+
+    .mini-help {
+      display: grid;
+      gap: 8px;
+      padding-left: 1rem;
+      color: var(--muted);
+    }
+
+    .mini-help code {
+      padding: 0.1rem 0.3rem;
+      border-radius: 6px;
+      background: var(--soft);
+      color: var(--text);
+    }
+
+    @media (max-width: 960px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .manual-row,
+      .form-grid,
+      .form-grid.three {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <h1>Generator Tabel PDF untuk WordPress Classic</h1>
+      <p>Masukkan banyak URL/path PDF, lalu generator ini akan membuat kode HTML tabel responsif berisi nama dokumen, tombol Baca, dan tombol Unduh. Semua proses berjalan lokal di browser.</p>
+    </header>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Input Data PDF</h2>
+
+        <div class="section">
+          <h3>1. Paste URL/path banyak PDF</h3>
+          <label for="bulkInput">Satu baris untuk satu dokumen</label>
+          <textarea id="bulkInput" spellcheck="false" placeholder="Contoh:
+https://lbh-pari.com/wp-content/uploads/2026/07/UU-Nomor-1-Tahun-2023.pdf
+UU Nomor 1 Tahun 2024 | Informasi dan Transaksi Elektronik | https://lbh-pari.com/wp-content/uploads/2026/07/UU-Nomor-1-Tahun-2024.pdf
+3 | UU Nomor 35 Tahun 2009 | Narkotika | https://lbh-pari.com/wp-content/uploads/2026/07/UU-Nomor-35-Tahun-2009.pdf"></textarea>
+          <p class="hint">Format baris yang didukung: <strong>URL saja</strong>, <strong>Judul | URL</strong>, <strong>Judul | Keterangan | URL</strong>, atau <strong>No | Judul | Keterangan | URL</strong>.</p>
+        </div>
+
+        <div class="section">
+          <h3>2. Import dari file</h3>
+          <label for="listFile">Browse file .txt / .csv</label>
+          <input id="listFile" type="file" accept=".txt,.csv,text/plain,text/csv">
+          <p class="hint">File `.txt` bisa berisi daftar URL per baris. File `.csv` mendukung kolom seperti <code>no,title,note,url</code> atau <code>nomor,nama,keterangan,link</code>.</p>
+        </div>
+
+        <div class="section">
+          <h3>3. Ambil nama dari banyak file PDF lokal</h3>
+          <label for="pdfFiles">Browse banyak file .pdf</label>
+          <input id="pdfFiles" type="file" accept="application/pdf,.pdf" multiple>
+          <p class="hint">Karena aturan keamanan browser, input ini tidak bisa membaca path folder asli. Generator akan memakai nama file dan menggabungkannya dengan Base URL di bawah.</p>
+        </div>
+
+        <div class="section">
+          <h3>4. Pengaturan URL dan judul</h3>
+          <div class="form-grid">
+            <div>
+              <label for="baseUrl">Base URL opsional</label>
+              <input id="baseUrl" type="text" placeholder="https://lbh-pari.com/wp-content/uploads/2026/07/">
+              <p class="hint">Dipakai untuk file PDF lokal atau baris yang hanya berisi nama file.</p>
+            </div>
+            <div>
+              <label for="startNumber">Nomor awal</label>
+              <input id="startNumber" type="number" min="1" value="1">
+            </div>
+          </div>
+
+          <div class="form-grid" style="margin-top:12px;">
+            <div>
+              <label for="titleMode">Judul otomatis dari URL</label>
+              <select id="titleMode">
+                <option value="clean" selected>Bersihkan nama file</option>
+                <option value="filename">Nama file apa adanya</option>
+                <option value="url">URL/path penuh</option>
+              </select>
+            </div>
+            <div>
+              <label for="tableTitle">Judul tabel opsional</label>
+              <input id="tableTitle" type="text" placeholder="Daftar Dokumen PDF">
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>5. Tambah baris manual</h3>
+          <div class="form-grid three">
+            <div>
+              <label for="manualNo">No</label>
+              <input id="manualNo" type="number" min="1" placeholder="auto">
+            </div>
+            <div>
+              <label for="manualTitle">Nama dokumen</label>
+              <input id="manualTitle" type="text" placeholder="UU Nomor ...">
+            </div>
+            <div>
+              <label for="manualNote">Keterangan</label>
+              <input id="manualNote" type="text" placeholder="Tentang ...">
+            </div>
+          </div>
+          <div style="margin-top:10px;">
+            <label for="manualUrl">URL/path PDF</label>
+            <input id="manualUrl" type="text" placeholder="https://.../file.pdf">
+          </div>
+          <div class="btns">
+            <button type="button" class="secondary" id="addManualBtn">+ Tambah Baris Manual</button>
+          </div>
+          <div id="manualList" class="manual-list" aria-live="polite"></div>
+        </div>
+
+        <div class="section">
+          <h3>6. Opsi output</h3>
+          <div class="checks">
+            <label class="check"><input id="includeCss" type="checkbox" checked> Sertakan CSS responsif di output</label>
+            <label class="check"><input id="includeWpBlock" type="checkbox" checked> Bungkus sebagai blok WordPress <code>&lt;!-- wp:html --&gt;</code></label>
+            <label class="check"><input id="includeNote" type="checkbox" checked> Tampilkan keterangan di bawah nama dokumen jika tersedia</label>
+            <label class="check"><input id="autoSort" type="checkbox"> Urutkan berdasarkan nama dokumen</label>
+          </div>
+
+          <div class="btns">
+            <button type="button" id="generateBtn">Generate HTML</button>
+            <button type="button" class="secondary" id="copyBtn">Copy Output</button>
+            <button type="button" class="ghost" id="downloadBtn">Download .html</button>
+            <button type="button" class="warning" id="sampleBtn">Isi Contoh</button>
+            <button type="button" class="danger" id="clearBtn">Bersihkan</button>
+          </div>
+          <p id="status" class="status"></p>
+        </div>
+
+        <div class="section">
+          <h3>Format cepat</h3>
+          <ul class="mini-help">
+            <li><code>URL</code> → judul dibuat otomatis dari nama file.</li>
+            <li><code>Judul | URL</code> → keterangan kosong.</li>
+            <li><code>Judul | Keterangan | URL</code> → format paling enak untuk WordPress.</li>
+            <li><code>No | Judul | Keterangan | URL</code> → nomor manual ikut dipakai.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Output HTML</h2>
+        <label for="output">Kode siap tempel ke WordPress Classic Editor</label>
+        <textarea id="output" class="output" spellcheck="false" placeholder="Hasil generate akan muncul di sini..."></textarea>
+      </section>
+    </div>
+
+    <section class="preview-card">
+      <h2>Preview</h2>
+      <div id="preview" class="preview-box">Belum ada preview. Klik <strong>Generate HTML</strong> dulu.</div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const els = {
+        bulkInput: document.getElementById("bulkInput"),
+        listFile: document.getElementById("listFile"),
+        pdfFiles: document.getElementById("pdfFiles"),
+        baseUrl: document.getElementById("baseUrl"),
+        startNumber: document.getElementById("startNumber"),
+        titleMode: document.getElementById("titleMode"),
+        tableTitle: document.getElementById("tableTitle"),
+        manualNo: document.getElementById("manualNo"),
+        manualTitle: document.getElementById("manualTitle"),
+        manualNote: document.getElementById("manualNote"),
+        manualUrl: document.getElementById("manualUrl"),
+        addManualBtn: document.getElementById("addManualBtn"),
+        manualList: document.getElementById("manualList"),
+        includeCss: document.getElementById("includeCss"),
+        includeWpBlock: document.getElementById("includeWpBlock"),
+        includeNote: document.getElementById("includeNote"),
+        autoSort: document.getElementById("autoSort"),
+        generateBtn: document.getElementById("generateBtn"),
+        copyBtn: document.getElementById("copyBtn"),
+        downloadBtn: document.getElementById("downloadBtn"),
+        sampleBtn: document.getElementById("sampleBtn"),
+        clearBtn: document.getElementById("clearBtn"),
+        status: document.getElementById("status"),
+        output: document.getElementById("output"),
+        preview: document.getElementById("preview")
+      };
+
+      let manualRows = [];
+      let pdfFileRows = [];
+
+      const pdfCss = `<style>
+  /* =========================================================
+     PDF TABLE RESPONSIVE
+     ========================================================= */
+
+  .pdf-table-wrap {
+    --pdf-bg: #ffffff;
+    --pdf-bg-soft: #f8fafc;
+    --pdf-text: #111827;
+    --pdf-text-sub: #374151;
+    --pdf-muted: #6b7280;
+    --pdf-border: #e5e7eb;
+    --pdf-btn-read: #0f766e;
+    --pdf-btn-download: #1d4ed8;
+    --pdf-btn-text: #ffffff;
+
+    width: 100%;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    border: 1px solid var(--pdf-border);
+    border-radius: 10px;
+    background: var(--pdf-bg);
+  }
+
+  .pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: inherit;
+    font-size: 0.95rem;
+  }
+
+  .pdf-table thead {
+    background: var(--pdf-bg-soft);
+  }
+
+  .pdf-table th,
+  .pdf-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--pdf-border);
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .pdf-table th {
+    color: var(--pdf-text);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .pdf-table td {
+    color: var(--pdf-text-sub);
+  }
+
+  .pdf-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .pdf-title {
+    color: var(--pdf-text);
+    font-weight: 600;
+  }
+
+  .pdf-note {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--pdf-muted);
+    font-size: 0.85rem;
+  }
+
+  .pdf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.7rem;
+    border: 0;
+    border-radius: 6px;
+    color: var(--pdf-btn-text) !important;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+  }
+
+  .pdf-btn-read {
+    background: var(--pdf-btn-read);
+  }
+
+  .pdf-btn-download {
+    background: var(--pdf-btn-download);
+  }
+
+  .pdf-btn:hover,
+  .pdf-btn:focus {
+    color: var(--pdf-btn-text) !important;
+    opacity: 0.88;
+  }
+
+  .pdf-btn:focus-visible {
+    outline: 3px solid rgba(29, 78, 216, 0.35);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .pdf-table-wrap {
+      --pdf-bg: #111827;
+      --pdf-bg-soft: #1f2937;
+      --pdf-text: #f9fafb;
+      --pdf-text-sub: #d1d5db;
+      --pdf-muted: #9ca3af;
+      --pdf-border: #374151;
+      --pdf-btn-download: #2563eb;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .pdf-table-wrap {
+      overflow-x: visible;
+      border: none;
+      background: transparent;
+    }
+
+    .pdf-table,
+    .pdf-table thead,
+    .pdf-table tbody,
+    .pdf-table th,
+    .pdf-table td,
+    .pdf-table tr {
+      display: block;
+      width: 100%;
+    }
+
+    .pdf-table thead {
+      display: none;
+    }
+
+    .pdf-table tr {
+      margin-bottom: 1rem;
+      overflow: hidden;
+      border: 1px solid var(--pdf-border);
+      border-radius: 10px;
+      background: var(--pdf-bg);
+    }
+
+    .pdf-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--pdf-border);
+    }
+
+    .pdf-table td:last-child {
+      border-bottom: none;
+    }
+
+    .pdf-table td::before {
+      content: attr(data-label);
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--pdf-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .pdf-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .pdf-btn {
+      width: 100%;
+    }
+  }
+</style>`;
+
+      const escapeHtml = (value) => String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+      const normalizeSlash = (base) => {
+        const trimmed = String(base || "").trim();
+        if (!trimmed) return "";
+        return trimmed.endsWith("/") ? trimmed : `${trimmed}/`;
+      };
+
+      const looksLikeUrlOrPath = (value) => {
+        const s = String(value || "").trim();
+        return /^(https?:)?\/\//i.test(s) || s.startsWith("/") || /\.pdf(?:[?#].*)?$/i.test(s);
+      };
+
+      const joinBaseUrl = (base, value) => {
+        const raw = String(value || "").trim();
+        if (!raw) return "";
+        if (/^(https?:)?\/\//i.test(raw) || raw.startsWith("/") || raw.startsWith("#")) return raw;
+        const safeName = raw.split("/").map(part => encodeURIComponent(part)).join("/");
+        return `${normalizeSlash(base)}${safeName}`;
+      };
+
+      const getFilenameFromUrl = (url) => {
+        const clean = String(url || "").split("#")[0].split("?")[0];
+        const last = clean.substring(clean.lastIndexOf("/") + 1) || clean;
+        try {
+          return decodeURIComponent(last);
+        } catch (_) {
+          return last;
+        }
+      };
+
+      const titleFromUrl = (url, mode = "clean") => {
+        if (mode === "url") return String(url || "").trim();
+        const filename = getFilenameFromUrl(url);
+        if (mode === "filename") return filename;
+        return filename
+          .replace(/\.pdf$/i, "")
+          .replace(/[-_]+/g, " ")
+          .replace(/\s+/g, " ")
+          .replace(/\buu\b/gi, "UU")
+          .replace(/\bdan\b/gi, "dan")
+          .replace(/\byang\b/gi, "yang")
+          .trim();
+      };
+
+      const splitSmart = (line) => {
+        const s = String(line || "").trim();
+        if (!s) return [];
+        if (s.includes("|")) return s.split("|").map(part => part.trim()).filter(Boolean);
+        return parseCsvLine(s).map(part => part.trim()).filter(Boolean);
+      };
+
+      const parseCsvLine = (line) => {
+        const out = [];
+        let cur = "";
+        let inQuotes = false;
+
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          const next = line[i + 1];
+
+          if (char === '"') {
+            if (inQuotes && next === '"') {
+              cur += '"';
+              i++;
+            } else {
+              inQuotes = !inQuotes;
+            }
+            continue;
+          }
+
+          if (char === "," && !inQuotes) {
+            out.push(cur);
+            cur = "";
+            continue;
+          }
+
+          cur += char;
+        }
+
+        out.push(cur);
+        return out;
+      };
+
+      const parseCsvText = (text) => {
+        const lines = String(text || "").split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+        if (!lines.length) return [];
+
+        const first = parseCsvLine(lines[0]).map(h => h.trim().toLowerCase());
+        const hasHeader = first.some(h => ["url", "link", "href", "file", "pdf", "judul", "title", "nama", "name", "keterangan", "note", "tentang", "no", "nomor"].includes(h));
+        const rows = hasHeader ? lines.slice(1) : lines;
+        const header = hasHeader ? first : [];
+
+        const findIdx = (names) => header.findIndex(h => names.includes(h));
+        const idx = {
+          no: findIdx(["no", "nomor", "number"]),
+          title: findIdx(["title", "judul", "nama", "name", "dokumen", "document"]),
+          note: findIdx(["note", "keterangan", "tentang", "description", "deskripsi"]),
+          url: findIdx(["url", "link", "href", "file", "pdf", "path"])
+        };
+
+        return rows.map(line => {
+          const cols = parseCsvLine(line).map(c => c.trim()).filter((c, i, arr) => c || arr.length <= 1);
+          if (!cols.length) return null;
+
+          if (hasHeader && idx.url >= 0) {
+            return {
+              no: idx.no >= 0 ? cols[idx.no] : "",
+              title: idx.title >= 0 ? cols[idx.title] : "",
+              note: idx.note >= 0 ? cols[idx.note] : "",
+              url: cols[idx.url] || ""
+            };
+          }
+
+          return parseFlexibleParts(cols);
+        }).filter(row => row && row.url);
+      };
+
+      const parseFlexibleParts = (parts) => {
+        const clean = parts.map(p => String(p || "").trim()).filter(Boolean);
+        if (!clean.length) return null;
+
+        if (clean.length === 1) {
+          return { no: "", title: "", note: "", url: clean[0] };
+        }
+
+        const last = clean[clean.length - 1];
+        if (looksLikeUrlOrPath(last)) {
+          if (clean.length === 2) {
+            return { no: "", title: clean[0], note: "", url: last };
+          }
+
+          if (clean.length === 3) {
+            return { no: "", title: clean[0], note: clean[1], url: last };
+          }
+
+          return { no: clean[0], title: clean[1], note: clean.slice(2, -1).join(" "), url: last };
+        }
+
+        const urlIdx = clean.findIndex(looksLikeUrlOrPath);
+        if (urlIdx >= 0) {
+          const url = clean[urlIdx];
+          const before = clean.slice(0, urlIdx);
+          return parseFlexibleParts([...before, url]);
+        }
+
+        return { no: "", title: "", note: "", url: clean.join(" ") };
+      };
+
+      const parseBulkInput = () => {
+        const lines = els.bulkInput.value.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+        return lines.map(line => parseFlexibleParts(splitSmart(line))).filter(row => row && row.url);
+      };
+
+      const normalizeRows = (rows) => {
+        const base = els.baseUrl.value;
+        const mode = els.titleMode.value;
+        const start = Math.max(1, Number.parseInt(els.startNumber.value, 10) || 1);
+        let cleaned = rows
+          .map(row => {
+            const url = joinBaseUrl(base, row.url);
+            const title = String(row.title || "").trim() || titleFromUrl(row.url || url, mode) || "Dokumen PDF";
+            return {
+              no: String(row.no || "").trim(),
+              title,
+              note: String(row.note || "").trim(),
+              url
+            };
+          })
+          .filter(row => row.url);
+
+        const seen = new Set();
+        cleaned = cleaned.filter(row => {
+          const key = row.url.toLowerCase();
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+
+        if (els.autoSort.checked) {
+          cleaned.sort((a, b) => a.title.localeCompare(b.title, "id", { numeric: true, sensitivity: "base" }));
+        }
+
+        return cleaned.map((row, index) => ({
+          ...row,
+          no: row.no || String(start + index)
+        }));
+      };
+
+      const buildRowsHtml = (rows) => rows.map(row => {
+        const noteHtml = els.includeNote.checked && row.note
+          ? `\n          <span class="pdf-note">${escapeHtml(row.note)}</span>`
+          : "";
+
+        return `      <tr>
+        <td data-label="No.">${escapeHtml(row.no)}</td>
+        <td data-label="Nama Dokumen">
+          <span class="pdf-title">${escapeHtml(row.title)}</span>${noteHtml}
+        </td>
+        <td data-label="Aksi">
+          <div class="pdf-actions">
+            <a class="pdf-btn pdf-btn-read" href="${escapeHtml(row.url)}" target="_blank" rel="noopener noreferrer">📖 Baca</a>
+            <a class="pdf-btn pdf-btn-download" href="${escapeHtml(row.url)}" download>⬇️ Unduh</a>
+          </div>
+        </td>
+      </tr>`;
+      }).join("\n\n");
+
+      const buildTableHtml = (rows) => {
+        const title = els.tableTitle.value.trim();
+        const titleHtml = title ? `<h2>${escapeHtml(title)}</h2>\n\n` : "";
+        return `${titleHtml}<div class="pdf-table-wrap">
+  <table class="pdf-table">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Nama Dokumen</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+${buildRowsHtml(rows)}
+    </tbody>
+  </table>
+</div>`;
+      };
+
+      const buildFullHtml = (rows) => {
+        const parts = [];
+        if (els.includeWpBlock.checked) parts.push("<!-- wp:html -->");
+        if (els.includeCss.checked) parts.push(pdfCss);
+        parts.push(buildTableHtml(rows));
+        if (els.includeWpBlock.checked) parts.push("<!-- /wp:html -->");
+        return parts.join("\n\n");
+      };
+
+      const collectRows = () => normalizeRows([
+        ...parseBulkInput(),
+        ...pdfFileRows,
+        ...manualRows
+      ]);
+
+      const generate = () => {
+        const rows = collectRows();
+        if (!rows.length) {
+          els.output.value = "";
+          els.preview.innerHTML = "Belum ada data PDF. Masukkan URL/path atau pilih file dulu.";
+          setStatus("Tidak ada data PDF yang bisa dibuat tabelnya.");
+          return;
+        }
+
+        const html = buildFullHtml(rows);
+        els.output.value = html;
+        els.preview.innerHTML = els.includeCss.checked ? html : `${pdfCss}\n${buildTableHtml(rows)}`;
+        setStatus(`Berhasil generate <strong>${rows.length}</strong> baris PDF.`);
+      };
+
+      const setStatus = (message) => {
+        els.status.innerHTML = message;
+      };
+
+      const renderManualList = () => {
+        els.manualList.innerHTML = "";
+        manualRows.forEach((row, index) => {
+          const div = document.createElement("div");
+          div.className = "manual-row";
+          div.innerHTML = `
+            <input type="number" min="1" value="${escapeHtml(row.no)}" aria-label="Nomor">
+            <input type="text" value="${escapeHtml(row.title)}" aria-label="Nama dokumen">
+            <input type="text" value="${escapeHtml(row.note)}" aria-label="Keterangan">
+            <input type="text" value="${escapeHtml(row.url)}" aria-label="URL PDF">
+            <button type="button" class="danger" aria-label="Hapus baris">Hapus</button>
+          `;
+          const inputs = div.querySelectorAll("input");
+          inputs[0].addEventListener("input", e => manualRows[index].no = e.target.value);
+          inputs[1].addEventListener("input", e => manualRows[index].title = e.target.value);
+          inputs[2].addEventListener("input", e => manualRows[index].note = e.target.value);
+          inputs[3].addEventListener("input", e => manualRows[index].url = e.target.value);
+          div.querySelector("button").addEventListener("click", () => {
+            manualRows.splice(index, 1);
+            renderManualList();
+            setStatus("Baris manual dihapus.");
+          });
+          els.manualList.appendChild(div);
+        });
+      };
+
+      els.addManualBtn.addEventListener("click", () => {
+        const row = {
+          no: els.manualNo.value.trim(),
+          title: els.manualTitle.value.trim(),
+          note: els.manualNote.value.trim(),
+          url: els.manualUrl.value.trim()
+        };
+
+        if (!row.url) {
+          setStatus("URL/path PDF manual belum diisi.");
+          return;
+        }
+
+        manualRows.push(row);
+        els.manualNo.value = "";
+        els.manualTitle.value = "";
+        els.manualNote.value = "";
+        els.manualUrl.value = "";
+        renderManualList();
+        setStatus("Baris manual ditambahkan.");
+      });
+
+      els.listFile.addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        const text = await file.text();
+        const importedRows = file.name.toLowerCase().endsWith(".csv") ? parseCsvText(text) : text.split(/\r?\n/).map(line => parseFlexibleParts(splitSmart(line))).filter(row => row && row.url);
+        const current = els.bulkInput.value.trim();
+        const added = importedRows.map(row => [row.no, row.title, row.note, row.url].filter(Boolean).join(" | ")).join("\n");
+        els.bulkInput.value = [current, added].filter(Boolean).join("\n");
+        setStatus(`Import file berhasil: <strong>${importedRows.length}</strong> baris ditambahkan ke textarea.`);
+        event.target.value = "";
+      });
+
+      els.pdfFiles.addEventListener("change", (event) => {
+        const files = Array.from(event.target.files || []);
+        pdfFileRows = files.map(file => ({
+          no: "",
+          title: titleFromUrl(file.name, els.titleMode.value),
+          note: "",
+          url: file.name
+        }));
+        setStatus(`File PDF lokal terbaca: <strong>${pdfFileRows.length}</strong>. Isi Base URL jika ingin hasilnya menjadi URL WordPress.`);
+      });
+
+      els.generateBtn.addEventListener("click", generate);
+
+      els.copyBtn.addEventListener("click", async () => {
+        if (!els.output.value.trim()) generate();
+        if (!els.output.value.trim()) return;
+
+        try {
+          await navigator.clipboard.writeText(els.output.value);
+          setStatus("Output HTML berhasil disalin ke clipboard.");
+        } catch (_) {
+          els.output.select();
+          document.execCommand("copy");
+          setStatus("Output HTML diseleksi/disalin. Jika belum masuk clipboard, tekan Ctrl+C.");
+        }
+      });
+
+      els.downloadBtn.addEventListener("click", () => {
+        if (!els.output.value.trim()) generate();
+        if (!els.output.value.trim()) return;
+
+        const blob = new Blob([els.output.value], { type: "text/html;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "tabel-pdf-wordpress.html";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        setStatus("File HTML output berhasil dibuat.");
+      });
+
+      els.sampleBtn.addEventListener("click", () => {
+        els.baseUrl.value = "https://lbh-pari.com/wp-content/uploads/2026/07/";
+        els.tableTitle.value = "Daftar Dokumen Peraturan";
+        els.bulkInput.value = [
+          "UU Nomor 1 Tahun 2023 | Kitab Undang-Undang Hukum Pidana | UU-Nomor-1-Tahun-2023-TENTANG-KITAB-UNDANG-UNDANG-HUKUM-PIDANA.pdf",
+          "UU Nomor 1 Tahun 2024 | Informasi dan Transaksi Elektronik | UU-Nomor-1-Tahun-2024-TENTANG-INFORMASI-DAN-TRANSAKSI-ELEKTRONIK.pdf",
+          "UU Nomor 35 Tahun 2009 | Narkotika | UU-Nomor-35-Tahun-2009-TENTANG-NARKOTIKA.pdf",
+          "UU Nomor 42 Tahun 1999 | Jaminan Fidusia | UU-Nomor-42-Tahun-1999-TENTANG-JAMINAN-FIDUSIA.pdf",
+          "UU Nomor 8 Tahun 1999 | Perlindungan Konsumen | UU-Nomor-8-Tahun-1999-TENTANG-PERLINDUNGAN-KONSUMEN.pdf"
+        ].join("\n");
+        setStatus("Data contoh dimasukkan.");
+      });
+
+      els.clearBtn.addEventListener("click", () => {
+        els.bulkInput.value = "";
+        els.listFile.value = "";
+        els.pdfFiles.value = "";
+        els.baseUrl.value = "";
+        els.startNumber.value = "1";
+        els.tableTitle.value = "";
+        els.output.value = "";
+        els.preview.innerHTML = "Belum ada preview. Klik <strong>Generate HTML</strong> dulu.";
+        manualRows = [];
+        pdfFileRows = [];
+        renderManualList();
+        setStatus("Input dibersihkan.");
+      });
+    })();
+  </script>
+</body>
+</html>
