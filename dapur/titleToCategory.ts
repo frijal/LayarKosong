@@ -16,7 +16,7 @@ const categories: Category[] = [
   {
     name: "Olah Media",
     keywords: [
-      "ffmpeg", "handbrake", "excel", "invoices", "Foto","Gambar","imagemagick", "Media", "Visual","Editor", "libreoffice", "ghostscript", "pdftk", "gimp", "inkscape", "video", "audio", "mp4", "mkv", "mp3", "ogg", "webp", "png", "svg", "edit", "convert", "compress", "resize", "crop", "split", "gabung", "Viewer", "watermark", "subtitle", "srt", "transcribe", "ocr", "metadata", "exif", "batch", "rekam", "screencast", "thumbnail", "framerate", "bitrate", "codec", "h264", "h265", "av1"
+      "ffmpeg", "handbrake", "excel", "invoices", "Foto","Gambar","imagemagick", "Media", "Visual","Editor", "libreoffice", "ghostscript", "pdftk", "pdf", "gimp", "inkscape", "video", "audio", "mp4", "mkv", "mp3", "ogg", "webp", "png", "svg", "edit", "convert", "compress", "resize", "crop", "split", "gabung", "Viewer", "watermark", "subtitle", "srt", "transcribe", "ocr", "metadata", "exif", "batch", "rekam", "screencast", "thumbnail", "framerate", "bitrate", "codec", "h264", "h265", "av1"
     ]
   },
   {
