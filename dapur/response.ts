@@ -45,7 +45,7 @@ type LayarKosongWindow = Window & {
 
   const TWIKOO_ENV_ID = 'https://kom.dalam.web.id';
   const TWIKOO_CONTAINER_ID = '#response';
-  const TWIKOO_CDN = 'https://cdn.jsdelivr.net/npm/twikoo@1.7.14/dist/twikoo.min.js';
+  const TWIKOO_CDN = 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.min.js';
 
   const container = document.querySelector<HTMLElement>(TWIKOO_CONTAINER_ID);
   if (!container) return;
