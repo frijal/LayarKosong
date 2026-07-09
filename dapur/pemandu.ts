@@ -637,7 +637,7 @@ async function initRandomPlayground() {
     // Bikin Tombol Shuffle
     const shuffleBtn = document.createElement('button');
     shuffleBtn.id = 'shuffle-btn';
-    shuffleBtn.textContent = '🎲 Acak Artikel';
+    shuffleBtn.textContent = '♻️ Acak Artikel';
 shuffleBtn.onclick = () => {
   renderPlaygroundList(listContainer);
 };
