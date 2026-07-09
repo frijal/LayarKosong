@@ -525,7 +525,7 @@ background-color: var(--border, #eee);
 /* STYLING PLAYGROUND ITEM */
 .playground-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
   text-decoration: none;
   color: inherit;
@@ -547,9 +547,9 @@ background-color: var(--border, #eee);
 }
 
 .playground-title {
-  height: var(--thumb-size);
-  font-size: calc(var(--thumb-size) / 5);
-  line-height: calc(var(--thumb-size) / 5);
+  max-height: var(--thumb-size);
+  font-size: calc(var(--thumb-size) / 4);
+  line-height: calc(var(--thumb-size) / 4);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
   flex-grow: 1;
