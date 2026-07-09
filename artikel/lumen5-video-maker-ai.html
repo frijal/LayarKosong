@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -59,132 +59,224 @@
 <meta name="keywords" content="Lumen5, AI video maker, text to video, video media sosial, UMKM, content creator, video marketing">
     <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
     <style>
-      :root {
-        --bg-color: #0a0f18;
-        --surface-color: #151c2c;
-        --primary-color: #ff007f;
-        --secondary-color: #00d4ff;
-        --text-color: #e4e4ff;
-        --text-muted: #a0a0b0;
-        --border-color: #2c2c5c;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      }
-      html { scroll-behavior: smooth; }
-      body {
-        font-family: var(--font-main);
-        margin: 0;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        line-height: 1.8;
-        font-size: 1.1rem;
-      }
-      .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-      header {
-        text-align: center;
-        padding: 60px 20px;
-        background: linear-gradient(145deg, rgba(255, 0, 127, 0.1), rgba(0, 246, 255, 0.1));
-        border-bottom: 2px solid var(--primary-color);
-      }
-      header h1 {
-        font-size: 3rem;
-        color: var(--primary-color);
-        margin: 0;
-        font-weight: 800;
-        text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
-      }
-      header .subtitle { font-size: 1.3rem; color: var(--text-muted); margin-top: 15px; }
-      article {
-        background: var(--surface-color);
-        border-radius: 15px;
-        padding: 30px 40px;
-        margin-top: 30px;
-        box-shadow: var(--shadow);
-        border: 1px solid var(--border-color);
-      }
-      h2 {
-        font-size: 2.2rem;
-        color: var(--primary-color);
-        margin-top: 40px;
-        border-bottom: 2px solid var(--border-color);
-        padding-bottom: 10px;
-        font-weight: 700;
-      }
-      .feature-list { list-style: none; padding-left: 0; }
-      .feature-list li {
-        padding: 10px 0;
-        border-bottom: 1px solid var(--border-color);
-        display: flex;
-        align-items: center;
-      }
-      .feature-list li::before {
-        content: '►';
-        color: var(--secondary-color);
-        font-size: 1.2rem;
-        margin-right: 15px;
-        animation: pulse 1.5s infinite;
-      }
-      @keyframes pulse { 50% { color: var(--primary-color); } }
-      .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 15px;
-        margin: 30px 0;
-      }
-      .gallery img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: transform 0.3s, filter 0.3s;
-      }
-      .gallery img:hover { transform: scale(1.05); filter: drop-shadow(0 0 10px var(--secondary-color)); }
-      .lightbox {
-        display: none;
-        position: fixed;
-        z-index: 9999;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.9);
-        justify-content: center;
-        align-items: center;
-      }
-      .lightbox-content { max-width: 90%; max-height: 85%; animation: fadeIn 0.4s ease; }
-      @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-      .lightbox-close, .lightbox-prev, .lightbox-next {
-        position: absolute;
-        color: white;
-        font-size: 40px;
-        cursor: pointer;
-        user-select: none;
-        transition: opacity 0.3s;
-      }
-      .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover { opacity: 0.7; }
-      .lightbox-close { top: 15px; right: 30px; }
-      .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); padding: 10px; }
-      .lightbox-prev { left: 15px; }
-      .lightbox-next { right: 15px; }
-      .action-section {
-        text-align: center;
-        margin: 40px 0;
-        padding: 25px;
-        background: var(--bg-color);
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-      }
-      .action-section h3 { margin-top: 0; font-size: 1.5rem; color: var(--primary-color); }
-      .share-icons-container { display: flex; justify-content: center; gap: 20px; }
-      .share-icon { display: inline-block; transition: transform 0.2s ease; }
-      .share-icon:hover { transform: scale(1.15); }
-      .share-icon svg { width: 40px; height: 40px; }
-      footer { text-align: center; padding: 25px; margin-top: 40px; font-size: 1rem; color: var(--text-muted); }
-      @media (max-width: 768px) {
-        body { font-size: 1rem; }
-        header h1 { font-size: 2.5rem; }
-        article { padding: 20px; }
-        h2 { font-size: 1.8rem; }
-      }
-    </style>
+  :root {
+    /* =========================================
+       TEMA GELAP (Default bawaan)
+       ========================================= */
+    --bg-color: #0a0f18;
+    --surface-color: #151c2c;
+    --primary-color: #ff007f;
+    --secondary-color: #00d4ff;
+    --text-color: #e4e4ff;
+    --text-muted: #a0a0b0;
+    --border-color: #2c2c5c;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+    /* Variabel baru untuk warna yang sebelumnya hardcoded */
+    --header-bg: linear-gradient(145deg, rgba(255, 0, 127, 0.1), rgba(0, 246, 255, 0.1));
+    --title-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+
+    --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  /* =========================================
+     TEMA TERANG (Otomatis saat Light Mode aktif)
+     ========================================= */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg-color: #f4f5f8;
+      --surface-color: #ffffff;
+      /* Warna neon digelapkan sedikit biar tidak pecah/silau di background putih */
+      --primary-color: #d9006c;
+      --secondary-color: #0088aa;
+      --text-color: #1a1a24;
+      --text-muted: #666677;
+      --border-color: #d8d8e5;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+      --header-bg: linear-gradient(145deg, rgba(217, 0, 108, 0.05), rgba(0, 136, 170, 0.05));
+      --title-shadow: 0 0 10px rgba(217, 0, 108, 0.2);
+    }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-main);
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.8;
+    font-size: 1.1rem;
+    /* Efek transisi mulus saat pindah mode */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+  header {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--header-bg);
+    border-bottom: 2px solid var(--primary-color);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin: 0;
+    font-weight: 800;
+    text-shadow: var(--title-shadow);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  header .subtitle {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin-top: 15px;
+    transition: color 0.3s ease;
+  }
+
+  article {
+    background: var(--surface-color);
+    border-radius: 15px;
+    padding: 30px 40px;
+    margin-top: 30px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-top: 40px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    font-weight: 700;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .feature-list { list-style: none; padding-left: 0; }
+
+  .feature-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    transition: border-color 0.3s ease;
+  }
+
+  .feature-list li::before {
+    content: '►';
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    margin-right: 15px;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse { 50% { color: var(--primary-color); } }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 30px 0;
+  }
+
+  .gallery img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, filter 0.3s;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px var(--secondary-color));
+  }
+
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lightbox-content {
+    max-width: 90%;
+    max-height: 85%;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .lightbox-close, .lightbox-prev, .lightbox-next {
+    position: absolute;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.3s;
+  }
+
+  .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
+    opacity: 0.7;
+  }
+
+  .lightbox-close { top: 15px; right: 30px; }
+  .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); padding: 10px; }
+  .lightbox-prev { left: 15px; }
+  .lightbox-next { right: 15px; }
+
+  .action-section {
+    text-align: center;
+    margin: 40px 0;
+    padding: 25px;
+    background: var(--bg-color);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .action-section h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+  }
+
+  .share-icons-container { display: flex; justify-content: center; gap: 20px; }
+
+  .share-icon { display: inline-block; transition: transform 0.2s ease; }
+  .share-icon:hover { transform: scale(1.15); }
+  .share-icon svg { width: 40px; height: 40px; }
+
+  footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+    font-size: 1rem;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    body { font-size: 1rem; }
+    header h1 { font-size: 2.5rem; }
+    article { padding: 20px; }
+    h2 { font-size: 1.8rem; }
+  }
+</style>
 <meta name="ai:summary" content="Tidak jago edit video? Pakai Lumen5! Tool AI ini bisa mengubah artikel atau teks jadi video profesional siap tayang di Instagram, TikTok, atau YouTube.">
 <meta name="ai:prompt_hint" content="Tidak jago edit video? Pakai Lumen5! Tool AI ini bisa mengubah artikel atau teks jadi video profesional siap tayang di Instagram, TikTok, atau YouTube.">
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
