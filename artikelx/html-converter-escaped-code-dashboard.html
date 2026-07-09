@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Converter Escaped Code Dashboard v.2</title>
+<meta name="description" content="HTML Converter Escaped Code Dashboard v.2 adalah alat praktis untuk mengubah kode HTML menjadi escaped code yang aman dipasang di artikel, template, atau dokumentasi web.">
+
+<link rel="canonical" href="https://dalam.web.id/artikel/html-converter-escaped-code-dashboard.html">
+
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+<meta name="googlebot" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+
+<meta name="author" content="Fakhrul Rijal">
+<meta name="theme-color" content="#0f172a">
+
+<meta name="keywords" content="HTML converter, escaped code, HTML escape tool, converter kode HTML, encode HTML, HTML entities, dashboard converter HTML">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="id_ID">
+<meta property="og:site_name" content="Layar Kosong">
+<meta property="og:title" content="HTML Converter Escaped Code Dashboard v.2">
+<meta property="og:description" content="Alat praktis untuk mengubah kode HTML menjadi escaped code yang aman dipasang di artikel, template, atau dokumentasi web.">
+<meta property="og:url" content="https://dalam.web.id/artikel/html-converter-escaped-code-dashboard.html">
+<meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2010%2C%202026%2C%2002_20_36%20AM.png">
+<meta property="og:image:alt" content="HTML Converter Escaped Code Dashboard v.2">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HTML Converter Escaped Code Dashboard v.2">
+<meta name="twitter:description" content="Alat praktis untuk mengubah kode HTML menjadi escaped code yang aman dipasang di artikel, template, atau dokumentasi web.">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2010%2C%202026%2C%2002_20_36%20AM.png">
+<meta name="twitter:image:alt" content="HTML Converter Escaped Code Dashboard v.2">
+    <style>
+        /* Skema Warna Dark Mode */
+        :root {
+            --bg: #1e1e2e;
+            --surface: #313244;
+            --text: #cdd6f4;
+            --accent-copy: #89b4fa;   /* Biru */
+            --accent-paste: #a6e3a1;  /* Hijau */
+            --accent-clear: #f38ba8;  /* Merah */
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--accent-copy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 1.5rem;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        textarea {
+            flex: 1;
+            width: 100%;
+            background-color: var(--surface);
+            color: #a6e3a1;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            outline: none;
+            transition: border 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-copy);
+        }
+
+        button {
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: var(--bg);
+            transition: opacity 0.2s, transform 0.1s;
+        }
+
+        /* Styling spesifik untuk masing-masing tombol */
+        .btn-paste { background-color: var(--accent-paste); }
+        .btn-copy { background-color: var(--accent-copy); }
+        .btn-clear { background-color: var(--accent-clear); color: #fff; }
+
+        button:hover { opacity: 0.85; }
+        button:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+
+    <h2>Dashboard Konversi HTML Dua Arah v.2</h2>
+
+    <div class="container">
+        <div class="box">
+            <div class="header">
+                <span>⬆️ HTML Escaped (Entitas seperti &amp;lt;, &amp;gt;)</span>
+                <div class="button-group">
+                    <button class="btn-paste" onclick="pasteText('encoded', this)">Paste</button>
+                    <button class="btn-copy" onclick="copyText('encoded', this)">Copy</button>
+                    <button class="btn-clear" onclick="clearText('encoded')">Hapus</button>
+                </div>
+            </div>
+            <textarea id="encoded" placeholder="Paste kode HTML dengan & lt; dan & gt; di sini..."></textarea>
+        </div>
+
+        <div class="box">
+            <div class="header">
+                <span>⬇️ HTML Murni (Tag asli seperti < dan >)</span>
+                <div class="button-group">
+                    <button class="btn-paste" onclick="pasteText('decoded', this)">Paste</button>
+                    <button class="btn-copy" onclick="copyText('decoded', this)">Copy</button>
+                    <button class="btn-clear" onclick="clearText('decoded')">Hapus</button>
+                </div>
+            </div>
+            <textarea id="decoded" placeholder="Paste HTML murni di sini..."></textarea>
+        </div>
+    </div>
+
+    <script>
+        const encodedArea = document.getElementById('encoded');
+        const decodedArea = document.getElementById('decoded');
+        let isTyping = false;
+
+        // Konversi
+        function encodeHTML(str) {
+            return str.replace(/&/g, '&amp;')
+                      .replace(/</g, '&lt;')
+                      .replace(/>/g, '&gt;')
+                      .replace(/"/g, '&quot;')
+                      .replace(/'/g, '&#039;');
+        }
+
+        function decodeHTML(str) {
+            const txt = document.createElement("textarea");
+            txt.innerHTML = str;
+            return txt.value;
+        }
+
+        // Listener Utama
+        encodedArea.addEventListener('input', (e) => {
+            if (isTyping) return;
+            isTyping = true;
+            decodedArea.value = decodeHTML(e.target.value);
+            isTyping = false;
+        });
+
+        decodedArea.addEventListener('input', (e) => {
+            if (isTyping) return;
+            isTyping = true;
+            encodedArea.value = encodeHTML(e.target.value);
+            isTyping = false;
+        });
+
+        // Fitur COPY
+        function copyText(elementId, btn) {
+            const el = document.getElementById(elementId);
+            if (!el.value) return;
+
+            navigator.clipboard.writeText(el.value).then(() => {
+                const originalText = btn.innerText;
+                btn.innerText = 'Tercopy! ✔️';
+                setTimeout(() => btn.innerText = originalText, 1500);
+            }).catch(() => {
+                el.select();
+                document.execCommand('copy');
+            });
+        }
+
+        // Fitur PASTE
+        async function pasteText(elementId, btn) {
+            try {
+                // Minta izin baca dari clipboard (hanya jalan di HTTPS atau localhost/file lokal)
+                const text = await navigator.clipboard.readText();
+                const el = document.getElementById(elementId);
+                el.value = text;
+
+                // Triger event 'input' secara manual agar konversi otomatis jalan
+                el.dispatchEvent(new Event('input'));
+
+                const originalText = btn.innerText;
+                btn.innerText = 'Masuk! 📋';
+                setTimeout(() => btn.innerText = originalText, 1500);
+            } catch (err) {
+                alert('Ups! Izin clipboard ditolak browser atau fitur ini tidak didukung. Silakan gunakan CTRL+V manual di area teks.');
+            }
+        }
+
+        // Fitur HAPUS
+        function clearText(elementId) {
+            const el = document.getElementById(elementId);
+            el.value = '';
+
+            // Triger event 'input' biar area yang satunya ikut bersih secara otomatis
+            el.dispatchEvent(new Event('input'));
+
+            // Fokuskan kursor kembali ke area yang baru dihapus
+            el.focus();
+        }
+    </script>
+</body>
+</html>

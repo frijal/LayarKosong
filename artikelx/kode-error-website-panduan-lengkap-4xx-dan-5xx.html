@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kode Error Website: Panduan Lengkap 4xx dan 5xx untuk Semua</title>
+    <meta name="description" content="Pahami semua jenis kode error website 4xx dan 5xx mulai dari 400 hingga 504. Panduan lengkap penyebab, solusi, dan cara mengatasinya untuk pemula.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Kode Error Website: Panduan Lengkap 4xx dan 5xx untuk Semua">
+    <meta property="og:description" content="Pelajari arti kode error HTTP 4xx dan 5xx, penyebabnya, dan langkah praktis mengatasinya. Panduan ramah pemula dari 400 Bad Request sampai 504 Gateway Timeout.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/kode-error-website-panduan-lengkap-4xx-dan-5xx.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/Screenshot%20From%202026-07-10%2001-40-15.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kode Error Website: Panduan Lengkap 4xx dan 5xx untuk Semua">
+    <meta name="twitter:description" content="Dari 400 Bad Request sampai 504 Gateway Timeout, pelajari semua kode error website 4xx dan 5xx dengan penjelasan dan solusi praktisnya.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/Screenshot%20From%202026-07-10%2001-40-15.png">
+    <link rel="canonical" href="https://dalam.web.id/artikel/kode-error-website-panduan-lengkap-4xx-dan-5xx.html">
+    <meta name="news_keywords" content="kode error, HTTP status code, 404, 500 error, server error, website error, troubleshooting">
+    <meta property="article:tag" content="HTTP Status Code">
+    <meta property="article:tag" content="Website Error">
+    <meta property="article:tag" content="Troubleshooting">
+    <meta property="article:tag" content="Server Error">
+    <meta name="promphint" content="Apa perbedaan utama error 4xx dan 5xx? | Error 4xx berasal dari masalah di sisi klien (pengguna), sedangkan 5xx berasal dari gangguan di sisi server.">
+
+    <!-- Highlight.js (karena ada blok kode) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" media="(prefers-color-scheme: dark)">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+            --bg-body: #f8f9fa;
+            --bg-container: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #2d2d44;
+            --text-muted: #4a4a6a;
+            --text-invert: #f0f0f0;
+            --border-color: #e0e0e8;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --font-base: 1.125rem;
+            --line-height: 1.75;
+            --transition: 0.2s ease;
+            --code-bg: #f6f8fa;
+            --code-text: #1a1a2e;
+        }
+
+        /* ===== DARK MODE ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #0f0f1a;
+                --bg-container: #161625;
+                --bg-card: #1c1c2e;
+                --text-primary: #e8e8f0;
+                --text-secondary: #c8c8dd;
+                --text-muted: #9898b0;
+                --text-invert: #1a1a2e;
+                --border-color: #2a2a40;
+                --accent: #3b82f6;
+                --accent-hover: #60a5fa;
+                --accent-light: #1e293b;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+                --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+                --code-bg: #1e1e2e;
+                --code-text: #e8e8f0;
+            }
+        }
+
+        /* ===== RESPONSIVE PADDING ===== */
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 1.5rem;
+            }
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            font-size: var(--font-base);
+            line-height: var(--line-height);
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 64rem;
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+            padding-block: 2rem 1.5rem;
+        }
+
+        /* ===== MAIN CARD (ARTICLE BODY) ===== */
+        .article-body {
+            background: var(--bg-container);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            padding-block: 2rem;
+            padding-inline: var(--nested-padding);
+            transition: background var(--transition), box-shadow var(--transition);
+        }
+
+        @media (max-width: 640px) {
+            .article-body {
+                background: transparent;
+                box-shadow: none;
+                padding-block: 0.5rem;
+            }
+        }
+
+        /* ===== HEADER ===== */
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2rem;
+            line-height: 1.3;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        @media (min-width: 768px) {
+            .article-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .article-header .lead {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 48rem;
+        }
+
+        /* ===== PARAGRAPHS ===== */
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        .article-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== HEADINGS ===== */
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-top: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        /* ===== DETAILS / ACCORDION ===== */
+        details {
+            margin-top: 1.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            transition: border-color var(--transition), background var(--transition);
+            overflow: hidden;
+        }
+
+        details+details {
+            margin-top: 1rem;
+        }
+
+        details summary {
+            cursor: pointer;
+            padding: 1rem 1.25rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            background: var(--bg-card);
+            transition: background var(--transition), color var(--transition);
+            border-radius: var(--radius);
+            user-select: none;
+            position: relative;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details summary::after {
+            content: "▸";
+            font-size: 1.25rem;
+            margin-left: auto;
+            transition: transform 0.25s ease;
+            color: var(--text-muted);
+            line-height: 1;
+        }
+
+        details[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        details summary:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+            border-radius: var(--radius) var(--radius) 0 0;
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        details[open] summary::after {
+            color: var(--accent);
+        }
+
+        details summary h2,
+        details summary h3 {
+            margin: 0;
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+            display: inline;
+            background: none;
+            padding: 0;
+        }
+
+        details> :not(summary) {
+            padding: 1.25rem;
+            padding-top: 1rem;
+        }
+
+        details> :not(summary) p:last-child {
+            margin-bottom: 0;
+        }
+
+        details> :not(summary) h3 {
+            margin-top: 1.25rem;
+        }
+
+        details> :not(summary) h3:first-of-type {
+            margin-top: 0;
+        }
+
+        /* ===== IMAGES ===== */
+        .article-image {
+            margin: 2rem 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+            transition: background var(--transition), box-shadow var(--transition);
+        }
+
+        .article-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .article-image figcaption {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        /* ===== ERROR LIST ===== */
+        .error-item {
+            margin-bottom: 1.5rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: border-color var(--transition);
+        }
+
+        .error-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .error-item h3 {
+            margin-top: 0;
+            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .error-item .error-code {
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 0.1rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: "SF Mono", "Menlo", "Monaco", "Consolas", monospace;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .error-item .tip {
+            background: var(--bg-card);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .error-item .tip b {
+            color: var(--text-primary);
+        }
+
+        /* ===== INLINE FORMATTING ===== */
+        b {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        i {
+            color: var(--text-secondary);
+        }
+        u {
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+        }
+        s {
+            color: var(--text-muted);
+        }
+
+        /* ===== CODE BLOCK ===== */
+        .code-wrapper {
+            margin: 1.5rem 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .code-wrapper pre {
+            margin: 0;
+            padding: 1rem;
+            overflow-x: auto;
+            background: transparent;
+        }
+
+        .code-wrapper code {
+            font-family: "SF Mono", "Menlo", "Monaco", "Consolas", "Liberation Mono", monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--code-text);
+            background: transparent;
+        }
+
+        /* highlight.js overrides */
+        .hljs {
+            background: transparent !important;
+            color: var(--code-text) !important;
+        }
+
+        /* ===== FOOTER ===== */
+        .article-footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: border-color var(--transition), color var(--transition);
+        }
+
+        .article-footer span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-footer .sep {
+            color: var(--border-color);
+            font-weight: 300;
+        }
+
+        @media (max-width: 480px) {
+            .article-footer {
+                flex-direction: column;
+                gap: 0.4rem;
+                font-size: 0.85rem;
+            }
+            .article-footer .sep {
+                display: none;
+            }
+        }
+
+        /* ===== RESPONSIVE TWEAKS ===== */
+        @media (max-width: 480px) {
+            .container {
+                padding-block: 1rem 1rem;
+            }
+            .article-body {
+                padding-block: 0.25rem;
+            }
+            .article-header h1 {
+                font-size: 1.6rem;
+            }
+            .article-header .lead {
+                font-size: 1rem;
+            }
+            h2 {
+                font-size: 1.35rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            details summary {
+                font-size: 1rem;
+                padding: 0.75rem 1rem;
+            }
+            details> :not(summary) {
+                padding: 0.75rem 1rem;
+            }
+            .error-item .tip {
+                font-size: 0.9rem;
+                padding: 0.6rem 0.8rem;
+            }
+            .code-wrapper pre {
+                padding: 0.75rem;
+            }
+            .code-wrapper code {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== PRINT ===== */
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+            }
+            .article-body {
+                background: #fff;
+                box-shadow: none;
+                padding: 0;
+            }
+            .container {
+                padding: 0.5in;
+            }
+            details summary::after {
+                content: "▼";
+            }
+            details[open] summary::after {
+                content: "▲";
+            }
+            .article-image {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            .article-footer {
+                border-top-color: #ccc;
+            }
+            .code-wrapper {
+                border: 1px solid #ccc;
+                background: #f5f5f5;
+            }
+            .hljs {
+                color: #000 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <article class="article-body">
+
+            <!-- ===== HEADER ===== -->
+            <header class="article-header">
+                <h1>Kode Error Website: Panduan Lengkap 4xx dan 5xx untuk Semua</h1>
+                <p class="lead">
+                    Pernah menjumpai halaman <b>404 Not Found</b> atau <b>500 Internal Server Error</b>?
+                    Kode status HTTP adalah bahasa rahasia antara browser dan server. Di artikel ini,
+                    kita kupas tuntas semua jenis kode error website dari <b>4xx</b> hingga <b>5xx</b>,
+                    lengkap dengan penyebab dan solusi praktisnya.
+                </p>
+            </header>
+
+            <!-- ===== INTRO PARAGRAPHS ===== -->
+            <p>
+                Setiap kali kita mengunjungi sebuah halaman website, terjadi percakapan diam-diam antara
+                <b>browser</b> dan <b>server</b>. Browser mengirim permintaan, server menjawab dengan
+                kode status yang memberi tahu apakah permintaan berhasil atau tidak. Kode status ini
+                terbagi dalam beberapa kelas, dan dua kelas yang paling sering bikin pengguna <i>deg-degan</i>
+                adalah <b>4xx</b> dan <b>5xx</b>.
+            </p>
+
+            <p>
+                Kode <b>4xx</b> menandakan ada masalah dari sisi <u>klien</u> — yaitu kamu selaku pengguna.
+                Bisa karena alamat URL salah, akses tidak diizinkan, atau permintaan yang dikirim tidak
+                sesuai harapan server. Sementara kode <b>5xx</b> adalah sinyal bahwa ada yang <i>amburadul</i>
+                di sisi <u>server</u> — entah karena script error, database ngadat, atau beban lalu lintas
+                yang melonjak drastis.
+            </p>
+
+            <p>
+                Memahami kode-kode ini bukan hanya berguna bagi <b>developer</b> atau <b>sysadmin</b>.
+                Bagi pengguna awam sekalipun, pengetahuan ini bisa menyelamatkan waktu dan mencegah
+                kepanikan saat tiba-tiba muncul halaman error yang menakutkan. Yuk, kita kenali satu per satu.
+            </p>
+
+            <!-- ===== FIRST IMAGE (LCP) ===== -->
+            <figure class="article-image">
+                <img
+                src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/Screenshot%20From%202026-07-10%2001-40-15.png"
+                alt="Ilustrasi kode error HTTP 4xx dan 5xx pada website dengan latar belakang abstrak"
+                width="1200"
+                height="675"
+                fetchpriority="high"
+                decoding="async"
+                >
+                <figcaption>Kode error HTTP adalah bahasa universal antara browser dan server.</figcaption>
+            </figure>
+
+            <!-- ===== SECTION 4xx ===== -->
+            <details>
+                <summary><h2>Kode Error 4xx — Masalah dari Sisi Klien</h2></summary>
+                <p>
+                    Kode error dengan awalan <b>4</b> menandakan bahwa <u>permintaan</u> yang dikirim oleh
+                    browser tidak dapat diproses oleh server karena ada masalah dari sisi pengguna.
+                    Mulai dari alamat yang salah, otorisasi gagal, hingga permintaan yang terlalu banyak.
+                    Berikut adalah jenis-jenis error 4xx yang paling sering ditemui.
+                </p>
+
+                <!-- 400 -->
+                <div class="error-item">
+                    <h3><span class="error-code">400</span> Bad Request</h3>
+                    <p>
+                        Server tidak bisa memahami permintaan yang dikirim karena formatnya <i>kacau</i>.
+                        Bisa jadi URL mengandung karakter ilegal, ukuran request terlalu besar,
+                        atau header HTTP yang dikirim tidak sesuai spesifikasi. Kadang <b>cache</b> atau
+                        <b>cookie</b> yang sudah usang juga bisa memicu error ini.
+                    </p>
+                    <div class="tip">
+                        <b>💡 Solusi:</b> Periksa kembali alamat URL yang kamu ketik. Hapus karakter aneh
+                        seperti spasi atau tanda kutip. Jika masih gagal, coba bersihkan <u>cache</u> dan
+                        <u>cookie</u> browser, lalu reload halaman.
+                    </div>
+                </div>
+
+                <!-- 401 -->
+                <div class="error-item">
+                    <h3><span class="error-code">401</span> Unauthorized</h3>
+                    <p>
+                        Halaman atau resource yang kamu minta membutuhkan <b>otentikasi</b> terlebih dahulu.
+                        Artinya, kamu harus login dengan kredensial yang valid. Error ini muncul ketika
+                        kamu belum login sama sekali, atau <i>sesi login</i> sudah kadaluarsa karena terlalu lama
+                        tidak beraktivitas.
+                    </p>
+                    <div class="tip">
+                        <b>💡 Solusi:</b> Login ulang dengan username dan password yang benar. Pastikan
+                        tidak ada kesalahan ketik. Jika menggunakan layanan dengan <i>two-factor authentication</i>,
+                        selesaikan verifikasi tambahan dengan sabar.
+                    </div>
+                </div>
+
+                <!-- 403 -->
+                <div class="error-item">
+                    <h3><span class="error-code">403</span> Forbidden</h3>
+                    <p>
+                        Server mengerti permintaanmu, tapi dengan tegas menolak memberikan akses.
+                        Ini beda dengan 401 — di sini kamu sudah terotentikasi, tetapi <b>izin</b> (permission)
+                        tidak cukup untuk mengakses resource tersebut. Bisa juga karena alamat IP kamu
+                        masuk daftar blokir, atau file/folder diatur dengan hak akses yang terlalu ketat.
+                    </p>
+                    <div class="tip">
+                        <b>💡 Solusi:</b> Pastikan kamu memiliki hak akses yang sesuai. Jika ini adalah
+                        website milikmu, periksa konfigurasi <u>permission</u> file dan folder di server.
+                        Jika kamu pengunjung biasa, kemungkinan besar halaman memang tidak untuk publik.
+                    </div>
+                </div>
+
+                <!-- 404 (dengan blok kode) -->
+                <div class="error-item">
+                    <h3><span class="error-code">404</span> Not Found</h3>
+                    <p>
+                        Ini adalah error yang paling <i>legendaris</i>. Server tidak menemukan resource
+                        yang kamu minta di alamat tersebut. Bisa karena URL yang kamu ketik <b>salah</b>,
+                        halaman sudah <s>dihapus</s>, atau dipindahkan ke lokasi baru tanpa memberi tahu
+                        (alias <i>pindah rumah tanpa pamit</i>).
+                    </p>
+                    <div class="tip">
+                        <b>💡 Solusi:</b> Periksa kembali URL dengan teliti — seringkali hanya satu huruf
+                        yang salah tapi dramanya satu halaman. Gunakan fitur pencarian di website tersebut,
+                        atau coba akses dari menu navigasi utama.
+                    </div>
+                </div>
+
+                <!-- 408 -->
+                <div class="error-item">
+                    <h3><span class="error-code">408</span> Request Timeout</h3>
+                    <p>
+                        Server sudah menunggu permintaan dari browser, tapi <b>waktu tunggu</b> habis
+                        sebelum permintaan lengkap diterima. Ini seperti janjian tapi salah satu pihak
+                        tidak kunjung datang. Biasanya terjadi karena koneksi internet <i>lambat</i>
+                        atau tidak stabil, sehingga data tidak terkirim utuh.
+                    </p>
+                    <div class="tip">
+                        <b>💡 Solusi:</b> Coba reload halaman saat koneksi internet sedang <u>stabil</u>.
+                        Jika WiFi sedang bermasalah, tunggu beberapa saat atau gunakan koneksi data seluler
+                        sebagai alternatif.
+                    </div>
+                </div>
+
+                <!-- 429 -->
+                <div class="error-item">
+                    <h3><span class="error-code">429</span> Too Many Requests</h3>
+                    <p>
+                        Kamu mengirim terlalu banyak permintaan dalam waktu yang sangat singkat.
+                        Server mulai curiga apakah kamu <b>bot</b>, <i>scraper</i>, atau manusia yang
+                        sedang terlalu <s>semangat</s>. Biasanya website menerapkan <i>rate limiting</i>
+                        untuk melindungi server dari serangan atau overload.
+                    </p>
+                    <div class="tip">
+                        <b>💡 Solusi:</b> Tenang, ambil napas. Tunggu beberapa menit, lalu coba lagi.
+                        Jika kamu sedang mengembangkan aplikasi yang memanggil API, pastikan kamu
+                        mematuhi batas permintaan yang ditentukan oleh penyedia layanan.
+                    </div>
+                </div>
+            </details>
+
+            <!-- ===== SECTION 5xx ===== -->
+            <details>
+                <summary><h2>Kode Error 5xx — Gangguan di Sisi Server</h2></summary>
+                <p>
+                    Berbeda dengan 4xx, kode error dengan awalan <b>5</b> menandakan bahwa <u>server</u>
+                    sedang mengalami masalah internal. Bukan salahmu — setidaknya bukan karena kesalahan
+                    dari sisi pengguna. Error ini murni terjadi di belakang layar, dan biasanya hanya
+                    bisa diperbaiki oleh <b>admin</b> atau <b>developer</b> yang mengelola server tersebut.
+                </p>
+
+                <!-- 500 -->
+                <div class="error-item">
+                    <h3><span class="error-code">500</span> Internal Server Error</h3>
+                    <p>
+                        Ini adalah error <i>serba guna</i> yang paling sering bikin pusing. Server
+                        mengalami kondisi error yang tidak terduga, tapi tidak memberikan detail spesifik
+                        tentang apa yang salah. Penyebabnya bisa beragam: <b>bug</b> pada script,
+                        plugin yang <i>ribut</i>, database yang <i>ngambek</i>, atau konfigurasi server
+                        yang kacau balau.
+                    </p>
+                    <div class="tip">
+                        <b>💡 Solusi:</b> Jika kamu adalah pengunjung, tidak banyak yang bisa dilakukan
+                        selain <u>reload</u> setelah beberapa saat. Jika kamu admin, cek log error server,
+                        periksa kode aplikasi, dan pastikan semua dependensi berfungsi dengan benar.
+                    </div>
+                </div>
+
+                <!-- 502 -->
+                <div class="error-item">
+                    <h3><span class="error-code">502</span> Bad Gateway</h3>
+                    <p>
+                        Server yang bertindak sebagai <b>gateway</b> atau <b>proxy</b> menerima respons
+                        yang tidak valid dari server upstream (server utama). Ini seperti kamu meminta
+                        tolong pada teman untuk menyampaikan pesan, tapi teman itu mengembalikan jawaban
+                        yang <i>ngaco</i>. Biasanya melibatkan <u>CDN</u>, <u>load balancer</u>, atau
+                        <u>reverse proxy</u> yang gagal berkomunikasi dengan server backend.
+                    </p>
+                    <div class="tip">
+                        <b>💡 Solusi:</b> Refresh halaman setelah beberapa menit. Jika masalah berlanjut,
+                        kemungkinan besar ada gangguan pada infrastruktur jaringan. Sebagai admin,
+                        periksa koneksi antara proxy dan server backend, serta pastikan semua layanan
+                        berjalan normal.
+                    </div>
+                </div>
+
+                <!-- 503 -->
+                <div class="error-item">
+                    <h3><span class="error-code">503</span> Service Unavailable</h3>
+                    <p>
+                        Server sedang <b>kewalahan</b> atau dalam masa <i>perawatan</i>. Bisa karena
+                        lonjakan lalu lintas yang sangat tinggi, proses <u>maintenance</u> terjadwal,
+                        atau resource server (CPU, memory, koneksi database) sudah <s>megap-megap</s>
+                        tidak mampu menampung permintaan.
+                    </p>
+                    <div class="tip">
+                        <b>💡 Solusi:</b> Biasanya masalah ini bersifat <i>sementara</i>. Tunggu beberapa
+                        saat lalu coba lagi. Jika kamu admin, pertimbangkan untuk menambah kapasitas server
+                        atau mengoptimalkan aplikasi agar lebih efisien.
+                    </div>
+                </div>
+
+                <!-- 504 -->
+                <div class="error-item">
+                    <h3><span class="error-code">504</span> Gateway Timeout</h3>
+                    <p>
+                        Masih kerabat dekat 502, tapi bedanya di sini <b>waktu</b> yang menjadi masalah.
+                        Gateway atau proxy sudah menunggu respons dari server upstream, tapi server tersebut
+                        terlalu <i>lambat</i> merespons hingga batas waktu habis. Ini sering terjadi
+                        ketika server backend sedang sibuk memproses query database yang berat atau
+                        menjalankan script yang memakan waktu lama.
+                    </p>
+                    <div class="tip">
+                        <b>💡 Solusi:</b> Reload halaman setelah jeda beberapa menit. Jika kamu admin,
+                        optimalkan performa backend, periksa indeks database, dan pertimbangkan
+                        <u>caching</u> untuk mengurangi beban. Pastikan juga timeout configuration
+                        di proxy sudah sesuai.
+                    </div>
+                </div>
+            </details>
+<details><summary><p>ini adalah contoh kode HTML untuk halaman 404 yang boleh kamu pakai:</p></summary>
+                    <div class="code-wrapper">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;id&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+    &lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;
+    &lt;meta http-equiv=&quot;refresh&quot; content=&quot;51;url=https://dalam.web.id/&quot;&gt;
+    &lt;meta property=&quot;og:site_name&quot; content=&quot;Layar Kosong&quot;&gt;
+    &lt;meta property=&quot;og:title&quot; content=&quot;404 Not Found - Jenis Kode Error Website Umum&quot;&gt;
+    &lt;meta property=&quot;og:description&quot; content=&quot;Ringkasan kode error website 4xx dan 5xx yang sering muncul.&quot;&gt;
+    &lt;meta name=&quot;twitter:title&quot; content=&quot;404 Not Found - Jenis Kode Error Website Umum&quot;&gt;
+    &lt;meta name=&quot;twitter:description&quot; content=&quot;Ringkasan kode error website 4xx dan 5xx yang sering muncul.&quot;&gt;
+    &lt;link rel=&quot;icon&quot; href=&quot;/favicon.svg&quot; type=&quot;image/svg+xml&quot;&gt;
+    &lt;title&gt;404 - Layar Kosong&lt;/title&gt;
+    &lt;meta name=&quot;color-scheme&quot; content=&quot;light dark&quot;&gt;
+    &lt;style&gt;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box
+      }
+      :root {
+        --bg-color: #f8f9fa;
+        --text-color: #212529;
+        --text-muted: #495057;
+        --box-bg: #e9ecef;
+        --card-bg: #ffffff;
+        --btn-hover: #dee2e6;
+        --accent: #0d6efd;
+        --border: #d0d7de;
+        --shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+        --screen-pad: clamp(0.875rem, 2.8vw, 1.25rem);
+        --read-seconds: 51s
+      }
+      @media (prefers-color-scheme:dark) {
+        :root {
+          --bg-color: #121212;
+          --text-color: #e9ecef;
+          --text-muted: #cbd5e1;
+          --box-bg: #1e1e1e;
+          --card-bg: #171717;
+          --btn-hover: #2d2d2d;
+          --accent: #3b82f6;
+          --border: #343a40;
+          --shadow: none
+        }
+      }
+      html {
+        min-height: 100%;
+        background: var(--bg-color)
+      }
+      body {
+        min-height: 100svh;
+        width: 100%;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, sans-serif;
+        background: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: .5rem;
+        padding: var(--screen-pad)
+      }
+      .hero {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center
+      }
+      .hero svg {
+        width: 100%;
+        height: auto;
+        max-height: 25svh;
+        display: block
+      }
+      .button-container {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        gap: .5rem
+      }
+      .btn {
+        min-width: 0;
+        text-align: center;
+        text-decoration: none;
+        background: var(--box-bg);
+        color: var(--text-color);
+        padding: .65rem .8rem;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: clamp(.9rem, 3vw, 1.05rem);
+        font-weight: 750;
+        line-height: 1.15;
+        transition: background-color .2s ease, transform .2s ease;
+        white-space: nowrap
+      }
+      .btn:hover {
+        background: var(--btn-hover);
+        transform: translateY(-1px)
+      }
+      .content-box {
+        width: 100%;
+        background: var(--box-bg);
+        padding: clamp(.9rem, 3vw, .9rem);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: var(--shadow)
+      }
+      .intro {
+        margin-bottom: .6rem
+      }
+      .intro h1 {
+        font-size: clamp(1.4rem, 5vw, 1.8rem);
+        line-height: 1.12;
+        margin-bottom: .4rem
+      }
+      .intro p {
+        color: var(--text-muted);
+        font-size: clamp(1rem, 3.5vw, 1.1rem);
+        line-height: 1.5
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+        margin-top: .6rem;
+        font-size: .9rem;
+        color: var(--text-muted)
+      }
+      .meta span {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: .25rem .6rem
+      }
+      .error-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: .35rem
+      }
+      .error-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: .6rem;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border) transparent
+      }
+      .error-card::-webkit-scrollbar {
+        width: 4px
+      }
+      .error-card::-webkit-scrollbar-track {
+        background: 0 0
+      }
+      .error-card::-webkit-scrollbar-thumb {
+        background-color: var(--border);
+        border-radius: 4px
+      }
+      .error-card h2 {
+        font-size: clamp(1.05rem, 4vw, 1.2rem);
+        line-height: 1.15;
+        margin-bottom: .4rem
+      }
+      .error-card h2 span {
+        color: var(--accent);
+        font-weight: 900
+      }
+      .error-card p {
+        color: var(--text-muted);
+        font-size: clamp(.95rem, 3.2vw, 1.05rem);
+        line-height: 1.35;
+        margin-bottom: .2rem
+      }
+      .error-card .tip {
+        margin-top: 0;
+        font-size: .9rem;
+        font-style: italic;
+        opacity: .85
+      }
+      .progress-bar-container {
+        width: 100%;
+        height: 4px;
+        background: var(--box-bg);
+        border-radius: 999px;
+        overflow: hidden;
+        flex: 0 0 auto
+      }
+      .progress-bar-fill {
+        height: 100%;
+        background: var(--accent);
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: left center;
+        animation: redirect-progress var(--read-seconds) linear forwards
+      }
+      .redirect-note {
+        color: var(--text-muted);
+        font-size: .84rem;
+        text-align: center;
+        line-height: 1.3
+      }
+      @keyframes redirect-progress {
+        from {
+          transform: scaleX(0)
+        }
+        to {
+          transform: scaleX(1)
+        }
+      }
+      @media (min-width:560px) {
+        .button-container {
+          grid-template-columns: repeat(4, minmax(0, 1fr))
+        }
+        .error-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr))
+        }
+      }
+      @media (min-width:900px) {
+        :root {
+          --screen-pad: clamp(0.6rem, 1vw, 0.8rem)
+        }
+        body,
+        html {
+          height: 100dvh;
+          overflow: hidden
+        }
+        body {
+          gap: .45rem
+        }
+        .hero svg {
+          max-height: 32dvh
+        }
+        .button-container {
+          gap: .45rem
+        }
+        .btn {
+          padding: .6rem .8rem;
+          font-size: 1.05rem
+        }
+        .content-box {
+          flex: 1 1 auto;
+          min-height: 0;
+          display: grid;
+          grid-template-columns: minmax(18rem, .33fr) minmax(0, 1fr);
+          gap: .6rem;
+          align-items: stretch;
+          padding: .65rem;
+          overflow: hidden
+        }
+        .intro {
+          margin-bottom: 0;
+          align-self: center
+        }
+        .intro h1 {
+          font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+          margin-bottom: .6rem
+        }
+        .intro p {
+          font-size: clamp(1rem, 1.25vw, 1.25rem);
+          line-height: 1.5
+        }
+        .meta {
+          margin-top: 1rem;
+          gap: .45rem;
+          font-size: clamp(.85rem, .95vw, 1.05rem)
+        }
+        .meta span {
+          padding: .3rem .6rem
+        }
+        .error-grid {
+          min-height: 0;
+          height: 100%;
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          grid-template-rows: repeat(2, minmax(0, 1fr));
+          gap: .35rem;
+          align-content: stretch;
+          justify-items: stretch
+        }
+        .error-card {
+          padding: .6rem;
+          min-height: unset;
+          height: 100%;
+          align-self: stretch
+        }
+        .error-card h2 {
+          font-size: clamp(1rem, 1.25vw, 1.35rem);
+          margin-bottom: .3rem
+        }
+        .error-card p {
+          font-size: clamp(.9rem, 1.1vw, 1.1rem);
+          line-height: 1.4;
+          margin-bottom: .2rem
+        }
+        .error-card .tip {
+          font-size: clamp(.85rem, .95vw, 1rem);
+          margin-top: 0
+        }
+        .redirect-note {
+          font-size: .85rem
+        }
+      }
+      @media (min-width:1200px) {
+        .content-box {
+          grid-template-columns: minmax(21rem, .32fr) minmax(0, 1fr)
+        }
+      }
+      @media (max-height:850px) and (min-width:900px) {
+        .hero svg {
+          max-height: 22dvh
+        }
+        .content-box {
+          padding: .55rem;
+          gap: .5rem
+        }
+        .error-grid {
+          gap: .3rem
+        }
+        .error-card {
+          padding: .5rem
+        }
+        .intro h1 {
+          font-size: 1.6rem;
+          margin-bottom: .4rem
+        }
+        .intro p {
+          font-size: .95rem;
+          line-height: 1.4
+        }
+        .error-card h2 {
+          font-size: 1rem;
+          margin-bottom: .2rem
+        }
+        .error-card p {
+          font-size: .85rem;
+          line-height: 1.3
+        }
+        .error-card .tip {
+          font-size: .8rem;
+          margin-top: 0
+        }
+        .redirect-note {
+          display: none
+        }
+      }
+      .btn:hover {
+        transform: none
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header class=&quot;hero&quot; aria-label=&quot;Kode error website umum&quot;&gt;
+      &lt;svg viewBox=&quot;0 0 620 130&quot; preserveAspectRatio=&quot;xMidYMid meet&quot; role=&quot;img&quot; aria-labelledby=&quot;hero-title&quot;&gt;
+        &lt;title id=&quot;hero-title&quot;&gt;4xx dan 5xx&lt;/title&gt;
+        &lt;text x=&quot;50%&quot; y=&quot;60%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-size=&quot;150&quot; font-weight=&quot;900&quot; fill=&quot;currentColor&quot; letter-spacing=&quot;-3&quot;&gt;4xx - 5xx&lt;/text&gt;
+      &lt;/svg&gt;
+    &lt;/header&gt;
+    &lt;nav class=&quot;button-container&quot; aria-label=&quot;Navigasi utama&quot;&gt;
+      &lt;a href=&quot;/&quot; class=&quot;btn&quot;&gt;/ Beranda&lt;/a&gt;
+      &lt;a href=&quot;/search&quot; class=&quot;btn&quot;&gt;/ Cari&lt;/a&gt;
+      &lt;a href=&quot;/feed&quot; class=&quot;btn&quot;&gt;/ RSS Feed&lt;/a&gt;
+      &lt;a href=&quot;/sitemap&quot; class=&quot;btn&quot;&gt;/ Daftar Isi&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;main class=&quot;content-box&quot;&gt;
+      &lt;section class=&quot;intro&quot; aria-labelledby=&quot;judul&quot;&gt;
+        &lt;h1 id=&quot;judul&quot;&gt;Jenis Kode Error Website Umum&lt;/h1&gt;
+        &lt;p&gt;Kode status HTTP adalah sinyal dari server tentang hasil permintaan browser. Secara umum, 4xx berkaitan dengan request, akses, atau alamat dari sisi klien, sedangkan 5xx menandakan gangguan di sisi server.&lt;/p&gt;
+        &lt;p class=&quot;meta&quot;&gt;
+          &lt;span&gt;halaman ini bisa Redirect otomatis,&lt;/span&gt;
+          &lt;span&gt;tekan F5 aja biar betah disini...&lt;/span&gt;
+        &lt;/p&gt;
+      &lt;/section&gt;
+      &lt;section class=&quot;error-grid&quot; aria-label=&quot;Daftar kode error website&quot;&gt;
+        &lt;article class=&quot;error-card&quot;&gt;
+          &lt;h2&gt;
+            &lt;span&gt;400&lt;/span&gt; Bad Request
+          &lt;/h2&gt;
+          &lt;p&gt;Request-nya nggak kebaca server. Bisa jadi URL typo, cookie/cache lagi rewel, atau data yang dikirim udah kacau.&lt;/p&gt;
+          &lt;p class=&quot;tip&quot;&gt;💡 Cek lagi alamat URL-nya. Kalau masih ngambek, coba bersihin cookie browser.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=&quot;error-card&quot;&gt;
+          &lt;h2&gt;
+            &lt;span&gt;401&lt;/span&gt; Unauthorized
+          &lt;/h2&gt;
+          &lt;p&gt;Halaman ini butuh login dulu. Bisa jadi kamu belum masuk, sesi login udah basi, atau username/password-nya salah.&lt;/p&gt;
+          &lt;p class=&quot;tip&quot;&gt;💡 Login ulang pelan-pelan, sabar, jangan kayak orang lagi ngejar diskon flash sale.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=&quot;error-card&quot;&gt;
+          &lt;h2&gt;
+            &lt;span&gt;403&lt;/span&gt; Forbidden
+          &lt;/h2&gt;
+          &lt;p&gt;Server paham kamu mau ke mana, tapi dia bilang: “Maaf, kamu nggak boleh masuk.”&lt;/p&gt;
+          &lt;p class=&quot;tip&quot;&gt;💡 Biasanya karena aksesmu nggak cukup, permission ngaco, atau alamat IP kamu kena blokir.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=&quot;error-card&quot;&gt;
+          &lt;h2&gt;
+            &lt;span&gt;404&lt;/span&gt; Not Found
+          &lt;/h2&gt;
+          &lt;p&gt;Halamannya nggak ketemu. Salah ketik URL, dihapus, atau pindah rumah tanpa pamit.&lt;/p&gt;
+          &lt;p class=&quot;tip&quot;&gt;💡 Cek lagi URL-nya. Siapa tahu cuma salah satu huruf, tapi dramanya satu halaman.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=&quot;error-card&quot;&gt;
+          &lt;h2&gt;
+            &lt;span&gt;408&lt;/span&gt; Request Timeout
+          &lt;/h2&gt;
+          &lt;p&gt;Server kelamaan nunggu browser ngirim request. Ibarat janjian, tapi yang satu nggak jadi muncul.&lt;/p&gt;
+          &lt;p class=&quot;tip&quot;&gt;💡 Coba reload pas koneksi udah stabil. Kalau WiFi-nya lagi melamun, tunggu dulu bentar.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=&quot;error-card&quot;&gt;
+          &lt;h2&gt;
+            &lt;span&gt;429&lt;/span&gt; Too Many Requests
+          &lt;/h2&gt;
+          &lt;p&gt;Kebanyakan request dalam waktu mepet. Server mulai curiga kamu bot, scraper, atau manusia yang terlalu semangat.&lt;/p&gt;
+          &lt;p class=&quot;tip&quot;&gt;💡 Santai bentar. Tunggu beberapa menit, baru coba lagi.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=&quot;error-card&quot;&gt;
+          &lt;h2&gt;
+            &lt;span&gt;500&lt;/span&gt; Internal Server Error
+          &lt;/h2&gt;
+          &lt;p&gt;Servernya error dari dalam. Bisa script ngadat, plugin ribut, database ngambek, atau konfigurasi lagi berantakan.&lt;/p&gt;
+          &lt;p class=&quot;tip&quot;&gt;💡 Ini wilayah admin/server. Pengunjung cuma bisa menatap layar sambil berharap.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=&quot;error-card&quot;&gt;
+          &lt;h2&gt;
+            &lt;span&gt;502&lt;/span&gt; Bad Gateway
+          &lt;/h2&gt;
+          &lt;p&gt;Server perantara menerima jawaban aneh dari server lain. Jadi bukan salah kamu, rantai belakangnya yang lagi kusut.&lt;/p&gt;
+          &lt;p class=&quot;tip&quot;&gt;💡 Biasanya proxy, CDN, atau backend lagi gagal ngobrol dengan benar.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=&quot;error-card&quot;&gt;
+          &lt;h2&gt;
+            &lt;span&gt;503&lt;/span&gt; Service Unavailable
+          &lt;/h2&gt;
+          &lt;p&gt;Server lagi nggak sanggup melayani. Bisa karena maintenance, sibuk, atau resource udah megap-megap.&lt;/p&gt;
+          &lt;p class=&quot;tip&quot;&gt;💡 Servernya tepar. Balik lagi nanti sore, jangan dipaksa kayak laptop jadul buka browser 38 tab.&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article class=&quot;error-card&quot;&gt;
+          &lt;h2&gt;
+            &lt;span&gt;504&lt;/span&gt; Gateway Timeout
+          &lt;/h2&gt;
+          &lt;p&gt;Gateway kelamaan nunggu server utama. Server belakangnya telat jawab sampai proxy keburu nyerah.&lt;/p&gt;
+          &lt;p class=&quot;tip&quot;&gt;💡 Biasanya karena backend lemot, database berat, atau koneksi antarserver lagi nggak akur.&lt;/p&gt;
+        &lt;/article&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;div class=&quot;progress-bar-container&quot; aria-hidden=&quot;true&quot;&gt;
+      &lt;div class=&quot;progress-bar-fill&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;redirect-note&quot;&gt;Halaman otomatis kembali ke beranda setelah estimasi waktu baca berakhir.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div></details>
+            <!-- ===== CONCLUSION ===== -->
+            <h2>Mengapa Memahami Kode Error Itu Penting?</h2>
+            <p>
+                Di era digital seperti sekarang, hampir semua aktivitas kita bergantung pada website
+                dan aplikasi web. Ketika error muncul, reaksi pertama banyak orang adalah <i>panik</i>
+                atau <b>frustrasi</b>. Padahal, dengan memahami arti di balik setiap kode status,
+                kita bisa mengambil langkah yang tepat — baik sebagai pengguna yang ingin segera
+                mengakses konten, maupun sebagai pengelola website yang bertanggung jawab atas
+                <u>pengalaman pengguna</u>.
+            </p>
+
+            <p>
+                Untuk pengguna awam, mengenali perbedaan antara <b>404</b> (halaman hilang) dan
+                <b>503</b> (server sibuk) bisa menghindarkan dari upaya <i>refresh</i> yang tidak
+                perlu atau bahkan keluhan yang salah sasaran. Sementara bagi para <b>developer</b>
+                dan <b>sysadmin</b>, pemahaman mendalam tentang kode error adalah <u>senjata utama</u>
+                dalam proses <i>troubleshooting</i> dan menjaga stabilitas layanan.
+            </p>
+
+            <p>
+                Jadi, lain kali kamu bertemu dengan halaman error, jangan langsung <s>mengutuk nasib</s>.
+                Lihat kode statusnya, pahami konteksnya, dan ambil tindakan yang sesuai. Selamat
+                menjelajah dunia maya tanpa takut bertemu dengan <b>4xx</b> dan <b>5xx</b>!
+            </p>
+
+            <!-- ===== SIGNATURE ===== -->
+            <!--wajib ini tulis signature artikel oleh LayarKosong-->
+
+            <!-- ===== FOOTER ===== -->
+            <footer class="article-footer">
+                <span>✍️ Ditulis oleh <b>Tim LayarKosong</b></span>
+                <span class="sep">|</span>
+                <span>📅 Dipublikasikan 10 Juli 2026</span>
+                <span class="sep">|</span>
+                <span>📚 Referensi: <i>RFC 9110 — HTTP Semantics</i></span>
+            </footer>
+
+        </article>
+    </main>
+
+    <!-- ===== HIGHLIGHT.JS INIT ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            hljs.highlightAll();
+        });
+    </script>
+
+</body>
+</html>
