@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -60,7 +60,8 @@
 <meta name="keywords" content="Excel, Sejarah Excel, Microsoft, Komputer, Teknologi, Lotus 1-2-3, Spreadsheet, Frijal">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&amp;family=Lato:wght@400;700&amp;display=swap">
     <link rel="stylesheet" href="/ext/fontawesome.css">
-    <style>
+   <style>
+        /* Default (Mode Gelap Bawaan) */
         :root {
             --bg-color: #121212;
             --surface-color: #1e1e1e;
@@ -69,36 +70,57 @@
             --accent-color: #1DB954; /* A fresh, modern green */
             --border-color: #333;
         }
+
+        /* Auto Terang (Light Mode) */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-color: #f8fafc;
+                --surface-color: #ffffff;
+                --primary-text: #0f172a;
+                --secondary-text: #475569;
+                --accent-color: #169c46; /* Warna hijau digelapkan sedikit agar lebih kontras di latar putih */
+                --border-color: #e2e8f0;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Lato', sans-serif;
             background-color: var(--bg-color);
             color: var(--primary-text);
             line-height: 1.8;
             font-size: 1.1rem;
+            /* Tambahan efek transisi halus saat OS ganti tema */
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         .fullscreen-wrapper {
             width: 100%;
             min-width: 1000px; /* Sesuai permintaan */
             display: flex;
             justify-content: center;
         }
+
         .container {
             max-width: 800px;
             width: 100%;
             padding: 4rem 2rem;
         }
+
         /* Article Header */
         .article-header {
             text-align: center;
             margin-bottom: 3rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--border-color);
+            transition: border-color 0.3s ease;
         }
+
         .article-header h1 {
             font-family: 'Merriweather', serif;
             font-size: 3.5rem;
@@ -106,12 +128,16 @@
             margin-bottom: 1rem;
             line-height: 1.2;
         }
+
         .article-header p {
             font-size: 1.2rem;
             color: var(--secondary-text);
+            transition: color 0.3s ease;
         }
+
         /* Article Body */
         article p { margin-bottom: 1.5rem; }
+
         article h2 {
             font-family: 'Merriweather', serif;
             font-size: 2rem;
@@ -119,46 +145,57 @@
             margin-bottom: 1.5rem;
             color: var(--accent-color);
         }
+
         blockquote {
             border-left: 4px solid var(--accent-color);
             padding-left: 1.5rem;
             margin: 2rem 0;
             font-style: italic;
             color: var(--secondary-text);
+            transition: color 0.3s ease;
         }
+
         /* Gallery & Image */
         .image-gallery {
             margin: 3rem 0;
         }
+
         .gallery-item img {
             width: 100%;
             border-radius: 8px;
             cursor: pointer;
             transition: opacity 0.3s ease;
         }
+
         .gallery-item img:hover {
             opacity: 0.8;
         }
+
         .image-caption {
             text-align: center;
             font-size: 0.9rem;
             color: var(--secondary-text);
             margin-top: 0.5rem;
         }
-        /* Lightbox */
+
+        /* Lightbox - Tetap gelap karena ini standar UI terbaik untuk fokus visual */
         .lightbox {
             display: none; position: fixed; z-index: 1000;
             left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.95);
             justify-content: center; align-items: center;
         }
+
         .lightbox-content { max-width: 90%; max-height: 80%; }
+
         .lightbox-nav {
             position: absolute; color: white;
             font-size: 3rem; cursor: pointer; user-select: none;
             padding: 1rem;
         }
+
         .close { top: 2rem; right: 2rem; font-size: 2.5rem; }
+
         /* Interactive Sections (Share, Info, Comments) */
         .interactive-section {
             background-color: var(--surface-color);
@@ -167,22 +204,28 @@
             padding: 2rem;
             margin-top: 3rem;
             text-align: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
+
         .interactive-section h3 {
             font-family: 'Merriweather', serif;
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
+
         .social-share-icons a {
             color: var(--secondary-text);
             font-size: 2rem; margin: 0 1rem;
             transition: color 0.3s, transform 0.3s;
         }
+
         .social-share-icons a:hover {
             color: var(--accent-color);
             transform: scale(1.2);
         }
+
         #user-info p { margin: 0.5rem 0; }
+
         /* Fixed Buttons */
         .fixed-btn {
             position: fixed; width: 50px; height: 50px;
@@ -193,12 +236,15 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
         }
+
         .fixed-btn:hover {
             background-color: #179443;
             transform: scale(1.1);
         }
+
         #sitemap-btn { left: 30px; top: 30%; }
         #home-btn { right: 30px; bottom: 20%; }
+
         /* Responsive Design */
         @media (max-width: 1000px) { /* Breakpoint for mobile */
             .fullscreen-wrapper { min-width: auto; }
