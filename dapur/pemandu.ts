@@ -546,15 +546,15 @@ background-color: var(--border, #eee);
 
 .playground-title {
   height: var(--thumb-size);
-  font-size: calc(var(--thumb-size) / 6);
-  line-height: calc(var(--thumb-size) / 6);
+  font-size: calc(var(--thumb-size) / 5);
+  line-height: calc(var(--thumb-size) / 5);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
   flex-grow: 1;
 
-  /* Trik multiline ellipsis (Maksimal 3 baris) */
+  /* Trik multiline ellipsis (Maksimal 4 baris) */
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   white-space: normal;
