@@ -354,14 +354,18 @@ grid.innerHTML = related.map((item: any, idx: number) => {
   const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.webp` : STATIC_FALLBACK;
   const url = `/${catInfo.slug}/${item.id.replace('.html', '')}`;
 
+  // Bersihkan " - Layar Kosong" dari judul related grid
+  const rawTitle = item.title || 'Tanpa Judul';
+  const cleanTitle = rawTitle.replace(/\s*-\s*Layar Kosong$/i, '');
+
   return `
   <div class="rel-card-mini">
   <a href="${url}">
   <div class="rel-img-mini">
-  <img class="lk-related-thumb" data-fallback-idx="${idx}" src="${rg}" alt="${item.title}" width="120" height="100" loading="lazy" decoding="async">
+  <img class="lk-related-thumb" data-fallback-idx="${idx}" src="${rg}" alt="${cleanTitle}" width="120" height="100" loading="lazy" decoding="async">
   </div>
   <div class="rel-info-mini">
-  <h4>${item.title}</h4>
+  <h4>${cleanTitle}</h4>
   </div>
   </a>
   </div>
