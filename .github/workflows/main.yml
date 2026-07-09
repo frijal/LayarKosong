@@ -83,7 +83,7 @@ jobs:
 
     steps:
       - name: 🛰️ Checkout Repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7 (Pin Hash Aman)
         with:
           fetch-depth: 1
           persist-credentials: true
@@ -226,7 +226,7 @@ jobs:
       # 📋 RINGKASAN HASIL
       # =========================================================
 
-            - name: 📋 Ringkasan Hasil Job
+      - name: 📋 Ringkasan Hasil Job
         if: always()
         env:
           STATUS_DISKUSI_RSS: ${{ steps.diskusi_rss.outcome }}
@@ -242,7 +242,6 @@ jobs:
         run: |
           status_icon() {
             local outcome="$1"
-
             case "$outcome" in
               success)   echo "✅ Berhasil" ;;
               skipped)   echo "⏭️ Dilewati (toggle off)" ;;
@@ -254,9 +253,7 @@ jobs:
 
           esc_md() {
             local value="$1"
-
             value="$(printf '%s' "$value" | tr '\r\n' '  ' | sed 's/|/\\|/g')"
-
             printf '%s' "$value"
           }
 
@@ -272,7 +269,6 @@ jobs:
           get_last() {
             local pattern="$1"
             local replace="$2"
-
             printf '%s\n' "$LOG" \
               | grep -E "$pattern" \
               | tail -n 1 \
@@ -283,7 +279,6 @@ jobs:
             local task="$1"
             local outcome="$2"
             local report="$3"
-
             printf '| %s | %s | %s |\n' \
               "$(esc_md "$task")" \
               "$(esc_md "$(status_icon "$outcome")")" \
@@ -296,7 +291,6 @@ jobs:
           # =====================================================
           # RSS & Cloudflare
           # =====================================================
-
           RSS_COUNT="$(get_last '📦 Terdeteksi [0-9]+ artikel baru\.' 's/.*📦 Terdeteksi ([0-9]+) artikel baru\./\1/')"
 
           CF_DELETE="$(get_last '🗑 Preview total akan dihapus: [0-9]+' 's/.*🗑 Preview total akan dihapus: ([0-9]+).*/\1/')"
@@ -321,10 +315,8 @@ jobs:
           fi
 
           # =====================================================
-          # MEDSOS: semua ambil judul dari baris awal proses
-          # Tidak pakai URL, tidak pakai fallback baris sukses
+          # MEDSOS: mengambil judul langsung dari awal log proses
           # =====================================================
-
           BLOGSPOT_TITLE="$(get_last '🚀 Mengirim Email Post ke Blogspot Planet: ' 's/.*🚀 Mengirim Email Post ke Blogspot Planet: (.*)$/\1/')"
           DISCORD_TITLE="$(get_last '🚀 Mengirim Plain Text ke Discord: ' 's/.*🚀 Mengirim Plain Text ke Discord: (.*)$/\1/')"
           FACEBOOK_TITLE="$(get_last '🚀 Mengirim ke Facebook Page: ' 's/.*🚀 Mengirim ke Facebook Page: (.*)$/\1/')"
