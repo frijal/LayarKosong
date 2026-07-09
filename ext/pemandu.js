@@ -20,29 +20,29 @@
 ${H}
 <div class="lk-share-wrapper">
 <button id="btn-share-main" class="lk-share-main-btn" title="Bagikan" aria-label="Bagikan">
-<img src="/ext/icon-share.svg" width="20" height="20" alt="Share" aria-hidden="true" />
+<img src="/ext/icons/icon-share.svg" width="20" height="20" alt="Share" aria-hidden="true" />
 </button>
 <div id="lk-share-providers" class="lk-share-providers-hidden">
 <a href="https://x.com/intent/post?text=${z}&url=${O}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke X" aria-label="Bagikan ke X">
-<img src="/ext/icon-x.svg" width="20" height="20" alt="X" aria-hidden="true" />
+<img src="/ext/icons/icon-x.svg" width="20" height="20" alt="X" aria-hidden="true" />
 </a>
 <a href="https://www.linkedin.com/shareArticle?mini=true&url=${O}&title=${z}&summary=${z}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=600');return false;" title="Bagikan ke LinkedIn" aria-label="Bagikan ke LinkedIn">
-<img src="/ext/icon-linkedin.svg" width="20" height="20" alt="LinkedIn" aria-hidden="true" />
+<img src="/ext/icons/icon-linkedin.svg" width="20" height="20" alt="LinkedIn" aria-hidden="true" />
 </a>
 <a href="https://t.me/share/url?url=${O}&text=${z}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Telegram" aria-label="Bagikan ke Telegram">
-<img src="/ext/icon-telegram.svg" width="20" height="20" alt="Telegram" aria-hidden="true" />
+<img src="/ext/icons/icon-telegram.svg" width="20" height="20" alt="Telegram" aria-hidden="true" />
 </a>
 <a href="https://www.facebook.com/sharer/sharer.php?u=${O}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Facebook" aria-label="Bagikan ke Facebook">
-<img src="/ext/icon-facebook.svg" width="20" height="20" alt="Facebook" aria-hidden="true" />
+<img src="/ext/icons/icon-facebook.svg" width="20" height="20" alt="Facebook" aria-hidden="true" />
 </a>
 <a href="https://api.whatsapp.com/send?text=${z}%0A%0A${O}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke WhatsApp" aria-label="Bagikan ke WhatsApp">
-<img src="/ext/icon-whatsapp.svg" width="20" height="20" alt="WhatsApp" aria-hidden="true" />
+<img src="/ext/icons/icon-whatsapp.svg" width="20" height="20" alt="WhatsApp" aria-hidden="true" />
 </a>
 <a href="https://www.threads.com/intent/post?text=${z}&url=${O}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Threads" aria-label="Bagikan ke Threads">
-<img src="/ext/icon-threads.svg" width="20" height="20" alt="Threads" aria-hidden="true" />
+<img src="/ext/icons/icon-threads.svg" width="20" height="20" alt="Threads" aria-hidden="true" />
 </a>
 <a href="https://share.flipboard.com/bookmarklet/popout?v=2&title=${z}&url=${O}&utm_source=dalam.web.id" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=600');return false;" title="Bagikan ke Flipboard" aria-label="Bagikan ke Flipboard">
-<img src="/ext/icon-flipboard.svg" width="20" height="20" alt="Flipboard" aria-hidden="true" />
+<img src="/ext/icons/icon-flipboard.svg" width="20" height="20" alt="Flipboard" aria-hidden="true" />
 </a>
 </div>
 </div>
