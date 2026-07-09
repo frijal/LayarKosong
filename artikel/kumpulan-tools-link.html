@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -167,7 +167,7 @@
             try {
                 showStatus('<i class="fa-solid fa-spinner fa-spin"></i> Menarik data live dari server...', 'info');
                 // Panggil file JSON dari domain lokal (dirinya sendiri)
-                const res = await fetch(`/ext/tool-layarkosong.json?v=${Date.now()}`);
+                const res = await fetch(`https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/tool-layarkosong.json?v=${Date.now()}`);
                 if (res.ok) {
                     db = await res.json();
                     render();
