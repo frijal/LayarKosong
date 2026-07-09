@@ -226,7 +226,7 @@ jobs:
       # 📋 RINGKASAN HASIL
       # =========================================================
 
-      - name: 📋 Ringkasan Hasil Job
+            - name: 📋 Ringkasan Hasil Job
         if: always()
         env:
           STATUS_DISKUSI_RSS: ${{ steps.diskusi_rss.outcome }}
@@ -253,15 +253,11 @@ jobs:
           }
 
           esc_md() {
-            local value="${1:-"-"}"
+            local value="$1"
 
             value="$(printf '%s' "$value" | tr '\r\n' '  ' | sed 's/|/\\|/g')"
 
-            if [ -n "$value" ]; then
-              printf '%s' "$value"
-            else
-              printf '%s' "-"
-            fi
+            printf '%s' "$value"
           }
 
           clean_log() {
@@ -283,16 +279,6 @@ jobs:
               | sed -E "$replace" || true
           }
 
-          fallback() {
-            local value="$1"
-
-            if [ -n "$value" ]; then
-              printf '%s' "$value"
-            else
-              printf '%s' "-"
-            fi
-          }
-
           row() {
             local task="$1"
             local outcome="$2"
@@ -301,66 +287,52 @@ jobs:
             printf '| %s | %s | %s |\n' \
               "$(esc_md "$task")" \
               "$(esc_md "$(status_icon "$outcome")")" \
-              "$(esc_md "$(fallback "$report")")" \
+              "$(esc_md "$report")" \
               >> "$GITHUB_STEP_SUMMARY"
           }
 
           LOG="$(clean_log || true)"
 
+          # =====================================================
+          # RSS & Cloudflare
+          # =====================================================
+
           RSS_COUNT="$(get_last '📦 Terdeteksi [0-9]+ artikel baru\.' 's/.*📦 Terdeteksi ([0-9]+) artikel baru\./\1/')"
 
-          CF_TOTAL="$(get_last '📦 Total deployment ditemukan: [0-9]+' 's/.*📦 Total deployment ditemukan: ([0-9]+).*/\1/')"
-          CF_PREVIEW="$(get_last '🔎 Preview deployment ditemukan: [0-9]+' 's/.*🔎 Preview deployment ditemukan: ([0-9]+).*/\1/')"
           CF_DELETE="$(get_last '🗑 Preview total akan dihapus: [0-9]+' 's/.*🗑 Preview total akan dihapus: ([0-9]+).*/\1/')"
           CF_KEEP="$(get_last '🧾 Menyisakan [0-9]+ preview terbaru\.' 's/.*🧾 Menyisakan ([0-9]+) preview terbaru\./\1/')"
 
-          BLOGSPOT_TITLE="$(get_last '🚀 Mengirim Email Post ke Blogspot Planet: ' 's/.*🚀 Mengirim Email Post ke Blogspot Planet: (.*)$/\1/')"
-          DISCORD_TITLE="$(get_last '🚀 Mengirim Plain Text ke Discord: ' 's/.*🚀 Mengirim Plain Text ke Discord: (.*)$/\1/')"
-          FACEBOOK_TITLE="$(get_last '🚀 Mengirim ke Facebook Page: ' 's/.*🚀 Mengirim ke Facebook Page: (.*)$/\1/')"
-          LINKEDIN_TITLE="$(get_last '✅ Berhasil! Artikel ".+" sudah tayang di LinkedIn\.' 's/.*✅ Berhasil! Artikel "(.+)" sudah tayang di LinkedIn\./\1/')"
-          MASTODON_TITLE="$(get_last '🚀 Mengirim ke Mastodon: ' 's/.*🚀 Mengirim ke Mastodon: (.*)$/\1/')"
-          THREADS_TITLE="$(get_last '✅ Sukses: ' 's/.*✅ Sukses: (.*)$/\1/')"
-          TUMBLR_TITLE="$(get_last '🚀 Mengirim ke Tumblr: ' 's/.*🚀 Mengirim ke Tumblr: (.*)$/\1/')"
-          WORDPRESS_TITLE="$(get_last '🚀 Mengirim Email Post ke WordPress Planet: ' 's/.*🚀 Mengirim Email Post ke WordPress Planet: (.*)$/\1/')"
+          CF_REPORT=""
+          if [ -n "$CF_DELETE" ]; then
+            CF_REPORT="${CF_DELETE} preview dihapus"
+          fi
 
-          MASTODON_URL="$(get_last '✅ Berhasil post ke Mastodon: https?://' 's/.*✅ Berhasil post ke Mastodon: (https?:\/\/[^[:space:]]+).*/\1/')"
-          TUMBLR_URL="$(get_last '✅ Berhasil post ke Tumblr: https?://' 's/.*✅ Berhasil post ke Tumblr: (https?:\/\/[^[:space:]]+).*/\1/')"
-
-          CF_REPORT="-"
-          if [ -n "$CF_DELETE" ] || [ -n "$CF_KEEP" ]; then
-            CF_REPORT=""
-
-            if [ -n "$CF_DELETE" ]; then
-              CF_REPORT="${CF_DELETE} preview dihapus"
-            fi
-
-            if [ -n "$CF_KEEP" ]; then
-              if [ -n "$CF_REPORT" ]; then
-                CF_REPORT="${CF_REPORT}, ${CF_KEEP} preview disisakan"
-              else
-                CF_REPORT="${CF_KEEP} preview disisakan"
-              fi
-            fi
-
-            if [ -n "$CF_TOTAL" ] && [ -n "$CF_PREVIEW" ]; then
-              CF_REPORT="${CF_REPORT} (${CF_TOTAL} total, ${CF_PREVIEW} preview)"
+          if [ -n "$CF_KEEP" ]; then
+            if [ -n "$CF_REPORT" ]; then
+              CF_REPORT="${CF_REPORT}, ${CF_KEEP} preview disisakan"
+            else
+              CF_REPORT="${CF_KEEP} preview disisakan"
             fi
           fi
 
-          RSS_REPORT="-"
+          RSS_REPORT=""
           if [ -n "$RSS_COUNT" ]; then
             RSS_REPORT="${RSS_COUNT} artikel baru"
           fi
 
-          MASTODON_REPORT="$MASTODON_URL"
-          if [ -z "$MASTODON_REPORT" ]; then
-            MASTODON_REPORT="$MASTODON_TITLE"
-          fi
+          # =====================================================
+          # MEDSOS: semua ambil judul dari baris awal proses
+          # Tidak pakai URL, tidak pakai fallback baris sukses
+          # =====================================================
 
-          TUMBLR_REPORT="$TUMBLR_URL"
-          if [ -z "$TUMBLR_REPORT" ]; then
-            TUMBLR_REPORT="$TUMBLR_TITLE"
-          fi
+          BLOGSPOT_TITLE="$(get_last '🚀 Mengirim Email Post ke Blogspot Planet: ' 's/.*🚀 Mengirim Email Post ke Blogspot Planet: (.*)$/\1/')"
+          DISCORD_TITLE="$(get_last '🚀 Mengirim Plain Text ke Discord: ' 's/.*🚀 Mengirim Plain Text ke Discord: (.*)$/\1/')"
+          FACEBOOK_TITLE="$(get_last '🚀 Mengirim ke Facebook Page: ' 's/.*🚀 Mengirim ke Facebook Page: (.*)$/\1/')"
+          LINKEDIN_TITLE="$(get_last '🚀 Menyiapkan postingan LinkedIn: ' 's/.*🚀 Menyiapkan postingan LinkedIn: (.*)$/\1/')"
+          MASTODON_TITLE="$(get_last '🚀 Mengirim ke Mastodon: ' 's/.*🚀 Mengirim ke Mastodon: (.*)$/\1/')"
+          THREADS_TITLE="$(get_last '🚀 Menyiapkan Threads: ' 's/.*🚀 Menyiapkan Threads: (.*)$/\1/')"
+          TUMBLR_TITLE="$(get_last '🚀 Mengirim ke Tumblr: ' 's/.*🚀 Mengirim ke Tumblr: (.*)$/\1/')"
+          WORDPRESS_TITLE="$(get_last '🚀 Mengirim Email Post ke WordPress Planet: ' 's/.*🚀 Mengirim Email Post ke WordPress Planet: (.*)$/\1/')"
 
           {
             echo "## 📊 Ringkasan Automation & MedSos"
@@ -374,10 +346,10 @@ jobs:
           row "Discord 🦋"               "$STATUS_DISCORD"      "$DISCORD_TITLE"
           row "Facebook 🚀"              "$STATUS_FACEBOOK"     "$FACEBOOK_TITLE"
           row "LinkedIn 🆕"              "$STATUS_LINKEDIN"     "$LINKEDIN_TITLE"
-          row "Mastodon 🐘"              "$STATUS_MASTODON"     "$MASTODON_REPORT"
+          row "Mastodon 🐘"              "$STATUS_MASTODON"     "$MASTODON_TITLE"
           row "RSS ke Diskusi GitHub 📰" "$STATUS_DISKUSI_RSS"  "$RSS_REPORT"
           row "Threads ⚙️"               "$STATUS_THREADS"      "$THREADS_TITLE"
-          row "Tumblr 🎨"                "$STATUS_TUMBLR"       "$TUMBLR_REPORT"
+          row "Tumblr 🎨"                "$STATUS_TUMBLR"       "$TUMBLR_TITLE"
           row "WordPress Planet 🪐"      "$STATUS_WORDPRESS"    "$WORDPRESS_TITLE"
 
       # =========================================================
