@@ -8,9 +8,7 @@
 <a href="/feed" title="RSS Feed" class="btn-emoji">\uD83D\uDCE1</a>
 ${H}
 <div class="lk-share-wrapper">
-<button id="btn-share-main" class="lk-share-main-btn" title="Bagikan" aria-label="Bagikan">
-<img src="/ext/icons/icon-share.svg" width="20" height="20" alt="Share" aria-hidden="true" />
-</button>
+<button id="btn-share-main" class="lk-share-main-btn btn-emoji" style="padding: 0;" title="Bagikan" aria-label="Bagikan">\uD83D\uDCE8</button>
 <div id="lk-share-providers" class="lk-share-providers-hidden">
 <a href="https://x.com/intent/post?text=${Q}&url=${q}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke X" aria-label="Bagikan ke X">
 <img src="/ext/icons/icon-x.svg" width="20" height="20" alt="X" aria-hidden="true" />

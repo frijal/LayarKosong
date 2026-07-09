@@ -42,6 +42,10 @@
     --toc-opacity: 0.6;
     --toc-hover-opacity: 1;
   }
+  .lk-share-providers-visible img,
+  .lk-share-main-btn img {
+    filter: invert(1) brightness(0.9);
+  }
 }
 
 /* ========================
