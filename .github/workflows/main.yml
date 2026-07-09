@@ -1,0 +1,276 @@
+name: "🟢 Automation & MedSos (Full Bun)"
+
+on:
+  schedule:
+    - cron: 10 0,8,16 * * *
+
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "✅ Jalankan semua tugas"
+        required: false
+        default: true
+        type: boolean      
+
+      blogspot:
+        description: "🧡 Blogspot Planet Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      cloudflare:
+        description: "🧹 Cloudflare Cleanup"
+        required: false
+        default: false
+        type: boolean
+
+      discord:
+        description: "🦋 Discord Feed"
+        required: false
+        default: false
+        type: boolean
+
+      facebook:
+        description: "🚀 Facebook Page Process"
+        required: false
+        default: false
+        type: boolean
+
+      linkedin:
+        description: "🆕 LinkedIn Post"
+        required: false
+        default: false
+        type: boolean
+
+      mastodon:
+        description: "🐘 Mastodon Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      diskusi_rss:
+        description: "📰 RSS kirim ke Diskusi GitHub"
+        required: false
+        default: false
+        type: boolean
+
+      threads:
+        description: "⚙️ Threads Post"
+        required: false
+        default: false
+        type: boolean
+
+      tumblr:
+        description: "🎨 Tumblr Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      wordpress:
+        description: "🪐 WordPress Planet Autopost"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  discussions: write
+  issues: write
+
+jobs:
+  everything-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛰️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: 🚀 Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: 📦 Install
+        run: bun install
+
+      # =========================================================
+      # 🟢 AUTOMATION SCRIPTS (ALL RUNNING ON BUN)
+      # =========================================================
+
+      - name: RSS kirim ke Diskusi Github
+        id: diskusi_rss
+        if: github.event_name == 'schedule' || inputs.all || inputs.diskusi_rss
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bun run dapur/bikin-rss-diskusi.ts
+
+      - name: 🧹 1. Cloudflare Cleanup
+        id: cloudflare
+        if: github.event_name == 'schedule' || inputs.all || inputs.cloudflare
+        continue-on-error: true
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: bun run dapur/rapikan-cloudflare.ts
+
+      - name: 🐘 2. Mastodon Autopost
+        id: mastodon
+        if: github.event_name == 'schedule' || inputs.all || inputs.mastodon
+        continue-on-error: true
+        env:
+          MASTODON_INSTANCE: mastodon.social
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+        run: bun run dapur/post-to-mastodon.ts
+
+      - name: ⚙️ 3. Threads Post Script
+        id: threads
+        if: github.event_name == 'schedule' || inputs.all || inputs.threads
+        continue-on-error: true
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+        run: bun run dapur/post-to-threads.ts
+
+      - name: 🆕 4. LinkedIn Post Script
+        id: linkedin
+        if: github.event_name == 'schedule' || inputs.all || inputs.linkedin
+        continue-on-error: true
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_ID: ${{ secrets.LINKEDIN_PERSON_ID }}
+        run: bun run dapur/post-to-linkedin.ts
+
+      - name: 🎨 5. Tumblr Autopost
+        id: tumblr
+        if: github.event_name == 'schedule' || inputs.all || inputs.tumblr
+        continue-on-error: true
+        env:
+          TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_TOKEN: ${{ secrets.TUMBLR_TOKEN }}
+          TUMBLR_TOKEN_SECRET: ${{ secrets.TUMBLR_TOKEN_SECRET }}
+        run: bun run dapur/post-to-tumblr.ts
+
+      - name: 🦋 6. Discord Feed
+        id: discord
+        if: github.event_name == 'schedule' || inputs.all || inputs.discord
+        continue-on-error: true
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: bun run dapur/post-to-discord.ts
+
+      - name: 🚀 7. Facebook Page Process
+        id: facebook
+        if: github.event_name == 'schedule' || inputs.all || inputs.facebook
+        continue-on-error: true
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: bun run dapur/post-to-facebook.ts
+
+      - name: 🪐 8. WordPress Planet Autopost
+        id: wordpress
+        if: github.event_name == 'schedule' || inputs.all || inputs.wordpress
+        continue-on-error: true
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          WP_POST_EMAIL: ${{ secrets.WP_POST_EMAIL }}
+        run: bun run dapur/post-to-wordpress.ts
+
+      - name: 🧡 9. Blogspot Planet Autopost
+        id: blogspot
+        if: github.event_name == 'schedule' || inputs.all || inputs.blogspot
+        continue-on-error: true
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          BLOGSPOT_POST_EMAIL: ${{ secrets.BLOGSPOT_POST_EMAIL }}
+        run: bun run dapur/post-to-blogspot.ts
+
+      # =========================================================
+      # 📋 RINGKASAN HASIL (Menggunakan Angka / URL Log jika ada)
+      # =========================================================
+
+      - name: 📋 Ringkasan Hasil Job
+        if: always()
+        env:
+          STATUS_DISKUSI_RSS: ${{ steps.diskusi_rss.outcome }}
+          STATUS_CLOUDFLARE: ${{ steps.cloudflare.outcome }}
+          STATUS_MASTODON: ${{ steps.mastodon.outcome }}
+          STATUS_THREADS: ${{ steps.threads.outcome }}
+          STATUS_LINKEDIN: ${{ steps.linkedin.outcome }}
+          STATUS_TUMBLR: ${{ steps.tumblr.outcome }}
+          STATUS_DISCORD: ${{ steps.discord.outcome }}
+          STATUS_FACEBOOK: ${{ steps.facebook.outcome }}
+          STATUS_WORDPRESS: ${{ steps.wordpress.outcome }}
+          STATUS_BLOGSPOT: ${{ steps.blogspot.outcome }}
+        run: |
+          print_status() {
+            local label="$1"
+            local outcome="$2"
+            local log_detail="$3"
+            local icon="⚠️ ($outcome)"
+
+            case "$outcome" in
+              success)   
+                if [ -n "$log_detail" ]; then
+                  icon="✅ Berhasil ($log_detail)"
+                else
+                  icon="✅ Berhasil"
+                fi
+                ;;
+              skipped)   icon="⏭️ Dilewati (toggle off)" ;;
+              failure)   icon="❌ Gagal" ;;
+              cancelled) icon="🚫 Dibatalkan" ;;
+              *)         icon="⏸️ Nonaktif" ;;
+            esac
+            echo "$label -> $icon"
+            echo "| $label | $icon |" >> "$GITHUB_STEP_SUMMARY"
+          }
+
+          echo "## 📊 Ringkasan Automation & MedSos"
+          {
+            echo "## 📊 Ringkasan Automation & MedSos"
+            echo ""
+            echo "| Tugas | Status / Detail |"
+            echo "|---|---|"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          print_status "Blogspot Planet 🧡"       "$STATUS_BLOGSPOT" "${{ steps.blogspot.outputs.result }}"
+          print_status "Cloudflare Cleanup 🧹"    "$STATUS_CLOUDFLARE" "${{ steps.cloudflare.outputs.result }}"
+          print_status "Discord 🦋"               "$STATUS_DISCORD" "${{ steps.discord.outputs.result }}"
+          print_status "Facebook 🚀"              "$STATUS_FACEBOOK" "${{ steps.facebook.outputs.result }}"
+          print_status "LinkedIn 🆕"              "$STATUS_LINKEDIN" "${{ steps.linkedin.outputs.result }}"
+          print_status "Mastodon 🐘"              "$STATUS_MASTODON" "${{ steps.mastodon.outputs.result }}"
+          print_status "RSS ke Diskusi GitHub 📰" "$STATUS_DISKUSI_RSS" "${{ steps.diskusi_rss.outputs.result }}"
+          print_status "Threads ⚙️"               "$STATUS_THREADS" "${{ steps.threads.outputs.result }}"
+          print_status "Tumblr 🎨"                "$STATUS_TUMBLR" "${{ steps.tumblr.outputs.result }}"
+          print_status "WordPress Planet 🪐"       "$STATUS_WORDPRESS" "${{ steps.wordpress.outputs.result }}"
+
+      # =========================================================
+      # 💾 FINAL COMMIT
+      # =========================================================
+
+      - name: 💾 Save All Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+
+          if git diff --staged --quiet; then
+            echo "ℹ️ Ga ada kerjaan baru, skip commit."
+          else
+            git commit -m "chore: MedSos Post [$(date +'%Y-%m-%d %H:%M')]"
+            git pull origin main --rebase --autostash
+            git push
+          fi
