@@ -81,9 +81,6 @@ jobs:
   everything-job:
     runs-on: ubuntu-latest
 
-    env:
-      MEDSOS_LOG_FILE: ${{ runner.temp }}/automation-medsos.log
-
     steps:
       - name: 🛰️ Checkout Repository
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
@@ -101,8 +98,8 @@ jobs:
 
       - name: 🧾 Siapkan Log Automation MedSos
         run: |
-          mkdir -p "$(dirname "$MEDSOS_LOG_FILE")"
-          : > "$MEDSOS_LOG_FILE"
+          echo "MEDSOS_LOG_FILE=$RUNNER_TEMP/automation-medsos.log" >> "$GITHUB_ENV"
+          : > "$RUNNER_TEMP/automation-medsos.log"
 
       # =========================================================
       # 🟢 AUTOMATION SCRIPTS (ALL RUNNING ON BUN)
@@ -226,7 +223,7 @@ jobs:
           bun run dapur/post-to-blogspot.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
 
       # =========================================================
-      # 📋 RINGKASAN HASIL (biar ga perlu buka log satu-satu)
+      # 📋 RINGKASAN HASIL
       # =========================================================
 
       - name: 📋 Ringkasan Hasil Job
@@ -268,7 +265,7 @@ jobs:
           }
 
           clean_log() {
-            if [ -f "$MEDSOS_LOG_FILE" ]; then
+            if [ -n "${MEDSOS_LOG_FILE:-}" ] && [ -f "$MEDSOS_LOG_FILE" ]; then
               sed -E \
                 -e 's/\x1b\[[0-9;]*m//g' \
                 -e 's/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[^ ]+Z[[:space:]]+//' \
@@ -310,10 +307,6 @@ jobs:
 
           LOG="$(clean_log || true)"
 
-          # =====================================================
-          # Ambil data ringkas dari log
-          # =====================================================
-
           RSS_COUNT="$(get_last '📦 Terdeteksi [0-9]+ artikel baru\.' 's/.*📦 Terdeteksi ([0-9]+) artikel baru\./\1/')"
 
           CF_TOTAL="$(get_last '📦 Total deployment ditemukan: [0-9]+' 's/.*📦 Total deployment ditemukan: ([0-9]+).*/\1/')"
@@ -332,10 +325,6 @@ jobs:
 
           MASTODON_URL="$(get_last '✅ Berhasil post ke Mastodon: https?://' 's/.*✅ Berhasil post ke Mastodon: (https?:\/\/[^[:space:]]+).*/\1/')"
           TUMBLR_URL="$(get_last '✅ Berhasil post ke Tumblr: https?://' 's/.*✅ Berhasil post ke Tumblr: (https?:\/\/[^[:space:]]+).*/\1/')"
-
-          # =====================================================
-          # Susun laporan pendek
-          # =====================================================
 
           CF_REPORT="-"
           if [ -n "$CF_DELETE" ] || [ -n "$CF_KEEP" ]; then
