@@ -627,7 +627,7 @@ async function initRandomPlayground() {
     // Tombol Hide — cuma keliatan di desktop (>1024px), disembunyikan via CSS media query pas mobile
     const hideBtn = document.createElement('button');
     hideBtn.id = 'hide-btn';
-    hideBtn.textContent = '🙈';
+    hideBtn.textContent = '❌';
     hideBtn.title = 'Sembunyikan widget';
     hideBtn.setAttribute('aria-label', 'Sembunyikan widget');
     hideBtn.onclick = () => {
