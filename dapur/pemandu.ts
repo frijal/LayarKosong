@@ -69,26 +69,6 @@ function getCategoryInfo(fileName: string, allData: Record<string, any[]>) {
 // 1b. IMAGE FALLBACK CHAIN
 // ---------------------------
 const BROKEN_IMG_CLASS = 'img-broken-placeholder';
-let fallbackStyleInjected = false;
-
-function ensureFallbackStyleInjected(): void {
-  if (fallbackStyleInjected) return;
-  fallbackStyleInjected = true;
-  const style = document.createElement('style');
-  style.textContent = `
-  .${BROKEN_IMG_CLASS} {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    background-color: #1a1a1c;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='1.5'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpath d='M21 15l-5-5L5 21'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 32%;
-  }
-  `;
-  document.head.appendChild(style);
-}
 
 function attachImageFallback(img: HTMLImageElement, fallbackChain: string[]): void {
   const chain = [...new Set(fallbackChain.filter(Boolean))];
@@ -99,7 +79,6 @@ function attachImageFallback(img: HTMLImageElement, fallbackChain: string[]): vo
       step++;
     } else {
       img.removeEventListener('error', handleError);
-      ensureFallbackStyleInjected();
       img.classList.add(BROKEN_IMG_CLASS);
       img.removeAttribute('src');
       img.alt = img.alt || 'Gambar tidak tersedia';
@@ -161,7 +140,6 @@ function initFloatingSearch(): void {
 
       if (matches.length > 0) {
         results.innerHTML = matches.map((item: any) => {
-          // 🔥 Menggunakan fungsi global cleanSlug (DRY)
           const fileSlug = cleanSlug(item.id) || 'tanpa-judul';
           const categoryName = item.category || 'Lainnya';
           const catSlug = categoryName.toLowerCase().replace(/\s+/g, '-');
@@ -374,7 +352,6 @@ if (related.length === 0) {
 
 grid.innerHTML = related.map((item: any, idx: number) => {
   const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.webp` : STATIC_FALLBACK;
-  // 🔥 Menggunakan fungsi global cleanSlug (DRY)
   const url = `/${catInfo.slug}/${cleanSlug(item.id)}`;
 
   const cleanTitle = cleanArticleTitle(item.title);
@@ -445,152 +422,6 @@ function initKeyboardNav(allData: Record<string, any[]>, currentFile: string): v
 
 let allPlaygroundArticles: any[] = [];
 
-function injectPlaygroundStyles() {
-  if (document.getElementById('playground-styles')) return;
-  const style = document.createElement('style');
-  style.id = 'playground-styles';
-
-style.innerHTML = `
-:root {
-  --thumb-size: 4.5rem;
-  --item-gap: 1.25rem;
-}
-
-/* WIDGET SEBAGAI FLEX CONTAINER */
-#random-playground-widget {
-position: fixed;
-top: 6rem;
-right: 1.25rem;
-width: 18.75rem;
-background-color: transparent;
-border: none;
-z-index: 999;
-display: flex;
-flex-direction: column;
-}
-
-/* WADAH LIST ARTIKEL — tinggi dikunci fix: 7 item x thumb-size + 6 jarak antar item */
-#playground-list {
-display: flex;
-flex-direction: column;
-gap: var(--item-gap);
-order: 1;
-height: calc((var(--thumb-size) * 7) + (var(--item-gap) * 6));
-overflow: hidden;
-}
-
-/* WADAH TOMBOL AKSI (Hide + Shuffle sejajar horizontal) */
-#playground-controls {
-order: 2;
-display: flex;
-gap: 0.5rem;
-margin-top: 0.5rem;
-}
-
-/* TOMBOL SHUFFLE */
-#shuffle-btn {
-flex: 1 1 auto;
-padding: 0.75rem;
-margin: 0;
-cursor: pointer;
-border-radius: 0.5rem;
-background-color: transparent;
-color: inherit;
-border: 1px solid var(--border, #ccc);
-transition: all 0.2s ease;
-font-family: inherit;
-}
-
-#shuffle-btn:hover {
-background-color: var(--border, #eee);
-}
-
-/* TOMBOL HIDE (default tampil, disembunyikan lewat media query di mobile) */
-#hide-btn {
-flex: 0 0 auto;
-padding: 0.75rem 1rem;
-margin: 0;
-cursor: pointer;
-border-radius: 0.5rem;
-background-color: transparent;
-color: inherit;
-border: 1px solid var(--border, #ccc);
-transition: all 0.2s ease;
-font-family: inherit;
-}
-
-#hide-btn:hover {
-background-color: var(--border, #eee);
-}
-
-/* POSISI MOBILE (< 1024px) */
-@media (max-width: 1024px) {
-  #random-playground-widget {
-  position: relative;
-  top: auto;
-  right: auto;
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1rem;
-  border-top: 1px solid var(--border);
-  }
-
-  #playground-controls {
-  order: -1;
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  }
-
-  /* Tombol hide cuma buat desktop, di mobile ditiadakan total */
-  #hide-btn {
-  display: none;
-  }
-}
-
-/* STYLING PLAYGROUND ITEM */
-.playground-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer; /* Memastikan ikon tangan selalu muncul */
-  flex-shrink: 0; /* Biar tinggi tiap item konsisten 4.5rem, nggak ketekan sama height fix parent */
-}
-
-.playground-item:hover {
-  opacity: 0.85; /* Sedikit efek interaktif pas di-hover */
-}
-
-.playground-thumb {
-  width: var(--thumb-size);
-  height: var(--thumb-size);
-  object-fit: cover;
-  border-radius: 0.5rem;
-  flex-shrink: 0;
-  background-color: var(--border, #f3f4f6);
-}
-
-.playground-title {
-  max-height: var(--thumb-size);
-  font-size: calc(var(--thumb-size) / 5);
-  line-height: calc(var(--thumb-size) / 5);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin: 0;
-  flex-grow: 1;
-
-  /* Trik multiline ellipsis (Maksimal 4 baris) */
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  white-space: normal;
-}
-`;
-document.head.appendChild(style);
-}
-
-// 🔥 FUNGSI RENDER (Sekarang ditambah tipe parameter HTMLElement biar lolos TS Strict)
 function renderPlaygroundList(listContainer: HTMLElement) {
   listContainer.innerHTML = '';
 
@@ -631,8 +462,6 @@ shuffledArticles.forEach(article => {
 
 // FUNGSI INISIALISASI UTAMA
 async function initRandomPlayground() {
-  injectPlaygroundStyles();
-
   let widget = document.getElementById('random-playground-widget');
 
   if (!widget) {
@@ -643,11 +472,11 @@ async function initRandomPlayground() {
     const listContainer = document.createElement('div');
     listContainer.id = 'playground-list';
 
-    // Bikin Wadah Tombol Aksi (Hide + Shuffle biar sejajar horizontal di desktop)
+    // Bikin Wadah Tombol Aksi
     const controlsContainer = document.createElement('div');
     controlsContainer.id = 'playground-controls';
 
-    // Tombol Hide — cuma keliatan di desktop (>1024px), disembunyikan via CSS media query pas mobile
+    // Tombol Hide
     const hideBtn = document.createElement('button');
     hideBtn.id = 'hide-btn';
     hideBtn.textContent = '❌';
@@ -665,15 +494,12 @@ shuffleBtn.onclick = () => {
   renderPlaygroundList(listContainer);
 };
 
-// Hide diletakkan sebelum Shuffle biar tampil sejajar di kirinya
 controlsContainer.appendChild(hideBtn);
 controlsContainer.appendChild(shuffleBtn);
 
-// Masukin ke widget
 widget.appendChild(listContainer);
 widget.appendChild(controlsContainer);
 
-// 🔥 Menggunakan fungsi isMobileDevice() yang sudah ada (DRY)
 const isMobileLayout = isMobileDevice();
 
 if (isMobileLayout) {
@@ -688,17 +514,15 @@ if (isMobileLayout) {
 }
   }
 
-  // Fetch data & BENTUK URL-NYA DI SINI!
+  // Fetch data
   if (typeof allPlaygroundArticles === 'undefined' || allPlaygroundArticles.length === 0) {
     try {
       const data = await window.siteDataProvider.getFor('pemandu.ts');
       if (data) {
         allPlaygroundArticles = [];
 
-        // Looping kategori untuk ngebentuk URL artikel biar pas diklik nggak nyasar ke '#'
         for (const [catSlug, articles] of Object.entries(data)) {
           articles.forEach(art => {
-            // 🔥 Menggunakan fungsi global cleanSlug (DRY)
             const fileSlug = cleanSlug(art.id);
             const finalUrl = art.url || `/${catSlug}/${fileSlug}`;
 
@@ -739,10 +563,7 @@ async function initializeApp(): Promise<void> {
       initKeyboardNav(allData, currentFile);
     }
 
-    // Dieksekusi di akhir agar tidak nge-blok konten utama
     initRelatedGrid(currentFile);
-
-    // 🔥 Panggil Playground secara asinkron di sini!
     initRandomPlayground();
 
   } catch (err) {

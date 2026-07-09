@@ -1,17 +1,6 @@
-(()=>{(function(){function _(V){if(!V)return"Tanpa Judul";return V.replace(/\s*-\s*Layar Kosong$/i,"")}function M(){return window.matchMedia("(max-width: 1024px)").matches}function P(V){return V?V.replace(/\.html$/,""):""}function L(){let Z=window.location.pathname.split("/").filter(Boolean).pop();if(!Z||Z==="artikel")return"";return Z.endsWith(".html")?Z:`${Z}.html`}function N(V){if(!V)return"Lainnya";return V.split("-").map((Z)=>Z.charAt(0).toUpperCase()+Z.slice(1)).join(" ")}function k(V,Z){for(let[J,X]of Object.entries(Z))if(X.some(($)=>$.id===V))return{name:N(J),slug:J,list:X};let Y=window.location.pathname.split("/").filter(Boolean);if(Y.length>0){let J=Y[0];for(let[X,$]of Object.entries(Z))if(X===J)return{name:N(X),slug:X,list:$}}return null}let w="img-broken-placeholder",F=!1;function S(){if(F)return;F=!0;let V=document.createElement("style");V.textContent=`
-  .${w} {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    background-color: #1a1a1c;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='1.5'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Ccircle cx='8.5' cy='8.5' r='1.5'/%3E%3Cpath d='M21 15l-5-5L5 21'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 32%;
-  }
-  `,document.head.appendChild(V)}function x(V,Z){let Y=[...new Set(Z.filter(Boolean))],J=0;function X(){if(J<Y.length)V.src=Y[J],J++;else V.removeEventListener("error",X),S(),V.classList.add(w),V.removeAttribute("src"),V.alt=V.alt||"Gambar tidak tersedia"}V.addEventListener("error",X)}function A(){let V=document.getElementById("progress");if(!V)return;let Z=()=>{let{documentElement:Y,body:J}=document,X=Y.scrollTop||J.scrollTop,$=Y.scrollHeight||J.scrollHeight,q=Y.clientHeight,Q=$-q;V.style.width=Q>0?X/Q*100+"%":"0%"};window.addEventListener("scroll",Z,{passive:!0}),Z()}function y(){let V=document.querySelector(".search-floating-container"),Z=document.getElementById("floatingSearchInput"),Y=V?.querySelector(".clear-button"),J=V?.querySelector(".floating-results-container");if(!V||!Z||!Y||!J)return;if(!Y.innerHTML.trim())Y.innerHTML="❌";let X,$=(q)=>q.replace(/[&<>'"]/g,(Q)=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[Q]||Q);Z.addEventListener("input",()=>{let q=Z.value.trim();if(Y.style.display=q.length?"block":"none",q.length<3){J.style.display="none";return}clearTimeout(X),X=setTimeout(async()=>{try{J.innerHTML='<div class="no-results">⏳ Memindai data...</div>',J.style.display="block";let Q=encodeURIComponent(q),z=await fetch(`/cari?q=${Q}&page=1&limit=10`);if(!z.ok)throw Error(`HTTP Error: ${z.status}`);let O=await z.json(),G=O.results||O.data||[];if(G.length>0)J.innerHTML=G.map((U)=>{let K=P(U.id)||"tanpa-judul",E=(U.category||"Lainnya").toLowerCase().replace(/\s+/g,"-"),j=U.snippet_text?U.snippet_text.substring(0,60)+"...":"Lihat artikel selengkapnya",W=_(U.title);return`<a href="/${E}/${K}"><strong>${$(W)}</strong><small>${$(j)}</small></a>`}).join("");else J.innerHTML=`<div class="no-results">❌ Pencarian "${$(q)}" nihil. Tekan Enter untuk detail.</div>`}catch(Q){console.error("❌ Gagal fetch Floating Search D1:",Q),J.innerHTML='<div class="no-results">⚠️ Ups, database sedang sibuk. Coba sesaat lagi.</div>'}},300)}),Z.addEventListener("keydown",(q)=>{if(q.key==="Enter"){q.preventDefault();let Q=Z.value.trim();if(Q)window.location.href=`/search/?q=${encodeURIComponent(Q)}`}}),Y.addEventListener("click",()=>{Z.value="",J.style.display="none",Y.style.display="none",clearTimeout(X),Z.focus()})}function I(V,Z){let Y=document.getElementById("related-articles-grid");if(!Y)return;let J=k(Z,V);if(!J)return;let X=J.list.find((W)=>W.id===Z),$=_(X?X.title:document.title),q="";if(X&&X.description)q=X.description;else{let W=document.querySelector('meta[name="description"]');if(W)q=W.getAttribute("content")||""}let Q=q?q:$,z=encodeURIComponent(Q),O=encodeURIComponent(window.location.href),G=document.getElementById("dynamic-nav-container");if(!G)if(G=document.createElement("div"),G.id="dynamic-nav-container",G.className="floating-nav",Y.parentNode)Y.parentNode.insertBefore(G,Y.nextSibling);else document.body.appendChild(G);let U=document.querySelector('link[rel="prev"]'),K=document.querySelector('link[rel="next"]'),H="";if(U){let W=U.getAttribute("title")||"Artikel Sebelumnya";H+=`<a href="${U.getAttribute("href")}" title="${W}" class="btn-emoji">⏪</a>`}if(K){let W=K.getAttribute("title")||"Artikel Selanjutnya";H+=`<a href="${K.getAttribute("href")}" title="${W}" class="btn-emoji">⏩</a>`}G.innerHTML=`
+(()=>{(function(){function _(J){if(!J)return"Tanpa Judul";return J.replace(/\s*-\s*Layar Kosong$/i,"")}function M(){return window.matchMedia("(max-width: 1024px)").matches}function P(J){return J?J.replace(/\.html$/,""):""}function S(){let Y=window.location.pathname.split("/").filter(Boolean).pop();if(!Y||Y==="artikel")return"";return Y.endsWith(".html")?Y:`${Y}.html`}function N(J){if(!J)return"Lainnya";return J.split("-").map((Y)=>Y.charAt(0).toUpperCase()+Y.slice(1)).join(" ")}function k(J,Y){for(let[j,V]of Object.entries(Y))if(V.some((Z)=>Z.id===J))return{name:N(j),slug:j,list:V};let X=window.location.pathname.split("/").filter(Boolean);if(X.length>0){let j=X[0];for(let[V,Z]of Object.entries(Y))if(V===j)return{name:N(V),slug:V,list:Z}}return null}let F="img-broken-placeholder";function w(J,Y){let X=[...new Set(Y.filter(Boolean))],j=0;function V(){if(j<X.length)J.src=X[j],j++;else J.removeEventListener("error",V),J.classList.add(F),J.removeAttribute("src"),J.alt=J.alt||"Gambar tidak tersedia"}J.addEventListener("error",V)}function y(){let J=document.getElementById("progress");if(!J)return;let Y=()=>{let{documentElement:X,body:j}=document,V=X.scrollTop||j.scrollTop,Z=X.scrollHeight||j.scrollHeight,O=X.clientHeight,$=Z-O;J.style.width=$>0?V/$*100+"%":"0%"};window.addEventListener("scroll",Y,{passive:!0}),Y()}function L(){let J=document.querySelector(".search-floating-container"),Y=document.getElementById("floatingSearchInput"),X=J?.querySelector(".clear-button"),j=J?.querySelector(".floating-results-container");if(!J||!Y||!X||!j)return;if(!X.innerHTML.trim())X.innerHTML="❌";let V,Z=(O)=>O.replace(/[&<>'"]/g,($)=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[$]||$);Y.addEventListener("input",()=>{let O=Y.value.trim();if(X.style.display=O.length?"block":"none",O.length<3){j.style.display="none";return}clearTimeout(V),V=setTimeout(async()=>{try{j.innerHTML='<div class="no-results">⏳ Memindai data...</div>',j.style.display="block";let $=encodeURIComponent(O),Q=await fetch(`/cari?q=${$}&page=1&limit=10`);if(!Q.ok)throw Error(`HTTP Error: ${Q.status}`);let q=await Q.json(),G=q.results||q.data||[];if(G.length>0)j.innerHTML=G.map((W)=>{let K=P(W.id)||"tanpa-judul",E=(W.category||"Lainnya").toLowerCase().replace(/\s+/g,"-"),R=W.snippet_text?W.snippet_text.substring(0,60)+"...":"Lihat artikel selengkapnya",z=_(W.title);return`<a href="/${E}/${K}"><strong>${Z(z)}</strong><small>${Z(R)}</small></a>`}).join("");else j.innerHTML=`<div class="no-results">❌ Pencarian "${Z(O)}" nihil. Tekan Enter untuk detail.</div>`}catch($){console.error("❌ Gagal fetch Floating Search D1:",$),j.innerHTML='<div class="no-results">⚠️ Ups, database sedang sibuk. Coba sesaat lagi.</div>'}},300)}),Y.addEventListener("keydown",(O)=>{if(O.key==="Enter"){O.preventDefault();let $=Y.value.trim();if($)window.location.href=`/search/?q=${encodeURIComponent($)}`}}),X.addEventListener("click",()=>{Y.value="",j.style.display="none",X.style.display="none",clearTimeout(V),Y.focus()})}function x(J,Y){let X=document.getElementById("related-articles-grid");if(!X)return;let j=k(Y,J);if(!j)return;let V=j.list.find((z)=>z.id===Y),Z=_(V?V.title:document.title),O="";if(V&&V.description)O=V.description;else{let z=document.querySelector('meta[name="description"]');if(z)O=z.getAttribute("content")||""}let $=O?O:Z,Q=encodeURIComponent($),q=encodeURIComponent(window.location.href),G=document.getElementById("dynamic-nav-container");if(!G)if(G=document.createElement("div"),G.id="dynamic-nav-container",G.className="floating-nav",X.parentNode)X.parentNode.insertBefore(G,X.nextSibling);else document.body.appendChild(G);let W=document.querySelector('link[rel="prev"]'),K=document.querySelector('link[rel="next"]'),H="";if(W){let z=W.getAttribute("title")||"Artikel Sebelumnya";H+=`<a href="${W.getAttribute("href")}" title="${z}" class="btn-emoji">⏪</a>`}if(K){let z=K.getAttribute("title")||"Artikel Selanjutnya";H+=`<a href="${K.getAttribute("href")}" title="${z}" class="btn-emoji">⏩</a>`}G.innerHTML=`
 <div class="nav-left">
-<a href="/${J.slug}" class="category-link visible">${J.name}</a>
+<a href="/${j.slug}" class="category-link visible">${j.name}</a>
 </div>
 <div class="nav-right">
 <a href="/" title="Beranda" class="btn-emoji">\uD83C\uDFE0</a>
@@ -23,184 +12,48 @@ ${H}
 <img src="/ext/icons/icon-share.svg" width="20" height="20" alt="Share" aria-hidden="true" />
 </button>
 <div id="lk-share-providers" class="lk-share-providers-hidden">
-<a href="https://x.com/intent/post?text=${z}&url=${O}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke X" aria-label="Bagikan ke X">
+<a href="https://x.com/intent/post?text=${Q}&url=${q}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke X" aria-label="Bagikan ke X">
 <img src="/ext/icons/icon-x.svg" width="20" height="20" alt="X" aria-hidden="true" />
 </a>
-<a href="https://www.linkedin.com/shareArticle?mini=true&url=${O}&title=${z}&summary=${z}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=600');return false;" title="Bagikan ke LinkedIn" aria-label="Bagikan ke LinkedIn">
+<a href="https://www.linkedin.com/shareArticle?mini=true&url=${q}&title=${Q}&summary=${Q}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=600');return false;" title="Bagikan ke LinkedIn" aria-label="Bagikan ke LinkedIn">
 <img src="/ext/icons/icon-linkedin.svg" width="20" height="20" alt="LinkedIn" aria-hidden="true" />
 </a>
-<a href="https://t.me/share/url?url=${O}&text=${z}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Telegram" aria-label="Bagikan ke Telegram">
+<a href="https://t.me/share/url?url=${q}&text=${Q}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Telegram" aria-label="Bagikan ke Telegram">
 <img src="/ext/icons/icon-telegram.svg" width="20" height="20" alt="Telegram" aria-hidden="true" />
 </a>
-<a href="https://www.facebook.com/sharer/sharer.php?u=${O}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Facebook" aria-label="Bagikan ke Facebook">
+<a href="https://www.facebook.com/sharer/sharer.php?u=${q}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Facebook" aria-label="Bagikan ke Facebook">
 <img src="/ext/icons/icon-facebook.svg" width="20" height="20" alt="Facebook" aria-hidden="true" />
 </a>
-<a href="https://api.whatsapp.com/send?text=${z}%0A%0A${O}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke WhatsApp" aria-label="Bagikan ke WhatsApp">
+<a href="https://api.whatsapp.com/send?text=${Q}%0A%0A${q}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke WhatsApp" aria-label="Bagikan ke WhatsApp">
 <img src="/ext/icons/icon-whatsapp.svg" width="20" height="20" alt="WhatsApp" aria-hidden="true" />
 </a>
-<a href="https://www.threads.com/intent/post?text=${z}&url=${O}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Threads" aria-label="Bagikan ke Threads">
+<a href="https://www.threads.com/intent/post?text=${Q}&url=${q}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Threads" aria-label="Bagikan ke Threads">
 <img src="/ext/icons/icon-threads.svg" width="20" height="20" alt="Threads" aria-hidden="true" />
 </a>
-<a href="https://share.flipboard.com/bookmarklet/popout?v=2&title=${z}&url=${O}&utm_source=dalam.web.id" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=600');return false;" title="Bagikan ke Flipboard" aria-label="Bagikan ke Flipboard">
+<a href="https://share.flipboard.com/bookmarklet/popout?v=2&title=${Q}&url=${q}&utm_source=dalam.web.id" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=600');return false;" title="Bagikan ke Flipboard" aria-label="Bagikan ke Flipboard">
 <img src="/ext/icons/icon-flipboard.svg" width="20" height="20" alt="Flipboard" aria-hidden="true" />
 </a>
 </div>
 </div>
-</div>`;let E=document.getElementById("btn-share-main"),j=document.getElementById("lk-share-providers");if(E&&j)E.addEventListener("click",async()=>{if(navigator.share&&M())try{await navigator.share({title:$,text:Q,url:window.location.href})}catch(W){console.error(W)}else{let W=j.classList.contains("lk-share-providers-hidden");j.classList.toggle("lk-share-providers-hidden",!W),j.classList.toggle("lk-share-providers-visible",W)}})}function D(){let V=document.getElementById("internal-nav");if(!V)return;let Y=Array.from(document.querySelectorAll("h2, h3, h4")).filter((J)=>{return(J.textContent||"").trim().length>0&&!J.closest(".floating-nav")&&!V.contains(J)});if(Y.length===0){V.style.display="none";return}V.innerHTML='<ul class="nav-list">'+Y.map((J,X)=>{let $=(J.textContent||"").trim();if(!J.id)J.id=$.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")||`section-${X}`;return`<li class="nav-item nav-${J.tagName.toLowerCase()}"><a href="#${J.id}" class="nav-link">${$}</a></li>`}).join("")+"</ul>",V.addEventListener("click",(J)=>{let X=J.target;if(X.tagName.toLowerCase()==="a"&&X.classList.contains("nav-link")){let $=X.getAttribute("href");if(!$||!$.startsWith("#"))return;let q=$.substring(1),Q=document.getElementById(q);if(Q){let z=Q.closest("details");while(z){if(!z.open)z.open=!0;z=z.parentElement?.closest("details")||null}}}})}async function f(V){let Z=document.getElementById("related-articles-grid");if(!Z)return;try{let Y=await window.siteDataProvider.getRelatedLiteData();if(!Y||Object.keys(Y).length===0){Z.style.display="none";return}let J=k(V,Y);if(!J){Z.style.display="none";return}let X="/thumbnail-sm.webp",$=J.list.filter((Q)=>Q.id!==V).sort(()=>0.5-Math.random()).slice(0,6);if($.length===0){Z.style.display="none";return}Z.innerHTML=$.map((Q,z)=>{let O=Q.image?`${Q.image.replace(/\.[^/.]+$/,"")}-rg.webp`:X,G=`/${J.slug}/${P(Q.id)}`,U=_(Q.title);return`
+</div>`;let E=document.getElementById("btn-share-main"),R=document.getElementById("lk-share-providers");if(E&&R)E.addEventListener("click",async()=>{if(navigator.share&&M())try{await navigator.share({title:Z,text:$,url:window.location.href})}catch(z){console.error(z)}else{let z=R.classList.contains("lk-share-providers-hidden");R.classList.toggle("lk-share-providers-hidden",!z),R.classList.toggle("lk-share-providers-visible",z)}})}function A(){let J=document.getElementById("internal-nav");if(!J)return;let X=Array.from(document.querySelectorAll("h2, h3, h4")).filter((j)=>{return(j.textContent||"").trim().length>0&&!j.closest(".floating-nav")&&!J.contains(j)});if(X.length===0){J.style.display="none";return}J.innerHTML='<ul class="nav-list">'+X.map((j,V)=>{let Z=(j.textContent||"").trim();if(!j.id)j.id=Z.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")||`section-${V}`;return`<li class="nav-item nav-${j.tagName.toLowerCase()}"><a href="#${j.id}" class="nav-link">${Z}</a></li>`}).join("")+"</ul>",J.addEventListener("click",(j)=>{let V=j.target;if(V.tagName.toLowerCase()==="a"&&V.classList.contains("nav-link")){let Z=V.getAttribute("href");if(!Z||!Z.startsWith("#"))return;let O=Z.substring(1),$=document.getElementById(O);if($){let Q=$.closest("details");while(Q){if(!Q.open)Q.open=!0;Q=Q.parentElement?.closest("details")||null}}}})}async function I(J){let Y=document.getElementById("related-articles-grid");if(!Y)return;try{let X=await window.siteDataProvider.getRelatedLiteData();if(!X||Object.keys(X).length===0){Y.style.display="none";return}let j=k(J,X);if(!j){Y.style.display="none";return}let V="/thumbnail-sm.webp",Z=j.list.filter(($)=>$.id!==J).sort(()=>0.5-Math.random()).slice(0,6);if(Z.length===0){Y.style.display="none";return}Y.innerHTML=Z.map(($,Q)=>{let q=$.image?`${$.image.replace(/\.[^/.]+$/,"")}-rg.webp`:V,G=`/${j.slug}/${P($.id)}`,W=_($.title);return`
   <div class="rel-card-mini">
   <a href="${G}">
   <div class="rel-img-mini">
-  <img class="lk-related-thumb" data-fallback-idx="${z}" src="${O}" alt="${U}" width="120" height="100" loading="lazy" decoding="async">
+  <img class="lk-related-thumb" data-fallback-idx="${Q}" src="${q}" alt="${W}" width="120" height="100" loading="lazy" decoding="async">
   </div>
   <div class="rel-info-mini">
-  <h4>${U}</h4>
+  <h4>${W}</h4>
   </div>
   </a>
   </div>
-  `}).join(""),Z.querySelectorAll(".lk-related-thumb[data-fallback-idx]").forEach((Q)=>{let z=Number(Q.dataset.fallbackIdx),O=$[z];if(!O)return;let G=O.image||X;x(Q,[G,X])})}catch(Y){console.error(Y),Z.style.display="none"}}function v(V,Z){function Y(J){if(J==="down"){window.location.href="/";return}if(J==="up"){let $=k(Z,V);if($)window.location.href=`/${$.slug}`;return}let X=document.querySelector(`link[rel="${J}"]`);if(X){let $=X.getAttribute("href");if($)window.location.href=$}}document.addEventListener("keydown",(J)=>{if(M())return;let X=document.activeElement;if(X.tagName==="INPUT"||X.tagName==="TEXTAREA"||X.isContentEditable||X.closest("#disqus_thread"))return;if(J.ctrlKey&&J.key==="ArrowDown")J.preventDefault(),Y("down");if(J.ctrlKey&&J.key==="ArrowUp")J.preventDefault(),Y("up");if(J.ctrlKey&&J.key==="ArrowRight")J.preventDefault(),Y("next");if(J.ctrlKey&&J.key==="ArrowLeft")J.preventDefault(),Y("prev")})}let R=[];function C(){if(document.getElementById("playground-styles"))return;let V=document.createElement("style");V.id="playground-styles",V.innerHTML=`
-:root {
-  --thumb-size: 4.5rem;
-  --item-gap: 1.25rem;
-}
-
-/* WIDGET SEBAGAI FLEX CONTAINER */
-#random-playground-widget {
-position: fixed;
-top: 6rem;
-right: 1.25rem;
-width: 18.75rem;
-background-color: transparent;
-border: none;
-z-index: 999;
-display: flex;
-flex-direction: column;
-}
-
-/* WADAH LIST ARTIKEL — tinggi dikunci fix: 7 item x thumb-size + 6 jarak antar item */
-#playground-list {
-display: flex;
-flex-direction: column;
-gap: var(--item-gap);
-order: 1;
-height: calc((var(--thumb-size) * 7) + (var(--item-gap) * 6));
-overflow: hidden;
-}
-
-/* WADAH TOMBOL AKSI (Hide + Shuffle sejajar horizontal) */
-#playground-controls {
-order: 2;
-display: flex;
-gap: 0.5rem;
-margin-top: 0.5rem;
-}
-
-/* TOMBOL SHUFFLE */
-#shuffle-btn {
-flex: 1 1 auto;
-padding: 0.75rem;
-margin: 0;
-cursor: pointer;
-border-radius: 0.5rem;
-background-color: transparent;
-color: inherit;
-border: 1px solid var(--border, #ccc);
-transition: all 0.2s ease;
-font-family: inherit;
-}
-
-#shuffle-btn:hover {
-background-color: var(--border, #eee);
-}
-
-/* TOMBOL HIDE (default tampil, disembunyikan lewat media query di mobile) */
-#hide-btn {
-flex: 0 0 auto;
-padding: 0.75rem 1rem;
-margin: 0;
-cursor: pointer;
-border-radius: 0.5rem;
-background-color: transparent;
-color: inherit;
-border: 1px solid var(--border, #ccc);
-transition: all 0.2s ease;
-font-family: inherit;
-}
-
-#hide-btn:hover {
-background-color: var(--border, #eee);
-}
-
-/* POSISI MOBILE (< 1024px) */
-@media (max-width: 1024px) {
-  #random-playground-widget {
-  position: relative;
-  top: auto;
-  right: auto;
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1rem;
-  border-top: 1px solid var(--border);
-  }
-
-  #playground-controls {
-  order: -1;
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  }
-
-  /* Tombol hide cuma buat desktop, di mobile ditiadakan total */
-  #hide-btn {
-  display: none;
-  }
-}
-
-/* STYLING PLAYGROUND ITEM */
-.playground-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer; /* Memastikan ikon tangan selalu muncul */
-  flex-shrink: 0; /* Biar tinggi tiap item konsisten 4.5rem, nggak ketekan sama height fix parent */
-}
-
-.playground-item:hover {
-  opacity: 0.85; /* Sedikit efek interaktif pas di-hover */
-}
-
-.playground-thumb {
-  width: var(--thumb-size);
-  height: var(--thumb-size);
-  object-fit: cover;
-  border-radius: 0.5rem;
-  flex-shrink: 0;
-  background-color: var(--border, #f3f4f6);
-}
-
-.playground-title {
-  max-height: var(--thumb-size);
-  font-size: calc(var(--thumb-size) / 5);
-  line-height: calc(var(--thumb-size) / 5);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  margin: 0;
-  flex-grow: 1;
-
-  /* Trik multiline ellipsis (Maksimal 4 baris) */
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  white-space: normal;
-}
-`,document.head.appendChild(V)}function B(V){V.innerHTML="",[...R].sort(()=>0.5-Math.random()).slice(0,7).forEach((Y)=>{let J=document.createElement("a");J.href=Y.url||"#",J.className="playground-item";let X=Y.image||Y.thumbnail||"",$=X,q=X.lastIndexOf(".");if(q!==-1)$=X.substring(0,q)+"-sm.webp";let Q=_(Y.title);J.innerHTML=`
+  `}).join(""),Y.querySelectorAll(".lk-related-thumb[data-fallback-idx]").forEach(($)=>{let Q=Number($.dataset.fallbackIdx),q=Z[Q];if(!q)return;let G=q.image||V;w($,[G,V])})}catch(X){console.error(X),Y.style.display="none"}}function D(J,Y){function X(j){if(j==="down"){window.location.href="/";return}if(j==="up"){let Z=k(Y,J);if(Z)window.location.href=`/${Z.slug}`;return}let V=document.querySelector(`link[rel="${j}"]`);if(V){let Z=V.getAttribute("href");if(Z)window.location.href=Z}}document.addEventListener("keydown",(j)=>{if(M())return;let V=document.activeElement;if(V.tagName==="INPUT"||V.tagName==="TEXTAREA"||V.isContentEditable||V.closest("#disqus_thread"))return;if(j.ctrlKey&&j.key==="ArrowDown")j.preventDefault(),X("down");if(j.ctrlKey&&j.key==="ArrowUp")j.preventDefault(),X("up");if(j.ctrlKey&&j.key==="ArrowRight")j.preventDefault(),X("next");if(j.ctrlKey&&j.key==="ArrowLeft")j.preventDefault(),X("prev")})}let U=[];function B(J){J.innerHTML="",[...U].sort(()=>0.5-Math.random()).slice(0,7).forEach((X)=>{let j=document.createElement("a");j.href=X.url||"#",j.className="playground-item";let V=X.image||X.thumbnail||"",Z=V,O=V.lastIndexOf(".");if(O!==-1)Z=V.substring(0,O)+"-sm.webp";let $=_(X.title);j.innerHTML=`
   <img
   class="playground-thumb"
-  src="${$}"
-  data-orig="${X}"
+  src="${Z}"
+  data-orig="${V}"
   onerror="this.onerror=null; this.src=this.dataset.orig;"
-  alt="${Q}"
+  alt="${$}"
   loading="lazy"
   >
-  <h4 class="playground-title">${Q}</h4>
-  `,V.appendChild(J)})}async function p(){C();let V=document.getElementById("random-playground-widget");if(!V){V=document.createElement("aside"),V.id="random-playground-widget";let Y=document.createElement("div");Y.id="playground-list";let J=document.createElement("div");J.id="playground-controls";let X=document.createElement("button");X.id="hide-btn",X.textContent="❌",X.title="Sembunyikan widget",X.setAttribute("aria-label","Sembunyikan widget"),X.onclick=()=>{V.style.display="none"};let $=document.createElement("button");if($.id="shuffle-btn",$.textContent="♻️ Acak Artikel",$.onclick=()=>{B(Y)},J.appendChild(X),J.appendChild($),V.appendChild(Y),V.appendChild(J),M())document.body.appendChild(V);else{let Q=document.querySelector(".article-content, main, article, #main-wrapper");if(Q&&Q.parentNode)Q.parentNode.insertBefore(V,Q.nextSibling);else document.body.appendChild(V)}}if(typeof R>"u"||R.length===0)try{let Y=await window.siteDataProvider.getFor("pemandu.ts");if(Y){R=[];for(let[J,X]of Object.entries(Y))X.forEach(($)=>{let q=P($.id),Q=$.url||`/${J}/${q}`;R.push({...$,url:Q})})}}catch(Y){console.error("Gagal memuat data playground:",Y);return}let Z=document.getElementById("playground-list");if(Z&&typeof B==="function")B(Z)}async function b(){try{while(!window.siteDataProvider)await new Promise((Y)=>setTimeout(Y,100));let V=await window.siteDataProvider.getFor("pemandu.ts"),Z=L();if(V&&Object.keys(V).length>0)D(),A(),y(),I(V,Z),v(V,Z);f(Z),p()}catch(V){console.error("Gagal inisialisasi Pemandu:",V)}}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",b):b()})();})();
+  <h4 class="playground-title">${$}</h4>
+  `,J.appendChild(j)})}async function f(){let J=document.getElementById("random-playground-widget");if(!J){J=document.createElement("aside"),J.id="random-playground-widget";let X=document.createElement("div");X.id="playground-list";let j=document.createElement("div");j.id="playground-controls";let V=document.createElement("button");V.id="hide-btn",V.textContent="❌",V.title="Sembunyikan widget",V.setAttribute("aria-label","Sembunyikan widget"),V.onclick=()=>{J.style.display="none"};let Z=document.createElement("button");if(Z.id="shuffle-btn",Z.textContent="♻️ Acak Artikel",Z.onclick=()=>{B(X)},j.appendChild(V),j.appendChild(Z),J.appendChild(X),J.appendChild(j),M())document.body.appendChild(J);else{let $=document.querySelector(".article-content, main, article, #main-wrapper");if($&&$.parentNode)$.parentNode.insertBefore(J,$.nextSibling);else document.body.appendChild(J)}}if(typeof U>"u"||U.length===0)try{let X=await window.siteDataProvider.getFor("pemandu.ts");if(X){U=[];for(let[j,V]of Object.entries(X))V.forEach((Z)=>{let O=P(Z.id),$=Z.url||`/${j}/${O}`;U.push({...Z,url:$})})}}catch(X){console.error("Gagal memuat data playground:",X);return}let Y=document.getElementById("playground-list");if(Y&&typeof B==="function")B(Y)}async function b(){try{while(!window.siteDataProvider)await new Promise((X)=>setTimeout(X,100));let J=await window.siteDataProvider.getFor("pemandu.ts"),Y=S();if(J&&Object.keys(J).length>0)A(),y(),L(),x(J,Y),D(J,Y);I(Y),f()}catch(J){console.error("Gagal inisialisasi Pemandu:",J)}}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",b):b()})();})();
