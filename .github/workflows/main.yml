@@ -341,8 +341,8 @@ jobs:
             echo "|---|---|---|"
           } >> "$GITHUB_STEP_SUMMARY"
 
-          row "Blogspot Planet 🧡"       "$STATUS_BLOGSPOT"     "$BLOGSPOT_TITLE"
           row "Cloudflare Cleanup 🧹"    "$STATUS_CLOUDFLARE"   "$CF_REPORT"
+          row "Blogspot Planet 🧡"       "$STATUS_BLOGSPOT"     "$BLOGSPOT_TITLE"          
           row "Discord 🦋"               "$STATUS_DISCORD"      "$DISCORD_TITLE"
           row "Facebook 🚀"              "$STATUS_FACEBOOK"     "$FACEBOOK_TITLE"
           row "LinkedIn 🆕"              "$STATUS_LINKEDIN"     "$LINKEDIN_TITLE"
