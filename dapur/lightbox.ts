@@ -8,7 +8,7 @@
  */
 
 (() => {
-  const MIN_WIDTH = 50;
+  const MIN_WIDTH = 610;
 
   // Suffix ini HANYA dipakai untuk mengecualikan gambar yang TIDAK punya srcset
   // (thumbnail grid -rg dan placeholder statis thumbnail-sm.webp). Gambar hero yang
