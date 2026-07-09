@@ -161,7 +161,8 @@ function initFloatingSearch(): void {
 
       if (matches.length > 0) {
         results.innerHTML = matches.map((item: any) => {
-          const fileSlug = item.id ? item.id.replace('.html', '') : 'tanpa-judul';
+          // 🔥 Menggunakan fungsi global cleanSlug (DRY)
+          const fileSlug = cleanSlug(item.id) || 'tanpa-judul';
           const categoryName = item.category || 'Lainnya';
           const catSlug = categoryName.toLowerCase().replace(/\s+/g, '-');
           const snippet = item.snippet_text ? item.snippet_text.substring(0, 60) + '...' : 'Lihat artikel selengkapnya';
@@ -359,7 +360,8 @@ if (related.length === 0) {
 
 grid.innerHTML = related.map((item: any, idx: number) => {
   const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.webp` : STATIC_FALLBACK;
-  const url = `/${catInfo.slug}/${item.id.replace('.html', '')}`;
+  // 🔥 Menggunakan fungsi global cleanSlug (DRY)
+  const url = `/${catInfo.slug}/${cleanSlug(item.id)}`;
 
   const cleanTitle = cleanArticleTitle(item.title);
 
@@ -574,8 +576,8 @@ background-color: var(--border, #eee);
 document.head.appendChild(style);
 }
 
-// FUNGSI RENDER (Mengolah listContainer)
-function renderPlaygroundList(listContainer) {
+// 🔥 FUNGSI RENDER (Sekarang ditambah tipe parameter HTMLElement biar lolos TS Strict)
+function renderPlaygroundList(listContainer: HTMLElement) {
   listContainer.innerHTML = '';
 
 const shuffledArticles = [...allPlaygroundArticles]
@@ -584,7 +586,7 @@ const shuffledArticles = [...allPlaygroundArticles]
 
 shuffledArticles.forEach(article => {
   const item = document.createElement('a');
-  item.href = article.url || '#'; // Sekarang ini udah pasti bawa URL yang benar
+  item.href = article.url || '#';
   item.className = 'playground-item';
 
   const origImg = article.image || article.thumbnail || '';
@@ -657,7 +659,8 @@ controlsContainer.appendChild(shuffleBtn);
 widget.appendChild(listContainer);
 widget.appendChild(controlsContainer);
 
-const isMobileLayout = window.matchMedia('(max-width: 1024px)').matches;
+// 🔥 Menggunakan fungsi isMobileDevice() yang sudah ada (DRY)
+const isMobileLayout = isMobileDevice();
 
 if (isMobileLayout) {
   document.body.appendChild(widget);
@@ -681,8 +684,8 @@ if (isMobileLayout) {
         // Looping kategori untuk ngebentuk URL artikel biar pas diklik nggak nyasar ke '#'
         for (const [catSlug, articles] of Object.entries(data)) {
           articles.forEach(art => {
-            const fileSlug = art.id ? art.id.replace('.html', '') : '';
-            // Kita inject properti "url" langsung ke objek datanya
+            // 🔥 Menggunakan fungsi global cleanSlug (DRY)
+            const fileSlug = cleanSlug(art.id);
             const finalUrl = art.url || `/${catSlug}/${fileSlug}`;
 
             allPlaygroundArticles.push({
