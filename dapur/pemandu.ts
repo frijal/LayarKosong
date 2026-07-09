@@ -21,8 +21,13 @@ declare global {
   // ---------------------------
   // 1. HELPER FUNCTIONS
   // ---------------------------
+function cleanArticleTitle(title: string): string {
+  if (!title) return 'Tanpa Judul';
+  return title.replace(/\s*-\s*Layar Kosong$/i, '');
+}
+
 function isMobileDevice(): boolean {
-  return (window.innerWidth <= 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0);
+  return window.matchMedia('(max-width: 1024px)').matches;
 }
 
 function cleanSlug(id: string): string {
@@ -161,7 +166,9 @@ function initFloatingSearch(): void {
           const catSlug = categoryName.toLowerCase().replace(/\s+/g, '-');
           const snippet = item.snippet_text ? item.snippet_text.substring(0, 60) + '...' : 'Lihat artikel selengkapnya';
 
-          return `<a href="/${catSlug}/${fileSlug}"><strong>${escapeHTML(item.title || 'Tanpa Judul')}</strong><small>${escapeHTML(snippet)}</small></a>`;
+          const cleanTitle = cleanArticleTitle(item.title);
+
+          return `<a href="/${catSlug}/${fileSlug}"><strong>${escapeHTML(cleanTitle)}</strong><small>${escapeHTML(snippet)}</small></a>`;
         }).join('');
       } else {
         results.innerHTML = `<div class="no-results">❌ Pencarian "${escapeHTML(v)}" nihil. Tekan Enter untuk detail.</div>`;
@@ -198,7 +205,7 @@ function initNavIcons(allData: Record<string, any[]>, currentFile: string): void
   if (!catInfo) return;
 
   const currentArticle = catInfo.list.find((a: any) => a.id === currentFile);
-  const cleanTitle = currentArticle ? currentArticle.title : document.title;
+  const cleanTitle = cleanArticleTitle(currentArticle ? currentArticle.title : document.title);
 
   let cleanDesc = '';
 if (currentArticle && currentArticle.description) {
@@ -354,9 +361,7 @@ grid.innerHTML = related.map((item: any, idx: number) => {
   const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.webp` : STATIC_FALLBACK;
   const url = `/${catInfo.slug}/${item.id.replace('.html', '')}`;
 
-  // Bersihkan " - Layar Kosong" dari judul related grid
-  const rawTitle = item.title || 'Tanpa Judul';
-  const cleanTitle = rawTitle.replace(/\s*-\s*Layar Kosong$/i, '');
+  const cleanTitle = cleanArticleTitle(item.title);
 
   return `
   <div class="rel-card-mini">
@@ -590,9 +595,7 @@ shuffledArticles.forEach(article => {
     smWebpImg = origImg.substring(0, dotIndex) + '-sm.webp';
   }
 
-  // Bersihin " - Layar Kosong" dari judul
-  let rawTitle = article.title || 'Judul Tanpa Kategori';
-  let cleanTitle = rawTitle.replace(/\s*-\s*Layar Kosong$/i, '');
+  const cleanTitle = cleanArticleTitle(article.title);
 
   item.innerHTML = `
   <img
