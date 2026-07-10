@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -59,6 +59,9 @@
 <link href="/ext/vs-dark.min.css" rel="stylesheet">
     <!-- Styles: 1 kolom, dark theme -->
     <style>
+        /* =========================================
+           TEMA GELAP (Default)
+           ========================================= */
         :root {
             --bg: #1e2a38;
             --fg: #e0e6ec;
@@ -69,41 +72,139 @@
             --border: #3a4857;
             --shadow: 0 10px 30px rgba(0,0,0,.35);
             --maxw: 900px;
+
+            /* Variabel baru untuk warna yang sebelumnya di-hardcode */
+            --header-bg: rgba(30, 42, 56, 0.85);
+            --btn-bg: #3a4857;
+            --btn-hover: #4a5568;
+            --lightbox-bg: rgba(30, 42, 56, 0.95);
         }
+
+        /* =========================================
+           TEMA TERANG (Auto Light Mode)
+           ========================================= */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f8fafc;
+                --fg: #0f172a;
+                --muted: #64748b;
+                --accent: #dc2626; /* Merah digelapkan sedikit agar lebih terbaca di background putih */
+                --accent-2: #ef4444;
+                --card: #ffffff;
+                --border: #e2e8f0;
+                --shadow: 0 10px 30px rgba(0,0,0,.08);
+
+                --header-bg: rgba(248, 250, 252, 0.85);
+                --btn-bg: #e2e8f0;
+                --btn-hover: #cbd5e1;
+                /* Lightbox biasanya lebih fokus jika tetap menggunakan warna gelap */
+                --lightbox-bg: rgba(0, 0, 0, 0.9);
+            }
+        }
+
         html, body {
             background: var(--bg); color: var(--fg);
             font: 16px/1.7 "Segoe UI", system-ui, sans-serif;
             margin: 0; scroll-behavior: smooth;
+            /* Efek transisi mulus saat OS berganti tema */
+            transition: background 0.3s ease, color 0.3s ease;
         }
-        a { color: var(--accent-2); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+
+        a {
+            color: var(--accent-2);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--accent);
+        }
+
         img { max-width: 100%; height: auto; border-radius: 8px; }
+
         .wrap { min-height: 100vh; display: flex; flex-direction: column; }
+
         header.site {
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
-            background: rgba(30, 42, 56, 0.7); backdrop-filter: blur(8px);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--header-bg);
+            backdrop-filter: blur(8px);
             position: sticky; top: 0; z-index: 10;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
+
         .brand { font-weight: bold; font-size: 1.2rem; }
+
         main { display: flex; justify-content: center; padding: 2rem 1rem 4rem; flex-grow: 1; }
         .col { width: 100%; max-width: var(--maxw); }
-        article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 2rem; }
-        article h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.2; margin: 0 0 10px; color: var(--accent-2); }
-        article h2 { font-size: 1.5rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-        .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
+
+        article {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        article h1 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            line-height: 1.2;
+            margin: 0 0 10px;
+            color: var(--accent-2);
+            transition: color 0.3s ease;
+        }
+
+        article h2 {
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; transition: color 0.3s ease; }
+
         .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
-        .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #3a4857; color: var(--fg); cursor: pointer; text-decoration: none; }
-        .btn-share:hover { background: #4a5568; }
+
+        .btn-share {
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+            border-radius: 999px; border: 1px solid var(--border);
+            background: var(--btn-bg); color: var(--fg); cursor: pointer; text-decoration: none;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-share:hover { background: var(--btn-hover); }
+
         figure { margin: 1.5rem 0; text-align: center; }
         figure img { cursor: zoom-in; }
-        .lightbox { position: fixed; inset: 0; background: rgba(30,42,56,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
+
+        .lightbox {
+            position: fixed; inset: 0; background: var(--lightbox-bg); display: none;
+            align-items: center; justify-content: center; z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+
         .lightbox.open { display: flex; }
-        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; }
+        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+
         pre[class*="language-"] { position: relative; padding: 1.25rem; border-radius: 8px; margin-top: 1rem; }
         code { font-family: 'Fira Code', 'Consolas', monospace; }
-        .copy-btn { position: absolute; top: 12px; right: 12px; background: #3a4857; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
-        .copy-btn:hover { background: var(--accent); }
-        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
+
+        .copy-btn {
+            position: absolute; top: 12px; right: 12px;
+            background: var(--btn-bg); border: none; color: var(--fg);
+            padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .copy-btn:hover { background: var(--accent); color: #ffffff; }
+
+        footer.site {
+            padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border);
+            text-align: center; transition: border-color 0.3s ease, color 0.3s ease;
+        }
     </style>
 <meta name="ai:summary" content="cara menggabungkan berkas PDF dengan PDFtk di Linux/Windows. Disertai contoh perintah, tips, dan keunggulan penggunaan.">
 <meta name="ai:prompt_hint" content="cara menggabungkan berkas PDF dengan PDFtk di Linux/Windows. Disertai contoh perintah, tips, dan keunggulan penggunaan.">
@@ -142,7 +243,7 @@ sudo pacman -S pdftk</code><button class="copy-btn" data-target="code1">Salin</b
                         <li><strong>Otomatisasi:</strong> Sangat mudah diintegrasikan ke dalam skrip shell untuk alur kerja otomatis.</li>
                         <li><strong>Banyak Fitur:</strong> Selain menggabungkan, PDFtk juga bisa memecah, memutar, dan mengenkripsi file PDF.</li>
                     </ul>
-             <div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>   
+             <div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>
     </article>
             </div>
         </main>
