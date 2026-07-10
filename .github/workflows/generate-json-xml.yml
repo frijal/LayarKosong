@@ -117,7 +117,7 @@ jobs:
             git push origin main
           fi
 
-      - name: 🧹 1. Cloudflare Cleanup
+      - name: '11. Cloudflare Cleanup'
         continue-on-error: true
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
