@@ -88,7 +88,6 @@ jobs:
           bun run dapur/bikin-sitemap-txt.ts
           bun run dapur/generate_llms.ts
           bun run dapur/redirectmap.ts
-          bun run dapur/rapikan-cloudflare.ts
 
       - name: '7. Inject SEO Schema'
         if: env.DO_SCHEMA == 'true'
@@ -117,3 +116,13 @@ jobs:
             git pull --rebase origin main
             git push origin main
           fi
+
+      - name: 🧹 1. Cloudflare Cleanup
+        continue-on-error: true
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          set -o pipefail
+          bun run dapur/rapikan-cloudflare.ts
