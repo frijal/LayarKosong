@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -57,54 +57,222 @@
     <meta property="article:published_time" content="2025-05-31T07:01:44.805Z">
     <meta property="article:modified_time" content="2025-07-07T04:28:24.350Z">
 <link href="/ext/vs-dark.min.css" rel="stylesheet">
-    <!-- Styles: 1 kolom, dark theme -->
-    <style>
+   <style>
+        /* =========================================
+           TEMA GELAP (Default)
+           ========================================= */
         :root {
-            --bg: #1a212e;
-            --fg: #f3f6fa;
+            --bg: #1e2a38;
+            --fg: #e0e6ec;
             --muted: #a8b0bb;
-            --accent: #00cc99; /* Green */
-            --accent-2: #0066ff; /* Blue */
-            --card: #222f3e;
-            --border: #3e4e58;
+            --accent: #ff4d6d; /* Red from original */
+            --accent-2: #ff7a8d;
+            --card: #2a3847;
+            --border: #3a4857;
             --shadow: 0 10px 30px rgba(0,0,0,.35);
             --maxw: 900px;
+
+            /* Variabel baru untuk warna yang sebelumnya hardcoded */
+            --header-bg: rgba(30, 42, 56, 0.85);
+            --btn-bg: #3a4857;
+            --btn-hover: #4a5568;
+            --lightbox-bg: rgba(30, 42, 56, 0.95);
         }
+
+        /* =========================================
+           TEMA TERANG (Auto Light Mode)
+           ========================================= */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f8fafc;
+                --fg: #0f172a;
+                --muted: #64748b;
+                /* Warna aksen sedikit digelapkan untuk menjaga kontras baca (WCAG) di background putih */
+                --accent: #e11d48;
+                --accent-2: #be123c;
+                --card: #ffffff;
+                --border: #e2e8f0;
+                --shadow: 0 10px 30px rgba(0,0,0,.08);
+
+                --header-bg: rgba(248, 250, 252, 0.85);
+                --btn-bg: #f1f5f9;
+                --btn-hover: #e2e8f0;
+                /* Lightbox dibiarkan tetap gelap agar mata lebih fokus pada gambar */
+                --lightbox-bg: rgba(0, 0, 0, 0.85);
+            }
+        }
+
+        /* =========================================
+           BASE STYLES & TRANSITIONS
+           ========================================= */
         html, body {
-            background: var(--bg); color: var(--fg);
-            font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            margin: 0; scroll-behavior: smooth;
+            background: var(--bg);
+            color: var(--fg);
+            font: 16px/1.7 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            scroll-behavior: smooth;
+            /* Efek transisi halus saat OS mengubah tema */
+            transition: background 0.3s ease, color 0.3s ease;
         }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        img { max-width: 100%; height: auto; border-radius: 8px; }
-        .wrap { min-height: 100vh; display: flex; flex-direction: column; }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--accent-2);
+        }
+
+        /* Modifikasi Posisi Gambar Jadi Auto Rata Tengah */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .wrap {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
         header.site {
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
-            background: rgba(26, 33, 46, 0.7); backdrop-filter: blur(8px);
-            position: sticky; top: 0; z-index: 10;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--header-bg);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
-        .brand { font-weight: bold; font-size: 1.2rem; }
-        main { display: flex; justify-content: center; padding: 2rem 1rem 4rem; flex-grow: 1; }
-        .col { width: 100%; max-width: var(--maxw); }
-        article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 2rem; }
-        article h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.2; margin: 0 0 10px; color: var(--accent); }
-        article h2 { font-size: 1.5rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-        .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
-        .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
-        .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #3e4e58; color: var(--fg); cursor: pointer; text-decoration: none; }
-        .btn-share:hover { background: #4a5568; }
-        .warning-box { border-left: 4px solid var(--accent); background: rgba(0, 204, 153, 0.05); padding: 1rem; border-radius: 8px; margin: 1.5rem 0; }
-        figure { margin: 1.5rem 0; text-align: center; }
-        figure img { cursor: zoom-in; }
-        .lightbox { position: fixed; inset: 0; background: rgba(26,33,46,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
-        .lightbox.open { display: flex; }
-        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; }
-        pre[class*="language-"] { position: relative; padding: 1.25rem; border-radius: 8px; margin-top: 1rem; }
-        code { font-family: 'Fira Code', 'Consolas', monospace; }
-        .copy-btn { position: absolute; top: 12px; right: 12px; background: #3e4e58; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
-        .copy-btn:hover { background: var(--accent-2); }
-        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
+
+        .brand {
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem 4rem;
+            flex-grow: 1;
+        }
+
+        .col {
+            width: 100%;
+            max-width: var(--maxw);
+        }
+
+        article {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        article h1 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            line-height: 1.2;
+            margin: 0 0 10px;
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+
+        article h2 {
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .lead {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .share-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+        .btn-share {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--btn-bg);
+            color: var(--fg);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-share:hover {
+            background: var(--btn-hover);
+        }
+
+        figure {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        figure img {
+            cursor: zoom-in;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: var(--lightbox-bg);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 92vw;
+            max-height: 88vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        footer.site {
+            padding: 1.5rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
     </style>
 <meta name="ai:summary" content="memperbaiki GRUB Rescue tanpa LiveCD/USB. Tutorial ini membahas langkah detail agar Linux bisa booting normal kembali.">
 <meta name="ai:prompt_hint" content="memperbaiki GRUB Rescue tanpa LiveCD/USB. Tutorial ini membahas langkah detail agar Linux bisa booting normal kembali.">
@@ -120,7 +288,7 @@
                     <h1>Cara Memperbaiki GRUB Rescue Tanpa LiveCD/USB</h1>
                     <p class="lead">Saat konfigurasi partisi salah atau setelah menghapus Windows dari dual-boot, Anda mungkin akan disambut dengan layar <code>grub rescue&gt;</code>. Jangan panik! Berikut adalah panduan untuk memperbaikinya langsung dari prompt tersebut.</p>
                     <figure>
-                        <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkDL4vht__Sph6vdoIQAkW_R8nyo7jxNm34uZncj4Y_ZqcZDPuZmnLpcATemu6ZBtp6utOQ66ySSvKOf2dGu3_l2lX1CxHCvPnFawcZcw8p1lbWmWVkx80M-mI4kq-h5SqkFueS82AeeRZ/s800/grub-rescue.webp" alt="Error GRUB Rescue">
+                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkDL4vht__Sph6vdoIQAkW_R8nyo7jxNm34uZncj4Y_ZqcZDPuZmnLpcATemu6ZBtp6utOQ66ySSvKOf2dGu3_l2lX1CxHCvPnFawcZcw8p1lbWmWVkx80M-mI4kq-h5SqkFueS82AeeRZ/s800/grub-rescue.webp" alt="Error GRUB Rescue">
                     </figure>
                     <h2>Langkah 1: Cari Partisi Linux Anda</h2>
                     <p>Pertama, kita perlu menemukan di partisi mana instalasi Linux Anda berada. Gunakan perintah <code>ls</code> untuk melihat daftar disk dan partisi.</p>
