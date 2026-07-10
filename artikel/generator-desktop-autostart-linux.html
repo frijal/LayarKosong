@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -62,55 +62,76 @@
 <meta itemprop="description" content="Buat file .desktop autostart di Linux dengan mudah menggunakan Generator .desktop Autostart. Panduan lengkap, cepat, dan praktis untuk setup aplikasi yang berjalan otomatis saat login.">
 <!-- Artikel Published Date -->
      <style>
-      body {
-        background: #0e1117;
-        color: #e0e4ea;
-        font-family: 'Inter', sans-serif;
-        padding: 20px;
-        max-width: 720px;
-        margin: auto;
-      }
-      h1 {
-        font-size: 24px;
-        margin-bottom: 10px;
-      }
-      label {
-        display: block;
-        margin-top: 14px;
-        font-weight: 600;
-      }
-      input,
-      textarea,
-      select {
-        width: 100%;
-        padding: 8px;
-        margin-top: 6px;
-        border-radius: 6px;
-        border: 1px solid #2c313c;
-        background: #1a1f27;
-        color: #e0e4ea;
-        font-size: 14px;
-      }
-      button {
-        margin-top: 20px;
-        padding: 10px 16px;
-        background: #59d1ff;
-        color: #000;
-        border: none;
-        border-radius: 8px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-      pre {
-        background: #1a1f27;
-        padding: 12px;
-        border-radius: 8px;
-        margin-top: 20px;
-        white-space: pre-wrap;
-        word-break: break-word;
-        border: 1px solid #2c313c;
-      }
-    </style>
+  /* --- DEFAULT: DARK MODE (Sesuai aslinya) --- */
+  body {
+    background: #0e1117;
+    color: #e0e4ea;
+    font-family: 'Inter', sans-serif;
+    padding: 20px;
+    max-width: 720px;
+    margin: auto;
+  }
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  label {
+    display: block;
+    margin-top: 14px;
+    font-weight: 600;
+  }
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #2c313c;
+    background: #1a1f27;
+    color: #e0e4ea;
+    font-size: 14px;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: #59d1ff;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  pre {
+    background: #1a1f27;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 20px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    border: 1px solid #2c313c;
+  }
+
+  /* --- OVERRIDE: LIGHT MODE --- */
+  @media (prefers-color-scheme: light) {
+    body {
+      background: #ffffff;
+      color: #1a1f27; /* Teks dibalik jadi gelap */
+    }
+    input,
+    textarea,
+    select,
+    pre {
+      background: #f4f6f8; /* Background elemen sedikit keabu-abuan biar nggak nyaru sama body */
+      border: 1px solid #d1d5db;
+      color: #1a1f27;
+    }
+    button {
+      background: #0284c7; /* Biru cyannya digelapin dikit biar kontras di background putih */
+      color: #ffffff; /* Teks tombol jadi putih */
+    }
+  }
+</style>
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
   <body>
     <h1>🎛️ Generator File .desktop untuk Autostart</h1>
