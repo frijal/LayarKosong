@@ -1,42 +1,69 @@
-<!DOCTYPE html>
-<html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#">
-
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux</title>
+    <title>Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB LinuxIlustrasi membersihkan entri boot UEFI dan GRUB - Layar Kosong</title>
     <meta name="description" content="Panduan aman menghapus entri boot lama di UEFI menggunakan efibootmgr, mengatur urutan boot, mengenali entri duplikat, dan membersihkan menu GRUB Linux.">
-    <link rel="canonical" href="https://dalam.web.id/linux-open-source/cara-menghapus-entri-boot-lama-uefi-dan-grub">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/cara-menghapus-entri-boot-lama-uefi-dan-grub">
     <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
     <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
     <meta name="author" content="Fakhrul Rijal">
-    <meta name="theme-color" content="#0f766e">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="UEFI, BIOS, GRUB, efibootmgr, Linux, Ubuntu, Debian, Fedora, Linux Mint, dual boot, boot menu">
+    <meta name="promphint" content="Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB LinuxIlustrasi membersihkan entri boot UEFI dan GRUB | Bekas Ubuntu, Fedora, Debian, Windows, atau distro percobaan masih nongkrong di menu boot walaupun sistemnya sudah lama dihapus? Jangan langsung menembakBoot000">
+    <meta property="og:site_name" content="Layar Kosong">
     <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/cara-menghapus-entri-boot-lama-uefi-dan-grub">
+    <meta property="og:title" content="Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB LinuxIlustrasi membersihkan entri boot UEFI dan GRUB">
     <meta property="og:description" content="Jangan asal hapus Boot0002. Kenali dulu perbedaan menu UEFI dan GRUB, lalu bersihkan entri boot lama dengan cara yang aman.">
-    <meta property="og:url" content="https://dalam.web.id/linux-open-source/cara-menghapus-entri-boot-lama-uefi-dan-grub">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="article:published_time" content="2026-07-10T18:00:00+07:00">
-    <meta property="article:modified_time" content="2026-07-10T18:00:00+07:00">
-    <meta property="article:author" content="Fakhrul Rijal">
-    <meta property="article:section" content="Linux & Open Source">
+    <meta property="og:updated_time" content="2026-07-10T11:07:25.887Z">
+    <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/edbfe3c02a18b00.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/raw.githubusercontent.com/edbfe3c02a18b00.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/raw.githubusercontent.com/edbfe3c02a18b00.webp">
+    <meta property="og:image:alt" content="Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB LinuxIlustrasi membersihkan entri boot UEFI dan GRUB">
+    <meta property="og:image:width" content="1672">
+    <meta property="og:image:height" content="941">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/cara-menghapus-entri-boot-lama-uefi-dan-grub">
+    <meta name="twitter:title" content="Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB LinuxIlustrasi membersihkan entri boot UEFI dan GRUB">
+    <meta name="twitter:description" content="Panduan aman membersihkan entri boot UEFI dan menu GRUB yang masih menampilkan sistem operasi lama.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/edbfe3c02a18b00.webp">
+    <meta name="twitter:image:alt" content="Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB LinuxIlustrasi membersihkan entri boot UEFI dan GRUB">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="UEFI">
     <meta property="article:tag" content="GRUB">
     <meta property="article:tag" content="efibootmgr">
     <meta property="article:tag" content="Linux">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux">
-    <meta name="twitter:description" content="Panduan aman membersihkan entri boot UEFI dan menu GRUB yang masih menampilkan sistem operasi lama.">
-    <meta name="twitter:creator" content="@responaja">
-    <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2010%2C%202026%2C%2010_13_26%20AM.png">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2010%2C%202026%2C%2010_13_26%20AM.png">
+    <meta property="article:published_time" content="2026-07-10T11:00:00.000Z">
+    <meta property="article:modified_time" content="2026-07-10T11:07:25.887Z">
     <style>
         :root{color-scheme:light dark;--page-bg:#f4f7f8;--surface:#ffffff;--surface-soft:#f0fdfa;--surface-code:#111827;--text:#17202a;--text-soft:#374151;--muted:#5b6472;--border:#cbd5e1;--border-strong:#94a3b8;--primary:#0f766e;--primary-hover:#115e59;--primary-soft:#ccfbf1;--warning-bg:#fff7ed;--warning-border:#c2410c;--warning-text:#7c2d12;--danger-bg:#fef2f2;--danger-border:#b91c1c;--danger-text:#7f1d1d;--success-bg:#f0fdf4;--success-border:#15803d;--success-text:#14532d;--code-text:#f8fafc;--inline-code-bg:#e2e8f0;--inline-code-text:#7c2d12;--shadow:0 1rem 2.5rem rgba(15, 23, 42, 0.08);--radius-sm:0.5rem;--radius-md:0.85rem;--radius-lg:1.25rem;--screen-padding:1rem;--nested-padding:0rem;--content-width:64rem}@media (prefers-color-scheme:dark){:root{--page-bg:#0b1120;--surface:#111827;--surface-soft:#102a2a;--surface-code:#030712;--text:#f1f5f9;--text-soft:#d1d5db;--muted:#b3bdca;--border:#475569;--border-strong:#64748b;--primary:#5eead4;--primary-hover:#99f6e4;--primary-soft:#134e4a;--warning-bg:#431407;--warning-border:#fb923c;--warning-text:#ffedd5;--danger-bg:#450a0a;--danger-border:#f87171;--danger-text:#fee2e2;--success-bg:#052e16;--success-border:#4ade80;--success-text:#dcfce7;--code-text:#f8fafc;--inline-code-bg:#293548;--inline-code-text:#fed7aa;--shadow:0 1rem 3rem rgba(0, 0, 0, 0.28)}}@media (min-width:48rem){:root{--screen-padding:2.5rem;--nested-padding:1.5rem}}*,::after,::before{box-sizing:border-box}html{scroll-behavior:smooth;text-size-adjust:100%}body{margin:0;background:var(--page-bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:1.0625rem;line-height:1.75;overflow-wrap:break-word}a{color:var(--primary);text-decoration-thickness:.1em;text-underline-offset:.18em}a:hover{color:var(--primary-hover)}a:focus-visible,summary:focus-visible{outline:.2rem solid var(--primary);outline-offset:.2rem;border-radius:.25rem}code,kbd,pre,samp{font-family:SFMono-Regular,Consolas,"Liberation Mono",Menlo,monospace}code:not(precode){padding:.12em .35em;border-radius:.3rem;background:var(--inline-code-bg);color:var(--inline-code-text);font-size:.9em}.page-shell{width:min(100%,calc(var(--content-width) + (var(--screen-padding) * 2)));margin-inline:auto;padding:var(--screen-padding)}.article-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden}.article-inner{padding:clamp(1.1rem,3vw,3rem)}.breadcrumb{margin:0 0 1.5rem;color:var(--muted);font-size:.92rem}.breadcrumb ol{display:flex;flex-wrap:wrap;gap:.4rem;margin:0;padding:0;list-style:none}.breadcrumb li:not(:last-child)::after{margin-left:.4rem;content:"/";color:var(--border-strong)}.article-header{margin-bottom:1.75rem}.article-header h1{max-width:22ch;margin:0;color:var(--text);font-size:clamp(2rem,5vw,3.15rem);line-height:1.13;text-wrap:balance}.article-subtitle{max-width:48rem;margin:1rem 0 0;color:var(--text-soft);font-size:clamp(1.08rem,2.5vw,1.28rem);line-height:1.65}.article-meta{display:flex;flex-wrap:wrap;gap:.5rem 1rem;margin:1rem 0 0;padding:0;color:var(--muted);font-size:.92rem;list-style:none}.lead{font-size:clamp(1.1rem,2.3vw,1.24rem);line-height:1.8}.hero-figure{margin:2rem 0}.hero-figure svg{display:block;width:100%;height:auto;border:1px solid var(--border);border-radius:var(--radius-lg);background:#0f172a}.hero-figure figcaption{margin-top:.7rem;color:var(--muted);font-size:.9rem;text-align:center}h2,h3{color:var(--text);line-height:1.3;text-wrap:balance;scroll-margin-top:2rem}h2{margin:2.75rem 0 1rem;font-size:clamp(1.55rem,3.3vw,2rem)}h3{margin:2rem 0 .75rem;font-size:clamp(1.2rem,2.8vw,1.45rem)}blockquote,ol,p,pre,table,ul{margin-top:0;margin-bottom:1.25rem}ol,ul{padding-left:1.35rem}li+li{margin-top:.45rem}strong{color:var(--text)}.table-wrap{width:100%;margin:1.5rem 0;overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius-md)}table{width:100%;min-width:42rem;margin:0;border-collapse:collapse;background:var(--surface)}td,th{padding:.85rem 1rem;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{background:var(--surface-soft);color:var(--text);font-size:.92rem}tr:last-child td{border-bottom:0}pre{position:relative;max-width:100%;padding:1rem 1.1rem;overflow-x:auto;border:1px solid #334155;border-radius:var(--radius-md);background:var(--surface-code);color:var(--code-text);font-size:.9rem;line-height:1.65;tab-size:2;white-space:pre}pre code{color:inherit}.danger,.note,.success,.warning{margin:1.5rem 0;padding:1rem 1.15rem;border-left:.32rem solid;border-radius:var(--radius-sm)}.note{border-color:var(--primary);background:var(--surface-soft)}.warning{border-color:var(--warning-border);background:var(--warning-bg);color:var(--warning-text)}.danger{border-color:var(--danger-border);background:var(--danger-bg);color:var(--danger-text)}.success{border-color:var(--success-border);background:var(--success-bg);color:var(--success-text)}.danger>:last-child,.note>:last-child,.success>:last-child,.warning>:last-child{margin-bottom:0}.steps{padding-left:1.5rem;counter-reset:article-step;list-style:none}.steps>li{position:relative;padding:0 0 1.5rem 2.4rem;counter-increment:article-step}.steps>li::before{position:absolute;top:.05rem;left:0;display:grid;width:1.8rem;height:1.8rem;place-items:center;border-radius:50%;background:var(--primary);color:#fff;content:counter(article-step);font-size:.85rem;font-weight:800}@media (prefers-color-scheme:dark){.steps>li::before{color:#042f2e}}details{margin:1rem 0;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface)}summary{padding:1rem 1.1rem;color:var(--text);cursor:pointer;font-weight:750}details[open] summary{border-bottom:1px solid var(--border);background:var(--surface-soft)}.details-body{padding:1rem 1.1rem 0}.command-card{margin:1.25rem 0;padding:1rem;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface-soft)}.command-card h3{margin-top:0}.command-card pre:last-child{margin-bottom:0}.checklist{padding-left:0;list-style:none}.checklist li{position:relative;padding-left:1.8rem}.checklist li::before{position:absolute;left:0;color:var(--success-border);content:"✓";font-weight:900}.source-box{margin-top:3rem;padding:1rem 1.15rem;border:1px dashed var(--border-strong);border-radius:var(--radius-md);color:var(--text-soft);font-size:.95rem}.article-footer{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);color:var(--muted);font-size:.95rem}@media (max-width:37.5rem){body{font-size:1rem}.article-card{border-radius:var(--radius-md)}.article-inner{padding-inline:1rem}.steps{padding-left:0}.hero-figure svg text{font-size:90%}}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,::after,::before{scroll-behavior:auto!important;transition-duration:0s!important;animation-duration:0s!important;animation-iteration-count:1!important}}@media print{:root{--page-bg:#ffffff;--surface:#ffffff;--text:#000000;--text-soft:#222222;--muted:#333333;--border:#777777}body{background:#fff;color:#000}.page-shell{width:100%;padding:0}.article-card{border:0;box-shadow:none}a{color:inherit}pre{white-space:pre-wrap}}
     </style>
-</head>
-
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
     <main class="page-shell">
         <article class="article-card">
@@ -44,8 +71,7 @@
                 <header class="article-header">
                     <h1>Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux</h1>
                     <p class="article-subtitle">Bekas Ubuntu, Fedora, Debian, Windows, atau distro percobaan masih nongkrong di menu boot walaupun sistemnya sudah lama dihapus? Jangan langsung menembak<code>Boot0002</code>. Kenali dulu menu mana yang sedang kita bersihkan.</p>
-                    <ul
-                    class="article-meta">
+                    <ul class="article-meta">
                         <li>Oleh Fakhrul Rijal</li>
                         <li>
                             <time datetime="2026-07-10T18:00:00+07:00">10 Juli 2026</time>
@@ -57,43 +83,42 @@
                     ikut mejeng, padahal disk-nya sudah diformat entah sejak kapan.</p>
                 <figure class="hero-figure">
                     <svg viewBox="0 0 1200 675" role="img" aria-labelledby="hero-title hero-desc" xmlns="http://www.w3.org/2000/svg">
-                        <title id="hero-title">Ilustrasi membersihkan entri boot UEFI dan GRUB</title>
                         <desc id="hero-desc">Sebuah layar firmware menampilkan entri Fedora, Ubuntu, Debian, dan Windows, disertai terminal Linux yang menjalankan efibootmgr.</desc>
                         <defs>
                             <linearGradient id="hero-bg" x1="0" y1="0" x2="1" y2="1">
-                                <stop offset="0" stop-color="#0f172a" />
-                                <stop offset="1" stop-color="#134e4a" />
+                                <stop offset="0" stop-color="#0f172a"></stop>
+                                <stop offset="1" stop-color="#134e4a"></stop>
                             </linearGradient>
                             <linearGradient id="panel-bg" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0" stop-color="#1e293b" />
-                                <stop offset="1" stop-color="#0f172a" />
+                                <stop offset="0" stop-color="#1e293b"></stop>
+                                <stop offset="1" stop-color="#0f172a"></stop>
                             </linearGradient>
                             <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                                <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000000" flood-opacity="0.35" />
+                                <fedropshadow dx="0" dy="16" stdDeviation="18" flood-color="#000000" flood-opacity="0.35"></fedropshadow>
                             </filter>
                         </defs>
-                        <rect width="1200" height="675" fill="url(#hero-bg)" />
-                        <circle cx="1030" cy="120" r="210" fill="#14b8a6" opacity="0.12" />
-                        <circle cx="150" cy="600" r="250" fill="#38bdf8" opacity="0.08" />
+                        <rect width="1200" height="675" fill="url(#hero-bg)"></rect>
+                        <circle cx="1030" cy="120" r="210" fill="#14b8a6" opacity="0.12"></circle>
+                        <circle cx="150" cy="600" r="250" fill="#38bdf8" opacity="0.08"></circle>
                         <text x="70" y="90" fill="#99f6e4" font-family="system-ui, sans-serif" font-size="28" font-weight="800" letter-spacing="3">UEFI + GRUB</text>
                         <text x="70" y="145" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="42" font-weight="800">Bersihkan Entri Boot Lama</text>
                         <text x="70" y="188" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="23">Kenali entri, hapus yang basi, jangan korbankan sistem aktif.</text>
                         <g filter="url(#shadow)">
-                            <rect x="70" y="235" width="470" height="355" rx="24" fill="url(#panel-bg)" stroke="#475569" stroke-width="2" />
-                            <rect x="70" y="235" width="470" height="62" rx="24" fill="#1e293b" />
-                            <circle cx="108" cy="266" r="8" fill="#f87171" />
-                            <circle cx="136" cy="266" r="8" fill="#fbbf24" />
-                            <circle cx="164" cy="266" r="8" fill="#4ade80" />
+                            <rect x="70" y="235" width="470" height="355" rx="24" fill="url(#panel-bg)" stroke="#475569" stroke-width="2"></rect>
+                            <rect x="70" y="235" width="470" height="62" rx="24" fill="#1e293b"></rect>
+                            <circle cx="108" cy="266" r="8" fill="#f87171"></circle>
+                            <circle cx="136" cy="266" r="8" fill="#fbbf24"></circle>
+                            <circle cx="164" cy="266" r="8" fill="#4ade80"></circle>
                             <text x="195" y="274" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="19">UEFI Boot Manager</text>
-                            <rect x="95" y="320" width="420" height="57" rx="12" fill="#0f766e" />
+                            <rect x="95" y="320" width="420" height="57" rx="12" fill="#0f766e"></rect>
                             <text x="120" y="356" fill="#ffffff" font-family="system-ui, sans-serif" font-size="23" font-weight="700">Boot0001 Fedora</text>
                             <text x="120" y="420" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="22">Boot0002 Ubuntu</text>
                             <text x="120" y="478" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="22">Boot0003 Windows Boot Manager</text>
                             <text x="120" y="536" fill="#fca5a5" font-family="system-ui, sans-serif" font-size="22">Boot0005 Debian lama</text>
                         </g>
                         <g filter="url(#shadow)">
-                            <rect x="600" y="235" width="530" height="355" rx="24" fill="#020617" stroke="#475569" stroke-width="2" />
-                            <rect x="600" y="235" width="530" height="62" rx="24" fill="#111827" />
+                            <rect x="600" y="235" width="530" height="355" rx="24" fill="#020617" stroke="#475569" stroke-width="2"></rect>
+                            <rect x="600" y="235" width="530" height="62" rx="24" fill="#111827"></rect>
                             <text x="630" y="274" fill="#cbd5e1" font-family="monospace" font-size="19">terminal — efibootmgr</text>
                             <text x="630" y="342" fill="#5eead4" font-family="monospace" font-size="22">$ sudo efibootmgr -v</text>
                             <text x="630" y="393" fill="#f8fafc" font-family="monospace" font-size="20">BootCurrent: 0001</text>
@@ -107,8 +132,7 @@
                 <p>Masalahnya, istilah “menu boot” sering dipakai untuk menyebut dua tempat yang berbeda. Akibatnya, orang berniat membersihkan GRUB, tetapi malah menghapus entri firmware. Atau sebaliknya: sudah menghapus entri dengan<code>efibootmgr</code>,
                     tetapi daftar sistem operasi di GRUB tetap ramai seperti antrean pembagian sembako.</p>
                 <div class="warning"><strong>Peringatan:</strong>perintah dalam panduan ini dapat membuat sistem gagal boot apabila kita menghapus entri yang masih dipakai. Baca seluruh identitas entri terlebih dahulu dan simpan catatan sebelum melakukan perubahan.</div>
-                <h2
-                id="beda-uefi-dan-grub">Pertama, bedakan menu UEFI dengan menu GRUB</h2>
+                <h2 id="beda-uefi-dan-grub">Pertama, bedakan menu UEFI dengan menu GRUB</h2>
                     <p>Firmware UEFI dan GRUB bekerja pada lapisan yang berbeda. Keduanya memang berhubungan dalam proses boot, tetapi bukan barang yang sama.</p>
                     <div class="table-wrap">
                         <table>
@@ -199,8 +223,7 @@ Boot0003* Windows Boot Manager HD(1,GPT,...)/File(\EFI\Microsoft\Boot\bootmgfw.e
                         <li>Bagian<code>File(...)</code>menunjukkan berkas pemuat boot yang dijalankan.</li>
                     </ul>
                     <div class="danger">Jangan menganggap nama entri sebagai identitas yang pasti. Linux Mint, Ubuntu, Pop!_OS, atau distribusi turunannya dapat memakai nama dan direktori<code>ubuntu</code>. Nama yang sama belum tentu berarti entri tersebut sudah basi.</div>
-                    <h2
-                    id="identifikasi">Cara memastikan entri mana yang masih dipakai</h2>
+                    <h2 id="identifikasi">Cara memastikan entri mana yang masih dipakai</h2>
                         <p>Sebelum menghapus apa pun, cocokkan informasi dari<code>efibootmgr -v</code>dengan partisi yang ada di sistem.</p>
                         <h3>1. Simpan catatan kondisi awal</h3><pre><code>sudo efibootmgr -v | tee "$HOME/efibootmgr-sebelum.txt"</code></pre>
                         <p>Berkas ini tidak otomatis memulihkan entri, tetapi sangat membantu apabila kita perlu mengingat nomor, jalur, dan urutan boot sebelumnya.</p>
@@ -224,8 +247,7 @@ Boot0003* Windows Boot Manager HD(1,GPT,...)/File(\EFI\Microsoft\Boot\bootmgfw.e
                         </ul>
                         <p>Periksa kembali hasilnya:</p><pre><code>sudo efibootmgr -v</code></pre>
                         <div class="warning">Hindari menghapus nomor yang tercantum sebagai<code>BootCurrent</code>sebelum benar-benar memahami entri pengganti yang akan digunakan. Sistem yang sedang berjalan tidak langsung mati, tetapi boot berikutnya dapat gagal.</div>
-                        <h2
-                        id="atur-urutan">Mengatur ulang urutan boot</h2>
+                        <h2 id="atur-urutan">Mengatur ulang urutan boot</h2>
                             <p>Kita tidak selalu harus menghapus entri. Apabila semuanya masih diperlukan, cukup susun ulang prioritasnya.</p>
                             <p>Misalnya Fedora adalah<code>0001</code>dan Windows Boot Manager adalah<code>0003</code>:</p><pre><code>sudo efibootmgr -o 0001,0003</code></pre>
                             <p>Setelah itu, firmware akan mencoba Fedora terlebih dahulu. Apabila gagal, barulah Windows Boot Manager dicoba.</p>
@@ -414,7 +436,7 @@ sudo cp -a /boot/efi/EFI/debian "$HOME/cadangan-efi/"</code></pre>
                                         <li>Saya memiliki media live untuk pemulihan bila diperlukan.</li>
                                     </ul>
                                 </div>
-                            </details><!--wajib ini tulis signature artikel oleh LayarKosong-->
+                            </details><div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>
                             <section class="source-box" aria-labelledby="sumber-bacaan">
                                 <h2 id="sumber-bacaan">Sumber dan pengembangan materi</h2>
                                 <p>Artikel ini merupakan penulisan ulang dan pengembangan dalam bahasa Indonesia dari diskusi komunitas Linux.org mengenai pembersihan entri sistem operasi lama pada menu boot.</p>
@@ -423,10 +445,11 @@ sudo cp -a /boot/efi/EFI/debian "$HOME/cadangan-efi/"</code></pre>
                             </section>
                             <footer class="article-footer">
                                 <p>Ditulis ulang dan disunting oleh Fakhrul Rijal untuk<a href="https://dalam.web.id/">Layar Kosong</a>.</p>
-                            </footer>
+                             <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
             </div>
         </article>
     </main>
-</body>
-
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>
