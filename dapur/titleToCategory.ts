@@ -22,25 +22,25 @@ const categories: Category[] = [
   {
     name: "Jejak Sejarah",
     keywords: [
-      "nabi", "rasul", "sahabat", "khalifah", "Sujud", "Syari", "Mitos", "Masjid", "fitnah", "shalat", "Mahram", "istighfar","Nasab", "Akidah", "Hijab", "Allah", "Risalah","Hijriyah", "Sunnah", "doa", "Ghibah", "surga", "sejarah","Al-Qur'an", "kisah", "islam", "muhammadiyah", "sirah", "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin", "shalahuddin", "fatih", "muhammad", "ayat", "ibrahim", "iman", "muslim", "musa", "ramadhan", "isa", "nuh", "yunus", "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah", "andalusia", "baghdad", "cordoba", "jerusalem", "baitul hikmah", "Dakwah"
+      "nabi", "rasul", "sahabat", "khalifah", "haji", "Zakat", "kiai", "Sujud", "Shalawat", "akhirat", "Syari", "Mitos", "Masjid", "fitnah", "shalat", "Mahram", "istighfar","Nasab", "Akidah", "Hijab", "Allah", "Risalah","Hijriyah", "Sunnah", "doa", "Ghibah", "Hadits", "surga", "sejarah","Al-Qur'an", "kisah", "islam", "muhammadiyah", "sirah", "madinah", "mekkah", "hijrah", "badar", "uhud", "khandaq", "yarmuk", "hittin", "shalahuddin", "fatih", "muhammad", "ayat", "ibrahim", "iman", "muslim", "musa", "ramadhan", "isa", "nuh", "yunus", "perang", "penaklukan", "kekhalifahan", "daulah", "utsmaniyah", "abbasiyah", "andalusia", "baghdad", "cordoba", "jerusalem", "baitul hikmah", "Dakwah"
     ]
   },
   {
     name: "Gaya Hidup",
     keywords: [
-      "kesehatan", "pencernaan", "tidur", "Teknologi", "efisiensi","penyakit",  "Vitamin", "diet", "Rupiah", "Wasiat","lisensi", "Angkringan", "Psikotes","medsos", "Lembur","Konsumen","Pelajar","Sajadah","koperasi", "herbal", "obat", "sakit", "kopi", "minuman", "makanan", "resep", "kurma", "susu", "camilan", "motor", "mobil", "ojol", "touring", "wisata", "traveling", "hotel", "hobi", "gaya hidup", "bahagia", "mental", "stres", "olahraga", "anak", "bahaya", "listrik"
+      "kesehatan", "pencernaan", "tidur","Silaturahmi", "Silaturahim", "Makan", "Sedekah", "Teknologi", "efisiensi","penyakit",  "Vitamin", "diet", "Rupiah", "Wasiat","lisensi", "Angkringan", "Psikotes","medsos", "Lembur","Konsumen","Pelajar","Sajadah","koperasi", "herbal", "obat", "sakit", "kopi", "minuman", "makanan", "resep", "kurma", "susu", "camilan", "motor", "mobil", "ojol", "touring", "wisata", "traveling", "hotel", "hobi", "gaya hidup", "bahagia", "mental", "stres", "olahraga", "anak", "bahaya", "listrik"
     ]
   },
   {
     name: "Opini Sosial",
     keywords: [
-      "politik", "pemerintah", "Intelektual", "kekuasaan", "HRD", "korupsi", "polisi", "Sekularisme", "Adab", "Kosakata", "apbn", "oknum", "nasional", "Moral","Psikologis","Pegawai","demokrasi", "Bangsa","pemilu", "mk", "lagu", "presiden", "balikpapan", "mbg", "guru honorer", "pendidikan", "ekonomi", "publik", "negara", "fakta", "indonesia", "umkm", "pajak", "subsidi", "kebijakan", "kritik", "opini", "sosial", "masyarakat", "keadilan", "koruptor", "integritas", "rakyat", "sekolah", "pemimpin", "bisnis"
+      "politik", "pemerintah", "Intelektual", "refleksi", "PPh", "Kantor", "radar", "UU", "KUHP", "Bandara", "Anggaran", "Kerja","Birokrasi", "Nusantara", "Wanita", "Sertifikat", "kekuasaan", "HRD", "korupsi", "polisi", "Sekularisme", "Adab", "Kosakata", "apbn", "oknum", "nasional", "Moral","Psikologis","Pegawai","demokrasi", "Bangsa","pemilu", "mk", "lagu", "presiden", "balikpapan", "mbg", "guru honorer", "pendidikan", "ekonomi", "publik", "negara", "fakta", "indonesia", "umkm", "pajak", "subsidi", "kebijakan", "kritik", "opini", "sosial", "masyarakat", "keadilan", "koruptor", "integritas", "rakyat", "sekolah", "pemimpin", "bisnis"
     ]
   },
   {
     name: "Warta Tekno",
     keywords: [
-      "ai", "chatgpt", "gemini","Copilot", "Skrip", "Cleanup","Software", "Vulnerability", "ngrok","Komdigi", "Reddit", "Proxy", "Facebook", "WordPress", "Hacker", "Blog", "Install", "Chatbot", "Script", "Blogspot", "kode", "DDoS", "SEO", "website", "web", "claude","NotebookLM", "Deepfake", "Keyboard", "YouTube", "PostgreSQL", "SQLite", "MySQL", "HDD", "Boot", "Link", "email", "google", "renovate", "dependabot", "Floorp", "Vivaldi","ISO","microsoft", "USB", "internet", "llm", "server", "deep learning", "prompt", "online", "github", "git", "programming", "javascript", "python", "html", "css", "markdown", "domain", "workflow", "github actions", "api", "backend", "json", "frontend", "fullstack", "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware", "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare", "security", "phishing", "encryption", "privacy", "backup", "ssh", "digital", "kalkulator", "js", "layar", "generator", "modern"
+      "ai", "chatgpt", "gemini","Copilot", "Skrip", "Download", "Mobile", "Microblogging", "Cleanup","Software", "Vulnerability", "ngrok","Komdigi", "Reddit", "Proxy", "Facebook", "WordPress", "Hacker", "Blog", "Install", "Chatbot", "Script", "Blogspot", "kode", "DDoS", "SEO", "website", "web", "claude","NotebookLM", "Deepfake", "Keyboard", "YouTube", "PostgreSQL", "SQLite", "MySQL", "HDD", "Boot", "Link", "email", "google", "renovate", "dependabot", "Floorp", "Vivaldi","ISO","microsoft", "USB", "internet", "llm", "server", "deep learning", "prompt", "online", "github", "git", "programming", "javascript", "python", "html", "css", "markdown", "domain", "workflow", "github actions", "api", "backend", "json", "frontend", "fullstack", "windows", "android", "browser", "firefox", "chrome", "laptop", "hardware", "ssd", "ram", "vram", "zram", "cpu", "gpu", "wifi", "cloudflare", "security", "phishing", "encryption", "privacy", "backup", "ssh", "digital", "kalkulator", "js", "layar", "generator", "modern"
     ]
   }
 ];
