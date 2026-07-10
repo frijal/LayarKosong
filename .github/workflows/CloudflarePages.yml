@@ -38,31 +38,14 @@ jobs:
         with:
           path: source
           fetch-depth: 1
-          persist-credentials: true
+          persist-credentials: true      
 
-      # =========================================================
-      # 🧹 FASE CLEANUP (BERSIH-BERSIH PREVIEW DEPLOYMENT)
-      # =========================================================
-
-      - name: 🧹 Cloudflare Preview Cleanup
-        id: cloudflare-cleanup
-        continue-on-error: true
-        env:
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          # Pastikan secret CF_PROJECT_NAME ada di GitHub Repo kamu, 
-          # atau langsung ganti dengan string "layarkosong" kalau malas pakai secret
-          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }} 
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-        run: |
-          echo "Menjalankan rutinitas sapu jagat untuk menghapus preview lama..."
-          bun run dapur/rapikan-cloudflare.ts
-
-      - name: '1.5 Setup Node.js v22'
+      - name: 'Setup Node.js v24'
         uses: actions/setup-node@v6
         with:
           node-version: 24.18.0
 
-      - name: '2. Setup Bun.js'
+      - name: 'Setup Bun.js'
         uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
           bun-version: latest
