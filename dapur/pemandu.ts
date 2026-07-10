@@ -258,6 +258,9 @@ ${prevNextHtml}
 <a href="https://share.flipboard.com/bookmarklet/popout?v=2&title=${encodedText}&url=${encodedLink}&utm_source=dalam.web.id" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=600');return false;" title="Bagikan ke Flipboard" aria-label="Bagikan ke Flipboard">
 <img src="/ext/icons/icon-flipboard.svg" width="20" height="20" alt="Flipboard" aria-hidden="true" />
 </a>
+<a href="https://mastodon.social/share?text=${encodedText}%0A%0A${encodedLink}" onclick="window.open(this.href,'_blank','noopener,noreferrer,width=600,height=400');return false;" title="Bagikan ke Mastodon" aria-label="Bagikan ke Mastodon">
+<img src="/ext/icons/icon-mastodon.svg" width="20" height="20" alt="Mastodon" aria-hidden="true" />
+</a>
 </div>
 </div>
 </div>`;
