@@ -2,13 +2,14 @@ import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import Parser from 'rss-parser';
 import * as fs from 'fs';
+import * as path from 'path'; // Tambahkan modul path
 
 puppeteer.use(StealthPlugin());
 const parser = new Parser();
 
-// Konfigurasi
+// Konfigurasi Baru
 const RSS_URL = 'https://dalam.web.id/feed';
-const LOG_FILE = 'last_post.txt';
+const LOG_FILE = 'mini/posted-twitter.txt'; // Path baru
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -67,18 +68,26 @@ async function runAutoPoster() {
         await page.waitForSelector(postButtonSelector);
         await page.click(postButtonSelector);
 
-        console.log('🎉 Cuitan berhasil dikirim!');
+		console.log('🎉 Cuitan berhasil dikirim!');
 
-        // 9. Update state lokal untuk di-commit oleh GitHub Actions
-        await delay(5000);
-        fs.writeFileSync(LOG_FILE, latestPost.link);
+		// 9. Update state lokal untuk di-commit oleh GitHub Actions
+		await delay(5000);
 
-        await browser.close();
+		// Cek dan buat folder 'mini' jika belum ada
+		const logDir = path.dirname(LOG_FILE);
+		if (!fs.existsSync(logDir)) {
+			fs.mkdirSync(logDir, { recursive: true });
+		}
 
-    } catch (error) {
-        console.error('❌ Terjadi kesalahan:', error);
-        process.exit(1); // Agar GitHub Actions mendeteksi ini sebagai kegagalan
-    }
+		// Tulis file ke dalam folder mini/
+		fs.writeFileSync(LOG_FILE, latestPost.link);
+
+		await browser.close();
+
+	} catch (error) {
+		console.error('❌ Terjadi kesalahan:', error);
+		process.exit(1);
+	}
 }
 
 runAutoPoster();
