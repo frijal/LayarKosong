@@ -37,8 +37,7 @@
     <meta name="twitter:image:alt" content="Kalkulator Laundry Berkah">
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
-    <meta name="twitter:creator" content="@responaja">
-    
+    <meta name="twitter:creator" content="@responaja">    
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -57,466 +56,586 @@
     <meta property="article:published_time" content="2025-10-26T20:21:57.000Z">
     <meta property="article:modified_time" content="2025-10-26T20:21:57.000Z">
     <meta content="kalkulator laundry, harga laundry kiloan, laundry satuan, manajemen laundry, aplikasi kasir laundry, berkah laundry, hitung biaya laundry" name="keywords">
-    <script defer="" src="/ext/html2canvas.min.js"></script>
-<style>
-  :root {
-    color-scheme: light;
-    --page-bg: #f2f6ff;
-    --card-bg: #ffffff;
-    --text: #333333;
-    --muted: #555555;
-    --input-bg: #ffffff;
-    --input-border: #cccccc;
-    --table-border: #dddddd;
-    --row-bg: #fefefe;
-    --primary: #007bff;
-    --primary-strong: #0069d9;
-    --success: #55a630;
-    --danger: #dc3545;
-    --button-text: #ffffff;
-    --shadow: 0 0.625rem 1.5625rem #0000001a;
-    --receipt-bg: #ffffff;
-    --receipt-text: #000000;
-    --receipt-border: #000000;
-    --receipt-soft: #eeeeee;
-  }
-  @media (prefers-color-scheme: dark) {
+    <script defer="" src="/ext/html2canvas.min.js"></script><style>
+    /* =========================================
+       1. CSS VARIABLES (Tema Terang/Gelap)
+       ========================================= */
     :root {
-      color-scheme: dark;
-      --page-bg: #0f172a;
-      --card-bg: #111827;
-      --text: #e5e7eb;
-      --muted: #cbd5e1;
-      --input-bg: #020617;
-      --input-border: #334155;
-      --table-border: #334155;
-      --row-bg: #1e293b;
-      --primary: #38bdf8;
-      --primary-strong: #0284c7;
-      --success: #16a34a;
-      --danger: #dc2626;
-      --button-text: #ffffff;
-      --shadow: 0 0.625rem 1.5625rem #00000066;
-      --receipt-bg: #ffffff;
-      --receipt-text: #000000;
-      --receipt-border: #000000;
-      --receipt-soft: #eeeeee;
+      /* Tema Terang (Light Mode - Default) */
+      --bg-color: #f4f6f8;
+      --surface-color: #ffffff;
+      --text-color: #333333;
+      --text-muted: #666666;
+      --border-color: #dddddd;
+      --primary: #0ea5e9;
+      --primary-hover: #0284c7;
+      --success: #22c55e;
+      --success-hover: #16a34a;
+      --danger: #ef4444;
+      --danger-hover: #dc2626;
+      --input-bg: #ffffff;
+      --radius: 8px;
     }
-  }
-  body {
-    background: var(--page-bg);
-    color: var(--text);
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0.9375rem;
-    font-family: Poppins, sans-serif;
-    display: flex;
-  }
-  .container {
-    box-sizing: border-box;
-    background: var(--card-bg);
-    border-radius: 0.625rem;
-    width: 100%;
-    max-width: 50rem;
-    padding: 1.25rem;
-    box-shadow: var(--shadow);
-  }
-  h1,
-  h2 {
-    color: var(--text);
-  }
-  h2 {
-    text-align: center;
-    margin-bottom: 0.9375rem;
-    font-size: 1.25rem;
-  }
-  label {
-    color: var(--text);
-    margin-bottom: 0.3125rem;
-    font-weight: 700;
-    display: block;
-  }
-  input[type="text"],
-  textarea {
-    box-sizing: border-box;
-    color: var(--text);
-    background: var(--input-bg);
-    border: 0.0625rem solid var(--input-border);
-    border-radius: 0.375rem;
-    width: 100%;
-    padding: 0.625rem;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  input[type="text"]::placeholder,
-  textarea::placeholder {
-    color: var(--muted);
-    opacity: 0.8;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 0.625rem;
-    font-size: 0.875rem;
-  }
-  th,
-  td {
-    text-align: center;
-    border: 0.0625rem solid var(--table-border);
-    padding: 0.5rem;
-  }
-  th {
-    color: #ffffff;
-    background: var(--primary);
-  }
-  button {
-    color: var(--button-text);
-    cursor: pointer;
-    background: var(--success);
-    border: none;
-    border-radius: 0.375rem;
-    margin-top: 0.5rem;
-    padding: 0.625rem 0.9375rem;
-    font-size: 0.875rem;
-    display: inline-block;
-  }
-  .btn-export {
-    background: var(--primary-strong);
-    margin-left: 0.625rem;
-  }
-  .btn-reset {
-    background: var(--danger);
-    margin-left: 0.625rem;
-  }
-  button:hover {
-    opacity: 0.9;
-  }
-  .total-box {
-    text-align: right;
-    color: var(--primary);
-    margin-top: 0.625rem;
-    font-size: 1rem;
-    font-weight: 700;
-  }
-  .catatan-final {
-    margin-top: 0.9375rem;
-  }
-  textarea {
-    resize: vertical;
-    min-height: 5rem;
-  }
-  .nota-summary {
-    color: var(--receipt-text);
-    box-sizing: border-box;
-    background: var(--receipt-bg);
-    width: 18.75rem;
-    padding: 0.9375rem;
-    font-family: Courier New, Courier, monospace;
-    position: absolute;
-    top: 0;
-    left: -625rem;
-    display: block !important;
-  }
-  .nota-summary table,
-  .nota-summary tr,
-  .nota-summary td {
-    width: 100% !important;
-    display: table !important;
-  }
-  .nota-summary td {
-    display: table-cell !important;
-  }
-  .nota-header {
-    text-align: center;
-    border-bottom: 0.0625rem dashed var(--receipt-border);
-    margin-bottom: 0.625rem;
-    padding-bottom: 0.625rem;
-  }
-  .nota-header h3 {
-    text-transform: uppercase;
-    margin: 0;
-    font-size: 1.125rem;
-  }
-  .nota-info {
-    margin-bottom: 0.625rem;
-    font-size: 0.8125rem;
-  }
-  .nota-table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 0.8125rem;
-  }
-  .nota-table th {
-    text-align: left;
-    color: var(--receipt-text);
-    background: transparent;
-    border-bottom: 0.0625rem dashed var(--receipt-border);
-    padding: 0.3125rem 0;
-  }
-  .nota-table td {
-    vertical-align: top;
-    padding: 0.3125rem 0;
-  }
-  .nota-footer {
-    border-top: 0.0625rem dashed var(--receipt-border);
-    margin-top: 0.625rem;
-    padding-top: 0.625rem;
-  }
-  .total-row {
-    justify-content: space-between;
-    font-size: 0.9375rem;
-    font-weight: 700;
-    display: flex;
-  }
-  .catatan-struk {
-    border-top: 0.0625rem solid var(--receipt-soft);
-    margin-top: 0.625rem;
-    padding-top: 0.3125rem;
-    font-size: 0.75rem;
-    font-style: italic;
-  }
-  @media (max-width: 37.5rem) {
-    table,
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        /* Tema Gelap (Dark Mode) */
+        --bg-color: #121212;
+        --surface-color: #1e1e1e;
+        --text-color: #f1f5f9;
+        --text-muted: #94a3b8;
+        --border-color: #334155;
+        --primary: #38bdf8;
+        --primary-hover: #0ea5e9;
+        --success: #4ade80;
+        --success-hover: #22c55e;
+        --danger: #f87171;
+        --danger-hover: #ef4444;
+        --input-bg: #0f172a;
+      }
+    }
+
+    /* =========================================
+       2. BASE & TYPOGRAPHY (Mobile-First)
+       ========================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.5;
+      padding: 1rem;
+    }
+
+    .container {
+      background-color: var(--surface-color);
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      border-bottom: 2px dashed var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    /* =========================================
+       3. FORM & INPUTS
+       ========================================= */
+    .konsumen-box, .catatan-final {
+      margin-bottom: 1rem;
+    }
+
+    label {
       display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
     }
-    thead tr {
-      display: none;
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      background-color: var(--input-bg);
+      color: var(--text-color);
+      font-size: 1rem;
+      transition: border-color 0.2s;
     }
-    tr {
-      background: var(--row-bg);
-      border: 0.0625rem solid var(--table-border);
-      border-radius: 0.375rem;
-      margin-bottom: 0.625rem;
-      padding: 0.5rem;
+
+    input[type="text"]:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
     }
-    td {
-      text-align: left;
-      justify-content: space-between;
-      display: flex;
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
     }
-    td::before {
-      content: attr(data-label);
-      font-weight: 700;
+
+    /* Checkbox Diskon */
+    label:has(#toggleDiskon) {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      padding: 8px 12px;
+      background: var(--bg-color);
+      border-radius: var(--radius);
     }
-  }
-</style>
-    <meta content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan." name="ai:summary">
-    <meta content="Hitung biaya laundry kiloan atau satuan dengan cepat dan akurat. Kalkulator Laundry Berkah mempermudah manajemen pesanan dan memberikan total harga secara instan." name="ai:prompt_hint">
-</head><body>
-    <div class="container" id="nota-belanja">
-      <h1><a style="text-decoration: none; color: inherit;" href="/">Kalkulator</a> 🧾 Laundry Berkah</h1>
-      <div class="konsumen-box"><label for="namaKonsumen">Nama Konsumen:</label><input placeholder="siapa nama konsumen?" id="namaKonsumen" required=""></div><label><input id="toggleDiskon" onchange="toggleKolomDiskon()" type="checkbox"> Gunakan Diskon</label>
-      <table id="tabel-belanja">
-        <thead>
-          <tr id="header-row">
-            <th>#
-            </th><th>Nama Barang
-            </th><th>Jumlah Kilogram
-            </th><th>Harga
-            </th><th class="kolom-diskon">Diskon (%)
-            </th><th>Subtotal
-            </th><th>Aksi
-        </th></tr></thead><tbody id="daftar-item">
-      </tbody></table><button onclick="tambahBaris()">➕ Tambah Barang</button>
-      <div class="total-box">Total: Rp <output id="total-belanja">0</output></div>
-      <div class="catatan-final"><label for="catatan">Catatan Jika Ada:</label><textarea placeholder="Tuliskan catatan akhir di sini..." id="catatan"></textarea></div><button class="btn-reset" onclick="resetForm()">🧾 Nota Baru</button><button class="btn-export" onclick="exportSummary()">📸 Kirim Nota</button>
+
+    /* =========================================
+       4. TABLE (Mobile-First Card Layout)
+       ========================================= */
+    #tabel-belanja {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+
+    /* Tampilan HP: Tabel diubah jadi deretan kartu (Stacked Form) */
+    @media (max-width: 767px) {
+      #tabel-belanja, #tabel-belanja tbody {
+        display: block;
+        width: 100%;
+      }
+
+      /* Sembunyikan header tabel di HP, biar gak makan tempat */
+      #tabel-belanja thead {
+        display: none;
+      }
+
+      /* Tiap baris barang jadi semacam 'kartu' */
+      #tabel-belanja tr {
+        display: block;
+        padding: 1.2rem;
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        background-color: rgba(0, 0, 0, 0.02); /* Sedikit gelap buat pemisah */
+        position: relative;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        #tabel-belanja tr {
+          background-color: rgba(255, 255, 255, 0.02);
+        }
+      }
+
+      /* Tiap kolom jadi baris penuh ke bawah */
+      #tabel-belanja td {
+        display: block;
+        width: 100%;
+        padding: 0;
+        border: none;
+        margin-bottom: 0.75rem;
+        text-align: left;
+      }
+
+      #tabel-belanja td:last-child {
+        margin-bottom: 0; /* Jarak tombol hapus di akhir */
+      }
+
+      /* Input langsung gas pol full width */
+      #tabel-belanja td input[type="text"] {
+        width: 100%;
+      }
+
+      /* Label manual pengganti Header tabel pake ::before */
+      #tabel-belanja td:nth-child(1)::before {
+        content: "Item #";
+        font-weight: bold;
+        color: var(--primary);
+      }
+
+      /* Styling khusus area Subtotal biar lebih kece */
+      #tabel-belanja td:nth-child(6) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--surface-color);
+        padding: 0.75rem;
+        border-radius: var(--radius);
+        border: 1px dashed var(--border-color);
+        margin-top: 0.5rem;
+      }
+      #tabel-belanja td:nth-child(6)::before {
+        content: "Subtotal: ";
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      /* Tombol hapus barang full width */
+      #tabel-belanja td:nth-child(7) button {
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      /* Trik nanganin bentrok JS (table-cell) di HP pas diskon dicentang */
+      #tabel-belanja td.kolom-diskon[style*="display: table-cell"] {
+        display: block !important;
+      }
+    }
+
+    /* =========================================
+       5. BUTTONS & TOTAL BOX
+       ========================================= */
+    button {
+      padding: 0.75rem 1.2rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: white;
+      transition: opacity 0.2s;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    button:hover { opacity: 0.9; }
+
+    button[onclick="tambahBaris()"] { background-color: var(--primary); }
+    button[onclick="hapusBaris(this)"] { background-color: var(--danger); padding: 0.5rem; }
+    .btn-reset { background-color: var(--danger); }
+    .btn-export { background-color: var(--success); }
+
+    .total-box {
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: right;
+      padding: 1rem;
+      background-color: var(--bg-color);
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+    }
+
+    /* =========================================
+       6. HIDDEN NOTA SUMMARY (Buat Canvas)
+       ========================================= */
+    #nota-summary {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      width: 300px;
+      font-family: monospace;
+      padding: 10px;
+    }
+
+    #nota-summary table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    /* =========================================
+       7. MEDIA QUERIES (Tablet & Desktop)
+       ========================================= */
+    @media (min-width: 768px) {
+      /* Kembalikan wujud tabel ke normal kalau layarnya gede */
+      #tabel-belanja th, #tabel-belanja td {
+        display: table-cell;
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      #tabel-belanja tr {
+        display: table-row;
+      }
+
+      #tabel-belanja thead {
+        display: table-header-group;
+      }
+
+      #tabel-belanja th {
+        background-color: var(--bg-color);
+        font-weight: 600;
+      }
+
+      /* Reset style khusus dari mode mobile */
+      #tabel-belanja tr {
+        padding: 0;
+        margin: 0;
+        border: none;
+        background-color: transparent;
+      }
+
+      #tabel-belanja td:nth-child(1)::before,
+      #tabel-belanja td:nth-child(6)::before {
+        content: none;
+      }
+
+      #tabel-belanja td:nth-child(6) {
+        display: table-cell;
+        background: transparent;
+        padding: 0.75rem;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+        margin: 0;
+      }
+
+      button {
+        width: auto;
+        margin-bottom: 0;
+      }
+
+      .btn-export { float: right; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mulai dari Script bawaanmu -->
+  <div class="container" id="nota-belanja">
+    <h1><a style="text-decoration: none; color: inherit;" href="/">Kalkulator</a> 🧾 Laundry Berkah</h1>
+
+    <div class="konsumen-box">
+  <label for="namaKonsumen">Nama Konsumen:</label>
+  <input type="text" placeholder="siapa nama konsumen?" id="namaKonsumen" required="">
+</div>
+
+    <label>
+      <input id="toggleDiskon" onchange="toggleKolomDiskon()" type="checkbox"> Gunakan Diskon
+    </label>
+
+    <table id="tabel-belanja">
+      <thead>
+        <tr id="header-row">
+          <th>#</th>
+          <th>Nama Barang</th>
+          <th>Jumlah Kilogram</th>
+          <th>Harga</th>
+          <th class="kolom-diskon">Diskon (%)</th>
+          <th>Subtotal</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="daftar-item">
+      </tbody>
+    </table>
+
+    <button onclick="tambahBaris()">➕ Tambah Barang</button>
+
+    <div class="total-box">
+      Total: Rp <output id="total-belanja">0</output>
     </div>
-    <div class="nota-summary" id="nota-summary"></div>
-    <script>
-      const formatRupiah = val => new Intl.NumberFormat("id-ID").format(val);
-      function formatRealtime(el) {
-        let val = el.value.replace(/[^0-9,]/g, "");
-        const parts = val.split(",");
-        if (parts.length > 2) val = parts[0] + "," + parts[1];
-        let integer = parts[0];
-        let decimal = parts[1] !== undefined ? "," + parts[1] : "";
-        integer = integer.replace(/^0+(?=\d)/, "");
-        integer = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        el.value = integer + decimal;
-      }
-      function hitungTotal() {
-        const rows = document.querySelectorAll("#daftar-item tr");
-        let total = 0;
-        rows.forEach(row => {
-          const harga = parseFloat(row.querySelector(".harga").value.replace(/\./g, "").replace(",", ".")) || 0;
-          const jumlah = parseFloat(row.querySelector(".jumlah").value.replace(/\./g, "").replace(",", ".")) || 0;
-          const diskonInput = row.querySelector(".diskon");
-          const diskon = diskonInput ? (parseFloat(diskonInput.value.replace(/\./g, "").replace(",", ".")) || 0) : 0;
-          const subtotal = harga * jumlah * (1 - diskon / 100);
-          row.querySelector(".subtotal").value = formatRupiah(subtotal);
-          total += subtotal;
+
+    <div class="catatan-final">
+      <label for="catatan">Catatan Jika Ada:</label>
+      <textarea placeholder="Tuliskan catatan akhir di sini..." id="catatan"></textarea>
+    </div>
+
+    <button class="btn-reset" onclick="resetForm()">🧾 Nota Baru</button>
+    <button class="btn-export" onclick="exportSummary()">📸 Kirim Nota</button>
+  </div>
+
+  <!-- Area Render Nota -->
+  <div class="nota-summary" id="nota-summary"></div>
+
+  <!-- Script JS (Persis sama kodenya) -->
+  <script>
+    const formatRupiah = val => new Intl.NumberFormat("id-ID").format(val);
+    function formatRealtime(el) {
+      let val = el.value.replace(/[^0-9,]/g, "");
+      const parts = val.split(",");
+      if (parts.length > 2) val = parts[0] + "," + parts[1];
+      let integer = parts[0];
+      let decimal = parts[1] !== undefined ? "," + parts[1] : "";
+      integer = integer.replace(/^0+(?=\d)/, "");
+      integer = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      el.value = integer + decimal;
+    }
+    function hitungTotal() {
+      const rows = document.querySelectorAll("#daftar-item tr");
+      let total = 0;
+      rows.forEach(row => {
+        const harga = parseFloat(row.querySelector(".harga").value.replace(/\./g, "").replace(",", ".")) || 0;
+        const jumlah = parseFloat(row.querySelector(".jumlah").value.replace(/\./g, "").replace(",", ".")) || 0;
+        const diskonInput = row.querySelector(".diskon");
+        const diskon = diskonInput ? (parseFloat(diskonInput.value.replace(/\./g, "").replace(",", ".")) || 0) : 0;
+        const subtotal = harga * jumlah * (1 - diskon / 100);
+        row.querySelector(".subtotal").value = formatRupiah(subtotal);
+        total += subtotal;
+      });
+      document.getElementById("total-belanja").value = formatRupiah(total);
+      simpanKeLocalStorage();
+    }
+    function tambahBaris(data = {}) {
+      const tbody = document.getElementById("daftar-item");
+      const nomor = tbody.children.length + 1;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${nomor}</td>
+        <td><input type="text" value="${data.nama || ''}" placeholder="Nama Barang" required></td>
+        <td><input type="text" inputmode="decimal" class="jumlah" value="${data.jumlah || ''}" placeholder="Berat, Kilogram" required></td>
+        <td><input type="text" inputmode="decimal" class="harga" value="${data.harga || ''}" placeholder="Harga" required></td>
+        <td class="kolom-diskon"><input type="text" class="diskon" value="${data.diskon || ''}" placeholder="Diskon (%)"></td>
+        <td>Rp <output class="subtotal">${data.subtotal || '0'}</output></td>
+        <td><button onclick="hapusBaris(this)">❌</button></td>
+      `;
+      tbody.appendChild(tr);
+      tambahEventListener();
+      toggleKolomDiskon();
+      hitungTotal();
+    }
+    function hapusBaris(btn) {
+      btn.closest("tr").remove();
+      updateNomor();
+      hitungTotal();
+    }
+    function updateNomor() {
+      document.querySelectorAll("#daftar-item tr").forEach((tr, i) => {
+        tr.querySelector("td:first-child").textContent = i + 1;
+      });
+    }
+    function tambahEventListener() {
+      document.querySelectorAll(".harga, .jumlah, .diskon").forEach(el => {
+        el.setAttribute("inputmode", "decimal");
+        el.addEventListener("keydown", e => {
+          const allowedKeys = ["Backspace", "Tab", "Enter", "Delete", "ArrowLeft", "ArrowRight", "Home", "End", ".", ","];
+          if (!allowedKeys.includes(e.key) && !(e.key >= "0" && e.key <= "9")) {
+            e.preventDefault();
+          }
+          if ((e.key === "." || e.key === ",") && (el.value.includes(".") || el.value.includes(","))) {
+            e.preventDefault();
+          }
         });
-        document.getElementById("total-belanja").value = formatRupiah(total);
-        simpanKeLocalStorage();
-      }
-      function tambahBaris(data = {}) {
-        const tbody = document.getElementById("daftar-item");
-        const nomor = tbody.children.length + 1;
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
- <td>${nomor}</td><td><input type="text" value="${data.nama || ''}" placeholder="Nama Barang" required></td><td><input type="text" inputmode="decimal" class="jumlah" value="${data.jumlah || ''}" placeholder="Berat, Kilogram" required></td><td><input type="text" inputmode="decimal" class="harga" value="${data.harga || ''}" placeholder="Harga" required></td><td class="kolom-diskon"><input type="text" class="diskon" value="${data.diskon || ''}" placeholder="Diskon (%)"></td><td>Rp <output class="subtotal">${data.subtotal || '0'}</output></td><td><button onclick="hapusBaris(this)">❌</button></td>`;
-        tbody.appendChild(tr);
-        tambahEventListener();
-        toggleKolomDiskon();
-        hitungTotal();
-      }
-      function hapusBaris(btn) {
-        btn.closest("tr").remove();
-        updateNomor();
-        hitungTotal();
-      }
-      function updateNomor() {
-        document.querySelectorAll("#daftar-item tr").forEach((tr, i) => {
-          tr.querySelector("td:first-child").textContent = i + 1;
+        el.addEventListener("input", e => {
+          e.target.value = e.target.value.replace(/[^0-9.,]/g, "");
+          formatRealtime(e.target);
+          hitungTotal();
         });
+        el.addEventListener("blur", () => formatRealtime(el));
+      });
+    }
+    function toggleKolomDiskon() {
+      const showDiskon = document.getElementById("toggleDiskon").checked;
+      document.querySelectorAll(".kolom-diskon").forEach(td => {
+        td.style.display = showDiskon ? "table-cell" : "none";
+      });
+      simpanKeLocalStorage();
+    }
+    function validasiInput() {
+      const namaKonsumen = document.getElementById("namaKonsumen").value.trim();
+      if (!namaKonsumen) {
+        alert("Nama konsumen wajib diisi!");
+        return false;
       }
-      function tambahEventListener() {
-        document.querySelectorAll(".harga, .jumlah, .diskon").forEach(el => {
-          el.setAttribute("inputmode", "decimal"); // agar keyboard angka muncul di mobile
-          el.addEventListener("keydown", e => {
-            // Daftar tombol yang diperbolehkan
-            const allowedKeys = ["Backspace", "Tab", "Enter", "Delete", "ArrowLeft", "ArrowRight", "Home", "End", ".", ","];
-            // Jika bukan angka dan bukan tombol diperbolehkan, prevent input
-            if (!allowedKeys.includes(e.key) && !(e.key >= "0" && e.key <= "9")) {
-              e.preventDefault();
-            }
-            // Cegah lebih dari satu koma/titik
-            if ((e.key === "." || e.key === ",") && (el.value.includes(".") || el.value.includes(","))) {
-              e.preventDefault();
-            }
-          });
-          el.addEventListener("input", e => {
-            // Hanya biarkan angka, titik, dan koma
-            e.target.value = e.target.value.replace(/[^0-9.,]/g, "");
-            formatRealtime(e.target);
-            hitungTotal();
-          });
-          el.addEventListener("blur", () => formatRealtime(el));
-        });
+      const rows = document.querySelectorAll("#daftar-item tr");
+      if (rows.length === 0) {
+        alert("Tambahkan minimal satu barang sebelum export!");
+        return false;
       }
-      function toggleKolomDiskon() {
-        const showDiskon = document.getElementById("toggleDiskon").checked;
-        document.querySelectorAll(".kolom-diskon").forEach(td => {
-          td.style.display = showDiskon ? "table-cell" : "none";
-        });
-        simpanKeLocalStorage();
-      }
-      function validasiInput() {
-        const namaKonsumen = document.getElementById("namaKonsumen").value.trim();
-        if (!namaKonsumen) {
-          alert("Nama konsumen wajib diisi!");
+      for (const row of rows) {
+        const nama = row.querySelector("td:nth-child(2) input").value.trim();
+        const jumlah = row.querySelector(".jumlah").value.trim();
+        const harga = row.querySelector(".harga").value.trim();
+        if (!nama || !jumlah || !harga) {
+          alert("Semua kolom barang wajib diisi sebelum export!");
           return false;
         }
-        const rows = document.querySelectorAll("#daftar-item tr");
-        if (rows.length === 0) {
-          alert("Tambahkan minimal satu barang sebelum export!");
-          return false;
+      }
+      return true;
+    }
+    function exportSummary() {
+      if (!validasiInput()) return;
+      hitungTotal();
+      const nama = document.getElementById("namaKonsumen").value.trim() || "Pelanggan";
+      const catatan = document.getElementById("catatan").value.trim();
+      const total = document.getElementById("total-belanja").value;
+      const items = document.querySelectorAll("#daftar-item tr");
+      const o = new Date();
+      const tgl = String(o.getDate()).padStart(2, "0") + "/" + String(o.getMonth() + 1).padStart(2, "0") + "/" + o.getFullYear();
+      const jam = String(o.getHours()).padStart(2, "0") + ":" + String(o.getMinutes()).padStart(2, "0");
+      const fileDate = String(o.getDate()).padStart(2, "0") + String(o.getMonth() + 1).padStart(2, "0") + String(o.getFullYear()).slice(-2) + "-" + String(o.getHours()).padStart(2, "0") + String(o.getMinutes()).padStart(2, "0");
+      let itemsHtml = '';
+      items.forEach(tr => {
+        const nBarang = tr.querySelector("td:nth-child(2) input").value;
+        const qty = tr.querySelector(".jumlah").value;
+        const hargaSatuan = tr.querySelector(".harga").value;
+        const sub = tr.querySelector(".subtotal").value;
+        itemsHtml += `
+          <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 8px 0 0 0; vertical-align: top;">
+              <div style="font-weight: bold; font-size: 13px;">${nBarang}</div>
+              <div style="font-size: 11px; color: #555; margin-bottom: 8px;">${hargaSatuan} x ${qty}</div>
+            </td>
+            <td style="width: 5%; text-align: center; vertical-align: middle;">:</td>
+            <td style="text-align: right; width: 40%; vertical-align: middle; font-weight: bold;">${sub}</td>
+          </tr>
+        `;
+      });
+      const content = `
+        <div class="nota-header">
+          <h3 style="margin-bottom:0;">LAUNDRY BERKAH</h3>
+          <p style="font-size:11px; margin: 5px 0;">Balikpapan</p>
+        </div>
+        <div class="nota-info" style="font-size:12px; margin-bottom:10px;">
+          Tggl : ${tgl} - ${jam}<br>
+          Nama : ${nama}
+        </div>
+        <table class="nota-table">
+          <thead><tr style="border-bottom: 2px solid #000;"></tr></thead>
+          <tbody>${itemsHtml}</tbody>
+        </table>
+        <div class="nota-footer" style="margin-top:10px; font-size:13px;">
+          <div class="total-row" style="display:flex; justify-content:space-between; font-weight:bold;">
+            <span>TOTAL:</span>
+            <span>Rp ${total}</span>
+          </div>
+          ${catatan ? `<div class="catatan-struk" style="font-size:11px; margin-top:5px; border-top:1px dashed #ccc; padding-top:5px;">Ket: ${catatan}</div>` : ''}
+          <p style="text-align:center; margin-top:15px; font-size:11px;"><b>* TERIMA KASIH *</b></p>
+        </div>
+      `;
+      const p = document.getElementById("nota-summary");
+      p.innerHTML = content;
+
+      html2canvas(p, {
+        scale: 3,
+        useCORS: true,
+        backgroundColor: "#ffffff",
+        width: 300,
+        windowWidth: 300,
+        onclone: (clonedDoc) => {
+          clonedDoc.getElementById("nota-summary").style.left = "0";
+          clonedDoc.getElementById("nota-summary").style.top = "0";
         }
-        for (const row of rows) {
-          const nama = row.querySelector("td:nth-child(2) input").value.trim();
-          const jumlah = row.querySelector(".jumlah").value.trim();
-          const harga = row.querySelector(".harga").value.trim();
-          if (!nama || !jumlah || !harga) {
-            alert("Semua kolom barang wajib diisi sebelum export!");
-            return false;
-          }
-        }
-        return true;
-      }
-      function exportSummary() {
-        if (!validasiInput()) return;
-        hitungTotal();
-        const nama = document.getElementById("namaKonsumen").value.trim() || "Pelanggan";
-        const catatan = document.getElementById("catatan").value.trim();
-        const total = document.getElementById("total-belanja").value;
-        const items = document.querySelectorAll("#daftar-item tr");
-        const o = new Date();
-        const tgl = String(o.getDate()).padStart(2, "0") + "/" + String(o.getMonth() + 1).padStart(2, "0") + "/" + o.getFullYear();
-        const jam = String(o.getHours()).padStart(2, "0") + ":" + String(o.getMinutes()).padStart(2, "0");
-        const fileDate = String(o.getDate()).padStart(2, "0") + String(o.getMonth() + 1).padStart(2, "0") + String(o.getFullYear()).slice(-2) + "-" + String(o.getHours()).padStart(2, "0") + String(o.getMinutes()).padStart(2, "0");
-        let itemsHtml = '';
-        items.forEach(tr => {
-          const nBarang = tr.querySelector("td:nth-child(2) input").value;
-          const qty = tr.querySelector(".jumlah").value;
-          const hargaSatuan = tr.querySelector(".harga").value; // Mengambil harga per unit
-          const sub = tr.querySelector(".subtotal").value;
-          itemsHtml += `
- <tr style="border-bottom: 1px solid #eee;"><td style="padding: 8px 0 0 0; vertical-align: top;"><div style="font-weight: bold; font-size: 13px;">${nBarang}</div><div style="font-size: 11px; color: #555; margin-bottom: 8px;">${qty} x ${hargaSatuan}</div></td><td style="width: 5%; text-align: center; vertical-align: middle;">:</td><td style="text-align: right; width: 40%; vertical-align: middle; font-weight: bold;">
- ${sub}
- </td></tr>`;
-        });
-        const content = `
- <div class="nota-header"><h3>LAUNDRY BERKAH</h3><p style="font-size:11px; margin: 5px 0;">Balikpapan</p></div><div class="nota-info">
- Tggl : ${tgl} - ${jam}<br>
- Nama : ${nama}
- </div><table class="nota-table"><thead><tr style="border-bottom: 2px solid #000;"></tr></thead><tbody>
- ${itemsHtml}
- </tbody></table><div class="nota-footer"><div class="total-row"><span>TOTAL:</span><span>Rp ${total}</span></div>
- ${catatan ? `<div class="catatan-struk">Ket: ${catatan}</div>` : ''}
- <p style="text-align:center; margin-top:15px; font-size:11px;"><b>* TERIMA KASIH <b>*</p></div>`;
-        const p = document.getElementById("nota-summary");
-        p.innerHTML = content;
-        html2canvas(p, {
-          scale: 3,
-          useCORS: true,
-          backgroundColor: "#ffffff",
-          width: 300, // Kunci lebar elemen
-          windowWidth: 300, // Kunci lebar viewport virtual
-          onclone: (clonedDoc) => {
-            // Memastikan elemen yang dikloning terlihat saat dipotret
-            clonedDoc.getElementById("nota-summary").style.left = "0";
-          }
-        }).then(canvas => {
-          const link = document.createElement("a");
-          link.download = `${fileDate}-${nama.replace(/\s+/g, "_")}.webp`;
-          link.href = canvas.toDataURL("image/webp", 0.9);
-          link.click();
-          // Opsional: bersihkan innerHTML setelah export
-          p.innerHTML = "";
-        });
-      }
-      function simpanKeLocalStorage() {
-        const data = {
-          namaKonsumen: document.getElementById("namaKonsumen").value,
-          catatan: document.getElementById("catatan").value,
-          gunakanDiskon: document.getElementById("toggleDiskon").checked,
-          items: Array.from(document.querySelectorAll("#daftar-item tr")).map(tr => ({
-            nama: tr.querySelector("td:nth-child(2) input").value,
-            jumlah: tr.querySelector(".jumlah").value,
-            harga: tr.querySelector(".harga").value,
-            diskon: tr.querySelector(".diskon") ? tr.querySelector(".diskon").value : "",
-            subtotal: tr.querySelector(".subtotal").value
-          }))
-        };
-        localStorage.setItem("notaBelanja", JSON.stringify(data));
-      }
-      function muatDariLocalStorage() {
-        const data = JSON.parse(localStorage.getItem("notaBelanja"));
-        if (!data) return tambahBaris();
-        document.getElementById("namaKonsumen").value = data.namaKonsumen || "";
-        document.getElementById("catatan").value = data.catatan || "";
-        document.getElementById("toggleDiskon").checked = data.gunakanDiskon || false;
-        data.items.forEach(i => tambahBaris(i));
-        toggleKolomDiskon();
-        hitungTotal();
-      }
-      function resetForm() {
-        localStorage.removeItem("notaBelanja");
-        document.getElementById("namaKonsumen").value = "";
-        document.getElementById("catatan").value = "";
-        document.getElementById("toggleDiskon").checked = false;
-        document.getElementById("daftar-item").innerHTML = "";
-        tambahBaris();
-        document.getElementById("total-belanja").value = "0";
-      }
-      window.addEventListener("load", muatDariLocalStorage);
-    </script>
+      }).then(canvas => {
+        const link = document.createElement("a");
+        link.download = `${fileDate}-${nama.replace(/\s+/g, "_")}.webp`;
+        link.href = canvas.toDataURL("image/webp", 0.9);
+        link.click();
+        p.innerHTML = "";
+      });
+    }
+    function simpanKeLocalStorage() {
+      const data = {
+        namaKonsumen: document.getElementById("namaKonsumen").value,
+        catatan: document.getElementById("catatan").value,
+        gunakanDiskon: document.getElementById("toggleDiskon").checked,
+        items: Array.from(document.querySelectorAll("#daftar-item tr")).map(tr => ({
+          nama: tr.querySelector("td:nth-child(2) input").value,
+          jumlah: tr.querySelector(".jumlah").value,
+          harga: tr.querySelector(".harga").value,
+          diskon: tr.querySelector(".diskon") ? tr.querySelector(".diskon").value : "",
+          subtotal: tr.querySelector(".subtotal").value
+        }))
+      };
+      localStorage.setItem("notaBelanja", JSON.stringify(data));
+    }
+    function muatDariLocalStorage() {
+      const data = JSON.parse(localStorage.getItem("notaBelanja"));
+      if (!data) return tambahBaris();
+      document.getElementById("namaKonsumen").value = data.namaKonsumen || "";
+      document.getElementById("catatan").value = data.catatan || "";
+      document.getElementById("toggleDiskon").checked = data.gunakanDiskon || false;
+      data.items.forEach(i => tambahBaris(i));
+      toggleKolomDiskon();
+      hitungTotal();
+    }
+    function resetForm() {
+      localStorage.removeItem("notaBelanja");
+      document.getElementById("namaKonsumen").value = "";
+      document.getElementById("catatan").value = "";
+      document.getElementById("toggleDiskon").checked = false;
+      document.getElementById("daftar-item").innerHTML = "";
+      tambahBaris();
+      document.getElementById("total-belanja").value = "0";
+    }
+    window.addEventListener("load", muatDariLocalStorage);
+  </script>
 <noscript>minify_oleh_Fakhrul_Rijal</noscript><noscript>srcset_oleh_Fakhrul_Rijal</noscript>
 <script defer="" src="/ext/pemandu.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
