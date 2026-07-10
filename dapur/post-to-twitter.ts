@@ -94,18 +94,35 @@ async function main() {
 	const page = await browser.newPage();
 
 	// 6. Ambil Cookies (Mendukung fallback lokal file atau GitHub Secrets)
-	let cookies;
+	let rawCookies;
 	if (Bun.env.TWITTER_COOKIES) {
-		cookies = JSON.parse(Bun.env.TWITTER_COOKIES);
+		rawCookies = JSON.parse(Bun.env.TWITTER_COOKIES);
 	} else if (fs.existsSync(COOKIES_PATH)) {
 		const cookiesString = fs.readFileSync(COOKIES_PATH, 'utf-8');
-		cookies = JSON.parse(cookiesString);
+		rawCookies = JSON.parse(cookiesString);
 	} else {
 		console.error("❌ Error: Tidak ada cookies Twitter yang ditemukan!");
 		process.exit(1);
 	}
 
-	await page.setCookie(...cookies);
+	// SANITASI COOKIES: Bersihkan atribut yang bikin Puppeteer muntah
+	const cleanCookies = rawCookies.map((cookie: any) => {
+		const sanitized = { ...cookie };
+
+		// Hapus atribut biang kerok
+		delete sanitized.partitionKey;
+
+		// Hapus sameSite jika nilainya tidak valid ('no_restriction', dsb)
+		// Puppeteer biasanya hanya menerima 'Strict', 'Lax', atau 'None'
+		if (sanitized.sameSite && !['Strict', 'Lax', 'None'].includes(sanitized.sameSite)) {
+			delete sanitized.sameSite;
+		}
+
+		return sanitized;
+	});
+
+	// Suntikkan cookies yang sudah bersih
+	await page.setCookie(...cleanCookies);
 
 	// 7. Proses Navigasi dan Pengetikan ke Kotak Tweet X
 	try {
