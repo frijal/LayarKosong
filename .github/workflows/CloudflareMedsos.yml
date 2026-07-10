@@ -66,6 +66,12 @@ on:
         default: false
         type: boolean
 
+      twitter:
+        description: "🐦 Twitter / X Autopost"
+        required: false
+        default: false
+        type: boolean
+
       wordpress:
         description: "🪐 WordPress Planet Autopost"
         required: false
@@ -194,7 +200,17 @@ jobs:
           set -o pipefail
           bun run dapur/post-to-facebook.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
 
-      - name: 🪐 8. WordPress Planet Autopost
+      - name: 🐦 8. Twitter / X Autopost
+        id: twitter
+        if: github.event_name == 'schedule' || inputs.all || inputs.twitter
+        continue-on-error: true
+        env:
+          TWITTER_COOKIES: ${{ secrets.TWITTER_COOKIES }}
+        run: |
+          set -o pipefail
+          bun run dapur/post-to-twitter.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+
+      - name: 🪐 9. WordPress Planet Autopost
         id: wordpress
         if: github.event_name == 'schedule' || inputs.all || inputs.wordpress
         continue-on-error: true
@@ -208,7 +224,7 @@ jobs:
           set -o pipefail
           bun run dapur/post-to-wordpress.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
 
-      - name: 🧡 9. Blogspot Planet Autopost
+      - name: 🧡 10. Blogspot Planet Autopost
         id: blogspot
         if: github.event_name == 'schedule' || inputs.all || inputs.blogspot
         continue-on-error: true
@@ -237,6 +253,7 @@ jobs:
           STATUS_TUMBLR: ${{ steps.tumblr.outcome }}
           STATUS_DISCORD: ${{ steps.discord.outcome }}
           STATUS_FACEBOOK: ${{ steps.facebook.outcome }}
+          STATUS_TWITTER: ${{ steps.twitter.outcome }}
           STATUS_WORDPRESS: ${{ steps.wordpress.outcome }}
           STATUS_BLOGSPOT: ${{ steps.blogspot.outcome }}
         run: |
@@ -324,6 +341,7 @@ jobs:
           MASTODON_TITLE="$(get_last '🚀 Mengirim ke Mastodon: ' 's/.*🚀 Mengirim ke Mastodon: (.*)$/\1/')"
           THREADS_TITLE="$(get_last '🚀 Menyiapkan Threads: ' 's/.*🚀 Menyiapkan Threads: (.*)$/\1/')"
           TUMBLR_TITLE="$(get_last '🚀 Mengirim ke Tumblr: ' 's/.*🚀 Mengirim ke Tumblr: (.*)$/\1/')"
+          TWITTER_TITLE="$(get_last '🚀 Menyiapkan postingan baru ke X: ' 's/.*🚀 Menyiapkan postingan baru ke X: (.*)$/\1/')"
           WORDPRESS_TITLE="$(get_last '🚀 Mengirim Email Post ke WordPress Planet: ' 's/.*🚀 Mengirim Email Post ke WordPress Planet: (.*)$/\1/')"
 
           {
@@ -342,6 +360,7 @@ jobs:
           row "RSS ke Diskusi GitHub 📰" "$STATUS_DISKUSI_RSS"  "$RSS_REPORT"
           row "Threads ⚙️"               "$STATUS_THREADS"      "$THREADS_TITLE"
           row "Tumblr 🎨"                "$STATUS_TUMBLR"       "$TUMBLR_TITLE"
+          row "Twitter / X 🐦"           "$STATUS_TWITTER"      "$TWITTER_TITLE"
           row "WordPress Planet 🪐"      "$STATUS_WORDPRESS"    "$WORDPRESS_TITLE"
 
       # =========================================================
