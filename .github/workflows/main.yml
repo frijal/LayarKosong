@@ -36,7 +36,7 @@ jobs:
         run: bun run dapur/post-to-twitter.ts
 
       - name: 💾 Commit State File (Database)
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "🤖 chore: update history auto-post X"
           # Menargetkan file log spesifik agar repository tetap rapi
