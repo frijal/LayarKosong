@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -62,155 +62,208 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
+    /* =========================================
+       TEMA GELAP (Default)
+       ========================================= */
+    :root {
+      --bg-color: #121212;
+      --primary-text-color: #e0e0e0;
+      --secondary-text-color: #b3b3b3;
+      --accent-color: #bb86fc;
+      --surface-color: #1e1e1e;
+      --border-color: #2c2c2c;
+      --code-bg: #282c34;
+
+      /* Variabel tambahan untuk warna yang sebelumnya hardcoded */
+      --h3-color: #90caf9;
+      --link-hover-color: #f3e5f5;
+    }
+
+    /* =========================================
+       TEMA TERANG (Auto Light Mode)
+       ========================================= */
+    @media (prefers-color-scheme: light) {
       :root {
-        --bg-color: #121212;
-        --primary-text-color: #e0e0e0;
-        --secondary-text-color: #b3b3b3;
-        --accent-color: #bb86fc;
-        --surface-color: #1e1e1e;
-        --border-color: #2c2c2c;
-        --code-bg: #282c34;
+        --bg-color: #f8fafc;
+        --primary-text-color: #1f2937;
+        --secondary-text-color: #4b5563;
+        --accent-color: #7c3aed; /* Ungu gelap agar kontras di latar terang */
+        --surface-color: #ffffff;
+        --border-color: #e5e7eb;
+        --code-bg: #f3f4f6;
+
+        /* Penyesuaian warna tambahan */
+        --h3-color: #2563eb; /* Biru terang ke biru gelap */
+        --link-hover-color: #5b21b6;
       }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-family: 'Poppins', sans-serif;
-        background-color: var(--bg-color);
-        color: var(--primary-text-color);
-        line-height: 1.8;
-        font-size: 16px;
-      }
-      .container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 2rem 1rem;
-      }
-      h1,
-      h2,
-      h3 {
-        color: var(--accent-color);
-        font-weight: 700;
-        margin-bottom: 1rem;
-      }
-      h1 {
-        font-size: 2.5rem;
-        text-align: center;
-        border-bottom: 2px solid var(--border-color);
-        padding-bottom: 1rem;
-        margin-bottom: 2rem;
-      }
-       footer {
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--primary-text-color);
+      line-height: 1.8;
+      font-size: 16px;
+      /* Transisi halus saat sistem berpindah tema */
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--accent-color);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    footer {
       text-align: center;
       padding: 2rem;
-      color: #666;
+      color: var(--secondary-text-color); /* Menggunakan variabel */
       font-size: .9rem;
     }
-      h2 {
+
+    h2 {
+      font-size: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      color: var(--h3-color); /* Menggunakan variabel */
+      border-left: 3px solid var(--accent-color);
+      padding-left: 1rem;
+    }
+
+    p,
+    li {
+      margin-bottom: 1rem;
+      color: var(--secondary-text-color);
+    }
+
+    ul,
+    ol {
+      padding-left: 1.5rem;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: var(--link-hover-color); /* Menggunakan variabel */
+    }
+
+    pre {
+      background-color: var(--code-bg);
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border-color);
+      overflow-x: auto;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      color: var(--primary-text-color);
+      white-space: pre;
+    }
+
+    strong {
+      color: var(--primary-text-color);
+      font-weight: 600;
+    }
+
+    blockquote {
+      border-left: 4px solid var(--accent-color);
+      padding-left: 1rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--secondary-text-color);
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: var(--border-color);
+      margin: 2.5rem 0;
+    }
+
+    .social-share,
+    .comments-section {
+      background-color: var(--surface-color);
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+      border: 1px solid var(--border-color);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .social-share h3,
+    .comments-section h2 {
+      color: var(--primary-text-color);
+      margin: 0 0 1rem 0;
+      padding: 0;
+      border: none;
+    }
+
+    .social-share-icons a {
+      font-size: 2rem;
+      margin-right: 1.5rem;
+      color: var(--secondary-text-color);
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-share-icons a:hover {
+      transform: scale(1.2);
+      color: var(--accent-color);
+    }
+
+    .fb-comments {
+      background: white; /* FB comments umumnya butuh background putih agar pluginnya terlihat jelas */
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      h1 {
         font-size: 2rem;
-        margin-top: 2.5rem;
+      }
+      h2 {
+        font-size: 1.5rem;
       }
       h3 {
-        font-size: 1.5rem;
-        margin-top: 2rem;
-        color: #90caf9;
-        border-left: 3px solid var(--accent-color);
-        padding-left: 1rem;
+        font-size: 1.25rem;
       }
-      p,
-      li {
-        margin-bottom: 1rem;
-        color: var(--secondary-text-color);
+      .container {
+        padding: 1.5rem 1rem;
       }
-      ul,
-      ol {
-        padding-left: 1.5rem;
-      }
-      a {
-        color: var(--accent-color);
-        text-decoration: none;
-        transition: color 0.3s;
-      }
-      a:hover {
-        color: #f3e5f5;
-      }
-      pre {
-        background-color: var(--code-bg);
-        border-radius: 8px;
-        padding: 1rem;
-        margin: 1.5rem 0;
-        border: 1px solid var(--border-color);
-        overflow-x: auto;
-      }
-      code {
-        font-family: 'Fira Code', monospace;
-        color: var(--primary-text-color);
-        white-space: pre; /* Menggunakan 'pre' agar tidak wrap di dalam <pre> */
-      }
-      strong {
-        color: var(--primary-text-color);
-        font-weight: 600;
-      }
-      blockquote {
-        border-left: 4px solid var(--accent-color);
-        padding-left: 1rem;
-        margin: 1.5rem 0;
-        font-style: italic;
-        color: var(--secondary-text-color);
-      }
-      hr {
-        border: 0;
-        height: 1px;
-        background: var(--border-color);
-        margin: 2.5rem 0;
-      }
-      .social-share,
-      .comments-section {
-        background-color: var(--surface-color);
-        padding: 1.5rem;
-        border-radius: 12px;
-        margin-top: 2rem;
-        border: 1px solid var(--border-color);
-      }
-      .social-share h3,
-      .comments-section h2 {
-        color: var(--primary-text-color);
-        margin: 0 0 1rem 0;
-        padding: 0;
-        border: none;
-      }
-      .social-share-icons a {
-        font-size: 2rem;
-        margin-right: 1.5rem;
-        color: var(--secondary-text-color);
-        transition: color 0.3s, transform 0.3s;
-      }
-      .social-share-icons a:hover {
-        transform: scale(1.2);
-        color: var(--accent-color);
-      }
-      .fb-comments {
-        background: white;
-        border-radius: 12px;
-        padding: 1rem;
-      }
-      @media screen and (max-width: 768px) {
-        h1 {
-          font-size: 2rem;
-        }
-        h2 {
-          font-size: 1.5rem;
-        }
-        h3 {
-          font-size: 1.25rem;
-        }
-        .container {
-          padding: 1.5rem 1rem;
-        }
-      }
-    </style>
+    }
+  </style>
 <meta name="ai:summary" content="mengatasi suara speaker yang">
 <meta name="ai:prompt_hint" content="mengatasi suara speaker yang">
 <link rel="stylesheet" href="/ext/pemandu.css"></head>
