@@ -1,93 +1,151 @@
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
-import Parser from 'rss-parser';
-import * as fs from 'fs';
-import * as path from 'path'; // Tambahkan modul path
+import fs from 'node:fs';
+import path from 'node:path';
 
 puppeteer.use(StealthPlugin());
-const parser = new Parser();
 
-// Konfigurasi Baru
-const RSS_URL = 'https://dalam.web.id/feed';
-const LOG_FILE = 'mini/posted-twitter.txt'; // Path baru
+// --- CONFIG ---
+const JSON_FILE = "artikel.json";
+const DATABASE_FILE = "mini/posted-twitter.txt";
+const DOMAIN_URL = "https://dalam.web.id";
+const COOKIES_PATH = "./twitter_cookies.json"; // Jika lokal, atau dibaca via GitHub Secrets
+
+function slugify(text: string) {
+	if (!text) return "";
+	return String(text).trim().toLowerCase().replace(/\s+/g, "-");
+}
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-async function runAutoPoster() {
-    try {
-        // 1. Ambil Artikel Terbaru
-        let feed = await parser.parseURL(RSS_URL);
-        if (feed.items.length === 0) return;
+async function main() {
+	// 1. Validasi File Artikel
+	if (!fs.existsSync(JSON_FILE)) {
+		console.error("❌ Error: artikel.json tidak ditemukan");
+		process.exit(1);
+	}
 
-        const latestPost = feed.items[0];
-        const postText = `Ada artikel baru nih: ${latestPost.title}\n\nLangsung sikat di sini 👇\n${latestPost.link}`;
+	// 2. Load Data menggunakan Bun.file
+	const data = await Bun.file(JSON_FILE).json();
 
-        // 2. Cek riwayat postingan (File ini nanti akan di-commit balik oleh GitHub Actions)
-        if (fs.existsSync(LOG_FILE)) {
-            const lastUrl = fs.readFileSync(LOG_FILE, 'utf-8');
-            if (lastUrl === latestPost.link) {
-                console.log('✅ Artikel ini sudah diposting sebelumnya. Skip.');
-                return;
-            }
-        }
+	let postedDatabase = "";
+	if (fs.existsSync(DATABASE_FILE)) {
+		postedDatabase = await Bun.file(DATABASE_FILE).text();
+	}
 
-        console.log(`🚀 Menyiapkan postingan baru: ${latestPost.title}`);
+	// 3. Filter Artikel Baru
+	const allPosts = [];
+	for (const [categoryName, posts] of Object.entries(data || {})) {
+		const catSlug = slugify(categoryName);
+		if (!Array.isArray(posts)) continue;
 
-        // 3. Baca Cookies dari Environment Variables (GitHub Secrets)
-        const cookiesEnv = process.env.TWITTER_COOKIES;
-        if (!cookiesEnv) {
-            throw new Error('❌ Secret TWITTER_COOKIES belum diset!');
-        }
-        const cookies = JSON.parse(cookiesEnv);
+		for (const post of posts) {
+			const fileName = String(post[1] ?? "").trim();
+			const fileSlug = fileName.replace(/\.html$/i, "").replace(/\//g, "");
 
-        // 4. Eksekusi Browser Headless
-        const browser = await puppeteer.launch({
-            headless: true,
-            // Argumen wajib untuk GitHub Actions (Ubuntu Environment)
-            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
-        });
-        const page = await browser.newPage();
+			// Lewati agregat
+			if (fileSlug.startsWith("agregat-20")) continue;
 
-        // 5. Inject Cookies
-        await page.setCookie(...cookies);
+			const fullUrl = `${DOMAIN_URL}/${catSlug}/${fileSlug}`;
 
-        // 6. Masuk ke halaman Compose
-        await page.goto('https://x.com/compose/tweet', { waitUntil: 'networkidle2' });
-        await delay(3000);
+			if (!postedDatabase.includes(fileSlug)) {
+				allPosts.push({
+					title: post[0] ?? "Untitled",
+					slug: fileSlug,
+					url: fullUrl,
+					image_url: post[2] ?? "",
+					date: post[3] ?? "",
+					desc: post[4] ?? "Archive.",
+					category: categoryName,
+				});
+			}
+		}
+	}
 
-        // 7. Mengetik ala manusia
-        const textBoxSelector = '[data-testid="tweetTextarea_0"]';
-        await page.waitForSelector(textBoxSelector);
-        await page.click(textBoxSelector);
-        await page.type(textBoxSelector, postText, { delay: 120 });
+	// Sorting Berdasarkan Tanggal Terbaru
+	allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-        await delay(2000);
+	if (allPosts.length === 0) {
+		console.log("✅ Tidak ada artikel baru untuk X (Twitter).");
+		return;
+	}
 
-        // 8. Klik Post
-        const postButtonSelector = '[data-testid="tweetButton"]';
-        await page.waitForSelector(postButtonSelector);
-        await page.click(postButtonSelector);
+	const targetPost = allPosts[0];
 
-		console.log('🎉 Cuitan berhasil dikirim!');
+	// 4. Kalkulasi Format Teks Tahan Banting (Anti Over-character di X)
+	// Max 280, URL X selalu dihitung 23 karakter, template teks bawaan memakan ~30 karakter
+	const maxTextLength = 280 - 23 - 30;
+	let cleanDesc = targetPost.desc;
 
-		// 9. Update state lokal untuk di-commit oleh GitHub Actions
-		await delay(5000);
+	if (cleanDesc.length > maxTextLength) {
+		cleanDesc = cleanDesc.slice(0, maxTextLength - 3) + "...";
+	}
 
-		// Cek dan buat folder 'mini' jika belum ada
-		const logDir = path.dirname(LOG_FILE);
+	// Template Postingan Akhir
+	const postText = `✍️ ${targetPost.title}\n\n"${cleanDesc}"\n\nBaca selengkapnya di sini 👇\n${targetPost.url}`;
+
+	console.log(`🚀 Menyiapkan postingan baru ke X: ${targetPost.title}`);
+
+	// 5. Eksekusi Browser Headless via Puppeteer Stealth
+	const browser = await puppeteer.launch({
+		headless: true,
+		args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+	});
+	const page = await browser.newPage();
+
+	// 6. Ambil Cookies (Mendukung fallback lokal file atau GitHub Secrets)
+	let cookies;
+	if (Bun.env.TWITTER_COOKIES) {
+		cookies = JSON.parse(Bun.env.TWITTER_COOKIES);
+	} else if (fs.existsSync(COOKIES_PATH)) {
+		const cookiesString = fs.readFileSync(COOKIES_PATH, 'utf-8');
+		cookies = JSON.parse(cookiesString);
+	} else {
+		console.error("❌ Error: Tidak ada cookies Twitter yang ditemukan!");
+		process.exit(1);
+	}
+
+	await page.setCookie(...cookies);
+
+	// 7. Proses Navigasi dan Pengetikan ke Kotak Tweet X
+	try {
+		await page.goto('https://x.com/compose/tweet', { waitUntil: 'networkidle2' });
+		await delay(4000); // Jeda aman tunggu React merender halaman
+
+		const textBoxSelector = '[data-testid="tweetTextarea_0"]';
+		await page.waitForSelector(textBoxSelector, { timeout: 15000 });
+		await page.click(textBoxSelector);
+
+		// Ngetik lambat biar dikira manusia asli, bukan bot kilat
+		await page.type(textBoxSelector, postText, { delay: 100 });
+		await delay(2000);
+
+		// Klik tombol post
+		const postButtonSelector = '[data-testid="tweetButton"]';
+		await page.waitForSelector(postButtonSelector);
+		await page.click(postButtonSelector);
+
+		console.log(`🎉 Berhasil mencuitkan: ${targetPost.title}`);
+		await delay(5000); // Tunggu jaringan menyelesaikan pengiriman payload
+
+		// 8. Tulis ke Database lokal (mini/posted-twitter.txt)
+		const logDir = path.dirname(DATABASE_FILE);
 		if (!fs.existsSync(logDir)) {
 			fs.mkdirSync(logDir, { recursive: true });
 		}
+		fs.appendFileSync(DATABASE_FILE, `${targetPost.slug}\n`);
 
-		// Tulis file ke dalam folder mini/
-		fs.writeFileSync(LOG_FILE, latestPost.link);
+		// Output opsional untuk GitHub Actions pipeline
+		if (Bun.env.GITHUB_OUTPUT) {
+			fs.appendFileSync(Bun.env.GITHUB_OUTPUT, `x_url=${targetPost.url}\n`);
+		}
 
-		await browser.close();
-
-	} catch (error) {
-		console.error('❌ Terjadi kesalahan:', error);
+	} catch (err: any) {
+		console.error("❌ Gagal mengirim ke X:", err.message);
 		process.exit(1);
+	} finally {
+		await browser.close();
 	}
 }
 
-runAutoPoster();
+main();
