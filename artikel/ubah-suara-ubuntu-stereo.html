@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -57,7 +57,10 @@
     <meta property="article:published_time" content="2016-03-14T07:14:51.972Z">
     <meta property="article:modified_time" content="2018-01-12T09:15:46.153Z">
 <link href="/ext/vs-dark.min.css" rel="stylesheet">
-    <style>
+   <style>
+        /* =========================================
+           TEMA GELAP (Default Bawaan)
+           ========================================= */
         :root {
             --bg: #0b1220;
             --fg: #e7ecff;
@@ -68,41 +71,226 @@
             --border: #121c3d;
             --shadow: 0 10px 30px rgba(0,0,0,.35);
             --maxw: 900px;
+
+            /* Variabel baru untuk menampung warna yang sebelumnya hardcoded */
+            --header-bg: rgba(11, 18, 32, 0.7);
+            --btn-bg: #121c3d;
+            --btn-hover: #1a2b5a;
+            --lightbox-bg: rgba(11, 18, 32, 0.9);
         }
+
+        /* =========================================
+           TEMA TERANG (Auto Light Mode)
+           ========================================= */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f8fafc;
+                --fg: #0f172a;
+                --muted: #64748b;
+                /* Warna aksen sedikit digelapkan agar tidak silau dan tetap terbaca di background putih */
+                --accent: #0284c7;
+                --accent-2: #db2777;
+                --card: #ffffff;
+                --border: #e2e8f0;
+                --shadow: 0 10px 30px rgba(0,0,0,.08);
+
+                --header-bg: rgba(248, 250, 252, 0.85);
+                --btn-bg: #e2e8f0;
+                --btn-hover: #cbd5e1;
+                /* Lightbox dibiarkan gelap agar fokus mata tetap tertuju pada gambar */
+                --lightbox-bg: rgba(0, 0, 0, 0.85);
+            }
+        }
+
+        /* =========================================
+           BASE STYLES & TRANSITIONS
+           ========================================= */
         html, body {
-            background: var(--bg); color: var(--fg);
+            background: var(--bg);
+            color: var(--fg);
             font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            margin: 0; scroll-behavior: smooth;
+            margin: 0;
+            scroll-behavior: smooth;
+            /* Transisi mulus saat sistem berpindah tema */
+            transition: background 0.3s ease, color 0.3s ease;
         }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        img { max-width: 100%; height: auto; border-radius: 8px; }
-        .wrap { min-height: 100vh; display: flex; flex-direction: column; }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .wrap {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
         header.site {
-            padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
-            background: rgba(11, 18, 32, 0.7); backdrop-filter: blur(8px);
-            position: sticky; top: 0; z-index: 10;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            background: var(--header-bg);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
-        .brand { font-weight: bold; font-size: 1.2rem; }
-        main { display: flex; justify-content: center; padding: 2rem 1rem 4rem; flex-grow: 1; }
-        .col { width: 100%; max-width: var(--maxw); }
-        article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 2rem; }
-        article h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.2; margin: 0 0 10px; color: var(--accent-2); }
-        article h2 { font-size: 1.5rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-        .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
-        .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
-        .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #121c3d; color: var(--fg); cursor: pointer; text-decoration: none; }
-        .btn-share:hover { background: #1a2b5a; }
-        figure { margin: 1.5rem 0; text-align: center; }
-        figure img { cursor: zoom-in; }
-        .lightbox { position: fixed; inset: 0; background: rgba(11,18,32,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
-        .lightbox.open { display: flex; }
-        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; }
-        pre[class*="language-"] { position: relative; padding: 1.25rem; border-radius: 8px; margin-top: 1rem; }
-        code { font-family: 'Fira Code', 'Consolas', monospace; }
-        .copy-btn { position: absolute; top: 12px; right: 12px; background: #121c3d; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
-        .copy-btn:hover { background: var(--accent); }
-        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
+
+        .brand {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem 4rem;
+            flex-grow: 1;
+        }
+
+        .col {
+            width: 100%;
+            max-width: var(--maxw);
+        }
+
+        article {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        article h1 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            line-height: 1.2;
+            margin: 0 0 10px;
+            color: var(--accent-2);
+            transition: color 0.3s ease;
+        }
+
+        article h2 {
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .lead {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .share-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+
+        .btn-share {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: var(--btn-bg);
+            color: var(--fg);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-share:hover {
+            background: var(--btn-hover);
+        }
+
+        figure {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        figure img {
+            cursor: zoom-in;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: var(--lightbox-bg);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 92vw;
+            max-height: 88vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        pre[class*="language-"] {
+            position: relative;
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--btn-bg);
+            border: none;
+            color: var(--fg);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        footer.site {
+            padding: 1.5rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
     </style>
 <meta name="ai:summary" content="Masih suka suara Ubuntu atau ingin menggantinya dengan audio buatan sendiri? Panduan mudah: lokasi folder stereo, langkah aman mengganti bunyi, dan contoh.">
 <meta name="ai:prompt_hint" content="Masih suka suara Ubuntu atau ingin menggantinya dengan audio buatan sendiri? Panduan mudah: lokasi folder stereo, langkah aman mengganti bunyi, dan contoh.">
@@ -118,7 +306,7 @@
                     <h1>Ubah Suara Sistem Ubuntu dengan Audio Buatan Sendiri</h1>
                     <p class="lead">Bosan dengan suara notifikasi bawaan Ubuntu? Anda bisa menggantinya dengan file audio Anda sendiri. Prosesnya mudah dan hanya memerlukan beberapa langkah di terminal.</p>
                     <figure>
-                        <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGhw5w-3S9kqFPG3RLJtFVZsx-4N4vpKMINcTd7Kvsg4-7n6ewAEV_HRX6aTfFUXaI4DbSzWEfOaLK67wtmhoClHTG4rWq2Q3T4f_VJ6EAKzdx-fl8OAxdyMEUhsOVNUAmoboKos_13Yhf/s16000/Batu-Ampar_007.webp" alt="Ilustrasi kustomisasi audio">
+                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGhw5w-3S9kqFPG3RLJtFVZsx-4N4vpKMINcTd7Kvsg4-7n6ewAEV_HRX6aTfFUXaI4DbSzWEfOaLK67wtmhoClHTG4rWq2Q3T4f_VJ6EAKzdx-fl8OAxdyMEUhsOVNUAmoboKos_13Yhf/s16000/Batu-Ampar_007.webp" alt="Ilustrasi kustomisasi audio">
                     </figure>
                     <h2>Langkah Aman Mengganti Suara Sistem</h2>
                     <h3>1. Temukan Folder Tema Suara</h3>
