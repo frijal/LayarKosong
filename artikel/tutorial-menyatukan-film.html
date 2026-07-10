@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -58,52 +58,125 @@
     <meta property="article:modified_time" content="2011-11-08T07:20:38.000Z">
 <link href="/ext/vs-dark.min.css" rel="stylesheet">
     <!-- Styles: 1 kolom, dark theme -->
-    <style>
+   <style>
+        /* =========================================
+           TEMA GELAP (Default Bawaan)
+           ========================================= */
         :root {
             --bg: #1a212e;
             --fg: #f3f6fa;
             --muted: #a8b0bb;
-            --accent: #d35400; /* Orange from original */
+            --accent: #d35400; /* Orange dari original */
             --accent-2: #e67e22;
             --card: #222f3e;
             --border: #3e4e58;
             --shadow: 0 10px 30px rgba(0,0,0,.35);
             --maxw: 900px;
+
+            /* Ekstra variabel untuk warna yang sebelumnya hardcoded */
+            --header-bg: rgba(26, 33, 46, 0.7);
+            --btn-bg: #3e4e58;
+            --btn-hover: #4a5568;
+            --lightbox-bg: rgba(26, 33, 46, 0.9);
         }
+
+        /* =========================================
+           TEMA TERANG (Auto Light Mode)
+           ========================================= */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f8fafc;
+                --fg: #1e293b; /* Biru sangat gelap agar tidak hitam pekat */
+                --muted: #64748b;
+                --accent: #c0392b; /* Dibuat sedikit lebih gelap agar kontras di latar putih */
+                --accent-2: #d35400;
+                --card: #ffffff;
+                --border: #e2e8f0;
+                --shadow: 0 8px 30px rgba(0,0,0,.08); /* Bayangan lebih soft */
+
+                --header-bg: rgba(248, 250, 252, 0.8);
+                --btn-bg: #f1f5f9;
+                --btn-hover: #e2e8f0;
+                --lightbox-bg: rgba(0, 0, 0, 0.9); /* Lightbox biasanya tetap gelap di light mode */
+            }
+        }
+
         html, body {
             background: var(--bg); color: var(--fg);
             font: 16px/1.7 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
             margin: 0; scroll-behavior: smooth;
+            transition: background 0.3s ease, color 0.3s ease; /* Transisi smooth saat ganti tema */
         }
-        a { color: var(--accent); text-decoration: none; }
+
+        a { color: var(--accent); text-decoration: none; transition: color 0.3s ease; }
         a:hover { text-decoration: underline; }
+
         img { max-width: 100%; height: auto; border-radius: 8px; }
+
         .wrap { min-height: 100vh; display: flex; flex-direction: column; }
+
         header.site {
             padding: 1rem 1.5rem; border-bottom: 1px solid var(--border);
-            background: rgba(26, 33, 46, 0.7); backdrop-filter: blur(8px);
+            background: var(--header-bg); backdrop-filter: blur(8px);
             position: sticky; top: 0; z-index: 10;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
+
         .brand { font-weight: bold; font-size: 1.2rem; }
+
         main { display: flex; justify-content: center; padding: 2rem 1rem 4rem; flex-grow: 1; }
+
         .col { width: 100%; max-width: var(--maxw); }
-        article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 2rem; }
+
+        article {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 14px; box-shadow: var(--shadow); padding: 2rem;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
         article h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.2; margin: 0 0 10px; color: var(--accent); }
         article h2 { font-size: 1.5rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+
         .lead { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
+
         .share-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 1.5rem 0; }
-        .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #3e4e58; color: var(--fg); cursor: pointer; text-decoration: none; }
-        .btn-share:hover { background: #4a5568; }
+
+        .btn-share {
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+            border-radius: 999px; border: 1px solid var(--border);
+            background: var(--btn-bg); color: var(--fg); cursor: pointer; text-decoration: none;
+            transition: background 0.2s ease, border-color 0.3s ease;
+        }
+
+        .btn-share:hover { background: var(--btn-hover); }
+
         figure { margin: 1.5rem 0; text-align: center; }
         figure img { cursor: zoom-in; }
-        .lightbox { position: fixed; inset: 0; background: rgba(26,33,46,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
+
+        .lightbox {
+            position: fixed; inset: 0; background: var(--lightbox-bg);
+            display: none; align-items: center; justify-content: center; z-index: 9999;
+        }
         .lightbox.open { display: flex; }
-        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; }
+        .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+
         pre[class*="language-"] { position: relative; padding: 1.25rem; border-radius: 8px; margin-top: 1rem; }
         code { font-family: 'Fira Code', 'Consolas', monospace; }
-        .copy-btn { position: absolute; top: 12px; right: 12px; background: #3e4e58; border: none; color: var(--fg); padding: 5px 10px; border-radius: 5px; font-size: 12px; cursor: pointer; }
-        .copy-btn:hover { background: var(--accent); }
-        footer.site { padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border); text-align: center; }
+
+        .copy-btn {
+            position: absolute; top: 12px; right: 12px;
+            background: var(--btn-bg); border: 1px solid var(--border);
+            color: var(--fg); padding: 5px 10px; border-radius: 5px;
+            font-size: 12px; cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+        footer.site {
+            padding: 1.5rem; color: var(--muted); border-top: 1px solid var(--border);
+            text-align: center; transition: border-color 0.3s ease, color 0.3s ease;
+        }
     </style>
 <meta name="ai:summary" content="menyatukan pecahan berkas film (.001, .002, .part1) menggunakan perintah cat di Linux. Disertai screenshot dan langkah detail.">
 <meta name="ai:prompt_hint" content="menyatukan pecahan berkas film (.001, .002, .part1) menggunakan perintah cat di Linux. Disertai screenshot dan langkah detail.">
@@ -121,7 +194,7 @@
                     <h2>Contoh Kasus</h2>
                     <p>Bayangkan Anda memiliki beberapa file seperti di bawah ini dalam satu folder:</p>
                     <figure>
-                        <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWVeSADIzXfXQOQ1ZrdKvbiGdwGh3vWweZa1Qu2sSvlsT5us3fjPPD7TlFjgDsV3H0VtDOQlOHCGzV8zK2oawnfe5ZAfLcvDpryFza2wrUu0C9fkgJqin7I-G5R7jOUjoFLpwqsDw-XsDA/s1600/screenshotpleasegive201.webp" alt="Contoh folder dengan file film yang terpecah">
+                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWVeSADIzXfXQOQ1ZrdKvbiGdwGh3vWweZa1Qu2sSvlsT5us3fjPPD7TlFjgDsV3H0VtDOQlOHCGzV8zK2oawnfe5ZAfLcvDpryFza2wrUu0C9fkgJqin7I-G5R7jOUjoFLpwqsDw-XsDA/s1600/screenshotpleasegive201.webp" alt="Contoh folder dengan file film yang terpecah">
                     </figure>
                     <h2>Langkah Penyatuan</h2>
                     <p>Prosesnya sangat sederhana:</p>
@@ -130,7 +203,7 @@
                         <li>Gunakan perintah <code>cat</code>, sebutkan semua nama file secara berurutan, dan arahkan outputnya ke satu file baru menggunakan simbol <code>&gt;</code>.</li>
                     </ol>
                     <figure>
-                        <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhExaj0xB91zfd3dglMaubSsMl8gnaRwC0JjqLFZCJl2X3_zzD15pWCP6Xkqha67muKM_wqRKDvAXYlDhRj1tLpVXTcYh8iK52Q0Xfwy4MpT_wTsm9yx3TxKiQkWSS3ysDHlYSUp5yRBpel/s1600/screenshotsupivideosple.webp" alt="Perintah cat di terminal untuk menyatukan file">
+                        <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhExaj0xB91zfd3dglMaubSsMl8gnaRwC0JjqLFZCJl2X3_zzD15pWCP6Xkqha67muKM_wqRKDvAXYlDhRj1tLpVXTcYh8iK52Q0Xfwy4MpT_wTsm9yx3TxKiQkWSS3ysDHlYSUp5yRBpel/s1600/screenshotsupivideosple.webp" alt="Perintah cat di terminal untuk menyatukan file">
                     </figure>
                     <h2>Contoh Perintah</h2>
                     <pre class="language-bash"><code id="code1">cat film.part1.avi film.part2.avi film.part3.avi &gt; film-lengkap.avi</code><button class="copy-btn" data-target="code1">Salin</button></pre>
