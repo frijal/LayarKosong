@@ -51,6 +51,7 @@ coverage/
 
 # --- 🎨 Assets & Drafts (Custom Patterns) ---
 *.bak.html
+*-bak.html
 *.draft.html
 *.preview.html
 *.snapshot.html
@@ -61,4 +62,3 @@ pattern-*.svg
 # Rust
 rust-tools/target/
 /target
-node_modules/
