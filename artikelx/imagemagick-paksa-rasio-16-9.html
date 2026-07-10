@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ImageMagick: Trik Memaksa Gambar Jadi Rasio 16:9 (Bash)</title>
+
+  <meta name="description" content="Panduan teknis menggunakan ImageMagick dan Bash script untuk memaksa ukuran gambar menjadi rasio 16:9 secara otomatis dengan mode crop atau pad.">
+  <meta property="og:description" content="Bingung mengubah ukuran banyak foto untuk thumbnail? Pelajari cara cepat memaksa gambar ke rasio 16:9 menggunakan script otomatis dari ImageMagick.">
+  <meta name="twitter:description" content="Trik terminal cerdas buat web developer! Gunakan ImageMagick untuk mengubah ukuran massal gambar ke rasio 16:9 tanpa repot. Cek script bash otomatisnya di sini.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ImageMagick: Trik Memaksa Gambar Jadi Rasio 16:9 (Bash)">
+  <meta property="og:url" content="https://dalam.web.id/artikel/imagemagick-paksa-rasio-16-9.html">
+  <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/8c5adaddffcbbea9.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ImageMagick: Trik Memaksa Gambar Jadi Rasio 16:9 (Bash)">
+  <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/8c5adaddffcbbea9.webp">
+
+  <link rel="canonical" href="https://dalam.web.id/artikel/imagemagick-paksa-rasio-16-9.html">
+
+  <meta name="news_keywords" content="ImageMagick, Bash Script, Resize Image, Rasio 16:9, Web Development, Linux Terminal">
+  <meta property="article:tag" content="Tutorial, Programming, Linux, Image Processing">
+
+  <meta name="promphint" content="Bagaimana cara memaksa gambar menjadi rasio 16:9 menggunakan ImageMagick? | Gunakan perintah magick dengan parameter -resize, -gravity center, dan -extent untuk memotong (crop) atau menambah ruang kosong (pad) pada gambar secara otomatis melalui skrip bash.">
+
+  <!-- Highlight.js CSS Load -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+   <meta property="article:published_time" content="2014-05-14T16:32:56.000Z">
+    <meta property="article:modified_time" content="2021-01-08T02:19:08.490Z">
+  <style>
+    /* CSS Variables & Pendekatan Mobile-First / Auto Dark Mode */
+    :root {
+      /* Jarak aman tepi layar default mobile */
+      --screen-padding: 1rem;
+      --nested-padding: 0rem;
+
+      /* Palette Terang (Default) */
+      --bg-color: #f8fafc;
+      --text-main: #334155;
+      --text-muted: #64748b;
+      --heading-color: #0f172a;
+      --accent-color: #3b82f6;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --code-bg: #0d1117;
+    }
+
+    /* Deteksi Preferensi Mode Gelap dari Sistem */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #0f172a;
+        --text-main: #cbd5e1;
+        --text-muted: #94a3b8;
+        --heading-color: #f8fafc;
+        --accent-color: #60a5fa;
+        --card-bg: #1e293b;
+        --border-color: #334155;
+      }
+    }
+
+    /* Penyesuaian Ruang di Desktop (Anti Padding Inception) */
+    @media (min-width: 1024px) {
+      :root {
+        --screen-padding: 2.5rem;
+        --nested-padding: 1.5rem;
+      }
+    }
+
+    /* Reset Dasar & Tipografi */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
+
+    /* Container Utama */
+    .container {
+      width: min(100%, 64rem);
+      margin: 0 auto;
+      padding-inline: var(--screen-padding);
+      padding-block: 2rem;
+    }
+
+    /* Elemen Teks & Heading */
+    h1, h2, h3 {
+      color: var(--heading-color);
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 2.2rem; margin-top: 1rem; }
+    h2 { font-size: 1.6rem; margin-top: 2.5rem; }
+    h3 { font-size: 1.3rem; margin-top: 1.8rem; }
+    p { margin-bottom: 1.25rem; }
+    a { color: var(--accent-color); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+
+    /* Gambar */
+    img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-block: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Accordion (Details & Summary) */
+    details {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+      margin-block: 2rem;
+      padding-inline: var(--nested-padding);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    summary {
+      cursor: pointer;
+      padding-block: 1rem;
+      padding-inline: 1.5rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      background-color: rgba(0, 0, 0, 0.02);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      summary { background-color: rgba(255, 255, 255, 0.03); }
+    }
+    summary:hover { background-color: rgba(0, 0, 0, 0.05); }
+    @media (prefers-color-scheme: dark) {
+      summary:hover { background-color: rgba(255, 255, 255, 0.06); }
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "▼";
+      color: var(--accent-color);
+      font-size: 0.9rem;
+      transition: transform 0.3s ease;
+    }
+    details[open] summary::after { transform: rotate(180deg); }
+    summary h2 { margin: 0; font-size: 1.4rem; }
+
+    .details-content {
+      padding-block: 1.5rem;
+      padding-inline: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Efek Melebur di Mobile */
+    @media (max-width: 640px) {
+      details {
+        background: transparent;
+        border: none;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        padding-inline: 0;
+      }
+      summary { padding-inline: 0; background: transparent; }
+      .details-content { padding-inline: 0; }
+    }
+
+    /* Blok Kode */
+    pre {
+      background-color: var(--code-bg);
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.95rem;
+    }
+    :not(pre) > code {
+      background-color: rgba(128, 128, 128, 0.15);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-size: 0.9em;
+      color: var(--accent-color);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .footer-meta span { display: inline-block; margin: 0 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main>
+      <article>
+        <header>
+          <h1>🧠 Tips Terminal: Memaksa Gambar Jadi Rasio 16:9</h1>
+          <p>Nggak perlu pusing <i>resize</i> satu-satu. Gunakan kekuatan ImageMagick dan script Bash untuk memotong (crop) atau memberi bantalan (pad) pada ribuan gambar sekaligus agar pas jadi rasio 16:9.</p>
+        </header>
+
+        <p>Bagi Anda yang sering berkutat dengan konten digital, pasti paham betapa menyebalkannya mengelola aset gambar dengan dimensi yang berantakan. Mulai dari urusan *thumbnail* video YouTube, gambar sampul artikel blog, hingga metadata *Open Graph* untuk media sosial, rasio 16:9 sudah menjadi standar wajib yang tidak bisa diganggu gugat. Kalau rasionya meleset sedikit saja, gambar Anda bisa terlihat terpotong di posisi yang aneh atau malah jadi gepeng karena ditarik paksa oleh CSS situs web.</p>
+
+        <p>Biasanya, solusi paling instan adalah membuka *software* pengolah gambar yang berat, lalu memotong area kanvasnya satu per satu. Tapi jujur saja, itu buang-buang waktu banget kalau Anda harus menangani ratusan *file*. Untungnya, sebagai *developer* atau pengguna Linux/macOS, Anda punya senjata rahasia di dalam terminal kesayangan Anda: <b>ImageMagick</b>.</p>
+
+        <img src="https://dalam.web.id/img/raw.githubusercontent.com/8c5adaddffcbbea9.webp"
+             alt="Ilustrasi layar terminal memproses gambar menjadi ukuran rasio 16:9 menggunakan perintah ImageMagick"
+             width="800"
+             height="450"
+             fetchpriority="high"
+             decoding="async">
+
+        <p>Dengan alat baris perintah yang super sakti ini, kita bisa memaksa ukuran sekumpulan gambar agar memiliki rasio 16:9 secara presisi dan instan. Menariknya lagi, kita bisa memilih antara dua pendekatan yang berbeda: apakah gambar tersebut ingin kita <b>crop</b> (potong area luarnya agar pas 16:9) atau kita <b>pad</b> (tambahkan ruang kosong atau pilar hitam di sisinya supaya gambar utuh tetap terlihat).</p>
+
+        <p>Untuk mempermudah pekerjaan sehari-hari Anda, saya sudah meracik sebuah *script* otomatis berbasis Bash yang akan mengeksekusi keajaiban ImageMagick tersebut ke seluruh gambar di dalam direktori kerja Anda.</p>
+
+        <details>
+          <summary>
+            <h2>Panduan Lengkap: Skrip, Cara Pakai, dan Parameter</h2>
+          </summary>
+          <div class="details-content">
+            <p>Bagian ini adalah area teknisnya. Anda cukup menyalin *script* di bawah ini, menyimpannya di mesin Anda, dan menjalankannya kapan pun Anda butuh konversi massal. Mari kita bedah isi kodenya.</p>
+
+            <h3>Versi Skrip Otomatis</h3>
+            <p>Buat sebuah *file* baru dan salin kode *Bash script* di bawah ini. Skrip ini secara otomatis akan mencari semua *file* berformat <i>.webp</i>, <i>.jpeg</i>, dan <i>.png</i> di dalam folder Anda, lalu memasukkannya ke folder <i>output-16-9</i> yang terpisah agar *file* asli Anda tetap aman.</p>
+
+<pre><code class="language-bash">#!/usr/bin/env bash
+# paksa-16-9.sh — Konversi gambar jadi rasio 16:9 (crop/pad)
+
+set -euo pipefail
+
+MODE="${1:-pad}"  # default: 'pad' (bisa diganti 'crop' melalui argumen)
+WIDTH=1920
+HEIGHT=1080
+OUTDIR="output-16-9"
+
+mkdir -p "$OUTDIR"
+
+for img in *.webp *.jpeg *.png *.jpg 2>/dev/null; do
+  [[ -f "$img" ]] || continue
+
+  echo "🎨 Memproses: $img → $MODE mode"
+
+  if [[ "$MODE" == "crop" ]]; then
+    magick "$img" -resize "${WIDTH}x${HEIGHT}^" -gravity center \
+      -extent "${WIDTH}x${HEIGHT}" "$OUTDIR/$img"
+  elif [[ "$MODE" == "pad" ]]; then
+    magick "$img" -resize "${WIDTH}x${HEIGHT}" -gravity center \
+      -background black -extent "${WIDTH}x${HEIGHT}" "$OUTDIR/$img"
+  else
+    echo "❌ Mode tidak dikenal: $MODE (gunakan 'pad' atau 'crop')"
+    exit 1
+  fi
+done
+
+echo "✅ Semua gambar selesai dikonversi ke direktori $OUTDIR/"</code></pre>
+
+            <h3>Cara Penggunaan</h3>
+            <p>Pastikan sistem Anda sudah terpasang ImageMagick versi 7 ke atas (penggunaan perintah <code>magick</code>). Ikuti urutan eksekusi berikut di terminal Anda:</p>
+            <ul>
+              <li><b>Langkah 1:</b> Simpan *script* di atas dengan nama <code>paksa-16-9.sh</code>.</li>
+              <li><b>Langkah 2:</b> Berikan hak akses eksekusi agar *file* tersebut bisa dijalankan oleh sistem.
+<pre><code class="language-bash">chmod +x paksa-16-9.sh</code></pre>
+              </li>
+              <li><b>Langkah 3:</b> Eksekusi *script* di dalam folder yang berisi gambar-gambar Anda. Secara bawaan, *script* akan menggunakan mode penambahan ruang (pad). Anda bisa mengatur modenya dengan menambahkan argumen.
+<pre><code class="language-bash">./paksa-16-9.sh pad   # Menambah pilar/ruang kosong hitam
+./paksa-16-9.sh crop  # Memotong gambar dari tengah agar pas 16:9</code></pre>
+              </li>
+            </ul>
+
+            <h3>Penjelasan Parameter Teknis</h3>
+            <p>Kenapa skrip di atas bisa bekerja sangat akurat tanpa merusak gambar (<i>distorted</i>)? Rahasianya ada pada kombinasi parameter ajaib (<i>flags</i>) dari ImageMagick berikut ini:</p>
+            <ul>
+              <li><code>-resize</code> → Perintah utama untuk mengubah ukuran gambar sambil tetap menjaga rasio aspek aslinya.</li>
+              <li><code>^</code> → Simbol <i>caret</i> ini memaksa dimensi gambar untuk menutupi/memenuhi seluruh area target, biarpun salah satu sisinya harus dibuat lebih besar dari ukuran aslinya.</li>
+              <li><code>-gravity center</code> → Menentukan titik jangkar pengeditan berada persis di tengah gambar. Ini memastikan area yang terpotong adalah bagian pinggir pinggirnya, bukan kepala subjek Anda.</li>
+              <li><code>-extent</code> → Mengatur ukuran akhir kanvas gambar. Parameter inilah yang bertugas memotong sisa <i>pixel</i> yang luber (saat mode crop) atau membungkus gambar (saat mode pad).</li>
+              <li><code>-background black</code> → Menentukan warna untuk mengisi ruang kosong. Jika Anda tidak suka warna hitam, Anda bisa menggantinya dengan <i>white</i> atau <i>none</i> (transparan untuk PNG/WebP).</li>
+              <li><code>set -euo pipefail</code> → Ini adalah pengaman standar di skrip *bash* yang memastikan *script* akan langsung berhenti beroperasi jika terjadi kegagalan (misal: *typo* perintah atau gagal memuat *file*), sehingga tidak merusak sisa antrean.</li>
+            </ul>
+          </div>
+        </details>
+
+        <p>Dengan menerapkan otomatisasi ini, Anda tidak perlu lagi buang-buang waktu dan tenaga untuk rutinitas *cropping* yang membosankan. Sisa waktu luangnya tentu bisa Anda alokasikan untuk pekerjaan lain yang jauh lebih butuh sentuhan kreativitas, atau ya... sekadar buat ngopi santai sembari memandangi layar terminal Anda berkedip menyelesaikan ratusan tugas dalam hitungan detik. <i>Enjoy your automated life!</i></p>
+
+        <!--wajib ini tulis signature artikel oleh LayarKosong-->
+      </article>
+
+      <footer>
+        <div class="footer-meta">
+          <span>✍️ Fakhrul Rijal</span> |
+          <span>📅 10 Juli 2026</span> |
+          <span>🌐 Referensi: Dokumentasi Resmi ImageMagick & Bash Scripting</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Highlight.js Script Load -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <!-- Initialize highlight.js -->
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      hljs.highlightAll();
+    });
+  </script>
+</body>
+</html>
