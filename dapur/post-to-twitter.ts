@@ -82,7 +82,7 @@ async function main() {
 	}
 
 	// Template Postingan Akhir
-	const postText = `✍️ ${targetPost.title}\n\n"${cleanDesc}"\n\nselengkapnya... 👇\n${targetPost.url}`;
+	const postText = `${cleanDesc} \n${targetPost.url}`;
 
 	console.log(`🚀 Menyiapkan postingan baru ke X: ${targetPost.title}`);
 
