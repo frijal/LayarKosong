@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html
+  lang="id"
+  prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"
+>
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux</title>
+
+  <meta
+    name="description"
+    content="Panduan aman menghapus entri boot lama di UEFI menggunakan efibootmgr, mengatur urutan boot, mengenali entri duplikat, dan membersihkan menu GRUB Linux."
+  >
+
+  <link
+    rel="canonical"
+    href="https://dalam.web.id/linux-open-source/cara-menghapus-entri-boot-lama-uefi-dan-grub"
+  >
+
+  <meta
+    name="robots"
+    content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large"
+  >
+
+  <meta
+    name="googlebot"
+    content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large"
+  >
+
+  <meta name="author" content="Fakhrul Rijal">
+  <meta name="theme-color" content="#0f766e">
+
+  <meta
+    name="news_keywords"
+    content="UEFI, BIOS, GRUB, efibootmgr, Linux, Ubuntu, Debian, Fedora, Linux Mint, dual boot, boot menu"
+  >
+
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:type" content="article">
+
+  <meta
+    property="og:title"
+    content="Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux"
+  >
+
+  <meta
+    property="og:description"
+    content="Jangan asal hapus Boot0002. Kenali dulu perbedaan menu UEFI dan GRUB, lalu bersihkan entri boot lama dengan cara yang aman."
+  >
+
+  <meta
+    property="og:url"
+    content="https://dalam.web.id/linux-open-source/cara-menghapus-entri-boot-lama-uefi-dan-grub"
+  >
+
+  <meta property="og:site_name" content="Layar Kosong">
+
+  <meta
+    property="article:published_time"
+    content="2026-07-10T18:00:00+07:00"
+  >
+
+  <meta
+    property="article:modified_time"
+    content="2026-07-10T18:00:00+07:00"
+  >
+
+  <meta property="article:author" content="Fakhrul Rijal">
+  <meta property="article:section" content="Linux & Open Source">
+  <meta property="article:tag" content="UEFI">
+  <meta property="article:tag" content="GRUB">
+  <meta property="article:tag" content="efibootmgr">
+  <meta property="article:tag" content="Linux">
+
+  <meta name="twitter:card" content="summary">
+
+  <meta
+    name="twitter:title"
+    content="Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Panduan aman membersihkan entri boot UEFI dan menu GRUB yang masih menampilkan sistem operasi lama."
+  >
+
+  <meta name="twitter:creator" content="@responaja">
+  <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2010%2C%202026%2C%2010_13_26%20AM.png">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2010%2C%202026%2C%2010_13_26%20AM.png">
+
+
+
+  <style>
+    :root {
+      color-scheme: light dark;
+
+      --page-bg: #f4f7f8;
+      --surface: #ffffff;
+      --surface-soft: #f0fdfa;
+      --surface-code: #111827;
+
+      --text: #17202a;
+      --text-soft: #374151;
+      --muted: #5b6472;
+
+      --border: #cbd5e1;
+      --border-strong: #94a3b8;
+
+      --primary: #0f766e;
+      --primary-hover: #115e59;
+      --primary-soft: #ccfbf1;
+
+      --warning-bg: #fff7ed;
+      --warning-border: #c2410c;
+      --warning-text: #7c2d12;
+
+      --danger-bg: #fef2f2;
+      --danger-border: #b91c1c;
+      --danger-text: #7f1d1d;
+
+      --success-bg: #f0fdf4;
+      --success-border: #15803d;
+      --success-text: #14532d;
+
+      --code-text: #f8fafc;
+      --inline-code-bg: #e2e8f0;
+      --inline-code-text: #7c2d12;
+
+      --shadow: 0 1rem 2.5rem rgba(15, 23, 42, 0.08);
+
+      --radius-sm: 0.5rem;
+      --radius-md: 0.85rem;
+      --radius-lg: 1.25rem;
+
+      --screen-padding: 1rem;
+      --nested-padding: 0rem;
+      --content-width: 64rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page-bg: #0b1120;
+        --surface: #111827;
+        --surface-soft: #102a2a;
+        --surface-code: #030712;
+
+        --text: #f1f5f9;
+        --text-soft: #d1d5db;
+        --muted: #b3bdca;
+
+        --border: #475569;
+        --border-strong: #64748b;
+
+        --primary: #5eead4;
+        --primary-hover: #99f6e4;
+        --primary-soft: #134e4a;
+
+        --warning-bg: #431407;
+        --warning-border: #fb923c;
+        --warning-text: #ffedd5;
+
+        --danger-bg: #450a0a;
+        --danger-border: #f87171;
+        --danger-text: #fee2e2;
+
+        --success-bg: #052e16;
+        --success-border: #4ade80;
+        --success-text: #dcfce7;
+
+        --code-text: #f8fafc;
+        --inline-code-bg: #293548;
+        --inline-code-text: #fed7aa;
+
+        --shadow: 0 1rem 3rem rgba(0, 0, 0, 0.28);
+      }
+    }
+
+    @media (min-width: 48rem) {
+      :root {
+        --screen-padding: 2.5rem;
+        --nested-padding: 1.5rem;
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      overflow-wrap: break-word;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration-thickness: 0.1em;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 0.2rem solid var(--primary);
+      outline-offset: 0.2rem;
+      border-radius: 0.25rem;
+    }
+
+    code,
+    kbd,
+    samp,
+    pre {
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        Menlo,
+        monospace;
+    }
+
+    code:not(pre code) {
+      padding: 0.12em 0.35em;
+      border-radius: 0.3rem;
+      background: var(--inline-code-bg);
+      color: var(--inline-code-text);
+      font-size: 0.9em;
+    }
+
+    .page-shell {
+      width: min(100%, calc(var(--content-width) + (var(--screen-padding) * 2)));
+      margin-inline: auto;
+      padding: var(--screen-padding);
+    }
+
+    .article-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .article-inner {
+      padding: clamp(1.1rem, 3vw, 3rem);
+    }
+
+    .breadcrumb {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .breadcrumb ol {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .breadcrumb li:not(:last-child)::after {
+      margin-left: 0.4rem;
+      content: "/";
+      color: var(--border-strong);
+    }
+
+    .article-header {
+      margin-bottom: 1.75rem;
+    }
+    .article-header h1 {
+      max-width: 22ch;
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(2rem, 5vw, 3.15rem);
+      line-height: 1.13;
+      text-wrap: balance;
+    }
+
+    .article-subtitle {
+      max-width: 48rem;
+      margin: 1rem 0 0;
+      color: var(--text-soft);
+      font-size: clamp(1.08rem, 2.5vw, 1.28rem);
+      line-height: 1.65;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin: 1rem 0 0;
+      padding: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      list-style: none;
+    }
+
+    .lead {
+      font-size: clamp(1.1rem, 2.3vw, 1.24rem);
+      line-height: 1.8;
+    }
+
+    .hero-figure {
+      margin: 2rem 0;
+    }
+
+    .hero-figure svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: #0f172a;
+    }
+
+    .hero-figure figcaption {
+      margin-top: 0.7rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    h2,
+    h3 {
+      color: var(--text);
+      line-height: 1.3;
+      text-wrap: balance;
+      scroll-margin-top: 2rem;
+    }
+
+    h2 {
+      margin: 2.75rem 0 1rem;
+      font-size: clamp(1.55rem, 3.3vw, 2rem);
+    }
+
+    h3 {
+      margin: 2rem 0 0.75rem;
+      font-size: clamp(1.2rem, 2.8vw, 1.45rem);
+    }
+
+    p,
+    ul,
+    ol,
+    table,
+    pre,
+    blockquote {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    ul,
+    ol {
+      padding-left: 1.35rem;
+    }
+
+    li + li {
+      margin-top: 0.45rem;
+    }
+
+    strong {
+      color: var(--text);
+    }
+
+    .table-wrap {
+      width: 100%;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    table {
+      width: 100%;
+      min-width: 42rem;
+      margin: 0;
+      border-collapse: collapse;
+      background: var(--surface);
+    }
+
+    th,
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--surface-soft);
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    pre {
+      position: relative;
+      max-width: 100%;
+      padding: 1rem 1.1rem;
+      overflow-x: auto;
+      border: 1px solid #334155;
+      border-radius: var(--radius-md);
+      background: var(--surface-code);
+      color: var(--code-text);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      tab-size: 2;
+      white-space: pre;
+    }
+
+    pre code {
+      color: inherit;
+    }
+
+    .note,
+    .warning,
+    .danger,
+    .success {
+      margin: 1.5rem 0;
+      padding: 1rem 1.15rem;
+      border-left: 0.32rem solid;
+      border-radius: var(--radius-sm);
+    }
+
+    .note {
+      border-color: var(--primary);
+      background: var(--surface-soft);
+    }
+
+    .warning {
+      border-color: var(--warning-border);
+      background: var(--warning-bg);
+      color: var(--warning-text);
+    }
+
+    .danger {
+      border-color: var(--danger-border);
+      background: var(--danger-bg);
+      color: var(--danger-text);
+    }
+
+    .success {
+      border-color: var(--success-border);
+      background: var(--success-bg);
+      color: var(--success-text);
+    }
+
+    .note > :last-child,
+    .warning > :last-child,
+    .danger > :last-child,
+    .success > :last-child {
+      margin-bottom: 0;
+    }
+
+    .steps {
+      padding-left: 1.5rem;
+      counter-reset: article-step;
+      list-style: none;
+    }
+
+    .steps > li {
+      position: relative;
+      padding: 0 0 1.5rem 2.4rem;
+      counter-increment: article-step;
+    }
+
+    .steps > li::before {
+      position: absolute;
+      top: 0.05rem;
+      left: 0;
+      display: grid;
+      width: 1.8rem;
+      height: 1.8rem;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      content: counter(article-step);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .steps > li::before {
+        color: #042f2e;
+      }
+    }
+
+    details {
+      margin: 1rem 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+    }
+
+    summary {
+      padding: 1rem 1.1rem;
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 750;
+    }
+
+    details[open] summary {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-soft);
+    }
+
+    .details-body {
+      padding: 1rem 1.1rem 0;
+    }
+
+    .command-card {
+      margin: 1.25rem 0;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+    }
+
+    .command-card h3 {
+      margin-top: 0;
+    }
+
+    .command-card pre:last-child {
+      margin-bottom: 0;
+    }
+
+    .checklist {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 1.8rem;
+    }
+
+    .checklist li::before {
+      position: absolute;
+      left: 0;
+      color: var(--success-border);
+      content: "✓";
+      font-weight: 900;
+    }
+
+    .source-box {
+      margin-top: 3rem;
+      padding: 1rem 1.15rem;
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    .article-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 37.5rem) {
+      body {
+        font-size: 1rem;
+      }
+
+      .article-card {
+        border-radius: var(--radius-md);
+      }
+
+      .article-inner {
+        padding-inline: 1rem;
+      }
+
+      .steps {
+        padding-left: 0;
+      }
+
+      .hero-figure svg text {
+        font-size: 90%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @media print {
+      :root {
+        --page-bg: #ffffff;
+        --surface: #ffffff;
+        --text: #000000;
+        --text-soft: #222222;
+        --muted: #333333;
+        --border: #777777;
+      }
+
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+
+      .page-shell {
+        width: 100%;
+        padding: 0;
+      }
+
+      .article-card {
+        border: 0;
+        box-shadow: none;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      pre {
+        white-space: pre-wrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page-shell">
+    <article class="article-card">
+      <div class="article-inner">
+
+        <header class="article-header">
+
+          <h1>
+            Cara Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux
+          </h1>
+
+          <p class="article-subtitle">
+            Bekas Ubuntu, Fedora, Debian, Windows, atau distro percobaan masih
+            nongkrong di menu boot walaupun sistemnya sudah lama dihapus?
+            Jangan langsung menembak <code>Boot0002</code>. Kenali dulu menu
+            mana yang sedang kita bersihkan.
+          </p>
+
+          <ul class="article-meta">
+            <li>Oleh Fakhrul Rijal</li>
+            <li>
+              <time datetime="2026-07-10T18:00:00+07:00">
+                10 Juli 2026
+              </time>
+            </li>
+            <li>Waktu baca sekitar 10 menit</li>
+          </ul>
+        </header>
+
+        <p class="lead">
+          Setelah beberapa kali memasang Linux, mencoba dual boot, menghapus
+          partisi Windows, lalu memasang distro lain, menu boot komputer kadang
+          berubah menjadi semacam museum sistem operasi. Ubuntu masih muncul,
+          Debian ada dua, Windows Boot Manager ikut mejeng, padahal disk-nya
+          sudah diformat entah sejak kapan.
+        </p>
+
+        <figure class="hero-figure">
+          <svg
+            viewBox="0 0 1200 675"
+            role="img"
+            aria-labelledby="hero-title hero-desc"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title id="hero-title">
+              Ilustrasi membersihkan entri boot UEFI dan GRUB
+            </title>
+
+            <desc id="hero-desc">
+              Sebuah layar firmware menampilkan entri Fedora, Ubuntu, Debian,
+              dan Windows, disertai terminal Linux yang menjalankan efibootmgr.
+            </desc>
+
+            <defs>
+              <linearGradient id="hero-bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#0f172a"/>
+                <stop offset="1" stop-color="#134e4a"/>
+              </linearGradient>
+
+              <linearGradient id="panel-bg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1e293b"/>
+                <stop offset="1" stop-color="#0f172a"/>
+              </linearGradient>
+
+              <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow
+                  dx="0"
+                  dy="16"
+                  stdDeviation="18"
+                  flood-color="#000000"
+                  flood-opacity="0.35"
+                />
+              </filter>
+            </defs>
+
+            <rect width="1200" height="675" fill="url(#hero-bg)"/>
+
+            <circle cx="1030" cy="120" r="210" fill="#14b8a6" opacity="0.12"/>
+            <circle cx="150" cy="600" r="250" fill="#38bdf8" opacity="0.08"/>
+
+            <text
+              x="70"
+              y="90"
+              fill="#99f6e4"
+              font-family="system-ui, sans-serif"
+              font-size="28"
+              font-weight="800"
+              letter-spacing="3"
+            >
+              UEFI + GRUB
+            </text>
+
+            <text
+              x="70"
+              y="145"
+              fill="#f8fafc"
+              font-family="system-ui, sans-serif"
+              font-size="42"
+              font-weight="800"
+            >
+              Bersihkan Entri Boot Lama
+            </text>
+
+            <text
+              x="70"
+              y="188"
+              fill="#cbd5e1"
+              font-family="system-ui, sans-serif"
+              font-size="23"
+            >
+              Kenali entri, hapus yang basi, jangan korbankan sistem aktif.
+            </text>
+
+            <g filter="url(#shadow)">
+              <rect
+                x="70"
+                y="235"
+                width="470"
+                height="355"
+                rx="24"
+                fill="url(#panel-bg)"
+                stroke="#475569"
+                stroke-width="2"
+              />
+
+              <rect
+                x="70"
+                y="235"
+                width="470"
+                height="62"
+                rx="24"
+                fill="#1e293b"
+              />
+
+              <circle cx="108" cy="266" r="8" fill="#f87171"/>
+              <circle cx="136" cy="266" r="8" fill="#fbbf24"/>
+              <circle cx="164" cy="266" r="8" fill="#4ade80"/>
+
+              <text
+                x="195"
+                y="274"
+                fill="#cbd5e1"
+                font-family="system-ui, sans-serif"
+                font-size="19"
+              >
+                UEFI Boot Manager
+              </text>
+
+              <rect
+                x="95"
+                y="320"
+                width="420"
+                height="57"
+                rx="12"
+                fill="#0f766e"
+              />
+
+              <text
+                x="120"
+                y="356"
+                fill="#ffffff"
+                font-family="system-ui, sans-serif"
+                font-size="23"
+                font-weight="700"
+              >
+                Boot0001  Fedora
+              </text>
+
+              <text
+                x="120"
+                y="420"
+                fill="#e2e8f0"
+                font-family="system-ui, sans-serif"
+                font-size="22"
+              >
+                Boot0002  Ubuntu
+              </text>
+
+              <text
+                x="120"
+                y="478"
+                fill="#e2e8f0"
+                font-family="system-ui, sans-serif"
+                font-size="22"
+              >
+                Boot0003  Windows Boot Manager
+              </text>
+
+              <text
+                x="120"
+                y="536"
+                fill="#fca5a5"
+                font-family="system-ui, sans-serif"
+                font-size="22"
+              >
+                Boot0005  Debian lama
+              </text>
+            </g>
+
+            <g filter="url(#shadow)">
+              <rect
+                x="600"
+                y="235"
+                width="530"
+                height="355"
+                rx="24"
+                fill="#020617"
+                stroke="#475569"
+                stroke-width="2"
+              />
+
+              <rect
+                x="600"
+                y="235"
+                width="530"
+                height="62"
+                rx="24"
+                fill="#111827"
+              />
+
+              <text
+                x="630"
+                y="274"
+                fill="#cbd5e1"
+                font-family="monospace"
+                font-size="19"
+              >
+                terminal — efibootmgr
+              </text>
+
+              <text
+                x="630"
+                y="342"
+                fill="#5eead4"
+                font-family="monospace"
+                font-size="22"
+              >
+                $ sudo efibootmgr -v
+              </text>
+
+              <text
+                x="630"
+                y="393"
+                fill="#f8fafc"
+                font-family="monospace"
+                font-size="20"
+              >
+                BootCurrent: 0001
+              </text>
+
+              <text
+                x="630"
+                y="437"
+                fill="#f8fafc"
+                font-family="monospace"
+                font-size="20"
+              >
+                BootOrder: 0001,0003,0005
+              </text>
+
+              <text
+                x="630"
+                y="496"
+                fill="#fbbf24"
+                font-family="monospace"
+                font-size="22"
+              >
+                $ sudo efibootmgr -b 0005 -B
+              </text>
+
+              <text
+                x="630"
+                y="548"
+                fill="#86efac"
+                font-family="monospace"
+                font-size="20"
+              >
+                Boot entry 0005 deleted
+              </text>
+            </g>
+          </svg>
+
+          <figcaption>
+            Entri UEFI tersimpan di firmware, sedangkan daftar GRUB dibuat dari
+            konfigurasi dan hasil deteksi sistem operasi.
+          </figcaption>
+        </figure>
+
+        <p>
+          Masalahnya, istilah “menu boot” sering dipakai untuk menyebut dua
+          tempat yang berbeda. Akibatnya, orang berniat membersihkan GRUB,
+          tetapi malah menghapus entri firmware. Atau sebaliknya: sudah
+          menghapus entri dengan <code>efibootmgr</code>, tetapi daftar sistem
+          operasi di GRUB tetap ramai seperti antrean pembagian sembako.
+        </p>
+
+        <div class="warning">
+          <strong>Peringatan:</strong>
+          perintah dalam panduan ini dapat membuat sistem gagal boot apabila
+          kita menghapus entri yang masih dipakai. Baca seluruh identitas entri
+          terlebih dahulu dan simpan catatan sebelum melakukan perubahan.
+        </div>
+
+        <h2 id="beda-uefi-dan-grub">
+          Pertama, bedakan menu UEFI dengan menu GRUB
+        </h2>
+
+        <p>
+          Firmware UEFI dan GRUB bekerja pada lapisan yang berbeda. Keduanya
+          memang berhubungan dalam proses boot, tetapi bukan barang yang sama.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Bagian</th>
+                <th>Menu UEFI atau BIOS</th>
+                <th>Menu GRUB</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Lokasi data</td>
+                <td>Memori non-volatile atau NVRAM pada firmware</td>
+                <td>Konfigurasi GRUB di partisi Linux</td>
+              </tr>
+
+              <tr>
+                <td>Cara membukanya</td>
+                <td>
+                  Tombol firmware seperti F2, F10, F11, F12, Esc, atau Del
+                </td>
+                <td>Muncul setelah firmware menjalankan GRUB</td>
+              </tr>
+
+              <tr>
+                <td>Contoh entri</td>
+                <td>
+                  Ubuntu, Fedora, Windows Boot Manager, UEFI Network
+                </td>
+                <td>
+                  Linux Mint, Advanced options, Windows, recovery kernel
+                </td>
+              </tr>
+
+              <tr>
+                <td>Alat utama</td>
+                <td><code>efibootmgr</code></td>
+                <td>
+                  <code>update-grub</code> atau
+                  <code>grub-mkconfig</code>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Efek format disk</td>
+                <td>
+                  Entri lama dapat tetap tersimpan meskipun disk sudah dihapus
+                </td>
+                <td>
+                  Daftar berubah setelah konfigurasi GRUB dibuat ulang
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Jadi, apabila tulisan lama muncul saat kita menekan F12 sebelum Linux
+          berjalan, kemungkinan besar yang kotor adalah daftar UEFI. Namun,
+          apabila tulisan itu muncul di layar GRUB setelah firmware selesai,
+          yang perlu diperiksa adalah konfigurasi GRUB.
+        </p>
+
+        <h2 id="mengapa-entri-bertahan">
+          Mengapa entri sistem operasi lama masih bertahan?
+        </h2>
+
+        <p>
+          Pada komputer modern, UEFI menyimpan daftar boot di NVRAM firmware.
+          Setiap entri biasanya berisi nama, lokasi partisi EFI, dan jalur
+          menuju berkas pemuat boot seperti:
+        </p>
+
+        <pre><code>\EFI\ubuntu\shimx64.efi
+\EFI\fedora\shimx64.efi
+\EFI\Microsoft\Boot\bootmgfw.efi
+\EFI\debian\grubx64.efi</code></pre>
+
+        <p>
+          Menghapus atau memformat partisi sistem operasi tidak selalu ikut
+          menghapus catatan tersebut dari NVRAM. Firmware tetap menyimpan nama
+          dan jalurnya, walaupun berkas yang dituju sudah tidak ada.
+        </p>
+
+        <p>Akibatnya, kita dapat menemukan:</p>
+
+        <ul>
+          <li>nama Ubuntu walaupun Ubuntu sudah lama dihapus;</li>
+          <li>dua atau tiga entri Debian yang menuju berkas berbeda;</li>
+          <li>Windows Boot Manager setelah partisi Windows dimusnahkan;</li>
+          <li>entri jaringan, USB, atau perangkat generik bernomor tinggi;</li>
+          <li>firmware mencoba menjalankan jalur kosong lalu gagal boot.</li>
+        </ul>
+
+        <h2 id="pastikan-uefi">
+          Pastikan Linux sedang berjalan dalam mode UEFI
+        </h2>
+
+        <p>
+          Sebelum menggunakan <code>efibootmgr</code>, periksa apakah Linux
+          benar-benar dimulai dalam mode UEFI.
+        </p>
+
+        <pre><code>if [ -d /sys/firmware/efi ]; then
+  echo "Sistem berjalan dalam mode UEFI"
+else
+  echo "Sistem berjalan dalam mode Legacy BIOS atau CSM"
+fi</code></pre>
+
+        <p>
+          Apabila direktori <code>/sys/firmware/efi</code> tidak tersedia,
+          Linux kemungkinan sedang berjalan melalui mode Legacy BIOS atau CSM.
+          Dalam kondisi tersebut, <code>efibootmgr</code> biasanya tidak dapat
+          mengakses variabel EFI.
+        </p>
+
+        <h2 id="memasang-efibootmgr">Memasang efibootmgr</h2>
+
+        <p>
+          Banyak distribusi sudah menyertakan alat ini. Apabila perintahnya
+          belum tersedia, pasang menggunakan manajer paket distro.
+        </p>
+
+        <div class="command-card">
+          <h3>Debian, Ubuntu, dan Linux Mint</h3>
+          <pre><code>sudo apt update
+sudo apt install efibootmgr</code></pre>
+        </div>
+
+        <div class="command-card">
+          <h3>Fedora</h3>
+          <pre><code>sudo dnf install efibootmgr</code></pre>
+        </div>
+
+        <div class="command-card">
+          <h3>Arch Linux dan turunannya</h3>
+          <pre><code>sudo pacman -S efibootmgr</code></pre>
+        </div>
+
+        <h2 id="melihat-entri">
+          Melihat seluruh entri boot UEFI
+        </h2>
+
+        <p>
+          Jalankan perintah berikut untuk melihat daftar ringkas:
+        </p>
+
+        <pre><code>sudo efibootmgr</code></pre>
+
+        <p>
+          Agar informasi partisi dan jalur berkas EFI ikut terlihat, gunakan
+          mode verbose:
+        </p>
+
+        <pre><code>sudo efibootmgr -v</code></pre>
+
+        <p>Contoh hasilnya:</p>
+
+        <pre><code>BootCurrent: 0001
+Timeout: 1 seconds
+BootOrder: 0001,0002,0003
+Boot0001* Fedora HD(1,GPT,...)/File(\EFI\fedora\shimx64.efi)
+Boot0002* Ubuntu HD(1,GPT,...)/File(\EFI\ubuntu\shimx64.efi)
+Boot0003* Windows Boot Manager HD(1,GPT,...)/File(\EFI\Microsoft\Boot\bootmgfw.efi)</code></pre>
+
+        <h3>Arti bagian penting dari keluaran tersebut</h3>
+
+        <ul>
+          <li>
+            <strong>BootCurrent</strong> menunjukkan entri yang digunakan untuk
+            memulai sesi Linux saat ini.
+          </li>
+
+          <li>
+            <strong>BootOrder</strong> menunjukkan urutan entri yang akan
+            dicoba oleh firmware.
+          </li>
+
+          <li>
+            <strong>Boot0001</strong> merupakan nomor identitas entri.
+          </li>
+
+          <li>
+            Tanda bintang setelah nomor menunjukkan bahwa entri tersebut aktif.
+          </li>
+
+          <li>
+            Bagian <code>HD(1,GPT,...)</code> menunjuk partisi EFI yang
+            digunakan.
+          </li>
+
+          <li>
+            Bagian <code>File(...)</code> menunjukkan berkas pemuat boot yang
+            dijalankan.
+          </li>
+        </ul>
+
+        <div class="danger">
+          Jangan menganggap nama entri sebagai identitas yang pasti.
+          Linux Mint, Ubuntu, Pop!_OS, atau distribusi turunannya dapat memakai
+          nama dan direktori <code>ubuntu</code>. Nama yang sama belum tentu
+          berarti entri tersebut sudah basi.
+        </div>
+
+        <h2 id="identifikasi">
+          Cara memastikan entri mana yang masih dipakai
+        </h2>
+
+        <p>
+          Sebelum menghapus apa pun, cocokkan informasi dari
+          <code>efibootmgr -v</code> dengan partisi yang ada di sistem.
+        </p>
+
+        <h3>1. Simpan catatan kondisi awal</h3>
+
+        <pre><code>sudo efibootmgr -v | tee "$HOME/efibootmgr-sebelum.txt"</code></pre>
+
+        <p>
+          Berkas ini tidak otomatis memulihkan entri, tetapi sangat membantu
+          apabila kita perlu mengingat nomor, jalur, dan urutan boot sebelumnya.
+        </p>
+
+        <h3>2. Lihat partisi, PARTUUID, dan titik kait</h3>
+
+        <pre><code>lsblk -o NAME,FSTYPE,LABEL,PARTUUID,UUID,SIZE,MOUNTPOINTS</code></pre>
+
+        <p>
+          Bandingkan nilai GPT atau PARTUUID dengan identitas partisi yang
+          muncul pada keluaran verbose <code>efibootmgr</code>.
+        </p>
+
+        <h3>3. Periksa partisi EFI yang sedang digunakan</h3>
+
+        <pre><code>findmnt /boot/efi</code></pre>
+
+        <p>
+          Pada beberapa sistem, partisi EFI dapat dipasang di
+          <code>/efi</code> atau lokasi lain. Untuk mencarinya:
+        </p>
+
+        <pre><code>findmnt -t vfat,fat</code></pre>
+
+        <h3>4. Lihat direktori pemuat boot</h3>
+
+        <pre><code>sudo find /boot/efi/EFI -maxdepth 2 -type f -print</code></pre>
+
+        <p>Contohnya dapat terlihat seperti ini:</p>
+
+        <pre><code>/boot/efi/EFI/ubuntu/shimx64.efi
+/boot/efi/EFI/ubuntu/grubx64.efi
+/boot/efi/EFI/fedora/shimx64.efi
+/boot/efi/EFI/Microsoft/Boot/bootmgfw.efi
+/boot/efi/EFI/Boot/bootx64.efi</code></pre>
+
+        <div class="note">
+          Direktori <code>EFI/Boot</code> biasanya berisi jalur fallback
+          standar. Jangan menghapusnya hanya karena namanya terlihat generik.
+          Beberapa firmware memakai <code>bootx64.efi</code> ketika entri NVRAM
+          tidak tersedia.
+        </div>
+
+        <h2 id="hapus-entri">
+          Menghapus entri boot UEFI yang sudah tidak digunakan
+        </h2>
+
+        <p>
+          Misalnya kita sudah memastikan bahwa <code>Boot0002</code> adalah
+          bekas instalasi yang benar-benar sudah tidak dipakai. Hapus dengan:
+        </p>
+
+        <pre><code>sudo efibootmgr -b 0002 -B</code></pre>
+
+        <p>Keterangan parameternya:</p>
+
+        <ul>
+          <li><code>-b 0002</code> memilih nomor entri;</li>
+          <li><code>-B</code> menghapus entri terpilih dari NVRAM.</li>
+        </ul>
+
+        <p>Periksa kembali hasilnya:</p>
+
+        <pre><code>sudo efibootmgr -v</code></pre>
+
+        <div class="warning">
+          Hindari menghapus nomor yang tercantum sebagai
+          <code>BootCurrent</code> sebelum benar-benar memahami entri pengganti
+          yang akan digunakan. Sistem yang sedang berjalan tidak langsung mati,
+          tetapi boot berikutnya dapat gagal.
+        </div>
+
+        <h2 id="atur-urutan">Mengatur ulang urutan boot</h2>
+
+        <p>
+          Kita tidak selalu harus menghapus entri. Apabila semuanya masih
+          diperlukan, cukup susun ulang prioritasnya.
+        </p>
+
+        <p>
+          Misalnya Fedora adalah <code>0001</code> dan Windows Boot Manager
+          adalah <code>0003</code>:
+        </p>
+
+        <pre><code>sudo efibootmgr -o 0001,0003</code></pre>
+
+        <p>
+          Setelah itu, firmware akan mencoba Fedora terlebih dahulu. Apabila
+          gagal, barulah Windows Boot Manager dicoba.
+        </p>
+
+        <h3>Menentukan entri untuk satu kali boot</h3>
+
+        <p>
+          Untuk meminta firmware memakai satu entri hanya pada boot berikutnya,
+          gunakan opsi <code>-n</code>:
+        </p>
+
+        <pre><code>sudo efibootmgr -n 0003</code></pre>
+
+        <p>
+          Setelah boot berikutnya selesai, firmware kembali menggunakan
+          <code>BootOrder</code> normal. Ini cocok untuk pengujian tanpa
+          mengubah urutan permanen.
+        </p>
+
+        <h3>Mengubah waktu tunggu firmware</h3>
+
+        <pre><code>sudo efibootmgr -t 5</code></pre>
+
+        <p>
+          Perintah tersebut mengatur waktu tunggu firmware menjadi lima detik,
+          apabila firmware perangkat memang mendukung pengaturan timeout dari
+          variabel EFI.
+        </p>
+
+        <h2 id="entri-duplikat">
+          Bagaimana membedakan dua entri bernama Ubuntu?
+        </h2>
+
+        <p>
+          Label <code>Ubuntu</code> di firmware bukan bukti bahwa sistemnya
+          benar-benar Ubuntu. Linux Mint dan beberapa distribusi turunan Ubuntu
+          juga dapat memasang pemuat boot di direktori
+          <code>\EFI\ubuntu</code>.
+        </p>
+
+        <p>
+          Apabila ada dua entri bernama sama, perhatikan tiga hal berikut:
+        </p>
+
+        <ol>
+          <li>
+            <strong>PARTUUID partisi EFI.</strong>
+            Entri dapat menunjuk ke disk atau partisi EFI yang berbeda.
+          </li>
+
+          <li>
+            <strong>Nama berkas pemuat.</strong>
+            Satu entri mungkin menuju <code>shimx64.efi</code>, sedangkan yang
+            lain menuju <code>grubx64.efi</code>.
+          </li>
+
+          <li>
+            <strong>BootCurrent.</strong>
+            Nomor ini menunjukkan entri yang berhasil menjalankan sistem saat
+            ini.
+          </li>
+        </ol>
+
+        <p>
+          Contoh dua entri yang tampak mirip:
+        </p>
+
+        <pre><code>Boot0000* Ubuntu HD(1,GPT,AAAA,...)/File(\EFI\ubuntu\grubx64.efi)
+Boot0001* ubuntu HD(1,GPT,AAAA,...)/File(\EFI\ubuntu\shimx64.efi)</code></pre>
+
+        <p>
+          Keduanya bahkan dapat berasal dari instalasi yang sama. Pada sistem
+          dengan Secure Boot, <code>shimx64.efi</code> biasanya menjadi pintu
+          masuk yang memuat GRUB bertanda tangan. Jadi, jangan asal menganggap
+          salah satunya sampah hanya karena namanya ganda.
+        </p>
+
+        <h2 id="nomor-aneh">
+          Apa itu entri Boot0015, Boot0016, atau nomor tinggi lainnya?
+        </h2>
+
+        <p>
+          Nomor entri tidak menunjukkan tingkat kepentingan. Nomor tinggi juga
+          tidak otomatis berarti entri tersebut lama atau rusak.
+        </p>
+
+        <p>Firmware dapat membuat entri untuk:</p>
+
+        <ul>
+          <li>boot melalui jaringan IPv4 atau IPv6;</li>
+          <li>perangkat USB;</li>
+          <li>hard disk generik;</li>
+          <li>pemulihan vendor;</li>
+          <li>diagnostik perangkat keras;</li>
+          <li>fallback bootloader;</li>
+          <li>pemuat boot sistem operasi tertentu.</li>
+        </ul>
+
+        <p>
+          Gunakan keluaran verbose sebelum mengambil keputusan:
+        </p>
+
+        <pre><code>sudo efibootmgr -v</code></pre>
+
+        <p>
+          Apabila entri tidak memiliki jalur berkas sistem operasi dan hanya
+          menunjuk perangkat jaringan atau perangkat keras generik, entri itu
+          mungkin dibuat oleh firmware dan bukan sisa distribusi Linux.
+        </p>
+
+        <h2 id="entri-kembali">
+          Mengapa entri yang dihapus muncul lagi?
+        </h2>
+
+        <p>
+          Ada beberapa kemungkinan ketika entri yang baru dihapus muncul
+          kembali setelah restart.
+        </p>
+
+        <ul>
+          <li>
+            Paket bootloader sistem aktif membuat ulang entri saat diperbarui.
+          </li>
+
+          <li>
+            Firmware mendeteksi berkas EFI dan otomatis mendaftarkannya kembali.
+          </li>
+
+          <li>
+            Direktori pemuat boot lama masih tersimpan di partisi EFI.
+          </li>
+
+          <li>
+            Fitur pemulihan firmware mengembalikan urutan boot bawaan.
+          </li>
+
+          <li>
+            Sistem menggunakan lebih dari satu partisi EFI pada disk berbeda.
+          </li>
+        </ul>
+
+        <p>
+          Periksa seluruh partisi berformat FAT yang kemungkinan menjadi
+          EFI System Partition:
+        </p>
+
+        <pre><code>lsblk -o NAME,FSTYPE,PARTTYPE,PARTUUID,SIZE,MOUNTPOINTS</code></pre>
+
+        <p>
+          GUID tipe partisi EFI yang umum adalah:
+        </p>
+
+        <pre><code>c12a7328-f81f-11d2-ba4b-00a0c93ec93b</code></pre>
+
+        <div class="danger">
+          Jangan langsung menghapus direktori
+          <code>/boot/efi/EFI/ubuntu</code>. Linux Mint dan sistem Ubuntu yang
+          sedang aktif sangat mungkin memakai direktori tersebut. Menghapus
+          folder yang salah dapat membuat GRUB tidak ditemukan pada boot
+          berikutnya.
+        </div>
+
+        <h3>Jika sudah benar-benar yakin folder EFI itu basi</h3>
+
+        <p>
+          Buat cadangan terlebih dahulu. Contoh berikut hanya ilustrasi dan
+          nama folder harus disesuaikan:
+        </p>
+
+        <pre><code>sudo mkdir -p "$HOME/cadangan-efi"
+sudo cp -a /boot/efi/EFI/debian "$HOME/cadangan-efi/"</code></pre>
+
+        <p>
+          Setelah lokasi dan isinya dipastikan tidak digunakan, barulah folder
+          lama dapat dihapus:
+        </p>
+
+        <pre><code>sudo rm -rf /boot/efi/EFI/debian</code></pre>
+
+        <p>
+          Perintah <code>rm -rf</code> tidak menyediakan tombol “eh, tadi salah”.
+          Gunakan hanya untuk direktori yang identitasnya sudah dipastikan.
+        </p>
+
+        <h2 id="membersihkan-grub">
+          Kalau yang kotor adalah menu GRUB, bukan UEFI
+        </h2>
+
+        <p>
+          Apabila daftar sistem operasi lama muncul di layar GRUB, menghapus
+          entri NVRAM dengan <code>efibootmgr</code> belum tentu mengubah apa
+          pun. GRUB menyusun menunya dari konfigurasi dan skrip generator.
+        </p>
+
+        <h3>Debian, Ubuntu, dan Linux Mint</h3>
+
+        <pre><code>sudo update-grub</code></pre>
+
+        <h3>Distribusi yang menggunakan grub-mkconfig</h3>
+
+        <p>
+          Lokasi berkas keluaran berbeda-beda menurut distribusi dan metode
+          instalasinya. Salah satu pola umumnya:
+        </p>
+
+        <pre><code>sudo grub-mkconfig -o /boot/grub/grub.cfg</code></pre>
+
+        <div class="warning">
+          Pada Fedora atau sistem tertentu, lokasi konfigurasi GRUB dapat
+          berbeda. Jangan menyalin jalur keluaran secara buta. Periksa
+          dokumentasi distribusi dan konfigurasi boot yang sedang digunakan.
+        </div>
+
+        <h3>Jangan mengedit grub.cfg secara langsung</h3>
+
+        <p>
+          Berkas <code>/boot/grub/grub.cfg</code> biasanya dibuat otomatis.
+          Perubahan manual di sana dapat hilang saat
+          <code>update-grub</code> dijalankan.
+        </p>
+
+        <p>Periksa sumber konfigurasinya di:</p>
+
+        <pre><code>/etc/default/grub
+/etc/grub.d/</code></pre>
+
+        <p>
+          Entri manual yang ingin dipertahankan biasanya ditempatkan di:
+        </p>
+
+        <pre><code>/etc/grub.d/40_custom</code></pre>
+
+        <h3>Periksa hasil deteksi os-prober</h3>
+
+        <p>
+          Pada sistem yang mengaktifkan <code>os-prober</code>, GRUB dapat
+          menemukan sistem operasi lain dari partisi yang masih tersisa.
+        </p>
+
+        <pre><code>sudo os-prober</code></pre>
+
+        <p>
+          Jika sebuah sistem lama masih terdeteksi, periksa apakah partisi,
+          salinan bootloader, atau instalasi lama memang belum sepenuhnya
+          dibersihkan.
+        </p>
+
+        <p>
+          Deteksi sistem operasi lain dapat dinonaktifkan melalui
+          <code>/etc/default/grub</code>:
+        </p>
+
+        <pre><code>GRUB_DISABLE_OS_PROBER=true</code></pre>
+
+        <p>Kemudian buat ulang menu:</p>
+
+        <pre><code>sudo update-grub</code></pre>
+
+        <div class="warning">
+          Menonaktifkan <code>os-prober</code> juga dapat menyembunyikan Windows
+          atau distribusi Linux lain yang masih valid. Ini bukan tombol ajaib
+          untuk membuang satu entri tertentu.
+        </div>
+
+        <h2 id="kernel-lama">
+          Entri kernel lama di Advanced options bukan entri UEFI
+        </h2>
+
+        <p>
+          GRUB dapat menampilkan beberapa versi kernel pada bagian
+          <em>Advanced options</em>. Ini normal dan berguna sebagai cadangan
+          apabila kernel terbaru bermasalah.
+        </p>
+
+        <p>
+          Pada Debian, Ubuntu, dan Linux Mint, paket yang tidak lagi diperlukan
+          dapat diperiksa dengan:
+        </p>
+
+        <pre><code>sudo apt autoremove --dry-run</code></pre>
+
+        <p>
+          Jika daftar yang ditampilkan sudah masuk akal, jalankan:
+        </p>
+
+        <pre><code>sudo apt autoremove</code></pre>
+
+        <div class="note">
+          Sisakan setidaknya satu kernel cadangan yang diketahui dapat berjalan.
+          Membersihkan semua kernel lama demi mengejar menu yang kinclong
+          kadang berakhir menjadi olahraga mencari flashdisk live.
+        </div>
+
+        <h2 id="error-efi">
+          Ketika efibootmgr menampilkan “EFI variables are not supported”
+        </h2>
+
+        <p>
+          Pesan tersebut umumnya berarti salah satu kondisi berikut:
+        </p>
+
+        <ul>
+          <li>Linux dimulai dalam mode Legacy BIOS atau CSM;</li>
+          <li>dukungan variabel EFI tidak tersedia dari kernel;</li>
+          <li><code>efivarfs</code> belum terpasang;</li>
+          <li>lingkungan live atau virtual tidak menyediakan akses NVRAM;</li>
+          <li>firmware membatasi perubahan variabel EFI.</li>
+        </ul>
+
+        <p>Periksa apakah <code>efivarfs</code> tersedia:</p>
+
+        <pre><code>mount | grep efivarfs</code></pre>
+
+        <p>Lokasi yang umum adalah:</p>
+
+        <pre><code>/sys/firmware/efi/efivars</code></pre>
+
+        <p>
+          Apabila komputer mendukung UEFI tetapi Linux terlanjur dimulai dalam
+          mode Legacy, restart dan pilih entri USB atau disk yang diawali label
+          <strong>UEFI</strong> dari menu firmware.
+        </p>
+
+        <h2 id="firmware-menu">
+          Menghapus entri langsung dari menu firmware
+        </h2>
+
+        <p>
+          Sebagian komputer menyediakan menu seperti
+          <em>Boot Maintenance Manager</em>,
+          <em>Delete Boot Option</em>, atau
+          <em>UEFI Boot Manager</em>.
+        </p>
+
+        <p>
+          Dari sana kita mungkin dapat:
+        </p>
+
+        <ul>
+          <li>mengubah urutan boot;</li>
+          <li>menonaktifkan entri;</li>
+          <li>menghapus entri lama;</li>
+          <li>mengembalikan pengaturan bawaan.</li>
+        </ul>
+
+        <p>
+          Namun, tidak semua firmware menyediakan fungsi hapus. Banyak laptop
+          hanya mengizinkan perubahan urutan. Dalam kasus seperti itu,
+          <code>efibootmgr</code> biasanya lebih fleksibel.
+        </p>
+
+        <h2 id="pemulihan">
+          Apa yang dilakukan jika salah menghapus entri?
+        </h2>
+
+        <p>
+          Jangan panik terlebih dahulu. Menghapus entri NVRAM tidak selalu
+          berarti berkas bootloader ikut hilang. Firmware mungkin masih dapat
+          menjalankan jalur fallback <code>\EFI\Boot\bootx64.efi</code>.
+        </p>
+
+        <p>Beberapa opsi pemulihan yang dapat dicoba:</p>
+
+        <ol>
+          <li>
+            buka menu boot firmware dan cari entri disk atau berkas EFI lain;
+          </li>
+
+          <li>
+            gunakan fitur <em>Boot from EFI File</em> jika disediakan firmware;
+          </li>
+
+          <li>
+            jalankan Linux dari flashdisk live dalam mode UEFI;
+          </li>
+
+          <li>
+            pasang partisi sistem dan partisi EFI;
+          </li>
+
+          <li>
+            instal ulang atau daftarkan kembali bootloader distribusi.
+          </li>
+        </ol>
+
+        <p>
+          Pada sistem keluarga Debian atau Ubuntu, proses pemulihan biasanya
+          melibatkan pemasangan partisi, masuk melalui <code>chroot</code>,
+          kemudian memasang ulang GRUB. Detailnya bergantung pada tata letak
+          partisi, enkripsi, LVM, Secure Boot, dan jenis sistem berkas.
+        </p>
+
+        <div class="warning">
+          Jangan menjalankan perintah pemulihan GRUB dari artikel acak tanpa
+          menyesuaikan nama disk dan partisi. Contoh
+          <code>/dev/sda1</code> belum tentu cocok dengan perangkat NVMe seperti
+          <code>/dev/nvme0n1p1</code>.
+        </div>
+
+        <h2 id="alur-aman">
+          Alur paling aman untuk membersihkan entri boot
+        </h2>
+
+        <ol class="steps">
+          <li>
+            <strong>Pastikan sistem berjalan dalam mode UEFI.</strong>
+            Periksa keberadaan <code>/sys/firmware/efi</code>.
+          </li>
+
+          <li>
+            <strong>Simpan keluaran awal.</strong>
+            Jalankan <code>efibootmgr -v</code> dan simpan hasilnya.
+          </li>
+
+          <li>
+            <strong>Catat BootCurrent.</strong>
+            Jangan menghapusnya tanpa mengetahui jalur pengganti.
+          </li>
+
+          <li>
+            <strong>Cocokkan PARTUUID.</strong>
+            Gunakan <code>lsblk</code> untuk mengetahui partisi yang dituju.
+          </li>
+
+          <li>
+            <strong>Periksa berkas EFI.</strong>
+            Pastikan jalur yang dituju masih ada atau memang sudah basi.
+          </li>
+
+          <li>
+            <strong>Ubah urutan sebelum menghapus.</strong>
+            Jika ragu, pindahkan entri ke prioritas terakhir terlebih dahulu.
+          </li>
+
+          <li>
+            <strong>Uji satu kali boot.</strong>
+            Gunakan opsi <code>-n</code> bila perlu.
+          </li>
+
+          <li>
+            <strong>Hapus hanya entri yang telah dipastikan.</strong>
+            Gunakan <code>-b NOMOR -B</code>.
+          </li>
+
+          <li>
+            <strong>Periksa ulang setelah restart.</strong>
+            Pastikan sistem aktif tetap dapat dimulai.
+          </li>
+        </ol>
+
+        <h2 id="ringkasan-perintah">Ringkasan perintah penting</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tujuan</th>
+                <th>Perintah</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Melihat entri ringkas</td>
+                <td><code>sudo efibootmgr</code></td>
+              </tr>
+
+              <tr>
+                <td>Melihat jalur lengkap</td>
+                <td><code>sudo efibootmgr -v</code></td>
+              </tr>
+
+              <tr>
+                <td>Menghapus Boot0002</td>
+                <td><code>sudo efibootmgr -b 0002 -B</code></td>
+              </tr>
+
+              <tr>
+                <td>Mengatur urutan boot</td>
+                <td><code>sudo efibootmgr -o 0001,0003</code></td>
+              </tr>
+
+              <tr>
+                <td>Memilih satu kali boot</td>
+                <td><code>sudo efibootmgr -n 0003</code></td>
+              </tr>
+
+              <tr>
+                <td>Mengatur timeout lima detik</td>
+                <td><code>sudo efibootmgr -t 5</code></td>
+              </tr>
+
+              <tr>
+                <td>Melihat PARTUUID</td>
+                <td>
+                  <code>
+                    lsblk -o NAME,FSTYPE,LABEL,PARTUUID,UUID,MOUNTPOINTS
+                  </code>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Membuat ulang GRUB Debian atau Ubuntu</td>
+                <td><code>sudo update-grub</code></td>
+              </tr>
+
+              <tr>
+                <td>Melihat deteksi sistem lain</td>
+                <td><code>sudo os-prober</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="kesimpulan">Kesimpulan</h2>
+
+        <p>
+          Entri sistem operasi lama dapat tetap tersimpan karena UEFI mencatat
+          lokasi bootloader di NVRAM, bukan hanya di dalam partisi sistem
+          operasi. Karena itu, memformat disk tidak selalu membuat menu
+          firmware kembali bersih.
+        </p>
+
+        <p>
+          Gunakan <code>efibootmgr -v</code> untuk mengenali setiap entri,
+          cocokkan jalur dan PARTUUID-nya, lalu hapus hanya entri yang benar-benar
+          tidak digunakan. Jika nama sistem lama muncul di layar GRUB, periksa
+          konfigurasi GRUB dan jalankan generator menu yang sesuai.
+        </p>
+
+        <div class="success">
+          Prinsip sederhananya: <strong>identifikasi dulu, ubah urutan bila
+          masih ragu, baru hapus setelah yakin</strong>. Menu boot yang rapi
+          memang menyenangkan, tetapi komputer yang masih bisa menyala jauh
+          lebih menyenangkan.
+        </div>
+
+        <details>
+          <summary>Checklist sebelum menekan Enter</summary>
+
+          <div class="details-body">
+            <ul class="checklist">
+              <li>Saya sudah menyimpan keluaran <code>efibootmgr -v</code>.</li>
+              <li>Saya sudah mencatat nomor <code>BootCurrent</code>.</li>
+              <li>Saya sudah memeriksa PARTUUID dengan <code>lsblk</code>.</li>
+              <li>Saya sudah mengetahui lokasi partisi EFI yang aktif.</li>
+              <li>Saya sudah memeriksa jalur berkas EFI tujuan.</li>
+              <li>Saya yakin entri yang dipilih tidak dipakai sistem aktif.</li>
+              <li>Saya memiliki media live untuk pemulihan bila diperlukan.</li>
+            </ul>
+          </div>
+        </details>
+<!--wajib ini tulis signature artikel oleh LayarKosong-->
+
+        <section class="source-box" aria-labelledby="sumber-bacaan">
+          <h2 id="sumber-bacaan">Sumber dan pengembangan materi</h2>
+
+          <p>
+            Artikel ini merupakan penulisan ulang dan pengembangan dalam bahasa
+            Indonesia dari diskusi komunitas Linux.org mengenai pembersihan
+            entri sistem operasi lama pada menu boot.
+          </p>
+
+          <p>
+            Referensi:
+            <a
+              href="https://www.linux.org/threads/how-to-delete-old-os-entries-in-your-boot-menu.61208/"
+              target="_blank"
+              rel="noopener noreferrer external"
+            >
+              How to delete old OS entries in your boot menu
+            </a>.
+          </p>
+
+          <p>
+            Penjelasan diperluas dengan pemisahan antara daftar firmware UEFI,
+            konfigurasi GRUB, identifikasi PARTUUID, jalur EFI, entri duplikat,
+            dan langkah pencegahan sebelum penghapusan.
+          </p>
+        </section>
+
+        <footer class="article-footer">
+          <p>
+            Ditulis ulang dan disunting oleh Fakhrul Rijal untuk
+            <a href="https://dalam.web.id/">Layar Kosong</a>.
+          </p>
+        </footer>
+
+      </div>
+    </article>
+  </main>
+</body>
+</html>
