@@ -225,13 +225,20 @@ if (nextTag) {
   prevNextHtml += `<a href="${nextTag.getAttribute('href')}" title="${nextTitle}" class="btn-emoji">⏩</a>`;
 }
 
+// --- KODE BARU: GENERATE GITHUB EDIT URL ---
+// Memanfaatkan variabel currentFile yang udah ada format .html-nya
+const githubEditUrl = `https://github.com/frijal/LayarKosong/edit/main/artikel/${currentFile}`;
+
 nav.innerHTML = `
 <div class="nav-left">
 <a href="/${catInfo.slug}" class="category-link visible">${catInfo.name}</a>
 </div>
 <div class="nav-right">
+<!-- Tombol GitHub diselipkan di sini -->
+<a href="${githubEditUrl}" target="_blank" rel="noopener noreferrer" title="Edit Artikel" class="btn-emoji">📝</a>
+
 <a href="/" title="Beranda" class="btn-emoji">🏠</a>
-<a href="/sitemap" title="Daftar Isi" class="btn-emoji">📄</a>
+<a href="/sitemap" title="Daftar Isi" class="btn-emoji">📚</a>
 <a href="/feed" title="RSS Feed" class="btn-emoji">📡</a>
 ${prevNextHtml}
 <div class="lk-share-wrapper">
