@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#" lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Memperbaiki Partial Upgrade Error di Arch Linux</title>
+  <meta name="description" content="Panduan aman memperbaiki partial upgrade Arch Linux, menyelaraskan database paket, memeriksa dependensi, dan memulihkan sistem yang gagal boot kembali.">
+  <meta name="author" content="Fakhrul Rijal">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+  <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="canonical" href="https://dalam.web.id/artikel/fix-partial-upgrade-error.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:site_name" content="Layar Kosong">
+  <meta property="og:title" content="Memperbaiki Partial Upgrade Error di Arch Linux">
+  <meta property="og:description" content="Arch Linux bermasalah setelah update sebagian? Ikuti diagnosis dan pemulihan pacman yang aman, dari full upgrade sampai perbaikan sistem lewat live USB.">
+  <meta property="og:url" content="https://dalam.web.id/artikel/fix-partial-upgrade-error.html">
+  <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2010%2C%202026%2C%2003_12_22%20PM.png">
+  <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2010%2C%202026%2C%2003_12_22%20PM.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:image:alt" content="Ilustrasi panduan memperbaiki partial upgrade pada Arch Linux">
+  <meta property="article:published_time" content="2026-07-10T15:00:00+07:00">
+  <meta property="article:modified_time" content="2026-07-10T15:00:00+07:00">
+  <meta property="article:section" content="Linux dan Open Source">
+  <meta property="article:tag" content="Arch Linux">
+  <meta property="article:tag" content="pacman">
+  <meta property="article:tag" content="partial upgrade">
+  <meta property="article:tag" content="pemulihan Linux">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@responaja">
+  <meta name="twitter:creator" content="@responaja">
+  <meta name="twitter:title" content="Memperbaiki Partial Upgrade Error di Arch Linux">
+  <meta name="twitter:description" content="Pelajari penyebab partial upgrade di Arch Linux, gejala konflik library, langkah pacman yang tepat, serta cara mencegah sistem rusak saat pembaruan rutin.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2010%2C%202026%2C%2003_12_22%20PM.png">
+  <meta name="twitter:image:alt" content="Ilustrasi panduan memperbaiki partial upgrade pada Arch Linux">
+
+  <meta name="news_keywords" content="Arch Linux, partial upgrade, pacman, library not found, dependensi Linux, mkinitcpio, pemulihan Arch Linux">
+  <meta name="promphint" content="Bagaimana memperbaiki partial upgrade Arch Linux? | Sinkronkan repositori, lakukan full system upgrade, periksa paket, lalu pulihkan initramfs bila diperlukan.">
+  <meta property="article:published_time" content="2025-10-11T05:14:36.000Z">
+    <meta property="article:modified_time" content="2025-11-26T11:03:03.561Z">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    :root {
+      --screen-padding: 1rem;
+      --nested-padding: 0rem;
+      --page-bg: #f1f5f9;
+      --surface: #ffffff;
+      --surface-soft: #f8fafc;
+      --surface-accent: #eff6ff;
+      --text: #172033;
+      --text-soft: #334155;
+      --muted: #526077;
+      --heading: #0f172a;
+      --link: #0758a8;
+      --link-hover: #003f7d;
+      --border: #cbd5e1;
+      --border-strong: #94a3b8;
+      --accent: #1d4ed8;
+      --accent-soft: #dbeafe;
+      --warning-bg: #fff7ed;
+      --warning-border: #c2410c;
+      --warning-text: #7c2d12;
+      --success-bg: #ecfdf5;
+      --success-border: #047857;
+      --success-text: #064e3b;
+      --danger-bg: #fef2f2;
+      --danger-border: #b91c1c;
+      --danger-text: #7f1d1d;
+      --code-bg: #0d1117;
+      --code-text: #e6edf3;
+      --focus: #f59e0b;
+      --radius: 0.75rem;
+      --radius-small: 0.5rem;
+    }
+
+    @media (min-width: 64rem) {
+      :root {
+        --screen-padding: 2.5rem;
+        --nested-padding: 1.5rem;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page-bg: #080d16;
+        --surface: #111827;
+        --surface-soft: #172033;
+        --surface-accent: #12233f;
+        --text: #e5e7eb;
+        --text-soft: #d1d5db;
+        --muted: #b4becd;
+        --heading: #f8fafc;
+        --link: #7dc3ff;
+        --link-hover: #b8ddff;
+        --border: #334155;
+        --border-strong: #64748b;
+        --accent: #60a5fa;
+        --accent-soft: #172f54;
+        --warning-bg: #351b0f;
+        --warning-border: #fb923c;
+        --warning-text: #fed7aa;
+        --success-bg: #092b23;
+        --success-border: #34d399;
+        --success-text: #a7f3d0;
+        --danger-bg: #351416;
+        --danger-border: #f87171;
+        --danger-text: #fecaca;
+        --focus: #fbbf24;
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      overflow-wrap: break-word;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration-thickness: 0.08rem;
+      text-underline-offset: 0.18rem;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+    }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 0.2rem solid var(--focus);
+      outline-offset: 0.2rem;
+      border-radius: 0.25rem;
+    }
+
+    .page-shell {
+      padding-inline: var(--screen-padding);
+      padding-block: 1.5rem 3rem;
+    }
+
+    .container {
+      width: min(100%, 64rem);
+      margin: 0 auto;
+    }
+
+    .article-card {
+      padding-block: 1.5rem;
+      padding-inline: var(--nested-padding);
+      background: var(--surface);
+      border: 0.0625rem solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .article-header {
+      padding-block: 0.5rem 1.25rem;
+      border-bottom: 0.0625rem solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--heading);
+      line-height: 1.25;
+      text-wrap: balance;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      letter-spacing: -0.025em;
+    }
+
+    h2 {
+      margin: 2.5rem 0 1rem;
+      font-size: clamp(1.45rem, 3vw, 1.75rem);
+    }
+
+    h3 {
+      margin: 2rem 0 0.75rem;
+      font-size: clamp(1.25rem, 2.5vw, 1.45rem);
+    }
+
+    p {
+      margin: 0 0 1.25rem;
+    }
+
+    .lead {
+      max-width: 48rem;
+      margin: 1rem 0 0;
+      color: var(--text-soft);
+      font-size: clamp(1.125rem, 2.4vw, 1.25rem);
+      line-height: 1.65;
+    }
+    figure {
+      margin: 2rem 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 0.0625rem solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+    }
+
+    figcaption {
+      margin-top: 0.65rem;
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 1.5rem;
+      padding-inline-start: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.55rem;
+    }
+
+    li::marker {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    :not(pre) > code {
+      padding: 0.12rem 0.38rem;
+      background: var(--surface-soft);
+      color: var(--heading);
+      border: 0.0625rem solid var(--border);
+      border-radius: 0.3rem;
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+      font-size: 0.9em;
+    }
+
+    pre {
+      max-width: 100%;
+      margin: 1rem 0 1.5rem;
+      padding: 1rem;
+      overflow-x: auto;
+      background: var(--code-bg);
+      color: var(--code-text);
+      border: 0.0625rem solid var(--border-strong);
+      border-radius: var(--radius-small);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      tab-size: 2;
+    }
+
+    pre code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    }
+
+    .callout {
+      margin: 1.5rem 0;
+      padding-block: 1rem;
+      padding-inline: 1rem;
+      border-inline-start: 0.3rem solid;
+      border-radius: var(--radius-small);
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout-warning {
+      background: var(--warning-bg);
+      color: var(--warning-text);
+      border-color: var(--warning-border);
+    }
+
+    .callout-danger {
+      background: var(--danger-bg);
+      color: var(--danger-text);
+      border-color: var(--danger-border);
+    }
+
+    .callout-success {
+      background: var(--success-bg);
+      color: var(--success-text);
+      border-color: var(--success-border);
+    }
+
+    .callout-title {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    details {
+      margin: 1.5rem 0;
+      background: var(--surface-soft);
+      border: 0.0625rem solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color 160ms ease, background-color 160ms ease;
+    }
+
+    details:hover {
+      border-color: var(--border-strong);
+    }
+
+    details[open] {
+      background: var(--surface);
+      border-color: var(--accent);
+    }
+
+    summary {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-height: 3.75rem;
+      padding-block: 0.85rem;
+      padding-inline: 1rem 3.25rem;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      position: absolute;
+      inset-inline-end: 1rem;
+      content: "+";
+      color: var(--accent);
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1;
+      transition: transform 160ms ease;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    summary h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 1.65rem);
+    }
+
+    .details-content {
+      padding-block: 0.25rem 1.25rem;
+      padding-inline: 1rem;
+      border-top: 0.0625rem solid var(--border);
+    }
+
+    .details-content > :last-child {
+      margin-bottom: 0;
+    }
+
+    .table-wrap {
+      width: 100%;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      border: 0.0625rem solid var(--border);
+      border-radius: var(--radius-small);
+    }
+
+    table {
+      width: 100%;
+      min-width: 40rem;
+      border-collapse: collapse;
+      background: var(--surface);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    th,
+    td {
+      padding-block: 0.8rem;
+      padding-inline: 0.9rem;
+      border-bottom: 0.0625rem solid var(--border);
+      text-align: start;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--surface-accent);
+      color: var(--heading);
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .quick-path {
+      margin: 1.5rem 0;
+      padding-block: 1.25rem;
+      padding-inline: 1rem;
+      background: var(--surface-accent);
+      border: 0.0625rem solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .quick-path h2 {
+      margin-top: 0;
+    }
+
+    .article-footer {
+      margin-top: 3rem;
+      padding-block: 1.25rem;
+      border-top: 0.0625rem solid var(--border);
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .footer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem 1.25rem;
+      text-align: center;
+    }
+
+    .footer-meta span {
+      display: inline;
+    }
+
+    #related-articles-grid:empty,
+    #response:empty {
+      display: none;
+    }
+
+    @media (max-width: 40rem) {
+      .page-shell {
+        padding-block: 1rem 2rem;
+      }
+
+      .article-card {
+        padding-block: 0;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .article-header {
+        padding-top: 0.5rem;
+      }
+
+      details,
+      .quick-path,
+      .callout {
+        border-radius: 0.5rem;
+      }
+
+      summary {
+        padding-inline-start: 0.85rem;
+      }
+
+      .details-content {
+        padding-inline: 0.85rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      details,
+      summary::after {
+        transition: none;
+      }
+    }
+
+    @media print {
+      :root {
+        --screen-padding: 0rem;
+        --nested-padding: 0rem;
+      }
+
+      body {
+        background: #ffffff;
+        color: #000000;
+        font-size: 1rem;
+      }
+
+      .article-card {
+        border: none;
+      }
+
+      details {
+        display: block;
+      }
+
+      details > summary {
+        display: block;
+      }
+
+      details > .details-content {
+        display: block;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <main class="page-shell">
+    <article class="container article-card">
+      <header class="article-header">
+        <h1>Memperbaiki Partial Upgrade Error di Arch Linux</h1>
+        <p class="lead">Ketika aplikasi mendadak kehilangan library, pacman dipenuhi konflik versi, atau sistem berhenti saat boot, penyebabnya sering bukan paket yang “nakal”, melainkan kondisi sistem yang diperbarui setengah jalan.</p>
+
+             </header>
+
+      <p>Arch Linux menggunakan model <i>rolling release</i>. Tidak ada lompatan versi besar seperti “edisi tahun ini” menuju “edisi tahun depan”. Paket bergerak terus, dan setiap pembaruan dirancang agar seluruh komponen sistem mengikuti kumpulan versi yang sama.</p>
+
+      <p>Masalah muncul ketika database repositori sudah diperbarui, tetapi paket yang terpasang tidak ikut diperbarui secara menyeluruh. Sistem akhirnya berisi campuran paket lama dan baru. Sebuah aplikasi dapat meminta versi library terbaru, sementara library yang tersedia masih versi lama. Bisa juga kebalikannya: library sudah baru, tetapi aplikasi yang memakainya masih tertinggal.</p>
+
+      <p>Kondisi tersebut dikenal sebagai <b>partial upgrade</b>. Arch Linux tidak mendukung pola pembaruan sebagian karena hubungan antar-paketnya sangat rapat. Kabar baiknya, selama database pacman dan media penyimpanan masih sehat, sebagian besar kasus dapat dipulihkan tanpa memasang ulang sistem.</p>
+
+      <figure>
+        <img
+          src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2010%2C%202026%2C%2003_12_22%20PM.png"
+          width="1200"
+          height="675"
+          alt="Ilustrasi terminal Arch Linux untuk memperbaiki partial upgrade dan konflik paket pacman"
+          fetchpriority="high"
+          decoding="async">
+        <figcaption>Partial upgrade terjadi saat database repositori dan paket yang terpasang tidak lagi berada pada kumpulan versi yang konsisten.</figcaption>
+      </figure>
+
+      <section>
+        <h2>Mengenali Masalah Sebelum Menjalankan Perintah</h2>
+
+        <p>Gejalanya tidak selalu berupa pesan yang secara terang-terangan menyebut <i>partial upgrade</i>. Masalah lebih sering muncul sebagai efek samping: aplikasi menolak dibuka, desktop tidak berhasil dimuat, atau pacman mengeluhkan dependensi yang seharusnya tersedia.</p>
+
+        <ul>
+          <li>Aplikasi berhenti dengan pesan <code>error while loading shared libraries</code> atau <code>library not found</code>.</li>
+          <li>Pacman menemukan dependensi dengan versi yang tidak cocok.</li>
+          <li>Pembaruan gagal karena paket A membutuhkan library baru, sedangkan paket B masih mempertahankan versi lama.</li>
+          <li>Lingkungan desktop, display manager, atau layanan sistem berhenti setelah pembaruan terputus.</li>
+          <li>Kernel telah diperbarui, tetapi initramfs atau modul yang diperlukan belum terbentuk dengan benar.</li>
+          <li>Sistem gagal boot setelah hanya sebagian transaksi pembaruan selesai.</li>
+        </ul>
+
+        <div class="callout callout-warning">
+          <b class="callout-title">Jangan langsung menghapus paket yang disebut dalam pesan error</b>
+          <p>Nama paket yang tampil belum tentu menjadi sumber masalah. Ia bisa sekadar komponen pertama yang menyadari bahwa versi library di dalam sistem sudah tidak selaras.</p>
+        </div>
+      </section>
+
+      <details>
+        <summary><h2>Penyebab Partial Upgrade yang Paling Sering Terjadi</h2></summary>
+        <div class="details-content">
+          <h3>Menjalankan pacman -Sy tanpa melanjutkan upgrade</h3>
+
+          <p>Perintah <code>pacman -Sy</code> hanya menyegarkan database repositori. Paket di sistem tidak ikut diperbarui. Sesudah itu, pemasangan satu paket dengan <code>pacman -S nama-paket</code> dapat menarik paket baru yang dibangun untuk ekosistem terbaru, lalu memasukkannya ke sistem yang sebagian besar masih lama.</p>
+
+          <p>Jika baru saja menjalankan <code>pacman -Sy</code> dan belum memasang apa pun, lanjutkan dengan full system upgrade sebelum melakukan transaksi paket lainnya:</p>
+
+          <pre><code class="language-bash">sudo pacman -Syu</code></pre>
+
+          <h3>Transaksi pembaruan terputus</h3>
+
+          <p>Koneksi internet yang putus biasanya tidak langsung merusak sistem karena pacman mengunduh paket sebelum memasangnya. Risiko lebih besar muncul ketika komputer mati, ruang penyimpanan habis, proses dihentikan paksa, atau terjadi kegagalan ketika transaksi sudah memasuki tahap pemasangan.</p>
+
+          <p>Periksa ruang kosong sebelum mencoba lagi:</p>
+
+          <pre><code class="language-bash">df -h /
+df -h /var/cache/pacman/pkg</code></pre>
+
+          <h3>Mencampur repositori stable dan testing</h3>
+
+          <p>Repositori testing bukan sekadar tempat mengambil satu paket yang lebih baru. Paket di dalamnya diuji sebagai satu rangkaian. Mengaktifkan <code>core-testing</code> tetapi tetap mengambil komponen terkait dari cabang stable dapat menghasilkan susunan versi yang tidak sesuai.</p>
+
+          <p>Hal serupa dapat terjadi pada repositori pihak ketiga yang terlambat membangun ulang paket setelah library resmi mengalami perubahan ABI atau <i>soname</i>.</p>
+
+          <h3>Menahan paket terlalu lama</h3>
+
+          <p>Pengaturan <code>IgnorePkg</code> atau <code>IgnoreGroup</code> dapat membantu untuk kebutuhan sementara, tetapi pemakaian jangka panjang membuat paket tertentu tertinggal dari dependensinya. Menahan kernel, driver grafis, Mesa, glibc, systemd, atau komponen desktop tanpa memahami hubungan versinya dapat berakhir menjadi partial upgrade.</p>
+
+          <h3>Paket AUR belum dibangun ulang</h3>
+
+          <p>Paket AUR tidak dikelola oleh repositori resmi. Setelah library utama diperbarui, paket AUR yang ditautkan ke versi library lama mungkin harus dibangun ulang. Dalam kasus ini, paket resmi sudah konsisten, tetapi aplikasi dari AUR masih mencari berkas library yang sudah tidak tersedia.</p>
+
+          <pre><code class="language-bash">pacman -Qm</code></pre>
+
+          <p>Perintah tersebut menampilkan paket asing, yaitu paket yang tidak ditemukan dalam database repositori aktif. Daftar itu perlu ditinjau setelah pembaruan sistem selesai.</p>
+        </div>
+      </details>
+
+      <section class="quick-path">
+        <h2>Jalur Pemulihan untuk Sistem yang Masih Bisa Boot</h2>
+
+        <p>Jika terminal masih dapat digunakan dan pacman masih berjalan, mulailah dari langkah paling sederhana. Jangan menghapus database, jangan membersihkan seluruh cache, dan jangan memakai opsi pemaksa sebelum mengetahui masalah sebenarnya.</p>
+
+        <ol>
+          <li>Pastikan koneksi internet dan ruang penyimpanan mencukupi.</li>
+          <li>Periksa konfigurasi repositori.</li>
+          <li>Jalankan full system upgrade.</li>
+          <li>Periksa konsistensi database dan berkas paket.</li>
+          <li>Pasang ulang hanya paket yang terbukti rusak.</li>
+          <li>Bangun ulang initramfs jika pembaruan menyentuh kernel atau proses boot.</li>
+        </ol>
+      </section>
+
+      <details>
+        <summary><h2>Langkah Pemulihan Aman dengan Pacman</h2></summary>
+        <div class="details-content">
+          <h3>Periksa repositori yang sedang aktif</h3>
+
+          <p>Tampilkan konfigurasi pacman tanpa komentar dan baris kosong:</p>
+
+          <pre><code class="language-bash">grep -Ev '^[[:space:]]*(#|$)' /etc/pacman.conf</code></pre>
+
+          <p>Perhatikan nama repositori, urutannya, serta baris <code>Include</code>. Jika tidak sengaja mencampur testing dan stable, tentukan cabang yang ingin dipakai lalu rapikan konfigurasi sebelum melanjutkan.</p>
+
+          <p>Pengguna cabang stable pada umumnya cukup memakai repositori resmi stable. Pengguna testing harus mengikuti susunan repositori testing secara konsisten, bukan mengambil satu bagian secara acak.</p>
+
+          <h3>Jalankan full system upgrade</h3>
+
+          <p>Perintah standar untuk menyegarkan database dan memperbarui seluruh paket adalah:</p>
+
+          <pre><code class="language-bash">sudo pacman -Syu</code></pre>
+
+          <p>Opsi <code>-S</code> menjalankan operasi sinkronisasi, <code>-y</code> mengambil database repositori terbaru, dan <code>-u</code> memperbarui semua paket yang tertinggal. Inilah kombinasi yang seharusnya digunakan untuk pembaruan rutin.</p>
+
+          <p>Jika database lokal diduga rusak, mirror baru saja diganti, atau pacman terus memakai database yang tidak sesuai, sinkronisasi dapat dipaksa satu kali dengan:</p>
+
+          <pre><code class="language-bash">sudo pacman -Syyu</code></pre>
+
+          <div class="callout callout-warning">
+            <b class="callout-title">Dua huruf y bukan pilihan wajib setiap hari</b>
+            <p><code>-Syyu</code> mengunduh ulang seluruh database meskipun salinan lokal dianggap masih baru. Untuk pembaruan normal, <code>-Syu</code> sudah cukup dan lebih hemat lalu lintas mirror.</p>
+          </div>
+
+          <h3>Ketika kembali dari testing menuju stable</h3>
+
+          <p>Sesudah repositori testing dinonaktifkan dengan benar, sebagian paket lokal mungkin memiliki versi lebih tinggi daripada paket stable. Dalam situasi khusus ini, pacman perlu diizinkan melakukan downgrade:</p>
+
+          <pre><code class="language-bash">sudo pacman -Syyuu</code></pre>
+
+          <p>Dua huruf <code>u</code> mengizinkan pacman memilih versi repositori walaupun versinya lebih rendah daripada paket lokal. Baca daftar transaksi dengan teliti sebelum menyetujuinya. Perintah ini bukan pengganti <code>-Syu</code> untuk pemakaian rutin.</p>
+
+          <h3>Periksa konsistensi database paket</h3>
+
+          <p>Setelah transaksi selesai, periksa apakah database lokal masih memiliki dependensi hilang, konflik, atau kepemilikan berkas yang tidak konsisten:</p>
+
+          <pre><code class="language-bash">sudo pacman -Dk</code></pre>
+
+          <p>Pemeriksaan yang melibatkan ketersediaan dependensi pada database sinkronisasi dapat dilakukan dengan:</p>
+
+          <pre><code class="language-bash">sudo pacman -Dkk</code></pre>
+
+          <h3>Periksa berkas milik paket</h3>
+
+          <p>Pacman juga dapat memeriksa apakah berkas yang tercatat sebagai milik paket masih tersedia:</p>
+
+          <pre><code class="language-bash">pacman -Qk</code></pre>
+
+          <p>Untuk pemeriksaan lebih rinci terhadap ukuran, izin, dan metadata paket yang menyediakan berkas <i>mtree</i>, gunakan:</p>
+
+          <pre><code class="language-bash">pacman -Qkk</code></pre>
+
+          <p>Beberapa perubahan berkas konfigurasi memang disengaja, sehingga keluaran <code>-Qkk</code> perlu dibaca berdasarkan konteks. Fokuslah pada berkas program atau library yang benar-benar hilang.</p>
+
+          <h3>Pasang ulang paket yang rusak</h3>
+
+          <p>Sesudah full upgrade berhasil dan nama paket yang bermasalah sudah diketahui, pasang ulang paket tersebut dari repositori yang kini telah sinkron:</p>
+
+          <pre><code class="language-bash">sudo pacman -S nama-paket</code></pre>
+
+          <p>Ganti <code>nama-paket</code> dengan paket sebenarnya. Jangan memakai <code>--overwrite '*'</code> secara membabi buta. Opsi overwrite dapat menutupi konflik kepemilikan berkas tanpa memperbaiki akar masalah.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><h2>Memulihkan Sistem yang Gagal Boot</h2></summary>
+        <div class="details-content">
+          <h3>Masuk melalui Arch Linux live USB</h3>
+
+          <p>Jika sistem tidak mencapai terminal, boot menggunakan media instalasi Arch Linux. Hubungkan jaringan, identifikasi partisi, lalu mount partisi root ke <code>/mnt</code>.</p>
+
+          <pre><code class="language-bash">lsblk -f
+mount /dev/nama-partisi-root /mnt</code></pre>
+
+          <p>Jika direktori boot atau EFI berada pada partisi terpisah, mount partisi tersebut sesuai struktur sistem. Lokasinya dapat berupa <code>/mnt/boot</code> atau <code>/mnt/boot/efi</code>.</p>
+
+          <pre><code class="language-bash">mount /dev/nama-partisi-efi /mnt/boot</code></pre>
+
+          <p>Contoh di atas hanyalah pola. Jangan menyalin nama perangkat secara mentah karena setiap komputer memiliki susunan partisi berbeda.</p>
+
+          <h3>Masuk ke sistem terpasang</h3>
+
+          <pre><code class="language-bash">arch-chroot /mnt</code></pre>
+
+          <p>Sesudah masuk, periksa konfigurasi repositori lalu jalankan full system upgrade:</p>
+
+          <pre><code class="language-bash">pacman -Syu</code></pre>
+
+          <h3>Pasang ulang kernel yang digunakan</h3>
+
+          <p>Periksa paket kernel resmi yang terpasang:</p>
+
+          <pre><code class="language-bash">pacman -Q | grep -E '^linux(|-lts|-zen|-hardened) '</code></pre>
+
+          <p>Pasang ulang kernel yang benar. Contoh berikut berlaku untuk kernel standar:</p>
+
+          <pre><code class="language-bash">pacman -S linux</code></pre>
+
+          <p>Pengguna <code>linux-lts</code>, <code>linux-zen</code>, atau <code>linux-hardened</code> harus memakai nama paket kernel yang sesuai dengan sistemnya.</p>
+
+          <h3>Bangun ulang seluruh initramfs</h3>
+
+          <pre><code class="language-bash">mkinitcpio -P</code></pre>
+
+          <p>Opsi <code>-P</code> memproses seluruh preset yang tersedia di <code>/etc/mkinitcpio.d/</code>. Langkah ini relevan ketika pembaruan kernel, modul penyimpanan, enkripsi, atau konfigurasi initramfs sempat terputus.</p>
+
+          <p>Setelah semua perintah selesai tanpa error:</p>
+
+          <pre><code class="language-bash">exit
+umount -R /mnt
+reboot</code></pre>
+
+          <h3>Ketika arch-chroot tidak dapat dijalankan</h3>
+
+          <p>Jika library inti pada sistem target rusak sampai <code>arch-chroot</code> tidak bisa memulai shell, pacman dari lingkungan live dapat diarahkan ke sistem yang telah di-mount:</p>
+
+          <pre><code class="language-bash">pacman --sysroot /mnt -Syu</code></pre>
+
+          <p>Opsi <code>--sysroot</code> dirancang untuk mengoperasikan sistem pada root alternatif. Periksa kembali mount partisi dan konfigurasi jaringan sebelum menjalankannya.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><h2>Perintah yang Sebaiknya Tidak Dipakai sebagai Obat Instan</h2></summary>
+        <div class="details-content">
+          <h3>Mengubah semua orphan menjadi dependency</h3>
+
+          <p>Perintah berikut kadang beredar sebagai cara “membangun ulang database”:</p>
+
+          <pre><code class="language-bash">sudo pacman -D --asdeps $(pacman -Qdtq)</code></pre>
+
+          <p>Perintah tersebut tidak membangun ulang database dan tidak memperbaiki versi paket. Opsi <code>--asdeps</code> hanya mengubah alasan pemasangan paket menjadi “dipasang sebagai dependensi”. Paket yang ditampilkan oleh <code>pacman -Qdtq</code> pada umumnya memang sudah berstatus dependency yang tidak lagi diperlukan.</p>
+
+          <p>Membersihkan orphan boleh dilakukan setelah sistem kembali konsisten, tetapi itu merupakan pekerjaan pemeliharaan terpisah:</p>
+
+          <pre><code class="language-bash">orphans=$(pacman -Qdtq)
+
+if [ -n "$orphans" ]; then
+  sudo pacman -Rns $orphans
+fi</code></pre>
+
+          <h3>Menghapus seluruh cache dengan pacman -Scc</h3>
+
+          <p><code>pacman -Scc</code> menghapus seluruh paket dari cache, termasuk versi lama yang mungkin berguna untuk pemulihan. Membersihkan cache tidak menyelaraskan versi paket dan tidak memperbaiki dependensi.</p>
+
+          <p>Jangan membersihkan cache ketika sistem masih bermasalah. Setelah sistem sehat, pengguna paket <code>pacman-contrib</code> dapat mempertahankan beberapa versi terbaru dengan:</p>
+
+          <pre><code class="language-bash">sudo paccache -r</code></pre>
+
+          <h3>Melewati pemeriksaan dependensi</h3>
+
+          <p>Opsi seperti <code>-d</code>, <code>-dd</code>, atau penghapusan rekursif agresif dapat membuat pacman berhenti mengingatkan adanya hubungan paket yang rusak. Pesan error mungkin hilang, tetapi sistem justru menjadi lebih sulit dipulihkan.</p>
+
+          <div class="callout callout-danger">
+            <b class="callout-title">Hindari jalan pintas yang merusak catatan pacman</b>
+            <p>Jangan menghapus isi <code>/var/lib/pacman/local</code>, jangan memakai <code>--dbonly</code>, dan jangan memaksa overwrite massal kecuali kamu benar-benar memahami perubahan yang sedang dilakukan.</p>
+          </div>
+        </div>
+      </details>
+
+      <details>
+        <summary><h2>Diagnosis Berdasarkan Pesan Error</h2></summary>
+        <div class="details-content">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gejala</th>
+                  <th>Kemungkinan penyebab</th>
+                  <th>Langkah awal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>library not found</code></td>
+                  <td>Aplikasi dan library berada pada versi berbeda, atau paket AUR belum dibangun ulang.</td>
+                  <td>Jalankan <code>pacman -Syu</code>, lalu periksa paket asing dengan <code>pacman -Qm</code>.</td>
+                </tr>
+                <tr>
+                  <td>Dependensi meminta versi yang tidak tersedia</td>
+                  <td>Database mirror tidak sinkron, repo tercampur, atau ada paket yang ditahan.</td>
+                  <td>Periksa <code>pacman.conf</code>, mirror, <code>IgnorePkg</code>, lalu lakukan full upgrade.</td>
+                </tr>
+                <tr>
+                  <td>Konflik berkas saat upgrade</td>
+                  <td>Berkas tidak dimiliki paket, paket pihak ketiga bentrok, atau transaksi lama tidak selesai.</td>
+                  <td>Cari pemilik berkas dan baca berita Arch sebelum memakai opsi overwrite.</td>
+                </tr>
+                <tr>
+                  <td>Kernel ditemukan tetapi root filesystem gagal dibuka</td>
+                  <td>Initramfs tidak lengkap, hook berubah, atau modul penyimpanan tidak masuk.</td>
+                  <td>Boot live USB, masuk ke sistem, lalu jalankan <code>mkinitcpio -P</code>.</td>
+                </tr>
+                <tr>
+                  <td>Pacman sendiri tidak dapat berjalan</td>
+                  <td>Library inti atau pacman rusak akibat transaksi terputus.</td>
+                  <td>Gunakan live USB dan jalankan pacman melalui <code>--sysroot</code>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Baca catatan transaksi terakhir</h3>
+
+          <p>Pacman menyimpan riwayat pemasangan dan pembaruan di <code>/var/log/pacman.log</code>. Baris terakhir sering menunjukkan paket yang sedang diproses ketika masalah terjadi.</p>
+
+          <pre><code class="language-bash">tail -n 100 /var/log/pacman.log</code></pre>
+
+          <p>Untuk mencari transaksi upgrade terakhir:</p>
+
+          <pre><code class="language-bash">grep '\[ALPM\] upgraded' /var/log/pacman.log | tail -n 50</code></pre>
+
+          <p>Catatan ini membantu menentukan apakah transaksi berhenti setelah kernel diperbarui, sesudah library inti diganti, atau ketika paket pihak ketiga sedang dipasang.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><h2>Mencegah Partial Upgrade Terulang</h2></summary>
+        <div class="details-content">
+          <h3>Gunakan satu transaksi yang lengkap</h3>
+
+          <p>Untuk pembaruan rutin, gunakan:</p>
+
+          <pre><code class="language-bash">sudo pacman -Syu</code></pre>
+
+          <p>Jika ingin memasang paket baru sekaligus memperbarui sistem, target paket dapat ditambahkan pada transaksi yang sama:</p>
+
+          <pre><code class="language-bash">sudo pacman -Syu nama-paket</code></pre>
+
+          <p>Dengan pola ini, paket baru dipasang bersama kumpulan dependensi terbaru, bukan dimasukkan ke sistem yang masih menggunakan database atau library lama.</p>
+
+          <h3>Baca Arch Linux News sebelum pembaruan besar</h3>
+
+          <p>Sesekali pembaruan membutuhkan intervensi manual, misalnya perubahan format konfigurasi, penggantian paket, atau migrasi komponen sistem. Pengumuman tersebut diterbitkan melalui <a href="https://archlinux.org/news/">Arch Linux News</a>.</p>
+
+          <h3>Jangan memperbarui saat kondisi tidak mendukung</h3>
+
+          <p>Hindari pembaruan besar ketika baterai hampir habis, koneksi sangat tidak stabil, atau partisi root tinggal menyisakan sedikit ruang. Pastikan proses dapat selesai tanpa dimatikan paksa.</p>
+
+          <h3>Tinjau berkas pacnew</h3>
+
+          <p>Pembaruan paket dapat menghasilkan berkas konfigurasi dengan akhiran <code>.pacnew</code>. Berkas tersebut tidak selalu harus menggantikan konfigurasi lama, tetapi perlu dibandingkan dan digabungkan agar layanan tetap kompatibel dengan versi terbaru.</p>
+
+          <h3>Rawat paket AUR secara terpisah</h3>
+
+          <p>Selesaikan pembaruan paket resmi terlebih dahulu. Setelah itu, bangun ulang paket AUR yang bergantung pada library yang berubah. Jangan menganggap AUR sebagai repositori resmi yang selalu bergerak serempak dengan Arch Linux.</p>
+
+          <h3>Simpan cache dan cadangan yang masuk akal</h3>
+
+          <p>Beberapa versi paket lama di cache dapat membantu ketika pembaruan tertentu harus dibatalkan. Untuk kondisi yang lebih rumit, <a href="https://wiki.archlinux.org/title/Arch_Linux_Archive">Arch Linux Archive</a> menyediakan snapshot repositori berdasarkan tanggal.</p>
+
+          <p>Rollback melalui arsip harus dilakukan secara konsisten terhadap seluruh repositori pada tanggal yang sama. Mengambil satu paket lama dari snapshot lalu mencampurnya dengan sistem terbaru dapat menciptakan partial upgrade dalam arah sebaliknya.</p>
+        </div>
+      </details>
+
+      <section>
+        <h2>Kesimpulan</h2>
+
+        <p>Partial upgrade bukan sekadar satu paket yang gagal diperbarui. Ia adalah keadaan ketika kumpulan versi di dalam Arch Linux tidak lagi selaras. Karena itu, jalan keluarnya bukan menghapus paket secara acak, melainkan mengembalikan sistem ke satu keadaan repositori yang konsisten.</p>
+
+        <p>Pada sistem yang masih dapat boot, <code>sudo pacman -Syu</code> biasanya menjadi langkah utama. <code>-Syyu</code> hanya diperlukan ketika database perlu dipaksa sinkron ulang, sedangkan <code>-Syyuu</code> digunakan dalam situasi khusus ketika berpindah dari testing menuju stable dan membutuhkan downgrade.</p>
+
+        <p>Jika sistem gagal boot, media instalasi Arch Linux, <code>arch-chroot</code>, <code>pacman --sysroot</code>, dan <code>mkinitcpio -P</code> menyediakan jalur pemulihan yang jauh lebih aman daripada merusak database paket. Baca setiap transaksi sebelum menyetujuinya—pacman memang cepat, tetapi bukan pembaca pikiran.</p>
+
+        <div class="callout callout-success">
+          <b class="callout-title">Pegangan paling sederhana</b>
+          <p>Segarkan database dan paket dalam satu transaksi, jaga repositori tetap konsisten, serta jangan membersihkan cache pemulihan ketika sistem belum benar-benar sehat.</p>
+        </div>
+      </section>
+
+      <div id="related-articles-grid"></div>
+      <div id="response"></div>
+
+      <footer class="article-footer">
+        <div class="footer-meta">
+          <span>Penulis: <b>Fakhrul Rijal</b></span>
+          <span>Publikasi: <time datetime="2026-07-10">10 Juli 2026</time></span>
+          <span>Referensi: <a href="https://man.archlinux.org/man/pacman.8.en">Manual pacman</a>, <a href="https://wiki.archlinux.org/title/System_maintenance">System maintenance</a>, <a href="https://wiki.archlinux.org/title/Mkinitcpio">Mkinitcpio</a></span>
+        </div>
+      </footer>
+
+      <!--wajib ini tulis signature artikel oleh LayarKosong-->
+    </article>
+  </main>
+
+  <script
+    src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"
+    defer
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.hljs) {
+        window.hljs.highlightAll();
+      }
+    });
+  </script>
+</body>
+</html>
