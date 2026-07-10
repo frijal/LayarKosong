@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cara Membuat Custom Preset HandBrake (Cepat & Optimal)</title>
+
+  <meta name="description" content="Pelajari panduan lengkap cara membuat custom preset di HandBrake untuk hasil konversi video yang lebih optimal, cepat, dan efisien sesuai spesifikasi hardware.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Setup Custom Preset HandBrake untuk Kualitas Video Terbaik">
+  <meta property="og:description" content="Ingin kualitas render video lebih jernih dan hemat waktu? Temukan rahasia setting custom preset HandBrake untuk akselerasi hardware Nvidia, Intel, dan AMD.">
+  <meta property="og:url" content="https://dalam.web.id/artikel/handbrake-preset-custom.html">
+  <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/a7bd5e811fe29367.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tinggalkan Setting Default! Ini Cara Bikin Custom Preset di HandBrake">
+  <meta name="twitter:description" content="Maksimalkan GPU kamu dengan membuat preset custom khusus di HandBrake agar proses encoding video berjalan secepat kilat. Baca selengkapnya di sini.">
+  <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/a7bd5e811fe29367.webp">
+
+  <link rel="canonical" href="https://dalam.web.id/artikel/handbrake-preset-custom.html">
+
+  <meta name="news_keywords" content="HandBrake Preset, Video Encoding, Video Compression, Hardware Acceleration, NVENC, HandBrake Tutorial">
+  <meta property="article:tag" content="Video Editing, Linux, Open Source, Transcoding">
+
+  <meta name="promphint" content="Bagaimana cara membuat custom preset di HandBrake? | Buka menu Presets, pilih basis hardware Anda, atur dimensi resolusi, ubah encoder video ke H.265, sesuaikan behavior audio/subtitle, lalu klik 'Save As' untuk menyimpan profil tersebut.">
+
+  <!-- Highlight.js Stylesheet (Tidak dipreload) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+   <meta property="article:published_time" content="2025-02-16T08:25:44.983Z">
+    <meta property="article:modified_time" content="2025-02-16T08:35:15.081Z">
+  <style>
+    /* ---------------------------------------------------------
+       CSS Variables & Anti "Padding Inception" Strategy
+       --------------------------------------------------------- */
+    :root {
+      /* Jarak aman layar (Mobile-First) */
+      --screen-padding: 1rem;
+      --nested-padding: 0rem;
+
+      /* Tema Terang (Default) */
+      --bg-color: #f8fafc;
+      --text-main: #334155;
+      --text-muted: #64748b;
+      --heading-color: #0f172a;
+      --accent-color: #0ea5e9;
+      --accent-hover: #0284c7;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --code-bg: #1e293b;
+    }
+
+    /* Deteksi Mode Gelap via Sistem */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #0f172a;
+        --text-main: #cbd5e1;
+        --text-muted: #94a3b8;
+        --heading-color: #f8fafc;
+        --accent-color: #38bdf8;
+        --accent-hover: #7dd3fc;
+        --card-bg: #1e293b;
+        --border-color: #334155;
+        --code-bg: #0b1120;
+      }
+    }
+
+    /* Ruang yang lebih lega di Desktop */
+    @media (min-width: 1024px) {
+      :root {
+        --screen-padding: 2.5rem;
+        --nested-padding: 1.5rem;
+      }
+    }
+
+    /* ---------------------------------------------------------
+       Reset & Tipografi Dasar
+       --------------------------------------------------------- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      width: min(100%, 64rem);
+      margin: 0 auto;
+      padding-inline: var(--screen-padding);
+      padding-block: 2rem;
+    }
+
+    h1, h2, h3 {
+      color: var(--heading-color);
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      margin-top: 1rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    h2 { font-size: 1.7rem; margin-top: 3rem; }
+    h3 { font-size: 1.35rem; margin-top: 2rem; }
+
+    p { margin-bottom: 1.25rem; }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.75rem;
+    }
+
+    li { margin-bottom: 0.5rem; }
+
+    /* ---------------------------------------------------------
+       Gambar & Media
+       --------------------------------------------------------- */
+    img {
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      background-color: var(--code-bg);
+      border-radius: 0.5rem;
+      margin-block: 2rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ---------------------------------------------------------
+       Blok Kode & Syntax
+       --------------------------------------------------------- */
+    pre {
+      background-color: var(--code-bg);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, "Fira Code", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.95rem;
+    }
+
+    :not(pre) > code {
+      background-color: rgba(128, 128, 128, 0.15);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-size: 0.9em;
+      color: var(--accent-color);
+    }
+
+    /* ---------------------------------------------------------
+       Accordion / Details untuk Bagian Panjang
+       --------------------------------------------------------- */
+    details {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+      margin-block: 2.5rem;
+      padding-inline: var(--nested-padding);
+      transition: all 0.3s ease;
+    }
+
+    summary {
+      cursor: pointer;
+      padding-block: 1.25rem;
+      padding-inline: 1.5rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      background-color: rgba(0, 0, 0, 0.02);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      summary { background-color: rgba(255, 255, 255, 0.03); }
+    }
+
+    summary:hover { background-color: rgba(0, 0, 0, 0.05); }
+
+    @media (prefers-color-scheme: dark) {
+      summary:hover { background-color: rgba(255, 255, 255, 0.06); }
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "▼";
+      color: var(--accent-color);
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    details[open] summary::after { transform: rotate(180deg); }
+    details[open] summary { border-bottom: 1px solid var(--border-color); }
+    summary h2 { margin: 0; font-size: 1.5rem; }
+
+    .details-content {
+      padding-block: 1.5rem;
+      padding-inline: 1.5rem;
+    }
+
+    /* Melarutkan kotak di HP agar tidak sumpek */
+    @media (max-width: 640px) {
+      details {
+        background: transparent;
+        border: none;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        padding-inline: 0;
+      }
+      summary { padding-inline: 0; background: transparent; }
+      details[open] summary { border-bottom: none; }
+      .details-content { padding-inline: 0; }
+    }
+
+    /* ---------------------------------------------------------
+       Footer
+       --------------------------------------------------------- */
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .footer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .footer-meta span:not(:last-child)::after {
+      content: " | ";
+      margin-left: 0.5rem;
+      color: var(--border-color);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <main>
+      <article>
+        <header>
+          <h1>Cara Membuat Custom Preset HandBrake (Cepat & Optimal)</h1>
+          <p>HandBrake itu ibarat pisau lipat Swiss untuk urusan konversi video. Tapi sayang, banyak yang cuma pakai pengaturan <i>default</i>-nya saja. Padahal, dengan bikin *custom preset*, proses *render* video kamu bisa melesat jauh lebih cepat dan jernih!</p>
+        </header>
+
+        <p>Bagi siapa pun yang sering berkutat dengan video, <b>HandBrake</b> adalah nama yang pastinya sudah tidak asing lagi. *Software open-source* yang gratis ini sangat tangguh untuk urusan *transcoding*, alias meremas dan mengubah *file* video raksasa menjadi ukuran yang lebih bersahabat tanpa harus mengorbankan kualitas secara brutal.</p>
+
+        <p>Masalahnya begini: pengaturan bawaan (<i>default preset</i>) di HandBrake memang dirancang agar "aman" digunakan di komputer mana saja. Ibarat baju, ukurannya <i>all size</i>. Tapi, kalau kamu punya komputer dengan kartu grafis mumpuni, menggunakan setelan <i>default</i> itu sama saja dengan bawa mobil <i>sport</i> tapi jalannya cuma di gigi satu. Sayang banget, <i>kan?</i></p>
+
+        <img src="https://www.linux.org/attachments/figure-1-jpg.19550/"
+             alt="Tangkapan layar antarmuka HandBrake menunjukkan daftar Preset di menu samping"
+             width="302"
+             height="639"
+             fetchpriority="high"
+             decoding="async">
+
+        <p>Di artikel ini, kita akan bedah tuntas cara meracik dan menyimpan *preset* buatanmu sendiri. Kita akan mulai dari mengenali jenis *hardware acceleration* yang kompatibel dengan mesin kamu, sampai cara memaksa HandBrake agar pintar memilih *track* audio secara otomatis.</p>
+
+        <details>
+          <summary>
+            <h2>Mengenal Kategori Hardware Acceleration di HandBrake</h2>
+          </summary>
+          <div class="details-content">
+            <p>Langkah pertama yang harus kita intip adalah menu <b>Presets</b> di HandBrake. Coba klik kategori bernama <b>Hardware</b> (seperti yang terlihat pada Gambar 2). Jangan langsung asal klik, ya. HandBrake memang menampilkan daftarnya, tapi bukan berarti sistem kamu otomatis sanggup menjalankan semuanya.</p>
+
+            <img src="https://www.linux.org/attachments/figure-2-jpg.19551/"
+                 alt="Opsi Hardware Acceleration di dalam menu Presets HandBrake"
+                 width="800"
+                 height="450"
+                 loading="lazy"
+                 decoding="async">
+
+            <p>Secara umum, ada empat tipe dukungan *hardware* di sini:</p>
+            <ul>
+              <li><b>NVENC:</b> Nvidia Encoder (untuk pengguna kartu grafis Nvidia).</li>
+              <li><b>QSV:</b> Intel Quick Sync Video (fitur ajaib bawaan prosesor Intel yang punya <i>integrated graphics</i>).</li>
+              <li><b>VCN:</b> AMD Video Core Next (untuk pengguna GPU AMD).</li>
+              <li><b>MF:</b> ARM Media Foundation (khusus untuk arsitektur ARM).</li>
+            </ul>
+
+            <h3>Cara Cek dan Pasang Driver di Linux (Ubuntu/Debian)</h3>
+            <p>Kalau kamu pengguna Linux, kamu wajib memastikan *driver* yang tepat sudah terpasang agar fitur di atas tidak <i>error</i> saat dijalankan.</p>
+
+            <p><b>Pengguna Nvidia:</b> Jalankan perintah <code>nvidia-smi</code> di terminal untuk mengecek status kartu grafis. Kalau belum punya *tool* tersebut, instal dulu dengan perintah berikut:</p>
+<pre><code class="language-bash">sudo apt install nvidia-smi -y</code></pre>
+            <p>Jika butuh memasang *driver* utama, ketik <code>sudo ubuntu-drivers list</code> untuk melihat versi yang didukung, lalu pasang yang paling sesuai.</p>
+
+            <p><b>Pengguna Intel:</b> Pasang alat bantu diagnostik dari Intel agar kamu bisa memantau kinerja GPU saat <i>encoding</i> berjalan.</p>
+<pre><code class="language-bash">sudo apt install intel-gpu-tools vainfo -y</code></pre>
+            <p>Gunakan perintah <code>vainfo</code> untuk melihat *driver* apa saja yang aktif, atau <code>intel_gpu_top</code> untuk memantau trafik kinerja GPU.</p>
+
+            <p><b>Pengguna AMD:</b> Unduh *file* <i>.deb</i> *driver* resmi dari situs AMD, lalu pasang secara manual (ganti nama *file* sesuai yang kamu unduh):</p>
+<pre><code class="language-bash">sudo dpkg -i nama_file_driver.deb
+amdgpu-install</code></pre>
+            <p>Pastikan memilih <i>proprietary driver</i> jika diminta. Untuk verifikasi, jalankan <code>dpkg -l xserver-xorg-video-amdgpu</code>.</p>
+          </div>
+        </details>
+
+        <h2>Mengonfigurasi Resolusi dan Encoder Video</h2>
+
+        <p>Setelah *driver* beres, pilih *preset hardware* yang paling cocok buatmu. (Sebagai contoh, saya biasa memakai QSV untuk Intel). Nah, sekarang masuk ke <i>tab</i> <b>Dimensions</b>.</p>
+
+        <img src="https://www.linux.org/attachments/figure-3-jpg.19552/"
+             alt="Tab Dimensions pada HandBrake untuk mengatur Resolution Limit"
+             width="800"
+             height="450"
+             loading="lazy"
+             decoding="async">
+
+        <p>Di bagian <b>Resolution Limit</b>, kamu bisa membatasi ukuran maksimal resolusi video <i>output</i>. Opsinya merentang dari membiarkan resolusi asli (<i>None</i>), hingga standar industri seperti 4320p (8K), 2160p (4K), 1080p (FHD), sampai yang lawas macam 480p NTSC.</p>
+
+        <img src="https://www.linux.org/attachments/figure-4-jpg.19553/"
+             alt="Tab Video pada HandBrake menampilkan pemilihan Video Encoder H.265"
+             width="800"
+             height="450"
+             loading="lazy"
+             decoding="async">
+
+        <p>Bergeser ke <i>tab</i> <b>Video</b>. Ini adalah jantung dari proses kompresi. Sangat disarankan untuk mengatur <b>Video Encoder</b> ke <b>H.265 (x265)</b>. Format ini menawarkan kualitas yang setara dengan H.264 lama namun dengan ukuran *file* yang jauh lebih mungil. Kalau *source* video kamu memiliki rentang warna yang sangat kaya (HDR), pastikan kamu memilih varian 10-bit atau 12-bit H.265 agar warna cantiknya tidak pudar.</p>
+
+        <details>
+          <summary>
+            <h2>Trik Optimasi Audio dan Subtitle Secara Otomatis</h2>
+          </summary>
+          <div class="details-content">
+            <p>Bagian audio sering kali diabaikan, padahal di sinilah kita bisa memangkas ruang *file* yang terbuang sia-sia karena menyimpan *dubbing* bahasa yang tidak pernah kita dengarkan.</p>
+
+            <img src="https://www.linux.org/attachments/figure-5-jpg.19554/"
+                 alt="Tab Audio di HandBrake menunjukkan fitur Track Selection Behavior"
+                 width="800"
+                 height="450"
+                 loading="lazy"
+                 decoding="async">
+
+            <h3>Mengakali Track Audio</h3>
+            <p>Klik tombol <b>Track Selection</b> di panel sebelah kiri. Di sini kita menentukan <b>Selection Behavior</b>. Ada opsi:</p>
+            <ul>
+              <li><i>No Audio</i> (Buang semua suara, cocok untuk bikin <i>B-roll</i>).</li>
+              <li><i>First Matching Selected Language</i> (Ambil *track* pertama yang bahasanya sesuai pilihan kita).</li>
+              <li><i>All Matching Selected Languages</i> (Ambil semua *track* yang cocok).</li>
+            </ul>
+            <p>Misalnya, video aslimu punya suara bahasa Inggris, komentar sutradara, dan bahasa Spanyol. Kalau kamu atur bahasanya ke "English" dengan mode <i>First Matching</i>, HandBrake cuma akan menarik satu *track* audio bahasa Inggris pertama yang ia temukan. Jauh lebih hemat tempat!</p>
+
+            <p>Terkait <i>Codec</i>, kalau kamu tidak ingin kualitas audionya turun sama sekali, gunakan fitur <b>Passthru</b>. Fitur ini akan menyalin mentah-mentah audio dari sumber asli ke hasil akhir tanpa melakukan <i>encoding</i> ulang (selama format akhirnya mendukung).</p>
+
+            <img src="https://www.linux.org/attachments/figure-6-jpg.19555/"
+                 alt="Tab Subtitle di HandBrake untuk mengatur kriteria Burn-in dan Closed Captions"
+                 width="800"
+                 height="450"
+                 loading="lazy"
+                 decoding="async">
+
+            <h3>Mengelola Subtitle (Closed Captions)</h3>
+            <p>Pindah ke <i>tab</i> <b>Subtitles</b>, lalu buka <i>Selection Behavior</i>-nya. Kamu bisa menyalakan opsi <i>Add Closed Captions when available</i> agar *subtitle* aslinya ikut terbawa.</p>
+            <p>Ada satu fitur keren bernama <b>Foreign Audio Scan Pass</b>. Fitur ini bakal memindai keseluruhan video secara cerdas untuk mencari <i>forced subtitle</i>—contohnya, saat kamu nonton film Amerika, lalu ada adegan karakter yang kebetulan mengobrol bahasa Rusia yang memang disengaja oleh sutradaranya agar diterjemahkan di layar.</p>
+            <p>Ingat, berhati-hatilah dengan opsi <b>Burn-in</b>. <i>Burn-in</i> artinya teks *subtitle*-nya akan ditempel mati alias disablon permanen menyatu dengan piksel video. Kamu tidak akan bisa mematikannya lewat <i>remote</i> TV.</p>
+          </div>
+        </details>
+
+        <h2>Menyimpan Custom Preset Anda</h2>
+
+        <p>Sudah puas mengotak-atik semua *tab* di atas? Saatnya mengabadikannya agar tidak perlu *setting* ulang di masa depan. Klik menu <b>Presets</b> di atas, geser ke bawah, lalu tekan <b>Save As</b>.</p>
+
+        <img src="https://www.linux.org/attachments/figure-7-jpg.19556/"
+             alt="Jendela pop-up Save As Preset di HandBrake"
+             width="800"
+             height="450"
+             loading="lazy"
+             decoding="async">
+
+        <p>Jendela pop-up (seperti Gambar 7) akan muncul. Di sini kamu bebas memberi nama yang *catchy* untuk *preset* tersebut, memasukkannya ke dalam kategori spesifik, mengisi deskripsi detail, hingga menjadikannya sebagai <i>default</i> setiap kali kamu membuka HandBrake.</p>
+
+        <p>Dengan membiasakan diri meracik pengaturan khusus ini, kamu tidak hanya sekadar ikut-ikutan memakai <i>software</i>, tapi benar-benar mengambil kendali penuh atas mesin tempur komputermu sendiri. Selamat mencoba dan teruslah bereksperimen dengan berbagai parameter sampai ketemu ukuran dan kualitas *render* yang paling pas di hati!</p>
+
+        <!--wajib ini tulis signature artikel oleh LayarKosong-->
+      </article>
+
+      <footer>
+        <div class="footer-meta">
+          <span>✍️ Ahli Teknikal Multimedia</span>
+          <span>📅 10 Juli 2026</span>
+          <span>🌐 Referensi: Forum Diskusi Video Encoding</span>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Memuat Script Highlight.js secara asinkron tanpa mengganggu perenderan utama -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block);
+      });
+    });
+  </script>
+</body>
+</html>
