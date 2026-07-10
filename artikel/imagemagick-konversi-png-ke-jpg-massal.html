@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -61,7 +61,8 @@
   <!-- Prism.js CSS (syntax highlight untuk kode) -->
   <link href="/ext/prism-tomorrow.min.css" rel="stylesheet">
   <!-- Styles: 1 kolom, wide, fullscreen, mobile-friendly -->
-  <style>
+ <style>
+    /* Mode Gelap (Default dari kodemu) */
     :root {
       --bg: #0f0f12;
       --fg: #eaeef3;
@@ -71,54 +72,128 @@
       --card: #17181d;
       --border: #262831;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
+
+      /* Tambahan variabel untuk elemen yang tadinya hardcoded */
+      --header-bg: linear-gradient(180deg, #121316, #0f0f12);
+      --badge-bg: #1c1e24;
+      --btn-bg: #14161a;
+      --btn-bg-hover: #0f1014;
+      --quote-bg: #121318;
+      --quote-fg: #dbe7ff;
+
       --maxw: 900px;
       --lh: 1.7;
     }
+
+    /* Auto Mode Terang (Light Mode) */
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --fg: #0f172a;
+        --muted: #64748b;
+        --accent: #2563eb;
+        --accent-2: #3b82f6;
+        --card: #ffffff;
+        --border: #e2e8f0;
+        --shadow: 0 10px 30px rgba(0,0,0,.08);
+
+        /* Penyesuaian warna elemen untuk mode terang */
+        --header-bg: linear-gradient(180deg, #ffffff, #f8fafc);
+        --badge-bg: #f1f5f9;
+        --btn-bg: #ffffff;
+        --btn-bg-hover: #f1f5f9;
+        --quote-bg: #eff6ff;
+        --quote-fg: #1e3a8a;
+      }
+    }
+
     html, body {
       height: 100%;
       background: var(--bg);
       color: var(--fg);
       font: 16px/var(--lh) system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      transition: background 0.3s ease, color 0.3s ease; /* Biar transisi warnanya smooth */
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { text-decoration: underline; color: var(--accent-2); }
     img { max-width: 100%; height: auto; border-radius: 8px; }
+
     /* Layout */
     .wrap { min-height: 100%; display: flex; flex-direction: column; }
+
     header.site {
       padding: 24px 20px 8px;
       border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, #121316, #0f0f12);
+      background: var(--header-bg);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
+
     .brand { display: flex; align-items: center; gap: 12px; }
     .brand svg { width: 28px; height: 28px; }
     .zdummy { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; color: var(--muted); font-size: 14px; }
+
     main { width: 100%; display: flex; justify-content: center; padding: 28px 16px 60px; }
     .col { width: 100%; max-width: var(--maxw); }
-    article { background: var(--card); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow); padding: 24px; }
+
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
     article h1 { font-size: clamp(26px, 4vw, 38px); line-height: 1.2; margin: 0 0 10px; }
     article .lead { color: var(--muted); margin-bottom: 18px; }
     .byline { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+
     /* Share + badges */
     .share-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 16px 0 24px; }
-    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px; background: #1c1e24; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: 13px; }
-    .btn-share { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: #14161a; color: var(--fg); }
-    .btn-share:hover { background: #0f1014; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px;
+      background: var(--badge-bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .btn-share {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--btn-bg);
+      color: var(--fg);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-share:hover { background: var(--btn-bg-hover); }
     .btn-share svg { width: 18px; height: 18px; }
+
     /* Content */
     .content :is(h2,h3) { margin-top: 26px; }
     .content p { margin: 12px 0; }
-    .content blockquote { margin: 16px 0; padding: 10px 14px; border-left: 3px solid var(--accent-2); background: #121318; color: #dbe7ff; }
+    .content blockquote {
+      margin: 16px 0; padding: 10px 14px;
+      border-left: 3px solid var(--accent-2);
+      background: var(--quote-bg);
+      color: var(--quote-fg);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
     .content ul { margin: 10px 0 10px 18px; }
     .content figure { margin: 16px 0; }
+
     /* Code block styling */
     pre[class*="language-"] { border-radius: 10px; box-shadow: var(--shadow); }
+
     /* Gallery */
     .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 20px 0; }
     .gallery .item { position: relative; cursor: zoom-in; }
     .gallery .item img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+    /* Caption di gambar biasanya mending dibiarin gelap (rgba hitam) biar tetap kebaca di atas gambar apa pun */
     .gallery .item .cap { position: absolute; left: 8px; bottom: 8px; right: 8px; background: rgba(0,0,0,.45); color: #fff; padding: 6px 8px; border-radius: 6px; font-size: 12px; backdrop-filter: blur(2px); }
-    /* Lightbox */
+
+    /* Lightbox - Tetap gelap biar fokus ke gambar */
     .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none; align-items: center; justify-content: center; z-index: 9999; }
     .lightbox.open { display: flex; }
     .lightbox img { max-width: min(92vw, 1400px); max-height: 86vh; border-radius: 10px; }
@@ -129,8 +204,10 @@
     .lb-next { right: 20px; top: 50%; transform: translateY(-50%); }
     .lb-close { right: 20px; top: 20px; }
     .lb-caption { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); color: #fff; background: rgba(0,0,0,.6); padding: 8px 12px; border-radius: 999px; font-size: 13px; }
+
     /* Footer + comments */
-    footer.site { padding: 20px; color: var(--muted); border-top: 1px solid var(--border); }
+    footer.site { padding: 20px; color: var(--muted); border-top: 1px solid var(--border); transition: border-color 0.3s ease; }
+
     /* Responsive tweaks */
     @media (max-width: 640px) {
       .btn-sitemap, .btn-home { padding: 8px 10px; }
@@ -173,15 +250,15 @@
 <!-- Galeri foto lazy-load -->
             <div class="gallery" id="gallery">
               <div class="item" data-full="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKKxJRcihtnyH6nkOtfaP_YqyrpG3J9lUTiG5ZDjuQkMDR0Rbs3EjhUWKzLGT2R7sj9G9dh84gWmgLGhIMihPoIzAwbCdFkUgb2wxJ-kH2aBAGAfdBAJF-45f5OAuMond9foS4vvadprMfB8d05wTgyGtx8ejiJRBWgAv6T0ZjVUapufitMim5Ytg7JN8/s1600/imlinux.webp" data-caption="Linux: mogrify di bash, cepat dan stabil.">
-                <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKKxJRcihtnyH6nkOtfaP_YqyrpG3J9lUTiG5ZDjuQkMDR0Rbs3EjhUWKzLGT2R7sj9G9dh84gWmgLGhIMihPoIzAwbCdFkUgb2wxJ-kH2aBAGAfdBAJF-45f5OAuMond9foS4vvadprMfB8d05wTgyGtx8ejiJRBWgAv6T0ZjVUapufitMim5Ytg7JN8/w320-h206/imlinux.webp" alt="Terminal Linux konversi massal" loading="lazy">
+                <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKKxJRcihtnyH6nkOtfaP_YqyrpG3J9lUTiG5ZDjuQkMDR0Rbs3EjhUWKzLGT2R7sj9G9dh84gWmgLGhIMihPoIzAwbCdFkUgb2wxJ-kH2aBAGAfdBAJF-45f5OAuMond9foS4vvadprMfB8d05wTgyGtx8ejiJRBWgAv6T0ZjVUapufitMim5Ytg7JN8/w320-h206/imlinux.webp" alt="Terminal Linux konversi massal" loading="lazy">
                 <div class="cap">Linux terminal</div>
               </div>
               <div class="item" data-full="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhTXlf_ZmwuHxllPEE3YiHDYiRAtFrS-CW-8k6INMecff6fYZzfGqtvnlwsjui4GVNnna2B5sctLZZT8GULGL1oUet0t-MLJm5zRK21Ifem5lI_ls7cIKoZX7NAV_Gy8ZExhcOAFkGU4Bn4HgN69N0egxcaAeIRYiQzEPnoBgk1qZVSN73RnM4Q756Xlx4/s1600/immac.webp" data-caption="macOS: perintah identik, tinggal jalankan di Terminal.">
-                <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhTXlf_ZmwuHxllPEE3YiHDYiRAtFrS-CW-8k6INMecff6fYZzfGqtvnlwsjui4GVNnna2B5sctLZZT8GULGL1oUet0t-MLJm5zRK21Ifem5lI_ls7cIKoZX7NAV_Gy8ZExhcOAFkGU4Bn4HgN69N0egxcaAeIRYiQzEPnoBgk1qZVSN73RnM4Q756Xlx4/w320-h181/immac.webp" loading="lazy" alt="immac - Konversi massal PNG ke JPG dengan ImageMagick di Linux, macOS, dan Windows">
+                <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhTXlf_ZmwuHxllPEE3YiHDYiRAtFrS-CW-8k6INMecff6fYZzfGqtvnlwsjui4GVNnna2B5sctLZZT8GULGL1oUet0t-MLJm5zRK21Ifem5lI_ls7cIKoZX7NAV_Gy8ZExhcOAFkGU4Bn4HgN69N0egxcaAeIRYiQzEPnoBgk1qZVSN73RnM4Q756Xlx4/w320-h181/immac.webp" loading="lazy" alt="immac - Konversi massal PNG ke JPG dengan ImageMagick di Linux, macOS, dan Windows">
                 <div class="cap">macOS terminal</div>
               </div>
               <div class="item" data-full="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDtTBDkqv4UzFgLYrd-gTaNpnImseKC11Lm2utGbwCD-SGfS-g7GCLcADnwJ9nHtXXArWQMRs_jj5vGmExVOOW9p19YXGg3QOkqvb3cC_j5XOec8PtbATQIaOu_k5rYBedKIwi6GIjkJ8M_Ja-L-Y7NircJS5O6de8N9xVj8IJuqrYrPnZN1P3p48Cxj4/s1600/imwin.webp" data-caption="Windows: jalankan di CMD atau PowerShell, hasilnya sama.">
-                <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDtTBDkqv4UzFgLYrd-gTaNpnImseKC11Lm2utGbwCD-SGfS-g7GCLcADnwJ9nHtXXArWQMRs_jj5vGmExVOOW9p19YXGg3QOkqvb3cC_j5XOec8PtbATQIaOu_k5rYBedKIwi6GIjkJ8M_Ja-L-Y7NircJS5O6de8N9xVj8IJuqrYrPnZN1P3p48Cxj4/w320-h168/imwin.webp" alt="PowerShell konversi massal" loading="lazy">
+                <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDtTBDkqv4UzFgLYrd-gTaNpnImseKC11Lm2utGbwCD-SGfS-g7GCLcADnwJ9nHtXXArWQMRs_jj5vGmExVOOW9p19YXGg3QOkqvb3cC_j5XOec8PtbATQIaOu_k5rYBedKIwi6GIjkJ8M_Ja-L-Y7NircJS5O6de8N9xVj8IJuqrYrPnZN1P3p48Cxj4/w320-h168/imwin.webp" alt="PowerShell konversi massal" loading="lazy">
                 <div class="cap">Windows PowerShell</div>
               </div>
             </div>
@@ -223,7 +300,7 @@ mogrify -format jpg *.png</code></pre>
             <p></p>
             <blockquote>Intinya: untuk konversi massal, gunakan <strong>magick mogrify -format jpg *.png</strong>. Tambahkan <code>-quality</code> bila perlu, dan pakai <code>-background white -alpha remove</code> untuk menangani PNG transparan agar latarnya putih.</blockquote>
             <figure>
-              <img src="/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKKxJRcihtnyH6nkOtfaP_YqyrpG3J9lUTiG5ZDjuQkMDR0Rbs3EjhUWKzLGT2R7sj9G9dh84gWmgLGhIMihPoIzAwbCdFkUgb2wxJ-kH2aBAGAfdBAJF-45f5OAuMond9foS4vvadprMfB8d05wTgyGtx8ejiJRBWgAv6T0ZjVUapufitMim5Ytg7JN8/s1600/imlinux.webp" alt="Ilustrasi konversi massal PNG ke JPG dengan ImageMagick" loading="lazy">
+              <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKKxJRcihtnyH6nkOtfaP_YqyrpG3J9lUTiG5ZDjuQkMDR0Rbs3EjhUWKzLGT2R7sj9G9dh84gWmgLGhIMihPoIzAwbCdFkUgb2wxJ-kH2aBAGAfdBAJF-45f5OAuMond9foS4vvadprMfB8d05wTgyGtx8ejiJRBWgAv6T0ZjVUapufitMim5Ytg7JN8/s1600/imlinux.webp" alt="Ilustrasi konversi massal PNG ke JPG dengan ImageMagick" loading="lazy">
             </figure>
             <div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>
                   <small>🄯 2025 Jaga Data Pribadi Tetap Aman · Artikel disajikan dengan gaya santai, tetap akurat dan ramah pengguna.</small>
