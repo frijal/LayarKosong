@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -56,35 +56,75 @@
     <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:published_time" content="2011-01-20T17:40:00.083Z">
     <meta property="article:modified_time" content="2012-08-28T15:39:20.316Z">
-<!-- ===== Basic Meta ===== -->
-<!-- ===== Icons ===== -->
 <link rel="apple-touch-icon" href="https://dalam.web.id/icon.png">
-<!-- ===== Open Graph ===== -->
-<!-- ===== Article Meta ===== -->
-<!-- ===== Twitter Card ===== -->
-<!-- ===== Structured Image Hint ===== -->
     <style>
         :root {
-            --ink: #e6f1ff; --muted: #b7c4d9;
-            --card: rgba(255, 255, 255, .06);
-            --border: 1px solid rgba(255, 255, 255, .12);
+            /* TEMA GELAP (DEFAULT) */
+            --ink: #e6f1ff;
+            --muted: #b7c4d9;
+            --bg-body: #0b1522;
+            --bg-glass: rgba(7, 17, 27, .6);
+            --bg-card: rgba(255, 255, 255, .06);
+            --bg-video: #0e1a2b;
+            --bg-pre: #0b1021;
+
+            --border-color: rgba(255, 255, 255, .12);
+            --border: 1px solid var(--border-color);
             --shadow: 0 24px 60px rgba(0, 0, 0, .45), 0 1px 0 rgba(255, 255, 255, .04) inset;
-            --accent: #06b6d4; --accent2: #a855f7;
-            --radius: 18px; --w: min(900px, 94vw); /* Lebar maksimum disesuaikan untuk 1 kolom */
+
+            --accent: #06b6d4;
+            --accent2: #a855f7;
+            --brand-grad: linear-gradient(90deg, #fff, #c8f1ff 40%, #e5d0ff);
+
+            --btn-bg: rgba(255, 255, 255, .1);
+            --btn-border: rgba(255, 255, 255, .25);
+            --btn-text: #fff;
+
+            /* KONSTANTA UKURAN */
+            --radius: 18px;
+            --w: min(900px, 94vw); /* Lebar maksimum disesuaikan untuk 1 kolom */
         }
+
+        /* AUTO TEMA TERANG */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --ink: #1e293b;
+                --muted: #64748b;
+                --bg-body: #f8fafc;
+                --bg-glass: rgba(255, 255, 255, .8);
+                --bg-card: #ffffff;
+                --bg-video: #f1f5f9;
+                --bg-pre: #f1f5f9;
+
+                --border-color: rgba(0, 0, 0, .08);
+                --shadow: 0 12px 32px rgba(0, 0, 0, .05), 0 1px 0 rgba(255, 255, 255, 1) inset;
+
+                --accent: #0284c7; /* Aksen digelapkan sedikit buat kontras di latar putih */
+                --accent2: #9333ea;
+                --brand-grad: linear-gradient(90deg, #0f172a, #0284c7 40%, #9333ea);
+
+                --btn-bg: rgba(0, 0, 0, .05);
+                --btn-border: rgba(0, 0, 0, .15);
+                --btn-text: #0f172a;
+            }
+        }
+
         body {
             margin: 0;
             font: 16px/1.7 Inter, system-ui, Arial;
             color: var(--ink);
-            background: #0b1522 url('https://dalam.web.id/assets/bg-texture.png') repeat;
+            background: var(--bg-body) url('https://dalam.web.id/assets/bg-texture.png') repeat;
+            transition: background 0.3s ease, color 0.3s ease;
         }
         header {
             position: sticky;
             top: 0;
-            background: rgba(7, 17, 27, .6);
+            background: var(--bg-glass);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-bottom: var(--border);
             z-index: 100;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
         .wrap {
             width: var(--w);
@@ -97,9 +137,10 @@
             gap: 12px;
             font-weight: 900;
             font-size: clamp(22px, 3vw, 34px);
-            background: linear-gradient(90deg, #fff, #c8f1ff 40%, #e5d0ff);
+            background: var(--brand-grad);
             -webkit-background-clip: text;
             color: transparent;
+            transition: background 0.3s ease;
         }
         .brand .logo {
             width: 36px;
@@ -112,26 +153,29 @@
         }
         .grid {
             display: grid;
-            grid-template-columns: 1fr; /* [PERBAIKAN] Mengubah menjadi 1 kolom */
+            grid-template-columns: 1fr; /* 1 kolom mantap! */
             gap: 22px;
         }
         .card {
-            background: var(--card);
+            background: var(--bg-card);
             border: var(--border);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: 22px;
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         h1 { font: 900 clamp(22px, 2.6vw, 34px)/1.2 Poppins, Inter, Arial; }
         h2 { font: 800 clamp(20px, 2.2vw, 28px)/1.25 Poppins, Inter, Arial; }
+
         .video-wrap {
             position: relative;
             width: 100%;
             padding-top: 56.25%;
             border-radius: 14px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, .12);
-            background: #0e1a2b;
+            border: var(--border);
+            background: var(--bg-video);
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
         .video-wrap iframe {
             position: absolute;
@@ -140,6 +184,7 @@
             height: 100%;
             border: 0;
         }
+
         .share {
             display: flex;
             flex-wrap: wrap;
@@ -153,34 +198,50 @@
             border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
-            color: #fff;
+            color: #fff; /* Teks share tetap putih karena warna brand socmed solid */
+            transition: transform 0.2s ease;
+        }
+        .share a:hover {
+            transform: translateY(-2px);
         }
         .share .fb { background: #1877F2; }
         .share .wa { background: #25D366; }
         .share .tw { background: #1DA1F2; }
         .share .tg { background: #0088cc; }
+
         pre {
             border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, .12);
-            background: #0b1021;
+            border: var(--border);
+            background: var(--bg-pre);
             padding: 14px;
             overflow-x: auto;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
         .copy-btn {
             margin: 8px 0;
             padding: 6px 10px;
             border-radius: 8px;
-            background: rgba(255, 255, 255, .1);
-            border: 1px solid rgba(255, 255, 255, .25);
+            background: var(--btn-bg);
+            border: 1px solid var(--btn-border);
             cursor: pointer;
+            color: var(--btn-text);
+            font-weight: 500;
+            transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+        .copy-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
             color: #fff;
         }
+
         footer {
             margin-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, .12);
-            background: rgba(7, 17, 27, .6);
+            border-top: var(--border);
+            background: var(--bg-glass);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             padding: 18px;
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
     </style>
 <meta name="ai:summary" content="Demo menutup semua aplikasi di Fedora GNOME, embed video YouTube, snippet FFMPEG dengan tombol salin, serta info perangkat dan komentar.">
