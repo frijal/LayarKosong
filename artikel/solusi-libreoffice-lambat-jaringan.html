@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -64,68 +64,175 @@
 <!-- ===== Twitter Card ===== -->
 <!-- ===== Structured Image Hint ===== -->
 <style>
-:root{
-  --bg:#0c0e16; --text:#e9edf3; --accent:#0288d1; --muted:#a7b2c5;
-  --card:#141824; --border:1px solid rgba(255,255,255,.08);
-  --radius:14px; --max:900px;
+:root {
+  /* =========================================
+     TEMA GELAP (Default)
+     ========================================= */
+  --bg: #0c0e16;
+  --text: #e9edf3;
+  --accent: #0288d1;
+  --accent-alt: #81d4fa;   /* Warna link & h2 */
+  --accent-light: #b3e5fc; /* Warna h3 */
+  --muted: #a7b2c5;
+  --card: #141824;
+
+  /* Border & Background Element */
+  --border: 1px solid rgba(255, 255, 255, .08);
+  --border-raw: rgba(255, 255, 255, .1); /* Untuk footer & list */
+  --header-bg: #10131c;
+  --pre-bg: #0d1117;
+  --pre-text: #c9d1d9;
+  --code-bg: rgba(255, 255, 255, .08);
+  --list-bg: rgba(255, 255, 255, .03);
+  --note-bg: rgba(2, 136, 209, .1);
+
+  --radius: 14px;
+  --max: 900px;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-  background:var(--bg); color:var(--text);
+
+/* =========================================
+   TEMA TERANG (Auto Light Mode)
+   ========================================= */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f8fafc;
+    --text: #1e293b;
+    --accent: #0288d1;
+    --accent-alt: #0277bd;   /* Digelapkan agar kontras di layar putih */
+    --accent-light: #01579b; /* Digelapkan agar kontras */
+    --muted: #64748b;
+    --card: #ffffff;
+
+    /* Border & Background Element */
+    --border: 1px solid rgba(0, 0, 0, .08);
+    --border-raw: rgba(0, 0, 0, .15);
+    --header-bg: #ffffff;
+    --pre-bg: #f1f5f9;
+    --pre-text: #334155;
+    --code-bg: rgba(0, 0, 0, .06);
+    --list-bg: rgba(0, 0, 0, .03);
+    --note-bg: rgba(2, 136, 209, .05);
+  }
 }
-a{color:#81d4fa;text-decoration:none}
-header{
-  position:sticky;top:0;background:#10131c;border-bottom:var(--border);
+
+/* =========================================
+   BASE STYLES & TRANSITIONS
+   ========================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font: 16px/1.65 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-header .wrap{
-  display:flex;justify-content:space-between;align-items:center;
-  max-width:var(--max);margin:auto;padding:14px 18px;
+
+a {
+  color: var(--accent-alt);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
-.brand{font-weight:800;font-size:1.2rem}
-main{max-width:var(--max);margin:auto;padding:22px 18px 48px}
-.card{
-  background:var(--card);border:var(--border);
-  border-radius:var(--radius);padding:18px;margin-bottom:20px;
+
+header {
+  position: sticky;
+  top: 0;
+  background: var(--header-bg);
+  border-bottom: var(--border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  z-index: 100;
 }
-h1{font-size:1.7rem;margin-bottom:10px}
-h2{color:#81d4fa;font-size:1.3rem;margin:16px 0 10px}
-h3{color:#b3e5fc;font-size:1.1rem;margin:12px 0 8px}
-p{margin:0 0 14px;text-align:justify;text-justify:inter-word}
-pre{
-  background:#0d1117;color:#c9d1d9;border-radius:8px;
-  padding:1rem;overflow-x:auto;font-size:0.9rem;
+
+header .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--max);
+  margin: auto;
+  padding: 14px 18px;
 }
-code{
-  background:rgba(255,255,255,.08);padding:2px 5px;
-  border-radius:4px;font-family:monospace;
+
+.brand { font-weight: 800; font-size: 1.2rem; }
+
+main { max-width: var(--max); margin: auto; padding: 22px 18px 48px; }
+
+.card {
+  background: var(--card);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-img{
-  width:100%;border-radius:10px;margin:12px 0;
-  border:var(--border);
+
+h1 { font-size: 1.7rem; margin-bottom: 10px; }
+h2 { color: var(--accent-alt); font-size: 1.3rem; margin: 16px 0 10px; }
+h3 { color: var(--accent-light); font-size: 1.1rem; margin: 12px 0 8px; }
+
+p { margin: 0 0 14px; text-align: justify; text-justify: inter-word; }
+
+pre {
+  background: var(--pre-bg);
+  color: var(--pre-text);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.list{list-style:none;padding-left:0;margin:10px 0}
-.list li{
-  background:rgba(255,255,255,.03);padding:10px 12px;
-  border-radius:8px;margin-bottom:6px;
+
+code {
+  background: var(--code-bg);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: monospace;
+  transition: background-color 0.3s ease;
 }
-.note{
-  background:rgba(2,136,209,.1);border:1px dashed rgba(255,255,255,.2);
-  padding:10px 12px;border-radius:10px;margin-top:12px;
+
+img {
+  width: 100%;
+  border-radius: 10px;
+  margin: 12px 0;
+  border: var(--border);
 }
-.share{
-  display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;
+
+.list { list-style: none; padding-left: 0; margin: 10px 0; }
+.list li {
+  background: var(--list-bg);
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  transition: background-color 0.3s ease;
 }
-.share a{
-  padding:8px 12px;border-radius:8px;font-weight:700;color:#fff;
+
+.note {
+  background: var(--note-bg);
+  border: 1px dashed var(--border-raw);
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-top: 12px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-.fb{background:#1877F2}.tw{background:#1DA1F2}
-.x{background:#0f1419}.wa{background:#25D366}.tg{background:#0088cc}
-footer{
-  border-top:1px solid rgba(255,255,255,.1);
-  text-align:center;padding:20px 0;color:var(--muted);
-  font-size:0.9rem;
+
+.share {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;
+}
+.share a {
+  padding: 8px 12px; border-radius: 8px; font-weight: 700; color: #fff;
+}
+.fb { background: #1877F2; }
+.tw { background: #1DA1F2; }
+.x { background: #0f1419; }
+.wa { background: #25D366; }
+.tg { background: #0088cc; }
+
+footer {
+  border-top: 1px solid var(--border-raw);
+  text-align: center;
+  padding: 20px 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 </style>
 <meta name="ai:summary" content="Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.">
