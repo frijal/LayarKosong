@@ -38,7 +38,7 @@
     <meta name="twitter:widgets:new-embed-design" content="on">
     <meta name="twitter:site" content="@responaja">
     <meta name="twitter:creator" content="@responaja">
-    
+
     <meta name="fediverse:creator" content="@frijal@mastodon.social">
     <meta property="article:author" content="https://facebook.com/frijal">
     <meta property="article:publisher" content="https://facebook.com/frijalpage">
@@ -59,6 +59,9 @@
 <meta name="keywords" content="PKGBUILD, Arch Linux, AUR, makepkg, Paru, Source Code, Kompilasi, Resep Software">
     <link rel="stylesheet" href="/ext/fontawesome.css">
     <style>
+        /* =========================================
+           TEMA GELAP (Default Bawaan)
+           ========================================= */
         :root {
             --color-bg: #101010;
             --color-text: #ffffff;
@@ -66,170 +69,146 @@
             --color-secondary: #252525;
             --color-card-bg: #1e1e1e;
             --padding-base: 20px;
+
+            /* Variabel tambahan untuk menampung warna hardcode */
+            --color-code-bg: #333333;
+            --color-code-text: #ff9900;
+            --color-pre-bg: #111111;
+            --color-pre-text: #ffffff;
+            --shadow-glow: rgba(255, 255, 255, 0.3);
+
+
+        /* =========================================
+           TEMA TERANG (Auto Light Mode)
+           ========================================= */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --color-bg: #f8fafc;
+                --color-text: #1a1a1a;
+                --color-primary: #0284c7; /* Biru kontras pengganti putih */
+                --color-secondary: #e2e8f0;
+                --color-card-bg: #ffffff;
+
+                --color-code-bg: #e2e8f0;
+                --color-code-text: #d97706; /* Oranye gelap untuk background terang */
+                --color-pre-bg: #f1f5f9;
+                --color-pre-text: #0f172a;
+                --shadow-glow: rgba(0, 0, 0, 0.15); /* Shadow gelap alih-alih glow putih */
+
+                /* Lightbox mode terang */
+                --lightbox-bg: rgba(255, 255, 255, 0.95);
+                --nav-btn-bg: rgba(0, 0, 0, 0.1);
+                --nav-btn-text: #1a1a1a;
+                --nav-btn-hover-text: #ffffff;
+            }
         }
-        /* RESET & BASE */
+
+        /* =========================================
+           RESET & BASE
+           ========================================= */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
             font-family: 'Roboto Mono', monospace; /* Font coding */
             background-color: var(--color-bg);
             color: var(--color-text);
             line-height: 1.7;
             padding: 0;
+            /* Efek transisi halus saat OS ganti tema */
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* HEADER & FOOTER */
+
+        /* =========================================
+           HEADER & FOOTER
+           ========================================= */
         header, footer {
             text-align: center;
             padding: var(--padding-base);
             background-color: var(--color-secondary);
+            transition: background-color 0.3s ease;
         }
-        /* ONE-COLUMN LAYOUT */
+
+        /* =========================================
+           ONE-COLUMN LAYOUT
+           ========================================= */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: var(--padding-base);
         }
-        /* TYPOGRAPHY & TEXT STYLES */
+
+        /* =========================================
+           TYPOGRAPHY & TEXT STYLES
+           ========================================= */
         h1 {
             color: var(--color-primary);
             margin-bottom: 10px;
             font-size: 2.8em;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 8px var(--shadow-glow);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
+
         h2 {
             border-bottom: 2px solid var(--color-primary);
             padding-bottom: 5px;
             margin-top: 35px;
             margin-bottom: 20px;
             font-size: 2em;
+            transition: border-color 0.3s ease;
         }
+
         h3 {
             color: var(--color-primary);
             margin-top: 20px;
             font-size: 1.4em;
+            transition: color 0.3s ease;
         }
+
         code {
-            background-color: #333;
-            color: #ff9900; /* Warna kode kontras */
+            background-color: var(--color-code-bg);
+            color: var(--color-code-text);
             padding: 2px 6px;
             border-radius: 4px;
             font-family: 'Consolas', monospace;
             display: inline-block;
             margin: 2px 0;
             white-space: pre-wrap;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         pre {
-            background-color: #111;
+            background-color: var(--color-pre-bg);
             padding: 15px;
             border-radius: 8px;
             overflow-x: auto;
             margin: 15px 0;
+            transition: background-color 0.3s ease;
         }
+
         pre code {
             display: block;
             padding: 0;
             background: none;
-            color: #fff;
+            color: var(--color-pre-text);
         }
+
         ul {
             margin-left: 25px;
             margin-bottom: 15px;
         }
-        /* SHARING ICONS */
-        .social-share {
-            text-align: center;
-            margin: 30px 0;
-            padding: 15px;
-            border-top: 1px solid var(--color-secondary);
-            border-bottom: 1px solid var(--color-secondary);
-        }
-        .social-share a {
-            color: var(--color-text);
-            font-size: 28px;
-            margin: 0 12px;
-            transition: color 0.3s;
-        }
-        .social-share a:hover {
-            color: var(--color-primary);
-        }
-        /* GALLERY & LIGHTBOX STYLES */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .gallery img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid var(--color-secondary);
-        }
-        .gallery img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-        }
-        /* LIGHTBOX */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.95);
-            place-items: center;
-        }
-        .lightbox-content {
-            margin: auto;
-            display: block;
-            width: 90%;
-            max-width: 1100px;
-            max-height: 90vh;
-        }
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 45px;
-            color: #f1f1f1;
-            font-size: 45px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 18px;
-            margin-top: -50px;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-            transition: 0.6s ease;
-            user-select: none;
-            background-color: rgba(240, 248, 255, 0.3);
-            border-radius: 5px;
-        }
-        .next { right: 15px; }
-        .prev { left: 15px; }
-        .prev:hover, .next:hover { background-color: var(--color-primary); color: #111;}
-        /* MEDIA QUERIES (Mobile-Friendly) */
+
+                      /* =========================================
+           MEDIA QUERIES (Mobile-Friendly)
+           ========================================= */
         @media (max-width: 768px) {
             h1 { font-size: 2em; }
             h2 { font-size: 1.6em; }
             .container { padding: 10px; }
-            .gallery { grid-template-columns: 1fr; }
-        }
+                    }
     </style>
 <meta name="ai:summary" content="dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR.">
 <meta name="ai:prompt_hint" content="dan mendalam tentang PKGBUILD, file script yang berisi resep untuk membuat paket software di Arch Linux, CachyOS, dan AUR.">
@@ -321,46 +300,8 @@
             </section>
     </article>
     </div>
-    <div id="lightbox-modal" class="lightbox" style="display: none;">
-        <span class="close-btn">×</span>
-        <img class="lightbox-content" id="lightbox-img" alt="Gambar penuh">
-        <a class="prev" onclick="changeImage(-1)"><i class="fa-solid fa-chevron-left"></i></a>
-        <a class="next" onclick="changeImage(1)"><i class="fa-solid fa-chevron-right"></i></a>
-    </div>
-    <footer>
+       <footer>
         <p>🄯 2024 Artikel Frijal. Sekarang Anda sudah lebih paham tentang dapur Arch Linux!</p>
  <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // LIGHTBOX GALLERY & NAVIGATION (Skeletal structure maintained for image interaction)
-            const galleryImages = document.querySelectorAll('.gallery img');
-            const lightboxModal = document.getElementById('lightbox-modal');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const closeBtn = document.querySelector('.close-btn');
-            let currentIndex = 0;
-            galleryImages.forEach((img, index) => {
-                img.addEventListener('click', () => {
-                    if (lightboxModal && lightboxImg) {
-                        lightboxModal.style.display = "grid";
-                        lightboxImg.src = img.src;
-                        currentIndex = index;
-                    }
-                });
-            });
-            if (closeBtn) closeBtn.addEventListener('click', () => {
-                if (lightboxModal) lightboxModal.style.display = "none";
-            });
-            if (lightboxModal) {
-                window.onclick = function(event) {
-                    if (event.target === lightboxModal) {
-                        lightboxModal.style.display = "none";
-                    }
-                }
-            }
-            // Dummy changeImage function (as only one image is in the article content now)
-            window.changeImage = function(n) {
-                 // Navigation logic intentionally disabled for a single image layout
-            }
-        });
-    </script>
+
 <div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
