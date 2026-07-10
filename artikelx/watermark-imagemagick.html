@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panduan Lengkap: Cara Memberi Watermark Massal Pakai ImageMagick di Linux</title>
+
+  <meta name="description" content="Capek pasang watermark satu per satu? Pelajari cara otomatis menempelkan watermark pada ratusan gambar di Linux menggunakan skrip Bash dan ImageMagick.">
+  <meta property="og:description" content="Tinggalkan cara manual! Ini dia panduan komprehensif buat kamu yang pengen nge-batch watermark gambar pakai ImageMagick di terminal Linux. Cepat, ringan, dan gratis.">
+  <meta name="twitter:description" content="Urusan hak cipta gambar instansi bikin ribet? Otomatiskan proses penambahan watermark di Linux dengan skrip bash super praktis. Cek tutorial lengkapnya di sini.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Tutorial Otomatisasi Watermark Gambar Massal di GNU/Linux">
+  <meta property="og:url" content="https://dalam.web.id/artikel/watermark-imagemagick.html">
+  <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/c00ad4303c5dd901.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cara Cepat Bikin Watermark Ribuan Foto Pakai ImageMagick">
+  <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/c00ad4303c5dd901.webp">
+
+  <link rel="canonical" href="https://dalam.web.id/artikel/watermark-imagemagick.html">
+
+  <meta name="news_keywords" content="ImageMagick, Watermark Massal, Bash Script, Linux Terminal, Otomatisasi Gambar, Pengolahan Gambar">
+  <meta property="article:tag" content="Linux, Tutorial, SysAdmin, Web Development">
+
+  <meta name="promphint" content="Bagaimana cara memberi watermark gambar massal di Linux? | Gunakan utilitas composite dari ImageMagick yang dibungkus dalam skrip Bash untuk memproses ratusan gambar di sebuah direktori secara otomatis.">
+
+  <!-- Aset eksternal untuk syntax highlighting (tidak dipreload) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <meta property="article:published_time" content="2016-02-14T07:20:38.000Z">
+    <meta property="article:modified_time" content="2016-02-14T07:25:07.135Z">
+  <style>
+    /* ---------------------------------------------------------
+       CSS Variables & Anti "Padding Inception" Strategy
+       --------------------------------------------------------- */
+    :root {
+      /* Mobile-First Padding */
+      --screen-padding: 1rem;
+      --nested-padding: 0rem;
+
+      /* Light Theme Colors (Default) */
+      --bg-color: #f8fafc;
+      --text-main: #334155;
+      --text-muted: #64748b;
+      --heading-color: #0f172a;
+      --accent-color: #2563eb;
+      --accent-hover: #1d4ed8;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --code-bg: #0f172a;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        /* Dark Theme Colors */
+        --bg-color: #0f172a;
+        --text-main: #cbd5e1;
+        --text-muted: #94a3b8;
+        --heading-color: #f8fafc;
+        --accent-color: #60a5fa;
+        --accent-hover: #93c5fd;
+        --card-bg: #1e293b;
+        --border-color: #334155;
+        --code-bg: #020617;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        /* Desktop Padding */
+        --screen-padding: 2.5rem;
+        --nested-padding: 1.5rem;
+      }
+    }
+
+    /* ---------------------------------------------------------
+       Reset & Base Typography
+       --------------------------------------------------------- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      width: min(100%, 64rem);
+      margin: 0 auto;
+      padding-inline: var(--screen-padding);
+      padding-block: 2rem;
+    }
+
+    h1, h2, h3 {
+      color: var(--heading-color);
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      margin-top: 1rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+
+    h2 { font-size: 1.75rem; margin-top: 3rem; }
+    h3 { font-size: 1.35rem; margin-top: 2rem; }
+
+    p { margin-bottom: 1.25rem; }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.75rem;
+    }
+
+    li { margin-bottom: 0.5rem; }
+
+    /* ---------------------------------------------------------
+       Images & Media
+       --------------------------------------------------------- */
+    img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background-color: var(--card-bg);
+      border-radius: 0.5rem;
+      margin-block: 2rem;
+      border: 1px solid var(--border-color);
+    }
+
+    /* ---------------------------------------------------------
+       Code Blocks & Syntax
+       --------------------------------------------------------- */
+    pre {
+      background-color: var(--code-bg);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, "Fira Code", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.95rem;
+    }
+
+    /* Inline code */
+    :not(pre) > code {
+      background-color: rgba(128, 128, 128, 0.15);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.25rem;
+      font-size: 0.9em;
+      color: var(--accent-color);
+    }
+
+    /* ---------------------------------------------------------
+       Accordion / Details (For Long Sections)
+       --------------------------------------------------------- */
+    details {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 0.5rem;
+      margin-block: 2.5rem;
+      padding-inline: var(--nested-padding);
+      transition: all 0.3s ease;
+    }
+
+    summary {
+      cursor: pointer;
+      padding-block: 1.25rem;
+      padding-inline: 1.5rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      background-color: rgba(0, 0, 0, 0.02);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      summary { background-color: rgba(255, 255, 255, 0.03); }
+    }
+
+    summary:hover { background-color: rgba(0, 0, 0, 0.05); }
+
+    @media (prefers-color-scheme: dark) {
+      summary:hover { background-color: rgba(255, 255, 255, 0.06); }
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "▼";
+      color: var(--accent-color);
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    details[open] summary::after { transform: rotate(180deg); }
+    details[open] summary { border-bottom: 1px solid var(--border-color); }
+    summary h2 { margin: 0; font-size: 1.5rem; }
+
+    .details-content {
+      padding-block: 1.5rem;
+      padding-inline: 1.5rem;
+    }
+
+    /* Melarutkan kotak di HP agar tidak sumpek */
+    @media (max-width: 640px) {
+      details {
+        background: transparent;
+        border: none;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        border-radius: 0;
+        padding-inline: 0;
+      }
+      summary { padding-inline: 0; background: transparent; }
+      details[open] summary { border-bottom: none; }
+      .details-content { padding-inline: 0; }
+    }
+
+    /* ---------------------------------------------------------
+       Footer
+       --------------------------------------------------------- */
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .footer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .footer-meta span:not(:last-child)::after {
+      content: " | ";
+      margin-left: 0.5rem;
+      color: var(--border-color);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <main>
+      <article>
+        <header>
+          <h1>Memberi Watermark pada Gambar dengan ImageMagick di Linux</h1>
+          <p>Urusan tempel-menempel logo di ratusan foto kini tidak perlu lagi bikin *mouse* rusak. Mari kita bahas cara paling *geeky* nan efisien untuk otomatisasi watermark gambar massal murni menggunakan terminal.</p>
+        </header>
+
+        <p>Bagi instansi, fotografer, atau kreator konten digital, menjaga karya sebelum dipublikasikan ke belantara internet adalah sebuah keharusan. Hak cipta perlu dilindungi, dan salah satu cara paling konvensional nan efektif adalah dengan memberikan <i>watermark</i> atau tanda air pada gambar.</p>
+
+        <p>Masalahnya muncul saat Anda baru saja pulang dari acara *gathering* kantor dan harus menempelkan logo instansi di 500 keping foto yang berbeda. Melakukan ini secara manual? Tentu sangat menguras waktu. Banyak desainer beralih menggunakan fitur "Action" di *Adobe Photoshop*, yang mana memang sangat membantu. Tapi, buat Anda yang kebetulan sedang berada di lingkungan peladen (<i>server</i>) atau beraktivitas harian menggunakan sistem operasi berbasis <b>GNU/Linux</b>, membuka GUI *software* berat hanya untuk urusan *watermark* rasanya terlalu berlebihan dan, <i>yah</i>, kurang greget.</p>
+
+        <img src="https://dalam.web.id/img/raw.githubusercontent.com/c00ad4303c5dd901.webp"
+             alt="Logo resmi ImageMagick sang pesulap manipulasi gambar baris perintah"
+             width="1600"
+             height="900"
+             fetchpriority="high"
+             decoding="async">
+
+        <p>Tenang, di ranah *open-source*, kita punya pesulap tangguh bernama <b>ImageMagick</b>. Ini adalah utilitas pemrosesan gambar lewat *command line* (CLI) yang kemampuannya nyaris tak terbatas. Dengan menyatukannya bersama skrip Bash sederhana, kita bisa menyulap rutinitas membosankan tadi menjadi operasi otomatis yang selesai dalam hitungan detik. <i>Yo wis</i>, mari kita bedah *script*-nya.</p>
+
+        <details>
+          <summary>
+            <h2>Skrip Bash untuk Watermark Massal</h2>
+          </summary>
+          <div class="details-content">
+            <p>Skrip di bawah ini dirancang untuk mendeteksi semua *file* gambar yang didukung (JPG, PNG, GIF) di dalam direktori tempat ia dieksekusi, lalu menempelkan *file watermark* Anda di atasnya secara presisi.</p>
+
+            <h3>Peringatan Krusial Sebelum Mengeksekusi</h3>
+            <p>Perlu dicatat dengan tinta tebal: <b>prosedur eksekusi skrip ini memodifikasi berkas sumber secara langsung (<i>in-place</i>)</b>. Artinya, foto asli Anda akan ditimpa dengan foto yang sudah ber-<i>watermark</i>. Saya sangat, <i>sangat</i> menyarankan Anda untuk <u>menggandakan (<i>backup</i>) data orisinal Anda</u> ke folder terpisah terlebih dahulu sebelum mencoba skrip ini. Jangan sampai *file* mentahan yang berharga lenyap tak terselamatkan.</p>
+
+            <h3>Kode Sumber Skrip</h3>
+            <p>Salin blok kode Bash berikut ini dan simpan. Untuk konfigurasi mendalam, kita akan membahasnya di sub-bagian setelah blok ini.</p>
+
+<pre><code class="language-bash">#!/bin/bash
+# Skrip untuk memberi watermark pada semua gambar di direktori saat ini.
+# Dependensi: ImageMagick (paket 'imagemagick')
+
+# --- KONFIGURASI ---
+# Lokasi file watermark Anda (ganti sesuai path absolut di PC Anda)
+WM_FILE="$HOME/Pictures/watermark.png"
+
+# Skala ukuran watermark dalam persen relatif terhadap gambar utama (misal: 25%)
+SCALE="25"
+
+# Tingkat transparansi watermark (0 sangat transparan, 100 tidak transparan)
+DISSOLVE="50"
+
+# Posisi watermark (center, north, southeast, southwest, dll.)
+GRAVITY="southeast"
+# --- AKHIR KONFIGURASI ---
+
+# --- EKSEKUSI ---
+echo "⚠️ Skrip ini akan menambahkan watermark ke semua gambar di folder ini dan menimpa file aslinya."
+read -p "Lanjutkan? (Y/n): " REPLY
+
+if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
+    for IMAGE in *.jpg *.jpeg *.png *.gif; do
+        # Pastikan yang dilooping benar-benar sebuah file biasa
+        if [ -f "$IMAGE" ]; then
+            echo "🎨 Memberi watermark pada: $IMAGE"
+            # Perintah inti ImageMagick menggunakan tool 'composite'
+            composite -dissolve ${DISSOLVE}% -gravity ${GRAVITY} -quality 100 \
+            \( "$WM_FILE" -resize ${SCALE}% \) "$IMAGE" "$IMAGE"
+        fi
+    done
+    echo "✅ Semua gambar selesai diproses!"
+else
+    echo "❌ Operasi dibatalkan oleh pengguna."
+    exit 0
+fi
+
+exit 0</code></pre>
+
+            <h3>Membedah Parameter Konfigurasi</h3>
+            <p>Agar hasilnya sesuai dengan selera estetika instansi Anda, perhatikan tiga variabel variabel krusial ini:</p>
+            <ul>
+              <li><b><code>SCALE="25"</code></b>: Nilai ini menentukan seberapa besar logo *watermark* Anda saat ditempel. Angka 25 berarti lebar logo akan diubah ukurannya menjadi 25% dari lebar kanvas foto utamanya. Semakin besar foto asli, logo akan ikut membesar secara proporsional.</li>
+              <li><b><code>DISSOLVE="50"</code></b>: Mengontrol *opacity*. Kalau Anda tidak ingin logonya terlihat terlalu *ngejreng* sampai menutupi objek utama, angka 50 (setengah transparan) adalah titik manis yang enak dipandang.</li>
+              <li><b><code>GRAVITY="southeast"</code></b>: Ini adalah istilah teknis di ImageMagick untuk menentukan koordinat kompas. <i>Southeast</i> berarti tenggara, alias pojok kanan bawah. Jika mau di pojok kiri atas, ganti menjadi <i>northwest</i>. Mau di tengah pas? Gunakan <i>center</i>.</li>
+            </ul>
+          </div>
+        </details>
+
+        <h2>Langkah-langkah Menggunakan Skrip</h2>
+
+        <p>Setelah Anda memahami isi kodenya, implementasinya di lingkungan Linux sangatlah lugas dan tidak *njelimet*. Asalkan paket <code>imagemagick</code> sudah terpasang di sistem operasi Anda, ikuti alur kerja ini:</p>
+
+        <ol>
+          <li>Buka <i>text editor</i> favorit Anda (bisa `nano`, `vim`, atau `gedit`), lalu tempelkan kode di atas dan simpan dengan nama <code>watermark.sh</code>.</li>
+          <li>Edit bagian blok <b>KONFIGURASI</b> di dalam skrip, khususnya pada baris <code>WM_FILE</code>. Pastikan *path* mengarah tepat ke lokasi *file* logo transparan (PNG) Anda.</li>
+          <li>Pindahkan atau salin *file* skrip <code>watermark.sh</code> ini ke dalam folder spesifik yang berisi tumpukan foto (yang sudah Anda <i>backup</i>!) yang siap dieksekusi.</li>
+          <li>Buka aplikasi Terminal, arahkan <i>current directory</i> ke folder tersebut (menggunakan perintah <code>cd</code>), dan ketikkan perintah ajaib ini untuk memberikan hak akses eksekusi:
+            <code>chmod +x watermark.sh</code>
+          </li>
+          <li>Terakhir, pelatuk skripnya dengan menjalankan perintah:
+            <code>./watermark.sh</code>
+          </li>
+        </ol>
+
+        <p>Sistem akan memberikan pertanyaan konfirmasi. Tekan <i>Enter</i>, lalu bersandarlah di kursi sambil melihat terminal Anda berlari menyapu bersih ratusan foto tersebut secara konsisten. Otomatisasi memang selalu terasa memuaskan, bukan?</p>
+
+        <!--wajib ini tulis signature artikel oleh LayarKosong-->
+      </article>
+
+      <footer>
+        <div class="footer-meta">
+          <span>✍️ Frijal</span>
+          <span>📅 10 Juli 2026</span>
+          <span>🌐 Referensi: Dokumentasi Resmi CLI ImageMagick</span>
+        </div>
+        <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.85rem;">🄯 2026 Tutorial Linux · Bekerja lebih cerdas dengan otomatisasi baris perintah.</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Aset eksternal untuk inisialisasi syntax highlighting (Dipanggil dengan standar defer) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+
+  <script defer>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block);
+      });
+    });
+  </script>
+</body>
+</html>
