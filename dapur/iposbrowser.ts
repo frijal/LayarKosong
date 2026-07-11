@@ -198,7 +198,7 @@ ${articleDate ? `
   aria-label="Atom Feed"
   rel="noopener noreferrer"
   title="Atom Feed"
-  href="/atom.xml"
+  href="/atom.atom"
   target="_blank"
   style="color:#2563eb;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;transition:transform 0.2s;"
   onmouseover="this.style.transform='scale(1.1)'"

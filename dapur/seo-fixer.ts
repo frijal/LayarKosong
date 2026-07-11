@@ -504,7 +504,7 @@ async function processFile(file: string, baseUrl: string, fallbackTime: string) 
       htmlTag.link({ rel: "manifest", href: "/site.webmanifest" }),
       htmlTag.link({ rel: "sitemap", type: "application/xml", href: "/sitemap.xml" }),
       htmlTag.link({ rel: "alternate", type: "application/rss+xml", title: "Feed 30 artikel baru bikin.", href: `${baseUrl}/rss.rss` }),
-      htmlTag.link({ rel: "alternate", type: "application/atom+xml", title: "Atom 30 artikel baru bikin.", href: `${baseUrl}/atom.xml` }),
+      htmlTag.link({ rel: "alternate", type: "application/atom+xml", title: "Atom 30 artikel baru bikin.", href: `${baseUrl}/atom.atom` }),
       htmlTag.link({ rel: "search", type: "application/opensearchdescription+xml", title: "Layar Kosong", href: "/opensearch.xml" }),
       htmlTag.link({ rel: "license", href: "https://creativecommons.org/licenses/by/4.0/" }),
       htmlTag.link({ rel: "me", href: "https://mastodon.social/@frijal" }),

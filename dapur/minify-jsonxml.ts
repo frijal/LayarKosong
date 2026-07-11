@@ -7,7 +7,7 @@ const filesToMinify: string[] = [
   './artikel.json',
   './artikel-lite.json',
   './rss.rss',
-  './atom.xml',
+  './atom.atom',
   './sitemap.xml',
  './feed-gaya-hidup-atom.xml',
 './feed-gaya-hidup.xml',
