@@ -279,18 +279,35 @@
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      color: white;
-      transition: opacity 0.2s;
-      width: 100%;
+      /* Kita paksa teksnya warna putih solid di semua mode */
+      color: #ffffff !important; 
+      transition: opacity 0.2s, transform 0.1s;
+      width: 100%; /* Penuh di mobile */
       margin-bottom: 0.5rem;
     }
 
+    /* Efek klik biar kerasa lebih interaktif */
+    button:active { transform: scale(0.98); }
     button:hover { opacity: 0.9; }
 
-    button[onclick="tambahBaris()"] { background-color: var(--primary); }
-    button[onclick="hapusBaris(this)"] { background-color: var(--danger); padding: 0.5rem; }
-    .btn-reset { background-color: var(--danger); }
-    .btn-export { background-color: var(--success); }
+    /* Selector pakai ^="tambahBaris" biar lebih kebal kalau ada spasi di HTML-nya */
+    button[onclick^="tambahBaris"] { 
+      background-color: var(--primary) !important; 
+    }
+    
+    /* Tombol Hapus (X) */
+    button[onclick^="hapusBaris"] { 
+      background-color: var(--danger) !important; 
+      padding: 0.5rem; 
+    }
+    
+    .btn-reset { 
+      background-color: var(--danger) !important; 
+    }
+    
+    .btn-export { 
+      background-color: var(--success) !important; 
+    }
 
     .total-box {
       font-size: 1.25rem;
@@ -300,6 +317,8 @@
       background-color: var(--bg-color);
       border-radius: var(--radius);
       margin-bottom: 1.5rem;
+      /* Tambahan warna teks biar kontras di mode light/dark */
+      color: var(--text-color); 
     }
 
     /* =========================================
