@@ -91,10 +91,10 @@ const scripts: ScriptItem[] = [
     dangerLevel: "warning"
 },
 {
-    id: "rss-parser.ts",
+    id: "xxxxxxxxxxxxx.ts",
     title: "Periksa isi RSS Feed Atom",
     description: "periksa kondisi RSS Feed Atom",
-    file: "sementara/dash-lokal/0-rss-parser.ts", // <--- Tambahin dash-lokal/
+    file: "sementara/dash-lokal/0-xxxxxxxxxxxxx.ts", // <--- Tambahin dash-lokal/
     dangerLevel: "warning"
 }
 ];
