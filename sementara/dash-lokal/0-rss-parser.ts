@@ -36,41 +36,48 @@ Bun.serve({
 
 				const xmlData = await Bun.file(absolutePath).text();
 
+				// --- DETEKSI FORMAT ASLI (BARU) ---
+				// Kita intip string mentahnya sebelum dihajar oleh rss-parser
+				let originalFormat = "Tidak Diketahui";
+				if (/<rss/i.test(xmlData)) {
+					originalFormat = "RSS";
+				} else if (/<feed/i.test(xmlData)) {
+					originalFormat = "Atom";
+				}
+
 				// Inisialisasi RSS Parser
-				// Kita tambahkan customFields berjaga-jaga kalau data gambarmu ada di tag khusus
 				const parser = new Parser({
 					customFields: {
 						item: ['media:content', 'media:thumbnail', 'content:encoded'],
 					}
 				});
 
-				// Parser akan otomatis mengenali apakah ini RSS atau Atom
+				// Parser menormalisasi data
 				const feed = await parser.parseString(xmlData);
 
 				const feedTitle = feed.title || "Tanpa Judul";
 				const items = feed.items || [];
 
-				// rss-parser menormalisasi semuanya, jadi formatnya abstrak (bisa RSS/Atom)
-				const feedType = "Normalized (RSS/Atom)";
+				// Kita pakai hasil deteksi Regex tadi untuk UI-nya
+				const feedType = originalFormat;
 
 				// Ekstraksi cuplikan judul artikel buat di UI
 				const articlesList = items.map(item => {
 					return item.title || "Item tanpa judul";
 				});
 
-				// Hitung aset gambar WebP dari JSON yang sudah dinormalisasi
+				// Hitung aset gambar WebP
 				const rawJsonString = JSON.stringify(feed).toLowerCase();
 				const webpCount = (rawJsonString.match(/\.webp/g) || []).length;
 
 				return Response.json({
 					summary: {
 						title: feedTitle,
-						type: feedType,
+						type: feedType, // Akan nampilin "RSS" atau "Atom"
 						totalItems: items.length,
 						webpDetected: webpCount
 					},
 					articlesList,
-					// Kita tampilkan hasil normalisasi dari rss-parser
 					rawJson: JSON.stringify(feed, null, 2)
 				});
 
@@ -234,7 +241,9 @@ function getHtmlDashboard() {
 		document.getElementById('resultsContainer').classList.remove('hidden');
 
 		// Update Cards
+		// Sekarang akan otomatis nampilin "RSS" atau "Atom"
 		document.getElementById('statType').innerText = data.summary.type;
+
 		document.getElementById('statTotal').innerText = data.summary.totalItems;
 		document.getElementById('statWebp').innerText = data.summary.webpDetected;
 		document.getElementById('statStatus').innerText = "Sukses ✅";
