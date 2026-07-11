@@ -6,8 +6,7 @@ const C = {
     art:  `${import.meta.dir}/../artikel`,
     base: 'https://dalam.web.id',
     limit: 30, // Limit ini SEKARANG HANYA dipakai untuk membatasi RSS & JSON Lite!
-    cats: ['gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'],
-    hub: 'https://pubsubhubbub.appspot.com/' // 🔔 Hub WebSub publik (Google, masih conform ke spec 0.4 per Juli 2026)
+    cats: ['gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno']
 };
 
 // --- KAMUS KATEGORI UNTUK META TAG SEO ---
@@ -93,14 +92,14 @@ const calculateFeedRootDate = (items: any[]): Date => {
 
 const buildRss = (t: string, items: any[], link: string, desc: string, sizes: Map<string, number> = new Map()) => {
     const rootDate = calculateFeedRootDate(items);
-    return `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/rss.xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title><![CDATA[${safeCDATA(decodeHTML(t))}]]></title><link>${escapeXML(C.base)}/</link><description><![CDATA[${safeCDATA(desc)}]]></description><language>id-ID</language><atom:link href="${escapeXML(link)}" rel="self" type="application/rss+xml"/><atom:link href="${escapeXML(C.hub)}" rel="hub"/><lastBuildDate>${rootDate.toUTCString()}</lastBuildDate>${items.map(it =>
+    return `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/rss.xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title><![CDATA[${safeCDATA(decodeHTML(t))}]]></title><link>${escapeXML(C.base)}/</link><description><![CDATA[${safeCDATA(desc)}]]></description><language>id-ID</language><atom:link href="${escapeXML(link)}" rel="self" type="application/rss+xml"/><lastBuildDate>${rootDate.toUTCString()}</lastBuildDate>${items.map(it =>
         `<item><title><![CDATA[${safeCDATA(decodeHTML(it.title))}]]></title><link>${escapeXML(it.loc)}</link><guid>${escapeXML(it.loc)}</guid><description><![CDATA[${safeCDATA(it.desc || sanitize(decodeHTML(it.title)))}]]></description><pubDate>${new Date(it.lastmod).toUTCString()}</pubDate><category><![CDATA[${safeCDATA(it.category)}]]></category><enclosure url="${escapeXML(it.img)}" length="${sizes.get(it.img) ?? 0}" type="${mime(it.img)}"/></item>`
     ).join('')}</channel></rss>`;
 };
 
 const buildAtom = (t: string, items: any[], feedUrl: string, desc: string, sizes: Map<string, number> = new Map()) => {
     const rootDate = calculateFeedRootDate(items);
-    return `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/atom.xsl"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="id-ID"><title>${escapeXML(decodeHTML(t))}</title><subtitle>${escapeXML(desc)}</subtitle><link href="${escapeXML(C.base)}/" rel="alternate"/><link href="${escapeXML(feedUrl)}" rel="self" type="application/atom+xml"/><link href="${escapeXML(C.hub)}" rel="hub"/><id>${escapeXML(C.base)}/</id><updated>${rootDate.toISOString()}</updated>${items.map(it =>
+    return `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/atom.xsl"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="id-ID"><title>${escapeXML(decodeHTML(t))}</title><subtitle>${escapeXML(desc)}</subtitle><link href="${escapeXML(C.base)}/" rel="alternate"/><link href="${escapeXML(feedUrl)}" rel="self" type="application/atom+xml"/><id>${escapeXML(C.base)}/</id><updated>${rootDate.toISOString()}</updated>${items.map(it =>
         `<entry><title>${escapeXML(decodeHTML(it.title))}</title><link href="${escapeXML(it.loc)}" rel="alternate"/><link rel="enclosure" href="${escapeXML(it.img)}" type="${mime(it.img)}" length="${sizes.get(it.img) ?? 0}"/><id>${escapeXML(it.loc)}</id><updated>${it.lastmod}</updated><published>${it.lastmod}</published><author><name>Fakhrul Rijal</name></author><category term="${escapeXML(it.category)}"/><summary type="html"><![CDATA[${safeCDATA(it.desc || sanitize(decodeHTML(it.title)))}]]></summary></entry>`
     ).join('')}</feed>`;
 };
@@ -121,48 +120,6 @@ const cleanupOldSitemaps = async (): Promise<number> => {
         }
     }
     return removed;
-};
-
-// ── WebSub: ping hub HANYA untuk feed yang beneran berubah (bukan tiap build) ──
-const pingWebSub = async (feedUrls: string[]): Promise<void> => {
-    if (feedUrls.length === 0) {
-        console.log('🔕 WebSub: nggak ada feed yang berubah, skip ping ke hub.');
-        return;
-    }
-    try {
-        const body = new URLSearchParams();
-        body.append('hub.mode', 'publish');
-        feedUrls.forEach(u => body.append('hub.url', u));
-        const res = await fetch(C.hub, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: body.toString(),
-            signal: AbortSignal.timeout(10_000)
-        });
-        console.log(`📡 WebSub ping → ${C.hub} → HTTP ${res.status} (${feedUrls.length} feed berubah)`);
-        feedUrls.forEach(u => console.log(`    🔗 ${u}`));
-    } catch (e: any) {
-        // Non-fatal: hub publik boleh down/lambat, build tidak boleh gagal gara-gara ini
-        console.log(`⚠️  WebSub ping gagal (dilewati, tidak fatal): ${e?.message || e}`);
-    }
-};
-
-// ── Cloudflare Pages: sinkronkan blok terkelola di _headers & _redirects tanpa menimpa isi lain ──
-const upsertManagedBlock = async (path: string, block: string): Promise<void> => {
-    const MARK_START = '# --- BEGIN LK-AUTOGEN (komposisi.ts — jangan edit manual) ---';
-    const MARK_END   = '# --- END LK-AUTOGEN ---';
-    const existing = await Bun.file(path).text().catch(() => '');
-
-    const startIdx = existing.indexOf(MARK_START);
-    const endIdx   = existing.indexOf(MARK_END);
-    let stripped = existing;
-    if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
-        stripped = existing.slice(0, startIdx) + existing.slice(endIdx + MARK_END.length);
-    }
-    stripped = stripped.trim();
-
-    const out = `${stripped ? stripped + '\n\n' : ''}${MARK_START}\n${block}\n${MARK_END}\n`;
-    await Bun.write(path, out);
 };
 
 // ── Distribute helper (Menulis HTML dengan Injeksi Super Kebal + Judul Tetangga Murni) ──
@@ -241,7 +198,7 @@ const distribute = async (
 // ── TAHAP 1: PENGUMPULAN DATA BERDASARKAN ARTIKEL.JSON MASTER
 // =============================================================================
 (async () => {
-    console.log('🚀 Komposisi Blog V10.5 - Feed .rss/.atom + WebSub (dengan sitemap.txt fix)');
+    console.log('🚀 Komposisi Blog V10.4 - Clean Title Tooltip Injection (with sitemap.txt fix)');
 
     const CACHE_TODAY_FILE = `${C.root}/mini/edited-today.txt`;
     await fs.mkdir(`${C.root}/mini`, { recursive: true }).catch(() => {});
@@ -423,8 +380,8 @@ const distribute = async (
             }
         }
         if (!finalSlugs.has(s)) {
-            await fs.rm(`${C.root}/feed-${s}.rss`, { force: true });
-            await fs.rm(`${C.root}/feed-${s}.atom`, { force: true });
+            await fs.rm(`${C.root}/feed-${s}.xml`, { force: true });
+            await fs.rm(`${C.root}/feed-${s}-atom.xml`, { force: true });
         }
     }
 
@@ -436,12 +393,6 @@ const distribute = async (
         liteDb[kategori] = final[kategori].slice(0, LITE_LIMIT);
     }
     await Bun.write(`${C.root}/artikel-lite.json`, JSON.stringify(liteDb));
-
-    // 🔔 WebSub: siapkan state pelacakan perubahan (biar nggak ping hub kalau memang tidak ada artikel baru)
-    const WEBSUB_CACHE_FILE = `${C.root}/mini/websub-cache.json`;
-    const prevWebsubState: Record<string, string> = await Bun.file(WEBSUB_CACHE_FILE).json().catch(() => ({}));
-    const newWebsubState: Record<string, string> = {};
-    const feedsToNotify: string[] = [];
 
     const globalSizes      = new Map<string, number>();
     const sitemapByCategory = new Map<string, string[]>();
@@ -488,16 +439,6 @@ sitemapByCategory.get(catSlug)!.push(`
 
     const removedOldSitemaps = await cleanupOldSitemaps();
 
-    // 🔄 MIGRASI FORMAT FEED: hapus sisa file .xml lama (RSS/Atom sekarang pakai .rss/.atom)
-    await Promise.all([
-        fs.rm(`${C.root}/rss.xml`, { force: true }),
-        fs.rm(`${C.root}/atom.xml`, { force: true }),
-        ...C.cats.flatMap(s => [
-            fs.rm(`${C.root}/feed-${s}.xml`, { force: true }),
-            fs.rm(`${C.root}/feed-${s}-atom.xml`, { force: true }),
-        ]),
-    ]);
-
     const categorySitemapItems = [...sitemapByCategory.entries()].map(([catSlug, entries]) => {
         const fileName = `sitemap-${catSlug}.xml`;
         const latestInCat = flat.find(it => slug(it.category) === catSlug);
@@ -522,18 +463,9 @@ sitemapByCategory.get(catSlug)!.push(`
                       // 🔥 INI DIA FIX-NYA: Simpan urls Set kembali ke sitemap.txt
                       Bun.write(`${C.root}/sitemap.txt`, Array.from(urls).sort().join('\n') + '\n'),
 
-                      Bun.write(`${C.root}/rss.rss`, buildRss('Layar Kosong', flat.slice(0, C.limit), `${C.base}/rss.rss`, 'RSS Feed artikel terbaru dari Layar Kosong', globalSizes)),
-                      Bun.write(`${C.root}/atom.atom`, buildAtom('Layar Kosong', flat.slice(0, C.limit), `${C.base}/atom.atom`, 'Atom Feed artikel terbaru dari Layar Kosong', globalSizes)),
+                      Bun.write(`${C.root}/rss.xml`, buildRss('Layar Kosong', flat.slice(0, C.limit), `${C.base}/rss.xml`, 'RSS Feed artikel terbaru dari Layar Kosong', globalSizes)),
+                      Bun.write(`${C.root}/atom.xml`, buildAtom('Layar Kosong', flat.slice(0, C.limit), `${C.base}/atom.xml`, 'Atom Feed artikel terbaru dari Layar Kosong', globalSizes)),
     ]);
-
-    // Tandai perubahan feed utama (situs-lebar) buat keperluan WebSub
-    const rootNewest = flat[0]?.loc;
-    if (rootNewest) {
-        newWebsubState['__root__'] = rootNewest;
-        if (prevWebsubState['__root__'] !== rootNewest) {
-            feedsToNotify.push(`${C.base}/rss.rss`, `${C.base}/atom.atom`);
-        }
-    }
 
     console.log(`✅ Sitemap index dibuat : sitemap.xml`);
     categorySitemapItems.forEach(it => console.log(`    📂 ${it.fileName.padEnd(32)} ${it.count} URL`));
@@ -544,8 +476,8 @@ sitemapByCategory.get(catSlug)!.push(`
     if (tmp) {
         for (const [cat, arts] of Object.entries(final)) {
             const s                   = slug(cat);
-            const rUrl              = `${C.base}/feed-${s}.rss`;
-            const rAtomUrl          = `${C.base}/feed-${s}.atom`;
+            const rUrl              = `${C.base}/feed-${s}.xml`;
+            const rAtomUrl          = `${C.base}/feed-${s}-atom.xml`;
             const seoCategoryLabel  = getCategoryLabel(s);
 
             const categoryArticlesHTML = (arts as any[])
@@ -589,18 +521,9 @@ sitemapByCategory.get(catSlug)!.push(`
 
             await Promise.all([
                 Bun.write(`${C.root}/${s}/index.html`, pg),
-                              Bun.write(`${C.root}/feed-${s}.rss`, buildRss(`Kategori ${seoCategoryLabel}`, catItems, rUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
-                              Bun.write(`${C.root}/feed-${s}.atom`, buildAtom(`Kategori ${seoCategoryLabel}`, catItems, rAtomUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
+                              Bun.write(`${C.root}/feed-${s}.xml`, buildRss(`Kategori ${seoCategoryLabel}`, catItems, rUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
+                              Bun.write(`${C.root}/feed-${s}-atom.xml`, buildAtom(`Kategori ${seoCategoryLabel}`, catItems, rAtomUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
             ]);
-
-            // Tandai perubahan feed kategori ini buat keperluan WebSub
-            const catNewest = catItems[0]?.loc;
-            if (catNewest) {
-                newWebsubState[s] = catNewest;
-                if (prevWebsubState[s] !== catNewest) {
-                    feedsToNotify.push(rUrl, rAtomUrl);
-                }
-            }
         }
     }
 
@@ -649,39 +572,6 @@ for (const [filename, timeStr] of editedTodayMap.entries()) {
 }
 await Bun.write(CACHE_TODAY_FILE, cacheOut);
     }
-
-    // 🔔 WebSub: kirim notifikasi ke hub HANYA untuk feed yang beneran berubah, lalu simpan state terbaru
-    await pingWebSub(feedsToNotify);
-    await Bun.write(WEBSUB_CACHE_FILE, JSON.stringify(newWebsubState, null, 2));
-
-    // 🗂️ Sinkronkan _headers (Content-Type .rss/.atom) & _redirects (URL lama .xml → baru) Cloudflare Pages
-    // Ditulis sebagai blok terkelola (di antara marker) supaya nggak menimpa aturan lain yang sudah ada.
-    const liveCatSlugs = [...finalSlugs]; // kategori yang benar-benar punya feed aktif saat ini
-
-    const headersBlock = [
-        '/rss.rss',
-        '  Content-Type: application/rss+xml; charset=utf-8',
-        '/atom.atom',
-        '  Content-Type: application/atom+xml; charset=utf-8',
-        ...liveCatSlugs.flatMap(s => [
-            `/feed-${s}.rss`,
-            '  Content-Type: application/rss+xml; charset=utf-8',
-            `/feed-${s}.atom`,
-            '  Content-Type: application/atom+xml; charset=utf-8',
-        ]),
-    ].join('\n');
-
-    const redirectsBlock = [
-        '/rss.xml   /rss.rss    301',
-        '/atom.xml  /atom.atom  301',
-        ...C.cats.flatMap(s => [
-            `/feed-${s}.xml       /feed-${s}.rss   301`,
-            `/feed-${s}-atom.xml  /feed-${s}.atom  301`,
-        ]),
-    ].join('\n');
-
-    await upsertManagedBlock(`${C.root}/_headers`, headersBlock);
-    await upsertManagedBlock(`${C.root}/_redirects`, redirectsBlock);
 
     console.log('✅ Selesai!');
 })();
