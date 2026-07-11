@@ -4,12 +4,12 @@ on:
   workflow_run:
     workflows: ["☢️ Build and Generate Site Files"]
     types: [completed]
-  push:
-    branches:
-      - main
-    paths:
-      - '_redirects'
-      - '_headers'
+  #push:
+  #  branches:
+  #    - main
+  #  paths:
+  #    - '_redirects'
+  #    - '_headers'
 
   workflow_dispatch:
     inputs:
