@@ -1,11 +1,16 @@
-import fs from 'node:fs';
-
 const JSON_FILE = 'artikel.json';
 const DATABASE_FILE = 'mini/posted-pixelfed.txt';
 const BASE_URL = 'https://dalam.web.id';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 const slugify = (text: string) => text.toLowerCase().trim().replace(/\s+/g, '-');
+
+// --- Logika Hashtag (Adaptasi dari Mastodon) ---
+const cleanHashtag = (str: string) =>
+"#" + str
+.replace(/&/g, "dan")
+.replace(/[^\w\s]/g, "")
+.replace(/\s+/g, "");
 
 // Helper untuk kirim status (JSON)
 async function httpPost(url: string, body: any, headers: Record<string, string> = {}) {
@@ -19,7 +24,7 @@ async function httpPost(url: string, body: any, headers: Record<string, string> 
 }
 
 async function postToPixelfed() {
-	const ACCESS_TOKEN = process.env.PIXELFED_TOKEN;
+	const ACCESS_TOKEN = Bun.env.PIXELFED_TOKEN;
 
 	if (!ACCESS_TOKEN) {
 		console.error("❌ Error: PIXELFED_TOKEN belum diset!");
@@ -32,7 +37,6 @@ async function postToPixelfed() {
 		return;
 	}
 
-	// Pakai parser JSON bawaan Bun (jauh lebih ngebut dari fs.readFileSync)
 	const data = await jsonFile.json();
 	let allPosts: any[] = [];
 
@@ -53,9 +57,10 @@ async function postToPixelfed() {
 					title: p[0],
 					url: fullUrl,
 					slug: fileSlug,
-					image: p[2],  // URL Cloudflare (.webp)
-				date: p[3],
-				desc: p[4] || "Archive."
+					image: p[2],
+					date: p[3],
+					desc: p[4] || "Archive.",
+					category: cat // Ambil kategori untuk bahan hashtag
 				});
 			}
 		});
@@ -73,14 +78,13 @@ async function postToPixelfed() {
 	try {
 		console.log(`🚀 Menyiapkan postingan Pixelfed: ${target.title}`);
 
-		// STEP 1: DOWNLOAD FILE LANGSUNG JADI BLOB (Fitur asyik di Bun)
+		// STEP 1: DOWNLOAD FILE LANGSUNG JADI BLOB
 		console.log(`📥 Mengambil gambar dari: ${target.image}`);
 		const imgRes = await fetch(target.image);
 		if (!imgRes.ok) throw new Error(`Gagal ngambil gambar: ${imgRes.status}`);
 
 		let blob = await imgRes.blob();
 
-		// Fallback: Pastikan tipenya webp kalau Cloudflare nggak ngasih header 'content-type'
 		if (!blob.type || blob.type === 'application/octet-stream') {
 			blob = new Blob([blob], { type: 'image/webp' });
 		}
@@ -88,7 +92,6 @@ async function postToPixelfed() {
 		const filename = target.image.split('/').pop() || 'image.webp';
 		const formData = new FormData();
 
-		// Bun secara native ngerti Blob di dalam FormData
 		formData.append('file', blob, filename);
 		formData.append('description', target.title);
 
@@ -99,7 +102,7 @@ async function postToPixelfed() {
 			headers: {
 				'Authorization': `Bearer ${ACCESS_TOKEN}`
 			},
-			body: formData // Langsung hantam pakai formData
+			body: formData
 		});
 
 		if (!uploadRes.ok) {
@@ -112,9 +115,25 @@ async function postToPixelfed() {
 		console.log("⏳ Tunggu 5 detik biar Pixelfed kelar proses gambar...");
 		await delay(5000);
 
-		// STEP 3: POSTING STATUS KE TIMELINE
+		// STEP 3: HASHTAG GENERATOR (Dari script Mastodon)
+		const hashtags = new Set<string>();
+		hashtags.add("#pixelfed");
+		hashtags.add("#fediverse");
+		hashtags.add(cleanHashtag(target.category)); // Bonus: Kategori artikel jadi hashtag
+
+		target.title
+		.split(/\s+/)
+		.filter((w: string) => w.length > 4)
+		.slice(0, 3)
+		.forEach((w: string) => hashtags.add(cleanHashtag(w)));
+
+		const hashtagString = [...hashtags].join(" ");
+
+		// STEP 4: POSTING STATUS KE TIMELINE
 		console.log("📝 Mempublikasikan status...");
-		const caption = `${target.title}\n\n${target.desc}\n\nBaca selengkapnya: ${target.url}`;
+
+		// Susun caption biar estetik: Judul -> Deskripsi -> Hashtag -> URL
+		const caption = `${target.title}\n\n${target.desc}\n\n${hashtagString}\n\nBaca selengkapnya: ${target.url}`;
 
 		await httpPost(
 			'https://pixelfed.social/api/v1/statuses',
@@ -128,12 +147,12 @@ async function postToPixelfed() {
 			}
 		);
 
-		// STEP 4: CATAT KE DATABASE MINI
-		if (!fs.existsSync('mini')) fs.mkdirSync('mini', { recursive: true });
-		// Tetap pakai fs.appendFileSync karena ini sinkronus dan aman buat nulis log beruntun
-		fs.appendFileSync(DATABASE_FILE, target.url + '\n');
+		// STEP 5: CATAT KE DATABASE MINI (Pure Bun Write)
+		const currentContent = postedDatabase;
+		const newContent = currentContent + target.url + "\n";
+		await Bun.write(DATABASE_FILE, newContent);
 
-		console.log(`🎉 Sukses! Artikel "${target.title}" udah nangkring di Pixelfed.`);
+		console.log(`🎉 Sukses! Artikel "${target.title}" udah nangkring di Pixelfed dengan hashtag cakep.`);
 	} catch (err: any) {
 		console.error('❌ Pixelfed Error:', err.message || err);
 		process.exit(1);
