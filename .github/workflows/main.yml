@@ -22,4 +22,4 @@ jobs:
       - name: Run Script
         env:
           PIXELFED_TOKEN: ${{ secrets.PIXELFED_TOKEN }}
-        run: bun run post-pixelfed.ts
+        run: bun run dapur/post-pixelfed.ts
