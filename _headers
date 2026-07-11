@@ -168,3 +168,38 @@ https://:version.:project.pages.dev/*
   Content-Type: text/html; charset=utf-8
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: no-store
+
+# --- BEGIN LK-AUTOGEN (komposisi.ts — jangan edit manual) ---
+/rss.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/atom.atom
+  Content-Type: application/atom+xml; charset=utf-8
+/feed-jejak-sejarah.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/feed-jejak-sejarah.atom
+  Content-Type: application/atom+xml; charset=utf-8
+/feed-warta-tekno.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/feed-warta-tekno.atom
+  Content-Type: application/atom+xml; charset=utf-8
+/feed-sistem-terbuka.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/feed-sistem-terbuka.atom
+  Content-Type: application/atom+xml; charset=utf-8
+/feed-lainnya.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/feed-lainnya.atom
+  Content-Type: application/atom+xml; charset=utf-8
+/feed-gaya-hidup.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/feed-gaya-hidup.atom
+  Content-Type: application/atom+xml; charset=utf-8
+/feed-opini-sosial.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/feed-opini-sosial.atom
+  Content-Type: application/atom+xml; charset=utf-8
+/feed-olah-media.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/feed-olah-media.atom
+  Content-Type: application/atom+xml; charset=utf-8
+# --- END LK-AUTOGEN ---

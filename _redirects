@@ -52,3 +52,22 @@
 
 # Menangani legacy URL dengan domain lama
 /enc1/1-1342-1230/* /  410
+
+# --- BEGIN LK-AUTOGEN (komposisi.ts — jangan edit manual) ---
+/rss.xml   /rss.rss    301
+/atom.xml  /atom.atom  301
+/feed-gaya-hidup.xml       /feed-gaya-hidup.rss   301
+/feed-gaya-hidup-atom.xml  /feed-gaya-hidup.atom  301
+/feed-jejak-sejarah.xml       /feed-jejak-sejarah.rss   301
+/feed-jejak-sejarah-atom.xml  /feed-jejak-sejarah.atom  301
+/feed-lainnya.xml       /feed-lainnya.rss   301
+/feed-lainnya-atom.xml  /feed-lainnya.atom  301
+/feed-olah-media.xml       /feed-olah-media.rss   301
+/feed-olah-media-atom.xml  /feed-olah-media.atom  301
+/feed-opini-sosial.xml       /feed-opini-sosial.rss   301
+/feed-opini-sosial-atom.xml  /feed-opini-sosial.atom  301
+/feed-sistem-terbuka.xml       /feed-sistem-terbuka.rss   301
+/feed-sistem-terbuka-atom.xml  /feed-sistem-terbuka.atom  301
+/feed-warta-tekno.xml       /feed-warta-tekno.rss   301
+/feed-warta-tekno-atom.xml  /feed-warta-tekno.atom  301
+# --- END LK-AUTOGEN ---
