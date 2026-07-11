@@ -22,7 +22,7 @@ const filesToMinify: string[] = [
 './feed-sistem-terbuka.atom',
 './feed-sistem-terbuka.rss',
 './feed-warta-tekno-atom.xml',
-'./feed-warta-tekno.xml',
+'./feed-warta-tekno.rss',
 './sitemap-gaya-hidup.xml',
 './sitemap-jejak-sejarah.xml',
 './sitemap-lainnya.xml',
