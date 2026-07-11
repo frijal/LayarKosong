@@ -111,15 +111,26 @@ const buildSitemapUrlset = (entries: string): string =>
 const buildSitemapIndex = (items: { loc: string; lastmod: string }[]): string =>
 `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items.map(it => `  <sitemap>\n    <loc>${escapeXML(it.loc)}</loc>\n    <lastmod>${it.lastmod}</lastmod>\n  </sitemap>`).join('')}\n</sitemapindex>`;
 
+// 🧹 Wipe sitemap kategori — format lama BERPREFIX "sitemap-*.xml" & format baru TANPA prefix "<slug>.xml"
+// dibersihkan dulu sebelum ditulis ulang, biar kategori yang udah nggak aktif nggak nyisain file nyasar.
 const cleanupOldSitemaps = async (): Promise<number> => {
-    const files = await fs.readdir(C.root).catch(() => []);
     let removed = 0;
+
+    // Migrasi format lama: sitemap-<slug>.xml (prefix "sitemap-" sudah dipensiunkan)
+    const files = await fs.readdir(C.root).catch(() => []);
     for (const f of files) {
         if (/^sitemap-.+\.xml$/i.test(f)) {
             await fs.rm(`${C.root}/${f}`, { force: true });
             removed++;
         }
     }
+
+    // Format baru: <slug>.xml — wipe bersih dulu, biar kategori nonaktif nggak nyisa file basi
+    for (const s of C.cats) {
+        await fs.rm(`${C.root}/${s}.xml`, { force: true });
+        removed++;
+    }
+
     return removed;
 };
 
@@ -137,7 +148,7 @@ const pingWebSub = async (feedUrls: string[]): Promise<void> => {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: body.toString(),
-            signal: AbortSignal.timeout(10_000)
+                                signal: AbortSignal.timeout(10_000)
         });
         console.log(`📡 WebSub ping → ${C.hub} → HTTP ${res.status} (${feedUrls.length} feed berubah)`);
         feedUrls.forEach(u => console.log(`    🔗 ${u}`));
@@ -196,17 +207,23 @@ const distribute = async (
         prevNextTags += `\n    <link rel="next" href="${nextData.url}" title="${safeTitle}">`;
     }
 
+    // 🔗 SUNTIK LINK ALTERNATE KE FEED KATEGORI (RSS & Atom) — biar feed reader bisa auto-discover langsung dari artikel
+    const catRssUrl  = `${C.base}/${catSlug}.rss`;
+    const catAtomUrl = `${C.base}/${catSlug}.atom`;
+    const feedLinkTags = `\n    <link rel="alternate" type="application/rss+xml" title="Feed RSS ${catLabel} - Layar Kosong" href="${catRssUrl}">\n    <link rel="alternate" type="application/atom+xml" title="Feed Atom ${catLabel} - Layar Kosong" href="${catAtomUrl}">`;
+
     // 1. Bersihkan SEMUA sisa tag lama secara total agar tidak terjadi penumpukan
     html = html
     .replace(/<nav class="static-crumb"[\s\S]*?<\/nav>\s*/gi, '') // 🌟 ANTI-TUMPUK: Buang remah roti lama jika ada
     .replace(/<meta property="article:tag" content="[^"]*">\s*/gi, '')
     .replace(/<link rel="(prev|next)" [^>]*>\s*/gi, '') // Regex diperluas untuk menghapus tag yang punya 'title'
+    .replace(/<link rel="alternate" type="application\/(rss|atom)\+xml" title="Feed (RSS|Atom)[^"]+"[^>]*>\s*/gi, '') // 🌟 ANTI-TUMPUK: HANYA link feed kategori lama
     .replace(/<meta property="article:section" content="[^"]*">\s*/gi, '')
     .replace(/<meta property="og:url" content="[^"]*">\s*/gi, '')
     .replace(/<meta name="twitter:url" content="[^"]*">\s*/gi, '');
 
     // 2. Siapkan Blok Tag SEO Baru
-    const seoInjection = `${prevNextTags}\n    <meta property="og:url" content="${url}">\n    <meta name="twitter:url" content="${url}">\n    <meta property="article:section" content="${catLabel}">\n    ${tagsHtml}`;
+    const seoInjection = `${prevNextTags}\n    <meta property="og:url" content="${url}">\n    <meta name="twitter:url" content="${url}">\n    <meta property="article:section" content="${catLabel}">\n    ${tagsHtml}${feedLinkTags}`;
 
     // 3. Suntik Kebal Gagal (Numpang di Tag Canonical)
     if (html.match(/<link rel="canonical" href="[^"]+">/i)) {
@@ -241,7 +258,7 @@ const distribute = async (
 // ── TAHAP 1: PENGUMPULAN DATA BERDASARKAN ARTIKEL.JSON MASTER
 // =============================================================================
 (async () => {
-    console.log('🚀 Komposisi Blog V10.5 - Feed .rss/.atom + WebSub (dengan sitemap.txt fix)');
+    console.log('🚀 Komposisi Blog V10.6 - Nama Output Seragam (slug.rss/.atom/.xml) + Feed Autodiscovery Tags (Fixed)');
 
     const CACHE_TODAY_FILE = `${C.root}/mini/edited-today.txt`;
     await fs.mkdir(`${C.root}/mini`, { recursive: true }).catch(() => {});
@@ -282,8 +299,8 @@ const distribute = async (
 
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
-                                                      Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
-                                                      Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
+                                              Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
+                                              Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
     ]);
 
     const urls  = new Set(stm.split('\n').filter(Boolean));
@@ -423,8 +440,9 @@ const distribute = async (
             }
         }
         if (!finalSlugs.has(s)) {
-            await fs.rm(`${C.root}/feed-${s}.rss`, { force: true });
-            await fs.rm(`${C.root}/feed-${s}.atom`, { force: true });
+            await fs.rm(`${C.root}/${s}.rss`, { force: true });
+            await fs.rm(`${C.root}/${s}.atom`, { force: true });
+            await fs.rm(`${C.root}/${s}.xml`, { force: true });
         }
     }
 
@@ -449,7 +467,7 @@ const distribute = async (
     for (const it of flat) {
         const [txt, size] = await Promise.all([
             Bun.file(`${C.art}/${it.file}`).text(),
-                                                      imgSize(it.img)
+                                              imgSize(it.img)
         ]);
         globalSizes.set(it.img, size);
 
@@ -488,18 +506,21 @@ sitemapByCategory.get(catSlug)!.push(`
 
     const removedOldSitemaps = await cleanupOldSitemaps();
 
-    // 🔄 MIGRASI FORMAT FEED: hapus sisa file .xml lama (RSS/Atom sekarang pakai .rss/.atom)
+    // 🔄 MIGRASI FORMAT FEED: hapus sisa file dari skema penamaan-penamaan sebelumnya
     await Promise.all([
         fs.rm(`${C.root}/rss.xml`, { force: true }),
-        fs.rm(`${C.root}/atom.xml`, { force: true }),
-        ...C.cats.flatMap(s => [
-            fs.rm(`${C.root}/feed-${s}.xml`, { force: true }),
-            fs.rm(`${C.root}/feed-${s}-atom.xml`, { force: true }),
-        ]),
+                      fs.rm(`${C.root}/atom.xml`, { force: true }),
+                      ...C.cats.flatMap(s => [
+                          fs.rm(`${C.root}/feed-${s}.xml`, { force: true }),
+                                        fs.rm(`${C.root}/feed-${s}-atom.xml`, { force: true }),
+                                        fs.rm(`${C.root}/feed-${s}.rss`, { force: true }),
+                                        fs.rm(`${C.root}/feed-${s}.atom`, { force: true }),
+                                        fs.rm(`${C.root}/sitemap-${s}.xml`, { force: true }),
+                      ]),
     ]);
 
     const categorySitemapItems = [...sitemapByCategory.entries()].map(([catSlug, entries]) => {
-        const fileName = `sitemap-${catSlug}.xml`;
+        const fileName = `${catSlug}.xml`;
         const latestInCat = flat.find(it => slug(it.category) === catSlug);
         const lastmod     = latestInCat?.lastmod || new Date().toISOString();
         return {
@@ -507,7 +528,7 @@ sitemapByCategory.get(catSlug)!.push(`
             loc:     `${C.base}/${fileName}`,
             lastmod,
             content: buildSitemapUrlset(entries.join('')),
-                                                                    count:   entries.length
+                                                                      count:   entries.length
         };
     });
 
@@ -544,8 +565,8 @@ sitemapByCategory.get(catSlug)!.push(`
     if (tmp) {
         for (const [cat, arts] of Object.entries(final)) {
             const s                   = slug(cat);
-            const rUrl              = `${C.base}/feed-${s}.rss`;
-            const rAtomUrl          = `${C.base}/feed-${s}.atom`;
+            const rUrl              = `${C.base}/${s}.rss`;
+            const rAtomUrl          = `${C.base}/${s}.atom`;
             const seoCategoryLabel  = getCategoryLabel(s);
 
             const categoryArticlesHTML = (arts as any[])
@@ -569,6 +590,7 @@ sitemapByCategory.get(catSlug)!.push(`
                 </a>`;
             }).join('');
 
+            // Murni ngerubah placeholder di template, nggak ada acara suntik menyuntik tag <head> lagi
             const pg = tmp
             .replace(/%%TITLE%%/g, seoCategoryLabel)
             .replace(/%%DESCRIPTION%%/g, seoCategoryLabel)
@@ -589,8 +611,8 @@ sitemapByCategory.get(catSlug)!.push(`
 
             await Promise.all([
                 Bun.write(`${C.root}/${s}/index.html`, pg),
-                              Bun.write(`${C.root}/feed-${s}.rss`, buildRss(`Kategori ${seoCategoryLabel}`, catItems, rUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
-                              Bun.write(`${C.root}/feed-${s}.atom`, buildAtom(`Kategori ${seoCategoryLabel}`, catItems, rAtomUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
+                              Bun.write(`${C.root}/${s}.rss`, buildRss(`Kategori ${seoCategoryLabel}`, catItems, rUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
+                              Bun.write(`${C.root}/${s}.atom`, buildAtom(`Kategori ${seoCategoryLabel}`, catItems, rAtomUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
             ]);
 
             // Tandai perubahan feed kategori ini buat keperluan WebSub
@@ -654,7 +676,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
     await pingWebSub(feedsToNotify);
     await Bun.write(WEBSUB_CACHE_FILE, JSON.stringify(newWebsubState, null, 2));
 
-    // 🗂️ Sinkronkan _headers (Content-Type .rss/.atom) & _redirects (URL lama .xml → baru) Cloudflare Pages
+    // 🗂️ Sinkronkan _headers (Content-Type .rss/.atom) & _redirects (URL lama → baru) Cloudflare Pages
     // Ditulis sebagai blok terkelola (di antara marker) supaya nggak menimpa aturan lain yang sudah ada.
     const liveCatSlugs = [...finalSlugs]; // kategori yang benar-benar punya feed aktif saat ini
 
@@ -664,9 +686,9 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
         '/atom.atom',
         '  Content-Type: application/atom+xml; charset=utf-8',
         ...liveCatSlugs.flatMap(s => [
-            `/feed-${s}.rss`,
+            `/${s}.rss`,
             '  Content-Type: application/rss+xml; charset=utf-8',
-            `/feed-${s}.atom`,
+            `/${s}.atom`,
             '  Content-Type: application/atom+xml; charset=utf-8',
         ]),
     ].join('\n');
@@ -675,8 +697,11 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
         '/rss.xml   /rss.rss    301',
         '/atom.xml  /atom.atom  301',
         ...C.cats.flatMap(s => [
-            `/feed-${s}.xml       /feed-${s}.rss   301`,
-            `/feed-${s}-atom.xml  /feed-${s}.atom  301`,
+            `/feed-${s}.xml        /${s}.rss   301`,
+            `/feed-${s}-atom.xml   /${s}.atom  301`,
+            `/feed-${s}.rss        /${s}.rss   301`,
+            `/feed-${s}.atom       /${s}.atom  301`,
+            `/sitemap-${s}.xml     /${s}.xml   301`,
         ]),
     ].join('\n');
 
