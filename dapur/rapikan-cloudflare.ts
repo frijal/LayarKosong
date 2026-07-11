@@ -9,12 +9,25 @@ if (!accountId || !projectName || !token) {
   process.exit(1);
 }
 
-// Interface ...
-interface CloudflareDeployment { ... }
-interface CloudflareResponse<T> { ... }
-
 console.log("🚀 Mengambil daftar deployment…");
 const DEFAULT_TIMEOUT = 30_000;
+
+// ==================== TYPE & FUNCTION ====================
+interface CloudflareDeployment {
+  id: string;
+  production: boolean;
+  environment: string;
+  created_on?: string;
+  created_at?: string;
+  [key: string]: any;
+}
+
+interface CloudflareResponse<T> {
+  success: boolean;
+  result: T;
+  errors: any[];
+  messages: any[];
+}
 
 async function fetchWithTimeout(url: string, opts: RequestInit = {}, timeout: number = DEFAULT_TIMEOUT): Promise<Response> {
   const controller = new AbortController();
@@ -35,16 +48,13 @@ async function fetchDeployments(): Promise<CloudflareDeployment[]> {
       Accept: "application/json"
     }
   });
-
   if (!res.ok) {
     throw new Error(`HTTP Error: ${res.status} ${res.statusText}`);
   }
-
   const json = (await res.json()) as CloudflareResponse<CloudflareDeployment[]>;
   if (!json.success || !Array.isArray(json.result)) {
     throw new Error(`API Error: ${JSON.stringify(json.errors ?? json)}`);
   }
-
   return json.result;
 }
 
@@ -70,23 +80,19 @@ async function deleteDeployment(id: string): Promise<boolean> {
       Accept: "application/json"
     }
   });
-
   if (!res.ok) {
     console.error(`❌ HTTP Error hapus ${id}:`, res.status, res.statusText);
     return false;
   }
-
   const json = (await res.json()) as CloudflareResponse<any>;
   if (!json.success) {
     console.error(`❌ Gagal hapus ${id}:`, json.errors ?? json);
     return false;
   }
-
   console.log(`✔ Berhasil hapus ${id}`);
   return true;
 }
 
-// Hapus serial untuk menghindari rate limit
 async function runDeletesSerial(previews: CloudflareDeployment[]): Promise<void> {
   for (const p of previews) {
     try {
@@ -98,6 +104,8 @@ async function runDeletesSerial(previews: CloudflareDeployment[]): Promise<void>
 }
 
 // ==================== FUNGSI RUN ====================
+let totalDeleted = 0;
+
 async function run(): Promise<void> {
   try {
     const deployments = await fetchDeployments();
@@ -124,8 +132,8 @@ async function run(): Promise<void> {
     await runDeletesSerial(previewsToDelete);
     console.log(`✅ Selesai menghapus loop ini! (${previewsToDelete.length} preview deployment dihapus)`);
 
-    // === COUNTER GLOBAL OTOMATIS ===
-    totalDeleted += previewsToDelete.length;   // <--- INI YANG AKURAT!
+    // === COUNTER GLOBAL ===
+    totalDeleted += previewsToDelete.length;
 
   } catch (err: any) {
     if (err.name === "AbortError") {
@@ -138,8 +146,6 @@ async function run(): Promise<void> {
 }
 
 // ==================== LOOPING INTERNAL 3 KALI ====================
-let totalDeleted = 0;          // COUNTER GLOBAL
-
 console.log("🔁 Memulai looping pembersihan deployment (3 kali) dengan jeda 10 detik...");
 for (let i = 1; i <= 3; i++) {
   console.log(`\n🚀 LOOP ${i} dari 3 - Mulai menjalankan...`);
