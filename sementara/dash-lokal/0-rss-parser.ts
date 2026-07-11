@@ -4,7 +4,7 @@ import Parser from "rss-parser";
 
 const PORT = 5000;
 
-console.log(`\n🚀 Dashboard Inspeksi Feed (Powered by rss-parser) aktif! \n👉 Buka: http://localhost:${PORT}\n`);
+console.log(`\n🚀 Dashboard Inspeksi Feed aktif! \n👉 Buka: http://localhost:${PORT}\n`);
 
 Bun.serve({
 	port: PORT,
@@ -22,26 +22,35 @@ Bun.serve({
 		if (url.pathname === "/api/inspect" && req.method === "POST") {
 			try {
 				const body = await req.json();
-				const { xmlPath } = body;
+				// Kita terima 'xmlContent' (dari tombol Browse) atau 'xmlPath' (input manual)
+				const { xmlPath, xmlContent } = body;
 
-				if (!xmlPath) {
-					return Response.json({ error: "Path file XML wajib diisi!" }, { status: 400 });
+				let xmlData = "";
+
+				if (xmlContent) {
+					// File di-load dari tombol Browse
+					xmlData = xmlContent;
+				} else if (xmlPath) {
+					// File di-load manual via Path
+					const absolutePath = join(process.cwd(), xmlPath);
+					if (!existsSync(absolutePath)) {
+						return Response.json({ error: `File XML tidak ditemukan di: ${absolutePath}` }, { status: 400 });
+					}
+					xmlData = await Bun.file(absolutePath).text();
+				} else {
+					return Response.json({ error: "Pilih file dari laptop atau isi path-nya!" }, { status: 400 });
 				}
 
-				const absolutePath = join(process.cwd(), xmlPath);
-
-				if (!existsSync(absolutePath)) {
-					return Response.json({ error: `File XML tidak ditemukan di: ${absolutePath}` }, { status: 400 });
-				}
-
-				const xmlData = await Bun.file(absolutePath).text();
-
-				// --- DETEKSI FORMAT ASLI (BARU) ---
-				// Kita intip string mentahnya sebelum dihajar oleh rss-parser
+				// --- DETEKSI FORMAT ASLI (DIPERBAIKI) ---
+				// Biar nggak terbalik karena tag nyasar di dalam artikel blog,
+				// kita potong cuma ngecek 500 karakter pertama aja (area root element).
+				const headData = xmlData.slice(0, 500);
 				let originalFormat = "Tidak Diketahui";
-				if (/<rss/i.test(xmlData)) {
+
+				// Pengecekan dibuat lebih ketat dengan mencari spasi atau tutup kurung setelah tag
+				if (/<rss[\s>]/i.test(headData)) {
 					originalFormat = "RSS";
-				} else if (/<feed/i.test(xmlData)) {
+				} else if (/<feed[\s>]/i.test(headData)) {
 					originalFormat = "Atom";
 				}
 
@@ -57,8 +66,6 @@ Bun.serve({
 
 				const feedTitle = feed.title || "Tanpa Judul";
 				const items = feed.items || [];
-
-				// Kita pakai hasil deteksi Regex tadi untuk UI-nya
 				const feedType = originalFormat;
 
 				// Ekstraksi cuplikan judul artikel buat di UI
@@ -73,7 +80,7 @@ Bun.serve({
 				return Response.json({
 					summary: {
 						title: feedTitle,
-						type: feedType, // Akan nampilin "RSS" atau "Atom"
+						type: feedType,
 						totalItems: items.length,
 						webpDetected: webpCount
 					},
@@ -153,13 +160,31 @@ function getHtmlDashboard() {
 
 	<div class="xl:col-span-1 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl h-fit">
 	<h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">⚙️ Target Inspeksi</h2>
+
 	<div class="space-y-4">
+	<!-- TAMBAHAN TOMBOL BROWSE -->
 	<div>
-	<label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Path File XML (.xml)</label>
-	<input type="text" id="xmlPath" value="feed.xml" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan-500 text-slate-100 font-mono">
+	<label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Pilih File dari Laptop</label>
+	<input type="file" id="fileInput" accept=".xml,.rss,.atom" class="block w-full text-sm text-slate-400
+	file:mr-4 file:py-2.5 file:px-4
+	file:rounded-xl file:border-0
+	file:text-xs file:font-bold
+	file:bg-cyan-500/10 file:text-cyan-400
+	hover:file:bg-cyan-500/20 cursor-pointer">
 	</div>
+
+	<div class="flex items-center gap-2 py-1">
+	<hr class="flex-1 border-slate-700">
+	<span class="text-[10px] font-bold text-slate-500 tracking-wider">ATAU PATH SERVER</span>
+	<hr class="flex-1 border-slate-700">
+	</div>
+
+	<div>
+	<input type="text" id="xmlPath" placeholder="Contoh: feed.xml" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan-500 text-slate-100 font-mono">
+	</div>
+
 	<button id="btnInspect" class="w-full mt-2 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 font-bold text-slate-950 py-3 rounded-xl shadow-lg transition-all transform active:scale-95">
-	🔍 Bedah Pakai RSS-Parser
+	🔍 Bedah File
 	</button>
 	</div>
 	<div id="errorMessage" class="hidden mt-4 p-4 bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-xl text-xs leading-relaxed"></div>
@@ -187,19 +212,17 @@ function getHtmlDashboard() {
 
 	<div id="placeholderState" class="flex flex-col items-center justify-center py-20 border-2 border-dashed border-slate-800 rounded-2xl text-slate-600">
 	<span class="text-4xl mb-2">📡</span>
-	<p class="text-sm">Klik tombol <strong>Bedah Pakai RSS-Parser</strong> di sebelah kiri</p>
+	<p class="text-sm">Pilih file lalu klik <strong>Bedah File</strong> di sebelah kiri</p>
 	</div>
 
 	<div id="resultsContainer" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6 w-full">
 
-	<!-- Kolom Kiri: Daftar Judul -->
 	<div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow w-full lg:col-span-1 flex flex-col max-h-[570px]">
 	<h3 class="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-3">📄 Cuplikan Item (<span id="feedTitleLabel"></span>)</h3>
 	<div id="articlesListContainer" class="flex-1 overflow-y-auto space-y-2 text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono">
 	</div>
 	</div>
 
-	<!-- Kolom Kanan: Normalized JSON Viewer -->
 	<div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow w-full lg:col-span-2">
 	<div class="flex justify-between items-center mb-3">
 	<div>
@@ -219,19 +242,35 @@ function getHtmlDashboard() {
 
 	<script>
 	document.getElementById('btnInspect').addEventListener('click', async () => {
-		const xmlPath = document.getElementById('xmlPath').value;
+		const xmlPathInput = document.getElementById('xmlPath');
+		const fileInput = document.getElementById('fileInput');
 		const btn = document.getElementById('btnInspect');
 		const errorDiv = document.getElementById('errorMessage');
 
 		errorDiv.classList.add('hidden');
 		btn.disabled = true;
-		btn.innerText = '⏳ Memproses Parser...';
+		btn.innerText = '⏳ Memproses...';
 
 	try {
+		let payload = {};
+
+		// Prioritaskan file yang dipilih lewat tombol Browse
+		if (fileInput.files.length > 0) {
+			const file = fileInput.files[0];
+			const xmlContent = await file.text();
+			payload = { xmlContent: xmlContent };
+		}
+		// Kalau nggak ada file yang dipilih, pakai path manual
+		else if (xmlPathInput.value.trim() !== '') {
+			payload = { xmlPath: xmlPathInput.value.trim() };
+		} else {
+			throw new Error("Pilih file dari Browse atau isi Path Server!");
+		}
+
 		const response = await fetch('/api/inspect', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ xmlPath })
+			body: JSON.stringify(payload)
 		});
 
 		const data = await response.json();
@@ -241,9 +280,7 @@ function getHtmlDashboard() {
 		document.getElementById('resultsContainer').classList.remove('hidden');
 
 		// Update Cards
-		// Sekarang akan otomatis nampilin "RSS" atau "Atom"
 		document.getElementById('statType').innerText = data.summary.type;
-
 		document.getElementById('statTotal').innerText = data.summary.totalItems;
 		document.getElementById('statWebp').innerText = data.summary.webpDetected;
 		document.getElementById('statStatus').innerText = "Sukses ✅";
@@ -269,8 +306,22 @@ function getHtmlDashboard() {
 		document.getElementById('statStatus').innerText = "Error ❌";
 	} finally {
 		btn.disabled = false;
-		btn.innerText = '🔍 Bedah Pakai RSS-Parser';
+		btn.innerText = '🔍 Bedah File';
 	}
+	});
+
+	// Kosongkan path input kalau user milih file via Browse
+	document.getElementById('fileInput').addEventListener('change', function() {
+		if (this.files.length > 0) {
+			document.getElementById('xmlPath').value = '';
+		}
+	});
+
+	// Kosongkan file input kalau user ngetik di path input
+	document.getElementById('xmlPath').addEventListener('input', function() {
+		if (this.value.trim() !== '') {
+			document.getElementById('fileInput').value = '';
+		}
 	});
 	</script>
 	</body>
