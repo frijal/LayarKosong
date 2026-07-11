@@ -468,7 +468,7 @@
             const dirTable = document.getElementById("dir-table");
 
             try {
-                const res = await fetch("galeri-data.json?t=" + Date.now());
+                const res = await fetch("https://raw.githubusercontent.com/frijal/LayarKosong/main/img/galeri-data.json?t=" + Date.now());
 
                 if (!res.ok) throw new Error(`Status: ${res.status}`);
 
