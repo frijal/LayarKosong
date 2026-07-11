@@ -11,7 +11,7 @@ const filesToMinify: string[] = [
   './sitemap.xml',
  './feed-gaya-hidup.atom',
 './feed-gaya-hidup.rss',
-'./feed-jejak-sejarah-atom.xml',
+'./feed-jejak-sejarah.atom',
 './feed-jejak-sejarah.rss',
 './feed-lainnya-atom.xml',
 './feed-lainnya.xml',
