@@ -493,6 +493,7 @@ async function processFile(file: string, baseUrl: string, fallbackTime: string) 
       htmlTag.metaName("twitter:widgets:new-embed-design", "on"),
       htmlTag.metaName("twitter:site", "@responaja"),
       htmlTag.metaName("twitter:creator", "@responaja"),
+      htmlTag.metaName("twitter:account_id", "1872520777138122752"),
       htmlTag.metaName("fediverse:creator", "@frijal@mastodon.social"),
       htmlTag.metaProperty("article:author", "https://facebook.com/frijal"),
       htmlTag.metaProperty("article:publisher", "https://facebook.com/frijalpage"),
