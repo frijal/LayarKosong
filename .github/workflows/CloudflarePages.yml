@@ -77,6 +77,8 @@ jobs:
             --include='_headers' \
             --include='*.html' \
             --include='*.xml' \
+            --include='*.atom' \
+            --include='*.rss' \
             --include='*.xsl' \
             --include='*.txt' \
             --include='favicon.*' \
