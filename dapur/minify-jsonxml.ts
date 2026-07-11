@@ -6,7 +6,7 @@ import path from "node:path";
 const filesToMinify: string[] = [
   './artikel.json',
   './artikel-lite.json',
-  './rss.xml',
+  './rss.rss',
   './atom.xml',
   './sitemap.xml',
  './feed-gaya-hidup-atom.xml',

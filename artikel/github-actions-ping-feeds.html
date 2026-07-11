@@ -47,7 +47,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any"><link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.rss">
     <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
@@ -389,7 +389,7 @@ steps:
     shell: bash
     run: |
       SITEMAP_URL="$BASE_URL/sitemap.xml"
-      RSS_URL="$BASE_URL/rss.xml"
+      RSS_URL="$BASE_URL/rss.rss"
       echo "--- Validasi file discovery utama ---"
       for url in "$SITEMAP_URL" "$RSS_URL"; do
         echo "Checking: $url"
@@ -400,7 +400,7 @@ steps:
     shell: bash
     run: |
       SITEMAP_URL="$BASE_URL/sitemap.xml"
-      RSS_URL="$BASE_URL/rss.xml"
+      RSS_URL="$BASE_URL/rss.rss"
       echo "--- Pinging Bing ---"
       echo "Pinging Sitemap: $SITEMAP_URL"
       curl -fsSLG "https://www.bing.com/ping" \
@@ -423,7 +423,7 @@ steps:
         "urlList": [
           "$BASE_URL/",
           "$BASE_URL/sitemap.xml",
-          "$BASE_URL/rss.xml"
+          "$BASE_URL/rss.rss"
         ]
       }
       JSON
