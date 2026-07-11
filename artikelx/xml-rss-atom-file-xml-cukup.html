@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>XML, RSS, atau Atom? Mengapa File .xml Sudah Cukup dan Tidak Perlu Ganti Ekstensi</title>
+    <meta name="description" content="Bingung dengan ekstensi file .xml, .rss, atau .atom? Simak penjelasan tentang perbedaan RSS dan Atom, serta alasan mengapa file .xml sudah cukup untuk feed sindikasi web.">
+    <meta name="news_keywords" content="XML, RSS, Atom, feed, sindikasi, web, file xml, perbedaan rss atom, blog, content syndication">
+    <meta property="article:tag" content="XML">
+    <meta property="article:tag" content="RSS">
+    <meta property="article:tag" content="Atom">
+    <meta property="article:tag" content="Feed">
+    <meta property="article:tag" content="Web Development">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="XML, RSS, atau Atom? Mengapa File .xml Sudah Cukup dan Tidak Perlu Ganti Ekstensi">
+    <meta property="og:description" content="File .xml yang Anda miliki sudah berisi format RSS atau Atom. Tidak perlu mengganti ekstensi. Pahami perbedaan keduanya dan cara kerja feed reader.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/xml-rss-atom-file-xml-cukup.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2007_02_01%20PM.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="XML, RSS, atau Atom? File .xml Sudah Cukup!">
+    <meta name="twitter:description" content="Jangan bingung dengan ekstensi .rss atau .atom. File .xml Anda sudah berisi format yang benar. Simak penjelasan ringkas tentang XML, RSS, dan Atom.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2007_02_01%20PM.png">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/xml-rss-atom-file-xml-cukup.html">
+
+    <meta name="promphint" content="Apakah saya perlu mengganti ekstensi file .xml menjadi .rss atau .atom? | Tidak perlu. File .xml sudah berisi format RSS atau Atom. Feed reader hanya peduli pada struktur tag dan MIME type, bukan ekstensi.">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== CSS VARIABLES (Mobile-First) ===== */
+        :root {
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+
+            --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-size-body: 1.125rem;
+            --font-size-h1: 1.75rem;
+            --font-size-h2: 1.4rem;
+            --font-size-h3: 1.2rem;
+            --font-size-small: 0.875rem;
+            --line-height-body: 1.8;
+            --line-height-heading: 1.3;
+
+            --bg-body: #f8f9fa;
+            --bg-card: #ffffff;
+            --bg-details: #f1f3f5;
+            --text-primary: #1e1e2a;
+            --text-secondary: #2d2d3f;
+            --text-muted: #4a4a5e;
+            --text-inverse: #f8f9fa;
+            --border-color: #dde1e6;
+            --accent: #1a6b3c;
+            --accent-hover: #0f4f2c;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.07);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.2s ease;
+        }
+
+        /* ===== DARK THEME ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #0f0f18;
+                --bg-card: #1a1a2e;
+                --bg-details: #252540;
+                --text-primary: #ececf0;
+                --text-secondary: #d4d4e0;
+                --text-muted: #a8a8bc;
+                --text-inverse: #0f0f18;
+                --border-color: #33334d;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+                --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+                --accent: #3cb371;
+                --accent-hover: #5f9ea0;
+            }
+        }
+
+        /* ===== DESKTOP ===== */
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 1.5rem;
+                --font-size-h1: 2.4rem;
+                --font-size-h2: 1.65rem;
+                --font-size-h3: 1.3rem;
+            }
+        }
+
+        /* ===== BODY ===== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-base);
+            font-size: var(--font-size-body);
+            line-height: var(--line-height-body);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            padding-block: 2rem 1rem;
+            padding-inline: var(--screen-padding);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+        }
+
+        /* ===== CARD / ARTICLE WRAPPER ===== */
+        .article-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            padding-block: 2rem;
+            padding-inline: var(--nested-padding);
+            transition: background var(--transition), box-shadow var(--transition);
+        }
+
+        /* ===== MOBILE: card melebur ===== */
+        @media (max-width: 640px) {
+            .article-card {
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding-inline: 0;
+                padding-block: 0.5rem;
+            }
+            body {
+                padding-inline: var(--screen-padding);
+            }
+            .container {
+                padding-inline: 0;
+            }
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: var(--font-size-h1);
+            line-height: var(--line-height-heading);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: var(--font-size-h2);
+            line-height: var(--line-height-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 2.2rem;
+            margin-bottom: 0.8rem;
+            scroll-margin-top: 1rem;
+        }
+
+        h3 {
+            font-size: var(--font-size-h3);
+            line-height: var(--line-height-heading);
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 1.6rem;
+            margin-bottom: 0.5rem;
+            scroll-margin-top: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+            transition: color var(--transition);
+        }
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        b {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        i {
+            font-style: italic;
+        }
+        u {
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+        s {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        /* ===== LEAD ===== */
+        .lead {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+        @media (min-width: 640px) {
+            .lead {
+                font-size: 1.25rem;
+                padding-left: 1.5rem;
+            }
+        }
+
+        /* ===== GAMBAR ===== */
+        .article-image-wrap {
+            width: 100%;
+            margin-block: 1.75rem;
+        }
+        .article-image-wrap img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            display: block;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background: var(--bg-details);
+        }
+        .caption {
+            display: block;
+            font-size: var(--font-size-small);
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.4rem;
+            font-style: italic;
+        }
+
+        /* ===== DETAILS / ACCORDION ===== */
+        details {
+            margin-block: 1.5rem 0.5rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-details);
+            border: 1px solid var(--border-color);
+            transition: border-color var(--transition), background var(--transition);
+        }
+        details[open] {
+            border-color: var(--accent);
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 1rem 1.25rem;
+            font-weight: 600;
+            font-size: var(--font-size-h3);
+            color: var(--text-primary);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-radius: var(--radius-sm);
+            transition: background var(--transition), color var(--transition);
+            user-select: none;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary::before {
+            content: "▶";
+            font-size: 0.85rem;
+            display: inline-block;
+            transition: transform var(--transition);
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        summary:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+        @media (prefers-color-scheme: dark) {
+            summary:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        details .details-content {
+            padding: 0.25rem 1.25rem 1.5rem 1.25rem;
+        }
+        details .details-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== LIST ===== */
+        ul,
+        ol {
+            margin: 0 0 1.25rem 1.5rem;
+            color: var(--text-secondary);
+        }
+        li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* ===== QUOTE ===== */
+        blockquote {
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--accent);
+            background: var(--bg-details);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        .article-footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem 1.75rem;
+            font-size: var(--font-size-small);
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .article-footer span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .article-footer .sep {
+            color: var(--border-color);
+            font-weight: 300;
+        }
+
+        /* ===== BLOK KODE (dengan highlight.js) ===== */
+        pre code {
+            font-family: "SF Mono", "Menlo", "Monaco", "Cascadia Code", "Consolas", monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            border-radius: var(--radius-sm);
+            background: var(--bg-details);
+            padding: 1.25rem;
+            display: block;
+            overflow-x: auto;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            :root {
+                --font-size-body: 1rem;
+            }
+            body {
+                padding-block: 1rem 0.5rem;
+            }
+            .article-card {
+                padding-block: 1rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .lead {
+                font-size: 1rem;
+                padding-left: 0.75rem;
+            }
+            summary {
+                font-size: 1.1rem;
+                padding: 0.75rem 1rem;
+            }
+            details .details-content {
+                padding: 0 1rem 1.25rem 1rem;
+            }
+            pre code {
+                font-size: 0.8rem;
+                padding: 0.75rem 1rem;
+            }
+            blockquote {
+                padding: 0.75rem 1rem;
+                margin: 1rem 0;
+            }
+            ul,
+            ol {
+                margin-left: 1.25rem;
+            }
+        }
+
+        a:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                padding: 0.5in;
+                color: #000;
+            }
+            .article-card {
+                background: #fff;
+                box-shadow: none;
+                padding: 0;
+            }
+            pre code {
+                border: 1px solid #ccc;
+            }
+            .article-footer {
+                border-top-color: #ccc;
+            }
+        }
+    </style>
+
+    <!-- ===== highlight.js CSS (light & dark) ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" integrity="sha512-hasIneQUHlh06VNBe7f6ZcHmeRTLIaQWFd43YriJ0UND19bvYRauxthDg8E4eVNPm9b6hr4ZxE4k4F1t8d2b7A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" integrity="sha512-Jk4AqjWsdSzsvCS7jH5PAMx1nR4R/3Y5H6jykx1Lb6+6i0JjVvK3Cp2Z+Erl9Vl7UJjCqUJmSt5KopZ1J0kU7A==" crossorigin="anonymous" referrerpolicy="no-referrer" media="(prefers-color-scheme: dark)" />
+</head>
+<body>
+
+    <div class="container">
+        <main>
+            <article class="article-card">
+
+                <!-- ===== HEADER ===== -->
+                <header>
+                    <h1>XML, RSS, atau Atom? Mengapa File .xml Sudah Cukup dan Tidak Perlu Ganti Ekstensi</h1>
+                    <p class="lead">
+                        Singkatnya: <b>Nggak ada bedanya secara fungsi</b>, karena RSS dan Atom itu sebenarnya adalah file XML. Ibaratnya gini, XML itu <i>“panci”</i>-nya, sedangkan RSS dan Atom itu <i>“masakan”</i>-nya (bisa soto, bisa rawon).
+                    </p>
+                </header>
+
+                <!-- ===== PARAGRAF PEMBUKA ===== -->
+                <p>
+                    Di dunia web, ekstensi file seperti <code>.rss</code> atau <code>.atom</code> itu kadang cuma <i>“kosmetik”</i> biar gampang dikenali oleh manusia. Aplikasi <i>feed reader</i> atau saat kamu parsing file ini di backend (misalnya dengan Bun), <b>parser tidak peduli ekstensi</b>. Yang mereka perhatikan adalah isi tag di dalam file dan <i>MIME type</i> saat disajikan (<code>application/xml</code> atau <code>application/rss+xml</code>).
+                </p>
+                <p>
+                    Jadi, jika kamu memiliki file <code>.xml</code> yang berisi data blog atau artikel, itu sudah cukup. Tidak perlu mengubahnya menjadi <code>.rss</code> atau <code>.atom</code> kecuali ada kebutuhan spesifik dari platform tertentu yang sangat ketat soal ekstensi—dan itu sangat jarang terjadi di era sekarang.
+                </p>
+
+                <!-- ===== GAMBAR PERTAMA (LCP) ===== -->
+                <div class="article-image-wrap">
+                    <img
+                    src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2007_02_01%20PM.png"
+                    alt="Ilustrasi konsep XML sebagai wadah universal untuk RSS dan Atom feed, dengan simbol kode dan file berekstensi .xml"
+                    width="1280"
+                    height="720"
+                    fetchpriority="high"
+                    decoding="async"
+                    style="aspect-ratio: 16/9; object-fit: cover;"
+                    >
+                    <span class="caption">XML adalah fondasi universal; RSS dan Atom adalah format yang dibangun di atasnya.</span>
+                </div>
+
+                <p>
+                    Gambar di atas merepresentasikan hubungan hierarkis: XML sebagai bahasa dasar yang fleksibel, dan RSS serta Atom sebagai aturan standar yang memastikan konsistensi data antar platform. Mari kita bedah lebih dalam agar semakin jelas.
+                </p>
+
+                <!-- ===== BAGIAN 1: APA ITU XML? ===== -->
+                <h2>🔍 1. XML (Extensible Markup Language)</h2>
+                <p>
+                    XML adalah bahasa dasar yang bersifat universal. Ini cuma aturan tentang cara menulis tag—mirip HTML, tapi kamu bisa membuat nama tag sendiri. Karena sifatnya yang terbuka dan fleksibel, XML dipakai sebagai pondasi teknologi sindikasi web. File <code>.xml</code> yang kamu miliki adalah <b>kanvas murni</b> yang bisa diisi dengan berbagai format standar.
+                </p>
+                <p>
+                    XML tidak memiliki makna tertentu sampai kamu mendefinisikan struktur di dalamnya. Di sinilah peran RSS dan Atom: mereka adalah <b>standar</b> yang menentukan tag apa saja yang harus ada dan bagaimana data disusun agar bisa dibaca oleh berbagai aplikasi.
+                </p>
+
+                <!-- ===== BAGIAN 2: RSS VS ATOM (dengan DETAILS) ===== -->
+                <details>
+                    <summary><h2 style="display:inline; font-size:inherit; margin:0; font-weight:600;">📰 2. RSS (Really Simple Syndication) vs Atom</h2></summary>
+                    <div class="details-content">
+                        <p>
+                            Di atas kanvas XML tadi, muncul dua “aturan standar” yang paling populer: RSS dan Atom. Keduanya bertujuan sama—menyediakan format baku untuk feed berita atau konten—tetapi memiliki pendekatan dan sejarah yang berbeda.
+                        </p>
+
+                        <h3>RSS (biasanya v2.0)</h3>
+                        <ul>
+                            <li><b>Status</b>: Si sepuh. Paling populer dan didukung di mana-mana. Hampir semua platform feed reader mendukung RSS.</li>
+                            <li><b>Kerapian</b>: Agak berantakan. Standarnya dulu sering gonta-ganti, sehingga ada beberapa versi yang tidak saling kompatibel.</li>
+                            <li><b>Tipe Konten</b>: Susah membedakan mana yang <i>plain text</i> dan mana yang HTML di dalam artikel. Ini sering menyebabkan tampilan yang tidak konsisten.</li>
+                            <li><b>Standarisasi</b>: Dikembangkan oleh komunitas secara terbuka, bukan oleh badan resmi.</li>
+                        </ul>
+
+                        <h3>Atom</h3>
+                        <ul>
+                            <li><b>Status</b>: Si darah muda. Dibuat untuk memperbaiki kelemahan RSS dan menyediakan format yang lebih konsisten.</li>
+                            <li><b>Kerapian</b>: Sangat rapi. Strukturnya ketat dan memakai <i>namespaces</i> XML yang benar, sehingga lebih mudah diparsing.</li>
+                            <li><b>Tipe Konten</b>: Pintar banget! Bisa menentukan dengan jelas apakah konten berupa <i>plain text</i>, HTML, atau bahkan <i>base64</i> untuk data biner.</li>
+                            <li><b>Standarisasi</b>: Diakui sebagai standar resmi oleh IETF (Internet Engineering Task Force), sehingga lebih terjamin interoperabilitasnya.</li>
+                        </ul>
+
+                        <p>
+                            <b>Intinya</b>: RSS lebih tua dan lebih umum, sementara Atom lebih modern dan terstruktur. Namun, untuk keperluan praktis, keduanya sama-sama valid dan didukung oleh hampir semua <i>feed reader</i> modern. Jadi, pilihan format tergantung pada preferensi dan kebutuhan teknis.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- ===== BAGIAN 3: CARA MENGECEK ISI FILE ===== -->
+                <h2>🔎 Cara Mengecek Isi File .xml Anda</h2>
+                <p>
+                    Jika kamu penasaran format apa yang digunakan oleh file <code>.xml</code> yang kamu punya, buka file tersebut dengan <i>text editor</i> atau IDE. Perhatikan baris paling atas setelah deklarasi <code>&lt;?xml version="1.0"?&gt;</code>. Di sanalah terlihat apakah itu RSS atau Atom.
+                </p>
+
+                <h3>Contoh File RSS</h3>
+                <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rss version="2.0"&gt;
+  &lt;channel&gt;
+    &lt;title&gt;Blog Layar Kosong&lt;/title&gt;
+    &lt;link&gt;https://dalam.web.id/&lt;/link&gt;
+    &lt;description&gt;Update terbaru dari Frijal&lt;/description&gt;
+    &lt;item&gt;
+      &lt;title&gt;Artikel pertama&lt;/title&gt;
+      &lt;link&gt;https://dalam.web.id/artikel-pertama.html&lt;/link&gt;
+      &lt;description&gt;Ini adalah artikel pertama saya.&lt;/description&gt;
+      &lt;pubDate&gt;Sat, 11 Jul 2026 10:00:00 GMT&lt;/pubDate&gt;
+    &lt;/item&gt;
+  &lt;/channel&gt;
+&lt;/rss&gt;</code></pre>
+
+                <h3>Contoh File Atom</h3>
+                <pre><code class="language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;feed xmlns="http://www.w3.org/2005/Atom"&gt;
+  &lt;title&gt;Blog Layar Kosong&lt;/title&gt;
+  &lt;link href="https://dalam.web.id/" rel="self"/&gt;
+  &lt;updated&gt;2026-07-11T18:00:00Z&lt;/updated&gt;
+  &lt;id&gt;urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6&lt;/id&gt;
+  &lt;entry&gt;
+    &lt;title&gt;Artikel pertama&lt;/title&gt;
+    &lt;link href="https://dalam.web.id/artikel-pertama.html"/&gt;
+    &lt;id&gt;urn:uuid:1234-5678-90ab&lt;/id&gt;
+    &lt;updated&gt;2026-07-11T10:00:00Z&lt;/updated&gt;
+    &lt;summary&gt;Ini adalah artikel pertama saya.&lt;/summary&gt;
+  &lt;/entry&gt;
+&lt;/feed&gt;</code></pre>
+
+                <p>
+                    Perbedaan utama ada di elemen akar: RSS menggunakan <code>&lt;rss&gt;</code> dengan atribut <code>version</code>, sedangkan Atom menggunakan <code>&lt;feed&gt;</code> dengan namespace. Selain itu, struktur tag di dalamnya juga berbeda, tetapi keduanya sama-sama valid dan dapat diurai dengan baik.
+                </p>
+
+                <!-- ===== BAGIAN 4: KESIMPULAN ===== -->
+                <h2>📌 Kesimpulan: Tetap Pakai File .xml, Sudah Tepat!</h2>
+                <p>
+                    Jadi, kesimpulannya: <b>file .xml yang kamu miliki sudah benar dan tidak perlu diganti ekstensinya</b>. Baik RSS maupun Atom adalah format yang dibangun di atas XML. Ekstensi file hanyalah label tambahan, sedangkan yang terpenting adalah isi dan struktur data sesuai standar yang diharapkan oleh aplikasi <i>feed reader</i> atau API.
+                </p>
+                <p>
+                    Jika suatu saat ada platform yang mensyaratkan ekstensi tertentu, kamu bisa menambahkan aturan di server (misalnya dengan <i>rewrite</i> di <code>.htaccess</code> atau konfigurasi Nginx) untuk menyajikan file yang sama dengan ekstensi yang berbeda, tanpa harus mengubah file aslinya. Ini lebih elegan dan menghindari duplikasi.
+                </p>
+                <blockquote>
+                    <p>
+                        “Ekstensi file itu seperti bungkus kado. Isinya—struktur XML yang benar—jauh lebih penting daripada label di luar.”
+                    </p>
+                </blockquote>
+                <p>
+                    Semoga penjelasan ini menjawab kebingunganmu. Selamat terus berkarya dan menyebarkan konten melalui feed yang rapi!
+                </p>
+
+                <!-- ===== SIGNATURE WAJIB ===== -->
+                <!--wajib ini tulis signature artikel oleh LayarKosong-->
+
+                <!-- ===== FOOTER ===== -->
+                <footer class="article-footer">
+                    <span>✍️ Fakhrul</span>
+                    <span class="sep">•</span>
+                    <span>📅 11 Juli 2026</span>
+                    <span class="sep">•</span>
+                    <span>🄯 2014–2026</span>
+                </footer>
+
+            </article>
+        </main>
+    </div>
+
+    <!-- ===== highlight.js library & inisialisasi ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eY7jobj5V6aYVbDw==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+        });
+    </script>
+
+</body>
+</html>
