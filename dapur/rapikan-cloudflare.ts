@@ -98,7 +98,6 @@ async function runDeletesSerial(previews: CloudflareDeployment[]): Promise<void>
     try {
       await deleteDeployment(p.id);
     } catch (err) {
-      console.error(`⚠️ Error saat menghapus ${p.id}:`, err);
     }
   }
 }
@@ -132,8 +131,10 @@ async function run(): Promise<void> {
     await runDeletesSerial(previewsToDelete);
     console.log(`✅ Selesai menghapus loop ini! (${previewsToDelete.length} preview deployment dihapus)`);
 
-    // === COUNTER GLOBAL ===
     totalDeleted += previewsToDelete.length;
+
+    // === jeda 10 detik setelah selesai satu loop ===
+    await new Promise(resolve => setTimeout(resolve, 10_000));
 
   } catch (err: any) {
     if (err.name === "AbortError") {
@@ -145,19 +146,19 @@ async function run(): Promise<void> {
   }
 }
 
-// ==================== LOOPING INTERNAL 3 KALI ====================
-console.log("🔁 Memulai looping pembersihan deployment (3 kali) dengan jeda 10 detik...");
-for (let i = 1; i <= 3; i++) {
-  console.log(`\n🚀 LOOP ${i} dari 3 - Mulai menjalankan...`);
+// ==================== LOOPING INTERNAL 2 KALI ====================
+console.log("🔁 Memulai looping pembersihan deployment (2 kali) dengan jeda 10 detik...");
+for (let i = 1; i <= 2; i++) {
+  console.log(`\n🚀 LOOP ${i} dari 2 - Mulai menjalankan...`);
   await run();
 
-  if (i < 3) {
+  if (i < 2) {
     console.log(`⏳ Tunggu 10 detik sebelum memulai LOOP ${i + 1}...`);
     await new Promise(resolve => setTimeout(resolve, 10_000));
   } else {
-    console.log(`🎉 LOOP 3 selesai! Semua pembersihan selesai.`);
+    console.log(`🎉 LOOP 2 selesai! Semua pembersihan selesai.`);
   }
 }
 
 // ==================== TOTAL DI AKHIR ====================
-console.log(`\n📊 TOTAL PREVIEW YANG DIHAPUS SEPANJANG 3 LOOP: ${totalDeleted}`);
+console.log(`\n📊 TOTAL PREVIEW YANG DIHAPUS SEPANJANG 2 LOOP: ${totalDeleted}`);
