@@ -41,62 +41,62 @@ const scripts: ScriptItem[] = [
         file: "sementara/dash-lokal/0-audit-txt.ts",  // <--- Tambahin dash-lokal/
         dangerLevel: "warning"
     },
-    {
-        id: "file-hunter-destroyer",
-        title: "File Hunter & Destroyer",
-        description: "Mencari file berdasarkan kata kunci lalu menghapus file terpilih secara permanen.",
-        file: "sementara/dash-lokal/0-cari-hapus.ts", // <--- Tambahin dash-lokal/
-        dangerLevel: "danger"
-    },
-    {
-        id: "repair-tanggal",
-        title: "samakan tanggal html dengan Artikel.json",
-        description: "pastikan tanggal sudah sama.",
-        file: "sementara/dash-lokal/0-tanggal-repair.ts", // <--- Tambahin dash-lokal/
-        dangerLevel: "danger"
-    },
-    {
-        id: "mass-html-duplicate-cleaner",
-        title: "Mass HTML Duplicate Cleaner",
-        description: "Scan duplikasi potongan HTML di banyak file, lalu hapus duplikat yang tidak dipilih.",
-        file: "sementara/dash-lokal/0-dup-finder.ts", // <--- Tambahin dash-lokal/
-        dangerLevel: "warning"
-    },
-    {
-        id: "periksa-kategori-artikel",
-        title: "Kategori Artikel",
-        description: "Periksa penempatan judul pda kategori apa saja.",
-        file: "sementara/dash-lokal/0-kategori.ts", // <--- Tambahin dash-lokal/
-        dangerLevel: "warning"
-    },
-    {
-        id: "ganti-teks-dalam-file",
-        title: "File Text Replacement",
-        description: "ganti text dalam file.",
-        file: "sementara/dash-lokal/0-ganti-text.ts", // <--- Tambahin dash-lokal/
-        dangerLevel: "warning"
-    },
-    {
-        id: "scanner-div",
-        title: "Nyari Urutan Div",
-        description: "memeriksa urutan div",
-        file: "sementara/dash-lokal/0-scanner-div.ts", // <--- Tambahin dash-lokal/
-        dangerLevel: "warning"
-    },
-    {
-        id: "dynamic-html-cleaner",
-        title: "Dynamic HTML Cleaner",
-        description: "Scan komponen HTML dalam satu file, lalu hapus elemen yang checkbox-nya dinonaktifkan.",
-        file: "sementara/dash-lokal/0-komp-editor.ts", // <--- Tambahin dash-lokal/
-        dangerLevel: "warning"
-    }
-    {
-        id: "rss-parser.ts",
-        title: "Periksa isi RSS Feed Atom",
-        description: "periksa kondisi RSS Feed Atom",
-        file: "sementara/dash-lokal/0-rss-parser.ts", // <--- Tambahin dash-lokal/
-        dangerLevel: "warning"
-    }
+{
+    id: "file-hunter-destroyer",
+    title: "File Hunter & Destroyer",
+    description: "Mencari file berdasarkan kata kunci lalu menghapus file terpilih secara permanen.",
+    file: "sementara/dash-lokal/0-cari-hapus.ts", // <--- Tambahin dash-lokal/
+    dangerLevel: "danger"
+},
+{
+    id: "repair-tanggal",
+    title: "samakan tanggal html dengan Artikel.json",
+    description: "pastikan tanggal sudah sama.",
+    file: "sementara/dash-lokal/0-tanggal-repair.ts", // <--- Tambahin dash-lokal/
+    dangerLevel: "danger"
+},
+{
+    id: "mass-html-duplicate-cleaner",
+    title: "Mass HTML Duplicate Cleaner",
+    description: "Scan duplikasi potongan HTML di banyak file, lalu hapus duplikat yang tidak dipilih.",
+    file: "sementara/dash-lokal/0-dup-finder.ts", // <--- Tambahin dash-lokal/
+    dangerLevel: "warning"
+},
+{
+    id: "periksa-kategori-artikel",
+    title: "Kategori Artikel",
+    description: "Periksa penempatan judul pda kategori apa saja.",
+    file: "sementara/dash-lokal/0-kategori.ts", // <--- Tambahin dash-lokal/
+    dangerLevel: "warning"
+},
+{
+    id: "ganti-teks-dalam-file",
+    title: "File Text Replacement",
+    description: "ganti text dalam file.",
+    file: "sementara/dash-lokal/0-ganti-text.ts", // <--- Tambahin dash-lokal/
+    dangerLevel: "warning"
+},
+{
+    id: "scanner-div",
+    title: "Nyari Urutan Div",
+    description: "memeriksa urutan div",
+    file: "sementara/dash-lokal/0-scanner-div.ts", // <--- Tambahin dash-lokal/
+    dangerLevel: "warning"
+},
+{
+    id: "dynamic-html-cleaner",
+    title: "Dynamic HTML Cleaner",
+    description: "Scan komponen HTML dalam satu file, lalu hapus elemen yang checkbox-nya dinonaktifkan.",
+    file: "sementara/dash-lokal/0-komp-editor.ts", // <--- Tambahin dash-lokal/
+    dangerLevel: "warning"
+},
+{
+    id: "rss-parser.ts",
+    title: "Periksa isi RSS Feed Atom",
+    description: "periksa kondisi RSS Feed Atom",
+    file: "sementara/dash-lokal/0-rss-parser.ts", // <--- Tambahin dash-lokal/
+    dangerLevel: "warning"
+}
 ];
 
 let activeProcess: ReturnType<typeof Bun.spawn> | null = null;
