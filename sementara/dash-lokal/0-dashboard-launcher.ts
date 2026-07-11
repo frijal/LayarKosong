@@ -90,6 +90,13 @@ const scripts: ScriptItem[] = [
         file: "sementara/dash-lokal/0-komp-editor.ts", // <--- Tambahin dash-lokal/
         dangerLevel: "warning"
     }
+    {
+        id: "rss-parser.ts",
+        title: "Periksa isi RSS Feed Atom",
+        description: "periksa kondisi RSS Feed Atom",
+        file: "sementara/dash-lokal/0-rss-parser.ts", // <--- Tambahin dash-lokal/
+        dangerLevel: "warning"
+    }
 ];
 
 let activeProcess: ReturnType<typeof Bun.spawn> | null = null;
