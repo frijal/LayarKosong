@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-xmlns:atom="http://www.w3.org/2005/Atom">
+xmlns:atom="http://www.w3.org/2005/Atom"
+exclude-result-prefixes="atom">
 <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
+<xsl:strip-space elements="*"/>
 <xsl:template match="/">
+<xsl:variable name="feed" select="/atom:feed"/>
+<xsl:variable name="home-link">
+    <xsl:choose>
+        <xsl:when test="$feed/atom:link[@rel='alternate'][1]/@href"><xsl:value-of select="$feed/atom:link[@rel='alternate'][1]/@href"/></xsl:when>
+        <xsl:when test="$feed/atom:link[not(@rel)][1]/@href"><xsl:value-of select="$feed/atom:link[not(@rel)][1]/@href"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="$feed/atom:id"/></xsl:otherwise>
+    </xsl:choose>
+</xsl:variable>
+<xsl:variable name="feed-updated" select="string($feed/atom:updated[1])"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title><xsl:value-of select="atom:feed/atom:title"/> - Atom Feed</title>
+<title><xsl:value-of select="$feed/atom:title"/> - Atom Feed</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 /* Memakai warna dasar Hijau kebiruan untuk membedakan dengan RSS (Orange) */
@@ -65,16 +76,26 @@ tr:hover { background: #fdfdfd; }
 <div class="container">
     <div class="feed-header">
         <h1>
-            <span><xsl:value-of select="atom:feed/atom:title"/></span>
+            <span><xsl:value-of select="$feed/atom:title"/></span>
 
             <a href="/" class="logo-link" title="Kembali ke Beranda">
     <img src="/favicon.svg" alt="Layar Kosong Logo" class="header-logo" />
 </a>
         </h1>
-        <p><xsl:value-of select="atom:feed/atom:subtitle"/></p>
+        <p>
+            <xsl:choose>
+                <xsl:when test="$feed/atom:subtitle"><xsl:value-of select="$feed/atom:subtitle"/></xsl:when>
+                <xsl:otherwise><xsl:value-of select="$feed/atom:title"/></xsl:otherwise>
+            </xsl:choose>
+        </p>
         <div class="feed-meta">
-            <span>Beranda: <a href="{atom:feed/atom:link[@rel='alternate']/@href}" style="color:#1abc9c;"><xsl:value-of select="atom:feed/atom:link[@rel='alternate']/@href"/></a></span>
-            <span>Update: <xsl:value-of select="substring-before(atom:feed/atom:updated, 'T')"/> <xsl:value-of select="substring(substring-after(atom:feed/atom:updated, 'T'), 1, 8)"/></span>
+            <span>Beranda: <a href="{$home-link}" style="color:#1abc9c;"><xsl:value-of select="$home-link"/></a></span>
+            <span>Update: 
+                <xsl:choose>
+                    <xsl:when test="contains($feed-updated, 'T')"><xsl:value-of select="substring-before($feed-updated, 'T')"/> <xsl:value-of select="substring(substring-after($feed-updated, 'T'), 1, 8)"/></xsl:when>
+                    <xsl:otherwise><xsl:value-of select="$feed-updated"/></xsl:otherwise>
+                </xsl:choose>
+            </span>
         </div>
     </div>
 
@@ -87,21 +108,55 @@ tr:hover { background: #fdfdfd; }
             </tr>
         </thead>
         <tbody>
-            <xsl:for-each select="atom:feed/atom:entry">
+            <xsl:for-each select="$feed/atom:entry">
+                <xsl:variable name="article-link">
+                    <xsl:choose>
+                        <xsl:when test="atom:link[@rel='alternate'][1]/@href"><xsl:value-of select="atom:link[@rel='alternate'][1]/@href"/></xsl:when>
+                        <xsl:when test="atom:link[not(@rel)][1]/@href"><xsl:value-of select="atom:link[not(@rel)][1]/@href"/></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="atom:id"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="image-url">
+                    <xsl:choose>
+                        <xsl:when test="atom:link[@rel='enclosure'][1]/@href"><xsl:value-of select="atom:link[@rel='enclosure'][1]/@href"/></xsl:when>
+                        <xsl:when test="atom:content[1]/@src"><xsl:value-of select="atom:content[1]/@src"/></xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="entry-date">
+                    <xsl:choose>
+                        <xsl:when test="atom:published"><xsl:value-of select="atom:published[1]"/></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="atom:updated[1]"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
                 <tr>
                     <td>
-                        <xsl:if test="atom:link[@rel='enclosure']/@href">
-                            <div class="img-container" onclick="openLightbox('{atom:link[@rel='enclosure']/@href}')">
-                                <img class="img-thumb" src="{atom:link[@rel='enclosure']/@href}" title="Perbesar Cover"/>
+                        <xsl:if test="string-length(normalize-space($image-url)) &gt; 0">
+                            <div class="img-container" onclick="openLightbox('{$image-url}')">
+                                <img class="img-thumb" src="{$image-url}" title="Perbesar Cover" alt="{normalize-space(atom:title)}"/>
                             </div>
                         </xsl:if>
                     </td>
                     <td>
-                        <h3 class="article-title"><a href="{atom:link[@rel='alternate']/@href}" target="_blank" rel="noopener noreferrer"><xsl:value-of select="atom:title"/></a></h3>
-                        <p class="article-desc"><xsl:value-of select="atom:summary"/></p>
-                        <span class="badge"><xsl:value-of select="atom:category/@term"/></span>
+                        <h3 class="article-title"><a href="{$article-link}" target="_blank" rel="noopener noreferrer"><xsl:value-of select="atom:title"/></a></h3>
+                        <p class="article-desc">
+                            <xsl:choose>
+                                <xsl:when test="atom:summary"><xsl:value-of select="atom:summary"/></xsl:when>
+                                <xsl:otherwise><xsl:value-of select="atom:content"/></xsl:otherwise>
+                            </xsl:choose>
+                        </p>
+                        <span class="badge">
+                            <xsl:choose>
+                                <xsl:when test="atom:category[1]/@term"><xsl:value-of select="atom:category[1]/@term"/></xsl:when>
+                                <xsl:otherwise><xsl:value-of select="atom:category[1]/@label"/></xsl:otherwise>
+                            </xsl:choose>
+                        </span>
                     </td>
-                    <td style="font-size: 12px; color: #666;"><xsl:value-of select="substring-before(atom:published, 'T')"/></td>
+                    <td style="font-size: 12px; color: #666;">
+                        <xsl:choose>
+                            <xsl:when test="contains(string($entry-date), 'T')"><xsl:value-of select="substring-before(string($entry-date), 'T')"/></xsl:when>
+                            <xsl:otherwise><xsl:value-of select="$entry-date"/></xsl:otherwise>
+                        </xsl:choose>
+                    </td>
                 </tr>
             </xsl:for-each>
         </tbody>

@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:atom="http://www.w3.org/2005/Atom"
+xmlns:content="http://purl.org/rss/1.0/modules/content/"
+xmlns:media="http://search.yahoo.com/mrss/"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+exclude-result-prefixes="atom content media dc">
 <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
+<xsl:strip-space elements="*"/>
 <xsl:template match="/">
+<xsl:variable name="channel" select="/rss/channel"/>
+<xsl:variable name="home-link" select="normalize-space($channel/link[1])"/>
+<xsl:variable name="feed-updated">
+    <xsl:choose>
+        <xsl:when test="$channel/lastBuildDate"><xsl:value-of select="$channel/lastBuildDate[1]"/></xsl:when>
+        <xsl:when test="$channel/pubDate"><xsl:value-of select="$channel/pubDate[1]"/></xsl:when>
+        <xsl:otherwise><xsl:value-of select="$channel/item[1]/pubDate[1]"/></xsl:otherwise>
+    </xsl:choose>
+</xsl:variable>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title><xsl:value-of select="rss/channel/title"/> - RSS Feed</title>
+<title><xsl:value-of select="$channel/title"/> - RSS Feed</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #333; margin: 0; padding: 40px; background: #f4f7f6; }
@@ -69,17 +85,22 @@ tr:hover { background: #fdfdfd; }
         <h1>
             <span class="title-group">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
-                <xsl:value-of select="rss/channel/title"/>
+                <xsl:value-of select="$channel/title"/>
             </span>
 
             <a href="/" class="logo-link" title="Kembali ke Beranda">
     <img src="/favicon.svg" alt="Layar Kosong Logo" class="header-logo" />
 </a>
         </h1>
-        <p><xsl:value-of select="rss/channel/description"/></p>
+        <p>
+            <xsl:choose>
+                <xsl:when test="$channel/description"><xsl:value-of select="$channel/description"/></xsl:when>
+                <xsl:otherwise><xsl:value-of select="$channel/title"/></xsl:otherwise>
+            </xsl:choose>
+        </p>
         <div class="feed-meta">
-            <span>Beranda: <a href="{rss/channel/link}" style="color:#e67e22;"><xsl:value-of select="rss/channel/link"/></a></span>
-            <span>Update: <xsl:value-of select="rss/channel/lastBuildDate"/></span>
+            <span>Beranda: <a href="{$home-link}" style="color:#e67e22;"><xsl:value-of select="$home-link"/></a></span>
+            <span>Update: <xsl:value-of select="$feed-updated"/></span>
         </div>
     </div>
 
@@ -92,21 +113,45 @@ tr:hover { background: #fdfdfd; }
             </tr>
         </thead>
         <tbody>
-            <xsl:for-each select="rss/channel/item">
+            <xsl:for-each select="$channel/item">
+                <xsl:variable name="article-link">
+                    <xsl:choose>
+                        <xsl:when test="normalize-space(link[1]) != ''"><xsl:value-of select="normalize-space(link[1])"/></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="normalize-space(guid[1])"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="image-url">
+                    <xsl:choose>
+                        <xsl:when test="enclosure[1]/@url"><xsl:value-of select="enclosure[1]/@url"/></xsl:when>
+                        <xsl:when test="media:content[1]/@url"><xsl:value-of select="media:content[1]/@url"/></xsl:when>
+                        <xsl:when test="media:thumbnail[1]/@url"><xsl:value-of select="media:thumbnail[1]/@url"/></xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="item-date">
+                    <xsl:choose>
+                        <xsl:when test="pubDate"><xsl:value-of select="pubDate[1]"/></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="dc:date[1]"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
                 <tr>
                     <td>
-                        <xsl:if test="enclosure/@url">
-                            <div class="img-container" onclick="openLightbox('{enclosure/@url}')">
-                                <img class="img-thumb" src="{enclosure/@url}" title="Perbesar Cover"/>
+                        <xsl:if test="string-length(normalize-space($image-url)) &gt; 0">
+                            <div class="img-container" onclick="openLightbox('{$image-url}')">
+                                <img class="img-thumb" src="{$image-url}" title="Perbesar Cover" alt="{normalize-space(title)}"/>
                             </div>
                         </xsl:if>
                     </td>
                     <td>
-                        <h3 class="article-title"><a href="{link}" target="_blank" rel="noopener noreferrer"><xsl:value-of select="title"/></a></h3>
-                        <p class="article-desc"><xsl:value-of select="description"/></p>
-                        <span class="badge"><xsl:value-of select="category"/></span>
+                        <h3 class="article-title"><a href="{$article-link}" target="_blank" rel="noopener noreferrer"><xsl:value-of select="title"/></a></h3>
+                        <p class="article-desc">
+                            <xsl:choose>
+                                <xsl:when test="description"><xsl:value-of select="description"/></xsl:when>
+                                <xsl:otherwise><xsl:value-of select="content:encoded"/></xsl:otherwise>
+                            </xsl:choose>
+                        </p>
+                        <span class="badge"><xsl:value-of select="category[1]"/></span>
                     </td>
-                    <td style="font-size: 12px; color: #666;"><xsl:value-of select="pubDate"/></td>
+                    <td style="font-size: 12px; color: #666;"><xsl:value-of select="$item-date"/></td>
                 </tr>
             </xsl:for-each>
         </tbody>
