@@ -8,6 +8,6 @@ rm -rf node_modules
 npm cache clean --force
 
 # Hapus cache browser jika ada sisa dari percobaan sebelumnya
-rm -rf ~/.cache/puppeteer
+rm -rf ~/.cache/
 
 echo "✨ Laptop kamu sekarang bersih kembali!"

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import http from "node:http"; // 🔥 Pakai bawaan Node.js
 import { fileURLToPath } from "node:url";
-import puppeteer from "puppeteer";
+import  from "";
 
 const ROOT_DIR = process.cwd();
 const ARTIKEL_DIR = path.join(ROOT_DIR, "artikel");
@@ -92,7 +92,7 @@ async function main() {
 
   let browser;
   try {
-    browser = await puppeteer.launch({
+    browser = await .launch({
       headless: "new",
       defaultViewport: {
         width: TARGET_WIDTH,

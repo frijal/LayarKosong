@@ -1,9 +1,9 @@
-import puppeteer from 'puppeteer-extra';
-import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import  from '-extra';
+import StealthPlugin from '-extra-plugin-stealth';
 import fs from 'node:fs';
 import path from 'node:path';
 
-puppeteer.use(StealthPlugin());
+.use(StealthPlugin());
 
 // --- CONFIG ---
 const JSON_FILE = "artikel.json";
@@ -126,7 +126,7 @@ async function main() {
 	// ==========================================
 	// 5. EKSEKUSI PUPPETEER STEALTH
 	// ==========================================
-	const browser = await puppeteer.launch({
+	const browser = await .launch({
 		headless: true,
 		args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
 	});

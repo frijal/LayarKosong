@@ -58,7 +58,7 @@
     <meta property="article:modified_time" content="2025-10-19T19:11:16.416Z">
 <!-- Metadata Dasar -->
     <!-- SEO Meta Tags -->
-<meta name="keywords" content="github actions, workflow, optimasi, puppeteer, ci/cd, single job, frijal pages">
+<meta name="keywords" content="github actions, workflow, optimasi, , ci/cd, single job, frijal pages">
     <!-- Favicon -->
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Open Graph (untuk Facebook, LinkedIn, dll) -->
@@ -328,8 +328,8 @@ jobs:
         with: { node-version: '20' }
       - name: '3. Generate Missing Screenshots'
         run: |
-          npm install puppeteer --no-save
-          node ext/screenshot-puppeteer.js
+          npm install  --no-save
+          node ext/screenshot-.js
       - name: '4. Cari dan Hapus Gambar Orphan'
         id: cleanup_step
         run: |
