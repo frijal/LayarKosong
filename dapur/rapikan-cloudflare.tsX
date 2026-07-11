@@ -1,5 +1,8 @@
 // cloudflare-pages-clean.ts
+
 const API = "https://api.cloudflare.com/client/v4";
+
+// Menggunakan Bun.env agar lebih "Bun-way"
 const accountId = Bun.env.CF_ACCOUNT_ID;
 const projectName = Bun.env.CF_PROJECT_NAME;
 const token = Bun.env.CF_API_TOKEN;
@@ -9,12 +12,26 @@ if (!accountId || !projectName || !token) {
   process.exit(1);
 }
 
-// Interface ...
-interface CloudflareDeployment { ... }
-interface CloudflareResponse<T> { ... }
+// Interface untuk struktur deployment Cloudflare
+interface CloudflareDeployment {
+  id: string;
+  production: boolean;
+  environment: string;
+  created_on?: string;
+  created_at?: string;
+  [key: string]: any;
+}
+
+interface CloudflareResponse<T> {
+  success: boolean;
+  result: T;
+  errors: any[];
+  messages: any[];
+}
 
 console.log("🚀 Mengambil daftar deployment…");
-const DEFAULT_TIMEOUT = 30_000;
+
+const DEFAULT_TIMEOUT = 30_000; // ms
 
 async function fetchWithTimeout(url: string, opts: RequestInit = {}, timeout: number = DEFAULT_TIMEOUT): Promise<Response> {
   const controller = new AbortController();
@@ -50,8 +67,8 @@ async function fetchDeployments(): Promise<CloudflareDeployment[]> {
 
 function isPreviewDeployment(d: CloudflareDeployment): boolean {
   return d.production === false ||
-  typeof d.production === "undefined" ||
-  d.environment === "preview";
+         typeof d.production === "undefined" ||
+         d.environment === "preview";
 }
 
 function getCreatedTime(d: CloudflareDeployment): number {
@@ -97,23 +114,26 @@ async function runDeletesSerial(previews: CloudflareDeployment[]): Promise<void>
   }
 }
 
-// ==================== FUNGSI RUN ====================
 async function run(): Promise<void> {
   try {
     const deployments = await fetchDeployments();
+
+    // urutkan dari paling tua ke paling baru
     const previews = deployments
-    .filter(isPreviewDeployment)
-    .sort((a, b) => getCreatedTime(a) - getCreatedTime(b));
+      .filter(isPreviewDeployment)
+      .sort((a, b) => getCreatedTime(a) - getCreatedTime(b));
 
     console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
     console.log(`🔎 Preview deployment ditemukan: ${previews.length}`);
 
+    // jika preview <= 1, hentikan
     if (previews.length <= 1) {
-      console.log(`⚠️ Jumlah preview saat ini: ${previews.length}.`);
+      console.log(`⚠️  Jumlah preview saat ini: ${previews.length}.`);
       console.log("ℹ Syarat hapus harus > 1 item. Pekerjaan dihentikan (Skip).");
       return;
     }
 
+    // Pilih preview yang akan dihapus: ambil dari paling tua sampai tersisa 1 terbaru
     const numToKeep = 1;
     const numToDelete = previews.length - numToKeep;
     const previewsToDelete = previews.slice(0, numToDelete);
@@ -121,12 +141,10 @@ async function run(): Promise<void> {
     console.log(`🗑 Preview total akan dihapus: ${previewsToDelete.length}`);
     console.log(`🧾 Menyisakan ${numToKeep} preview terbaru.`);
 
+    // Hapus serial untuk menghindari rate limit
     await runDeletesSerial(previewsToDelete);
-    console.log(`✅ Selesai menghapus loop ini! (${previewsToDelete.length} preview deployment dihapus)`);
 
-    // === COUNTER GLOBAL OTOMATIS ===
-    totalDeleted += previewsToDelete.length;   // <--- INI YANG AKURAT!
-
+    console.log("✅ Selesai!");
   } catch (err: any) {
     if (err.name === "AbortError") {
       console.error("❌ Request timeout.");
@@ -137,21 +155,5 @@ async function run(): Promise<void> {
   }
 }
 
-// ==================== LOOPING INTERNAL 3 KALI ====================
-let totalDeleted = 0;          // COUNTER GLOBAL
-
-console.log("🔁 Memulai looping pembersihan deployment (3 kali) dengan jeda 10 detik...");
-for (let i = 1; i <= 3; i++) {
-  console.log(`\n🚀 LOOP ${i} dari 3 - Mulai menjalankan...`);
-  await run();
-
-  if (i < 3) {
-    console.log(`⏳ Tunggu 10 detik sebelum memulai LOOP ${i + 1}...`);
-    await new Promise(resolve => setTimeout(resolve, 10_000));
-  } else {
-    console.log(`🎉 LOOP 3 selesai! Semua pembersihan selesai.`);
-  }
-}
-
-// ==================== TOTAL DI AKHIR ====================
-console.log(`\n📊 TOTAL PREVIEW YANG DIHAPUS SEPANJANG 3 LOOP: ${totalDeleted}`);
+// Top-level await didukung di TS (tergantung target module/ES version)
+await run();
