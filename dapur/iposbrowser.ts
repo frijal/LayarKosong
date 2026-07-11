@@ -209,7 +209,7 @@ ${articleDate ? `
   aria-label="RSS Feed"
   rel="noopener noreferrer"
   title="RSS Feed"
-  href="/rss.xml"
+  href="/rss.rss"
   target="_blank"
   style="color:#f97316;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;transition:transform 0.2s;"
   onmouseover="this.style.transform='scale(1.1)'"

@@ -178,7 +178,7 @@ document_type: llm_behavior_and_entity_guidance
 ## Project Resources
 - [Website Utama](${DOMAIN}/)
 - [Sitemap XML](${DOMAIN}/sitemap.xml)
-- [RSS Feed Utama](${DOMAIN}/rss.xml)
+- [RSS Feed Utama](${DOMAIN}/rss.rss)
 ${rss.join("\n")}
 
 ## Website Identity

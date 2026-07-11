@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 const artikelJsonPath = path.join(__dirname, '../artikel.json');
 const sitemapPath = path.join(__dirname, '../sitemap.xml');
-const mainRssPath = path.join(__dirname, '../rss.xml');
+const mainRssPath = path.join(__dirname, '../rss.rss');
 const RSS_LIMIT = 30; // Batas jumlah artikel di feed utama
 
 // --- Konstanta Indeks ---
@@ -164,7 +164,7 @@ ${enclosure}
     <link><![CDATA[https://dalam.web.id/]]></link>
     <description><![CDATA[Feed ${RSS_LIMIT} artikel terbaru]]></description>
     <language>id-ID</language>
-    <atom:link href="https://dalam.web.id/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dalam.web.id/rss.rss" rel="self" type="application/rss+xml" />
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${mainItemsXml}
   </channel>
