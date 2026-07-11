@@ -48,6 +48,12 @@ on:
         default: false
         type: boolean
 
+      pixelfed:
+        description: "📷 Pixelfed Autopost"
+        required: false
+        default: false
+        type: boolean
+
       diskusi_rss:
         description: "📰 RSS kirim ke Diskusi GitHub"
         required: false
@@ -143,6 +149,16 @@ jobs:
         run: |
           set -o pipefail
           bun run dapur/post-to-mastodon.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+
+      - name: 📷 2b. Pixelfed Autopost
+        id: pixelfed
+        if: github.event_name == 'schedule' || inputs.all || inputs.pixelfed
+        continue-on-error: true
+        env:
+          PIXELFED_TOKEN: ${{ secrets.PIXELFED_TOKEN }}
+        run: |
+          set -o pipefail
+          bun run dapur/post-to-pixelfed.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
 
       - name: ⚙️ 3. Threads Post Script
         id: threads
@@ -248,6 +264,7 @@ jobs:
           STATUS_DISKUSI_RSS: ${{ steps.diskusi_rss.outcome }}
           STATUS_CLOUDFLARE: ${{ steps.cloudflare.outcome }}
           STATUS_MASTODON: ${{ steps.mastodon.outcome }}
+          STATUS_PIXELFED: ${{ steps.pixelfed.outcome }}
           STATUS_THREADS: ${{ steps.threads.outcome }}
           STATUS_LINKEDIN: ${{ steps.linkedin.outcome }}
           STATUS_TUMBLR: ${{ steps.tumblr.outcome }}
@@ -339,6 +356,7 @@ jobs:
           FACEBOOK_TITLE="$(get_last '🚀 Mengirim ke Facebook Page: ' 's/.*🚀 Mengirim ke Facebook Page: (.*)$/\1/')"
           LINKEDIN_TITLE="$(get_last '🚀 Menyiapkan postingan LinkedIn: ' 's/.*🚀 Menyiapkan postingan LinkedIn: (.*)$/\1/')"
           MASTODON_TITLE="$(get_last '🚀 Mengirim ke Mastodon: ' 's/.*🚀 Mengirim ke Mastodon: (.*)$/\1/')"
+          PIXELFED_TITLE="$(get_last '🚀 Menyiapkan postingan Pixelfed: ' 's/.*🚀 Menyiapkan postingan Pixelfed: (.*)$/\1/')"
           THREADS_TITLE="$(get_last '🚀 Menyiapkan Threads: ' 's/.*🚀 Menyiapkan Threads: (.*)$/\1/')"
           TUMBLR_TITLE="$(get_last '🚀 Mengirim ke Tumblr: ' 's/.*🚀 Mengirim ke Tumblr: (.*)$/\1/')"
           TWITTER_TITLE="$(get_last '🚀 Menyiapkan postingan baru ke X: ' 's/.*🚀 Menyiapkan postingan baru ke X: (.*)$/\1/')"
@@ -357,6 +375,7 @@ jobs:
           row "Facebook 🚀"              "$STATUS_FACEBOOK"     "$FACEBOOK_TITLE"
           row "LinkedIn 🆕"              "$STATUS_LINKEDIN"     "$LINKEDIN_TITLE"
           row "Mastodon 🐘"              "$STATUS_MASTODON"     "$MASTODON_TITLE"
+          row "Pixelfed 📷"              "$STATUS_PIXELFED"     "$PIXELFED_TITLE"
           row "RSS ke Diskusi GitHub 📰" "$STATUS_DISKUSI_RSS"  "$RSS_REPORT"
           row "Threads ⚙️"               "$STATUS_THREADS"      "$THREADS_TITLE"
           row "Tumblr 🎨"                "$STATUS_TUMBLR"       "$TUMBLR_TITLE"
