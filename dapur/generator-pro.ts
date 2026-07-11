@@ -490,7 +490,7 @@ sitemapByCategory.get(catSlug)!.push(`
 
     // 🔄 MIGRASI FORMAT FEED: hapus sisa file .xml lama (RSS/Atom sekarang pakai .rss/.atom)
     await Promise.all([
-        fs.rm(`${C.root}/rss.xml`, { force: true }),
+        fs.rm(`${C.root}/rss.rss`, { force: true }),
         fs.rm(`${C.root}/atom.xml`, { force: true }),
         ...C.cats.flatMap(s => [
             fs.rm(`${C.root}/feed-${s}.xml`, { force: true }),
@@ -672,7 +672,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
     ].join('\n');
 
     const redirectsBlock = [
-        '/rss.xml   /rss.rss    301',
+        '/rss.rss   /rss.rss    301',
         '/atom.xml  /atom.atom  301',
         ...C.cats.flatMap(s => [
             `/feed-${s}.xml       /feed-${s}.rss   301`,

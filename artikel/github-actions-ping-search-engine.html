@@ -47,7 +47,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any"><link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.rss">
     <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.xml">
     <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
@@ -279,8 +279,8 @@
           curl -s "https://www.google.com/ping?sitemap=https://dalam.web.id/sitemap.xml"
           curl -s "https://www.bing.com/ping?sitemap=https://dalam.web.id/sitemap.xml"
           # Melakukan ping untuk RSS feed (opsional, namun sangat disarankan)
-          curl -s "https://www.google.com/ping?sitemap=https://dalam.web.id/rss.xml"
-          curl -s "https://www.bing.com/ping?sitemap=https://dalam.web.id/rss.xml"
+          curl -s "https://www.google.com/ping?sitemap=https://dalam.web.id/rss.rss"
+          curl -s "https://www.bing.com/ping?sitemap=https://dalam.web.id/rss.rss"
 </code></pre>
         <blockquote>
           <strong>Catatan Eksekusi:</strong> Perhatikan penggunaan perintah <code>curl -s</code> pada skrip di atas. Bendera <code>-s</code> merujuk pada mode <em>silent</em> atau senyap. Mode ini sangat disarankan agar antarmuka log di GitHub Actions milikmu tidak disesaki oleh ribuan baris teks hasil keluaran unduhan <code>curl</code>, melainkan tetap bersih, rapi, dan mudah dibaca jika terjadi <em>error</em>.
