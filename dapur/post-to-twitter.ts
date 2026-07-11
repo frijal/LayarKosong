@@ -9,12 +9,19 @@ puppeteer.use(StealthPlugin());
 const JSON_FILE = "artikel.json";
 const DATABASE_FILE = "mini/posted-twitter.txt";
 const DOMAIN_URL = "https://dalam.web.id";
-const COOKIES_PATH = "./twitter_cookies.json"; // Jika lokal, atau dibaca via GitHub Secrets
+const COOKIES_PATH = "./twitter_cookies.json";
 
 function slugify(text: string) {
 	if (!text) return "";
 	return String(text).trim().toLowerCase().replace(/\s+/g, "-");
 }
+
+// --- LOGIKA HASHTAG ---
+const cleanHashtag = (str: string) =>
+"#" + str
+.replace(/&/g, "dan")
+.replace(/[^\w\s]/g, "")
+.replace(/\s+/g, "");
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -43,7 +50,6 @@ async function main() {
 			const fileName = String(post[1] ?? "").trim();
 			const fileSlug = fileName.replace(/\.html$/i, "").replace(/\//g, "");
 
-			// Lewati agregat
 			if (fileSlug.startsWith("agregat-20")) continue;
 
 			const fullUrl = `${DOMAIN_URL}/${catSlug}/${fileSlug}`;
@@ -62,7 +68,6 @@ async function main() {
 		}
 	}
 
-	// Sorting Berdasarkan Tanggal Terbaru
 	allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 	if (allPosts.length === 0) {
@@ -72,28 +77,61 @@ async function main() {
 
 	const targetPost = allPosts[0];
 
-	// 4. Kalkulasi Format Teks Tahan Banting (Anti Over-character di X)
-	// Max 280, URL X selalu dihitung 23 karakter, template teks bawaan memakan ~30 karakter
-	const maxTextLength = 280 - 23 - 30;
-	let cleanDesc = targetPost.desc;
+	// ==========================================
+	// 4. HASHTAG & KALKULASI LIMIT TWITTER (280)
+	// ==========================================
+	const hashtags = new Set<string>();
 
-	if (cleanDesc.length > maxTextLength) {
-		cleanDesc = cleanDesc.slice(0, maxTextLength - 3) + "...";
+	// a. Kategori jadi hashtag
+	if (targetPost.category) {
+		hashtags.add(cleanHashtag(targetPost.category));
 	}
 
-	// Template Postingan Akhir
-	const postText = `${cleanDesc} ${targetPost.url}`;
+	// b. Ekstrak dari judul
+	targetPost.title
+	.split(/\s+/)
+	.filter((w: string) => w.length > 4)
+	.slice(0, 3)
+	.forEach((w: string) => hashtags.add(cleanHashtag(w)));
+
+	const hashtagString = [...hashtags].join(" ");
+
+	// c. Kalkulasi Sisa Karakter
+	const TWITTER_MAX = 280;
+	const URL_LENGTH = 24; // X menghitung URL sebagai 23 karakter + 1 spasi
+	const SPACING = 4; // Untuk 2x Enter (\n\n)
+
+	// Sisa jatah buat deskripsi
+	const availableDescSpace = TWITTER_MAX - URL_LENGTH - hashtagString.length - SPACING;
+	let cleanDesc = targetPost.desc;
+
+	// d. Pemotongan Pintar
+	if (availableDescSpace < 15) {
+		// Kalau judulnya panjang banget sampai hashtagnya makan tempat, hapus deskripsi
+		cleanDesc = "";
+	} else if (cleanDesc.length > availableDescSpace) {
+		// Potong deskripsi lalu tambah "..." biar nggak over-limit
+		cleanDesc = cleanDesc.slice(0, availableDescSpace - 3) + "...";
+	}
+
+	// e. Template Postingan Akhir
+	let postText = `${cleanDesc}\n\n${hashtagString}\n\n${targetPost.url}`;
+
+	// Bersihkan enter berlebih kalau misal deskripsinya kosong
+	postText = postText.replace(/^\n+/, '').trim();
 
 	console.log(`🚀 Menyiapkan postingan baru ke X: ${targetPost.title}`);
+	console.log(`📝 Preview Tweet (${postText.length}/280 chars):\n${postText}`);
 
-	// 5. Eksekusi Browser Headless via Puppeteer Stealth
+	// ==========================================
+	// 5. EKSEKUSI PUPPETEER STEALTH
+	// ==========================================
 	const browser = await puppeteer.launch({
 		headless: true,
 		args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
 	});
 	const page = await browser.newPage();
 
-	// 6. Ambil Cookies (Mendukung fallback lokal file atau GitHub Secrets)
 	let rawCookies;
 	if (Bun.env.TWITTER_COOKIES) {
 		rawCookies = JSON.parse(Bun.env.TWITTER_COOKIES);
@@ -105,54 +143,43 @@ async function main() {
 		process.exit(1);
 	}
 
-	// SANITASI COOKIES: Bersihkan atribut yang bikin Puppeteer muntah
 	const cleanCookies = rawCookies.map((cookie: any) => {
 		const sanitized = { ...cookie };
-
-		// Hapus atribut biang kerok
 		delete sanitized.partitionKey;
-
-		// Hapus sameSite jika nilainya tidak valid ('no_restriction', dsb)
-		// Puppeteer biasanya hanya menerima 'Strict', 'Lax', atau 'None'
 		if (sanitized.sameSite && !['Strict', 'Lax', 'None'].includes(sanitized.sameSite)) {
 			delete sanitized.sameSite;
 		}
-
 		return sanitized;
 	});
 
-	// Suntikkan cookies yang sudah bersih
 	await page.setCookie(...cleanCookies);
 
-	// 7. Proses Navigasi dan Pengetikan ke Kotak Tweet X
 	try {
 		await page.goto('https://x.com/compose/tweet', { waitUntil: 'networkidle2' });
-		await delay(4000); // Jeda aman tunggu React merender halaman
+		await delay(4000);
 
 		const textBoxSelector = '[data-testid="tweetTextarea_0"]';
 		await page.waitForSelector(textBoxSelector, { timeout: 15000 });
 		await page.click(textBoxSelector);
 
-		// Ngetik lambat biar dikira manusia asli, bukan bot kilat
+		// Ngetik lambat + dukung enter otomatis dari \n
 		await page.type(textBoxSelector, postText, { delay: 100 });
 		await delay(2000);
 
-		// Klik tombol post
 		const postButtonSelector = '[data-testid="tweetButton"]';
 		await page.waitForSelector(postButtonSelector);
 		await page.click(postButtonSelector);
 
 		console.log(`🎉 Berhasil mencuitkan: ${targetPost.title}`);
-		await delay(5000); // Tunggu jaringan menyelesaikan pengiriman payload
+		await delay(5000);
 
-		// 8. Tulis ke Database lokal (mini/posted-twitter.txt)
+		// 6. Tulis ke Database lokal
 		const logDir = path.dirname(DATABASE_FILE);
 		if (!fs.existsSync(logDir)) {
 			fs.mkdirSync(logDir, { recursive: true });
 		}
 		fs.appendFileSync(DATABASE_FILE, `${targetPost.slug}\n`);
 
-		// Output opsional untuk GitHub Actions pipeline
 		if (Bun.env.GITHUB_OUTPUT) {
 			fs.appendFileSync(Bun.env.GITHUB_OUTPUT, `x_url=${targetPost.url}\n`);
 		}
