@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Panduan Lengkap PUEBI & EYD Edisi Kelima untuk Tampilan Pengguna dan Lokalisasi</title>
+    <meta name="description" content="Pedoman resmi ejaan Bahasa Indonesia: PUEBI 2015 dan EYD Edisi Kelima. Panduan pemakaian huruf, penulisan kata, tanda baca, dan serapan untuk Tampilan Pengguna dan konten digital.">
+    <meta name="news_keywords" content="PUEBI, EYD Edisi Kelima, ejaan bahasa Indonesia, pedoman ejaan, Tampilan Pengguna Indonesia, lokalisasi, tata bahasa, penulisan">
+    <meta property="article:tag" content="PUEBI">
+    <meta property="article:tag" content="EYD">
+    <meta property="article:tag" content="Bahasa Indonesia">
+    <meta property="article:tag" content="Lokalisasi">
+    <meta property="article:tag" content="Tampilan Pengguna">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Panduan Lengkap PUEBI & EYD Edisi Kelima untuk Tampilan Pengguna dan Lokalisasi">
+    <meta property="og:description" content="Dokumentasi lengkap aturan PUEBI/EYD Edisi Kelima: huruf kapital, kata serapan, tanda baca, dan praktik terbaik untuk antarmuka dan konten berbahasa Indonesia.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/panduan-lengkap-puebi-eyd-ui-lokalisasi.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2009_45_24%20AM.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Panduan PUEBI & EYD Edisi Kelima untuk Tampilan Pengguna dan Lokalisasi">
+    <meta name="twitter:description" content="Aturan resmi ejaan bahasa Indonesia: pemakaian huruf, penulisan kata, tanda baca, serapan, dan panduan konsistensi untuk aplikasi dan konten digital.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2009_45_24%20AM.png">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/panduan-lengkap-puebi-eyd-ui-lokalisasi.html">
+
+    <meta name="promphint" content="Apa perbedaan utama PUEBI dan EYD Edisi Kelima? | Secara fungsional identik; EYD Edisi Kelima (2022) resmi menggantikan PUEBI (2015), namun aturan ejaan dasarnya sama, hanya penyempurnaan teknis dan pembaruan istilah.">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== CSS VARIABLES (Mobile-First) ===== */
+        :root {
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+
+            --font-base: -apple-system, BlinkMacSystemFont, "Segoe Tampilan Pengguna", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-size-body: 1.125rem;
+            --font-size-h1: 1.75rem;
+            --font-size-h2: 1.4rem;
+            --font-size-h3: 1.2rem;
+            --font-size-small: 0.875rem;
+            --line-height-body: 1.8;
+            --line-height-heading: 1.3;
+
+            --bg-body: #f8f9fa;
+            --bg-card: #ffffff;
+            --bg-details: #f1f3f5;
+            --text-primary: #1e1e2a;
+            --text-secondary: #2d2d3f;
+            --text-muted: #4a4a5e;
+            --text-inverse: #f8f9fa;
+            --border-color: #dde1e6;
+            --accent: #1a4b8c;
+            --accent-hover: #0d3b6e;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.07);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.2s ease;
+        }
+
+        /* ===== DARK THEME ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #0f0f18;
+                --bg-card: #1a1a2e;
+                --bg-details: #252540;
+                --text-primary: #ececf0;
+                --text-secondary: #d4d4e0;
+                --text-muted: #a8a8bc;
+                --text-inverse: #0f0f18;
+                --border-color: #33334d;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+                --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+                --accent: #5b8fd4;
+                --accent-hover: #7aa6e6;
+            }
+        }
+
+        /* ===== DESKTOP: lebih lega, padding bertingkat diizinkan ===== */
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 1.5rem;
+                --font-size-h1: 2.4rem;
+                --font-size-h2: 1.65rem;
+                --font-size-h3: 1.3rem;
+            }
+        }
+
+        /* ===== BODY ===== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-base);
+            font-size: var(--font-size-body);
+            line-height: var(--line-height-body);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            padding-block: 2rem 1rem;
+            padding-inline: var(--screen-padding);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+        }
+
+        /* ===== CARD / ARTICLE WRAPPER ===== */
+        .article-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            padding-block: 2rem;
+            padding-inline: var(--nested-padding);
+            transition: background var(--transition), box-shadow var(--transition);
+        }
+
+        /* ===== MOBILE: card melebur ke latar ===== */
+        @media (max-width: 640px) {
+            .article-card {
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding-inline: 0;
+                padding-block: 0.5rem;
+            }
+            body {
+                padding-inline: var(--screen-padding);
+            }
+            .container {
+                padding-inline: 0;
+            }
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: var(--font-size-h1);
+            line-height: var(--line-height-heading);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: var(--font-size-h2);
+            line-height: var(--line-height-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 2.2rem;
+            margin-bottom: 0.8rem;
+            scroll-margin-top: 1rem;
+        }
+
+        h3 {
+            font-size: var(--font-size-h3);
+            line-height: var(--line-height-heading);
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 1.6rem;
+            margin-bottom: 0.5rem;
+            scroll-margin-top: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+            transition: color var(--transition);
+        }
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        b {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        i {
+            font-style: italic;
+        }
+        u {
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+        s {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        /* ===== LEAD / RINGKASAN ===== */
+        .lead {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+        @media (min-width: 640px) {
+            .lead {
+                font-size: 1.25rem;
+                padding-left: 1.5rem;
+            }
+        }
+
+        /* ===== GAMBAR ===== */
+        .article-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            margin-block: 1.75rem 1.75rem;
+            display: block;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background: var(--bg-details);
+        }
+
+        .article-image-wrap {
+            width: 100%;
+            margin-block: 1.75rem;
+        }
+        .article-image-wrap img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            display: block;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background: var(--bg-details);
+        }
+
+        .caption {
+            display: block;
+            font-size: var(--font-size-small);
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.4rem;
+            font-style: italic;
+        }
+
+        /* ===== DETAILS / ACCORDION ===== */
+        details {
+            margin-block: 1.5rem 0.5rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-details);
+            border: 1px solid var(--border-color);
+            transition: border-color var(--transition), background var(--transition);
+        }
+        details[open] {
+            border-color: var(--accent);
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 1rem 1.25rem;
+            font-weight: 600;
+            font-size: var(--font-size-h3);
+            color: var(--text-primary);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-radius: var(--radius-sm);
+            transition: background var(--transition), color var(--transition);
+            user-select: none;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary::before {
+            content: "▶";
+            font-size: 0.85rem;
+            display: inline-block;
+            transition: transform var(--transition);
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        summary:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+        @media (prefers-color-scheme: dark) {
+            summary:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        details .details-content {
+            padding: 0.25rem 1.25rem 1.5rem 1.25rem;
+        }
+        details .details-content h3 {
+            margin-top: 1.2rem;
+        }
+        details .details-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== LIST ===== */
+        ul,
+        ol {
+            margin: 0 0 1.25rem 1.5rem;
+            color: var(--text-secondary);
+        }
+        li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* ===== QUOTE ===== */
+        blockquote {
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--accent);
+            background: var(--bg-details);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        .article-footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem 1.75rem;
+            font-size: var(--font-size-small);
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .article-footer span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .article-footer .sep {
+            color: var(--border-color);
+            font-weight: 300;
+        }
+
+        /* ===== RESPONSIVE FINE-TUNE ===== */
+        @media (max-width: 480px) {
+            :root {
+                --font-size-body: 1rem;
+            }
+            body {
+                padding-block: 1rem 0.5rem;
+            }
+            .article-card {
+                padding-block: 1rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .lead {
+                font-size: 1rem;
+                padding-left: 0.75rem;
+            }
+            summary {
+                font-size: 1.1rem;
+                padding: 0.75rem 1rem;
+            }
+            details .details-content {
+                padding: 0 1rem 1.25rem 1rem;
+            }
+            blockquote {
+                padding: 0.75rem 1rem;
+                margin: 1rem 0;
+            }
+            ul,
+            ol {
+                margin-left: 1.25rem;
+            }
+        }
+
+        /* ===== AKSESIBILITAS: focus ring ===== */
+        a:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ===== PRINT ===== */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0.5in;
+                color: #000;
+            }
+            .article-card {
+                background: #fff;
+                box-shadow: none;
+                padding: 0;
+            }
+            .article-footer {
+                border-top-color: #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <main>
+            <article class="article-card">
+
+                <!-- ===== HEADER ARTIKEL ===== -->
+                <header>
+                    <h1>Panduan Lengkap PUEBI & EYD Edisi Kelima untuk Tampilan Pengguna dan Lokalisasi</h1>
+                    <p class="lead">
+                        Pedoman ejaan Bahasa Indonesia adalah fondasi bagi setiap penulis, desainer antarmuka, dan pengembang yang ingin menghadirkan pengalaman lokal yang autentik. Artikel ini merangkum aturan <b>PUEBI 2015</b> dan <b>EYD Edisi Kelima (2022)</b> — dua dokumen resmi yang menjadi rujukan utama ejaan bahasa Indonesia — serta memberikan panduan praktis untuk penggunaannya dalam konten digital dan Tampilan Pengguna.
+                    </p>
+                </header>
+
+                <!-- ===== PARAGRAF PEMBUKA (sebelum gambar) ===== -->
+                <p>
+                    Sejak 16 Agustus 2022, <i>Pedoman Umum Ejaan Bahasa Indonesia (PUEBI)</i> secara resmi digantikan oleh <i>Ejaan Bahasa Indonesia yang Disempurnakan (EYD) Edisi Kelima</i>. Namun bagi sebagian besar praktisi bahasa, kedua pedoman ini secara fungsional identik. Perubahan yang terjadi lebih bersifat penyempurnaan teknis dan pembaruan istilah, bukan revolusi aturan. Dengan kata lain, jika Anda sudah terbiasa dengan PUEBI, Anda tidak perlu belajar dari nol.
+                </p>
+                <p>
+                    Mengapa pedoman ejaan ini penting, terutama untuk Tampilan Pengguna dan lokalisasi? Karena konsistensi ejaan menciptakan <b>kredibilitas</b> dan <b>kenyamanan pengguna</b>. Bayangkan jika sebuah aplikasi atau situs web menggunakan kapitalisasi yang kacau, atau penulisan angka yang tidak sesuai kaidah. Pengguna akan meragukan profesionalisme produk tersebut. Di sinilah PUEBI/EYD menjadi panduan yang tak tergantikan.
+                </p>
+
+                <!-- ===== GAMBAR PERTAMA (LCP) ===== -->
+                <div class="article-image-wrap">
+                    <img
+                    src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2011%2C%202026%2C%2009_45_24%20AM.png"
+                    alt="Ilustrasi buku panduan PUEBI dan EYD Edisi Kelima dengan latar belakang bendera Indonesia, melambangkan pedoman ejaan resmi bahasa Indonesia"
+                    width="1280"
+                    height="720"
+                    fetchpriority="high"
+                    decoding="async"
+                    class="article-image"
+                    style="aspect-ratio: 16/9; object-fit: cover;"
+                    >
+                    <span class="caption">Pedoman EYD Edisi Kelima dan PUEBI: rujukan utama ejaan bahasa Indonesia untuk konten dan antarmuka.</span>
+                </div>
+
+                <p>
+                    Gambar di atas merepresentasikan dua dokumen utama yang menjadi acuan: PUEBI (2015) dan EYD Edisi Kelima (2022). Meskipun secara resmi EYD Edisi Kelima yang berlaku, banyak referensi dan sumber daya daring masih menggunakan istilah PUEBI. Yang terpenting, <b>isi aturan ejaannya sama</b>, sehingga Anda bisa merujuk ke salah satu dokumen tersebut tanpa khawatir kehilangan esensi.
+                </p>
+
+                <!-- ===== BAGIAN 1: PEMAKAIAN HURUF ===== -->
+                <h2>Pemakaian Huruf</h2>
+                <p>
+                    Bahasa Indonesia menggunakan 26 huruf alfabet Latin, dengan tambahan diakritik untuk vokal (seperti é, è, dan ê) yang digunakan pada kata serapan tertentu. Aturan dasar ejaan mencakup penggunaan huruf kapital, huruf miring, dan huruf tebal. Mari kita bedah satu per satu.
+                </p>
+
+                <details>
+                    <summary><h2 style="display:inline; font-size:inherit; margin:0; font-weight:600;">Kapitalisasi dan Aturan Huruf Besar</h2></summary>
+                    <div class="details-content">
+                        <p>
+                            Huruf kapital digunakan pada:
+                        </p>
+                        <ul>
+                            <li>Awal kalimat.</li>
+                            <li>Nama diri (orang, tempat, organisasi, instansi, dan produk). Contoh: <b>Soekarno</b>, <b>Jakarta</b>, <b>PBB</b>.</li>
+                            <li>Nama agama, kitab suci, dan Tuhan. Contoh: <b>Islam</b>, <b>Al-Qur'an</b>, <b>Allah</b>.</li>
+                            <li>Nama bangsa, bahasa, dan suku. Contoh: <b>Bangsa Indonesia</b>, <b>bahasa Inggris</b>.</li>
+                            <li>Nama hari, bulan, dan tahun. Contoh: <b>Senin</b>, <b>Januari</b>, <b>2025</b> (angka tidak pakai kapital).</li>
+                            <li>Kata sapaan dan gelar. Contoh: <b>Anda</b>, <b>Bapak</b>, <b>Ibu</b>, <b>Prof.</b>, <b>Dr.</b></li>
+                        </ul>
+                        <p>
+                            <b>Perhatikan</b>: kata depan <i>di</i>, <i>ke</i>, dan <i>dari</i> tidak ditulis dengan huruf kapital jika bukan bagian dari nama diri. Contoh: “Saya pergi <i>ke</i> pasar”, bukan “Saya pergi <i>Ke</i> pasar”. Juga, kata ganti <i>kamu</i> (informal) tidak dikapitalisasi, sedangkan <i>Anda</i> (formal) selalu dikapitalisasi sebagai bentuk penghormatan.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- ===== BAGIAN 2: PENULISAN KATA ===== -->
+                <h2>Penulisan Kata</h2>
+                <p>
+                    Bagian ini mencakup pembentukan kata dasar, kata turunan, kata ulang, gabungan kata, hingga pemenggalan kata. Aturan-aturan ini sering menjadi sumber kebingungan, terutama bagi yang baru belajar atau yang terbiasa dengan ejaan lama.
+                </p>
+
+                <details>
+                    <summary><h2 style="display:inline; font-size:inherit; margin:0; font-weight:600;">Pembentukan Kata: Dasar, Turunan, dan Gabungan</h2></summary>
+                    <div class="details-content">
+                        <h3>Kata Dasar</h3>
+                        <p>
+                            Kata dasar (root) ditulis apa adanya tanpa perubahan. Contoh: <b>tulis</b>, <b>baca</b>, <b>jalan</b>.
+                        </p>
+
+                        <h3>Kata Turunan (Berimbuhan)</h3>
+                        <p>
+                            Kata yang mendapat awalan, akhiran, atau gabungan keduanya mengikuti aturan tertentu. Misalnya, awalan <i>me-</i> dan <i>pe-</i> mengalami perubahan bentuk bergantung pada huruf pertama kata dasar (contoh: <i>memasak</i>, <i>menulis</i>, <i>mengajar</i>). EYD Edisi Kelima menyederhanakan beberapa aturan, misalnya tidak ada lagi penulisan ganda konsonan pada kata seperti <i>membaca</i> (tetap <i>membaca</i>, bukan <i>membbaca</i>).
+                        </p>
+
+                        <h3>Bentuk Ulang (Reduplikasi)</h3>
+                        <p>
+                            Kata ulang ditulis dengan tanda hubung, contoh: <b>merah-merah</b>, <b>anak-anak</b>, <b>bersalam-salaman</b>.
+                        </p>
+
+                        <h3>Gabungan Kata</h3>
+                        <p>
+                            Gabungan kata yang sudah padu (seperti <i>kambing hitam</i> yang berarti <i>orang yang disalahkan</i>) ditulis terpisah, kecuali jika sudah dianggap sebagai kata majemuk yang membentuk makna baru, seperti <i>tata bahasa</i>.
+                        </p>
+
+                        <h3>Kata Depan, Partikel, Singkatan, dan Akronim</h3>
+                        <p>
+                            Kata depan seperti <i>di</i>, <i>ke</i>, dan <i>dari</i> ditulis terpisah dari kata yang mengikutinya, kecuali dalam kata majemuk yang sudah dianggap satu kata (misalnya <i>kepada</i>). Partikel <i>-lah</i>, <i>-kah</i>, dan <i>-tah</i> ditulis serangkai dengan kata yang mendahuluinya. Singkatan dan akronim mengikuti kaidah: <b>MTampilan Pengguna</b>, <b>PBB</b>, <b>dll.</b>, <b>hlm.</b>
+                        </p>
+                    </div>
+                </details>
+
+                <!-- ===== BAGIAN 3: PENGGUNAAN TANDA BACA ===== -->
+                <h2>Penggunaan Tanda Baca</h2>
+                <p>
+                    Tanda baca dalam bahasa Indonesia mengikuti standar internasional. Titik, koma, titik dua, titik koma, tanda tanya, tanda seru, tanda kutip, kurung, dan garis miring semuanya digunakan sesuai fungsinya masing-masing. Konsistensi dalam penggunaan tanda baca sangat memengaruhi keterbacaan.
+                </p>
+                <ul>
+                    <li><b>Titik (.)</b>: mengakhiri kalimat pernyataan.</li>
+                    <li><b>Koma (,)</b>: memisahkan unsur dalam daftar, anak kalimat, dan keterangan.</li>
+                    <li><b>Titik dua (:)</b>: memperkenalkan daftar atau kutipan.</li>
+                    <li><b>Poin koma (;)</b>: memisahkan bagian yang setara dalam kalimat majemuk.</li>
+                    <li><b>Tanda tanya (?)</b>: mengakhiri kalimat pertanyaan.</li>
+                    <li><b>Tanda seru (!)</b>: mengungkapkan seruan atau perintah.</li>
+                    <li><b>Kutip ganda ("...")</b>: untuk kutipan langsung.</li>
+                    <li><b>Kutip tunggal ('...')</b>: untuk kutipan di dalam kutipan.</li>
+                    <li><b>Kurung (...)</b>: untuk tambahan informasi.</li>
+                    <li><b>Garis miring (/)</b>: alternatif atau perbandingan.</li>
+                </ul>
+
+                <!-- ===== BAGIAN 4: PENULISAN UNSUR SERAPAN ===== -->
+                <h2>Penulisan Unsur Serapan</h2>
+                <p>
+                    Bahasa Indonesia kaya akan kata serapan dari berbagai bahasa: Sansekerta, Arab, Belanda, Inggris, Portugis, dan lain-lain. Aturan ejaan mengatur bagaimana kata-kata ini disesuaikan dengan fonologi dan ortografi Indonesia.
+                </p>
+                <ul>
+                    <li>Kata serapan <b>disesuaikan</b> dengan kaidah penulisan Indonesia. Contoh: <i>system</i> (Inggris) menjadi <b>sistem</b>, <i>telephone</i> menjadi <b>telepon</b>, <i>Internet</i> menjadi <b>internet</b> (huruf kecil).</li>
+                    <li>Nama diri dan organisasi asing tidak diubah ejaannya dan ditulis tanpa huruf miring. Contoh: <b>Microsoft</b>, <b>Google</b>.</li>
+                    <li>Kata serapan dari bahasa Arab sering mempertahankan bentuk asli dengan penyesuaian, seperti <b>Al-Qur'an</b>, <b>hadis</b> (bukan <i>hadits</i>).</li>
+                </ul>
+
+                <!-- ===== BAGIAN 5: KEY COMPLIANCE POINTS ===== -->
+                <h2>Praktik Terbaik untuk Tampilan Pengguna, Copy, dan Lokalisasi</h2>
+                <p>
+                    Bagi para pengembang, desainer, dan penulis konten digital, PUEBI/EYD bukan hanya aturan akademis, tapi juga alat untuk menciptakan pengalaman pengguna yang profesional. Berikut beberapa poin kunci:
+                </p>
+                <ul>
+                    <li><b>Konsistensi</b>: Selalu gunakan bahasa baku (standar) kecuali memang sengaja menggunakan gaya santai (misalnya pada chat atau media sosial). Untuk Tampilan Pengguna formal (error message, label, onboarding), gunakan <i>Anda</i> dan <i>Bapak/Ibu</i> sesuai konteks.</li>
+                    <li><b>Angka dan Bilangan</b>: Gunakan kata untuk angka 1-2 (satu, dua), dan angka untuk 3 ke atas (3, 10, 100). Untuk mata uang, ikuti format <b>Rp1.000.000,00</b> (titik pemisah ribuan, koma desimal).</li>
+                    <li><b>Singkatan & Akronim</b>: Pastikan singkatan umum (seperti <i>dll.</i>, <i>dsb.</i>) ditulis dengan titik, sedangkan akronim lembaga atau istilah populer (seperti <b>MTampilan Pengguna</b>, <b>KBBI</b>) ditulis tanpa titik.</li>
+                    <li><b>Sapaan</b>: Pilih <i>Anda</i> untuk situasi formal dan <i>kamu</i> untuk situasi informal yang lebih akrab.</li>
+                </ul>
+
+                <!-- ===== BAGIAN 6: SUMBER RESMI ===== -->
+                <h2>Sumber Resmi dan Referensi</h2>
+                <p>
+                    Untuk memastikan akurasi, selalu rujuk ke dokumen resmi yang diterbitkan oleh pemerintah. Berikut adalah tautan yang dapat diakses secara bebas:
+                </p>
+                <ul>
+                    <li><b>PUEBI Daring</b>: <a href="https://puebi.js.org/" target="_blank" rel="noopener noreferrer">https://puebi.js.org/</a> — versi interaktif PUEBI 2015.</li>
+                    <li><b>EYD Edisi Kelima</b>: <a href="https://eyd.netlify.app/" target="_blank" rel="noopener noreferrer">https://eyd.netlify.app/</a> — pengganti resmi PUEBI sejak 2022.</li>
+                    <li><b>PDF Keputusan Menteri</b>: <a href="https://drive.google.com/file/d/1XMnX1pgW3eF-OzJ2dtiiIaRttZTSVwoM/view" target="_blank" rel="noopener noreferrer">Unduh PDF EYD Edisi Kelima</a> (via Google Drive).</li>
+                </ul>
+                <p>
+                    Dengan mengacu pada pedoman ini, setiap konten atau antarmuka akan memiliki <b>citra yang kredibel</b> dan <b>mudah dipahami</b> oleh pengguna Indonesia. Ejaan yang benar adalah bentuk penghormatan kepada bahasa dan penggunanya.
+                </p>
+                <blockquote>
+                    <p>
+                        “Bahasa menunjukkan bangsa.” — Pepatah Indonesia
+                    </p>
+                </blockquote>
+
+                <!-- ===== SIGNATURE WAJIB ===== -->
+                <!--wajib ini tulis signature artikel oleh LayarKosong-->
+
+                <!-- ===== FOOTER ===== -->
+                <footer class="article-footer">
+                    <span>✍️ Fakhrul</span>
+                    <span class="sep">•</span>
+                    <span>📅 11 Juli 2026</span>
+                    <span class="sep">•</span>
+                    <span>🄯 2014–2026</span>
+                                  </footer>
+
+            </article>
+        </main>
+    </div>
+
+</body>
+</html>
