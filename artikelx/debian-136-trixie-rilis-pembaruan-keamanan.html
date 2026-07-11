@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Debian 13.6 'trixie' Rilis: Keamanan, Secure Boot, dan GeoIP</title>
+    <meta name="description" content="Debian 13.6 'trixie' resmi dirilis. Simak pembaruan keamanan, perbaikan fwupd dan Secure Boot CA, serta pengembalian geoip-database ke versi 2019.">
+    <meta name="news_keywords" content="Debian 13.6, trixie, rilis, update, keamanan, Secure Boot, fwupd, geoip-database, Linux, distribusi">
+    <meta property="article:tag" content="Debian">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Release">
+    <meta property="article:tag" content="Security">
+    <meta property="article:tag" content="Secure Boot">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Debian 13.6 'trixie' Rilis: Pembaruan Keamanan dan Perbaikan Penting">
+    <meta property="og:description" content="Distribusi Debian 13.6 hadir dengan perbaikan keamanan, pembaruan fwupd untuk Secure Boot, dan reverensi geoip-database. Simak detail dan rekomendasi upgrade.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/debian-136-trixie-rilis-pembaruan-keamanan.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/Screenshot_20260711_225935.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Debian 13.6 'trixie' Rilis: Apa yang Baru?">
+    <meta name="twitter:description" content="Debian 13.6 hadir dengan pembaruan keamanan, perbaikan fwupd, dan revert geoip-database. Baca panduan upgrade dan rekomendasi untuk Secure Boot.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/Screenshot_20260711_225935.png">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/debian-136-trixie-rilis-pembaruan-keamanan.html">
+
+    <meta name="promphint" content="Apa yang penting dalam rilis Debian 13.6 'trixie'? | Rilis ini mencakup pembaruan keamanan, perbaikan fwupd untuk Secure Boot CA yang kedaluwarsa, dan pengembalian geoip-database ke versi 2019 karena lisensi. Pengguna disarankan upgrade dan mengecek Secure Boot.">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== CSS VARIABLES (Mobile-First) ===== */
+        :root {
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+
+            --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-size-body: 1.125rem;
+            --font-size-h1: 1.75rem;
+            --font-size-h2: 1.4rem;
+            --font-size-h3: 1.2rem;
+            --font-size-small: 0.875rem;
+            --line-height-body: 1.8;
+            --line-height-heading: 1.3;
+
+            --bg-body: #f8f9fa;
+            --bg-card: #ffffff;
+            --bg-details: #f1f3f5;
+            --text-primary: #1e1e2a;
+            --text-secondary: #2d2d3f;
+            --text-muted: #4a4a5e;
+            --text-inverse: #f8f9fa;
+            --border-color: #dde1e6;
+            --accent: #1a4b8c;
+            --accent-hover: #0d3b6e;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.07);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.2s ease;
+        }
+
+        /* ===== DARK THEME ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #0f0f18;
+                --bg-card: #1a1a2e;
+                --bg-details: #252540;
+                --text-primary: #ececf0;
+                --text-secondary: #d4d4e0;
+                --text-muted: #a8a8bc;
+                --text-inverse: #0f0f18;
+                --border-color: #33334d;
+                --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+                --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+                --accent: #5b8fd4;
+                --accent-hover: #7aa6e6;
+            }
+        }
+
+        /* ===== DESKTOP ===== */
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 1.5rem;
+                --font-size-h1: 2.4rem;
+                --font-size-h2: 1.65rem;
+                --font-size-h3: 1.3rem;
+            }
+        }
+
+        /* ===== BODY ===== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-base);
+            font-size: var(--font-size-body);
+            line-height: var(--line-height-body);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            padding-block: 2rem 1rem;
+            padding-inline: var(--screen-padding);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+        }
+
+        /* ===== CARD / ARTICLE WRAPPER ===== */
+        .article-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            padding-block: 2rem;
+            padding-inline: var(--nested-padding);
+            transition: background var(--transition), box-shadow var(--transition);
+        }
+
+        /* ===== MOBILE: card melebur ===== */
+        @media (max-width: 640px) {
+            .article-card {
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding-inline: 0;
+                padding-block: 0.5rem;
+            }
+            body {
+                padding-inline: var(--screen-padding);
+            }
+            .container {
+                padding-inline: 0;
+            }
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: var(--font-size-h1);
+            line-height: var(--line-height-heading);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: var(--font-size-h2);
+            line-height: var(--line-height-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 2.2rem;
+            margin-bottom: 0.8rem;
+            scroll-margin-top: 1rem;
+        }
+
+        h3 {
+            font-size: var(--font-size-h3);
+            line-height: var(--line-height-heading);
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 1.6rem;
+            margin-bottom: 0.5rem;
+            scroll-margin-top: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+            transition: color var(--transition);
+        }
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        b {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        i {
+            font-style: italic;
+        }
+        u {
+            text-decoration: underline;
+            text-underline-offset: 0.15em;
+        }
+        s {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        /* ===== LEAD ===== */
+        .lead {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+        }
+        @media (min-width: 640px) {
+            .lead {
+                font-size: 1.25rem;
+                padding-left: 1.5rem;
+            }
+        }
+
+        /* ===== GAMBAR ===== */
+        .article-image-wrap {
+            width: 100%;
+            margin-block: 1.75rem;
+        }
+        .article-image-wrap img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            display: block;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background: var(--bg-details);
+        }
+        .caption {
+            display: block;
+            font-size: var(--font-size-small);
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.4rem;
+            font-style: italic;
+        }
+
+        /* ===== DETAILS / ACCORDION ===== */
+        details {
+            margin-block: 1.5rem 0.5rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-details);
+            border: 1px solid var(--border-color);
+            transition: border-color var(--transition), background var(--transition);
+        }
+        details[open] {
+            border-color: var(--accent);
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 1rem 1.25rem;
+            font-weight: 600;
+            font-size: var(--font-size-h3);
+            color: var(--text-primary);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-radius: var(--radius-sm);
+            transition: background var(--transition), color var(--transition);
+            user-select: none;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary::before {
+            content: "▶";
+            font-size: 0.85rem;
+            display: inline-block;
+            transition: transform var(--transition);
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        summary:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+        @media (prefers-color-scheme: dark) {
+            summary:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        details .details-content {
+            padding: 0.25rem 1.25rem 1.5rem 1.25rem;
+        }
+        details .details-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== LIST ===== */
+        ul,
+        ol {
+            margin: 0 0 1.25rem 1.5rem;
+            color: var(--text-secondary);
+        }
+        li {
+            margin-bottom: 0.35rem;
+        }
+
+        /* ===== QUOTE ===== */
+        blockquote {
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            border-left: 4px solid var(--accent);
+            background: var(--bg-details);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        .article-footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem 1.75rem;
+            font-size: var(--font-size-small);
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .article-footer span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .article-footer .sep {
+            color: var(--border-color);
+            font-weight: 300;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            :root {
+                --font-size-body: 1rem;
+            }
+            body {
+                padding-block: 1rem 0.5rem;
+            }
+            .article-card {
+                padding-block: 1rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .lead {
+                font-size: 1rem;
+                padding-left: 0.75rem;
+            }
+            summary {
+                font-size: 1.1rem;
+                padding: 0.75rem 1rem;
+            }
+            details .details-content {
+                padding: 0 1rem 1.25rem 1rem;
+            }
+            blockquote {
+                padding: 0.75rem 1rem;
+                margin: 1rem 0;
+            }
+            ul,
+            ol {
+                margin-left: 1.25rem;
+            }
+        }
+
+        a:focus-visible,
+        summary:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                padding: 0.5in;
+                color: #000;
+            }
+            .article-card {
+                background: #fff;
+                box-shadow: none;
+                padding: 0;
+            }
+            .article-footer {
+                border-top-color: #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <main>
+            <article class="article-card">
+
+                <!-- ===== HEADER ===== -->
+                <header>
+                    <h1>Debian 13.6 'trixie' Rilis: Pembaruan Keamanan dan Perbaikan Penting</h1>
+                    <p class="lead">
+                        Proyek Debian dengan bangga mengumumkan rilis keenam dari distribusi stabil Debian 13 (kode nama <b>"trixie"</b>) pada 11 Juli 2026. Rilis titik ini terutama menambahkan koreksi untuk masalah keamanan, bersama dengan beberapa penyesuaian untuk masalah serius. Meskipun bukan versi baru dari Debian 13, pembaruan ini penting untuk menjaga stabilitas dan keamanan sistem Anda.
+                    </p>
+                </header>
+
+                <!-- ===== PARAGRAF PEMBUKA ===== -->
+                <p>
+                    Bagi para pengguna setia Debian, rilis titik seperti 13.6 selalu menjadi momen yang dinantikan. Ini bukan sekadar pembaruan biasa, melainkan <b>kompilasi perbaikan</b> yang telah diuji dan divalidasi oleh tim pengembang. Kali ini, perhatian utama tertuju pada dua isu krusial: pembaruan <code>fwupd</code> terkait Secure Boot, dan pengembalian paket <code>geoip-database</code> ke versi lama karena masalah lisensi.
+                </p>
+                <p>
+                    Sebelum kita selami detailnya, penting untuk dicatat bahwa rilis titik ini tidak memerlukan instalasi ulang. Jika Anda telah rutin memperbarui sistem dari <i>mirror</i> keamanan, sebagian besar pembaruan ini sudah Anda miliki. Namun, bagi yang baru menginstal atau belum memperbarui, image instalasi baru akan segera tersedia dan sangat disarankan untuk digunakan.
+                </p>
+
+                <!-- ===== GAMBAR PERTAMA (LCP) ===== -->
+                <div class="article-image-wrap">
+                    <img
+                    src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/Screenshot_20260711_225935.png"
+                    alt="Logo Debian dengan latar belakang abstrak yang menggambarkan pembaruan sistem dan keamanan"
+                    width="1280"
+                    height="720"
+                    fetchpriority="high"
+                    decoding="async"
+                    style="aspect-ratio: 16/9; object-fit: cover;"
+                    >
+                    <span class="caption">Debian 13.6 'trixie' hadir dengan fokus pada keamanan dan stabilitas.</span>
+                </div>
+
+                <p>
+                    Gambar di atas mungkin tidak menunjukkan perubahan teknis, tapi ia melambangkan semangat Debian: <b>stabilitas dan keandalan</b>. Rilis titik ini adalah bukti nyata dari komitmen komunitas untuk menjaga distribusi tetap aman dan terpercaya.
+                </p>
+
+                <!-- ===== BAGIAN 1: SECURE BOOT DAN FWUPD ===== -->
+                <details>
+                    <summary><h2 style="display:inline; font-size:inherit; margin:0; font-weight:600;">🔐 Secure Boot dan Pembaruan fwupd: Apa yang Harus Anda Tahu</h2></summary>
+                    <div class="details-content">
+                        <p>
+                            Salah satu pembaruan paling kritis di Debian 13.6 adalah pembaruan <code>fwupd</code> ke versi upstream 2.0.20. <code>fwupd</code> adalah layanan yang memungkinkan pembaruan firmware perangkat keras secara aman di Linux. Versi baru ini memiliki kemampuan untuk memperbarui <b>Secure Boot Certificate Authority (CA)</b>, Key Exchange Key (KEK), dan database pencabutan (DBX).
+                        </p>
+                        <p>
+                            Mengapa ini penting? Karena CA Secure Boot UEFI 2013, yang diinstal secara default di sebagian besar PC dan digunakan untuk menandatangani <i>bootloader</i>, <b>telah kedaluwarsa</b>. Jika tidak diperbarui, pembaruan <code>shim-signed</code> di masa depan dapat menyebabkan sistem gagal boot dengan Secure Boot diaktifkan.
+                        </p>
+                        <p>
+                            Debian sangat menyarankan pengguna untuk <b>segera menerapkan pembaruan CA, KEK, dan DBX</b> dari OEM sistem mereka. Panduan lengkap tersedia di <a href="https://wiki.debian.org/SecureBoot/CAChanges#What_should_I_do.3F" target="_blank" rel="noopener noreferrer">wiki Debian</a>. Jangan tunda, karena ini bisa mencegah kegagalan boot yang tidak diinginkan.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- ===== BAGIAN 2: GEOIP-DATABASE REVERT ===== -->
+                <details>
+                    <summary><h2 style="display:inline; font-size:inherit; margin:0; font-weight:600;">🌍 geoip-database Kembali ke Versi 2019: Implikasi dan Solusi</h2></summary>
+                    <div class="details-content">
+                        <p>
+                            Perubahan lain yang cukup mencolok adalah pengembalian paket <code>geoip-database</code> ke versi sekitar Desember 2019. Keputusan ini diambil karena alasan lisensi: versi terbaru dari <code>geoip-database</code> (GeoLite) tidak lagi kompatibel dengan <b>Debian Free Software Guidelines (DFSG)</b>.
+                        </p>
+                        <p>
+                            Akibatnya, aplikasi yang menggunakan database ini mungkin menggunakan informasi alokasi IP yang sudah usang. Ini bisa berdampak pada layanan yang bergantung pada geolokasi, seperti analitik web, personalisasi konten, atau pembatasan regional.
+                        </p>
+                        <p>
+                            Debian sangat menyarankan konsumen data ini untuk <b>mendapatkan lisensi GeoLite secara langsung</b> dan berhenti mengandalkan paket <code>geoip-database</code> yang didistribusikan. Ini adalah langkah penting untuk memastikan akurasi dan kepatuhan lisensi di masa mendatang.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- ===== BAGIAN 3: CARA UPGRADE ===== -->
+                <h2>📥 Cara Melakukan Upgrade ke Debian 13.6</h2>
+                <p>
+                    Jika Anda sudah memiliki Debian 13 yang terinstal, melakukan upgrade sangatlah mudah. Cukup perbarui daftar paket dan tingkatkan semua paket yang terpasang menggunakan <code>apt</code>:
+                </p>
+                <pre style="background: var(--bg-details); padding: 1rem; border-radius: var(--radius-sm); overflow-x: auto; border: 1px solid var(--border-color);">
+                    <code style="font-family: 'SF Mono', 'Menlo', monospace; font-size: 0.9rem; color: var(--text-secondary);">
+                        sudo apt update
+                        sudo apt upgrade
+                        sudo apt dist-upgrade
+                    </code>
+                </pre>
+                <p>
+                    Pastikan untuk menggunakan <i>mirror</i> Debian yang up-to-date. Daftar lengkap <i>mirror</i> tersedia di <a href="https://www.debian.org/mirror/list" target="_blank" rel="noopener noreferrer">situs resmi Debian</a>. Bagi yang menginstal dari awal, image instalasi baru akan segera tersedia di lokasi yang biasa.
+                </p>
+
+                <!-- ===== BAGIAN 4: RINGKASAN PEMBARUAN LAINNYA ===== -->
+                <h2>📋 Ringkasan Pembaruan Lainnya</h2>
+                <p>
+                    Selain dua perubahan utama di atas, rilis 13.6 juga mencakup berbagai perbaikan keamanan dari <i>security.debian.org</i>. Sebagian besar dari perbaikan ini sudah diinstal jika Anda rutin memperbarui sistem. Beberapa paket yang diperbarui mencakup:
+                </p>
+                <ul>
+                    <li><b>Kernel Linux</b> — perbaikan untuk kerentanan keamanan dan stabilitas.</li>
+                    <li><b>Paket jaringan</b> — pembaruan untuk OpenSSL, cURL, dan komponen terkait.</li>
+                    <li><b>Aplikasi desktop</b> — perbaikan untuk browser dan perangkat lunak perkantoran.</li>
+                </ul>
+                <p>
+                    Untuk daftar lengkap perubahan, silakan merujuk pada <i>changelog</i> resmi yang tersedia di repositori Debian.
+                </p>
+
+                <!-- ===== PENUTUP ===== -->
+                <h2>📌 Kesimpulan: Tetap Update, Tetap Aman</h2>
+                <p>
+                    Debian 13.6 'trixie' adalah pengingat bahwa menjaga sistem tetap mutakhir adalah kunci keamanan dan stabilitas. Meskipun rilis titik ini tidak membawa fitur besar baru, ia membawa perbaikan penting yang mencegah masalah serius, terutama terkait Secure Boot dan lisensi data.
+                </p>
+                <p>
+                    Jangan tunda untuk melakukan upgrade. Perhatikan panduan tentang Secure Boot CA dan pertimbangkan untuk menggunakan GeoLite langsung untuk keperluan geolokasi. Dengan langkah-langkah ini, Anda akan memastikan sistem Debian Anda tetap aman, andal, dan sesuai dengan standar perangkat lunak bebas.
+                </p>
+                <blockquote>
+                    <p>
+                        “Debian adalah bukti bahwa perangkat lunak bebas dapat menghasilkan sistem yang stabil, aman, dan terpercaya untuk semua.”
+                    </p>
+                </blockquote>
+                <p>
+                    Selamat memperbarui, dan terus dukung Debian!
+                </p>
+
+                <!-- ===== SIGNATURE WAJIB ===== -->
+                <!--wajib ini tulis signature artikel oleh LayarKosong-->
+
+                <!-- ===== FOOTER ===== -->
+                <footer class="article-footer">
+                    <span>✍️ Fakhrul</span>
+                    <span class="sep">•</span>
+                    <span>📅 11 Juli 2026</span>
+                    <span class="sep">•</span>
+                    <span>🄯 2014–2026</span>
+                </footer>
+
+            </article>
+        </main>
+    </div>
+
+</body>
+</html>
