@@ -1,157 +1,74 @@
-// cloudflare-pages-clean.ts
-const API = "https://api.cloudflare.com/client/v4";
-const accountId = Bun.env.CF_ACCOUNT_ID;
-const projectName = Bun.env.CF_PROJECT_NAME;
-const token = Bun.env.CF_API_TOKEN;
+import { glob } from 'glob';
+import { load } from 'cheerio';
+import { readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 
-if (!accountId || !projectName || !token) {
-  console.error("❌ Environment variable belum lengkap (CF_ACCOUNT_ID, CF_PROJECT_NAME, CF_API_TOKEN).");
-  process.exit(1);
-}
+const SOURCE_DIR = 'artikel';
 
-// Interface ...
-interface CloudflareDeployment { ... }
-interface CloudflareResponse<T> { ... }
+async function cleanHtmlFile(filePath: string) {
+  const fileName = path.basename(filePath);
 
-console.log("🚀 Mengambil daftar deployment…");
-const DEFAULT_TIMEOUT = 30_000;
-
-async function fetchWithTimeout(url: string, opts: RequestInit = {}, timeout: number = DEFAULT_TIMEOUT): Promise<Response> {
-  const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), timeout);
   try {
-    const res = await fetch(url, { ...opts, signal: controller.signal });
-    return res;
-  } finally {
-    clearTimeout(id);
-  }
-}
+    const htmlContent = await readFile(filePath, 'utf-8');
+    const $ = load(htmlContent, { decodeEntities: false });
 
-async function fetchDeployments(): Promise<CloudflareDeployment[]> {
-  const url = `${API}/accounts/${accountId}/pages/projects/${projectName}/deployments`;
-  const res = await fetchWithTimeout(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json"
-    }
-  });
+    let isModified = false;
 
-  if (!res.ok) {
-    throw new Error(`HTTP Error: ${res.status} ${res.statusText}`);
-  }
-
-  const json = (await res.json()) as CloudflareResponse<CloudflareDeployment[]>;
-  if (!json.success || !Array.isArray(json.result)) {
-    throw new Error(`API Error: ${JSON.stringify(json.errors ?? json)}`);
-  }
-
-  return json.result;
-}
-
-function isPreviewDeployment(d: CloudflareDeployment): boolean {
-  return d.production === false ||
-  typeof d.production === "undefined" ||
-  d.environment === "preview";
-}
-
-function getCreatedTime(d: CloudflareDeployment): number {
-  const dateStr = d.created_on ?? d.created_at;
-  if (!dateStr) return 0;
-  const t = Date.parse(dateStr);
-  return Number.isNaN(t) ? 0 : t;
-}
-
-async function deleteDeployment(id: string): Promise<boolean> {
-  const url = `${API}/accounts/${accountId}/pages/projects/${projectName}/deployments/${id}`;
-  const res = await fetchWithTimeout(url, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json"
-    }
-  });
-
-  if (!res.ok) {
-    console.error(`❌ HTTP Error hapus ${id}:`, res.status, res.statusText);
-    return false;
-  }
-
-  const json = (await res.json()) as CloudflareResponse<any>;
-  if (!json.success) {
-    console.error(`❌ Gagal hapus ${id}:`, json.errors ?? json);
-    return false;
-  }
-
-  console.log(`✔ Berhasil hapus ${id}`);
-  return true;
-}
-
-// Hapus serial untuk menghindari rate limit
-async function runDeletesSerial(previews: CloudflareDeployment[]): Promise<void> {
-  for (const p of previews) {
-    try {
-      await deleteDeployment(p.id);
-    } catch (err) {
-      console.error(`⚠️ Error saat menghapus ${p.id}:`, err);
-    }
-  }
-}
-
-// ==================== FUNGSI RUN ====================
-async function run(): Promise<void> {
-  try {
-    const deployments = await fetchDeployments();
-    const previews = deployments
-    .filter(isPreviewDeployment)
-    .sort((a, b) => getCreatedTime(a) - getCreatedTime(b));
-
-    console.log(`📦 Total deployment ditemukan: ${deployments.length}`);
-    console.log(`🔎 Preview deployment ditemukan: ${previews.length}`);
-
-    if (previews.length <= 1) {
-      console.log(`⚠️ Jumlah preview saat ini: ${previews.length}.`);
-      console.log("ℹ Syarat hapus harus > 1 item. Pekerjaan dihentikan (Skip).");
-      return;
+    // 1. Hapus Duplikat script data-provider.js
+    const dataProviders = $('script[src="/ext/data-provider.js"]');
+    if (dataProviders.length > 1) {
+      dataProviders.slice(1).remove();
+      isModified = true;
     }
 
-    const numToKeep = 1;
-    const numToDelete = previews.length - numToKeep;
-    const previewsToDelete = previews.slice(0, numToDelete);
+    // 2. Bersihkan spasi kosong aneh (&nbsp; / \xA0)
+    // PROTEKSI: Abaikan teks di dalam <pre>, <code>, dan <script>
+    $('head, body').find(':not(pre, code, script)').contents().each((_, el) => {
+      if (el.type === 'text' && el.data.includes('\xA0')) {
+        const cleanedData = el.data.replace(/\xA0/g, ' ');
+        if (el.data !== cleanedData) {
+          el.data = cleanedData;
+          isModified = true;
+        }
+      }
+    });
 
-    console.log(`🗑 Preview total akan dihapus: ${previewsToDelete.length}`);
-    console.log(`🧾 Menyisakan ${numToKeep} preview terbaru.`);
+    // 3. SAPU BERSIH Baris Kosong Berlebih
+    // PROTEKSI: Kita hanya menyisir elemen yang BUKAN script/pre/code
+    $('head, body').contents().each((_, el) => {
+      if (el.type === 'text') {
+        // Cek apakah teks ini berada di dalam tag terlarang (script/pre/code)
+        const parentTag = $(el).parent()[0]?.name;
+        if (['script', 'pre', 'code'].includes(parentTag)) return;
 
-    await runDeletesSerial(previewsToDelete);
-    console.log(`✅ Selesai menghapus loop ini! (${previewsToDelete.length} preview deployment dihapus)`);
+        // Jika teks hanya berisi newline/spasi (baris kosong melar)
+        if (/^\s*[\r\n]+\s*$/.test(el.data)) {
+          if (el.data.length > 1) {
+            el.data = '\n';
+            isModified = true;
+          }
+        }
+      }
+    });
 
-    // === COUNTER GLOBAL OTOMATIS ===
-    totalDeleted += previewsToDelete.length;   // <--- INI YANG AKURAT!
+    // 4. Simpan hasil (Overwrite) hanya jika ada perubahan
+    if (isModified) {
+      // Buang trailing spaces (spasi di ujung baris) tapi tetap jaga integritas tag
+      let finalHtml = $.html().replace(/[ \t]+$/gm, '');
 
-  } catch (err: any) {
-    if (err.name === "AbortError") {
-      console.error("❌ Request timeout.");
-    } else {
-      console.error("❌ Fatal error:", err.message ?? err);
+      await writeFile(filePath, finalHtml);
+      console.log(`✅ ${fileName}: Bersih & Aman (Script Protected)!`);
     }
-    process.exit(1);
+
+  } catch (err) {
+    console.error(`❌ Gagal: ${fileName} ->`, err);
   }
 }
 
-// ==================== LOOPING INTERNAL 3 KALI ====================
-let totalDeleted = 0;          // COUNTER GLOBAL
+// Eksekusi Paralel (Cepat!)
+const files = await glob(`${SOURCE_DIR}/*.html`);
+console.log(`🚀 Membersihkan ${files.length} file di folder ${SOURCE_DIR}...`);
 
-console.log("🔁 Memulai looping pembersihan deployment (3 kali) dengan jeda 10 detik...");
-for (let i = 1; i <= 3; i++) {
-  console.log(`\n🚀 LOOP ${i} dari 3 - Mulai menjalankan...`);
-  await run();
+await Promise.all(files.map(f => cleanHtmlFile(f)));
 
-  if (i < 3) {
-    console.log(`⏳ Tunggu 10 detik sebelum memulai LOOP ${i + 1}...`);
-    await new Promise(resolve => setTimeout(resolve, 10_000));
-  } else {
-    console.log(`🎉 LOOP 3 selesai! Semua pembersihan selesai.`);
-  }
-}
-
-// ==================== TOTAL DI AKHIR ====================
-console.log(`\n📊 TOTAL PREVIEW YANG DIHAPUS SEPANJANG 3 LOOP: ${totalDeleted}`);
+console.log(`\n✨ Selesai! Struktur HTML rapi tanpa merusak script & kode.`);
