@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
 xmlns:html="http://www.w3.org/TR/REC-html40"
-xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+xmlns:image="http://www.google.com/schemas/image/1.1"
 xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9"
-xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+xmlns:video="http://www.google.com/schemas/video/1.1"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 
@@ -126,7 +126,7 @@ a:hover { text-decoration: underline; }
         </div>
     </div>
 
-    <table id="sitemap-table">
+    <table id="table">
         <xsl:choose>
             <xsl:when test="sitemap:sitemapindex">
                 <thead>
@@ -140,10 +140,10 @@ a:hover { text-decoration: underline; }
                 <tbody>
                     <xsl:variable name="totalIdx" select="count(sitemap:sitemapindex/sitemap:sitemap)" />
                     <xsl:for-each select="sitemap:sitemapindex/sitemap:sitemap">
-                        <tr class="sitemap-row">
+                        <tr class="row">
                             <td class="col-no"><xsl:value-of select="$totalIdx - (position() - 1)"/></td>
                             <td>
-                                <a href="{sitemap:loc}" class="sub-sitemap-link" target="_blank" rel="noopener noreferrer"><xsl:value-of select="sitemap:loc"/></a>
+                                <a href="{sitemap:loc}" class="sub-link" target="_blank" rel="noopener noreferrer"><xsl:value-of select="sitemap:loc"/></a>
                             </td>
                             <td>
                                 <span class="article-count">⏳ Menghitung...</span>
@@ -166,7 +166,7 @@ a:hover { text-decoration: underline; }
                 <tbody>
                     <xsl:variable name="total" select="count(sitemap:urlset/sitemap:url)" />
                     <xsl:for-each select="sitemap:urlset/sitemap:url">
-                        <tr class="sitemap-row">
+                        <tr class="row">
                             <td class="col-no"><xsl:value-of select="$total - (position() - 1)"/></td>
                             <td>
                                 <xsl:if test="image:image/image:loc">
@@ -205,11 +205,11 @@ a:hover { text-decoration: underline; }
 <![CDATA[
     // -- Fetch Jumlah Artikel di Index --
     async function fetchSitemapCounts() {
-        const rows = document.querySelectorAll('.sitemap-row');
-        if (!document.querySelector('.sub-sitemap-link')) return;
+        const rows = document.querySelectorAll('.row');
+        if (!document.querySelector('.sub-link')) return;
 
         for (let row of rows) {
-            const link = row.querySelector('.sub-sitemap-link');
+            const link = row.querySelector('.sub-link');
             const countSpan = row.querySelector('.article-count');
 
             if (link && countSpan) {
@@ -271,7 +271,7 @@ a:hover { text-decoration: underline; }
     // -- Pagination Logic --
     let currentPage = 1;
     const recordsPerPage = 36;
-    const pgRows = document.getElementsByClassName('sitemap-row');
+    const pgRows = document.getElementsByClassName('row');
     const totalPages = Math.ceil(pgRows.length / recordsPerPage) || 1;
 
     const currentPageEles = document.getElementsByClassName('current-page-txt');

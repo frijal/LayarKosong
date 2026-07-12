@@ -106,20 +106,20 @@ const buildAtom = (t: string, items: any[], feedUrl: string, desc: string, sizes
 };
 
 const buildSitemapUrlset = (entries: string): string =>
-`<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n${entries}\n</urlset>`;
+`<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/image/1.1" xmlns:video="http://www.google.com/schemas/video/1.1">\n${entries}\n</urlset>`;
 
 const buildSitemapIndex = (items: { loc: string; lastmod: string }[]): string =>
 `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items.map(it => `  <sitemap>\n    <loc>${escapeXML(it.loc)}</loc>\n    <lastmod>${it.lastmod}</lastmod>\n  </sitemap>`).join('')}\n</sitemapindex>`;
 
-// 🧹 Wipe sitemap kategori — format lama BERPREFIX "sitemap-*.xml" & format baru TANPA prefix "<slug>.xml"
+// 🧹 Wipe sitemap kategori — format lama BERPREFIX "*.xml" & format baru TANPA prefix "<slug>.xml"
 // dibersihkan dulu sebelum ditulis ulang, biar kategori yang udah nggak aktif nggak nyisain file nyasar.
 const cleanupOldSitemaps = async (): Promise<number> => {
     let removed = 0;
 
-    // Migrasi format lama: sitemap-<slug>.xml (prefix "sitemap-" sudah dipensiunkan)
+    // Migrasi format lama: <slug>.xml (prefix "" sudah dipensiunkan)
     const files = await fs.readdir(C.root).catch(() => []);
     for (const f of files) {
-        if (/^sitemap-.+\.xml$/i.test(f)) {
+        if (/^.+\.xml$/i.test(f)) {
             await fs.rm(`${C.root}/${f}`, { force: true });
             removed++;
         }
@@ -698,7 +698,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
             `${s}-atom.xml   /${s}.atom  301`,
             `${s}.rss        /${s}.rss   301`,
             `${s}.atom       /${s}.atom  301`,
-            `/sitemap-${s}.xml     /${s}.xml   301`,
+            `/${s}.xml     /${s}.xml   301`,
         ]),
     ].join('\n');
 

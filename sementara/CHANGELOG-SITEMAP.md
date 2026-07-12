@@ -17,7 +17,7 @@ Kode sitemap generator blog Layar Kosong diperbaiki untuk sesuai dengan **Google
 </image:image>
 ```
 
-**Sumber:** [Spring Cleaning Sitemap Extensions - Google Search Central Blog](https://developers.google.com/search/blog/2022/05/spring-cleaning-sitemap-extensions)
+**Sumber:** [Spring Cleaning Sitemap Extensions - Google Search Central Blog](https://developers.google.com/search/blog/2022/05/spring-cleaning-extensions)
 
 Tag yang deprecated:
 - `<image:caption>` ❌
@@ -201,7 +201,7 @@ vids.forEach(s => {
 
 ```bash
 # Run sitemap generator yang sudah fixed
-bun run sitemap-generator-fixed.ts
+bun run generator-fixed.ts
 ```
 
 **Output:**
@@ -235,7 +235,7 @@ Setelah generate sitemap, cek:
 
 - [Google Search Central - Image Sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/image-sitemaps)
 - [Google Search Central - Video Sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps)
-- [Deprecated Tags Announcement](https://developers.google.com/search/blog/2022/05/spring-cleaning-sitemap-extensions)
+- [Deprecated Tags Announcement](https://developers.google.com/search/blog/2022/05/spring-cleaning-extensions)
 
 ---
 

@@ -496,7 +496,7 @@ const generate = async () =&gt; {
       });
     const jsonString = formatJsonOutput(grouped);
     await fs.writeFile(CONFIG.jsonOut, jsonString, 'utf8');
-    const xmlContent = `&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n&lt;urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap/image/1.1 http://www.google.com/schemas/sitemap/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;\n${xmlUrls.join('\n')}\n&lt;/urlset&gt;`;
+    const xmlContent = `&lt;?xml version="1.0" encoding="UTF-8"?&gt;\n&lt;urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap/image/1.1 http://www.google.com/schemas/sitemap/1.1/image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;\n${xmlUrls.join('\n')}\n&lt;/urlset&gt;`;
     await fs.writeFile(CONFIG.xmlOut, xmlContent, 'utf8');
     await generateCategoryPages(grouped);
     console.log(

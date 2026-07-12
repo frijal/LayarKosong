@@ -257,7 +257,7 @@
             transition: color 0.3s;
         }
         /* --- 4. Sistem Navigasi Tombol Floating Desktop --- */
-        #btn-sitemap-left, #btn-home-right {
+        #btn-left, #btn-home-right {
             position: fixed; 
             display: flex; 
             align-items: center; 
@@ -274,11 +274,11 @@
             transition: background-color 0.3s, transform 0.2s, left 0.3s, right 0.3s, bottom 0.3s;
             z-index: 9999;
         }
-        #btn-sitemap-left:hover, #btn-home-right:hover { 
+        #btn-left:hover, #btn-home-right:hover { 
             background-color: var(--accent-hover); 
             transform: scale(1.05); 
         }
-        #btn-sitemap-left { 
+        #btn-left { 
             left: 20px; /* Ditambah sedikit jarak agar lebih bernapas dari tepi layar */
             top: 30%; 
             transform: translateY(-50%); 
@@ -288,7 +288,7 @@
             bottom: 20%; 
             transform: translateY(50%); 
         }
-        #btn-sitemap-left svg, #btn-home-right svg { 
+        #btn-left svg, #btn-home-right svg { 
             flex-shrink: 0; 
             margin-right: 6px; 
         }
@@ -307,7 +307,7 @@
             /* Penyelamatan Tombol Floating di Mobile:
                Dipindahkan ke bawah layar, berjajar rapi membentuk Bottom Dock Navbar
             */
-            #btn-sitemap-left, #btn-home-right {
+            #btn-left, #btn-home-right {
                 position: fixed;
                 top: auto !important;
                 bottom: 16px !important;
@@ -316,7 +316,7 @@
                 box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
                 padding: 14px 10px; /* Dipertebal agar ramah ketukan jari */
             }
-            #btn-sitemap-left {
+            #btn-left {
                 left: 12px !important;
                 right: auto;
             }

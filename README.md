@@ -56,7 +56,7 @@ graph TD
         Build2 -- Tidak --> Build3{"Update Sitemap TXT?"}
         
         S_Srcset --> Build3
-        Build3 -- Ya --> S_SiteTXT[/"4️⃣ koki.ts, bikin-sitemap-txt.ts, dll"/] --> Build4
+        Build3 -- Ya --> S_SiteTXT[/"4️⃣ koki.ts, bikin-txt.ts, dll"/] --> Build4
         Build3 -- Tidak --> Build4{"Inject Schema?"}
         
         S_SiteTXT --> Build4
@@ -122,7 +122,7 @@ Tertarik melihat jeroan kode di balik arsitektur di atas? Berikut adalah tautan 
 
 - [`generator-pro.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/generator-pro.ts) — Otak utama pembuat file `artikel.json`, XML, dan RSS Feed.
 - [`srcset-generator.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/srcset-generator.ts) — Mengoptimasi ukuran gambar untuk berbagai resolusi layar.
-- **Sitemap & Redirect Bundle:** Pasukan pembuat peta situs dan *routing* ([`koki.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/koki.ts), [`bikin-sitemap-txt.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/bikin-sitemap-txt.ts), [`generate_llms.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/generate_llms.ts), [`redirectmap.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/redirectmap.ts)).
+- **Sitemap & Redirect Bundle:** Pasukan pembuat peta situs dan *routing* ([`koki.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/koki.ts), [`bikin-txt.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/bikin-txt.ts), [`generate_llms.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/generate_llms.ts), [`redirectmap.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/redirectmap.ts)).
 - [`inject-schema.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/inject-schema.ts) — Menyuntikkan *Schema.org* untuk *rich snippet* Google.
 - [`html-to-markdown.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/html-to-markdown.ts) — Melakukan konversi format HTML menjadi Markdown.
 - **Minifier:** Kompresor file tingkat tinggi untuk <em>load</em> secepat kilat ([`minify-html.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/minify-html.ts), [`minify-jsonxml.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/minify-jsonxml.ts)).

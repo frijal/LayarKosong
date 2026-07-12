@@ -176,7 +176,7 @@ Setelah deploy kode baru:
 
 ```bash
 # 1. Generate sitemap
-bun run sitemap-generator-fixed.ts
+bun run generator-fixed.ts
 
 # 2. Validasi XML
 xmllint --noout sitemap.xml  # Cek XML valid

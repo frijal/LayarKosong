@@ -39,7 +39,7 @@ Update: 05 Jul 2026 | 22:26 WITA
 | 📄 webmanifest | **1** | site.webmanifest |
 | 🖼️ webp  | **3362** | thumbnail.webp, img, thumbnail-md.webp, thumbnail-rg.webp, thumbnail-sm.webp |
 | 📄 woff2 | **8** | dapur, ext |
-| 📄 xml   | **27** | feed-opini-sosial.xml, sitemap.xml, sitemap-warta-tekno.xml, sitemap-gaya-hidup.xml, rss.xml, sitemap-sistem-terbuka.xml, feed-gaya-hidup-atom.xml, feed-gaya-hidup.xml, sementara, feed-jejak-sejarah.xml, BingSiteAuth.xml, sitemap-lainnya.xml, feed-olah-media.xml, feed-sistem-terbuka-atom.xml, feed-sistem-terbuka.xml, atom.xml, feed-olah-media-atom.xml, feed-lainnya-atom.xml, feed-jejak-sejarah-atom.xml, feed-warta-tekno.xml, feed-lainnya.xml, opensearch.xml, sitemap-olah-media.xml, sitemap-jejak-sejarah.xml, feed-opini-sosial-atom.xml, feed-warta-tekno-atom.xml, sitemap-opini-sosial.xml |
+| 📄 xml   | **27** | feed-opini-sosial.xml, sitemap.xml, warta-tekno.xml, gaya-hidup.xml, rss.xml, sistem-terbuka.xml, feed-gaya-hidup-atom.xml, feed-gaya-hidup.xml, sementara, feed-jejak-sejarah.xml, BingSiteAuth.xml, lainnya.xml, feed-olah-media.xml, feed-sistem-terbuka-atom.xml, feed-sistem-terbuka.xml, atom.xml, feed-olah-media-atom.xml, feed-lainnya-atom.xml, feed-jejak-sejarah-atom.xml, feed-warta-tekno.xml, feed-lainnya.xml, opensearch.xml, olah-media.xml, jejak-sejarah.xml, feed-opini-sosial-atom.xml, feed-warta-tekno-atom.xml, opini-sosial.xml |
 | 📄 xsl   | **3** | rss.xsl, sitemap.xsl, atom.xsl |
 
 **Total File:** 6944

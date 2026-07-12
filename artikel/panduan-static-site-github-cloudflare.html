@@ -378,7 +378,7 @@ jobs:
                 <ul>
                     <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/generator-pro.ts" target="_blank">generator-pro.ts</a> — Pembuat file <code>artikel.json</code>, XML, dan RSS Feed.</li>
                     <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/srcset-generator.ts" target="_blank">srcset-generator.ts</a> — Mengoptimasi ukuran gambar untuk berbagai perangkat.</li>
-                    <li><strong>Sitemap &amp; Redirect:</strong> <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/koki.ts" target="_blank">koki.ts</a>, <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/bikin-sitemap-txt.ts" target="_blank">bikin-sitemap-txt.ts</a>, <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/generate_llms.ts" target="_blank">generate_llms.ts</a>, <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/redirectmap.ts" target="_blank">redirectmap.ts</a>.</li>
+                    <li><strong>Sitemap &amp; Redirect:</strong> <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/koki.ts" target="_blank">koki.ts</a>, <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/bikin-txt.ts" target="_blank">bikin-txt.ts</a>, <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/generate_llms.ts" target="_blank">generate_llms.ts</a>, <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/redirectmap.ts" target="_blank">redirectmap.ts</a>.</li>
                     <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/inject-schema.ts" target="_blank">inject-schema.ts</a> — Injeksi <em>Schema.org</em>.</li>
                     <li><a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/html-to-markdown.ts" target="_blank">html-to-markdown.ts</a> — Konversi ke Markdown.</li>
                     <li><strong>Minifier:</strong> <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/minify-html.ts" target="_blank">minify-html.ts</a> dan <a href="https://raw.githubusercontent.com/frijal/LayarKosong/main/dapur/minify-jsonxml.ts" target="_blank">minify-jsonxml.ts</a>.</li>
@@ -457,7 +457,7 @@ jobs:
         if: env.DO_SITEMAP_TXT == 'true'
         run: |
           bun run dapur/koki.ts --once
-          bun run dapur/bikin-sitemap-txt.ts
+          bun run dapur/bikin-txt.ts
           bun run dapur/generate_llms.ts
           bun run dapur/redirectmap.ts
       - name: '7. Inject SEO Schema'

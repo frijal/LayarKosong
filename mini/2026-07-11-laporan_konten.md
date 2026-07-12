@@ -45,7 +45,7 @@ Update: 11 Jul 2026 | 22:19 WITA
 | 📄 webmanifest | **1** | site.webmanifest |
 | 🖼️ webp  | **3477** | thumbnail.webp, img, thumbnail-md.webp, thumbnail-rg.webp, thumbnail-sm.webp |
 | 📄 woff2 | **8** | dapur, ext |
-| 📄 xml   | **11** | sitemap.xml, sitemap-warta-tekno.xml, sitemap-gaya-hidup.xml, sitemap-sistem-terbuka.xml, sementara, BingSiteAuth.xml, sitemap-lainnya.xml, opensearch.xml, sitemap-olah-media.xml, sitemap-jejak-sejarah.xml, sitemap-opini-sosial.xml |
+| 📄 xml   | **11** | sitemap.xml, warta-tekno.xml, gaya-hidup.xml, sistem-terbuka.xml, sementara, BingSiteAuth.xml, lainnya.xml, opensearch.xml, olah-media.xml, jejak-sejarah.xml, opini-sosial.xml |
 | 📄 xsl   | **3** | rss.xsl, sitemap.xsl, atom.xsl |
 
 **Total File:** 7155

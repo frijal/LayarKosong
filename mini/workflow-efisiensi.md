@@ -18,7 +18,7 @@
 | generate-json-xml.yml | generator-pro.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | srcset-generator.ts | 🟡 Ada | `cheerio`, `sharp` | ✅ Sudah Optimal |
 | generate-json-xml.yml | koki.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
-| generate-json-xml.yml | bikin-sitemap-txt.ts | 🟡 Ada | `fs` | ✅ Sudah Optimal |
+| generate-json-xml.yml | bikin-txt.ts | 🟡 Ada | `fs` | ✅ Sudah Optimal |
 | generate-json-xml.yml | generate_llms.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | redirectmap.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
 | generate-json-xml.yml | inject-schema.ts | 🟡 Ada | - | ⚡ **Hapus bun install!** |
