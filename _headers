@@ -178,6 +178,10 @@ https://:version.:project.pages.dev/*
   Content-Type: application/rss+xml; charset=utf-8
 /jejak-sejarah.atom
   Content-Type: application/atom+xml; charset=utf-8
+/gaya-hidup.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/gaya-hidup.atom
+  Content-Type: application/atom+xml; charset=utf-8
 /warta-tekno.rss
   Content-Type: application/rss+xml; charset=utf-8
 /warta-tekno.atom
@@ -189,10 +193,6 @@ https://:version.:project.pages.dev/*
 /lainnya.rss
   Content-Type: application/rss+xml; charset=utf-8
 /lainnya.atom
-  Content-Type: application/atom+xml; charset=utf-8
-/gaya-hidup.rss
-  Content-Type: application/rss+xml; charset=utf-8
-/gaya-hidup.atom
   Content-Type: application/atom+xml; charset=utf-8
 /opini-sosial.rss
   Content-Type: application/rss+xml; charset=utf-8
