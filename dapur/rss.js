@@ -182,7 +182,7 @@ ${mainItemsXml}
 
     for (const [category, articles] of Object.entries(artikelData)) {
         const categorySlug = categoryToSlug(category);
-        const categoryRssPath = path.join(__dirname, `..${categorySlug}.xml`);
+        const categoryRssPath = path.join(__dirname, `../${categorySlug}.rss`);
         
         let categoryItems = [];
         for (const arr of articles) {
@@ -228,7 +228,7 @@ ${enclosure}
     <link><![CDATA[https://dalam.web.id/]]></link>
     <description><![CDATA[Feed artikel terbaru untuk kategori ${category}]]></description>
     <language>id-ID</language>
-    <atom:link href="https://dalam.web.id${categorySlug}.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dalam.web.id/${categorySlug}.atom" rel="self" type="application/atom+xml" />
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 ${categoryItemsXml}
   </channel>
@@ -236,7 +236,7 @@ ${categoryItemsXml}
 
         categoryWritePromises.push(
             fs.writeFile(categoryRssPath, categoryRss, 'utf8')
-                .then(() => console.log(`✅ feed-${categorySlug}.xml berhasil dibuat (${categoryItems.length} item).`))
+                .then(() => console.log(`✅ ${categorySlug}.atom berhasil dibuat (${categoryItems.length} item).`))
         );
     }
     
