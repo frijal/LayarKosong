@@ -771,8 +771,6 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
     const liveCatSlugs = [...finalSlugs];
 
     const headersBlock = [
-        '/*',
-        '  Link: </ext/homepage.css>; rel=preload; as=style', // ⚡ INSTRUKSI KE CLOUDFLARE
         '/rss.rss',
         '  Content-Type: application/rss+xml; charset=utf-8',
         '/atom.atom',
