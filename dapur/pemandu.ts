@@ -93,14 +93,39 @@ function attachImageFallback(img: HTMLImageElement, fallbackChain: string[]): vo
 function initProgressBar(): void {
   const bar = document.getElementById('progress');
   if (!bar) return;
-  const onScroll = () => {
-    const h = document.documentElement, b = document.body;
-    const st = h.scrollTop || b.scrollTop, sh = h.scrollHeight || b.scrollHeight, ch = h.clientHeight;
+
+  let ticking = false;
+
+  const updateProgress = () => {
+    const h = document.documentElement;
+    const b = document.body;
+
+    const st = h.scrollTop || b.scrollTop;
+    const sh = h.scrollHeight || b.scrollHeight;
+    const ch = h.clientHeight;
     const max = sh - ch;
-    bar.style.width = max > 0 ? (st / max) * 100 + '%' : '0%';
+
+    // Menghitung rasio (0.0 sampai 1.0)
+    const progressRatio = max > 0 ? (st / max) : 0;
+
+    // Kalkulasi pergeseran (TranslateX)
+    const translateValue = (1 - progressRatio) * -100;
+
+    // Terapkan animasi via GPU
+    bar.style.transform = `translateX(${translateValue}%)`;
+
+    ticking = false;
   };
+
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateProgress);
+      ticking = true;
+    }
+  };
+
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  updateProgress(); // Eksekusi pertama kali
 }
 
 function initFloatingSearch(): void {

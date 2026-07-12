@@ -49,17 +49,22 @@
 }
 
 /* ========================
- * 1. PROGRESS BAR
+ * 1. PROGRESS BAR (GPU OPTIMIZED)
  * ======================== */
 #progress {
 position: fixed;
 top: 0;
 left: 0;
 height: 0.25rem;
-width: 0%;
+
+/* PERUBAHAN KRUSIAL DI SINI */
+width: 100%;
+transform: translateX(-100%);
+will-change: transform;
+/* Hapus properti transition: width... */
+
 background: linear-gradient(90deg, var(--accent), var(--accent-2));
 z-index: 10002;
-transition: width 0.15s ease-out;
 pointer-events: none;
 }
 
