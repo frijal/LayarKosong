@@ -62,9 +62,6 @@ const mime = (u: string) =>
 
 const escapeAttr = (s: string) => s.replace(/"/g, '&quot;');
 
-// 🖼️ <img> dengan fallback bertingkat: -sm.webp (utama) → -md.webp → gambar asli → /thumbnail.webp (safety net terakhir)
-// onerror mikirin dirinya sendiri: tiap gagal, dia ganti handler-nya ke tahap berikutnya sebelum pindah src.
-// Tahap terakhir set onerror=null biar kalau /thumbnail.webp pun 404, browser nggak looping nge-request tanpa henti.
 const imgWithFallback = (src: string, alt: string, extraAttrs: string = ''): string => {
     const smSrc = src.replace(/(\.[a-zA-Z0-9]+)$/, '-sm$1');
     const mdSrc = src.replace(/(\.[a-zA-Z0-9]+)$/, '-md$1');
@@ -77,6 +74,117 @@ const escapeXML = (s: string) => s
 .replace(/</g, '&lt;')
 .replace(/>/g, '&gt;')
 .replace(/"/g, '&quot;');
+
+// =========================================================================
+// 🌟 HELPER UNTUK PRE-RENDERING HOMEPAGE (Diletakkan di Global Scope)
+// =========================================================================
+const buildPictureMarkup = (imgUrl: string, title: string, className: string, isPriority: boolean = false, w: number = 1000, h: number = 563): string => {
+    const loading = isPriority ? 'eager' : 'lazy';
+    const fetchPri = isPriority ? ' fetchpriority="high"' : '';
+    const smImg = imgUrl.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
+    const safeTitle = escapeAttr(decodeHTML(title));
+
+    return `
+    <picture>
+    <source media="(max-width: 640px)" srcset="${smImg}">
+    <img src="${imgUrl}" alt="${safeTitle}" class="${className}" width="${w}" height="${h}" loading="${loading}"${fetchPri} decoding="async" onerror="if(this.src.includes('-sm.webp')){this.src='${smImg}';}else{this.onerror=null;this.src='/thumbnail-sm.webp';}">
+    </picture>`;
+};
+
+const formatDateID = (isoDate: string) => {
+    const d = new Date(isoDate);
+    if (isNaN(d.getTime())) return "Baru saja"; // Fallback aman
+    return new Intl.DateTimeFormat('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }).format(d);
+};
+
+// --- FUNGSI INJEKSI SSR KE INDEX.HTML ---
+const injectHomepageSSR = async (flatData: any[]) => {
+    const indexPath = `${C.root}/index.html`;
+    let indexHtml = await Bun.file(indexPath).text().catch(() => '');
+
+    if (!indexHtml) {
+        console.log('⚠️ index.html tidak ditemukan, skip injeksi SSR.');
+        return;
+    }
+
+    console.log('✨ Menyuntikkan Pre-rendered HTML (SSR) ke index.html...');
+
+    // 1. Ambil 1 artikel terbaru per kategori untuk Hero Data
+    const heroData: any[] = [];
+    const usedCategories = new Set();
+
+    for (const item of flatData) {
+        if (!usedCategories.has(item.category)) {
+            heroData.push(item);
+            usedCategories.add(item.category);
+        }
+    }
+
+    // Bangun HTML untuk Hero Slider
+    const heroHtml = heroData.map((h, idx) => {
+        const isFirst = idx === 0;
+        const pic = buildPictureMarkup(h.img, h.title, 'hero-img', isFirst, 1000, 563);
+        const readableCat = getCategoryLabel(slug(h.category));
+        const cleanSummary = sanitize((h.desc || h.title)).substring(0, 150) + '...';
+
+    return `
+    <a href="${h.loc}" class="hero-slide ${isFirst ? 'active' : ''}" aria-hidden="${isFirst ? 'false' : 'true'}" tabindex="${isFirst ? '0' : '-1'}">
+    ${pic}
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+    <span class="hero-cat">${readableCat}</span>
+    ${isFirst ? `<h2 class="hero-title">${decodeHTML(h.title)}</h2>` : `<p class="hero-title" role="heading" aria-level="2">${decodeHTML(h.title)}</p>`}
+    <p class="hero-summary">${cleanSummary} <strong class="hero-cta">Baca Selengkapnya &rarr;</strong></p>
+    </div>
+    </a>`;
+    }).join('');
+
+    // Preload Link khusus untuk gambar LCP
+    const firstHeroSmImg = heroData[0].img.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
+    const preloadLink = `
+    <!-- Preload LCP khusus Mobile & Desktop -->
+    <link rel="preload" as="image" href="${firstHeroSmImg}" media="(max-width: 640px)" fetchpriority="high">
+    <link rel="preload" as="image" href="${heroData[0].img}" media="(min-width: 641px)" fetchpriority="high">
+    `;
+
+    // 2. Bangun HTML untuk Feed (Batasi 6 artikel awal)
+    const activeHeroTitles = heroData.map(h => h.title);
+    const feedItems = flatData.filter(item => !activeHeroTitles.includes(item.title)).slice(0, 6);
+
+    const feedHtml = feedItems.map(item => {
+        const pic = buildPictureMarkup(item.img, item.title, 'card-img', false, 400, 225);
+        const readableCat = getCategoryLabel(slug(item.category));
+        const cleanSummary = sanitize((item.desc || item.title)).substring(0, 120) + '...';
+
+    return `
+    <article class="card">
+    ${pic}
+    <div class="card-body">
+    <div class="card-meta">
+    <time datetime="${item.lastmod}">${formatDateID(item.lastmod)}</time>
+    <span class="card-category">${readableCat}</span>
+    </div>
+    <a href="${item.loc}" class="card-link">
+    <h3 class="card-title">${decodeHTML(item.title)}</h3>
+    <p class="card-excerpt">${cleanSummary}</p>
+    </a>
+    </div>
+    </article>`;
+    }).join('');
+
+    // 3. Proses Penggantian Placeholder di index.html
+    indexHtml = indexHtml.replace(/<!--%%HERO_PRELOAD_LINK%%-->[\s\S]*?(?=<!-- Memuat CSS|<link rel="stylesheet")/i, `<!--%%HERO_PRELOAD_LINK%%-->\n${preloadLink}\n  `);
+
+    indexHtml = indexHtml.replace(/(<div id="heroSliderWrapper"[^>]*>)([\s\S]*?)(<\/div>)/i, `$1\n<!--%%HERO_SSR%%-->\n${heroHtml}\n$3`);
+    indexHtml = indexHtml.replace(/(<div id="hero" class="hero[a-zA-Z0-9\s]*")(>)/i, (match, p1, p2) => p1.includes('data-ssr="true"') ? match : `${p1} data-ssr="true"${p2}`);
+
+    indexHtml = indexHtml.replace(/(<div id="newsFeed"[^>]*>)([\s\S]*?)(<\/div>)/i, `$1\n<!--%%FEED_SSR%%-->\n${feedHtml}\n$3`);
+    indexHtml = indexHtml.replace(/(<div id="newsFeed"[^>]*")(>)/i, (match, p1, p2) => p1.includes('data-ssr="true"') ? match : `${p1} data-ssr="true"${p2}`);
+
+    await Bun.write(indexPath, indexHtml);
+    console.log('✅ Injeksi SSR index.html berhasil!');
+};
+// =========================================================================
 
 const safeCDATA = (s: string) => s.replace(/]]>/g, ']]]]><![CDATA[>');
 
@@ -104,7 +212,7 @@ const calculateFeedRootDate = (items: any[]): Date => {
 const buildRss = (t: string, items: any[], link: string, desc: string, sizes: Map<string, number> = new Map()) => {
     const rootDate = calculateFeedRootDate(items);
     return `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/rss.xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title><![CDATA[${safeCDATA(decodeHTML(t))}]]></title><link>${escapeXML(C.base)}/</link><description><![CDATA[${safeCDATA(desc)}]]></description><language>id-ID</language><atom:link href="${escapeXML(link)}" rel="self" type="application/rss+xml"/><atom:link href="${escapeXML(C.hub)}" rel="hub"/><lastBuildDate>${rootDate.toUTCString()}</lastBuildDate>${items.map(it =>
-        `<item><title><![CDATA[${safeCDATA(decodeHTML(it.title))}]]></title><link>${escapeXML(it.loc)}</link><guid>${escapeXML(it.loc)}</guid><description><![CDATA[${safeCDATA(it.desc || sanitize(decodeHTML(it.title)))}]]></description><pubDate>${new Date(it.lastmod).toUTCString()}</pubDate><category><![CDATA[${safeCDATA(it.category)}]]></category><enclosure url="${escapeXML(it.img)}" length="${sizes.get(it.img) ?? 0}" type="${mime(it.img)}"/></item>`
+        `<item><title><![CDATA[${safeCDATA(decodeHTML(it.title))}]]></title><link>${escapeXML(it.loc)}</link><guid>${escapeXML(it.loc)}</guid><description><![CDATA[${safeCDATA(it.desc \vert{}\vert{} sanitize(decodeHTML(it.title)))}]]></description><pubDate>${new Date(it.lastmod).toUTCString()}</pubDate><category><![CDATA[${safeCDATA(it.category)}]]></category><enclosure url="${escapeXML(it.img)}" length="${sizes.get(it.img) ?? 0}" type="${mime(it.img)}"/></item>`
     ).join('')}</channel></rss>`;
 };
 
@@ -121,12 +229,8 @@ const buildSitemapUrlset = (entries: string): string =>
 const buildSitemapIndex = (items: { loc: string; lastmod: string }[]): string =>
 `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items.map(it => `  <sitemap>\n    <loc>${escapeXML(it.loc)}</loc>\n    <lastmod>${it.lastmod}</lastmod>\n  </sitemap>`).join('')}\n</sitemapindex>`;
 
-// 🧹 Wipe sitemap kategori — format lama BERPREFIX "sitemap-*.xml" & format baru TANPA prefix "<slug>.xml"
-// dibersihkan dulu sebelum ditulis ulang, biar kategori yang udah nggak aktif nggak nyisain file nyasar.
 const cleanupOldSitemaps = async (): Promise<number> => {
     let removed = 0;
-
-    // Migrasi format lama: sitemap-<slug>.xml (prefix "sitemap-" sudah dipensiunkan)
     const files = await fs.readdir(C.root).catch(() => []);
     for (const f of files) {
         if (/^sitemap-.+\.xml$/i.test(f)) {
@@ -134,17 +238,13 @@ const cleanupOldSitemaps = async (): Promise<number> => {
             removed++;
         }
     }
-
-    // Format baru: <slug>.xml — wipe bersih dulu, biar kategori nonaktif nggak nyisa file basi
     for (const s of C.cats) {
         await fs.rm(`${C.root}/${s}.xml`, { force: true });
         removed++;
     }
-
     return removed;
 };
 
-// ── WebSub: ping hub HANYA untuk feed yang beneran berubah (bukan tiap build) ──
 const pingWebSub = async (feedUrls: string[]): Promise<void> => {
     if (feedUrls.length === 0) {
         console.log('🔕 WebSub: nggak ada feed yang berubah, skip ping ke hub.');
@@ -163,12 +263,10 @@ const pingWebSub = async (feedUrls: string[]): Promise<void> => {
         console.log(`📡 WebSub ping → ${C.hub} → HTTP ${res.status} (${feedUrls.length} feed berubah)`);
         feedUrls.forEach(u => console.log(`    🔗 ${u}`));
     } catch (e: any) {
-        // Non-fatal: hub publik boleh down/lambat, build tidak boleh gagal gara-gara ini
         console.log(`⚠️  WebSub ping gagal (dilewati, tidak fatal): ${e?.message || e}`);
     }
 };
 
-// ── Cloudflare Pages: sinkronkan blok terkelola di _headers & _redirects tanpa menimpa isi lain ──
 const upsertManagedBlock = async (path: string, block: string): Promise<void> => {
     const MARK_START = '# --- BEGIN LK-AUTOGEN (komposisi.ts — jangan edit manual) ---';
     const MARK_END   = '# --- END LK-AUTOGEN ---';
@@ -186,7 +284,6 @@ const upsertManagedBlock = async (path: string, block: string): Promise<void> =>
     await Bun.write(path, out);
 };
 
-// ── Distribute helper (Menulis HTML dengan Injeksi Super Kebal + Judul Tetangga Murni) ──
 const distribute = async (
     f: string,
     cat: string,
@@ -206,7 +303,6 @@ const distribute = async (
     const tags = catLabel.split(',').map(t => t.trim()).filter(Boolean);
     const tagsHtml = tags.map(t => `<meta property="article:tag" content="${t}">`).join('\n     ');
 
-    // ✨ SUNTIK URL BESERTA ATRIBUT 'TITLE' (Langsung Judul Bersih) ✨
     let prevNextTags = '';
     if (prevData) {
         const safeTitle = escapeAttr(prevData.title);
@@ -217,42 +313,33 @@ const distribute = async (
         prevNextTags += `\n    <link rel="next" href="${nextData.url}" title="${safeTitle}">`;
     }
 
-    // 🔗 SUNTIK LINK ALTERNATE KE FEED KATEGORI (RSS & Atom) — biar feed reader bisa auto-discover langsung dari artikel
     const catRssUrl  = `${C.base}/${catSlug}.rss`;
     const catAtomUrl = `${C.base}/${catSlug}.atom`;
     const feedLinkTags = `\n    <link rel="alternate" type="application/rss+xml" title="Feed RSS ${catLabel} - Layar Kosong" href="${catRssUrl}">\n    <link rel="alternate" type="application/atom+xml" title="Feed Atom ${catLabel} - Layar Kosong" href="${catAtomUrl}">`;
 
-    // 1. Bersihkan SEMUA sisa tag lama secara total agar tidak terjadi penumpukan
     html = html
-    .replace(/<nav class="static-crumb"[\s\S]*?<\/nav>\s*/gi, '') // 🌟 ANTI-TUMPUK: Buang remah roti lama jika ada
+    .replace(/<nav class="static-crumb"[\s\S]*?<\/nav>\s*/gi, '')
     .replace(/<meta property="article:tag" content="[^"]*">\s*/gi, '')
-    .replace(/<link rel="(prev|next)" [^>]*>\s*/gi, '') // Regex diperluas untuk menghapus tag yang punya 'title'
-    .replace(/<link rel="alternate" type="application\/(rss|atom)\+xml" title="Feed (RSS|Atom)[^"]+"[^>]*>\s*/gi, '') // 🌟 ANTI-TUMPUK: HANYA link feed kategori lama
+    .replace(/<link rel="(prev|next)" [^>]*>\s*/gi, '')
+    .replace(/<link rel="alternate" type="application\/(rss|atom)\+xml" title="Feed (RSS|Atom)[^"]+"[^>]*>\s*/gi, '')
     .replace(/<meta property="article:section" content="[^"]*">\s*/gi, '')
     .replace(/<meta property="og:url" content="[^"]*">\s*/gi, '')
     .replace(/<meta name="twitter:url" content="[^"]*">\s*/gi, '');
 
-    // 2. Siapkan Blok Tag SEO Baru
     const seoInjection = `${prevNextTags}\n    <meta property="og:url" content="${url}">\n    <meta name="twitter:url" content="${url}">\n    <meta property="article:section" content="${catLabel}">\n    ${tagsHtml}${feedLinkTags}`;
 
-    // 3. Suntik Kebal Gagal (Numpang di Tag Canonical)
     if (html.match(/<link rel="canonical" href="[^"]+">/i)) {
         html = html.replace(/<link rel="canonical" href="[^"]+">/i, `<link rel="canonical" href="${url}">${seoInjection}`);
     } else {
         html = html.replace('</head>', `    <link rel="canonical" href="${url}">${seoInjection}\n</head>`);
     }
 
-    // 🌟 4. GENERASI & SUNTIK BREADCRUMB VISUAL 🌟
-    // Kembali ke inline style mini, tanpa <style> internal, murni inherit CSS halaman
     const breadcrumbHtml = `<nav class="static-crumb" aria-label="Breadcrumb" style="font-size: .85rem;"><a href="https://dalam.web.id">Beranda</a> / <a href="/${catSlug}">${catLabel}...</a></nav>`;
-
-    // Cukup jangkar ke tag PEMBUKA <h1...> saja — isi & posisi </h1> diabaikan total
     const H1_OPEN_RE = /<h1[^>]*>/i;
     if (html.match(H1_OPEN_RE)) {
         html = html.replace(H1_OPEN_RE, (match) => `${breadcrumbHtml}\n    ${match}`);
     }
 
-    // 5. Koreksi URL & Waktu Modified
     html = html
     .replace(new RegExp(`${BASE_RE}/artikelx?/${f.replace('.html', '')}`, 'g'), url)
     .replace(/\/artikelx?\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
@@ -268,7 +355,7 @@ const distribute = async (
 // ── TAHAP 1: PENGUMPULAN DATA BERDASARKAN ARTIKEL.JSON MASTER
 // =============================================================================
 (async () => {
-    console.log('🚀 Komposisi Blog V10.6 - Nama Output Seragam (slug.rss/.atom/.xml) + Feed Autodiscovery Tags (Fixed)');
+    console.log('🚀 Komposisi Blog V10.6 - Nama Output Seragam + Pre-rendering (SSR) index.html');
 
     const CACHE_TODAY_FILE = `${C.root}/mini/edited-today.txt`;
     await fs.mkdir(`${C.root}/mini`, { recursive: true }).catch(() => {});
@@ -438,6 +525,10 @@ const distribute = async (
         (final[it.category] ??= []).push([it.title, it.file, it.img, it.lastmod, it.desc]);
     }
 
+    // 👉 INJEKSI PRE-RENDERING HOMEPAGE (SSR) 👈
+    await injectHomepageSSR(flat);
+    // =====================================================
+
     const finalSlugs = new Set(Object.keys(final).map(slug));
 
     for (const s of C.cats) {
@@ -465,7 +556,6 @@ const distribute = async (
     }
     await Bun.write(`${C.root}/artikel-lite.json`, JSON.stringify(liteDb));
 
-    // 🔔 WebSub: siapkan state pelacakan perubahan (biar nggak ping hub kalau memang tidak ada artikel baru)
     const WEBSUB_CACHE_FILE = `${C.root}/mini/websub-cache.json`;
     const prevWebsubState: Record<string, string> = await Bun.file(WEBSUB_CACHE_FILE).json().catch(() => ({}));
     const newWebsubState: Record<string, string> = {};
@@ -516,7 +606,6 @@ sitemapByCategory.get(catSlug)!.push(`
 
     const removedOldSitemaps = await cleanupOldSitemaps();
 
-    // 🔄 MIGRASI FORMAT FEED: hapus sisa file dari skema penamaan-penamaan sebelumnya
     await Promise.all([
         fs.rm(`${C.root}/rss.xml`, { force: true }),
                       fs.rm(`${C.root}/atom.xml`, { force: true }),
@@ -549,15 +638,11 @@ sitemapByCategory.get(catSlug)!.push(`
     await Promise.all([
         ...categorySitemapItems.map(it => Bun.write(`${C.root}/${it.fileName}`, it.content)),
                       Bun.write(`${C.root}/sitemap.xml`, finalSitemapIndexContent),
-
-                      // 🔥 INI DIA FIX-NYA: Simpan urls Set kembali ke sitemap.txt
                       Bun.write(`${C.root}/sitemap.txt`, Array.from(urls).sort().join('\n') + '\n'),
-
                       Bun.write(`${C.root}/rss.rss`, buildRss('Layar Kosong', flat.slice(0, C.limit), `${C.base}/rss.rss`, 'RSS Feed artikel terbaru dari Layar Kosong', globalSizes)),
                       Bun.write(`${C.root}/atom.atom`, buildAtom('Layar Kosong', flat.slice(0, C.limit), `${C.base}/atom.atom`, 'Atom Feed artikel terbaru dari Layar Kosong', globalSizes)),
     ]);
 
-    // Tandai perubahan feed utama (situs-lebar) buat keperluan WebSub
     const rootNewest = flat[0]?.loc;
     if (rootNewest) {
         newWebsubState['__root__'] = rootNewest;
@@ -600,7 +685,6 @@ sitemapByCategory.get(catSlug)!.push(`
                 </a>`;
             }).join('');
 
-            // Murni ngerubah placeholder di template, nggak ada acara suntik menyuntik tag <head> lagi
             const pg = tmp
             .replace(/%%TITLE%%/g, seoCategoryLabel)
             .replace(/%%DESCRIPTION%%/g, seoCategoryLabel)
@@ -625,7 +709,6 @@ sitemapByCategory.get(catSlug)!.push(`
                               Bun.write(`${C.root}/${s}.atom`, buildAtom(`Kategori ${seoCategoryLabel}`, catItems, rAtomUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
             ]);
 
-            // Tandai perubahan feed kategori ini buat keperluan WebSub
             const catNewest = catItems[0]?.loc;
             if (catNewest) {
                 newWebsubState[s] = catNewest;
@@ -682,13 +765,10 @@ for (const [filename, timeStr] of editedTodayMap.entries()) {
 await Bun.write(CACHE_TODAY_FILE, cacheOut);
     }
 
-    // 🔔 WebSub: kirim notifikasi ke hub HANYA untuk feed yang beneran berubah, lalu simpan state terbaru
     await pingWebSub(feedsToNotify);
     await Bun.write(WEBSUB_CACHE_FILE, JSON.stringify(newWebsubState, null, 2));
 
-    // 🗂️ Sinkronkan _headers (Content-Type .rss/.atom) & _redirects (URL lama → baru) Cloudflare Pages
-    // Ditulis sebagai blok terkelola (di antara marker) supaya nggak menimpa aturan lain yang sudah ada.
-    const liveCatSlugs = [...finalSlugs]; // kategori yang benar-benar punya feed aktif saat ini
+    const liveCatSlugs = [...finalSlugs];
 
     const headersBlock = [
         '/rss.rss',
