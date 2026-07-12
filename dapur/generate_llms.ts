@@ -109,7 +109,7 @@ async function main() {
     for (const cat of categories) {
         const articles = data[cat];
         const catSlug = slugify(cat);
-        rssLinks.push(`- [RSS Feed ${capitalize(cat)}](${DOMAIN}/feed-${catSlug}.rss)`);
+        rssLinks.push(`- [RSS Feed ${capitalize(cat)}](${DOMAIN}${catSlug}.rss)`);
 
         const validArticles = articles
             .filter(item => item[1] && !item[1].includes("agregat-20"))
