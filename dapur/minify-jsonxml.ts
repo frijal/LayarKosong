@@ -4,32 +4,32 @@ import path from "node:path";
 
 // Daftar file yang akan disikat habis whitespace-nya
 const filesToMinify: string[] = [
-'./artikel.json',
 './artikel-lite.json',
-'./rss.rss',
+'./artikel.json',
 './atom.atom',
+'./rss.rss',
 './sitemap.xml',
+'./gaya-hidup.atom',
+'./gaya-hidup.rss',
 './gaya-hidup.xml',
+'./jejak-sejarah.atom',
+'./jejak-sejarah.rss',
 './jejak-sejarah.xml',
+'./lainnya.atom',
+'./lainnya.rss',
 './lainnya.xml',
+'./olah-media.atom',
+'./olah-media.rss',
 './olah-media.xml',
+'./opini-sosial.atom',
+'./opini-sosial.rss',
 './opini-sosial.xml',
+'./sistem-terbuka.atom',
+'./sistem-terbuka.rss',
 './sistem-terbuka.xml',
+'./warta-tekno.atom',
+'./warta-tekno.rss',
 './warta-tekno.xml',
-'.gaya-hidup.atom',
-'.gaya-hidup.rss',
-'.jejak-sejarah.atom',
-'.jejak-sejarah.rss',
-'.lainnya.atom',
-'.lainnya.rss',
-'.olah-media.atom',
-'.olah-media.rss',
-'.opini-sosial.atom',
-'.opini-sosial.rss',
-'.sistem-terbuka.atom',
-'.sistem-terbuka.rss',
-'.warta-tekno.atom',
-'.warta-tekno.rss',
 './img/galeri-data.json',
 './dapur/tool-layarkosong.json'
 ];
@@ -52,11 +52,10 @@ async function sapuJagat() {
       const originalSize = Buffer.byteLength(content, 'utf8');
 
       if (ext === '.json') {
-        // Strategi JSON: Parse lalu stringify tanpa space
         const data = JSON.parse(content);
         content = JSON.stringify(data);
-      } else if (ext === '.xml') {
-        // Strategi XML: Hapus spasi antar tag (Rakus tapi aman untuk XML sitemap)
+      } else if (ext === '.xml' || ext === '.rss' || ext === '.atom') {
+  // Sapu bersih spasi di XML, RSS, dan ATOM
         content = content.replace(/>\s+</g, '><').trim();
       }
 
