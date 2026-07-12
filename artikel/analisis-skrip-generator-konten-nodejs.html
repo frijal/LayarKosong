@@ -358,7 +358,7 @@ async function generateCategoryPages(groupedData) {
         .replace(/\s+/g, '-')
         .replace(/-+/g, '-');
       // RSS URL untuk kategori
-      const rssUrl = `${CONFIG.baseUrl}${slug}.xml`;
+      const rssUrl = `${CONFIG.baseUrl}/${slug}.rss`;
       // URL halaman kategori
       const fileName = `${slug}.html`;
       const canonicalUrl = `${CONFIG.baseUrl}/artikel/-/${fileName}`;
