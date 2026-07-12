@@ -253,7 +253,7 @@ function renderSidebar(targetCat?: string): void {
 
     const displayedTitles = displayedData.slice(0, limit).map(item => item.title);
     const finalAvailable = filteredForSidebar.filter(item => !displayedTitles.includes(item.title));
-    const randoms = [...finalAvailable].sort(() => 0.5 - Math.random()).slice(0, 8);
+    const randoms = [...finalAvailable].sort(() => 0.5 - Math.random()).slice(0, 10);
 
     side.removeAttribute('aria-busy');
     side.innerHTML = randoms.map(item => {
