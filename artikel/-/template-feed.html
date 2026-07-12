@@ -110,14 +110,14 @@
       }
 
       /* Grid Layout */
-      #feed-container {
+      #container {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 2rem;
       }
 
       /* Card Styling */
-      .feed-item {
+      .item {
         background-color: var(--surface-color);
         border: 1px solid var(--border-color);
         border-radius: 16px;
@@ -127,30 +127,30 @@
         transition: transform 0.25s ease, box-shadow 0.25s ease;
       }
 
-      .feed-item:hover {
+      .item:hover {
         transform: translateY(-6px);
         box-shadow: 0 12px 24px var(--shadow-color);
       }
 
-      .feed-item-thumbnail {
+      .item-thumbnail {
         width: 100%;
         aspect-ratio: 16 / 9;
         background-color: var(--border-color);
         overflow: hidden;
       }
 
-      .feed-item-thumbnail img {
+      .item-thumbnail img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.3s ease;
       }
 
-      .feed-item:hover .feed-item-thumbnail img {
+      .item:hover .item-thumbnail img {
         transform: scale(1.05);
       }
 
-      .feed-item-content {
+      .item-content {
         padding: 1.5rem;
         flex-grow: 1;
         display: flex;
@@ -158,7 +158,7 @@
       }
 
       /* Pil/Badge Kategori & Tanggal */
-      .feed-meta {
+      .meta {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
@@ -166,7 +166,7 @@
         margin-bottom: 12px;
       }
 
-      .feed-meta-item {
+      .meta-item {
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -178,28 +178,28 @@
         font-weight: 600;
       }
 
-      .feed-meta-item i {
+      .meta-item i {
         color: var(--accent-color);
       }
 
-      .feed-item-content h2 {
+      .item-content h2 {
         margin-bottom: 0.75rem;
         font-size: 1.2rem;
         line-height: 1.4;
         font-weight: 700;
       }
 
-      .feed-item-content h2 a {
+      .item-content h2 a {
         color: var(--primary-text-color);
         text-decoration: none;
         transition: color 0.2s;
       }
 
-      .feed-item-content h2 a:hover {
+      .item-content h2 a:hover {
         color: var(--accent-color);
       }
 
-      .feed-item-content p {
+      .item-content p {
         color: var(--secondary-text-color);
         font-size: 0.9rem;
         line-height: 1.6;
@@ -242,7 +242,7 @@
         h1 {
           font-size: 1.75rem;
         }
-        #feed-container {
+        #container {
           grid-template-columns: 1fr;
           gap: 1.5rem;
         }
@@ -274,7 +274,7 @@
         </a>
       </h1>
 
-      <div id="feed-container"></div>
+      <div id="container"></div>
     </div>
 
     <script defer src="/ext/header.js"></script>
