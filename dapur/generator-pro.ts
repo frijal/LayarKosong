@@ -509,13 +509,10 @@ sitemapByCategory.get(catSlug)!.push(`
     // 🔄 MIGRASI FORMAT FEED: hapus sisa file dari skema penamaan-penamaan sebelumnya
     await Promise.all([
         fs.rm(`${C.root}/rss.xml`, { force: true }),
-                      fs.rm(`${C.root}/atom.xml`, { force: true }),
-                      ...C.cats.flatMap(s => [
-                          fs.rm(`${C.root}${s}.xml`, { force: true }),
-                                        fs.rm(`${C.root}${s}-atom.xml`, { force: true }),
-                                        fs.rm(`${C.root}${s}.rss`, { force: true }),
-                                        fs.rm(`${C.root}${s}.atom`, { force: true }),
-                                        fs.rm(`${C.root}/sitemap-${s}.xml`, { force: true }),
+                                                fs.rm(`${C.root}/feed-${s}.xml`, { force: true }),
+                                        fs.rm(`${C.root}/feed-${s}-atom.xml`, { force: true }),
+                                        fs.rm(`${C.root}/feed-${s}.rss`, { force: true }),
+                                        fs.rm(`${C.root}/feed-${s}.atom`, { force: true }),
                       ]),
     ]);
 
