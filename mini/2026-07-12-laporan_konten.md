@@ -1,5 +1,5 @@
 # 🔆 Laporan Ringkas Konten
-Update: 12 Jul 2026 | 16:52 WITA
+Update: 12 Jul 2026 | 22:24 WITA
 
 ### 📑 Statistik Global
 | Ekstensi | Jumlah | Lokasi Folder |
@@ -18,11 +18,13 @@ Update: 12 Jul 2026 | 16:52 WITA
 | 📄 /warta-tekno/jurukunci | **1** | warta-tekno |
 | 📄 atom  | **8** | olah-media.atom, atom.atom, lainnya.atom, sistem-terbuka.atom, gaya-hidup.atom, jejak-sejarah.atom, warta-tekno.atom, opini-sosial.atom |
 | 🎨 css   | **51** | dapur, ext |
+| 📄 cssAA | **1** | dapur |
 | 📄 cssX  | **1** | dapur |
 | 📄 csv   | **1** | sementara |
 | 🖼️ gif   | **1** | img |
-| 🎨 html  | **3130** | google2e9cfaf2f2923d27.html, disclaimer.html, search, lainnya, security-policy.html, sitemap.html, img, 404.html, privacy.html, feed.html, lisensi.html, data-deletion-form.html, sistem-terbuka, data-deletion.html, img.html, about.html, artikel, index.html, hit.html, dapur, disclosure.html, callback.html, opini-sosial, gaya-hidup, llms-index.html, jejak-sejarah, warta-tekno, ext, olah-media |
+| 🎨 html  | **3140** | google2e9cfaf2f2923d27.html, disclaimer.html, search, lainnya, security-policy.html, sitemap.html, img, 404.html, privacy.html, feed.html, lisensi.html, data-deletion-form.html, sistem-terbuka, data-deletion.html, img.html, about.html, artikel, index.html, hit.html, dapur, disclosure.html, callback.html, opini-sosial, gaya-hidup, llms-index.html, jejak-sejarah, warta-tekno, ext, olah-media |
 | 📄 html-bak | **1** | artikel |
+| 📄 htmlAA | **1** | index.htmlAA |
 | 📄 ico   | **4** | favicon.ico, artikel, dapur, ext |
 | 🖼️ jpg   | **3** | img, thumbnail.jpg |
 | 📜 js    | **69** | sementara, functions, dapur, ext |
@@ -37,14 +39,14 @@ Update: 12 Jul 2026 | 16:52 WITA
 | 📄 sql   | **1** | init.sql |
 | 🖼️ svg   | **84** | favicon.svg, img, artikel, dapur, ext |
 | 📜 ts    | **91** | search, sementara, functions, dapur, index.ts |
+| 📄 tsAA  | **1** | dapur |
 | 📄 tsX   | **2** | dapur |
 | 📄 tsXX  | **1** | functions |
-| 📄 tsY   | **1** | search |
 | 📄 txt   | **33** | llms.txt, img, sementara, EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX.txt, robots.txt, sitemap.txt, artikel, dapur, ads.txt |
 | 📄 webmanifest | **1** | site.webmanifest |
-| 🖼️ webp  | **3480** | thumbnail.webp, search, img, thumbnail-md.webp, thumbnail-rg.webp, thumbnail-sm.webp |
+| 🖼️ webp  | **3502** | thumbnail.webp, img, thumbnail-md.webp, thumbnail-rg.webp, thumbnail-sm.webp |
 | 📄 woff2 | **8** | dapur, ext |
 | 📄 xml   | **11** | sitemap.xml, warta-tekno.xml, sistem-terbuka.xml, sementara, gaya-hidup.xml, BingSiteAuth.xml, jejak-sejarah.xml, olah-media.xml, lainnya.xml, opini-sosial.xml, opensearch.xml |
 | 📄 xsl   | **3** | rss.xsl, sitemap.xsl, atom.xsl |
 
-**Total File:** 7156
+**Total File:** 7190
