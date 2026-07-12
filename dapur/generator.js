@@ -208,7 +208,7 @@ async function generateCategoryPages(groupedData) {
       
       const fileName = `${slug}.html`;
       const canonicalUrl = `${CONFIG.baseUrl}/artikel/-/${fileName}`;
-      const rssUrl = `${CONFIG.baseUrl}/feed-${slug}.xml`;
+      const rssUrl = `${CONFIG.baseUrl}${slug}.xml`;
       const icon = categoryName.match(/(\p{Emoji})/u)?.[0] || '📁';
       
       // Ganti placeholder di template

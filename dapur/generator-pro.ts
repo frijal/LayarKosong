@@ -511,10 +511,10 @@ sitemapByCategory.get(catSlug)!.push(`
         fs.rm(`${C.root}/rss.xml`, { force: true }),
                       fs.rm(`${C.root}/atom.xml`, { force: true }),
                       ...C.cats.flatMap(s => [
-                          fs.rm(`${C.root}/feed-${s}.xml`, { force: true }),
-                                        fs.rm(`${C.root}/feed-${s}-atom.xml`, { force: true }),
-                                        fs.rm(`${C.root}/feed-${s}.rss`, { force: true }),
-                                        fs.rm(`${C.root}/feed-${s}.atom`, { force: true }),
+                          fs.rm(`${C.root}${s}.xml`, { force: true }),
+                                        fs.rm(`${C.root}${s}-atom.xml`, { force: true }),
+                                        fs.rm(`${C.root}${s}.rss`, { force: true }),
+                                        fs.rm(`${C.root}${s}.atom`, { force: true }),
                                         fs.rm(`${C.root}/sitemap-${s}.xml`, { force: true }),
                       ]),
     ]);
@@ -697,10 +697,10 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
         '/rss.xml   /rss.rss    301',
         '/atom.xml  /atom.atom  301',
         ...C.cats.flatMap(s => [
-            `/feed-${s}.xml        /${s}.rss   301`,
-            `/feed-${s}-atom.xml   /${s}.atom  301`,
-            `/feed-${s}.rss        /${s}.rss   301`,
-            `/feed-${s}.atom       /${s}.atom  301`,
+            `${s}.xml        /${s}.rss   301`,
+            `${s}-atom.xml   /${s}.atom  301`,
+            `${s}.rss        /${s}.rss   301`,
+            `${s}.atom       /${s}.atom  301`,
             `/sitemap-${s}.xml     /${s}.xml   301`,
         ]),
     ].join('\n');
