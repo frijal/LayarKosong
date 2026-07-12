@@ -72,6 +72,54 @@ const imgWithFallback = (src: string, alt: string, extraAttrs: string = ''): str
     return `<img src="${smSrc}" alt="${escapeAttr(alt)}" ${extraAttrs} onerror="${onerror}">`;
 };
 
+// =============================================================================
+// ── HELPER SSR HOMEPAGE (dipakai TAHAP 4 di bawah) ──
+// Markup-nya SENGAJA dibikin identik sama pictureMarkup()/renderHeroSlides()/
+// renderFeed() di homepage.ts — supaya begitu homepage.ts hydrate, DOM yang
+// udah kerender build-time ini nggak "kedip" ganti bentuk.
+// Kalau markup di homepage.ts diubah, inget samain juga di sini.
+// =============================================================================
+
+// Beda sama getCategoryLabel() (buat SEO <meta>, sengaja kaya keyword) — ini
+// murni tipografi badge kategori di UI, samaan kayak formatCategoryName() di
+// homepage.ts. cat di sini diasumsikan udah berupa slug (hasil titleToCategory()
+// atau key artikel.json yang emang udah slug-friendly).
+const formatCatDisplay = (catSlug: string): string =>
+    catSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+interface HeroCardItem { title: string; file: string; img: string; lastmod: string; desc: string; category: string; }
+
+const ssrPicture = (it: HeroCardItem, opts: { className: string; priority?: boolean; width: number; height: number }): string => {
+    const cleanTitle = sanitize(decodeHTML(it.title)).replace(/\s*-\s*Layar Kosong$/i, '');
+    const alt = escapeAttr(cleanTitle);
+    const small = it.img.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
+    const loading = opts.priority ? 'eager' : 'lazy';
+    const fp = opts.priority ? ' fetchpriority="high"' : '';
+    return `<picture><source media="(max-width: 640px)" srcset="${small}"><img src="${it.img}" alt="${alt}" class="${opts.className}" width="${opts.width}" height="${opts.height}" loading="${loading}"${fp} decoding="async" onerror="if(this.src.includes('-sm.webp')){this.src='${small}';}else{this.onerror=null;this.src='/thumbnail-sm.webp';}"></picture>`;
+};
+
+const ssrHeroSlide = (it: HeroCardItem, idx: number): string => {
+    const catDisplay = formatCatDisplay(it.category);
+    const cleanTitle = sanitize(decodeHTML(it.title)).replace(/\s*-\s*Layar Kosong$/i, '');
+    const url = `/${it.category}/${it.file.replace(/\.html$/, '')}`;
+    const pic = ssrPicture(it, { className: 'hero-img', priority: idx === 0, width: 1000, height: 563 });
+    const summary = (it.desc || cleanTitle).substring(0, 270);
+    const titleTag = idx === 0
+        ? `<h2 class="hero-title">${cleanTitle}</h2>`
+        : `<p class="hero-title" role="heading" aria-level="2">${cleanTitle}</p>`;
+    return `<a href="${url}" class="hero-slide" aria-hidden="${idx === 0 ? 'false' : 'true'}" tabindex="${idx === 0 ? '0' : '-1'}">${pic}<div class="hero-overlay"></div><div class="hero-content"><span class="hero-cat">${catDisplay}</span>${titleTag}<p class="hero-summary">${summary}...<strong class="hero-cta">Ungkap Faktanya →</strong></p></div></a>`;
+};
+
+const ssrCard = (it: HeroCardItem, idx: number): string => {
+    const catDisplay = formatCatDisplay(it.category);
+    const cleanTitle = sanitize(decodeHTML(it.title)).replace(/\s*-\s*Layar Kosong$/i, '');
+    const url = `/${it.category}/${it.file.replace(/\.html$/, '')}`;
+    const pic = ssrPicture(it, { className: 'card-img', priority: idx === 0, width: 400, height: 225 });
+    const dateDisplay = new Intl.DateTimeFormat('id-ID', { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(it.lastmod));
+    const summary = (it.desc || cleanTitle).substring(0, 200);
+    return `<div class="card">${pic}<div class="card-body"><a href="${url}" class="card-link"><div class="card-meta"><time datetime="${it.lastmod}">${dateDisplay}</time><span class="card-category">${catDisplay}</span></div><h3 class="card-title">${cleanTitle}</h3><p class="card-excerpt">${summary}...</p></a></div></div>`;
+};
+
 const escapeXML = (s: string) => s
 .replace(/&/g, '&amp;')
 .replace(/</g, '&lt;')
@@ -717,6 +765,59 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
 
     await upsertManagedBlock(`${C.root}/_headers`, headersBlock);
     await upsertManagedBlock(`${C.root}/_redirects`, redirectsBlock);
+
+    // =============================================================================
+    // ── TAHAP 4: SSR HERO + CARD PERTAMA UNTUK HOMEPAGE (biar LCP nggak nunggu JS) ──
+    // Nyuntik hero (1 artikel terbaru per kategori) + 6 card pertama langsung ke
+    // index.html statis. homepage.ts akan deteksi data-ssr="true" dan hydrate,
+    // bukan render ulang dari nol.
+    //
+    // ASUMSI: template sumber ada di artikel/-/template-homepage.html (pola sama
+    // kayak template-kategori.html & template-feed.html). Kalau file index.html
+    // "master" kamu lokasinya beda, tinggal ganti HOMEPAGE_TEMPLATE di bawah ini.
+    // =============================================================================
+    try {
+        const HOMEPAGE_TEMPLATE = `${C.art}/-/template-homepage.html`;
+        const homepageTpl = await Bun.file(HOMEPAGE_TEMPLATE).text();
+
+        // 1 artikel terbaru per kategori, urutan = kemunculan pertama di `flat`
+        // (yang udah terurut terbaru→terlama) — identik logic-nya sama heroData
+        // di homepage.ts ([...new Set(...)].map(cat => allData.find(...))).
+        const seenCats = new Set<string>();
+        const heroItems: HeroCardItem[] = [];
+        for (const it of flat) {
+            if (!seenCats.has(it.category)) {
+                seenCats.add(it.category);
+                heroItems.push(it as HeroCardItem);
+            }
+        }
+
+        const heroTitles = new Set(heroItems.map(h => h.title));
+        const cardItems = (flat as HeroCardItem[]).filter(it => !heroTitles.has(it.title)).slice(0, 6);
+
+        const heroHtml = heroItems.map((it, idx) => ssrHeroSlide(it, idx)).join('');
+        const cardsHtml = cardItems.map((it, idx) => ssrCard(it, idx)).join('');
+
+        let preloadLinks = '';
+        if (heroItems[0]) {
+            const first = heroItems[0];
+            const smallImg = first.img.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
+            preloadLinks = `<link rel="preload" as="image" href="${smallImg}" media="(max-width: 640px)" fetchpriority="high">`
+                         + `<link rel="preload" as="image" href="${first.img}" media="(min-width: 641px)" fetchpriority="high">`;
+        }
+
+        const homepageOut = homepageTpl
+            .replace('<!--%%HERO_PRELOAD_LINK%%-->', preloadLinks)
+            .replace('<!--%%HERO_SSR%%-->', heroHtml)
+            .replace('<!--%%FEED_SSR%%-->', cardsHtml)
+            .replace('<div id="hero" class="hero skeleton" role="region"', '<div id="hero" class="hero" data-ssr="true" role="region"')
+            .replace('<div id="newsFeed" class="news-feed" aria-live="polite">', '<div id="newsFeed" class="news-feed" data-ssr="true" aria-live="polite">');
+
+        await Bun.write(`${C.root}/index.html`, homepageOut);
+        console.log(`🏠 Homepage SSR: ${heroItems.length} hero slide + ${cardItems.length} card pertama disuntik ke index.html`);
+    } catch (e: any) {
+        console.log(`⚠️  Homepage SSR dilewati (template belum ada di artikel/-/template-homepage.html / gagal dibaca): ${e?.message || e}`);
+    }
 
     console.log('✅ Selesai!');
 })();
