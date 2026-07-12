@@ -62,6 +62,16 @@ const mime = (u: string) =>
 
 const escapeAttr = (s: string) => s.replace(/"/g, '&quot;');
 
+// 🖼️ <img> dengan fallback bertingkat: -sm.webp (utama) → -md.webp → gambar asli → /thumbnail.webp (safety net terakhir)
+// onerror mikirin dirinya sendiri: tiap gagal, dia ganti handler-nya ke tahap berikutnya sebelum pindah src.
+// Tahap terakhir set onerror=null biar kalau /thumbnail.webp pun 404, browser nggak looping nge-request tanpa henti.
+const imgWithFallback = (src: string, alt: string, extraAttrs: string = ''): string => {
+    const smSrc = src.replace(/(\.[a-zA-Z0-9]+)$/, '-sm$1');
+    const mdSrc = src.replace(/(\.[a-zA-Z0-9]+)$/, '-md$1');
+    const onerror = `this.onerror=function(){this.onerror=function(){this.onerror=null;this.src='/thumbnail.webp'};this.src='${src}'};this.src='${mdSrc}'`;
+    return `<img src="${smSrc}" alt="${escapeAttr(alt)}" ${extraAttrs} onerror="${onerror}">`;
+};
+
 const escapeXML = (s: string) => s
 .replace(/&/g, '&amp;')
 .replace(/</g, '&lt;')
@@ -580,7 +590,7 @@ sitemapByCategory.get(catSlug)!.push(`
                 return `
                 <a href="${cleanUrl}" class="article-card">
                 <div class="card-thumbnail">
-                <img src="${image}" alt="${escapeAttr(title)}" loading="lazy" width="300" height="200" onerror="this.src='/thumbnail.webp'">
+                ${imgWithFallback(image, title, 'loading="lazy" width="300" height="200"')}
                 </div>
                 <div class="card-content">
                 <h2>${title}</h2>
@@ -636,7 +646,7 @@ sitemapByCategory.get(catSlug)!.push(`
 
             return `
             <div class="feed-item">
-            <div class="feed-item-thumbnail"><img src="${it.img}" alt="${escapeAttr(it.title)}" loading="lazy"></div>
+            <div class="feed-item-thumbnail">${imgWithFallback(it.img, it.title, 'loading="lazy"')}</div>
             <div class="feed-item-content">
             <h2><a href="${it.loc}" rel="noreferrer">${it.title}</a></h2>
             <div class="feed-meta">
