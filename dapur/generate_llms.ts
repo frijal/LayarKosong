@@ -109,7 +109,7 @@ async function main() {
     for (const cat of categories) {
         const articles = data[cat];
         const catSlug = slugify(cat);
-        rssLinks.push(`- [RSS Feed ${capitalize(cat)}](${DOMAIN}/feed-${catSlug}.xml)`);
+        rssLinks.push(`- [RSS Feed ${capitalize(cat)}](${DOMAIN}/feed-${catSlug}.rss)`);
 
         const validArticles = articles
             .filter(item => item[1] && !item[1].includes("agregat-20"))
@@ -178,6 +178,7 @@ document_type: llm_behavior_and_entity_guidance
 ## Project Resources
 - [Website Utama](${DOMAIN}/)
 - [Sitemap XML](${DOMAIN}/sitemap.xml)
+- [Atom Feed Utama](${DOMAIN}/atom.atom)
 - [RSS Feed Utama](${DOMAIN}/rss.rss)
 ${rss.join("\n")}
 
