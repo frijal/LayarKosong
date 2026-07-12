@@ -68,7 +68,7 @@ const escapeAttr = (s: string) => s.replace(/"/g, '&quot;');
 const imgWithFallback = (src: string, alt: string, extraAttrs: string = ''): string => {
     const smSrc = src.replace(/(\.[a-zA-Z0-9]+)$/, '-sm$1');
     const mdSrc = src.replace(/(\.[a-zA-Z0-9]+)$/, '-md$1');
-    const onerror = `this.onerror=function(){this.onerror=function(){this.onerror=null;this.src='/thumbnail.webp'};this.src='${src}'};this.src='${mdSrc}'`;
+    const onerror = `this.onerror=function(){this.onerror=function(){this.onerror=null;this.src='/thumbnail-sm.webp'};this.src='${src}'};this.src='${mdSrc}'`;
     return `<img src="${smSrc}" alt="${escapeAttr(alt)}" ${extraAttrs} onerror="${onerror}">`;
 };
 
