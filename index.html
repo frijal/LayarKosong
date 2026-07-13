@@ -1,1054 +1,533 @@
-<!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <title>Layar Kosong</title>
-
-    <script src="/ext/data-provider.js" defer></script>
-
-    <meta name="description" content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini.">
-    <meta name="author" content="frijal">
-    <meta name="publisher" content="Layar Kosong">
-    <meta name="yandex-verification" content="8ba05f5f00d79c5a">
-
-    <link rel="canonical" href="https://dalam.web.id/">
-    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.rss">
-    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.atom">
-    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/ext/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-
-    <meta content="light dark" name="color-scheme">
-    <meta name="fediverse:creator" content="@frijal@mastodon.social">
-    <link rel="stylesheet" href="/ext/fontawesome.css">
-
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Layar Kosong">
-    <meta property="og:title" content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini.">
-    <meta property="og:description" content="artikel teknologi inspirasi kehidupan komunitas literasi digital religi Islam serta panduan karier untuk pembaca masa kini berpikir kritis dan terbuka.">
-    <meta property="og:url" content="https://dalam.web.id/">
-    <meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
-    <meta property="og:image:width" content="1000">
-    <meta property="og:image:height" content="563">
-    <meta property="og:locale" content="id_ID">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@responaja">
-    <meta name="twitter:creator" content="@responaja">
-    <meta name="twitter:account_id" content="1872520777138122752">
-    <meta name="twitter:title" content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini.">
-    <meta name="twitter:description" content="artikel teknologi inspirasi kehidupan komunitas literasi digital religi Islam serta panduan karier untuk pembaca masa kini berpikir kritis dan terbuka.">
-    <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [{
-          "@type": "WebSite",
-          "@id": "https://dalam.web.id/#website",
-          "url": "https://dalam.web.id/",
-          "name": "Layar Kosong",
-          "alternateName": "Blog Frijal",
-          "publisher": {
-            "@id": "https://dalam.web.id/#organization"
-          },
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://dalam.web.id/search/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        }, {
-          "@type": "Organization",
-          "@id": "https://dalam.web.id/#organization",
-          "name": "Layar Kosong",
-          "url": "https://dalam.web.id/",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://dalam.web.id/logo.png",
-            "width": 512,
-            "height": 512
-          },
-          "founder": {
-            "@id": "https://dalam.web.id/#person"
-          },
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer support",
-            "url": "https://t.me/frijal"
-          }
-        }, {
-          "@type": "Person",
-          "@id": "https://dalam.web.id/#person",
-          "name": "Fakhrul Rijal",
-          "url": "https://dalam.web.id/",
-          "jobTitle": "Blogger & Tech Enthusiast",
-          "worksFor": {
-            "@id": "https://dalam.web.id/#organization"
-          },
-          "sameAs": ["https://x.com/responaja", "https://github.com/frijal", "https://linkedin.com/in/frijal", "https://www.youtube.com/@frijal", "https://facebook.com/frijal", "https://mastodon.social/@frijal"]
-        }, {
-          "@type": "WebPage",
-          "@id": "https://dalam.web.id/#homepage",
-          "url": "https://dalam.web.id/",
-          "name": "Layar Kosong",
-          "isPartOf": {
-            "@id": "https://dalam.web.id/#website"
-          },
-          "about": {
-            "@id": "https://dalam.web.id/#organization"
-          },
-          "description": "Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini."
-        }, {
-          "@type": "Blog",
-          "@id": "https://dalam.web.id/#blog",
-          "url": "https://dalam.web.id/",
-          "name": "Layar Kosong",
-          "description": "Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini.",
-          "publisher": {
-            "@id": "https://dalam.web.id/#organization"
-          }
-        }, {
-          "@type": "SiteNavigationElement",
-          "name": "Opini Sosial",
-          "url": "https://dalam.web.id/opini-sosial/"
-        }, {
-          "@type": "SiteNavigationElement",
-          "name": "Jejak Sejarah",
-          "url": "https://dalam.web.id/jejak-sejarah/"
-        }, {
-          "@type": "SiteNavigationElement",
-          "name": "Sistem Terbuka",
-          "url": "https://dalam.web.id/sistem-terbuka/"
-        }, {
-          "@type": "SiteNavigationElement",
-          "name": "Warta Tekno",
-          "url": "https://dalam.web.id/warta-tekno/"
-        }, {
-          "@type": "SiteNavigationElement",
-          "name": "Lainnya",
-          "url": "https://dalam.web.id/lainnya/"
-        }, {
-          "@type": "SiteNavigationElement",
-          "name": "Gaya Hidup",
-          "url": "https://dalam.web.id/gaya-hidup/"
-        }, {
-          "@type": "SiteNavigationElement",
-          "name": "Olah Media",
-          "url": "https://dalam.web.id/olah-media/"
-        }, {
-          "@type": "BreadcrumbList",
-          "@id": "https://dalam.web.id/#breadcrumb",
-          "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Beranda",
-            "item": "https://dalam.web.id/"
-          }]
-        }]
-      }
-    </script>
-
-    <style>
-      :root {
-        --bg: #f5f1ea;
-        --panel: #ffffff;
-        --text: #101010;
-        --muted: #66605a;
-        --line: #d9d1c4;
-        --accent: #133b7c;
-        --accent-2: #b62f24;
-        --shadow: 0 14px 40px rgba(20, 18, 14, 0.08);
-        --gradient: radial-gradient(circle at top left, #fffaf2 0, var(--bg) 55%, #efebe4 100%);
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #121212;
-          --panel: #1e1e1e;
-          --text: #e0e0e0;
-          --muted: #9e9e9e;
-          --line: #333333;
-          --accent: #64b5f6;
-          --accent-2: #ef5350;
-          --shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
-          --gradient: radial-gradient(circle at top left, #1a1a1a 0, var(--bg) 55%, #151515 100%);
-        }
-      }
-      * { box-sizing: border-box; }
-      /* --- Fokus visible --- */
-      *:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-        border-radius: 4px;
-      }
-      body {
-        margin: 0;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        color: var(--text);
-        background: var(--gradient);
-      }
-      a { color: inherit; text-decoration: none; }
-      img { max-width: 100%; height: auto; display: block; }
-      .page { max-width: 1440px; margin: 0 auto; padding: 0 20px 28px; }
-      .topbar {
-        display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
-        padding: 22px 0 18px; border-bottom: 1px solid var(--line);
-      }
-      .brand { font-size: 2rem; font-weight: 900; letter-spacing: -0.06em; text-transform: uppercase; }
-      .nav { display: flex; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
-      .nav a:hover { color: var(--accent); }
-      .spacer { display: none; }
-      .search { display: flex; flex-wrap: wrap; gap: 10px; width: 100%; }
-      .search-box { position: relative; width: 100%; }
-      .sort select, .search-input {
-        border: 1px solid var(--line); background: var(--panel); color: var(--text);
-        height: 42px; border-radius: 999px; font: inherit; width: 100%;
-      }
-      .search-input { padding: 0 40px 0 16px; }
-      .search-input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
-      .sort select { padding: 0 16px; }
-      .search-clear {
-        position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
-        width: 30px; height: 30px; border-radius: 999px; border: none; background: transparent;
-        display: none; place-items: center; cursor: pointer; font-size: 0.9rem; opacity: 0.6;
-      }
-      .search-clear:hover { opacity: 1; background: rgba(0,0,0,0.05); }
-      .sort { display: flex; gap: 10px; width: 100%; }
-      .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-      .chip {
-        border: 1px solid var(--line); background: rgba(255,255,255,.1); color: var(--muted);
-        height: 36px; border-radius: 999px; padding: 0 14px; font: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer;
-      }
-      .chip.active { background: var(--text); color: var(--panel); border-color: var(--text); }
-      .hero { display: flex; flex-direction: column; gap: 18px; margin-top: 18px; }
-      .hero-card, .panel, .thumb, .side-item { background: var(--panel); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 16px; overflow: hidden; }
-      .hero-media { position: relative; }
-      .hero-card img { width: 100%; height: 300px; object-fit: cover; }
-      .hero-arrow {
-        position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px;
-        border: 0; border-radius: 999px; background: rgba(16,16,16,.88); color: #fff;
-        display: grid; place-items: center; font-size: 1.05rem; cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      }
-      .hero-arrow:hover {
-        background: var(--accent);
-        transform: translateY(-50%) scale(1.05);
-        box-shadow: 0 6px 25px rgba(0,0,0,0.5);
-      }
-      .hero-arrow.prev { left: 14px; }
-      .hero-arrow.next { right: 14px; }
-      /* CSS SLIDER */
-      .hero-radio { display: none; }
-      .hero-rotator { display: grid; overflow: hidden; padding: 0; }
-      .hero-slide {
-        grid-area: 1 / 1;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.4s ease-in-out;
-        display: flex;
-        flex-direction: column;
-      }
-      label.hero-arrow { user-select: none; -webkit-tap-highlight-color: transparent; }
-      #slide-0:checked ~ .hero-rotator .slide-0,
-      #slide-1:checked ~ .hero-rotator .slide-1,
-      #slide-2:checked ~ .hero-rotator .slide-2,
-      #slide-3:checked ~ .hero-rotator .slide-3,
-      #slide-4:checked ~ .hero-rotator .slide-4,
-      #slide-5:checked ~ .hero-rotator .slide-5,
-      #slide-6:checked ~ .hero-rotator .slide-6 {
-        opacity: 1;
-        pointer-events: auto;
-        z-index: 2;
-      }
-      .hero-copy { padding: 18px 18px 22px; }
-      .hero-copy h1 { color: var(--text); transition: color 0.2s; }
-      .hero-copy h1:hover { color: var(--accent); }
-      .kicker { display: inline-block; font-size: 0.78rem; font-weight: 800; color: var(--accent-2); text-transform: uppercase; }
-      h1 { margin: 10px 0 12px; font-family: Georgia, serif; font-size: clamp(2.15rem, 1.7vw, 4.4rem); line-height: .92; }
-      .meta, .excerpt { color: var(--muted); line-height: 1.55; }
-      .meta { font-size: 0.92rem; margin-bottom: 10px; }
-      /* SIDEBAR HERO */
-      .hero-side {
-        position: sticky;
-        top: 24px;
-        align-self: start;
-        max-height: calc(100vh - 48px);
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        padding: 10px;
-        margin: -10px;
-      }
-      .hero-side::-webkit-scrollbar { display: none; }
-      .hero-side { -ms-overflow-style: none; scrollbar-width: none; }
-      .panel { padding: 18px; }
-      .section-title {
-        margin: 0 0 14px;
-        font-size: 1rem;
-        letter-spacing: .08em;
-        text-transform: uppercase;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .refresh-btn {
-        background: none;
-        border: none;
-        font-size: 1.2rem;
-        cursor: pointer;
-        color: var(--muted);
-        transition: transform 0.3s, color 0.3s;
-      }
-      .refresh-btn:hover {
-        transform: rotate(90deg);
-        color: var(--accent);
-      }
-      .side-list { display: grid; gap: 12px; }
-      .side-item { display: grid; grid-template-columns: 84px 1fr; gap: 12px; padding: 10px; }
-      .side-item img { width: 84px; height: 64px; object-fit: cover; border-radius: 8px; }
-      .side-item h3 { margin: 0 0 6px; font-size: 0.95rem; line-height: 1.2; }
-      .side-item p { margin: 0; color: var(--muted); font-size: 0.82rem; }
-      .main-grid { display: flex; flex-direction: column; gap: 18px; margin-top: 18px; }
-      .body-grid { display: flex; flex-direction: column; gap: 18px; }
-      .grid-content-wrapper { display: flex; flex-direction: column; gap: 18px; }
-      /* LAYOUT SWITCH (HERO vs CATEGORY GRID) */
-      .category-active .hero { display: none; }
-      .category-active .main-grid { margin-top: 0; }
-      /* PAGINATION — SELALU DITAMPILKAN */
-      .pagination {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 18px;
-        border-top: 1px solid var(--line);
-      }
-      .page-btn {
-        height: 38px; border-radius: 999px; padding: 0 16px; font: inherit; font-size: 0.85rem; font-weight: 800; cursor: pointer;
-        background: var(--panel); color: var(--text); border: 1px solid var(--line); transition: background 0.2s;
-      }
-      .page-btn:hover:not(:disabled) { background: var(--text); color: var(--panel); }
-      .page-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-      /* FOOTER */
-      .footer {
-        display: flex; flex-direction: row; justify-content: space-between; align-items: center;
-        gap: 20px; flex-wrap: wrap; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted);
-      }
-      .icons { display: flex; gap: 10px; flex-wrap: wrap; }
-      .icon {
-        width: 38px; height: 38px; border-radius: 999px; border: 1px solid var(--line);
-        display: grid; place-items: center; font-size: 0.85rem; font-weight: 800;
-        color: var(--accent); /* warna ikon */
-        transition: background 0.2s, color 0.2s;
-      }
-      .icon:hover {
-        background: var(--accent);
-        color: var(--panel);
-        border-color: var(--accent);
-      }
-      .footer-links { display: flex; gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
-      @media (min-width: 720px) {
-        .topbar { flex-direction: row; align-items: center; }
-        .spacer { display: block; flex: 1; }
-        .search { width: auto; align-items: center; flex-wrap: nowrap; }
-        .search-box { width: auto; }
-        .search-input { width: 210px; }
-        .sort { width: auto; }
-        .sort select { min-width: 150px; }
-        .body-grid { flex-direction: row; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      }
-      @media (min-width: 1080px) {
-        .hero { display: grid; grid-template-columns: 1fr 320px; }
-        .hero-card img { height: 440px; }
-        .main-grid { display: grid; grid-template-columns: 1fr 320px; align-items: start; }
-      }
-      /* FOOTER BARU */
-      :root {
-        --facebook: #1877F2;
-        --github: #24292F;
-        --linkedin: #0A66C2;
-        --telegram: #229ED9;
-        --threads: #000000;
-        --twitter: #1DA1F2;
-        --youtube: #FF0000;
-        --reddit: #FF5700;
-        --mastodon: #6364FF;
-        --bluesky: #1185FE;
-        --discord: #5865F2;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --github: #ffffff;
-          --threads: #ffffff;
-        }
-      }
-      .page-footer {
-        background: var(--panel);
-        border-top: 1px solid var(--line);
-        padding: 2rem 0;
-        margin-top: 2rem;
-        border-radius: 16px;
-      }
-      .footer-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        align-items: center;
-      }
-      .footer-section {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .footer-section:first-child p {
-        font-size: 1rem;
-        font-weight: 700;
-        margin: 0;
-        color: var(--text);
-      }
-      .footer-social {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        font-size: 1.4rem;
-      }
-      .footer-social a {
-        color: var(--muted);
-        transition: transform 0.3s ease;
-        display: inline-flex;
-      }
-      .footer-social a:hover {
-        transform: translateY(-3px);
-      }
-      /* Warna Brand Social Media - Diaktifkan saat hover */
-      .page-footer .footer-social a:hover .fa-discord         { color: var(--discord); }
-      .page-footer .footer-social a:hover .fa-facebook        { color: var(--facebook); }
-      .page-footer .footer-social a:hover .fa-github          { color: var(--github); }
-      .page-footer .footer-social a:hover .fa-mastodon        { color: var(--mastodon); }
-      .page-footer .footer-social a:hover .fa-reddit          { color: var(--reddit); }
-      .page-footer .footer-social a:hover .fa-square-linkedin { color: var(--linkedin); }
-      .page-footer .footer-social a:hover .fa-telegram        { color: var(--telegram); }
-      .page-footer .footer-social a:hover .fa-threads         { color: var(--threads); }
-      .page-footer .footer-social a:hover .fa-twitter         { color: var(--twitter); }
-      .page-footer .footer-social a:hover .fa-youtube         { color: var(--youtube); }
-      .footer-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end; /* Rata Kanan */
-        gap: 1rem;
-      }
-      .footer-links a {
-        color: var(--muted);
-        font-size: 0.85rem;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .footer-links a:hover {
-        color: var(--accent);
-      }
-      .footer-copyright {
-        margin-top: 0;
-      }
-      .footer-copyright p {
-        font-size: 0.75rem;
-        color: var(--muted);
-        text-align: right; /* Rata Kanan */
-        margin: 0;
-      }
-      @media (max-width: 768px) {
-        .footer-content {
-          grid-template-columns: 1fr;
-          text-align: center;
-          gap: 1.5rem;
-        }
-        .footer-links {
-          justify-content: center;
-        }
-        .footer-copyright p {
-          text-align: center;
-        }
-        .footer-social {
-          justify-content: center;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page">
-      <header class="topbar">
-        <div class="brand">Layar Kosong</div>
-        <nav class="nav" aria-label="Primary">
-          <a href="#world">World</a>
-          <a href="#politics">Politics</a>
-          <a href="#business">Business</a>
-          <a href="#culture">Culture</a>
-          <a href="#tech">Tech</a>
-        </nav>
-        <div class="spacer"></div>
-        <div class="search">
-          <div class="search-box">
-            <input class="search-input" id="search-input" type="search" placeholder="Cari Artikel" aria-label="Cari Artikel" />
-            <button type="button" id="search-clear-btn" class="search-clear" aria-label="Clear search">✕</button>
-          </div>
-          <div class="sort">
-            <select id="year-sort" aria-label="Tahun">
-              <option value="all">Tahun</option>
-            </select>
-            <select id="month-sort" aria-label="Bulan">
-              <option value="all">Bulan</option>
-            </select>
-          </div>
-        </div>
-      </header>
-      <section class="hero">
-        <!-- BEGIN HERO AUTOGEN -->
-      <article class="hero-card article-card hero-rotator" id="hero-container">
-
-      </article>
-      <!-- END HERO AUTOGEN -->
-        <!-- SIDEBAR RANDOM -->
-        <aside class="hero-side">
-          <div class="panel">
-            <h2 class="section-title">
-             Acak Artikel
-              <button class="refresh-btn" id="random-refresh-btn" aria-label="Refresh random articles">⟳</button>
-            </h2>
-            <div class="side-list" id="random-sidebar-container">
-              <div class="side-item skeleton-item"><p>Memuat artikel...</p></div>
-            </div>
-          </div>
-        </aside>
-      </section>
-      <div class="filters" id="category-filters" role="toolbar" aria-label="Category filters">
-        <button class="chip active" type="button" data-filter="all">Kategori:</button>
-        <button class="chip" type="button" data-filter="gaya-hidup">Gaya Hidup</button>
-        <button class="chip" type="button" data-filter="jejak-sejarah">Jejak Sejarah</button>
-        <button class="chip" type="button" data-filter="lainnya">Lainnya</button>
-        <button class="chip" type="button" data-filter="olah-media">Olah Media</button>
-        <button class="chip" type="button" data-filter="opini-sosial">Opini Sosial</button>
-        <button class="chip" type="button" data-filter="sistem-terbuka">Sistem Terbuka</button>
-        <button class="chip" type="button" data-filter="warta-tekno">Warta Tekno</button>
-      </div>
-      <!-- GRID ARTIKEL -->
-      <section class="main-grid">
-        <div class="grid-content-wrapper">
-          <div class="body-grid" id="main-articles-container">
-          <!-- BEGIN GRID AUTOGEN -->
-
-        <!-- END GRID AUTOGEN -->
-          </div>
-          <!-- PAGINATION (SELALU TAMPIL) -->
-          <div class="pagination" id="category-pagination">
-            <button class="page-btn" id="prev-page-btn" type="button" disabled>← Sebelumnya</button>
-            <span id="page-indicator" style="font-size: 0.85rem; color: var(--muted); font-weight: 600;">H - 1</span>
-            <button class="page-btn" id="next-page-btn" type="button">Selanjutnya →</button>
-          </div>
-        </div>
-        <aside class="sidebar">
-          <div class="panel">
-            <h2 class="section-title">More Coverage</h2>
-            <p class="excerpt">Konten tambahan atau widget bisa ditaruh di sini.</p>
-          </div>
-        </aside>
-      </section>
-      <div class="filters" id="category-filters-bottom" role="toolbar" aria-label="Category filters">
-        <button class="chip active" type="button" data-filter="all">Kategori:</button>
-        <button class="chip" type="button" data-filter="gaya-hidup">Gaya Hidup</button>
-        <button class="chip" type="button" data-filter="jejak-sejarah">Jejak Sejarah</button>
-        <button class="chip" type="button" data-filter="lainnya">Lainnya</button>
-        <button class="chip" type="button" data-filter="olah-media">Olah Media</button>
-        <button class="chip" type="button" data-filter="opini-sosial">Opini Sosial</button>
-        <button class="chip" type="button" data-filter="sistem-terbuka">Sistem Terbuka</button>
-        <button class="chip" type="button" data-filter="warta-tekno">Warta Tekno</button>
-        </div>
-      <footer class="page-footer">
-        <div class="footer-content">
-          <div class="footer-section">
-            <p>Mari Kita Jaga, Supaya Data Pribadi Tetap Aman.</p>
-            <div class="footer-social">
-              <a href="https://facebook.com/frijal" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-facebook"></i>
-              </a>
-              <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-square-linkedin"></i>
-              </a>
-              <a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-telegram"></i>
-              </a>
-              <a href="https://threads.net/frijal" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-threads"></i>
-              </a>
-              <a href="https://youtube.com/@frijal" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-youtube"></i>
-              </a>
-              <a rel="me" href="https://mastodon.social/@frijal" target="_blank">
-                <i class="fa-brands fa-mastodon"></i>
-              </a>
-              <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-twitter"></i>
-              </a>
-              <a href="https://discord.gg/4fCnZSsJCM" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-discord"></i>
-              </a>
-            </div>
-          </div>
-          <div class="footer-section">
-            <div class="footer-links">
-              <a href="/disclosure" target="_blank">Disclosure</a>
-              <a href="/sitemap.xml" target="_blank">Peta Situs</a>
-              <a href="/privacy">Privacy</a>
-              <a href="/about">Tentang Kita</a>
-              <a href="/disclaimer">Disclaimer</a>
-              <a href="/artikel.json" target="_blank">Sumber Terbuka</a>
-            </div>
-            <div class="footer-copyright">
-              <p>🄯 2009 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-    <script type="module">
-      // =======================================================================
-      // APP STATE (Modular dengan Class)
-      // =======================================================================
-      class AppState {
-        constructor() {
-          this.allData = [];
-          this.displayedData = [];
-          this.currentCategory = 'all';
-          this.currentPage = 1;
-          this.itemsPerPage = 6;
-          this.searchTerm = '';
-          this.yearFilter = 'all';
-          this.monthFilter = 'all';
-          this.heroData = [];
-          this.heroIndex = 0;
-          this.heroTimer = null;
-          this.isHeroVisible = true;
-        }
-        // Inisialisasi data dari provider
-        async initData() {
-          try {
-            const provider = window.siteDataProvider;
-            if (!provider) throw new Error('siteDataProvider tidak ditemukan');
-            const raw = await provider.getFor('homepage.ts');
-            this.allData = this._parseRawData(raw);
-            this.allData.sort((a, b) => b.date.getTime() - a.date.getTime());
-            this.displayedData = [...this.allData];
-            this._prepareHeroData();
-            this._setupUI();
-            this.render();
-            this._startHeroSlider();
-            this._populateYearDropdown();
-          } catch (err) {
-            console.error('Gagal memuat data:', err);
-            document.getElementById('main-articles-container').innerHTML =
-              `<div class="panel" style="grid-column:1/-1;"><p style="color:var(--accent-2);">Gagal memuat konten. Silakan muat ulang.</p></div>`;
-          }
-        }
-        _parseRawData(raw) {
-          const result = [];
-          for (const cat in raw) {
-            const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
-            const readableCat = this._formatCategoryName(cat);
-            raw[cat].forEach(item => {
-              const fileSlug = item[1].replace(/\.html$/, '');
-              const originalImage = item[2] || 'https://placehold.co/600x400/1e1e1e/ffffff?text=Northline';
-              const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
-              const cleanTitle = this._decodeHTML(item[0]).replace(/\s*-\s*Layar Kosong$/i, '');
-              result.push({
-                category: readableCat,
-                categorySlug: catSlug,
-                title: cleanTitle,
-                file: item[1],
-                img: smallImage,
-                fullImg: originalImage,
-                date: item[3] ? new Date(item[3]) : new Date(),
-                summary: this._decodeHTML(item[4] || cleanTitle)
-              });
-            });
-          }
-          return result;
-        }
-        _formatCategoryName(slug) {
-          if (!slug) return 'Lainnya';
-          return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-        }
-        _decodeHTML(str) {
-          const txt = document.createElement('textarea');
-          txt.innerHTML = str;
-          return txt.value;
-        }
-        _prepareHeroData() {
-          const categories = [...new Set(this.allData.map(item => item.category))];
-          this.heroData = categories.map(cat => this.allData.find(item => item.category === cat)).filter(Boolean);
-        }
-        // === RENDER ===
-        render() {
-          this._renderHero();
-          this._renderGrid();
-          this._renderSidebar();
-          this._renderPagination();
-          this._renderCategories();
-        }
-        _renderHero() {
-          const wrapper = document.getElementById('hero-container');
-          if (!wrapper || this.heroData.length === 0) return;
-          // Kita hanya perlu memperbarui slide yang ada, tetapi karena kita hanya punya satu slide statis,
-          // kita perlu membangun ulang slider secara dinamis sesuai data.
-          // Untuk kemudahan, kita buat ulang seluruh konten hero.
-          const heroSection = document.querySelector('.hero');
-          const existingRadio = heroSection.querySelectorAll('.hero-radio');
-          existingRadio.forEach(el => el.remove());
-          const existingArticle = heroSection.querySelector('.hero-card');
-          if (existingArticle) existingArticle.remove();
-          // Buat radio buttons
-          const radioHTML = this.heroData.map((_, idx) =>
-            `<input type="radio" name="hero" id="slide-${idx}" class="hero-radio" ${idx===0?'checked':''}>`
-          ).join('');
-          // Buat slide
-          const slides = this.heroData.map((h, idx) => `
-            <div class="hero-slide slide-${idx}">
-              <div class="hero-media">
-                <img src="${h.fullImg}" alt="${h.title}" />
-                <label for="slide-${(idx-1+this.heroData.length)%this.heroData.length}" class="hero-arrow prev">←</label>
-                <label for="slide-${(idx+1)%this.heroData.length}" class="hero-arrow next">→</label>
-              </div>
-              <div class="hero-copy">
-                <span class="kicker">${h.category}</span>
-                <h1>${h.title}</h1>
-                <div class="meta">${h.date.toLocaleDateString('en-US', { day:'numeric', month:'long', year:'numeric' })}</div>
-                <p class="excerpt">${h.summary.substring(0, 150)}...</p>
-              </div>
-            </div>
-          `).join('');
-          const article = document.createElement('article');
-          article.className = 'hero-card article-card hero-rotator';
-          article.innerHTML = slides;
-          heroSection.insertBefore(article, heroSection.querySelector('aside'));
-          // Tambahkan radio sebelum article
-          const radioFragment = document.createRange().createContextualFragment(radioHTML);
-          heroSection.insertBefore(radioFragment, article);
-          // Update state heroIndex jika perlu
-          this.heroIndex = 0;
-          this._updateHeroPosition();
-        }
-        _updateHeroPosition() {
-          // Radio sudah mengatur visibilitas otomatis, tidak perlu transform.
-          // Hanya untuk memastikan slide yang aktif sesuai index.
-          const radios = document.querySelectorAll('.hero-radio');
-          if (radios.length > this.heroIndex) {
-            radios[this.heroIndex].checked = true;
-          }
-        }
-        _startHeroSlider() {
-          if (this.heroTimer) clearInterval(this.heroTimer);
-          this.heroTimer = setInterval(() => {
-            const total = this.heroData.length;
-            if (total === 0) return;
-            this.heroIndex = (this.heroIndex + 1) % total;
-            this._updateHeroPosition();
-          }, 4600);
-        }
-        _stopHeroSlider() {
-          if (this.heroTimer) {
-            clearInterval(this.heroTimer);
-            this.heroTimer = null;
-          }
-        }
-        _renderGrid() {
-          const container = document.getElementById('main-articles-container');
-          if (!container) return;
-          const start = (this.currentPage - 1) * this.itemsPerPage;
-          const end = start + this.itemsPerPage;
-          const pageItems = this.displayedData.slice(start, end);
-          if (pageItems.length === 0) {
-            container.innerHTML = `
-              <div class="panel" style="grid-column:1/-1;text-align:center;padding:40px 20px;">
-                <p style="color:var(--muted);margin:0;">Tidak ada artikel yang cocok dengan filter.</p>
-              </div>`;
-            return;
-          }
-          container.innerHTML = pageItems.map(item => {
-            const escapedTitle = item.title.replace(/"/g, '&quot;');
-            const displayDesc = item.summary.substring(0, 100) + '...';
-            return `
-              <article class="thumb article-card" data-category="${item.categorySlug}">
-                <a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="display:block;text-decoration:none;color:inherit;">
-                  <div class="media">
-                    <img src="${item.img}" alt="${escapedTitle}" loading="lazy" onerror="this.onerror=function(){this.onerror=null;this.src='${item.fullImg}'}">
-                  </div>
-                  <div class="body">
-                    <div class="tag" style="font-size:.75rem;color:var(--accent);font-weight:800;text-transform:uppercase;">${item.category}</div>
-                    <h3 style="margin:8px 0;font-family:Georgia,serif;font-size:1.28rem;line-height:1.08;">${item.title}</h3>
-                    <p class="excerpt" style="color:var(--muted);line-height:1.55;margin:0;">${displayDesc}</p>
-                  </div>
-                </a>
-              </article>
-            `;
-          }).join('');
-        }
-        _renderSidebar() {
-          const container = document.getElementById('random-sidebar-container');
-          if (!container) return;
-          // Ambil kategori aktif
-          const activeCategory = this.currentCategory;
-          // Filter data berdasarkan kategori
-          const pool = activeCategory === 'all' ? [...this.allData] : this.allData.filter(item => item.categorySlug === activeCategory);
-          // Ambil judul yang sedang tampil di halaman
-          const pageStart = (this.currentPage - 1) * this.itemsPerPage;
-          const pageEnd = pageStart + this.itemsPerPage;
-          const pageTitles = this.displayedData.slice(pageStart, pageEnd).map(item => item.title);
-          // Juga judul di hero (jika hero tampil)
-          const heroTitles = this.isHeroVisible ? this.heroData.map(h => h.title) : [];
-          const exclude = new Set([...pageTitles, ...heroTitles]);
-          const available = pool.filter(item => !exclude.has(item.title));
-          // Acak dan ambil 10
-          const shuffled = [...available].sort(() => 0.5 - Math.random()).slice(0, 10);
-          if (shuffled.length === 0) {
-            container.innerHTML = `<p style="font-size:0.85rem;color:var(--muted);padding:10px;">Tidak ada artikel lain di kategori ini.</p>`;
-            return;
-          }
-          container.innerHTML = shuffled.map(item => {
-            const d = item.date;
-            const formattedDate = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
-            return `
-              <article class="side-item article-card">
-                <img src="${item.img}" alt="${item.title}" onerror="this.onerror=function(){this.onerror=null;this.src='${item.fullImg}'}">
-                <div>
-                  <h3><a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="color:inherit;text-decoration:none;">${item.title}</a></h3>
-                  <p>${formattedDate} · <span style="color:var(--accent);font-weight:700;text-transform:uppercase;font-size:0.75rem;">${item.category}</span></p>
-                </div>
-              </article>
-            `;
-          }).join('');
-        }
-        _renderPagination() {
-          const totalPages = Math.ceil(this.displayedData.length / this.itemsPerPage);
-          const indicator = document.getElementById('page-indicator');
-          const prevBtn = document.getElementById('prev-page-btn');
-          const nextBtn = document.getElementById('next-page-btn');
-          if (indicator) indicator.textContent = `H - ${this.currentPage} dari ${totalPages || 1}`;
-          if (prevBtn) prevBtn.disabled = (this.currentPage === 1);
-          if (nextBtn) nextBtn.disabled = (this.currentPage === totalPages || totalPages === 0);
-        }
-        _renderCategories() {
-          // Kategori chip sudah ada di HTML statis, kita hanya perlu mengaktifkan yang sesuai
-          // Saat ini kita hanya punya All, World, Tech. Kita sync dengan data aktual jika perlu.
-          // Untuk sederhana, kita biarkan seperti asli.
-          // Jika ingin dinamis, bisa dihasilkan dari allData.
-          // Tapi karena wireframe awal sudah punya chip statis, kita gunakan itu.
-        }
-        // === FILTER & NAVIGASI ===
-        applyFilters() {
-          const search = this.searchTerm.toLowerCase().trim();
-          const year = this.yearFilter;
-          const month = this.monthFilter;
-          const cat = this.currentCategory;
-          this.displayedData = this.allData.filter(item => {
-            const matchCat = (cat === 'all') || (item.categorySlug === cat);
-            const matchYear = (year === 'all') || (item.date.getFullYear().toString() === year);
-            const matchMonth = (month === 'all') || (item.date.toLocaleString('en-US', { month: 'long' }) === month);
-            const matchSearch = !search ||
-              item.title.toLowerCase().includes(search) ||
-              item.summary.toLowerCase().includes(search);
-            return matchCat && matchYear && matchMonth && matchSearch;
-          });
-          if (this.currentPage > Math.ceil(this.displayedData.length / this.itemsPerPage)) {
-            this.currentPage = 1;
-          }
-          this.render();
-        }
-        goToPage(page) {
-          const total = Math.ceil(this.displayedData.length / this.itemsPerPage);
-          if (page < 1 || page > total) return;
-          this.currentPage = page;
-          this.render();
-        }
-        setCategory(cat) {
-          this.currentCategory = cat;
-          this.currentPage = 1;
-          this.applyFilters();
-        }
-        setSearch(term) {
-          this.searchTerm = term;
-          this.currentPage = 1;
-          this.applyFilters();
-        }
-        setYear(year) {
-          this.yearFilter = year;
-          this.currentPage = 1;
-          this.applyFilters();
-        }
-        setMonth(month) {
-          this.monthFilter = month;
-          this.currentPage = 1;
-          this.applyFilters();
-        }
-        refreshSidebar() {
-          this._renderSidebar();
-        }
-        // === UI SETUP ===
-        _setupUI() {
-          const searchInput = document.getElementById('search-input');
-          const clearBtn = document.getElementById('search-clear-btn');
-          const yearSort = document.getElementById('year-sort');
-          const monthSort = document.getElementById('month-sort');
-          const prevBtn = document.getElementById('prev-page-btn');
-          const nextBtn = document.getElementById('next-page-btn');
-          const refreshBtn = document.getElementById('random-refresh-btn');
-          // Pencarian
-          searchInput?.addEventListener('input', (e) => {
-            const val = e.target.value.trim();
-            this.setSearch(val);
-            if (val.length > 0) {
-              document.body.classList.add('category-active');
-              clearBtn.style.display = 'grid';
-            } else {
-              document.body.classList.remove('category-active');
-              clearBtn.style.display = 'none';
-              // Reset chip ke All
-              document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
-              document.querySelectorAll('.chip[data-filter="all"]').forEach(c => c.classList.add('active'));
-            }
-          });
-          clearBtn?.addEventListener('click', () => {
-            searchInput.value = '';
-            document.body.classList.remove('category-active');
-            clearBtn.style.display = 'none';
-            document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.chip[data-filter="all"]').forEach(c => c.classList.add('active'));
-            this.setCategory('all');
-            this.setSearch('');
-          });
-          // Filter tahun
-          yearSort?.addEventListener('change', (e) => {
-            const year = e.target.value;
-            this.setYear(year);
-            this._populateMonthDropdown(year);
-          });
-          // Filter bulan
-          monthSort?.addEventListener('change', (e) => {
-            this.setMonth(e.target.value);
-          });
-          // Pagination
-          prevBtn?.addEventListener('click', () => this.goToPage(this.currentPage - 1));
-          nextBtn?.addEventListener('click', () => this.goToPage(this.currentPage + 1));
-          // Refresh sidebar
-          refreshBtn?.addEventListener('click', () => this.refreshSidebar());
-          // Chip filter
-          document.querySelectorAll('.chip').forEach(chip => {
-            chip.addEventListener('click', (e) => {
-              document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
-              e.target.classList.add('active');
-              const cat = e.target.getAttribute('data-filter');
-              this.setCategory(cat);
-              if (cat === 'all') {
-                document.body.classList.remove('category-active');
-              } else {
-                document.body.classList.add('category-active');
-              }
-              // Reset search
-              if (searchInput) {
-                searchInput.value = '';
-                clearBtn.style.display = 'none';
-              }
-            });
-          });
-          // Toggle hero visibility berdasarkan filter tahun (jika tahun dipilih, sembunyikan hero)
-          // Sudah diatur di setYear via applyFilters? Kita tambahkan di sini.
-          // override setYear untuk toggle hero
-          const originalSetYear = this.setYear.bind(this);
-          this.setYear = (year) => {
-            originalSetYear(year);
-            const heroEl = document.querySelector('.hero');
-            if (year !== 'all') {
-              heroEl.style.display = 'none';
-              this._stopHeroSlider();
-              this.isHeroVisible = false;
-            } else {
-              heroEl.style.display = '';
-              this._startHeroSlider();
-              this.isHeroVisible = true;
-            }
-          };
-          // Panggil setYear sekali untuk inisialisasi
-          this.setYear(this.yearFilter);
-        }
-        _populateYearDropdown() {
-          const yearSort = document.getElementById('year-sort');
-          if (!yearSort) return;
-          const years = [...new Set(this.allData.map(item => item.date.getFullYear()))].sort((a,b) => b-a);
-          yearSort.innerHTML = '<option value="all">Tahun</option>';
-          years.forEach(y => {
-            const opt = document.createElement('option');
-            opt.value = y.toString();
-            opt.textContent = y.toString();
-            yearSort.appendChild(opt);
-          });
-          // Isi bulan
-          this._populateMonthDropdown('all');
-        }
-        _populateMonthDropdown(selectedYear) {
-          const monthSort = document.getElementById('month-sort');
-          if (!monthSort) return;
-          const monthsName = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-          monthSort.innerHTML = '<option value="all">Bulan</option>';
-          if (selectedYear && selectedYear !== 'all') {
-            const availableMonths = [...new Set(
-              this.allData.filter(item => item.date.getFullYear().toString() === selectedYear)
-                         .map(item => item.date.getMonth())
-            )].sort((a,b) => a-b);
-            availableMonths.forEach(m => {
-              const opt = document.createElement('option');
-              opt.value = monthsName[m];
-              opt.textContent = monthsName[m];
-              monthSort.appendChild(opt);
-            });
-            monthSort.disabled = false;
-          } else {
-            monthSort.disabled = true;
-          }
-        }
-      }
-      // =======================================================================
-      // INISIALISASI
-      // =======================================================================
-      const app = new AppState();
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => app.initData());
-      } else {
-        app.initData();
-      }
-    </script>
-    <script defer src="/ext/balon-cf.js"></script>
-    <script>
-      if ('modelContext' in navigator) {
-        navigator.modelContext.provideContext({
-          tools: [{
-            name: "baca_llms_index",
-            description: "Mengambil daftar lengkap artikel Layar Kosong",
-            inputSchema: {
-              type: "object",
-              properties: {}
-            },
-            execute: async () => {
-              const res = await fetch('/llms.txt');
-              return await res.text()
-            }
-          }]
-        })
-      }
-    </script>
-  </body>
-</html>
+<!doctype html><html lang="id"><head><meta charset="UTF-8"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"><title>Layar Kosong</title><script defer="" src="/ext/data-provider.js"></script><meta content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini." name="description"><meta content="frijal" name="author"><meta content="Layar Kosong" name="publisher"><meta content="8ba05f5f00d79c5a" name="yandex-verification"><link href="https://dalam.web.id/" rel="canonical"><link title="Layar Kosong" href="/opensearch.xml" rel="search" type="application/opensearchdescription+xml"><link href="/sitemap.xml" rel="sitemap" type="application/xml"><link title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.rss" rel="alternate" type="application/rss+xml"><link title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.atom" rel="alternate" type="application/atom+xml"><link href="https://creativecommons.org/licenses/by/4.0/" rel="license"><link href="/favicon.ico" rel="icon" sizes="any"><link href="/favicon.svg" rel="icon" type="image/svg+xml"><link href="/ext/icons/apple-touch-icon.png" rel="apple-touch-icon"><link href="/site.webmanifest" rel="manifest"><meta content="light dark" name="color-scheme"><meta content="@frijal@mastodon.social" name="fediverse:creator"><link href="/ext/fontawesome.css" rel="stylesheet"><meta content="website" property="og:type"><meta content="Layar Kosong" property="og:site_name"><meta content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini." property="og:title"><meta content="artikel teknologi inspirasi kehidupan komunitas literasi digital religi Islam serta panduan karier untuk pembaca masa kini berpikir kritis dan terbuka." property="og:description"><meta content="https://dalam.web.id/" property="og:url"><meta content="https://dalam.web.id/thumbnail.webp" property="og:image"><meta content="1000" property="og:image:width"><meta content="563" property="og:image:height"><meta content="id_ID" property="og:locale"><meta content="summary_large_image" name="twitter:card"><meta content="@responaja" name="twitter:site"><meta content="@responaja" name="twitter:creator"><meta content="1872520777138122752" name="twitter:account_id"><meta content="Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini." name="twitter:title"><meta content="artikel teknologi inspirasi kehidupan komunitas literasi digital religi Islam serta panduan karier untuk pembaca masa kini berpikir kritis dan terbuka." name="twitter:description"><meta content="https://dalam.web.id/thumbnail.webp" name="twitter:image"><script type="application/ld+json">
+ {
+ "@context": "https://schema.org",
+ "@graph": [{
+ "@type": "WebSite",
+ "@id": "https://dalam.web.id/#website",
+ "url": "https://dalam.web.id/",
+ "name": "Layar Kosong",
+ "alternateName": "Blog Frijal",
+ "publisher": {
+ "@id": "https://dalam.web.id/#organization"
+ },
+ "potentialAction": {
+ "@type": "SearchAction",
+ "target": "https://dalam.web.id/search/?q={search_term_string}",
+ "query-input": "required name=search_term_string"
+ }
+ }, {
+ "@type": "Organization",
+ "@id": "https://dalam.web.id/#organization",
+ "name": "Layar Kosong",
+ "url": "https://dalam.web.id/",
+ "logo": {
+ "@type": "ImageObject",
+ "url": "https://dalam.web.id/logo.png",
+ "width": 512,
+ "height": 512
+ },
+ "founder": {
+ "@id": "https://dalam.web.id/#person"
+ },
+ "contactPoint": {
+ "@type": "ContactPoint",
+ "contactType": "customer support",
+ "url": "https://t.me/frijal"
+ }
+ }, {
+ "@type": "Person",
+ "@id": "https://dalam.web.id/#person",
+ "name": "Fakhrul Rijal",
+ "url": "https://dalam.web.id/",
+ "jobTitle": "Blogger & Tech Enthusiast",
+ "worksFor": {
+ "@id": "https://dalam.web.id/#organization"
+ },
+ "sameAs": ["https://x.com/responaja", "https://github.com/frijal", "https://linkedin.com/in/frijal", "https://www.youtube.com/@frijal", "https://facebook.com/frijal", "https://mastodon.social/@frijal"]
+ }, {
+ "@type": "WebPage",
+ "@id": "https://dalam.web.id/#homepage",
+ "url": "https://dalam.web.id/",
+ "name": "Layar Kosong",
+ "isPartOf": {
+ "@id": "https://dalam.web.id/#website"
+ },
+ "about": {
+ "@id": "https://dalam.web.id/#organization"
+ },
+ "description": "Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini."
+ }, {
+ "@type": "Blog",
+ "@id": "https://dalam.web.id/#blog",
+ "url": "https://dalam.web.id/",
+ "name": "Layar Kosong",
+ "description": "Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini.",
+ "publisher": {
+ "@id": "https://dalam.web.id/#organization"
+ }
+ }, {
+ "@type": "SiteNavigationElement",
+ "name": "Opini Sosial",
+ "url": "https://dalam.web.id/opini-sosial/"
+ }, {
+ "@type": "SiteNavigationElement",
+ "name": "Jejak Sejarah",
+ "url": "https://dalam.web.id/jejak-sejarah/"
+ }, {
+ "@type": "SiteNavigationElement",
+ "name": "Sistem Terbuka",
+ "url": "https://dalam.web.id/sistem-terbuka/"
+ }, {
+ "@type": "SiteNavigationElement",
+ "name": "Warta Tekno",
+ "url": "https://dalam.web.id/warta-tekno/"
+ }, {
+ "@type": "SiteNavigationElement",
+ "name": "Lainnya",
+ "url": "https://dalam.web.id/lainnya/"
+ }, {
+ "@type": "SiteNavigationElement",
+ "name": "Gaya Hidup",
+ "url": "https://dalam.web.id/gaya-hidup/"
+ }, {
+ "@type": "SiteNavigationElement",
+ "name": "Olah Media",
+ "url": "https://dalam.web.id/olah-media/"
+ }, {
+ "@type": "BreadcrumbList",
+ "@id": "https://dalam.web.id/#breadcrumb",
+ "itemListElement": [{
+ "@type": "ListItem",
+ "position": 1,
+ "name": "Beranda",
+ "item": "https://dalam.web.id/"
+ }]
+ }]
+ }
+ </script><style>:root{--bg:#f5f1ea;--panel:#fff;--text:#101010;--muted:#66605a;--line:#d9d1c4;--accent:#133b7c;--accent-2:#b62f24;--shadow:0 14px 40px #14120e14;--gradient:radial-gradient(circle at top left,#fffaf2 0,var(--bg)55%,#efebe4 100%)}@media (prefers-color-scheme:dark){:root{--bg:#121212;--panel:#1e1e1e;--text:#e0e0e0;--muted:#9e9e9e;--line:#333;--accent:#64b5f6;--accent-2:#ef5350;--shadow:0 14px 40px #00000080;--gradient:radial-gradient(circle at top left,#1a1a1a 0,var(--bg)55%,#151515 100%)}}*{box-sizing:border-box}:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}body{color:var(--text);background:var(--gradient);margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif}a{color:inherit;text-decoration:none}img{max-width:100%;height:auto;display:block}.page{max-width:1440px;margin:0 auto;padding:0 20px 28px}.topbar{border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:18px;padding:22px 0 18px;display:flex}.brand{letter-spacing:-.06em;text-transform:uppercase;font-size:2rem;font-weight:900}.nav{color:var(--muted);text-transform:uppercase;letter-spacing:.04em;flex-wrap:wrap;gap:14px;font-size:.9rem;font-weight:600;display:flex}.nav a:hover{color:var(--accent)}.spacer{display:none}.search{flex-wrap:wrap;gap:10px;width:100%;display:flex}.search-box{width:100%;position:relative}.sort select,.search-input{border:1px solid var(--line);background:var(--panel);color:var(--text);height:42px;font:inherit;border-radius:999px;width:100%}.search-input{padding:0 40px 0 16px}.search-input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}.sort select{padding:0 16px}.search-clear{cursor:pointer;opacity:.6;background:0 0;border:none;border-radius:999px;place-items:center;width:30px;height:30px;font-size:.9rem;display:none;position:absolute;top:50%;right:6px;transform:translateY(-50%)}.search-clear:hover{opacity:1;background:#0000000d}.sort{gap:10px;width:100%;display:flex}.filters{flex-wrap:wrap;gap:10px;margin-top:16px;display:flex}.chip{border:1px solid var(--line);color:var(--muted);height:36px;font:inherit;cursor:pointer;background:#ffffff1a;border-radius:999px;padding:0 14px;font-size:.85rem;font-weight:700}.chip.active{background:var(--text);color:var(--panel);border-color:var(--text)}.hero{flex-direction:column;gap:18px;margin-top:18px;display:flex}.hero-card,.panel,.thumb,.side-item{background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:16px;overflow:hidden}.hero-media{position:relative}.hero-card img{object-fit:cover;width:100%;height:300px}.hero-arrow{color:#fff;cursor:pointer;background:#101010e0;border:0;border-radius:999px;place-items:center;width:44px;height:44px;font-size:1.05rem;transition:all .3s;display:grid;position:absolute;top:50%;transform:translateY(-50%);box-shadow:0 4px 15px #0000004d}.hero-arrow:hover{background:var(--accent);transform:translateY(-50%)scale(1.05);box-shadow:0 6px 25px #00000080}.hero-arrow.prev{left:14px}.hero-arrow.next{right:14px}.hero-radio{display:none}.hero-rotator{padding:0;display:grid;overflow:hidden}.hero-slide{opacity:0;pointer-events:none;flex-direction:column;grid-area:1/1;transition:opacity .4s ease-in-out;display:flex}label.hero-arrow{user-select:none;-webkit-tap-highlight-color:transparent}#slide-0:checked~.hero-rotator .slide-0,#slide-1:checked~.hero-rotator .slide-1,#slide-2:checked~.hero-rotator .slide-2,#slide-3:checked~.hero-rotator .slide-3,#slide-4:checked~.hero-rotator .slide-4,#slide-5:checked~.hero-rotator .slide-5,#slide-6:checked~.hero-rotator .slide-6{opacity:1;pointer-events:auto;z-index:2}.hero-copy{padding:18px 18px 22px}.hero-copy h1{color:var(--text);transition:color .2s}.hero-copy h1:hover{color:var(--accent)}.kicker{color:var(--accent-2);text-transform:uppercase;font-size:.78rem;font-weight:800;display:inline-block}h1{margin:10px 0 12px;font-family:Georgia,serif;font-size:clamp(2.15rem,1.7vw,4.4rem);line-height:.92}.meta,.excerpt{color:var(--muted);line-height:1.55}.meta{margin-bottom:10px;font-size:.92rem}.hero-side{flex-direction:column;align-self:start;gap:16px;max-height:calc(100vh - 48px);margin:-10px;padding:10px;display:flex;position:sticky;top:24px;overflow-y:auto}.hero-side::-webkit-scrollbar{display:none}.hero-side{-ms-overflow-style:none;scrollbar-width:none}.panel{padding:18px}.section-title{letter-spacing:.08em;text-transform:uppercase;justify-content:space-between;align-items:center;margin:0 0 14px;font-size:1rem;display:flex}.refresh-btn{cursor:pointer;color:var(--muted);background:0 0;border:none;font-size:1.2rem;transition:transform .3s,color .3s}.refresh-btn:hover{color:var(--accent);transform:rotate(90deg)}.side-list{gap:12px;display:grid}.side-item{grid-template-columns:84px 1fr;gap:12px;padding:10px;display:grid}.side-item img{object-fit:cover;border-radius:8px;width:84px;height:64px}.side-item h3{margin:0 0 6px;font-size:.95rem;line-height:1.2}.side-item p{color:var(--muted);margin:0;font-size:.82rem}.main-grid{flex-direction:column;gap:18px;margin-top:18px;display:flex}.body-grid,.grid-content-wrapper{flex-direction:column;gap:18px;display:flex}.category-active .hero{display:none}.category-active .main-grid{margin-top:0}.pagination{border-top:1px solid var(--line);justify-content:space-between;align-items:center;padding-top:18px;display:flex}.page-btn{height:38px;font:inherit;cursor:pointer;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:0 16px;font-size:.85rem;font-weight:800;transition:background .2s}.page-btn:hover:not(:disabled){background:var(--text);color:var(--panel)}.page-btn:disabled{opacity:.5;cursor:not-allowed}.footer{border-top:1px solid var(--line);color:var(--muted);flex-flow:wrap;justify-content:space-between;align-items:center;gap:20px;margin-top:22px;padding-top:18px;display:flex}.icons{flex-wrap:wrap;gap:10px;display:flex}.icon{border:1px solid var(--line);width:38px;height:38px;color:var(--accent);border-radius:999px;place-items:center;font-size:.85rem;font-weight:800;transition:background .2s,color .2s;display:grid}.icon:hover{background:var(--accent);color:var(--panel);border-color:var(--accent)}@media (width>=720px){.topbar{flex-direction:row;align-items:center}.spacer{flex:1;display:block}.search{flex-wrap:nowrap;align-items:center;width:auto}.search-box{width:auto}.search-input{width:210px}.sort{width:auto}.sort select{min-width:150px}.body-grid{flex-direction:row;grid-template-columns:repeat(2,minmax(0,1fr));display:grid}}@media (width>=1080px){.hero{grid-template-columns:1fr 320px;display:grid}.hero-card img{height:440px}.main-grid{grid-template-columns:1fr 320px;align-items:start;display:grid}}:root{--facebook:#1877f2;--github:#24292f;--linkedin:#0a66c2;--telegram:#229ed9;--threads:#000;--twitter:#1da1f2;--youtube:red;--reddit:#ff5700;--mastodon:#6364ff;--bluesky:#1185fe;--discord:#5865f2}@media (prefers-color-scheme:dark){:root{--github:#fff;--threads:#fff}}.page-footer{background:var(--panel);border-top:1px solid var(--line);border-radius:16px;margin-top:2rem;padding:2rem 0}.footer-content{grid-template-columns:1fr 1fr;align-items:center;gap:2rem;display:grid}.footer-section{flex-direction:column;gap:1rem;display:flex}.footer-section:first-child p{color:var(--text);margin:0;font-size:1rem;font-weight:700}.footer-social{flex-wrap:wrap;gap:1rem;font-size:1.4rem;display:flex}.footer-social a{color:var(--muted);transition:transform .3s;display:inline-flex}.footer-social a:hover{transform:translateY(-3px)}.page-footer .footer-social a:hover .fa-discord{color:var(--discord)}.page-footer .footer-social a:hover .fa-facebook{color:var(--facebook)}.page-footer .footer-social a:hover .fa-github{color:var(--github)}.page-footer .footer-social a:hover .fa-mastodon{color:var(--mastodon)}.page-footer .footer-social a:hover .fa-reddit{color:var(--reddit)}.page-footer .footer-social a:hover .fa-square-linkedin{color:var(--linkedin)}.page-footer .footer-social a:hover .fa-telegram{color:var(--telegram)}.page-footer .footer-social a:hover .fa-threads{color:var(--threads)}.page-footer .footer-social a:hover .fa-twitter{color:var(--twitter)}.page-footer .footer-social a:hover .fa-youtube{color:var(--youtube)}.footer-links{flex-wrap:wrap;justify-content:flex-end;gap:1rem;display:flex}.footer-links a{color:var(--muted);font-size:.85rem;text-decoration:none;transition:color .2s}.footer-links a:hover{color:var(--accent)}.footer-copyright{margin-top:0}.footer-copyright p{color:var(--muted);text-align:right;margin:0;font-size:.75rem}@media (width<=768px){.footer-content{text-align:center;grid-template-columns:1fr;gap:1.5rem}.footer-links{justify-content:center}.footer-copyright p{text-align:center}.footer-social{justify-content:center}}</style></head><body><div class="page"><header class="topbar"><div class="brand">Layar Kosong</div><nav aria-label="Primary" class="nav"><a href="#world">World</a><a href="#politics">Politics</a><a href="#business">Business</a><a href="#culture">Culture</a><a href="#tech">Tech</a></nav><div class="spacer"></div><div class="search"><div class="search-box"><input aria-label="Cari Artikel" placeholder="Cari Artikel" class="search-input" id="search-input" type="search"><button aria-label="Clear search" class="search-clear" id="search-clear-btn" type="button">✕</button></div><div class="sort"><select aria-label="Tahun" id="year-sort"><option value="all">Tahun</option></select><select aria-label="Bulan" id="month-sort"><option value="all">Bulan</option></select></div></div></header><section class="hero"><article class="hero-card article-card hero-rotator" id="hero-container"></article><aside class="hero-side"><div class="panel"><h2 class="section-title">Acak Artikel <button aria-label="Refresh random articles" class="refresh-btn" id="random-refresh-btn">⟳</button></h2><div class="side-list" id="random-sidebar-container"><div class="side-item skeleton-item"><p>Memuat artikel...</p></div></div></div></aside></section><div aria-label="Category filters" class="filters" id="category-filters" role="toolbar"><button class="chip active" data-filter="all" type="button">Kategori:</button><button class="chip" data-filter="gaya-hidup" type="button">Gaya Hidup</button><button class="chip" data-filter="jejak-sejarah" type="button">Jejak Sejarah</button><button class="chip" data-filter="lainnya" type="button">Lainnya</button><button class="chip" data-filter="olah-media" type="button">Olah Media</button><button class="chip" data-filter="opini-sosial" type="button">Opini Sosial</button><button class="chip" data-filter="sistem-terbuka" type="button">Sistem Terbuka</button><button class="chip" data-filter="warta-tekno" type="button">Warta Tekno</button></div><section class="main-grid"><div class="grid-content-wrapper"><div class="body-grid" id="main-articles-container"></div><div class="pagination" id="category-pagination"><button class="page-btn" disabled="" id="prev-page-btn" type="button">← Sebelumnya</button><span id="page-indicator" style="color:var(--muted);font-size:.85rem;font-weight:600">H - 1</span><button class="page-btn" id="next-page-btn" type="button">Selanjutnya →</button></div></div><aside class="sidebar"><div class="panel"><h2 class="section-title">More Coverage</h2><p class="excerpt">Konten tambahan atau widget bisa ditaruh di sini.</p></div></aside></section><div aria-label="Category filters" class="filters" id="category-filters-bottom" role="toolbar"><button class="chip active" data-filter="all" type="button">Kategori:</button><button class="chip" data-filter="gaya-hidup" type="button">Gaya Hidup</button><button class="chip" data-filter="jejak-sejarah" type="button">Jejak Sejarah</button><button class="chip" data-filter="lainnya" type="button">Lainnya</button><button class="chip" data-filter="olah-media" type="button">Olah Media</button><button class="chip" data-filter="opini-sosial" type="button">Opini Sosial</button><button class="chip" data-filter="sistem-terbuka" type="button">Sistem Terbuka</button><button class="chip" data-filter="warta-tekno" type="button">Warta Tekno</button></div></div><footer class="page-footer"><div class="footer-content"><div class="footer-section"><p>Mari Kita Jaga, Supaya Data Pribadi Tetap Aman.</p><div class="footer-social"><a rel="noopener noreferrer" href="https://facebook.com/frijal" target="_blank"> <i class="fa-brands fa-facebook"></i> </a><a rel="noopener noreferrer" href="https://github.com/frijal" target="_blank"> <i class="fa-brands fa-github"></i> </a><a rel="noopener noreferrer" href="https://linkedin.com/in/frijal" target="_blank"> <i class="fa-brands fa-square-linkedin"></i> </a><a rel="noopener noreferrer" href="https://t.me/frijal" target="_blank"> <i class="fa-brands fa-telegram"></i> </a><a rel="noopener noreferrer" href="https://threads.net/frijal" target="_blank"> <i class="fa-brands fa-threads"></i> </a><a rel="noopener noreferrer" href="https://youtube.com/@frijal" target="_blank"> <i class="fa-brands fa-youtube"></i> </a><a href="https://mastodon.social/@frijal" rel="me" target="_blank"> <i class="fa-brands fa-mastodon"></i> </a><a rel="noopener noreferrer" href="https://x.com/responaja" target="_blank"> <i class="fa-brands fa-twitter"></i> </a><a rel="noopener noreferrer" href="https://discord.gg/4fCnZSsJCM" target="_blank"> <i class="fa-brands fa-discord"></i> </a></div></div><div class="footer-section"><div class="footer-links"><a href="/disclosure" target="_blank">Disclosure</a><a href="/sitemap.xml" target="_blank">Peta Situs</a><a href="/privacy">Privacy</a><a href="/about">Tentang Kita</a><a href="/disclaimer">Disclaimer</a><a href="/artikel.json" target="_blank">Sumber Terbuka</a></div><div class="footer-copyright"><p>🄯 2009 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</p></div></div></div></footer><script type="module">// =======================================================================
+ // APP STATE (Modular dengan Class)
+ // =======================================================================
+ class AppState {
+ constructor() {
+ this.allData = [];
+ this.displayedData = [];
+ this.currentCategory = 'all';
+ this.currentPage = 1;
+ this.itemsPerPage = 6;
+ this.searchTerm = '';
+ this.yearFilter = 'all';
+ this.monthFilter = 'all';
+ this.heroData = [];
+ this.heroIndex = 0;
+ this.heroTimer = null;
+ this.isHeroVisible = true;
+ }
+ // Inisialisasi data dari provider
+ async initData() {
+ try {
+ const provider = window.siteDataProvider;
+ if (!provider) throw new Error('siteDataProvider tidak ditemukan');
+ const raw = await provider.getFor('homepage.ts');
+ this.allData = this._parseRawData(raw);
+ this.allData.sort((a, b) => b.date.getTime() - a.date.getTime());
+ this.displayedData = [...this.allData];
+ this._prepareHeroData();
+ this._setupUI();
+ this.render();
+ this._startHeroSlider();
+ this._populateYearDropdown();
+ } catch (err) {
+ console.error('Gagal memuat data:', err);
+ document.getElementById('main-articles-container').innerHTML =
+ `<div class="panel" style="grid-column:1/-1;"><p style="color:var(--accent-2);">Gagal memuat konten. Silakan muat ulang.</p></div>`;
+ }
+ }
+ _parseRawData(raw) {
+ const result = [];
+ for (const cat in raw) {
+ const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
+ const readableCat = this._formatCategoryName(cat);
+ raw[cat].forEach(item => {
+ const fileSlug = item[1].replace(/\.html$/, '');
+ const originalImage = item[2] || 'https://placehold.co/600x400/1e1e1e/ffffff?text=Northline';
+ const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
+ const cleanTitle = this._decodeHTML(item[0]).replace(/\s*-\s*Layar Kosong$/i, '');
+ result.push({
+ category: readableCat,
+ categorySlug: catSlug,
+ title: cleanTitle,
+ file: item[1],
+ img: smallImage,
+ fullImg: originalImage,
+ date: item[3] ? new Date(item[3]) : new Date(),
+ summary: this._decodeHTML(item[4] || cleanTitle)
+ });
+ });
+ }
+ return result;
+ }
+ _formatCategoryName(slug) {
+ if (!slug) return 'Lainnya';
+ return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+ }
+ _decodeHTML(str) {
+ const txt = document.createElement('textarea');
+ txt.innerHTML = str;
+ return txt.value;
+ }
+ _prepareHeroData() {
+ const categories = [...new Set(this.allData.map(item => item.category))];
+ this.heroData = categories.map(cat => this.allData.find(item => item.category === cat)).filter(Boolean);
+ }
+ // === RENDER ===
+ render() {
+ this._renderHero();
+ this._renderGrid();
+ this._renderSidebar();
+ this._renderPagination();
+ this._renderCategories();
+ }
+ _renderHero() {
+ const wrapper = document.getElementById('hero-container');
+ if (!wrapper || this.heroData.length === 0) return;
+ // Kita hanya perlu memperbarui slide yang ada, tetapi karena kita hanya punya satu slide statis,
+ // kita perlu membangun ulang slider secara dinamis sesuai data.
+ // Untuk kemudahan, kita buat ulang seluruh konten hero.
+ const heroSection = document.querySelector('.hero');
+ const existingRadio = heroSection.querySelectorAll('.hero-radio');
+ existingRadio.forEach(el => el.remove());
+ const existingArticle = heroSection.querySelector('.hero-card');
+ if (existingArticle) existingArticle.remove();
+ // Buat radio buttons
+ const radioHTML = this.heroData.map((_, idx) =>
+ `<input type="radio" name="hero" id="slide-${idx}" class="hero-radio" ${idx===0?'checked':''}>`
+ ).join('');
+ // Buat slide
+ const slides = this.heroData.map((h, idx) => `
+ <div class="hero-slide slide-${idx}">
+ <div class="hero-media">
+ <img src="${h.fullImg}" alt="${h.title}" />
+ <label for="slide-${(idx-1+this.heroData.length)%this.heroData.length}" class="hero-arrow prev">←</label>
+ <label for="slide-${(idx+1)%this.heroData.length}" class="hero-arrow next">→</label>
+ </div>
+ <div class="hero-copy">
+ <span class="kicker">${h.category}</span>
+ <h1>${h.title}</h1>
+ <div class="meta">${h.date.toLocaleDateString('en-US', { day:'numeric', month:'long', year:'numeric' })}</div>
+ <p class="excerpt">${h.summary.substring(0, 150)}...</p>
+ </div>
+ </div>
+ `).join('');
+ const article = document.createElement('article');
+ article.className = 'hero-card article-card hero-rotator';
+ article.innerHTML = slides;
+ heroSection.insertBefore(article, heroSection.querySelector('aside'));
+ // Tambahkan radio sebelum article
+ const radioFragment = document.createRange().createContextualFragment(radioHTML);
+ heroSection.insertBefore(radioFragment, article);
+ // Update state heroIndex jika perlu
+ this.heroIndex = 0;
+ this._updateHeroPosition();
+ }
+ _updateHeroPosition() {
+ // Radio sudah mengatur visibilitas otomatis, tidak perlu transform.
+ // Hanya untuk memastikan slide yang aktif sesuai index.
+ const radios = document.querySelectorAll('.hero-radio');
+ if (radios.length > this.heroIndex) {
+ radios[this.heroIndex].checked = true;
+ }
+ }
+ _startHeroSlider() {
+ if (this.heroTimer) clearInterval(this.heroTimer);
+ this.heroTimer = setInterval(() => {
+ const total = this.heroData.length;
+ if (total === 0) return;
+ this.heroIndex = (this.heroIndex + 1) % total;
+ this._updateHeroPosition();
+ }, 4600);
+ }
+ _stopHeroSlider() {
+ if (this.heroTimer) {
+ clearInterval(this.heroTimer);
+ this.heroTimer = null;
+ }
+ }
+ _renderGrid() {
+ const container = document.getElementById('main-articles-container');
+ if (!container) return;
+ const start = (this.currentPage - 1) * this.itemsPerPage;
+ const end = start + this.itemsPerPage;
+ const pageItems = this.displayedData.slice(start, end);
+ if (pageItems.length === 0) {
+ container.innerHTML = `
+ <div class="panel" style="grid-column:1/-1;text-align:center;padding:40px 20px;">
+ <p style="color:var(--muted);margin:0;">Tidak ada artikel yang cocok dengan filter.</p>
+ </div>`;
+ return;
+ }
+ container.innerHTML = pageItems.map(item => {
+ const escapedTitle = item.title.replace(/"/g, '&quot;');
+ const displayDesc = item.summary.substring(0, 100) + '...';
+ return `
+ <article class="thumb article-card" data-category="${item.categorySlug}">
+ <a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="display:block;text-decoration:none;color:inherit;">
+ <div class="media">
+ <img src="${item.img}" alt="${escapedTitle}" loading="lazy" onerror="this.onerror=function(){this.onerror=null;this.src='${item.fullImg}'}">
+ </div>
+ <div class="body">
+ <div class="tag" style="font-size:.75rem;color:var(--accent);font-weight:800;text-transform:uppercase;">${item.category}</div>
+ <h3 style="margin:8px 0;font-family:Georgia,serif;font-size:1.28rem;line-height:1.08;">${item.title}</h3>
+ <p class="excerpt" style="color:var(--muted);line-height:1.55;margin:0;">${displayDesc}</p>
+ </div>
+ </a>
+ </article>
+ `;
+ }).join('');
+ }
+ _renderSidebar() {
+ const container = document.getElementById('random-sidebar-container');
+ if (!container) return;
+ // Ambil kategori aktif
+ const activeCategory = this.currentCategory;
+ // Filter data berdasarkan kategori
+ const pool = activeCategory === 'all' ? [...this.allData] : this.allData.filter(item => item.categorySlug === activeCategory);
+ // Ambil judul yang sedang tampil di halaman
+ const pageStart = (this.currentPage - 1) * this.itemsPerPage;
+ const pageEnd = pageStart + this.itemsPerPage;
+ const pageTitles = this.displayedData.slice(pageStart, pageEnd).map(item => item.title);
+ // Juga judul di hero (jika hero tampil)
+ const heroTitles = this.isHeroVisible ? this.heroData.map(h => h.title) : [];
+ const exclude = new Set([...pageTitles, ...heroTitles]);
+ const available = pool.filter(item => !exclude.has(item.title));
+ // Acak dan ambil 10
+ const shuffled = [...available].sort(() => 0.5 - Math.random()).slice(0, 10);
+ if (shuffled.length === 0) {
+ container.innerHTML = `<p style="font-size:0.85rem;color:var(--muted);padding:10px;">Tidak ada artikel lain di kategori ini.</p>`;
+ return;
+ }
+ container.innerHTML = shuffled.map(item => {
+ const d = item.date;
+ const formattedDate = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
+ return `
+ <article class="side-item article-card">
+ <img src="${item.img}" alt="${item.title}" onerror="this.onerror=function(){this.onerror=null;this.src='${item.fullImg}'}">
+ <div>
+ <h3><a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="color:inherit;text-decoration:none;">${item.title}</a></h3>
+ <p>${formattedDate} · <span style="color:var(--accent);font-weight:700;text-transform:uppercase;font-size:0.75rem;">${item.category}</span></p>
+ </div>
+ </article>
+ `;
+ }).join('');
+ }
+ _renderPagination() {
+ const totalPages = Math.ceil(this.displayedData.length / this.itemsPerPage);
+ const indicator = document.getElementById('page-indicator');
+ const prevBtn = document.getElementById('prev-page-btn');
+ const nextBtn = document.getElementById('next-page-btn');
+ if (indicator) indicator.textContent = `H - ${this.currentPage} dari ${totalPages || 1}`;
+ if (prevBtn) prevBtn.disabled = (this.currentPage === 1);
+ if (nextBtn) nextBtn.disabled = (this.currentPage === totalPages || totalPages === 0);
+ }
+ _renderCategories() {
+ // Kategori chip sudah ada di HTML statis, kita hanya perlu mengaktifkan yang sesuai
+ // Saat ini kita hanya punya All, World, Tech. Kita sync dengan data aktual jika perlu.
+ // Untuk sederhana, kita biarkan seperti asli.
+ // Jika ingin dinamis, bisa dihasilkan dari allData.
+ // Tapi karena wireframe awal sudah punya chip statis, kita gunakan itu.
+ }
+ // === FILTER & NAVIGASI ===
+ applyFilters() {
+ const search = this.searchTerm.toLowerCase().trim();
+ const year = this.yearFilter;
+ const month = this.monthFilter;
+ const cat = this.currentCategory;
+ this.displayedData = this.allData.filter(item => {
+ const matchCat = (cat === 'all') || (item.categorySlug === cat);
+ const matchYear = (year === 'all') || (item.date.getFullYear().toString() === year);
+ const matchMonth = (month === 'all') || (item.date.toLocaleString('en-US', { month: 'long' }) === month);
+ const matchSearch = !search ||
+ item.title.toLowerCase().includes(search) ||
+ item.summary.toLowerCase().includes(search);
+ return matchCat && matchYear && matchMonth && matchSearch;
+ });
+ if (this.currentPage > Math.ceil(this.displayedData.length / this.itemsPerPage)) {
+ this.currentPage = 1;
+ }
+ this.render();
+ }
+ goToPage(page) {
+ const total = Math.ceil(this.displayedData.length / this.itemsPerPage);
+ if (page < 1 || page > total) return;
+ this.currentPage = page;
+ this.render();
+ }
+ setCategory(cat) {
+ this.currentCategory = cat;
+ this.currentPage = 1;
+ this.applyFilters();
+ }
+ setSearch(term) {
+ this.searchTerm = term;
+ this.currentPage = 1;
+ this.applyFilters();
+ }
+ setYear(year) {
+ this.yearFilter = year;
+ this.currentPage = 1;
+ this.applyFilters();
+ }
+ setMonth(month) {
+ this.monthFilter = month;
+ this.currentPage = 1;
+ this.applyFilters();
+ }
+ refreshSidebar() {
+ this._renderSidebar();
+ }
+ // === UI SETUP ===
+ _setupUI() {
+ const searchInput = document.getElementById('search-input');
+ const clearBtn = document.getElementById('search-clear-btn');
+ const yearSort = document.getElementById('year-sort');
+ const monthSort = document.getElementById('month-sort');
+ const prevBtn = document.getElementById('prev-page-btn');
+ const nextBtn = document.getElementById('next-page-btn');
+ const refreshBtn = document.getElementById('random-refresh-btn');
+ // Pencarian
+ searchInput?.addEventListener('input', (e) => {
+ const val = e.target.value.trim();
+ this.setSearch(val);
+ if (val.length > 0) {
+ document.body.classList.add('category-active');
+ clearBtn.style.display = 'grid';
+ } else {
+ document.body.classList.remove('category-active');
+ clearBtn.style.display = 'none';
+ // Reset chip ke All
+ document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
+ document.querySelectorAll('.chip[data-filter="all"]').forEach(c => c.classList.add('active'));
+ }
+ });
+ clearBtn?.addEventListener('click', () => {
+ searchInput.value = '';
+ document.body.classList.remove('category-active');
+ clearBtn.style.display = 'none';
+ document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
+ document.querySelectorAll('.chip[data-filter="all"]').forEach(c => c.classList.add('active'));
+ this.setCategory('all');
+ this.setSearch('');
+ });
+ // Filter tahun
+ yearSort?.addEventListener('change', (e) => {
+ const year = e.target.value;
+ this.setYear(year);
+ this._populateMonthDropdown(year);
+ });
+ // Filter bulan
+ monthSort?.addEventListener('change', (e) => {
+ this.setMonth(e.target.value);
+ });
+ // Pagination
+ prevBtn?.addEventListener('click', () => this.goToPage(this.currentPage - 1));
+ nextBtn?.addEventListener('click', () => this.goToPage(this.currentPage + 1));
+ // Refresh sidebar
+ refreshBtn?.addEventListener('click', () => this.refreshSidebar());
+ // Chip filter
+ document.querySelectorAll('.chip').forEach(chip => {
+ chip.addEventListener('click', (e) => {
+ document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
+ e.target.classList.add('active');
+ const cat = e.target.getAttribute('data-filter');
+ this.setCategory(cat);
+ if (cat === 'all') {
+ document.body.classList.remove('category-active');
+ } else {
+ document.body.classList.add('category-active');
+ }
+ // Reset search
+ if (searchInput) {
+ searchInput.value = '';
+ clearBtn.style.display = 'none';
+ }
+ });
+ });
+ // Toggle hero visibility berdasarkan filter tahun (jika tahun dipilih, sembunyikan hero)
+ // Sudah diatur di setYear via applyFilters? Kita tambahkan di sini.
+ // override setYear untuk toggle hero
+ const originalSetYear = this.setYear.bind(this);
+ this.setYear = (year) => {
+ originalSetYear(year);
+ const heroEl = document.querySelector('.hero');
+ if (year !== 'all') {
+ heroEl.style.display = 'none';
+ this._stopHeroSlider();
+ this.isHeroVisible = false;
+ } else {
+ heroEl.style.display = '';
+ this._startHeroSlider();
+ this.isHeroVisible = true;
+ }
+ };
+ // Panggil setYear sekali untuk inisialisasi
+ this.setYear(this.yearFilter);
+ }
+ _populateYearDropdown() {
+ const yearSort = document.getElementById('year-sort');
+ if (!yearSort) return;
+ const years = [...new Set(this.allData.map(item => item.date.getFullYear()))].sort((a,b) => b-a);
+ yearSort.innerHTML = '<option value="all">Tahun</option>';
+ years.forEach(y => {
+ const opt = document.createElement('option');
+ opt.value = y.toString();
+ opt.textContent = y.toString();
+ yearSort.appendChild(opt);
+ });
+ // Isi bulan
+ this._populateMonthDropdown('all');
+ }
+ _populateMonthDropdown(selectedYear) {
+ const monthSort = document.getElementById('month-sort');
+ if (!monthSort) return;
+ const monthsName = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+ monthSort.innerHTML = '<option value="all">Bulan</option>';
+ if (selectedYear && selectedYear !== 'all') {
+ const availableMonths = [...new Set(
+ this.allData.filter(item => item.date.getFullYear().toString() === selectedYear)
+ .map(item => item.date.getMonth())
+ )].sort((a,b) => a-b);
+ availableMonths.forEach(m => {
+ const opt = document.createElement('option');
+ opt.value = monthsName[m];
+ opt.textContent = monthsName[m];
+ monthSort.appendChild(opt);
+ });
+ monthSort.disabled = false;
+ } else {
+ monthSort.disabled = true;
+ }
+ }
+ }
+ // =======================================================================
+ // INISIALISASI
+ // =======================================================================
+ const app = new AppState();
+ if (document.readyState === 'loading') {
+ document.addEventListener('DOMContentLoaded', () => app.initData());
+ } else {
+ app.initData();
+ }</script><script defer="" src="/ext/balon-cf.js"></script><script>if ('modelContext' in navigator) {
+ navigator.modelContext.provideContext({
+ tools: [{
+ name: "baca_llms_index",
+ description: "Mengambil daftar lengkap artikel Layar Kosong",
+ inputSchema: {
+ type: "object",
+ properties: {}
+ },
+ execute: async () => {
+ const res = await fetch('/llms.txt');
+ return await res.text()
+ }
+ }]
+ })
+ }</script><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>
