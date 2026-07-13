@@ -731,7 +731,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
             }
         }
 
-        // Baca dari folder rahasia template murni
+        // BACA DARI TEMPLATE-INDEX1.HTML SECARA EKSPLISIT
         const templatePath = `${C.art}/-/template-index1.html`;
         let indexHtml = await Bun.file(templatePath).text().catch(() => '');
 
