@@ -663,20 +663,25 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
         let heroSlidesHtml = '';
         let gridHtml = '';
 
-        // 1. Dapatkan daftar kategori yang ada isinya
-        const validCats = C.cats.filter(cat => final[cat] && final[cat].length > 0);
-        const heroTotal = validCats.length;
+        // 1. PERBAIKAN BUG: Cocokkan slug dengan key asli ("Gaya Hidup" -> "gaya-hidup")
+        const activeCategories = Object.keys(final).filter(k => final[k].length > 0 && C.cats.includes(slug(k)));
+        const heroTotal = activeCategories.length;
         let heroIndex = 0;
 
-        for (const cat of validCats) {
-            const catLabel = getCategoryLabel(slug(cat));
+        if (heroTotal === 0) {
+            console.log("⚠️ Peringatan: Tidak ada data kategori yang valid. Injeksi mungkin kosong!");
+        }
+
+        for (const catKey of activeCategories) {
+            const catSlug = slug(catKey);
+            const catLabel = getCategoryLabel(catSlug);
 
             // --- LOGIKA HERO (ARTIKEL KE-0) ---
-            const latest = final[cat][0];
+            const latest = final[catKey][0];
             const dateObj = new Date(latest[3]);
             const formattedDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' }).format(dateObj);
             const safeDesc = escapeXML((latest[4] || latest[0]).substring(0, 150) + '...');
-            const heroUrl = `${C.base}/${slug(cat)}/${latest[1].replace('.html', '')}`;
+            const heroUrl = `${C.base}/${catSlug}/${latest[1].replace('.html', '')}`;
 
             // Kalkulasi indeks slider sebelumnya dan selanjutnya
             const prevIndex = (heroIndex - 1 + heroTotal) % heroTotal;
@@ -707,17 +712,17 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
 
             // --- LOGIKA GRID (ARTIKEL KE-1 & KE-2) ---
             for (let i = 1; i <= 2; i++) {
-                if (final[cat][i]) {
-                    const gridItem = final[cat][i];
+                if (final[catKey][i]) {
+                    const gridItem = final[catKey][i];
                     const gridTitle = escapeXML(decodeHTML(gridItem[0]));
-                    const gridUrl = `${C.base}/${slug(cat)}/${gridItem[1].replace('.html', '')}`;
+                    const gridUrl = `${C.base}/${catSlug}/${gridItem[1].replace('.html', '')}`;
                     const gridImg = gridItem[2];
                     const gridDesc = escapeXML((gridItem[4] || gridItem[0]).substring(0, 100) + '...');
                     const gridYear = new Date(gridItem[3]).getFullYear();
                     const gridMonth = new Date(gridItem[3]).toLocaleString('id-ID', { month: 'long', timeZone: 'UTC' });
 
                     gridHtml += `
-                    <article class="thumb article-card" data-category="${slug(cat)}" data-year="${gridYear}" data-month="${gridMonth}">
+                    <article class="thumb article-card" data-category="${catSlug}" data-year="${gridYear}" data-month="${gridMonth}">
                     <a href="${gridUrl}" style="display: block; text-decoration: none; color: inherit;">
                     <div class="media">${imgWithFallback(gridImg, gridTitle, 'loading="lazy"')}</div>
                     <div class="body">
@@ -731,7 +736,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
             }
         }
 
-        // BACA DARI TEMPLATE-INDEX1.HTML SECARA EKSPLISIT
+        // BACA DARI TEMPLATE-INDEX1.HTML
         const templatePath = `${C.art}/-/template-index1.html`;
         let indexHtml = await Bun.file(templatePath).text().catch(() => '');
 
@@ -747,7 +752,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
                 indexHtml = indexHtml.replace(heroRegex, fullHeroBlock);
             }
 
-            // Hapus blok JSON script lama jika masih ada (pembersihan)
+            // Hapus blok JSON script lama jika masih ada
             indexHtml = indexHtml.replace(/<script id="hero-data" type="application\/json">[\s\S]*?<\/script>/i, '');
 
             // Timpa area GRID AUTOGEN
@@ -759,14 +764,14 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
                 indexHtml = indexHtml.replace(gridRegex, `${GRID_START}\n${gridHtml}\n        ${GRID_END}`);
             }
 
-            // Tulis hasil akhirnya ke root sebagai index.html
+            // Tulis ke root
             await Bun.write(`${C.root}/index.html`, indexHtml);
-            console.log('✅ Injeksi Hero (CSS Murni) & Grid Artikel ke index.html berhasil!');
+            console.log('✅ Injeksi Hero & Grid ke index.html BERHASIL! 🕵️‍♂️');
         } else {
-            console.log('⚠️ File template-index1.html tidak ditemukan di folder artikel/-/.');
+            console.log('⚠️ File template-index1.html tidak ditemukan!');
         }
     } catch (e) {
-        console.log(`⚠️ Gagal menginjeksi HTML ke index.html: ${e}`);
+        console.log(`⚠️ Gagal menginjeksi HTML: ${e}`);
     }
 
     await pingWebSub(feedsToNotify);
