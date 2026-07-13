@@ -62,6 +62,7 @@ const mime = (u: string) =>
 
 const escapeAttr = (s: string) => s.replace(/"/g, '&quot;');
 
+// 🖼️ <img> dengan fallback bertingkat: -sm.webp (utama) → -md.webp → gambar asli → /thumbnail.webp (safety net terakhir)
 const imgWithFallback = (src: string, alt: string, extraAttrs: string = ''): string => {
     const smSrc = src.replace(/(\.[a-zA-Z0-9]+)$/, '-sm$1');
     const mdSrc = src.replace(/(\.[a-zA-Z0-9]+)$/, '-md$1');
@@ -245,7 +246,7 @@ const distribute = async (
 // ── TAHAP 1: PENGUMPULAN DATA BERDASARKAN ARTIKEL.JSON MASTER
 // =============================================================================
 (async () => {
-    console.log('🚀 Komposisi Blog V10.6 - Nama Output Seragam + Json Island Hero');
+    console.log('🚀 Komposisi Blog V10.6 - Nama Output Seragam (slug.rss/.atom/.xml) + Feed Autodiscovery Tags (Fixed)');
 
     const CACHE_TODAY_FILE = `${C.root}/mini/edited-today.txt`;
     await fs.mkdir(`${C.root}/mini`, { recursive: true }).catch(() => {});
@@ -381,21 +382,27 @@ const distribute = async (
     }
 
     // =============================================================================
-    // ── TAHAP 2: SUNTIK KRONOLOGI TETANGGA
+    // ── TAHAP 2: SUNTIK KRONOLOGI TETANGGA (URL + JUDUL BERSIH)
     // =============================================================================
     console.log('✨ Menjalankan Tahap 2: Menjahit Silsilah (URL + Judul) untuk Tooltip...');
+
     const articlesByCategory: Record<string, typeof flat> = {};
     for (const it of flat) {
         (articlesByCategory[it.category] ??= []).push(it);
     }
+
     for (const [kategori, arts] of Object.entries(articlesByCategory)) {
         for (let i = 0; i < arts.length; i++) {
             const current = arts[i];
             let prevData: { url: string, title: string } | undefined;
             let nextData: { url: string, title: string } | undefined;
 
-            if (i > 0) nextData = { url: arts[i - 1].loc, title: arts[i - 1].title };
-            if (i < arts.length - 1) prevData = { url: arts[i + 1].loc, title: arts[i + 1].title };
+            if (i > 0) {
+                nextData = { url: arts[i - 1].loc, title: arts[i - 1].title };
+            }
+            if (i < arts.length - 1) {
+                prevData = { url: arts[i + 1].loc, title: arts[i + 1].title };
+            }
 
             const txtContent = await Bun.file(`${C.art}/${current.file}`).text();
             await distribute(current.file, current.category, current.loc, txtContent, current.finalModTime, prevData, nextData);
@@ -403,11 +410,12 @@ const distribute = async (
     }
 
     // =============================================================================
-    // ── TAHAP 3: FINISHING ASET DISTRIBUSI
+    // ── TAHAP 3: FINISHING ASET DISTRIBUSI (Sitemap XML, RSS, JSON)
     // =============================================================================
     for (const it of flat) {
         (final[it.category] ??= []).push([it.title, it.file, it.img, it.lastmod, it.desc]);
     }
+
     const finalSlugs = new Set(Object.keys(final).map(slug));
 
     for (const s of C.cats) {
@@ -435,6 +443,7 @@ const distribute = async (
     }
     await Bun.write(`${C.root}/artikel-lite.json`, JSON.stringify(liteDb));
 
+    // 🔔 WebSub: siapkan state pelacakan perubahan (biar nggak ping hub kalau memang tidak ada artikel baru)
     const WEBSUB_CACHE_FILE = `${C.root}/mini/websub-cache.json`;
     const prevWebsubState: Record<string, string> = await Bun.file(WEBSUB_CACHE_FILE).json().catch(() => ({}));
     const newWebsubState: Record<string, string> = {};
@@ -485,6 +494,7 @@ sitemapByCategory.get(catSlug)!.push(`
 
     const removedOldSitemaps = await cleanupOldSitemaps();
 
+    // 🔄 MIGRASI FORMAT FEED: hapus sisa file dari skema penamaan-penamaan sebelumnya
     await Promise.all([
         fs.rm(`${C.root}/rss.xml`, { force: true }),
                       fs.rm(`${C.root}/atom.xml`, { force: true }),
@@ -525,12 +535,123 @@ sitemapByCategory.get(catSlug)!.push(`
     const rootNewest = flat[0]?.loc;
     if (rootNewest) {
         newWebsubState['__root__'] = rootNewest;
+        if (prevWebsubState['__root__'] !== rootNewest) {
+            feedsToNotify.push(`${C.base}/rss.rss`, `${C.base}/atom.atom`);
+        }
+    }
+
+    console.log(`✅ Sitemap index dibuat : sitemap.xml`);
+    categorySitemapItems.forEach(it => console.log(`    📂 ${it.fileName.padEnd(32)} ${it.count} URL`));
+
+    const tmp = await Bun.file(`${C.art}/-/template-kategori.html`).text().catch(() => '');
+    const dateFormatter = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' });
+
+    if (tmp) {
+        for (const [cat, arts] of Object.entries(final)) {
+            const s                   = slug(cat);
+            const rUrl              = `${C.base}/${s}.rss`;
+            const rAtomUrl          = `${C.base}/${s}.atom`;
+            const seoCategoryLabel  = getCategoryLabel(s);
+
+            const categoryArticlesHTML = (arts as any[])
+            .sort((a, b) => new Date(b[3]).getTime() - new Date(a[3]).getTime())
+            .map(a => {
+                const title         = sanitize(a[0]);
+                const cleanUrl      = a[1].replace('.html', '');
+                const image         = a[2];
+                const formattedDate = dateFormatter.format(new Date(a[3]));
+                const displayDesc   = sanitize((a[4] || a[0]).substring(0, 100) + '...');
+                return `
+                <a href="${cleanUrl}" class="article-card">
+                <div class="card-thumbnail">
+                ${imgWithFallback(image, title, 'loading="lazy" width="300" height="200"')}
+                </div>
+                <div class="card-content">
+                <h2>${title}</h2>
+                <p>${displayDesc}</p>
+                <span class="card-meta">${formattedDate}</span>
+                </div>
+                </a>`;
+            }).join('');
+
+            const pg = tmp
+            .replace(/%%TITLE%%/g, seoCategoryLabel)
+            .replace(/%%DESCRIPTION%%/g, seoCategoryLabel)
+            .replace(/%%CATEGORY_NAME%%/g, seoCategoryLabel)
+            .replace(/%%RSS_URL%%/g,               rUrl)
+            .replace(/%%ATOM_URL%%/g,               rAtomUrl)
+            .replace(/%%CANONICAL_URL%%/g,         `${C.base}/${s}`)
+            .replace(/%%ICON%%/g,                  cat.match(/(\p{Emoji})/u)?.[0] || '📁')
+            .replace('<span id="category-title-text">Memuat...</span>', `<span id="category-title-text">${seoCategoryLabel}</span>`)
+            .replace('<div id="loading">Memuat...</div>', '')
+            .replace('<div id="article-grid"></div>', `<div id="article-grid">${categoryArticlesHTML}`);
+
+            const catItems = (arts as any[]).map(a => ({
+                title: a[0], file: a[1], img: a[2], lastmod: a[3], desc: a[4],
+                category: cat,
+                loc: `${C.base}/${s}/${a[1].replace('.html', '')}`
+            })).slice(0, C.limit);
+
+            await Promise.all([
+                Bun.write(`${C.root}/${s}/index.html`, pg),
+                              Bun.write(`${C.root}/${s}.rss`, buildRss(`Kategori ${seoCategoryLabel}`, catItems, rUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
+                              Bun.write(`${C.root}/${s}.atom`, buildAtom(`Kategori ${seoCategoryLabel}`, catItems, rAtomUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
+            ]);
+
+            const catNewest = catItems[0]?.loc;
+            if (catNewest) {
+                newWebsubState[s] = catNewest;
+                if (prevWebsubState[s] !== catNewest) {
+                    feedsToNotify.push(rUrl, rAtomUrl);
+                }
+            }
+        }
+    }
+
+    const feedTemplate = await Bun.file(`${C.art}/-/template-feed.html`).text().catch(() => '');
+    if (feedTemplate) {
+        const feedItemsHTML = flat.slice(0, C.limit).map(it => {
+            const encodedLink = encodeURIComponent(it.loc);
+            const encodedText = encodeURIComponent(it.desc || it.title);
+            const displayDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(it.lastmod));
+            const cleanCat = getCategoryLabel(slug(it.category));
+
+            return `
+            <div class="feed-item">
+            <div class="feed-item-thumbnail">${imgWithFallback(it.img, it.title, 'loading="lazy"')}</div>
+            <div class="feed-item-content">
+            <h2><a href="${it.loc}" rel="noreferrer">${it.title}</a></h2>
+            <div class="feed-meta">
+            <span class="feed-meta-item"><i class="fa-solid fa-calendar-alt"></i><span>${displayDate}</span></span>
+            <span class="feed-meta-item"><i class="fa-solid fa-folder-open"></i><span>${cleanCat}</span></span>
+            </div>
+            <p>${(it.desc || it.title).substring(0, 150)}...</p>
+            <div class="social-share">
+            <span>Bagikan:</span>
+            <a href="https://x.com/intent/post?text=${encodedText}&url=${encodedLink}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedLink}&t=${encodedText}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://api.whatsapp.com/send?text=${encodedText}%0A%0A${encodedLink}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.threads.com/intent/post?text=${encodedText}&url=${encodedLink}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=400');return false;"><i class="fa-brands fa-threads"></i></a>
+            <a href="https://share.flipboard.com/bookmarklet/popout?v=2&title=${encodedText}&url=${encodedLink}&utm_source=dalam.web.id" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=600');return false;"><i class="fa-brands fa-flipboard"></i></a>
+            </div>
+            </div>
+            </div>`;
+        }).join('');
+
         const finalFeedPage = feedTemplate
         .replace('<div id="loading"></div>', '')
         .replace('<div id="feed-container"></div>', `<div id="feed-container">${feedItemsHTML}</div>`)
         .replace(/<script>[\s\S]*?fetchAndDisplayFeed\(\);[\s\S]*?<\/script>/, '')
         .replace('%%DATE_MODIFIED%%', buildDate);
         await Bun.write(`${C.root}/feed.html`, finalFeedPage);
+    }
+
+    if (editedTodayMap.size > 0) {
+        let cacheOut = buildDate + '\n';
+for (const [filename, timeStr] of editedTodayMap.entries()) {
+    cacheOut += `${filename}|${timeStr}\n`;
+}
+await Bun.write(CACHE_TODAY_FILE, cacheOut);
     }
 
     // =============================================================================
@@ -577,7 +698,7 @@ sitemapByCategory.get(catSlug)!.push(`
             <a href="${heroUrl}" style="display: block; text-decoration: none; color: inherit;">
             <h1>${escapeXML(decodeHTML(latest[0]))}</h1>
             </a>
-            <div class="meta">${formattedDate}</div>
+            <div class="meta">Oleh Redaksi · ${formattedDate}</div>
             <p class="excerpt">${safeDesc}</p>
             </div>
             </div>`;
