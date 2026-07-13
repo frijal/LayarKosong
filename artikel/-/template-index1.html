@@ -646,24 +646,42 @@
           this.heroTimer = null;
           this.isHeroVisible = true;
         }
-        // Inisialisasi data dari provider
+        // Inisialisasi data dari provider secara ELEGAN (Progressive Enhancement)
         async initData() {
+          // 1. Setup UI (filter & tombol) segera agar halaman statis tetap interaktif
+          this._setupUI();
+
           try {
             const provider = window.siteDataProvider;
-            if (!provider) throw new Error('siteDataProvider tidak ditemukan');
+            if (!provider) {
+               console.warn('siteDataProvider tidak aktif, mode SSG Murni berjalan.');
+               this._startHeroSlider(); // Nyalakan slider statis
+               return;
+            }
+
             const raw = await provider.getFor('homepage.ts');
+            if (!raw) return;
+
             this.allData = this._parseRawData(raw);
             this.allData.sort((a, b) => b.date.getTime() - a.date.getTime());
             this.displayedData = [...this.allData];
             this._prepareHeroData();
-            this._setupUI();
-            this.render();
-            this._startHeroSlider();
             this._populateYearDropdown();
+
+            // 2. MISTERI TERPECAHKAN (EXECUTION ORDER):
+            // KITA HAPUS pemanggilan this.render() di sini!
+            // Jangan biarkan JS membunuh HTML statis yang sudah dibuat oleh Bun.
+
+            this._renderSidebar(); // Sidebar acak tetap butuh JS
+            this._renderPagination();
+            this._startHeroSlider(); // Nyalakan slider
+
           } catch (err) {
-            console.error('Gagal memuat data:', err);
-            document.getElementById('main-articles-container').innerHTML =
-              `<div class="panel" style="grid-column:1/-1;"><p style="color:var(--accent-2);">Gagal memuat konten. Silakan muat ulang.</p></div>`;
+            console.error('JS Data hydration gagal, fallback penuh ke mode statis:', err);
+            // JANGAN timpa grid artikel statis buatan Bun dengan pesan error!
+            const sidebar = document.getElementById('random-sidebar-container');
+            if(sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Mode statis aktif.</p>';
+            this._startHeroSlider();
           }
         }
         _parseRawData(raw) {
@@ -762,12 +780,14 @@
           }
         }
         _startHeroSlider() {
+          startHeroSlider() {
           if (this.heroTimer) clearInterval(this.heroTimer);
           this.heroTimer = setInterval(() => {
-            const total = this.heroData.length;
+            const radios = document.querySelectorAll('.hero-radio');
+            const total = radios.length;
             if (total === 0) return;
             this.heroIndex = (this.heroIndex + 1) % total;
-            this._updateHeroPosition();
+            radios[this.heroIndex].checked = true;
           }, 4600);
         }
         _stopHeroSlider() {
