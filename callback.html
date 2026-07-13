@@ -1,71 +1,34 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Halaman Call Back</title>
-    <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            margin: 0;
-            padding: 20px; /* Jarak aman dari tepi layar */
-            height: 100vh;
-            width: 100vw;
-            box-sizing: border-box;
-            font-family: monospace;
-            word-break: break-all;
-            text-align: center;
-            overflow: hidden; /* Anti scroll-scroll club */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #urlText {
-            line-height: 1; /* Rapat maksimal antar baris */
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <div id="urlText">Menangkap URL...</div>
+<!doctype html><html lang="id"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1.0" name="viewport"><meta content="noindex, nofollow" name="robots"><title>Halaman Call Back</title><style>body{color:#fff;box-sizing:border-box;word-break:break-all;text-align:center;background-color:#000;justify-content:center;align-items:center;width:100vw;height:100vh;margin:0;padding:20px;font-family:monospace;display:flex;overflow:hidden}#urlText{width:100%;line-height:1}</style></head><body><div id="urlText">Menangkap URL...</div><script>const divText = document.getElementById('urlText');
+ 
+ // Nampilin URL dari address bar
+ divText.innerText = window.location.href;
 
-    <script>
-        const divText = document.getElementById('urlText');
-        
-        // Nampilin URL dari address bar
-        divText.innerText = window.location.href;
+ // Fungsi pintar nyari ukuran font pakai algoritma Binary Search
+ function pasinLayar() {
+ let batasBawah = 1; // Ukuran font terkecil (1px)
+ let batasAtas = 1000; // Ukuran font terbesar (1000px)
+ let ukuranPas = batasBawah;
 
-        // Fungsi pintar nyari ukuran font pakai algoritma Binary Search
-        function pasinLayar() {
-            let batasBawah = 1;      // Ukuran font terkecil (1px)
-            let batasAtas = 1000;    // Ukuran font terbesar (1000px)
-            let ukuranPas = batasBawah;
+ while (batasBawah <= batasAtas) {
+ let tengah = Math.floor((batasBawah + batasAtas) / 2);
+ divText.style.fontSize = tengah + 'px';
 
-            while (batasBawah <= batasAtas) {
-                let tengah = Math.floor((batasBawah + batasAtas) / 2);
-                divText.style.fontSize = tengah + 'px';
+ // Ngecek apakah teks nabrak batas atas/bawah (height) ATAU kanan/kiri (width)
+ if (divText.scrollHeight <= window.innerHeight - 40 && 
+ divText.scrollWidth <= window.innerWidth - 40) {
+ ukuranPas = tengah; // Masih muat, coba gedein lagi
+ batasBawah = tengah + 1;
+ } else {
+ batasAtas = tengah - 1; // Kebesaran bos, kecilin dikit
+ }
+ }
 
-                // Ngecek apakah teks nabrak batas atas/bawah (height) ATAU kanan/kiri (width)
-                if (divText.scrollHeight <= window.innerHeight - 40 && 
-                    divText.scrollWidth <= window.innerWidth - 40) {
-                    ukuranPas = tengah; // Masih muat, coba gedein lagi
-                    batasBawah = tengah + 1;
-                } else {
-                    batasAtas = tengah - 1; // Kebesaran bos, kecilin dikit
-                }
-            }
+ // Terapkan ukuran paling mentok yang sukses masuk layar
+ divText.style.fontSize = ukuranPas + 'px';
+ }
 
-            // Terapkan ukuran paling mentok yang sukses masuk layar
-            divText.style.fontSize = ukuranPas + 'px';
-        }
+ // Eksekusi pertama kali pas halaman beres dimuat
+ pasinLayar();
 
-        // Eksekusi pertama kali pas halaman beres dimuat
-        pasinLayar();
-
-        // Kalau kamu iseng melebarkan/mengecilkan window browser, dia ikut nyesuaiin
-        window.addEventListener('resize', pasinLayar);
-    </script>
-</body>
-</html>
+ // Kalau kamu iseng melebarkan/mengecilkan window browser, dia ikut nyesuaiin
+ window.addEventListener('resize', pasinLayar);</script><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>

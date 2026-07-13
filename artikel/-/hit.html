@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard Counter - Layar Kosong</title>
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="googlebot" content="noindex,nofollow,noarchive" />
+  <meta name="color-scheme" content="light dark" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8fafc;
+      --bg-soft: #eef2ff;
+      --panel: #ffffff;
+      --panel-soft: #f1f5f9;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #cbd5e1;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --accent-text: #1d4ed8;
+      --good: #059669;
+      --good-soft: #d1fae5;
+      --warn: #d97706;
+      --warn-soft: #fef3c7;
+      --bad: #dc2626;
+      --bad-soft: #fee2e2;
+      --shadow: 0 14px 44px rgba(15, 23, 42, 0.08);
+      --shadow-soft: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #020617;
+        --bg-soft: #0f172a;
+        --panel: #0f172a;
+        --panel-soft: #111827;
+        --text: #e5e7eb;
+        --muted: #94a3b8;
+        --border: #334155;
+        --accent: #60a5fa;
+        --accent-soft: #172554;
+        --accent-text: #bfdbfe;
+        --good: #34d399;
+        --good-soft: #064e3b;
+        --warn: #fbbf24;
+        --warn-soft: #78350f;
+        --bad: #f87171;
+        --bad-soft: #7f1d1d;
+        --shadow: 0 14px 44px rgba(0, 0, 0, 0.34);
+        --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.24);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, color-mix(in srgb, var(--accent) 10%, transparent), transparent 30rem),
+        radial-gradient(circle at top right, color-mix(in srgb, var(--good) 8%, transparent), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .panel {
+      background: color-mix(in srgb, var(--panel) 96%, transparent);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .soft {
+      background: var(--panel-soft);
+      border: 1px solid var(--border);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .field {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 0.95rem;
+      padding: 0.72rem 0.9rem;
+      font-size: 0.92rem;
+      line-height: 1.35;
+      outline: none;
+    }
+
+    .field:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      border-radius: 0.95rem;
+      padding: 0.72rem 1rem;
+      font-weight: 800;
+      font-size: 0.9rem;
+      line-height: 1.2;
+      transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+      user-select: none;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
+
+    .btn-primary {
+      color: #ffffff;
+      background: #2563eb;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-green {
+      color: #ffffff;
+      background: #059669;
+    }
+
+    .btn-green:hover {
+      background: #047857;
+    }
+
+    .btn-ghost {
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: var(--panel);
+    }
+
+    .btn-ghost:hover {
+      background: var(--panel-soft);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 0.28rem 0.7rem;
+      font-size: 0.74rem;
+      font-weight: 900;
+      white-space: nowrap;
+      background: var(--accent-soft);
+      color: var(--accent-text);
+    }
+
+    .badge-good {
+      background: var(--good-soft);
+      color: var(--text);
+    }
+
+    .badge-warn {
+      background: var(--warn-soft);
+      color: var(--text);
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 1.25rem;
+      border: 1px solid var(--border);
+      background: var(--panel);
+    }
+
+    .table-wrap::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .table-wrap::-webkit-scrollbar-track {
+      background: var(--panel-soft);
+    }
+
+    .table-wrap::-webkit-scrollbar-thumb {
+      background: color-mix(in srgb, var(--muted) 50%, transparent);
+      border-radius: 999px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 1200px;
+      border-collapse: collapse;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: var(--panel-soft);
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.065em;
+      white-space: nowrap;
+    }
+
+    td {
+      border-top: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:hover td {
+      background: color-mix(in srgb, var(--accent) 5%, transparent);
+    }
+
+    .path-link {
+      color: var(--accent);
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .path-link:hover {
+      text-decoration: underline;
+    }
+
+    .status-info {
+      border-color: var(--border);
+      background: var(--panel-soft);
+      color: var(--text);
+    }
+
+    .status-success {
+      border-color: color-mix(in srgb, var(--good) 45%, var(--border));
+      background: var(--good-soft);
+      color: var(--text);
+    }
+
+    .status-warning {
+      border-color: color-mix(in srgb, var(--warn) 45%, var(--border));
+      background: var(--warn-soft);
+      color: var(--text);
+    }
+
+    .status-error {
+      border-color: color-mix(in srgb, var(--bad) 45%, var(--border));
+      background: var(--bad-soft);
+      color: var(--text);
+    }
+
+    .metric-value {
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.035em;
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="min-h-screen w-full px-3 py-4 sm:px-5 sm:py-6 lg:px-8 2xl:px-10">
+    <header class="panel rounded-3xl p-4 sm:p-6">
+      <div class="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
+        <div class="max-w-5xl">
+          <a href="/" class="block text-xs font-black uppercase tracking-[0.24em]" style="color:var(--accent)">
+  Layar Kosong Counter
+</a>
+
+          <h1 class="mt-2 text-2xl font-black tracking-tight sm:text-3xl lg:text-4xl">
+            Dashboard Preview D1
+          </h1>
+
+          <p class="muted mt-3 max-w-4xl text-sm leading-6 sm:text-base">
+            Dashboard online untuk melihat statistik artikel dari Cloudflare Worker + D1.
+            Password dikirim lewat header <code class="mono">x-dashboard-key</code>, bukan query string.
+            Mendukung sorting popular artikel, URL A-Z/Z-A, kategori, visits, waktu update, dan rasio views per visit.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap xl:justify-end">
+          <button id="refreshBtn" class="btn btn-primary" type="button">
+            Refresh
+          </button>
+
+          <button id="syncBtn" class="btn btn-green" type="button">
+            Sync Manual
+          </button>
+
+          <button id="clearBtn" class="btn btn-ghost col-span-2" type="button">
+            Bersihkan Password
+          </button>
+        </div>
+      </div>
+
+      <section class="mt-6 grid gap-3 lg:grid-cols-[1.35fr_1fr_1fr]">
+  <label class="block">
+    <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
+      Worker Endpoint
+    </span>
+
+    <input
+      id="workerInput"
+      class="field"
+      type="url"
+      value="https://hit.dalam.web.id/"
+      autocomplete="off"
+    />
+  </label>
+
+  <label class="block">
+    <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
+      Dashboard Secret
+    </span>
+
+    <input
+      id="secretInput"
+      class="field"
+      type="password"
+      placeholder="Masukkan DASHBOARD_SECRET"
+      autocomplete="current-password"
+    />
+  </label>
+
+  <label class="block">
+    <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
+      Sync Secret
+    </span>
+
+    <input
+      id="syncSecretInput"
+      class="field"
+      type="password"
+      placeholder="Masukkan CRON_SECRET"
+      autocomplete="current-password"
+    />
+  </label>
+</section>
+
+      <section class="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-6">
+        <label class="block sm:col-span-2 xl:col-span-2">
+          <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
+            Cari URL / Slug
+          </span>
+
+          <input
+            id="searchInput"
+            class="field"
+            type="search"
+            placeholder="contoh: linux, ffmpeg, sistem-terbuka..."
+            autocomplete="off"
+          />
+        </label>
+
+        <label class="block">
+          <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
+            Kategori
+          </span>
+
+          <select id="categoryInput" class="field">
+            <option value="__all">Semua kategori</option>
+          </select>
+        </label>
+
+        <label class="block sm:col-span-2 xl:col-span-2">
+          <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
+            Sorting
+          </span>
+
+          <select id="sortInput" class="field">
+            <option value="views_desc">Popular artikel: views tertinggi</option>
+            <option value="views_asc">Views terendah</option>
+            <option value="visitors_desc">Visits tertinggi</option>
+            <option value="visitors_asc">Visits terendah</option>
+            <option value="path_asc">URL A-Z</option>
+            <option value="path_desc">URL Z-A</option>
+            <option value="category_asc_views_desc">Kategori A-Z, views tertinggi</option>
+            <option value="category_desc_views_desc">Kategori Z-A, views tertinggi</option>
+            <option value="updated_desc">Terbaru berubah</option>
+            <option value="updated_asc">Paling lama berubah</option>
+            <option value="ratio_desc">Views per visit tertinggi</option>
+            <option value="ratio_asc">Views per visit terendah</option>
+          </select>
+        </label>
+
+        <label class="block">
+          <span class="muted mb-1 block text-xs font-black uppercase tracking-wide">
+            Limit
+          </span>
+
+          <select id="limitInput" class="field">
+            <option value="50">50</option>
+            <option value="100" selected>100</option>
+            <option value="200">200</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <label class="inline-flex items-center gap-2 text-sm">
+          <input id="rememberSessionInput" type="checkbox" class="h-4 w-4" checked />
+          <span class="muted">Simpan password di <code class="mono">sessionStorage</code> saja</span>
+        </label>
+
+        <button id="saveBtn" class="btn btn-ghost" type="button">
+          Simpan Setting
+        </button>
+      </section>
+
+      <div id="statusBox" class="mt-4 hidden rounded-2xl border px-4 py-3 text-sm"></div>
+    </header>
+
+    <section class="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <article class="card rounded-3xl p-4 sm:p-5">
+        <div class="flex items-center justify-between gap-3">
+          <p class="muted text-sm font-black">TOTAL_ARTICLES</p>
+          <span class="badge">Global</span>
+        </div>
+
+        <p id="totalArticlesViews" class="metric-value mt-3 text-3xl font-black sm:text-4xl">0</p>
+        <p id="totalArticlesVisitors" class="muted mt-1 text-sm">0 visits</p>
+      </article>
+
+      <article class="card rounded-3xl p-4 sm:p-5">
+        <div class="flex items-center justify-between gap-3">
+          <p class="muted text-sm font-black">TOTAL_DOMAIN</p>
+          <span class="badge badge-warn">Domain</span>
+        </div>
+
+        <p id="totalDomainViews" class="metric-value mt-3 text-3xl font-black sm:text-4xl">0</p>
+        <p id="totalDomainVisitors" class="muted mt-1 text-sm">0 visits</p>
+      </article>
+
+      <article class="card rounded-3xl p-4 sm:p-5">
+        <div class="flex items-center justify-between gap-3">
+          <p class="muted text-sm font-black">Jumlah URL</p>
+          <span class="badge">D1</span>
+        </div>
+
+        <p id="globalPages" class="metric-value mt-3 text-3xl font-black sm:text-4xl">0</p>
+        <p id="globalViews" class="muted mt-1 text-sm">SUM: 0</p>
+      </article>
+
+      <article class="card rounded-3xl p-4 sm:p-5">
+        <div class="flex items-center justify-between gap-3">
+          <p class="muted text-sm font-black">Filter Aktif</p>
+          <span class="badge badge-good">Filtered</span>
+        </div>
+
+        <p id="filteredPages" class="metric-value mt-3 text-3xl font-black sm:text-4xl">0</p>
+        <p id="filteredViews" class="muted mt-1 text-sm">SUM: 0</p>
+      </article>
+    </section>
+
+    <section class="mt-5 grid gap-5 xl:grid-cols-[minmax(0,2.4fr)_minmax(360px,0.8fr)]">
+      <article class="panel rounded-3xl p-4 sm:p-5">
+        <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 class="text-xl font-black sm:text-2xl">Data URL</h2>
+            <p class="muted text-sm">
+              Sorting mengikuti pilihan filter di atas.
+            </p>
+          </div>
+
+          <span id="pagesCount" class="badge">0 row</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="text-sm">
+            <thead>
+              <tr>
+                <th class="px-4 py-3 text-left">URL</th>
+                <th class="px-4 py-3 text-left">Kategori</th>
+                <th class="px-4 py-3 text-right">Views</th>
+                <th class="px-4 py-3 text-right">Visits</th>
+                <th class="px-4 py-3 text-right">V/Visit</th>
+                <th class="px-4 py-3 text-left">Updated</th>
+              </tr>
+            </thead>
+
+            <tbody id="pagesBody"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <aside class="space-y-5">
+        <article class="panel rounded-3xl p-4 sm:p-5">
+          <div class="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <h2 class="text-xl font-black sm:text-2xl">Kategori</h2>
+              <p class="muted text-sm">
+                Ringkasan berdasarkan segmen pertama URL.
+              </p>
+            </div>
+
+            <span id="categoryCount" class="badge">0</span>
+          </div>
+
+          <div id="categoryList" class="max-h-[520px] space-y-2 overflow-y-auto pr-1"></div>
+        </article>
+
+        <article class="panel rounded-3xl p-4 sm:p-5">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h2 class="text-xl font-black sm:text-2xl">Sync Terakhir</h2>
+              <p class="muted mt-1 text-sm">Periode data terakhir yang masuk D1.</p>
+            </div>
+
+            <span class="badge badge-good">Cron</span>
+          </div>
+
+          <p id="lastSyncMain" class="mt-4 text-lg font-black">Belum ada</p>
+          <p id="lastSyncDetail" class="muted mt-1 text-sm">-</p>
+        </article>
+      </aside>
+    </section>
+
+    <section class="panel mt-5 rounded-3xl p-4 sm:p-5">
+      <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 class="text-xl font-black sm:text-2xl">Riwayat Cron</h2>
+          <p class="muted text-sm">
+            Menampilkan 72 sinkronisasi terakhir dari tabel <code class="mono">sync_runs</code>.
+          </p>
+        </div>
+
+        <span id="syncCount" class="badge">0 row</span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="text-sm">
+          <thead>
+            <tr>
+              <th class="px-4 py-3 text-left">Periode</th>
+              <th class="px-4 py-3 text-right">Path</th>
+              <th class="px-4 py-3 text-right">Views</th>
+              <th class="px-4 py-3 text-right">Visits</th>
+              <th class="px-4 py-3 text-left">Created</th>
+            </tr>
+          </thead>
+
+          <tbody id="syncBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="muted py-8 text-center text-xs">
+      Dashboard counter D1. Password tidak ditaruh di URL. Tetap jangan share secret, nanti statistik blog ikut touring tanpa izin.
+    </footer>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const nf = new Intl.NumberFormat('id-ID');
+
+    const state = {
+  worker: '',
+  secret: '',
+  syncSecret: '',
+  q: '',
+  category: '__all',
+  sort: 'views_desc',
+  limit: 100
+};
+
+    function normalizeWorkerUrl(value) {
+      const trimmed = String(value || '').trim();
+
+      if (!trimmed) return '';
+
+      return trimmed.endsWith('/') ? trimmed : `${trimmed}/`;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function formatDate(value) {
+      if (!value) return '-';
+
+      const date = new Date(value);
+
+      if (Number.isNaN(date.getTime())) {
+        return String(value);
+      }
+
+      return date.toLocaleString('id-ID', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      });
+    }
+
+    function setStatus(message, type = 'info') {
+      const box = $('statusBox');
+
+      box.className = `mt-4 rounded-2xl border px-4 py-3 text-sm status-${type}`;
+      box.textContent = message;
+      box.classList.remove('hidden');
+    }
+
+    function hideStatus() {
+      $('statusBox').classList.add('hidden');
+    }
+
+    function readInputs() {
+  state.worker = normalizeWorkerUrl($('workerInput').value);
+  state.secret = $('secretInput').value.trim();
+  state.syncSecret = $('syncSecretInput').value.trim();
+  state.q = $('searchInput').value.trim();
+  state.category = $('categoryInput').value || '__all';
+  state.sort = $('sortInput').value || 'views_desc';
+  state.limit = Number($('limitInput').value || 100);
+}
+
+    function loadSettings() {
+      $('workerInput').value =
+        localStorage.getItem('counterDashboardWorker') ||
+        $('workerInput').value;
+
+      $('limitInput').value =
+        localStorage.getItem('counterDashboardLimit') ||
+        $('limitInput').value;
+
+      $('sortInput').value =
+        localStorage.getItem('counterDashboardSort') ||
+        $('sortInput').value;
+
+      $('searchInput').value =
+        localStorage.getItem('counterDashboardSearch') ||
+        '';
+
+      const sessionSecret = sessionStorage.getItem('counterDashboardSecret') || '';
+const sessionSyncSecret = sessionStorage.getItem('counterDashboardSyncSecret') || '';
+
+if (sessionSecret) {
+  $('secretInput').value = sessionSecret;
+}
+
+if (sessionSyncSecret) {
+  $('syncSecretInput').value = sessionSyncSecret;
+}
+
+      readInputs();
+    }
+
+    function saveSettings() {
+      readInputs();
+
+      localStorage.setItem('counterDashboardWorker', state.worker);
+      localStorage.setItem('counterDashboardLimit', String(state.limit));
+      localStorage.setItem('counterDashboardSort', state.sort);
+      localStorage.setItem('counterDashboardSearch', state.q);
+
+      if ($('rememberSessionInput').checked) {
+  if (state.secret) {
+    sessionStorage.setItem('counterDashboardSecret', state.secret);
+  }
+
+  if (state.syncSecret) {
+    sessionStorage.setItem('counterDashboardSyncSecret', state.syncSecret);
+  }
+}
+
+if (!$('rememberSessionInput').checked) {
+  sessionStorage.removeItem('counterDashboardSecret');
+  sessionStorage.removeItem('counterDashboardSyncSecret');
+}
+
+      setStatus('Setting dashboard tersimpan.', 'success');
+    }
+
+    function clearPassword() {
+  $('secretInput').value = '';
+  $('syncSecretInput').value = '';
+
+  sessionStorage.removeItem('counterDashboardSecret');
+  sessionStorage.removeItem('counterDashboardSyncSecret');
+
+  readInputs();
+
+  setStatus('Password dashboard dan sync dibersihkan dari sessionStorage.', 'warning');
+}
+
+    function buildAdminUrl() {
+      const url = new URL(state.worker);
+
+      url.searchParams.set('admin', '1');
+      url.searchParams.set('limit', String(state.limit));
+      url.searchParams.set('sort', state.sort);
+
+      if (state.q) {
+        url.searchParams.set('q', state.q);
+      }
+
+      if (state.category && state.category !== '__all') {
+        url.searchParams.set('category', state.category);
+      }
+
+      return url.toString();
+    }
+
+    function buildSyncUrl() {
+      const url = new URL(state.worker);
+
+      url.searchParams.set('sync', '1');
+
+      return url.toString();
+    }
+
+    async function fetchJson(url, secret) {
+  const res = await fetch(url, {
+    method: 'GET',
+    cache: 'no-store',
+    headers: {
+      'x-dashboard-key': secret
+    }
+  });
+
+      let data = null;
+
+      try {
+        data = await res.json();
+      } catch {
+        throw new Error(`HTTP ${res.status}: response bukan JSON`);
+      }
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || `HTTP ${res.status}`);
+      }
+
+      return data;
+    }
+
+    async function loadDashboard() {
+      readInputs();
+
+      if (!state.worker) {
+        setStatus('Isi Worker Endpoint dulu.', 'warning');
+        return;
+      }
+
+      if (!state.secret) {
+        setStatus('Isi password/secret dulu.', 'warning');
+        return;
+      }
+
+      hideStatus();
+
+      $('refreshBtn').disabled = true;
+      $('refreshBtn').textContent = 'Memuat...';
+
+      try {
+        const data = await fetchJson(buildAdminUrl(), state.secret);
+
+        renderDashboard(data);
+
+        setStatus(`Data diperbarui: ${formatDate(data.generatedAt)}`, 'success');
+      } catch (error) {
+        console.error(error);
+        setStatus(`Gagal memuat dashboard: ${error.message || error}`, 'error');
+      } finally {
+        $('refreshBtn').disabled = false;
+        $('refreshBtn').textContent = 'Refresh';
+      }
+    }
+
+    async function runManualSync() {
+  readInputs();
+
+  if (!state.worker) {
+    setStatus('Isi Worker Endpoint dulu.', 'warning');
+    return;
+  }
+
+  if (!state.syncSecret) {
+    setStatus('Isi Sync Secret / CRON_SECRET dulu untuk menjalankan sync manual.', 'warning');
+    return;
+  }
+
+  $('syncBtn').disabled = true;
+  $('syncBtn').textContent = 'Sync...';
+
+  try {
+    const data = await fetchJson(buildSyncUrl(), state.syncSecret);
+
+    if (data.result?.skipped) {
+      setStatus(`Sync dilewati: ${data.result.reason}`, 'warning');
+    } else {
+      setStatus('Sync manual berhasil. Memuat ulang dashboard...', 'success');
+    }
+
+    /**
+     * Setelah sync manual, refresh dashboard.
+     * Refresh tetap memakai DASHBOARD_SECRET, bukan CRON_SECRET.
+     */
+    if (state.secret) {
+      await loadDashboard();
+    }
+  } catch (error) {
+    console.error(error);
+    setStatus(`Gagal sync manual: ${error.message || error}`, 'error');
+  } finally {
+    $('syncBtn').disabled = false;
+    $('syncBtn').textContent = 'Sync Manual';
+  }
+}
+
+    function renderDashboard(data) {
+      renderSummary(data.summary || {});
+      renderCategories(data.categories || [], data.query?.category || '__all');
+      renderPages(data.pages || []);
+      renderSyncRuns(data.syncRuns || []);
+    }
+
+    function renderSummary(summary) {
+      const totalArticles = summary.totalArticles || {};
+      const totalDomain = summary.totalDomain || {};
+      const global = summary.global || {};
+      const filtered = summary.filtered || {};
+      const lastSync = summary.lastSync || null;
+
+      $('totalArticlesViews').textContent = nf.format(Number(totalArticles.views || 0));
+      $('totalArticlesVisitors').textContent = `${nf.format(Number(totalArticles.visitors || 0))} visits`;
+
+      $('totalDomainViews').textContent = nf.format(Number(totalDomain.views || 0));
+      $('totalDomainVisitors').textContent = `${nf.format(Number(totalDomain.visitors || 0))} visits`;
+
+      $('globalPages').textContent = nf.format(Number(global.total_pages || 0));
+      $('globalViews').textContent = `SUM: ${nf.format(Number(global.sum_views || 0))}`;
+
+      $('filteredPages').textContent = nf.format(Number(filtered.total_pages || 0));
+      $('filteredViews').textContent = `SUM: ${nf.format(Number(filtered.sum_views || 0))}`;
+
+      if (lastSync) {
+        $('lastSyncMain').textContent = formatDate(lastSync.hour_end);
+        $('lastSyncDetail').textContent =
+          `${nf.format(Number(lastSync.paths || 0))} path • ${nf.format(Number(lastSync.views || 0))} views • ${nf.format(Number(lastSync.visitors || 0))} visits`;
+      } else {
+        $('lastSyncMain').textContent = 'Belum ada';
+        $('lastSyncDetail').textContent = '-';
+      }
+    }
+
+    function renderCategories(categories, activeCategory) {
+      $('categoryCount').textContent = nf.format(categories.length);
+
+      const select = $('categoryInput');
+      const previous = select.value || activeCategory || '__all';
+
+      select.innerHTML = `<option value="__all">Semua kategori</option>` + categories.map((row) => {
+        const category = String(row.category || 'lainnya');
+        const label = `${category} - ${nf.format(Number(row.views || 0))}`;
+
+        return `<option value="${escapeHtml(category)}">${escapeHtml(label)}</option>`;
+      }).join('');
+
+      select.value = categories.some((row) => row.category === previous)
+        ? previous
+        : '__all';
+
+      if (!categories.length) {
+        $('categoryList').innerHTML = `
+          <div class="soft rounded-2xl p-4 text-sm muted">
+            Belum ada kategori.
+          </div>
+        `;
+        return;
+      }
+
+      $('categoryList').innerHTML = categories.map((row) => {
+        const category = String(row.category || 'lainnya');
+        const active = category === activeCategory;
+
+        return `
+          <button
+            type="button"
+            class="category-btn soft w-full rounded-2xl p-3 text-left transition hover:opacity-90"
+            data-category="${escapeHtml(category)}"
+            style="${active ? 'box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent)' : ''}"
+          >
+            <div class="flex items-center justify-between gap-3">
+              <strong class="break-all">${escapeHtml(category)}</strong>
+              <span class="badge">${nf.format(Number(row.total_pages || 0))}</span>
+            </div>
+
+            <div class="muted mt-1 text-xs">
+              ${nf.format(Number(row.views || 0))} views • ${nf.format(Number(row.visitors || 0))} visits
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.category-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          $('categoryInput').value = btn.dataset.category || '__all';
+          saveSettings();
+          loadDashboard();
+        });
+      });
+    }
+
+    function renderPages(rows) {
+      $('pagesCount').textContent = `${nf.format(rows.length)} row`;
+
+      if (!rows.length) {
+        $('pagesBody').innerHTML = emptyRow(6, 'Tidak ada data URL untuk filter ini.');
+        return;
+      }
+
+      $('pagesBody').innerHTML = rows.map((row) => {
+        const path = String(row.path || '');
+        const category = String(row.category || '-');
+
+        return `
+          <tr>
+            <td class="px-4 py-3">
+              <a
+                class="path-link"
+                href="${escapeHtml(path)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="${escapeHtml(path)}"
+              >
+                ${escapeHtml(path)}
+              </a>
+
+              <div class="muted mt-1 text-xs">
+                ${escapeHtml(path.split('/').filter(Boolean).pop() || path)}
+              </div>
+            </td>
+
+            <td class="px-4 py-3">
+              <button
+                type="button"
+                class="category-inline badge"
+                data-category="${escapeHtml(category)}"
+                title="Filter kategori ${escapeHtml(category)}"
+              >
+                ${escapeHtml(category)}
+              </button>
+            </td>
+
+            <td class="metric-value px-4 py-3 text-right font-black">
+              ${nf.format(Number(row.views || 0))}
+            </td>
+
+            <td class="metric-value px-4 py-3 text-right">
+              ${nf.format(Number(row.visitors || 0))}
+            </td>
+
+            <td class="metric-value px-4 py-3 text-right">
+              ${nf.format(Number(row.views_per_visit || 0))}
+            </td>
+
+            <td class="px-4 py-3">
+              ${escapeHtml(formatDate(row.updated_at))}
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      document.querySelectorAll('.category-inline').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          $('categoryInput').value = btn.dataset.category || '__all';
+          saveSettings();
+          loadDashboard();
+        });
+      });
+    }
+
+    function renderSyncRuns(rows) {
+      $('syncCount').textContent = `${nf.format(rows.length)} row`;
+
+      if (!rows.length) {
+        $('syncBody').innerHTML = emptyRow(5, 'Belum ada riwayat cron.');
+        return;
+      }
+
+      $('syncBody').innerHTML = rows.map((row) => {
+        return `
+          <tr>
+            <td class="px-4 py-3">
+              <strong>${escapeHtml(formatDate(row.hour_start))}</strong>
+              <div class="muted mt-1 text-xs">
+                sampai ${escapeHtml(formatDate(row.hour_end))}
+              </div>
+            </td>
+
+            <td class="metric-value px-4 py-3 text-right">
+              ${nf.format(Number(row.paths || 0))}
+            </td>
+
+            <td class="metric-value px-4 py-3 text-right font-black">
+              ${nf.format(Number(row.views || 0))}
+            </td>
+
+            <td class="metric-value px-4 py-3 text-right">
+              ${nf.format(Number(row.visitors || 0))}
+            </td>
+
+            <td class="px-4 py-3">
+              ${escapeHtml(formatDate(row.created_at))}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function emptyRow(colspan, message) {
+      return `
+        <tr>
+          <td colspan="${colspan}" class="muted px-4 py-10 text-center">
+            ${escapeHtml(message)}
+          </td>
+        </tr>
+      `;
+    }
+
+    let searchTimer = null;
+
+    function setupEvents() {
+      $('saveBtn').addEventListener('click', () => {
+        saveSettings();
+        loadDashboard();
+      });
+
+      $('refreshBtn').addEventListener('click', loadDashboard);
+      $('syncBtn').addEventListener('click', runManualSync);
+      $('clearBtn').addEventListener('click', clearPassword);
+
+      $('searchInput').addEventListener('input', () => {
+        window.clearTimeout(searchTimer);
+
+        searchTimer = window.setTimeout(() => {
+          saveSettings();
+          loadDashboard();
+        }, 450);
+      });
+
+      $('categoryInput').addEventListener('change', () => {
+        saveSettings();
+        loadDashboard();
+      });
+
+      $('sortInput').addEventListener('change', () => {
+        saveSettings();
+        loadDashboard();
+      });
+
+      $('limitInput').addEventListener('change', () => {
+        saveSettings();
+        loadDashboard();
+      });
+
+      $('workerInput').addEventListener('change', saveSettings);
+      $('secretInput').addEventListener('change', saveSettings);
+      $('syncSecretInput').addEventListener('change', saveSettings);
+      $('rememberSessionInput').addEventListener('change', saveSettings);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSettings();
+      setupEvents();
+
+      if ($('workerInput').value && $('secretInput').value) {
+        loadDashboard();
+      } else {
+        setStatus('Isi password/secret untuk membuka dashboard.', 'info');
+      }
+    });
+  </script>
+</body>
+</html>
