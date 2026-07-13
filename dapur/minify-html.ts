@@ -245,12 +245,11 @@ const run = async (): Promise<void> => {
         )
     ).flat();
 
-    // Tambahkan SEMUA file .html dari root (index.html, feed.html, dll)
-    // dan salin ke artikel/-/ sebelum diminifikasi in-place
+    // Tambahkan file .html root secara MANUAL ke dalam daftar ini
+    // Kalau ada file baru, cukup tambahkan namanya di dalam array berikut:
+    const rootHtmlFiles = ["index.html", "feed.html"];
+
     try {
-        const rootFiles = await readdir(rootDir);
-        const rootHtmlFiles = rootFiles.filter(f => f.endsWith(".html"));
-        
         // Definisikan target folder backup
         const backupDir = join(rootDir, "artikel", "-");
         
@@ -261,15 +260,20 @@ const run = async (): Promise<void> => {
             const sourcePath = join(rootDir, f);
             const backupPath = join(backupDir, f);
             
-            // 1. Salin file ke folder artikel/-/ terlebih dahulu
-            await copyFile(sourcePath, backupPath);
-            console.log(`📁 Di-backup  : ${f} -> artikel/-/${f}`);
-            
-            // 2. Masukkan antrean untuk diproses (minify) in-place di root
-            allFiles.push(sourcePath);
+            try {
+                // 1. Salin file ke folder artikel/-/ terlebih dahulu
+                await copyFile(sourcePath, backupPath);
+                console.log(`📁 Di-backup  : ${f} -> artikel/-/${f}`);
+                
+                // 2. Masukkan antrean untuk diproses (minify) in-place di root
+                allFiles.push(sourcePath);
+            } catch (fileErr: any) {
+                // Peringatan kalau file yang kamu daftarkan ternyata tidak ada
+                console.warn(`⚠️ Dilewati: ${f} (File tidak ditemukan atau gagal disalin)`);
+            }
         }
     } catch (err) {
-        console.error("⚠️ Gagal membaca atau mem-backup file HTML di root:", err);
+        console.error("⚠️ Gagal menyiapkan folder backup untuk file HTML di root:", err);
     }
 
     await Promise.all(allFiles.map(processFile));
