@@ -627,44 +627,456 @@
         </div>
       </footer>
     </div>
-    <script type="module">
-  // SEARCH & FILTER STATIS (Tanpa Fetch API)
-  const searchInput = document.getElementById('search-input');
-  const chipButtons = document.querySelectorAll('.chip');
-  const articles = document.querySelectorAll('.thumb.article-card');
+   <script type="module">
+  // =======================================================================
+  // APP STATE (Modular dengan Class) - Bebas dari Over-Rendering!
+  // =======================================================================
+  class AppState {
+    constructor() {
+      this.allData = [];
+      this.displayedData = [];
+      this.currentCategory = 'all';
+      this.currentPage = 1;
+      this.itemsPerPage = 6;
+      this.searchTerm = '';
+      this.yearFilter = 'all';
+      this.monthFilter = 'all';
+      this.heroData = [];
+      this.heroTimer = null;
+      this.isHeroVisible = true;
 
-  // Search
-  searchInput.addEventListener('input', (e) => {
-    const term = e.target.value.toLowerCase();
-    articles.forEach(art => {
-      const text = art.innerText.toLowerCase();
-      art.style.display = text.includes(term) ? '' : 'none';
-    });
-  });
+      // Standarisasi nama bulan agar filter cocok
+      this.monthsName = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    }
 
-  // Category Filter
-  chipButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      chipButtons.forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-      const cat = e.target.getAttribute('data-filter');
+    // Inisialisasi data secara ELEGAN
+    async initData() {
+      this._setupUI();
 
-      articles.forEach(art => {
-        if (cat === 'all' || art.getAttribute('data-category') === cat) {
-          art.style.display = '';
+      try {
+        const provider = window.siteDataProvider;
+        if (!provider) {
+          console.warn('siteDataProvider tidak aktif, mode SSG Murni berjalan.');
+          this._startHeroSlider();
+          return;
+        }
+
+        const raw = await provider.getFor('homepage.ts');
+        if (!raw) return;
+
+        this.allData = this._parseRawData(raw);
+        this.allData.sort((a, b) => b.date.getTime() - a.date.getTime());
+        this.displayedData = [...this.allData];
+
+        // Kita siapkan data hero HANYA untuk referensi slider (tanpa re-render HTML-nya)
+        this._prepareHeroData();
+
+        // 1. Dropdown filter diisi
+        this._populateYearDropdown();
+
+        // 2. Sidebar acak tetap butuh JS untuk dynamic load
+        this._renderSidebar();
+
+        // 3. Nyalakan logika slider statis (tanpa menyentuh DOM elemennya)
+        this._startHeroSlider();
+
+        // MISTERI TERPECAHKAN:
+        // Tidak ada lagi pemanggilan render() massal di sini!
+        // HTML statis dari generator-pro.ts aman sentosa.
+
+      } catch (err) {
+        console.error('JS Data hydration gagal, fallback penuh ke mode statis:', err);
+        const sidebar = document.getElementById('random-sidebar-container');
+        if (sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Mode statis aktif.</p>';
+        this._startHeroSlider();
+      }
+    }
+
+    _parseRawData(raw) {
+      const result = [];
+      for (const cat in raw) {
+        const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
+        const readableCat = this._formatCategoryName(cat);
+        raw[cat].forEach(item => {
+          const fileSlug = item[1].replace(/\.html$/, '');
+          const originalImage = item[2] || 'https:dalam.web.id/thumbnail.webp';
+          const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
+          const cleanTitle = this._decodeHTML(item[0]).replace(/\s*-\s*Layar Kosong$/i, '');
+          result.push({
+            category: readableCat,
+            categorySlug: catSlug,
+            title: cleanTitle,
+            file: item[1],
+            img: smallImage,
+            fullImg: originalImage,
+            date: item[3] ? new Date(item[3]) : new Date(),
+            summary: this._decodeHTML(item[4] || cleanTitle)
+          });
+        });
+      }
+      return result;
+    }
+
+    _formatCategoryName(slug) {
+      if (!slug) return 'Lainnya';
+      return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+
+    _decodeHTML(str) {
+      const txt = document.createElement('textarea');
+      txt.innerHTML = str;
+      return txt.value;
+    }
+
+    _prepareHeroData() {
+      const categories = [...new Set(this.allData.map(item => item.category))];
+      this.heroData = categories.map(cat => this.allData.find(item => item.category === cat)).filter(Boolean);
+    }
+
+    // === SLIDER HERO STATIS ===
+    // Membaca HTML yang sudah dirender generator-pro.ts, cukup ganti state radio-nya
+    _startHeroSlider() {
+      if (this.heroTimer) clearInterval(this.heroTimer);
+      let currentIndex = 0;
+      this.heroTimer = setInterval(() => {
+        const radios = document.querySelectorAll('.hero-radio');
+        const total = radios.length;
+        if (total === 0) return;
+        currentIndex = (currentIndex + 1) % total;
+        radios[currentIndex].checked = true;
+      }, 4600);
+    }
+
+    _stopHeroSlider() {
+      if (this.heroTimer) {
+        clearInterval(this.heroTimer);
+        this.heroTimer = null;
+      }
+    }
+
+    // === RENDER KHUSUS HASIL INTERAKSI (SEARCH/FILTER) ===
+    _renderGrid() {
+      const container = document.getElementById('main-articles-container');
+      if (!container) return;
+
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      const pageItems = this.displayedData.slice(start, end);
+
+      if (pageItems.length === 0) {
+        container.innerHTML = `
+          <div class="panel" style="grid-column:1/-1;text-align:center;padding:40px 20px;">
+            <p style="color:var(--muted);margin:0;">Tidak ada artikel yang cocok dengan filter.</p>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = pageItems.map(item => {
+        const escapedTitle = item.title.replace(/"/g, '&quot;');
+        const displayDesc = item.summary.substring(0, 100) + '...';
+        // Penggunaan image fallback yang rapi
+        return `
+          <article class="thumb article-card" data-category="${item.categorySlug}">
+            <a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="display:block;text-decoration:none;color:inherit;">
+              <div class="media">
+                <img src="${item.img}" alt="${escapedTitle}" loading="lazy" onerror="this.onerror=null;this.src='${item.fullImg}'">
+              </div>
+              <div class="body">
+                <div class="tag" style="font-size:.75rem;color:var(--accent);font-weight:800;text-transform:uppercase;">${item.category}</div>
+                <h3 style="margin:8px 0;font-family:Georgia,serif;font-size:1.28rem;line-height:1.08;">${item.title}</h3>
+                <p class="excerpt" style="color:var(--muted);line-height:1.55;margin:0;">${displayDesc}</p>
+              </div>
+            </a>
+          </article>
+        `;
+      }).join('');
+    }
+
+    _renderSidebar() {
+      const container = document.getElementById('random-sidebar-container');
+      if (!container) return;
+
+      const activeCategory = this.currentCategory;
+      const pool = activeCategory === 'all' ? [...this.allData] : this.allData.filter(item => item.categorySlug === activeCategory);
+
+      const pageStart = (this.currentPage - 1) * this.itemsPerPage;
+      const pageEnd = pageStart + this.itemsPerPage;
+      const pageTitles = this.displayedData.slice(pageStart, pageEnd).map(item => item.title);
+      const heroTitles = this.isHeroVisible ? this.heroData.map(h => h.title) : [];
+
+      const exclude = new Set([...pageTitles, ...heroTitles]);
+      const available = pool.filter(item => !exclude.has(item.title));
+
+      const shuffled = [...available].sort(() => 0.5 - Math.random()).slice(0, 10);
+
+      if (shuffled.length === 0) {
+        container.innerHTML = `<p style="font-size:0.85rem;color:var(--muted);padding:10px;">Tidak ada artikel lain di kategori ini.</p>`;
+        return;
+      }
+
+      container.innerHTML = shuffled.map(item => {
+        const d = item.date;
+        const formattedDate = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
+        // Image fallback untuk sidebar
+        return `
+          <article class="side-item article-card">
+            <img src="${item.img}" alt="${item.title.replace(/"/g, '&quot;')}" loading="lazy" onerror="this.onerror=null;this.src='${item.fullImg}'">
+            <div>
+              <h3><a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="color:inherit;text-decoration:none;">${item.title}</a></h3>
+              <p>${formattedDate} · <span style="color:var(--accent);font-weight:700;text-transform:uppercase;font-size:0.75rem;">${item.category}</span></p>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    _renderPagination() {
+      const totalPages = Math.ceil(this.displayedData.length / this.itemsPerPage);
+      const indicator = document.getElementById('page-indicator');
+      const prevBtn = document.getElementById('prev-page-btn');
+      const nextBtn = document.getElementById('next-page-btn');
+
+      if (indicator) indicator.textContent = `H - ${this.currentPage} dari ${totalPages || 1}`;
+      if (prevBtn) prevBtn.disabled = (this.currentPage === 1);
+      if (nextBtn) nextBtn.disabled = (this.currentPage === totalPages || totalPages === 0);
+    }
+
+    // === FILTER & NAVIGASI ===
+    applyFilters() {
+      const search = this.searchTerm.toLowerCase().trim();
+      const year = this.yearFilter;
+      const month = this.monthFilter;
+      const cat = this.currentCategory;
+
+      this.displayedData = this.allData.filter(item => {
+        const matchCat = (cat === 'all') || (item.categorySlug === cat);
+        const matchYear = (year === 'all') || (item.date.getFullYear().toString() === year);
+        // Perbaikan komparasi Bulan menggunakan index dari array this.monthsName
+        const matchMonth = (month === 'all') || (this.monthsName[item.date.getMonth()] === month);
+        const matchSearch = !search ||
+          item.title.toLowerCase().includes(search) ||
+          item.summary.toLowerCase().includes(search);
+
+        return matchCat && matchYear && matchMonth && matchSearch;
+      });
+
+      if (this.currentPage > Math.ceil(this.displayedData.length / this.itemsPerPage)) {
+        this.currentPage = 1;
+      }
+
+      // Update UI HANYA pada bagian grid dan pagination
+      this._renderGrid();
+      this._renderPagination();
+    }
+
+    goToPage(page) {
+      const total = Math.ceil(this.displayedData.length / this.itemsPerPage);
+      if (page < 1 || page > total) return;
+      this.currentPage = page;
+      this.applyFilters(); // Panggil applyFilters agar grid diperbarui
+    }
+
+    setCategory(cat) {
+      this.currentCategory = cat;
+      this.currentPage = 1;
+      this.applyFilters();
+    }
+
+    setSearch(term) {
+      this.searchTerm = term;
+      this.currentPage = 1;
+
+      // Sembunyikan hero kalau lagi nyari barang
+      const heroEl = document.querySelector('.hero');
+      if (term.trim() !== '') {
+        if(heroEl) heroEl.style.display = 'none';
+        this._stopHeroSlider();
+        this.isHeroVisible = false;
+      } else if (this.yearFilter === 'all') { // Cuma kembalikan hero kalau filter tahun juga 'all'
+        if(heroEl) heroEl.style.display = '';
+        this._startHeroSlider();
+        this.isHeroVisible = true;
+      }
+
+      this.applyFilters();
+    }
+
+    setYear(year) {
+      this.yearFilter = year;
+      this.currentPage = 1;
+
+      // Logic sembunyikan hero kalau pakai filter tahun
+      const heroEl = document.querySelector('.hero');
+      if (year !== 'all') {
+        if(heroEl) heroEl.style.display = 'none';
+        this._stopHeroSlider();
+        this.isHeroVisible = false;
+      } else if (this.searchTerm === '') {
+        if(heroEl) heroEl.style.display = '';
+        this._startHeroSlider();
+        this.isHeroVisible = true;
+      }
+
+      this.applyFilters();
+    }
+
+    setMonth(month) {
+      this.monthFilter = month;
+      this.currentPage = 1;
+      this.applyFilters();
+    }
+
+    refreshSidebar() {
+      this._renderSidebar();
+    }
+
+    // === UI SETUP ===
+    _setupUI() {
+      const searchInput = document.getElementById('search-input');
+      const clearBtn = document.getElementById('search-clear-btn');
+      const yearSort = document.getElementById('year-sort');
+      const monthSort = document.getElementById('month-sort');
+      const prevBtn = document.getElementById('prev-page-btn');
+      const nextBtn = document.getElementById('next-page-btn');
+      const refreshBtn = document.getElementById('random-refresh-btn');
+
+      // Pencarian
+      searchInput?.addEventListener('input', (e) => {
+        const val = e.target.value;
+        this.setSearch(val);
+        if (val.trim().length > 0) {
+          document.body.classList.add('category-active');
+          clearBtn.style.display = 'grid';
         } else {
-          art.style.display = 'none';
+          document.body.classList.remove('category-active');
+          clearBtn.style.display = 'none';
+          document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
+          document.querySelectorAll('.chip[data-filter="all"]').forEach(c => c.classList.add('active'));
         }
       });
-    });
-  });
+      // Pencarian (Filter Live di Homepage)
+      searchInput?.addEventListener('input', (e) => {
+        const val = e.target.value;
+        this.setSearch(val);
+        if (val.trim().length > 0) {
+          document.body.classList.add('category-active');
+          clearBtn.style.display = 'grid';
+        } else {
+          document.body.classList.remove('category-active');
+          clearBtn.style.display = 'none';
+          document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
+          document.querySelectorAll('.chip[data-filter="all"]').forEach(c => c.classList.add('active'));
+        }
+      });
 
-  // Random Sidebar Refresh (Mockup - karena data sudah statis, kita hanya acak posisi)
-  document.getElementById('random-refresh-btn')?.addEventListener('click', () => {
-    const list = document.querySelector('.side-list');
-    const items = Array.from(list.children);
-    items.sort(() => Math.random() - 0.5).forEach(item => list.appendChild(item));
-  });
+      // TAMBAHKAN KODE INI: Lempar ke /search/ kalau user tekan Enter
+      searchInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault(); // Cegah reload otomatis kalau kebetulan input ada di dalam tag <form>
+          const val = e.target.value.trim();
+          if (val) {
+            // Gunakan encodeURIComponent biar spasi dan karakter aneh aman di URL
+            window.location.href = `https://dalam.web.id/search/?q=${encodeURIComponent(val)}`;
+          }
+        }
+      });
+      clearBtn?.addEventListener('click', () => {
+        searchInput.value = '';
+        document.body.classList.remove('category-active');
+        clearBtn.style.display = 'none';
+        document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.chip[data-filter="all"]').forEach(c => c.classList.add('active'));
+        this.setCategory('all');
+        this.setSearch('');
+      });
+
+      // Filter tahun & bulan
+      yearSort?.addEventListener('change', (e) => {
+        const year = e.target.value;
+        this.setYear(year);
+        this._populateMonthDropdown(year);
+      });
+
+      monthSort?.addEventListener('change', (e) => {
+        this.setMonth(e.target.value);
+      });
+
+      // Pagination & Refresh
+      prevBtn?.addEventListener('click', () => this.goToPage(this.currentPage - 1));
+      nextBtn?.addEventListener('click', () => this.goToPage(this.currentPage + 1));
+      refreshBtn?.addEventListener('click', () => this.refreshSidebar());
+
+      // Chip kategori (CSS filter)
+      document.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', (e) => {
+          document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
+          e.target.classList.add('active');
+          const cat = e.target.getAttribute('data-filter');
+          this.setCategory(cat);
+
+          if (cat === 'all') {
+            document.body.classList.remove('category-active');
+          } else {
+            document.body.classList.add('category-active');
+          }
+
+          // Reset search box kalo chip di klik
+          if (searchInput) {
+            searchInput.value = '';
+            clearBtn.style.display = 'none';
+            this.setSearch('');
+          }
+        });
+      });
+    }
+
+    _populateYearDropdown() {
+      const yearSort = document.getElementById('year-sort');
+      if (!yearSort) return;
+      const years = [...new Set(this.allData.map(item => item.date.getFullYear()))].sort((a,b) => b-a);
+      yearSort.innerHTML = '<option value="all">Tahun</option>';
+      years.forEach(y => {
+        const opt = document.createElement('option');
+        opt.value = y.toString();
+        opt.textContent = y.toString();
+        yearSort.appendChild(opt);
+      });
+      this._populateMonthDropdown('all');
+    }
+
+    _populateMonthDropdown(selectedYear) {
+      const monthSort = document.getElementById('month-sort');
+      if (!monthSort) return;
+
+      monthSort.innerHTML = '<option value="all">Bulan</option>';
+      if (selectedYear && selectedYear !== 'all') {
+        const availableMonths = [...new Set(
+          this.allData.filter(item => item.date.getFullYear().toString() === selectedYear)
+                      .map(item => item.date.getMonth())
+        )].sort((a,b) => a-b);
+
+        availableMonths.forEach(m => {
+          const opt = document.createElement('option');
+          opt.value = this.monthsName[m]; // Pake index array bahasa indonesia
+          opt.textContent = this.monthsName[m];
+          monthSort.appendChild(opt);
+        });
+        monthSort.disabled = false;
+      } else {
+        monthSort.disabled = true;
+      }
+    }
+  }
+
+  // =======================================================================
+  // INISIALISASI
+  // =======================================================================
+  const app = new AppState();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => app.initData());
+  } else {
+    app.initData();
+  }
 </script>
     <script defer src="/ext/balon-cf.js"></script>
     <script>
