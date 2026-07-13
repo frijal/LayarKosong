@@ -680,7 +680,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
             const latest = final[catKey][0];
             const dateObj = new Date(latest[3]);
             const formattedDate = new Intl.DateTimeFormat('id-ID', { dateStyle: 'long', timeZone: 'UTC' }).format(dateObj);
-            const safeDesc = escapeXML((latest[4] || latest[0]).substring(0, 150) + '...');
+            const safeDesc = escapeXML(latest[4] || latest[0]);
             const heroUrl = `${C.base}/${catSlug}/${latest[1].replace('.html', '')}`;
 
             // Kalkulasi indeks slider sebelumnya dan selanjutnya
@@ -694,7 +694,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
             heroSlidesHtml += `
             <div class="hero-slide slide-${heroIndex}">
             <div class="hero-media">
-            ${imgWithFallback(latest[2], escapeXML(decodeHTML(latest[0])))}
+            <img src="${latest[2]}" alt="${escapeXML(decodeHTML(latest[0]))}" onerror="this.onerror=null;this.src='/thumbnail.webp'">
             <label for="slide-${prevIndex}" class="hero-arrow prev" aria-label="Artikel sebelumnya">←</label>
             <label for="slide-${nextIndex}" class="hero-arrow next" aria-label="Artikel selanjutnya">→</label>
             </div>
@@ -703,7 +703,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
             <a href="${heroUrl}" style="display: block; text-decoration: none; color: inherit;">
             <h1>${escapeXML(decodeHTML(latest[0]))}</h1>
             </a>
-            <div class="meta">Oleh Redaksi · ${formattedDate}</div>
+            <div class="meta">Rilis: ${formattedDate}</div>
             <p class="excerpt">${safeDesc}</p>
             </div>
             </div>`;
@@ -717,7 +717,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
                     const gridTitle = escapeXML(decodeHTML(gridItem[0]));
                     const gridUrl = `${C.base}/${catSlug}/${gridItem[1].replace('.html', '')}`;
                     const gridImg = gridItem[2];
-                    const gridDesc = escapeXML((gridItem[4] || gridItem[0]).substring(0, 100) + '...');
+                    const gridDesc = escapeXML(gridItem[4] || gridItem[0]);
                     const gridYear = new Date(gridItem[3]).getFullYear();
                     const gridMonth = new Date(gridItem[3]).toLocaleString('id-ID', { month: 'long', timeZone: 'UTC' });
 
