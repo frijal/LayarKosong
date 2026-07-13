@@ -577,7 +577,7 @@ sitemapByCategory.get(catSlug)!.push(`
             <a href="${heroUrl}" style="display: block; text-decoration: none; color: inherit;">
             <h1>${escapeXML(decodeHTML(latest[0]))}</h1>
             </a>
-            <div class="meta">Oleh Redaksi · ${formattedDate}</div>
+            <div class="meta">${formattedDate}</div>
             <p class="excerpt">${safeDesc}</p>
             </div>
             </div>`;
@@ -593,7 +593,7 @@ sitemapByCategory.get(catSlug)!.push(`
                     const gridImg = gridItem[2];
                     const gridDesc = escapeXML((gridItem[4] || gridItem[0]).substring(0, 100) + '...');
                     const gridYear = new Date(gridItem[3]).getFullYear();
-                    const gridMonth = new Date(gridItem[3]).toLocaleString('en-US', { month: 'long', timeZone: 'UTC' });
+                    const gridMonth = new Date(gridItem[3]).toLocaleString('id-ID', { month: 'long', timeZone: 'UTC' });
 
                     gridHtml += `
                     <article class="thumb article-card" data-category="${slug(cat)}" data-year="${gridYear}" data-month="${gridMonth}">
