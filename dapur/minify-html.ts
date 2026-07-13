@@ -246,7 +246,7 @@ const run = async (): Promise<void> => {
     ).flat();
 
     // Tambahkan feed.html dari root
-    allFiles.push(join(rootDir, "feed.html"));
+    allFiles.push(join(rootDir, "index.html", "feed.html"));
 
     await Promise.all(allFiles.map(processFile));
 
