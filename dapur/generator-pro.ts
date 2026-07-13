@@ -610,7 +610,7 @@ sitemapByCategory.get(catSlug)!.push(`
             }
         }
 
-        // Baca dari template murni
+        // Baca dari folder rahasia template murni
         const templatePath = `${C.art}/-/template-index1.html`;
         let indexHtml = await Bun.file(templatePath).text().catch(() => '');
 
@@ -644,13 +644,8 @@ sitemapByCategory.get(catSlug)!.push(`
         } else {
             console.log('⚠️ File template-index1.html tidak ditemukan di folder artikel/-/.');
         }
-
-    if (editedTodayMap.size > 0) {
-        let cacheOut = buildDate + '\n';
-for (const [filename, timeStr] of editedTodayMap.entries()) {
-    cacheOut += `${filename}|${timeStr}\n`;
-}
-await Bun.write(CACHE_TODAY_FILE, cacheOut);
+    } catch (e) {
+        console.log(`⚠️ Gagal menginjeksi HTML ke index.html: ${e}`);
     }
 
     await pingWebSub(feedsToNotify);
