@@ -638,13 +638,12 @@ sitemapByCategory.get(catSlug)!.push(`
                 indexHtml = indexHtml.replace(gridRegex, `${GRID_START}\n${gridHtml}\n        ${GRID_END}`);
             }
 
-            // Tulis hasilnya sebagai index.html di root
+            // Tulis hasil akhirnya ke root sebagai index.html
             await Bun.write(`${C.root}/index.html`, indexHtml);
-            console.log('✅ Injeksi Hero (CSS Murni) & Grid Artikel berhasil!');
+            console.log('✅ Injeksi Hero (CSS Murni) & Grid Artikel ke index.html berhasil!');
+        } else {
+            console.log('⚠️ File template-index1.html tidak ditemukan di folder artikel/-/.');
         }
-    } catch (e) {
-        console.log(`⚠️ Gagal menginjeksi HTML ke index.html: ${e}`);
-    }
 
     if (editedTodayMap.size > 0) {
         let cacheOut = buildDate + '\n';
