@@ -247,7 +247,7 @@ const run = async (): Promise<void> => {
 
     // Tambahkan file .html root secara MANUAL ke dalam daftar ini
     // Kalau ada file baru, cukup tambahkan namanya di dalam array berikut:
-    const rootHtmlFiles = ["index.html", "feed.html"];
+    const rootHtmlFiles = ["feed.html"];
 
     try {
         // Definisikan target folder backup
