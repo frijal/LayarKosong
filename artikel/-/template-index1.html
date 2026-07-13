@@ -781,7 +781,16 @@
         }
         _startHeroSlider() {
           startHeroSlider() {
+          if (this.heroTimer) clearInterval(this.heroTimer);tartHeroSlider() {
           if (this.heroTimer) clearInterval(this.heroTimer);
+          this.heroTimer = setInterval(() => {
+            const radios = document.querySelectorAll('.hero-radio');
+            const total = radios.length;
+            if (total === 0) return;
+            this.heroIndex = (this.heroIndex + 1) % total;
+            radios[this.heroIndex].checked = true;
+          }, 4600);
+        }
           this.heroTimer = setInterval(() => {
             const radios = document.querySelectorAll('.hero-radio');
             const total = radios.length;
