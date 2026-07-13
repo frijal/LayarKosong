@@ -644,48 +644,50 @@
       this.heroData = [];
       this.heroTimer = null;
       this.isHeroVisible = true;
-      this.gridRendered = false; // 🔥 flag baru
+
 
       // Standarisasi nama bulan agar filter cocok
       this.monthsName = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
     }
 
-    // ------------------------------------------------------------
-  // INISIALISASI - TIDAK MERENDER GRID
-  // ------------------------------------------------------------
-  async initData() {
-    this._setupUI();
-
+    async initData() {
     try {
-      const provider = window.siteDataProvider;
-      if (!provider) {
-        console.warn('siteDataProvider tidak aktif, mode SSG Murni berjalan.');
-        this._startHeroSlider();
-        return;
-      }
+        const data = await window.siteDataProvider.getFor('homepage.ts');
+        if (data && data.length > 0) {
+            this.allData = data;
+            this.displayedData = [...this.allData];
+            this.currentPage = 1; // Pastikan state awal adalah halaman 1
 
-      const raw = await provider.getFor('homepage.ts');
-      if (!raw) return;
+            this._prepareHeroData();
+            this._populateYearDropdown();
+            this._renderSidebar();
+            this._startHeroSlider();
 
-      this.allData = this._parseRawData(raw);
-      this.allData.sort((a, b) => b.date.getTime() - a.date.getTime());
-      this.displayedData = [...this.allData];
-
-      this._prepareHeroData();
-      this._populateYearDropdown();
-      this._renderSidebar();
-      this._startHeroSlider();
-
-      // 🔥 JANGAN panggil applyFilters() atau _renderGrid() di sini
-      // Biarkan grid statis dari generator
-
-    } catch (err) {
-      console.error('JS Data hydration gagal, fallback penuh ke mode statis:', err);
-      const sidebar = document.getElementById('random-sidebar-container');
-      if (sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Mode statis aktif.</p>';
-      this._startHeroSlider();
+            // PENTING: Jangan panggil this._renderGrid() di sini!
+            // Cukup panggil paginasi agar tombol angka halamannya muncul
+            this._renderPagination();
+        }
+    } catch (e) {
+        console.error('Gagal inisialisasi AppState:', e);
     }
-  }
+}
+
+goToPage(pageNumber) {
+    // Cegah render ulang kalau user ngeklik halaman yang sedang aktif
+    if (pageNumber === this.currentPage) return;
+
+    this.currentPage = pageNumber;
+
+    // JS mengambil alih grid mulai dari sini
+    this._renderGrid();
+    this._renderPagination();
+
+    // Opsional: Bikin layar otomatis scroll ke atas grid biar UX lebih enak
+    const gridEl = document.getElementById('article-grid');
+    if (gridEl) {
+        gridEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
 
     _parseRawData(raw) {
       const result = [];
@@ -751,17 +753,12 @@
 
     // === RENDER KHUSUS HASIL INTERAKSI (SEARCH/FILTER) ===
     _renderGrid() {
-    const container = document.getElementById('main-articles-container');
-    if (!container) return;
+      const container = document.getElementById('main-articles-container');
+      if (!container) return;
 
-    // 🔥 Jika belum pernah dirender oleh JS, kita timpa konten statis
-    if (!this.gridRendered) {
-      this.gridRendered = true;
-    }
-
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    const pageItems = this.displayedData.slice(start, end);
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      const pageItems = this.displayedData.slice(start, end);
 
       if (pageItems.length === 0) {
         container.innerHTML = `
@@ -789,7 +786,7 @@
             </a>
           </article>
         `;
-      container.innerHTML = pageItems.map(item => { ... }).join('');
+      }).join('');
     }
 
     _renderSidebar() {
@@ -856,15 +853,11 @@
         const matchSearch = !search ||
           item.title.toLowerCase().includes(search) ||
           item.summary.toLowerCase().includes(search);
-      this.displayedData = filtered;
-
 
         return matchCat && matchYear && matchMonth && matchSearch;
       });
 
-      if (this.currentPage > Math.ceil(this.displayedData.length / this.itemsPerPage)) {
-        this.currentPage = 1;
-      }
+      this.currentPage = 1;
 
       // Update UI HANYA pada bagian grid dan pagination
       this._renderGrid();
@@ -872,20 +865,17 @@
     }
 
     goToPage(page) {
-    const total = Math.ceil(this.displayedData.length / this.itemsPerPage);
-    if (page < 1 || page > total) return;
-    this.currentPage = page;
-    // 🔥 Panggil _renderGrid()
-    this._renderGrid();
-    this._renderPagination();
-  }
+      const total = Math.ceil(this.displayedData.length / this.itemsPerPage);
+      if (page < 1 || page > total) return;
+      this.currentPage = page;
+      this.applyFilters(); // Panggil applyFilters agar grid diperbarui
+    }
 
     setCategory(cat) {
-    this.currentCategory = cat;
-    this.currentPage = 1;
-    // 🔥 Panggil applyFilters() yang di dalamnya memanggil _renderGrid()
-    this.applyFilters();
-  }
+      this.currentCategory = cat;
+      this.currentPage = 1;
+      this.applyFilters();
+    }
 
     setSearch(term) {
       this.searchTerm = term;
@@ -907,16 +897,9 @@
     }
 
     setYear(year) {
-    this.yearFilter = year;
-    this.currentPage = 1;
-    this.applyFilters();
-    }
+      this.yearFilter = year;
+      this.currentPage = 1;
 
-    setMonth(month) {
-    this.monthFilter = month;
-    this.currentPage = 1;
-    this.applyFilters();
-    }
       // Logic sembunyikan hero kalau pakai filter tahun
       const heroEl = document.querySelector('.hero');
       if (year !== 'all') {
