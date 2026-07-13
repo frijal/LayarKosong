@@ -610,8 +610,9 @@ sitemapByCategory.get(catSlug)!.push(`
             }
         }
 
-        const indexPath = `${C.root}/index.html`;
-        let indexHtml = await Bun.file(indexPath).text().catch(() => '');
+        // Baca dari template murni
+        const templatePath = `${C.art}/-/template-index1.html`;
+        let indexHtml = await Bun.file(templatePath).text().catch(() => '');
 
         if (indexHtml) {
             // Timpa area HERO AUTOGEN
@@ -637,10 +638,9 @@ sitemapByCategory.get(catSlug)!.push(`
                 indexHtml = indexHtml.replace(gridRegex, `${GRID_START}\n${gridHtml}\n        ${GRID_END}`);
             }
 
-            await Bun.write(indexPath, indexHtml);
+            // Tulis hasilnya sebagai index.html di root
+            await Bun.write(`${C.root}/index.html`, indexHtml);
             console.log('✅ Injeksi Hero (CSS Murni) & Grid Artikel berhasil!');
-        } else {
-            console.log('⚠️ File index.html tidak ditemukan di root.');
         }
     } catch (e) {
         console.log(`⚠️ Gagal menginjeksi HTML ke index.html: ${e}`);
