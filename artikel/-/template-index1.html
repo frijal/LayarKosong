@@ -637,7 +637,7 @@
       this.displayedData = [];
       this.currentCategory = 'all';
       this.currentPage = 1;
-      this.itemsPerPage = 6;
+      this.itemsPerPage = 14; // FIX: disamain sama jumlah kartu statis dari generator-pro.ts (2 artikel x 7 kategori aktif)
       this.searchTerm = '';
       this.yearFilter = 'all';
       this.monthFilter = 'all';
@@ -650,44 +650,53 @@
       this.monthsName = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
     }
 
+    // Inisialisasi data secara ELEGAN
     async initData() {
-    try {
-        const data = await window.siteDataProvider.getFor('homepage.ts');
-        if (data && data.length > 0) {
-            this.allData = data;
-            this.displayedData = [...this.allData];
-            this.currentPage = 1; // Pastikan state awal adalah halaman 1
+      this._setupUI();
 
-            this._prepareHeroData();
-            this._populateYearDropdown();
-            this._renderSidebar();
-            this._startHeroSlider();
-
-            // PENTING: Jangan panggil this._renderGrid() di sini!
-            // Cukup panggil paginasi agar tombol angka halamannya muncul
-            this._renderPagination();
+      try {
+        const provider = window.siteDataProvider;
+        if (!provider) {
+          console.warn('siteDataProvider tidak aktif, mode SSG Murni berjalan.');
+          this._startHeroSlider();
+          return;
         }
-    } catch (e) {
-        console.error('Gagal inisialisasi AppState:', e);
+
+        const raw = await provider.getFor('homepage.ts');
+        if (!raw) return;
+
+        this.allData = this._parseRawData(raw);
+        this.allData.sort((a, b) => b.date.getTime() - a.date.getTime());
+        this.displayedData = [...this.allData];
+
+        // Kita siapkan data hero HANYA untuk referensi slider (tanpa re-render HTML-nya)
+        this._prepareHeroData();
+
+        // 1. Dropdown filter diisi
+        this._populateYearDropdown();
+
+        // 1.5. FIX: label "H - 1" di template itu placeholder statis, gak pernah dimutakhirkan
+        // sebelumnya. Panggil _renderPagination() SAJA (bukan _renderGrid()) biar label halaman
+        // langsung akurat dari awal tanpa nyentuh HTML grid statis dari generator-pro.ts.
+        this._renderPagination();
+
+        // 2. Sidebar acak tetap butuh JS untuk dynamic load
+        this._renderSidebar();
+
+        // 3. Nyalakan logika slider statis (tanpa menyentuh DOM elemennya)
+        this._startHeroSlider();
+
+        // MISTERI TERPECAHKAN:
+        // Tidak ada lagi pemanggilan render() massal di sini!
+        // HTML statis dari generator-pro.ts aman sentosa.
+
+      } catch (err) {
+        console.error('JS Data hydration gagal, fallback penuh ke mode statis:', err);
+        const sidebar = document.getElementById('random-sidebar-container');
+        if (sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Mode statis aktif.</p>';
+        this._startHeroSlider();
+      }
     }
-}
-
-goToPage(pageNumber) {
-    // Cegah render ulang kalau user ngeklik halaman yang sedang aktif
-    if (pageNumber === this.currentPage) return;
-
-    this.currentPage = pageNumber;
-
-    // JS mengambil alih grid mulai dari sini
-    this._renderGrid();
-    this._renderPagination();
-
-    // Opsional: Bikin layar otomatis scroll ke atas grid biar UX lebih enak
-    const gridEl = document.getElementById('article-grid');
-    if (gridEl) {
-        gridEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-}
 
     _parseRawData(raw) {
       const result = [];
@@ -696,7 +705,7 @@ goToPage(pageNumber) {
         const readableCat = this._formatCategoryName(cat);
         raw[cat].forEach(item => {
           const fileSlug = item[1].replace(/\.html$/, '');
-          const originalImage = item[2] || 'https:dalam.web.id/thumbnail.webp';
+          const originalImage = item[2] || '/thumbnail.webp'; // FIX: typo lama 'https:dalam.web.id/...' (kurang //) sekarang jadi root-relative
           const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
           const cleanTitle = this._decodeHTML(item[0]).replace(/\s*-\s*Layar Kosong$/i, '');
           result.push({
@@ -725,6 +734,14 @@ goToPage(pageNumber) {
       return txt.value;
     }
 
+    // FIX: dulu kartu yang di-render JS (hasil search/filter/pindah halaman) cuma punya
+    // fallback 2 tingkat (sm -> asli), beda sama kartu hasil bake generator-pro.ts yang
+    // 3 tingkat (sm -> md -> asli -> thumbnail-sm). Sekarang disamain lewat helper ini.
+    _imgFallbackAttr(smSrc, fullSrc) {
+      const mdSrc = fullSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '-md.webp');
+      return `this.onerror=function(){this.onerror=function(){this.onerror=null;this.src='/thumbnail-sm.webp'};this.src='${fullSrc}'};this.src='${mdSrc}'`;
+    }
+
     _prepareHeroData() {
       const categories = [...new Set(this.allData.map(item => item.category))];
       this.heroData = categories.map(cat => this.allData.find(item => item.category === cat)).filter(Boolean);
@@ -734,13 +751,16 @@ goToPage(pageNumber) {
     // Membaca HTML yang sudah dirender generator-pro.ts, cukup ganti state radio-nya
     _startHeroSlider() {
       if (this.heroTimer) clearInterval(this.heroTimer);
-      let currentIndex = 0;
+      // FIX: dulu currentIndex disimpen di closure dan cuma dimutakhirkan sama timer sendiri,
+      // jadi kalau user klik panah manual (label radio), timer jadi gak nyambung sama slide
+      // yang lagi kelihatan. Sekarang tiap tick baca ULANG radio mana yang beneran checked.
       this.heroTimer = setInterval(() => {
-        const radios = document.querySelectorAll('.hero-radio');
+        const radios = [...document.querySelectorAll('.hero-radio')];
         const total = radios.length;
         if (total === 0) return;
-        currentIndex = (currentIndex + 1) % total;
-        radios[currentIndex].checked = true;
+        const activeIndex = radios.findIndex(r => r.checked);
+        const nextIndex = (activeIndex + 1 + total) % total; // +total jaga2 kalau activeIndex -1 (gak ketemu)
+        radios[nextIndex].checked = true;
       }, 4600);
     }
 
@@ -776,7 +796,7 @@ goToPage(pageNumber) {
           <article class="thumb article-card" data-category="${item.categorySlug}">
             <a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="display:block;text-decoration:none;color:inherit;">
               <div class="media">
-                <img src="${item.img}" alt="${escapedTitle}" loading="lazy" onerror="this.onerror=null;this.src='${item.fullImg}'">
+                <img src="${item.img}" alt="${escapedTitle}" loading="lazy" onerror="${this._imgFallbackAttr(item.img, item.fullImg)}">
               </div>
               <div class="body">
                 <div class="tag" style="font-size:.75rem;color:var(--accent);font-weight:800;text-transform:uppercase;">${item.category}</div>
@@ -817,7 +837,7 @@ goToPage(pageNumber) {
         // Image fallback untuk sidebar
         return `
           <article class="side-item article-card">
-            <img src="${item.img}" alt="${item.title.replace(/"/g, '&quot;')}" loading="lazy" onerror="this.onerror=null;this.src='${item.fullImg}'">
+            <img src="${item.img}" alt="${item.title.replace(/"/g, '&quot;')}" loading="lazy" onerror="${this._imgFallbackAttr(item.img, item.fullImg)}">
             <div>
               <h3><a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="color:inherit;text-decoration:none;">${item.title}</a></h3>
               <p>${formattedDate} · <span style="color:var(--accent);font-weight:700;text-transform:uppercase;font-size:0.75rem;">${item.category}</span></p>
@@ -857,11 +877,16 @@ goToPage(pageNumber) {
         return matchCat && matchYear && matchMonth && matchSearch;
       });
 
-      this.currentPage = 1;
+      if (this.currentPage > Math.ceil(this.displayedData.length / this.itemsPerPage)) {
+        this.currentPage = 1;
+      }
 
-      // Update UI HANYA pada bagian grid dan pagination
+      // Update UI pada grid, pagination, DAN sidebar acak.
+      // FIX: dulu sidebar gak ikut di-refresh di sini, jadi abis search/filter/pindah halaman
+      // dia bisa nampilin artikel yang PERSIS sama dengan yang lagi tampil di grid utama.
       this._renderGrid();
       this._renderPagination();
+      this._renderSidebar();
     }
 
     goToPage(page) {
@@ -874,6 +899,18 @@ goToPage(pageNumber) {
     setCategory(cat) {
       this.currentCategory = cat;
       this.currentPage = 1;
+
+      // FIX: dulu ganti kategori cuma nyembunyiin hero lewat CSS (.category-active .hero),
+      // tapi timer auto-slide-nya tetep jalan sia-sia di elemen yang udah display:none.
+      // Sekarang ikut di-stop/start, konsisten sama setYear() & setSearch().
+      if (cat !== 'all') {
+        this._stopHeroSlider();
+        this.isHeroVisible = false;
+      } else if (this.searchTerm === '' && this.yearFilter === 'all') {
+        this._startHeroSlider();
+        this.isHeroVisible = true;
+      }
+
       this.applyFilters();
     }
 
@@ -935,21 +972,9 @@ goToPage(pageNumber) {
       const nextBtn = document.getElementById('next-page-btn');
       const refreshBtn = document.getElementById('random-refresh-btn');
 
-      // Pencarian
-      searchInput?.addEventListener('input', (e) => {
-        const val = e.target.value;
-        this.setSearch(val);
-        if (val.trim().length > 0) {
-          document.body.classList.add('category-active');
-          clearBtn.style.display = 'grid';
-        } else {
-          document.body.classList.remove('category-active');
-          clearBtn.style.display = 'none';
-          document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
-          document.querySelectorAll('.chip[data-filter="all"]').forEach(c => c.classList.add('active'));
-        }
-      });
       // Pencarian (Filter Live di Homepage)
+      // CATATAN: dulu listener ini kepasang DUA KALI (copy-paste), jadi applyFilters()
+      // jalan 2x tiap keystroke. Sekarang cukup satu kali aja.
       searchInput?.addEventListener('input', (e) => {
         const val = e.target.value;
         this.setSearch(val);
