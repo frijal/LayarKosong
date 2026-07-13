@@ -690,7 +690,7 @@ await Bun.write(CACHE_TODAY_FILE, cacheOut);
             // Injeksi tag Radio
             heroInputsHtml += `      <input type="radio" name="hero" id="slide-${heroIndex}" class="hero-radio" ${heroIndex === 0 ? 'checked' : ''}>\n`;
 
-            // Injeksi HTML Slide
+            // Injeksii HTML Slide
             heroSlidesHtml += `
             <div class="hero-slide slide-${heroIndex}">
             <div class="hero-media">
