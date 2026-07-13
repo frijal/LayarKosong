@@ -779,9 +779,8 @@
             radios[this.heroIndex].checked = true;
           }
         }
+        // Modifikasi Slider agar bisa membaca HTML statis langsung dari DOM!
         _startHeroSlider() {
-          startHeroSlider() {
-          if (this.heroTimer) clearInterval(this.heroTimer);tartHeroSlider() {
           if (this.heroTimer) clearInterval(this.heroTimer);
           this.heroTimer = setInterval(() => {
             const radios = document.querySelectorAll('.hero-radio');
