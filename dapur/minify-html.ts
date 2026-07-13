@@ -1,4 +1,4 @@
-import { readdir, readFile, writeFile } from "fs/promises";
+import { readdir, readFile, writeFile, copyFile, mkdir } from "fs/promises";
 import { join } from "path";
 import { nanoseconds } from "bun";
 import * as minifyHtml from "@minify-html/node";
@@ -245,8 +245,32 @@ const run = async (): Promise<void> => {
         )
     ).flat();
 
-    // Tambahkan feed.html dari root
-    allFiles.push(join(rootDir, "index.html", "feed.html"));
+    // Tambahkan SEMUA file .html dari root (index.html, feed.html, dll)
+    // dan salin ke artikel/-/ sebelum diminifikasi in-place
+    try {
+        const rootFiles = await readdir(rootDir);
+        const rootHtmlFiles = rootFiles.filter(f => f.endsWith(".html"));
+        
+        // Definisikan target folder backup
+        const backupDir = join(rootDir, "artikel", "-");
+        
+        // Pastikan folder artikel/-/ sudah ada, kalau belum otomatis dibuat
+        await mkdir(backupDir, { recursive: true }).catch(() => {});
+
+        for (const f of rootHtmlFiles) {
+            const sourcePath = join(rootDir, f);
+            const backupPath = join(backupDir, f);
+            
+            // 1. Salin file ke folder artikel/-/ terlebih dahulu
+            await copyFile(sourcePath, backupPath);
+            console.log(`📁 Di-backup  : ${f} -> artikel/-/${f}`);
+            
+            // 2. Masukkan antrean untuk diproses (minify) in-place di root
+            allFiles.push(sourcePath);
+        }
+    } catch (err) {
+        console.error("⚠️ Gagal membaca atau mem-backup file HTML di root:", err);
+    }
 
     await Promise.all(allFiles.map(processFile));
 
