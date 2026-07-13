@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/12/2026, 2:23:57 PM
+Generated on: 7/13/2026, 3:39:42 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -16,7 +16,7 @@ Generated on: 7/12/2026, 2:23:57 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v24.75 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v24.84 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -1304,6 +1304,7 @@ Generated on: 7/12/2026, 2:23:57 PM
 | `artikel/schema-validation-static-site.html` | Apakah Schema Validation Penting untuk Static Site? - Layar Kosong | Apakah Schema Validation Penting untuk Static Site? | Layar Kosong | ✅ Perfect |
 | `artikel/script-monitor-ram-linux-otomatis.html` | RAM Server Sering Penuh? Rahasia Script Monitoring RAM Linux Otomatis - Layar Kosong | RAM Server Sering Penuh? Rahasia Script Monitoring RAM Linux Otomatis | Layar Kosong | ✅ Perfect |
 | `artikel/script-otomatis-monitor-disk-linux.html` | Otomatisasi Monitoring Disk Linux: Script Bash Anti-Panik 100% Full - Layar Kosong | Otomatisasi Monitoring Disk Linux: Script Bash Anti-Panik 100% Full | Layar Kosong | ✅ Perfect |
+| `artikel/sd-inovatif-trenggalek-keluar-dari-mbg.html` | SD Inovatif Trenggalek Keluar dari MBG: Ini Alasannya - Layar Kosong | SD Inovatif Trenggalek Keluar dari MBG: Ini Alasannya | Layar Kosong | ✅ Perfect |
 | `artikel/sejarah-14-menteri-mundur-1998.html` | Tragedi 14 Menteri: Kisah Mundurnya Pion Ekonomi yang Meruntuhkan Orde Baru - Layar Kosong | Tragedi 14 Menteri: Kisah Mundurnya Pion Ekonomi yang Meruntuhkan Orde Baru | Layar Kosong | ✅ Perfect |
 | `artikel/sejarah-blankon.html` | Sejarah Linux BlankOn: Distro Kebanggaan Indonesia - Layar Kosong | Sejarah Linux BlankOn: Distro Kebanggaan Indonesia | Layar Kosong | ✅ Perfect |
 | `artikel/sejarah-bpm-sultan-kutai.html` | Kesalahan Protokoler & Sejarah BPM: Sultan Kutai yang Terpinggirkan - Layar Kosong | Kesalahan Protokoler & Sejarah BPM: Sultan Kutai yang Terpinggirkan | Layar Kosong | ✅ Perfect |
@@ -2329,6 +2330,7 @@ Generated on: 7/12/2026, 2:23:57 PM
 | `opini-sosial/sabar-dalam-rumah-tangga.html` | Sabar dalam Rumah Tangga: Kisah Umar bin Khattab dan Hikmah Besar di Baliknya - Layar Kosong | Sabar dalam Rumah Tangga: Kisah Umar bin Khattab dan Hikmah Besar di Baliknya | Layar Kosong | ✅ Perfect |
 | `opini-sosial/satu-anak-satu-lele-satu-dusta-satu-bintang.html` | Komedi Gizi Nasional: Janji Lele Utuh Hingga Sapi Gaib - Layar Kosong | Komedi Gizi Nasional: Janji Lele Utuh Hingga Sapi Gaib | Layar Kosong | ✅ Perfect |
 | `opini-sosial/saudi-whoosh-kereta-cepat.html` | Saudi vs Whoosh: Proyek Kereta, Biaya Mirip Jarak Beda - Layar Kosong | Saudi vs Whoosh: Proyek Kereta, Biaya Mirip Jarak Beda | Layar Kosong | ✅ Perfect |
+| `opini-sosial/sd-inovatif-trenggalek-keluar-dari-mbg.html` | SD Inovatif Trenggalek Keluar dari MBG: Ini Alasannya - Layar Kosong | SD Inovatif Trenggalek Keluar dari MBG: Ini Alasannya | Layar Kosong | ✅ Perfect |
 | `opini-sosial/sejarah-14-menteri-mundur-1998.html` | Tragedi 14 Menteri: Kisah Mundurnya Pion Ekonomi yang Meruntuhkan Orde Baru - Layar Kosong | Tragedi 14 Menteri: Kisah Mundurnya Pion Ekonomi yang Meruntuhkan Orde Baru | Layar Kosong | ✅ Perfect |
 | `opini-sosial/sekolah-jateng-tak-wajib-libur-minggu.html` | Aturan Baru Jawa Tengah: Sekolah Tak Wajib Libur Minggu! - Layar Kosong | Aturan Baru Jawa Tengah: Sekolah Tak Wajib Libur Minggu! | Layar Kosong | ✅ Perfect |
 | `opini-sosial/selisih-utang-negara-indonesia.html` | Selisih Utang Negara Indonesia Tiap Era Presiden: Soekarno hingga Jokowi - Layar Kosong | Selisih Utang Negara Indonesia Tiap Era Presiden: Soekarno hingga Jokowi | Layar Kosong | ✅ Perfect |
@@ -3133,5 +3135,24 @@ Generated on: 7/12/2026, 2:23:57 PM
 | `warta-tekno/xml-rss-atom-file-xml-cukup.html` | XML, RSS, atau Atom? Mengapa File .xml Sudah Cukup dan Tidak Perlu Ganti Ekstensi - Layar Kosong | XML, RSS, atau Atom? Mengapa File .xml Sudah Cukup dan Tidak Perlu Ganti Ekstensi | Layar Kosong | ✅ Perfect |
 | `warta-tekno/youtube-ad-blockers-vs-mv3-2026.html` | YouTube Ad Blockers vs MV3: 7 Dampak Mengejutkan yang perlu Kamu Tahu di 2026 - Layar Kosong | YouTube Ad Blockers vs MV3: 7 Dampak Mengejutkan yang perlu Kamu Tahu di 2026 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/zrok-alternatif-cloudflare-tunnel.html` | Zrok: Alternatif Cloudflare Tunnel Open-Source Berbasis Zero-Trust - Layar Kosong | Zrok: Alternatif Cloudflare Tunnel Open-Source Berbasis Zero-Trust | Layar Kosong | ✅ Perfect |
+| `artikel/-/404.html` | 404 - Layar Kosong | 404 Not Found - Jenis Kode Error Website Umum | Layar Kosong | - |
+| `artikel/-/about.html` | Tentang Kami - Layar Kosong | Tentang Kami | Layar Kosong | ✅ Perfect |
+| `artikel/-/callback.html` | Halaman Call Back | *(Missing)* | *(Missing)* | ❌ Check Failed |
+| `artikel/-/data-deletion-form.html` | Formulir Penghapusan Data / Data Deletion Form - Layar Kosong | Formulir Penghapusan Data / Data Deletion Form | Layar Kosong | ✅ Perfect |
+| `artikel/-/data-deletion.html` | Instruksi Penghapusan Data / Data Deletion - Layar Kosong | Cara meminta penghapusan data | Layar Kosong | ✅ Perfect |
+| `artikel/-/disclaimer.html` | Sangkalan & Kebijakan - Layar Kosong | Sangkalan & Kebijakan - Layar Kosong | Layar Kosong | ⚠️ Partial |
+| `artikel/-/disclosure.html` | FTC Disclosure & Transparansi Afiliasi - Layar Kosong | FTC Disclosure & Transparansi Afiliasi | Layar Kosong | ✅ Perfect |
+| `artikel/-/feed.html` | RSS Atom Feed - Artikel Terbaru - Layar Kosong | RSS Feed – Artikel Terbaru | Layar Kosong | ✅ Perfect |
+| `artikel/-/google2e9cfaf2f2923d27.html` | *(Missing)* | *(Missing)* | *(Missing)* | ❌ Check Failed |
+| `artikel/-/hit.html` | Dashboard Counter - Layar Kosong | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `artikel/-/img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
+| `artikel/-/index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
+| `artikel/-/lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
+| `artikel/-/llms-index.html` | Layar Kosong - LLM Index v24.84 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `artikel/-/privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
+| `artikel/-/security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
+| `artikel/-/sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/-/template-feed.html` | RSS Atom Feed - Artikel Terbaru - Layar Kosong | RSS Feed – Artikel Terbaru | Layar Kosong | ✅ Perfect |
+| `artikel/-/template-homepage.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
+| `artikel/-/template-index1.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
 | `artikel/-/template-kategori.html` | %%TITLE%% - Layar Kosong | %%TITLE%% | Layar Kosong | ✅ Perfect |
