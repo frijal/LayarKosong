@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/13/2026, 3:39:42 PM
+Generated on: 7/14/2026, 2:44:43 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -14,9 +14,9 @@ Generated on: 7/13/2026, 3:39:42 PM
 | `google2e9cfaf2f2923d27.html` | *(Missing)* | *(Missing)* | *(Missing)* | - |
 | `hit.html` | Dashboard Counter - Layar Kosong | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
-| `index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
+| `index.html` | Layar Kosong | Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v24.84 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v25.13 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -948,6 +948,7 @@ Generated on: 7/13/2026, 3:39:42 PM
 | `artikel/mengintip-isi-folder-git-head-fetch.html` | Mengintip Isi Perut Git: HEAD dan FETCH_HEAD Secara Mendalam - Layar Kosong | Mengintip Isi Perut Git: HEAD dan FETCH_HEAD Secara Mendalam | Layar Kosong | ✅ Perfect |
 | `artikel/mengkritisi-tradisi-tahlilan-kematian.html` | Tradisi Tahlilan Kematian Antara Dzikir Agung dan Tekanan Sosial Masyarakat - Layar Kosong | Tradisi Tahlilan Kematian Antara Dzikir Agung dan Tekanan Sosial Masyarakat | Layar Kosong | ✅ Perfect |
 | `artikel/menguasai-5w1h-penulisan-artikel.html` | Menguasai 5W+1H: Rahasia Artikel Berbobot - Layar Kosong | Menguasai 5W+1H: Rahasia Artikel Berbobot | Layar Kosong | ✅ Perfect |
+| `artikel/menguasai-perintah-tree-linux.html` | Menguasai Perintah tree di Linux: Fungsi, Keunggulan & Cara Install - Layar Kosong | Menguasai Perintah tree di Linux: Fungsi, Keunggulan & Cara Install | Layar Kosong | ✅ Perfect |
 | `artikel/mengubah-format-gambar.html` | Mengubah Format Gambar Massal dengan ImageMagick - Layar Kosong | Mengubah Format Gambar Massal dengan ImageMagick | Layar Kosong | ✅ Perfect |
 | `artikel/mengubah-gambar-ke-pdf-imagemagick.html` | Mengubah Banyak Gambar Menjadi PDF dengan ImageMagick - Layar Kosong | Mengubah Banyak Gambar Menjadi PDF dengan ImageMagick | Layar Kosong | ✅ Perfect |
 | `artikel/mengubah-ukuran-banyak-foto-sekaligus-menggunakan-ImageMagick.html` | Batch Resize Foto dengan ImageMagick - Simpan ke Folder Terpisah - Layar Kosong | Batch Resize Foto dengan ImageMagick - Simpan ke Folder Terpisah | Layar Kosong | ✅ Perfect |
@@ -2612,6 +2613,7 @@ Generated on: 7/13/2026, 3:39:42 PM
 | `sistem-terbuka/mengganti-kata-dengan-perl.html` | Mengganti Kata dalam Banyak Dokumen dengan Perl - Layar Kosong | Mengganti Kata dalam Banyak Dokumen dengan Perl | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/menghapus-entri-boot-lama-uefi-dan-grub.html` | Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux - Layar Kosong | Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/menghidupkan-kembali-laptop-tua-pentium-m-dengan-antix.html` | Menghidupkan Kembali Laptop Tua Pentium M dengan antiX Linux - Layar Kosong | Menghidupkan Kembali Laptop Tua Pentium M dengan antiX Linux | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/menguasai-perintah-tree-linux.html` | Menguasai Perintah tree di Linux: Fungsi, Keunggulan & Cara Install - Layar Kosong | Menguasai Perintah tree di Linux: Fungsi, Keunggulan & Cara Install | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/menonaktifkan-koneksi-otomatis-firefox.html` | Menonaktifkan Koneksi Otomatis Firefox: Perbandingan Mozilla vs. Debian - Layar Kosong | Menonaktifkan Koneksi Otomatis Firefox: Perbandingan Mozilla vs. Debian | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/microfetch-fetch-tool-super-cepat.html` | Microfetch: Fetch Tool Mikroskopis dan Sangat Cepat untuk NixOS - Layar Kosong | Microfetch: Fetch Tool Mikroskopis dan Sangat Cepat untuk NixOS | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/microsoft-rilis-azure-linux-4.html` | Microsoft Rilis Azure Linux 4.0: Distro Server General-Purpose Pertama mereka - Layar Kosong | Microsoft Rilis Azure Linux 4.0: Distro Server General-Purpose Pertama mereka | Layar Kosong | ✅ Perfect |
@@ -3135,24 +3137,9 @@ Generated on: 7/13/2026, 3:39:42 PM
 | `warta-tekno/xml-rss-atom-file-xml-cukup.html` | XML, RSS, atau Atom? Mengapa File .xml Sudah Cukup dan Tidak Perlu Ganti Ekstensi - Layar Kosong | XML, RSS, atau Atom? Mengapa File .xml Sudah Cukup dan Tidak Perlu Ganti Ekstensi | Layar Kosong | ✅ Perfect |
 | `warta-tekno/youtube-ad-blockers-vs-mv3-2026.html` | YouTube Ad Blockers vs MV3: 7 Dampak Mengejutkan yang perlu Kamu Tahu di 2026 - Layar Kosong | YouTube Ad Blockers vs MV3: 7 Dampak Mengejutkan yang perlu Kamu Tahu di 2026 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/zrok-alternatif-cloudflare-tunnel.html` | Zrok: Alternatif Cloudflare Tunnel Open-Source Berbasis Zero-Trust - Layar Kosong | Zrok: Alternatif Cloudflare Tunnel Open-Source Berbasis Zero-Trust | Layar Kosong | ✅ Perfect |
-| `artikel/-/404.html` | 404 - Layar Kosong | 404 Not Found - Jenis Kode Error Website Umum | Layar Kosong | - |
-| `artikel/-/about.html` | Tentang Kami - Layar Kosong | Tentang Kami | Layar Kosong | ✅ Perfect |
-| `artikel/-/callback.html` | Halaman Call Back | *(Missing)* | *(Missing)* | ❌ Check Failed |
-| `artikel/-/data-deletion-form.html` | Formulir Penghapusan Data / Data Deletion Form - Layar Kosong | Formulir Penghapusan Data / Data Deletion Form | Layar Kosong | ✅ Perfect |
-| `artikel/-/data-deletion.html` | Instruksi Penghapusan Data / Data Deletion - Layar Kosong | Cara meminta penghapusan data | Layar Kosong | ✅ Perfect |
-| `artikel/-/disclaimer.html` | Sangkalan & Kebijakan - Layar Kosong | Sangkalan & Kebijakan - Layar Kosong | Layar Kosong | ⚠️ Partial |
-| `artikel/-/disclosure.html` | FTC Disclosure & Transparansi Afiliasi - Layar Kosong | FTC Disclosure & Transparansi Afiliasi | Layar Kosong | ✅ Perfect |
 | `artikel/-/feed.html` | RSS Atom Feed - Artikel Terbaru - Layar Kosong | RSS Feed – Artikel Terbaru | Layar Kosong | ✅ Perfect |
-| `artikel/-/google2e9cfaf2f2923d27.html` | *(Missing)* | *(Missing)* | *(Missing)* | ❌ Check Failed |
-| `artikel/-/hit.html` | Dashboard Counter - Layar Kosong | *(Missing)* | *(Missing)* | ⚠️ Partial |
-| `artikel/-/img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `artikel/-/index.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
-| `artikel/-/lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `artikel/-/llms-index.html` | Layar Kosong - LLM Index v24.84 | *(Missing)* | *(Missing)* | ⚠️ Partial |
-| `artikel/-/privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
-| `artikel/-/security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
-| `artikel/-/sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/-/template-feed.html` | RSS Atom Feed - Artikel Terbaru - Layar Kosong | RSS Feed – Artikel Terbaru | Layar Kosong | ✅ Perfect |
-| `artikel/-/template-index1.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
-| `artikel/-/template-index1.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
+| `artikel/-/template-homepage.html` | Layar Kosong | Membaca Peran Teknologi Komunitas dan Kehidupan Masa Kini. | Layar Kosong | ✅ Perfect |
+| `artikel/-/template-index1.html` | Layar Kosong | Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `artikel/-/template-kategori.html` | %%TITLE%% - Layar Kosong | %%TITLE%% | Layar Kosong | ✅ Perfect |
