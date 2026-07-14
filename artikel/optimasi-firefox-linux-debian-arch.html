@@ -186,51 +186,59 @@
         <div class="script-box">
 <pre><code>#!/bin/bash
 # ======================================================
-# FIREFOX AUTO-CLEANER (DIET MODE)
-# Lokasi: Balikpapan | OS: Debian/Ubuntu
+# FIREFOX AUTO-CLEANER (DIET MODE - SAFE)
+# Lokasi: Balikpapan | OS: Debian/Ubuntu/Arch
 # ======================================================
+
 # Warna untuk output
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
+
 echo -e "${BLUE}=== Memulai Prosedur Sedot Lemak Firefox ===${NC}"
+
 # 1. Pastikan Firefox sedang tidak berjalan
-if pgrep -x "firefox" &gt; /dev/null || pgrep -x "firefox-esr" &gt; /dev/null; then
-    echo -e "${YELLOW}[!] Firefox terdeteksi masih terbuka.${NC}"
-    echo "Tutup Firefox dulu bos biar hasilnya maksimal!"
-    exit 1
+if pgrep -x "firefox" > /dev/null || pgrep -x "firefox-esr" > /dev/null; then
+  echo -e "${YELLOW}[!] Firefox terdeteksi masih terbuka.${NC}"
+  echo "Tutup Firefox dulu bos biar hasilnya maksimal!"
+  exit 1
 fi
+
 # 2. Lokasi Folder Profil dan Cache
 FF_DIR="$HOME/.mozilla/firefox"
 FF_CACHE="$HOME/.cache/mozilla/firefox"
+
 # 3. Bersihkan Cache Fisik (Sampah Terbesar)
 echo -e "${YELLOW}[*] Membersihkan folder cache...${NC}"
 if [ -d "$FF_CACHE" ]; then
-    rm -rf "$FF_CACHE"/*
-    echo -e "${GREEN}✔ Cache dibersihkan.${NC}"
+  rm -rf "$FF_CACHE"/*
+  echo -e "${GREEN}✔ Cache dibersihkan.${NC}"
 else
-    echo "Folder cache tidak ditemukan, skip."
+  echo "Folder cache tidak ditemukan, skip."
 fi
-# 4. Optimasi Database SQLite (Vacuuming)
+
+# 4. Optimasi Database SQLite (Vacuuming) - BULLETPROOF MODE
 echo -e "${YELLOW}[*] Mengoptimasi database (SQLite Vacuum)...${NC}"
-# Cek apakah sqlite3 terinstall
-if ! command -v sqlite3 &amp;&gt; /dev/null; then
-    echo "sqlite3 belum ada. Install dulu: sudo apt install sqlite3"
+SQLITE_BIN="/usr/bin/sqlite3"
+
+if [ ! -x "$SQLITE_BIN" ]; then
+  echo -e "${YELLOW}[!] Waduh, $SQLITE_BIN nggak bisa dieksekusi. Cek lagi instalasinya bos!${NC}"
 else
-    find "$FF_DIR" -name "*.sqlite" | while read -r db; do
-        echo "Processing: $(basename "$db")"
-        sqlite3 "$db" "VACUUM;"
-    done
-    echo -e "${GREEN}✔ Database dipadatkan.${NC}"
+  find "$FF_DIR" -name "*.sqlite" | while read -r db; do
+    echo "Processing: $(basename "$db")"
+    "$SQLITE_BIN" "$db" "VACUUM;"
+  done
+  echo -e "${GREEN}✔ Database dipadatkan.${NC}"
 fi
-# 5. Hapus File Sampah Lainnya (Storage dan Backups)
-echo -e "${YELLOW}[*] Membuang sisa sesi dan storage sampah...${NC}"
+
+# 5. Hapus File Sampah Lainnya (Storage DIBIARKAN AMAN)
+echo -e "${YELLOW}[*] Membuang sisa sesi dan sampah ringan...${NC}"
 find "$FF_DIR" -type d -name "sessionstore-backups" -exec rm -rf {} +
-find "$FF_DIR" -type d -name "storage" -exec rm -rf {} +
 rm -f "$FF_DIR"/*.default-release/favicons.sqlite
+
 echo -e "${BLUE}======================================================${NC}"
-echo -e "${GREEN}BERHASIL! Firefox kamu sekarang lebih enteng.${NC}"
+echo -e "${GREEN}BERHASIL! Firefox kamu sekarang lebih enteng (dan sesi login aman).${NC}"
 echo -e "${BLUE}======================================================${NC}"</code></pre>
         </div>
         <h2>2. Solusi untuk Arch Linux (Bleeding Edge Speed)</h2>
@@ -246,54 +254,62 @@ echo "Done. Keep your Arch clean!"</code></pre></div>
         <div class="script-box">
 <pre><code>#!/bin/bash
 # ======================================================
-# ARCH LINUX FIREFOX OPTIMIZER
-# "Keep your Arch clean and your Firefox fast"
+# FIREFOX AUTO-CLEANER (DIET MODE - SAFE)
+# Lokasi: Balikpapan | OS: Arch Linux / CachyOS
 # ======================================================
-# Warna biar cakep di terminal (Arch banget)
-CYAN='\033[0;36m'
-RED='\033[0;31m'
+
+# Warna untuk output
+GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
 NC='\033[0m'
-echo -e "${CYAN}--- Arch Linux: Firefox Maintenance Mode ---${NC}"
-# 1. Cek Firefox Running
-if pgrep -x "firefox" &gt; /dev/null; then
-    echo -e "${RED}[!] Firefox masih jalan.${NC} Close dulu biar gak korup databasenya."
-    exit 1
+
+echo -e "${BLUE}=== Memulai Prosedur Sedot Lemak Firefox ===${NC}"
+
+# 1. Pastikan Firefox sedang tidak berjalan
+# (Menyesuaikan dengan kebiasaan user Arch yang kadang pakai Dev Edition)
+if pgrep -x "firefox" > /dev/null || pgrep -x "firefox-developer-edition" > /dev/null; then
+  echo -e "${YELLOW}[!] Firefox terdeteksi masih terbuka.${NC}"
+  echo "Tutup Firefox dulu bos biar hasilnya maksimal!"
+  exit 1
 fi
-# 2. Definisikan Path (Arch Standard)
-FF_PROFILE="$HOME/.mozilla/firefox"
-FF_CACHE_DIR="$HOME/.cache/mozilla/firefox"
-# 3. Hapus Cache (Sering jadi sarang sampah bergiga-giga)
-echo -e "${YELLOW}[*] Purging Cache...${NC}"
-if [ -d "$FF_CACHE_DIR" ]; then
-    # Menggunakan find biar lebih aman dibanding rm -rf langsung
-    find "$FF_CACHE_DIR" -mindepth 1 -delete
-    echo -e "${CYAN}&gt;&gt; Cache cleared.${NC}"
-fi
-# 4. Vacuum SQLite Database
-# Di Arch, sqlite3 biasanya sudah include di banyak instalasi, tapi kita cek dulu.
-if ! command -v sqlite3 &amp;&gt; /dev/null; then
-    echo -e "${RED}[!] sqlite3 tidak ditemukan.${NC} Install dulu: sudo pacman -S sqlite"
+
+# 2. Lokasi Folder Profil dan Cache
+FF_DIR="$HOME/.mozilla/firefox"
+FF_CACHE="$HOME/.cache/mozilla/firefox"
+
+# 3. Bersihkan Cache Fisik (Sampah Terbesar)
+echo -e "${YELLOW}[*] Membersihkan folder cache...${NC}"
+if [ -d "$FF_CACHE" ]; then
+  rm -rf "$FF_CACHE"/*
+  echo -e "${GREEN}✔ Cache dibersihkan.${NC}"
 else
-    echo -e "${YELLOW}[*] Vacuuming SQLite databases...${NC}"
-    find "$FF_PROFILE" -name "*.sqlite" -print0 | xargs -0 -I {} sqlite3 "{}" "VACUUM;"
-    echo -e "${CYAN}&gt;&gt; Database optimized.${NC}"
+  echo "Folder cache tidak ditemukan, skip."
 fi
-# 5. Membersihkan Data Tambahan (Storage dan Session Backups)
-echo -e "${YELLOW}[*] Cleaning storage dan old session backups...${NC}"
-# Kita hajar folder storage/default yang sering bengkak gara-gara indexedDB
-find "$FF_PROFILE" -type d -name "storage" -prune -exec rm -rf {} +
-find "$FF_PROFILE" -type d -name "sessionstore-backups" -prune -exec rm -rf {} +
-# 6. Tips Tambahan: Pacman Cache (Bonus buat user Arch)
-echo -e "${YELLOW}[?] Mau sekalian bersihin cache pacman? (y/n)${NC}"
-read -t 5 -n 1 answer
-if [[ $answer == "y" ]]; then
-    echo -e "\n${CYAN}[*] Cleaning pacman cache...${NC}"
-    sudo pacman -Sc --noconfirm
+
+# 4. Optimasi Database SQLite (Vacuuming) - BULLETPROOF MODE
+echo -e "${YELLOW}[*] Mengoptimasi database (SQLite Vacuum)...${NC}"
+SQLITE_BIN="/usr/bin/sqlite3"
+
+if [ ! -x "$SQLITE_BIN" ]; then
+  echo -e "${YELLOW}[!] Waduh, $SQLITE_BIN nggak bisa dieksekusi.${NC}"
+  echo -e "Install dulu bos: ${GREEN}sudo pacman -S sqlite${NC}"
+else
+  find "$FF_DIR" -name "*.sqlite" | while read -r db; do
+    echo "Processing: $(basename "$db")"
+    "$SQLITE_BIN" "$db" "VACUUM;"
+  done
+  echo -e "${GREEN}✔ Database dipadatkan.${NC}"
 fi
-echo -e "\n${CYAN}==============================================${NC}"
-echo -e "${CYAN}   ARCH FIREFOX DIET SELESAI - STAY KENCANG!   ${NC}"
-echo -e "${CYAN}==============================================${NC}"</code></pre>
+
+# 5. Hapus File Sampah Lainnya (Storage DIBIARKAN AMAN)
+echo -e "${YELLOW}[*] Membuang sisa sesi dan sampah ringan...${NC}"
+find "$FF_DIR" -type d -name "sessionstore-backups" -exec rm -rf {} +
+rm -f "$FF_DIR"/*.default-release/favicons.sqlite
+
+echo -e "${BLUE}======================================================${NC}"
+echo -e "${GREEN}BERHASIL! Firefox kamu sekarang lebih enteng (dan sesi login aman).${NC}"
+echo -e "${BLUE}======================================================${NC}"</code></pre>
         </div>
         <h2>Optimasi Core Web Vitals untuk Browser Kamu</h2>
         <p>Bukan cuma halaman web ini yang aku optimasi LCP-nya, tapi Firefox kamu juga harus punya <strong>LCP (Largest Contentful Paint)</strong> yang bagus saat loading aplikasi web. Dengan database yang sudah di-vacuum, proses pencarian data profil jadi lebih instan, otomatis browser tidak bakal "hang" pas baru dibuka.</p>
