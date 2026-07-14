@@ -630,6 +630,7 @@
    <script type="module">
   // =======================================================================
   // APP STATE (Modular dengan Class) - Bebas dari Over-Rendering!
+  // Mode: Progressive Enhancement (SSG HTML di depan, JS D1 di belakang)
   // =======================================================================
   class AppState {
     constructor() {
@@ -645,69 +646,63 @@
       this.heroTimer = null;
       this.isHeroVisible = true;
 
-
       // Standarisasi nama bulan agar filter cocok
       this.monthsName = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
     }
 
-    // Inisialisasi data secara ELEGAN
+    // Inisialisasi data secara ELEGAN & AMAN (Gabungan dengan Inisiator)
     async initData() {
       this._setupUI();
 
       try {
+        console.log("Menginisiasi koneksi ke D1...");
         const provider = window.siteDataProvider;
+
+        // 1. Pengecekan Jembatan Data Provider
         if (!provider) {
-          console.warn('⚠️ window.siteDataProvider tidak ditemukan (data-provider.js belum kepasang/kepanggil) — mode SSG Murni berjalan.');
+          console.warn('⚠️ Waduh, jembatan data-provider.js belum siap/tidak ditemukan. Halaman tetap di Mode Statis.');
           this._startHeroSlider();
           return;
         }
 
-        // DIAGNOSTIK: biar kelihatan di console browser persis di titik mana jembatan D1 putus.
+        // DIAGNOSTIK: biar kelihatan di console browser
         console.log('🔌 siteDataProvider ketemu, manggil provider.getFor("homepage.ts")...');
-        const raw = await provider.getFor('homepage.ts');
-        console.log('📦 Respons provider.getFor("homepage.ts"):', raw);
 
-        if (!raw) {
-          // FIX: dulu kalau raw kosong/null/undefined, function ini langsung return di sini
-          // TANPA start hero slider ataupun kasih tanda ke sidebar — jadi halaman keliatan
-          // beku total (hero gak muter, sidebar nyangkut skeleton "Memuat artikel..." selamanya).
-          // Sekarang minimal hero tetep jalan dan sidebar dikasih pesan yang jelas.
-          console.warn('⚠️ provider.getFor("homepage.ts") balikin data kosong/null — kemungkinan jembatan ke D1 belum ngembaliin apa-apa.');
+        // 2. Pemanggilan Data
+        const raw = await provider.getFor('homepage.ts');
+
+        // 3. Validasi Data
+        if (!raw || Object.keys(raw).length === 0) {
+          console.warn('⚠️ provider.getFor("homepage.ts") balikin data kosong. Mode statis dipertahankan.');
           const sidebar = document.getElementById('random-sidebar-container');
           if (sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Mode statis aktif.</p>';
           this._startHeroSlider();
           return;
         }
 
+        console.log(`Sukses! Data ditarik dari D1. Mode Dinamis aktif.`);
+
+        // 4. Hydration (Menyuntikkan & Memparsing data ke AppState)
         this.allData = this._parseRawData(raw);
         this.allData.sort((a, b) => b.date.getTime() - a.date.getTime());
         this.displayedData = [...this.allData];
+        this.currentPage = 1; // Kunci di Halaman 1 agar tidak bentrok dengan HTML Statis
 
-        // Kita siapkan data hero HANYA untuk referensi slider (tanpa re-render HTML-nya)
+        // 5. Render Komponen Pendukung (TANPA menyentuh Grid Utama Halaman 1)
         this._prepareHeroData();
-
-        // 1. Dropdown filter diisi
         this._populateYearDropdown();
-
-        // 1.5. FIX: label "H - 1" di template itu placeholder statis, gak pernah dimutakhirkan
-        // sebelumnya. Panggil _renderPagination() SAJA (bukan _renderGrid()) biar label halaman
-        // langsung akurat dari awal tanpa nyentuh HTML grid statis dari generator-pro.ts.
         this._renderPagination();
-
-        // 2. Sidebar acak tetap butuh JS untuk dynamic load
         this._renderSidebar();
 
-        // 3. Nyalakan logika slider statis (tanpa menyentuh DOM elemennya)
+        // Nyalakan mesin slider statis (CSS-based hero control)
         this._startHeroSlider();
 
-        // MISTERI TERPECAHKAN:
-        // Tidak ada lagi pemanggilan render() massal di sini!
-        // HTML statis dari generator-pro.ts aman sentosa.
-
       } catch (err) {
-        console.error('❌ JS Data hydration gagal (cek tab Network di DevTools utk lihat request ke D1/Worker-nya), fallback ke mode statis:', err);
+        console.error('❌ JS Data hydration gagal (cek tab Network di DevTools utk lihat request ke D1), fallback ke mode statis:', err);
         const sidebar = document.getElementById('random-sidebar-container');
         if (sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Mode statis aktif.</p>';
+
+        // User tetap bisa pakai slider dan baca grid hasil generator-pro.ts
         this._startHeroSlider();
       }
     }
@@ -719,7 +714,7 @@
         const readableCat = this._formatCategoryName(cat);
         raw[cat].forEach(item => {
           const fileSlug = item[1].replace(/\.html$/, '');
-          const originalImage = item[2] || '/thumbnail.webp'; // FIX: typo lama 'https:dalam.web.id/...' (kurang //) sekarang jadi root-relative
+          const originalImage = item[2] || '/thumbnail.webp';
           const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
           const cleanTitle = this._decodeHTML(item[0]).replace(/\s*-\s*Layar Kosong$/i, '');
           result.push({
@@ -748,9 +743,7 @@
       return txt.value;
     }
 
-    // FIX: dulu kartu yang di-render JS (hasil search/filter/pindah halaman) cuma punya
-    // fallback 2 tingkat (sm -> asli), beda sama kartu hasil bake generator-pro.ts yang
-    // 3 tingkat (sm -> md -> asli -> thumbnail-sm). Sekarang disamain lewat helper ini.
+    // FIX: Fallback gambar dengan 3 tingkat (sm -> md -> asli -> thumbnail-sm)
     _imgFallbackAttr(smSrc, fullSrc) {
       const mdSrc = fullSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '-md.webp');
       return `this.onerror=function(){this.onerror=function(){this.onerror=null;this.src='/thumbnail-sm.webp'};this.src='${fullSrc}'};this.src='${mdSrc}'`;
@@ -762,18 +755,15 @@
     }
 
     // === SLIDER HERO STATIS ===
-    // Membaca HTML yang sudah dirender generator-pro.ts, cukup ganti state radio-nya
     _startHeroSlider() {
       if (this.heroTimer) clearInterval(this.heroTimer);
-      // FIX: dulu currentIndex disimpen di closure dan cuma dimutakhirkan sama timer sendiri,
-      // jadi kalau user klik panah manual (label radio), timer jadi gak nyambung sama slide
-      // yang lagi kelihatan. Sekarang tiap tick baca ULANG radio mana yang beneran checked.
+      // Baca radio mana yang checked secara real-time
       this.heroTimer = setInterval(() => {
         const radios = [...document.querySelectorAll('.hero-radio')];
         const total = radios.length;
         if (total === 0) return;
         const activeIndex = radios.findIndex(r => r.checked);
-        const nextIndex = (activeIndex + 1 + total) % total; // +total jaga2 kalau activeIndex -1 (gak ketemu)
+        const nextIndex = (activeIndex + 1 + total) % total;
         radios[nextIndex].checked = true;
       }, 4600);
     }
@@ -785,7 +775,7 @@
       }
     }
 
-    // === RENDER KHUSUS HASIL INTERAKSI (SEARCH/FILTER) ===
+    // === RENDER KHUSUS HASIL INTERAKSI (SEARCH/FILTER/HALAMAN > 1) ===
     _renderGrid() {
       const container = document.getElementById('main-articles-container');
       if (!container) return;
@@ -805,7 +795,6 @@
       container.innerHTML = pageItems.map(item => {
         const escapedTitle = item.title.replace(/"/g, '&quot;');
         const displayDesc = item.summary.substring(0, 100) + '...';
-        // Penggunaan image fallback yang rapi
         return `
           <article class="thumb article-card" data-category="${item.categorySlug}">
             <a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="display:block;text-decoration:none;color:inherit;">
@@ -848,7 +837,6 @@
       container.innerHTML = shuffled.map(item => {
         const d = item.date;
         const formattedDate = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
-        // Image fallback untuk sidebar
         return `
           <article class="side-item article-card">
             <img src="${item.img}" alt="${item.title.replace(/"/g, '&quot;')}" loading="lazy" onerror="${this._imgFallbackAttr(item.img, item.fullImg)}">
@@ -882,7 +870,6 @@
       this.displayedData = this.allData.filter(item => {
         const matchCat = (cat === 'all') || (item.categorySlug === cat);
         const matchYear = (year === 'all') || (item.date.getFullYear().toString() === year);
-        // Perbaikan komparasi Bulan menggunakan index dari array this.monthsName
         const matchMonth = (month === 'all') || (this.monthsName[item.date.getMonth()] === month);
         const matchSearch = !search ||
           item.title.toLowerCase().includes(search) ||
@@ -895,9 +882,7 @@
         this.currentPage = 1;
       }
 
-      // Update UI pada grid, pagination, DAN sidebar acak.
-      // FIX: dulu sidebar gak ikut di-refresh di sini, jadi abis search/filter/pindah halaman
-      // dia bisa nampilin artikel yang PERSIS sama dengan yang lagi tampil di grid utama.
+      // Begitu filter jalan, JS langsung take-over Grid dari Generator
       this._renderGrid();
       this._renderPagination();
       this._renderSidebar();
@@ -907,16 +892,16 @@
       const total = Math.ceil(this.displayedData.length / this.itemsPerPage);
       if (page < 1 || page > total) return;
       this.currentPage = page;
-      this.applyFilters(); // Panggil applyFilters agar grid diperbarui
+      // JS otomatis merender Grid dinamis kalau pindah halaman
+      this._renderGrid();
+      this._renderPagination();
+      this._renderSidebar();
     }
 
     setCategory(cat) {
       this.currentCategory = cat;
       this.currentPage = 1;
 
-      // FIX: dulu ganti kategori cuma nyembunyiin hero lewat CSS (.category-active .hero),
-      // tapi timer auto-slide-nya tetep jalan sia-sia di elemen yang udah display:none.
-      // Sekarang ikut di-stop/start, konsisten sama setYear() & setSearch().
       if (cat !== 'all') {
         this._stopHeroSlider();
         this.isHeroVisible = false;
@@ -924,7 +909,6 @@
         this._startHeroSlider();
         this.isHeroVisible = true;
       }
-
       this.applyFilters();
     }
 
@@ -932,18 +916,16 @@
       this.searchTerm = term;
       this.currentPage = 1;
 
-      // Sembunyikan hero kalau lagi nyari barang
       const heroEl = document.querySelector('.hero');
       if (term.trim() !== '') {
         if(heroEl) heroEl.style.display = 'none';
         this._stopHeroSlider();
         this.isHeroVisible = false;
-      } else if (this.yearFilter === 'all') { // Cuma kembalikan hero kalau filter tahun juga 'all'
+      } else if (this.yearFilter === 'all') {
         if(heroEl) heroEl.style.display = '';
         this._startHeroSlider();
         this.isHeroVisible = true;
       }
-
       this.applyFilters();
     }
 
@@ -951,7 +933,6 @@
       this.yearFilter = year;
       this.currentPage = 1;
 
-      // Logic sembunyikan hero kalau pakai filter tahun
       const heroEl = document.querySelector('.hero');
       if (year !== 'all') {
         if(heroEl) heroEl.style.display = 'none';
@@ -962,7 +943,6 @@
         this._startHeroSlider();
         this.isHeroVisible = true;
       }
-
       this.applyFilters();
     }
 
@@ -986,9 +966,6 @@
       const nextBtn = document.getElementById('next-page-btn');
       const refreshBtn = document.getElementById('random-refresh-btn');
 
-      // Pencarian (Filter Live di Homepage)
-      // CATATAN: dulu listener ini kepasang DUA KALI (copy-paste), jadi applyFilters()
-      // jalan 2x tiap keystroke. Sekarang cukup satu kali aja.
       searchInput?.addEventListener('input', (e) => {
         const val = e.target.value;
         this.setSearch(val);
@@ -1003,17 +980,16 @@
         }
       });
 
-      // TAMBAHKAN KODE INI: Lempar ke /search/ kalau user tekan Enter
       searchInput?.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-          e.preventDefault(); // Cegah reload otomatis kalau kebetulan input ada di dalam tag <form>
+          e.preventDefault();
           const val = e.target.value.trim();
           if (val) {
-            // Gunakan encodeURIComponent biar spasi dan karakter aneh aman di URL
             window.location.href = `https://dalam.web.id/search/?q=${encodeURIComponent(val)}`;
           }
         }
       });
+
       clearBtn?.addEventListener('click', () => {
         searchInput.value = '';
         document.body.classList.remove('category-active');
@@ -1024,7 +1000,6 @@
         this.setSearch('');
       });
 
-      // Filter tahun & bulan
       yearSort?.addEventListener('change', (e) => {
         const year = e.target.value;
         this.setYear(year);
@@ -1035,12 +1010,10 @@
         this.setMonth(e.target.value);
       });
 
-      // Pagination & Refresh
       prevBtn?.addEventListener('click', () => this.goToPage(this.currentPage - 1));
       nextBtn?.addEventListener('click', () => this.goToPage(this.currentPage + 1));
       refreshBtn?.addEventListener('click', () => this.refreshSidebar());
 
-      // Chip kategori (CSS filter)
       document.querySelectorAll('.chip').forEach(chip => {
         chip.addEventListener('click', (e) => {
           document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
@@ -1054,7 +1027,6 @@
             document.body.classList.add('category-active');
           }
 
-          // Reset search box kalo chip di klik
           if (searchInput) {
             searchInput.value = '';
             clearBtn.style.display = 'none';
@@ -1091,7 +1063,7 @@
 
         availableMonths.forEach(m => {
           const opt = document.createElement('option');
-          opt.value = this.monthsName[m]; // Pake index array bahasa indonesia
+          opt.value = this.monthsName[m];
           opt.textContent = this.monthsName[m];
           monthSort.appendChild(opt);
         });
@@ -1103,7 +1075,7 @@
   }
 
   // ========================================================================
-  // INISIALISASI
+  // INISIALISASI (Aman & Tepat Waktu)
   // =======================================================================
   const app = new AppState();
   if (document.readyState === 'loading') {
