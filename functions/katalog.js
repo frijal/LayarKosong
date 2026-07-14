@@ -19,6 +19,10 @@ export async function onRequest(context) {
 
   // 🎭 SQL ALIASING: Menyesuaikan output sesuai UI yang meminta
   switch (ui) {
+    case 'homepage.ts':
+      // Mengambil semua pilar utama untuk Grid, Filter, dan Hero Slider
+      cols = "title, id, image, date, description, category";
+      break;
     case 'img.html':
       cols = "id AS title, image AS url, date, category";
       break;
@@ -33,7 +37,7 @@ export async function onRequest(context) {
       break;
       // 🔥 JALUR BARU KHUSUS UNTUK LITE GRID
     case 'related-grid':
-      cols = "title, id, image, category"; // Hanya ambil data yang diperlukan grid (hemat size)
+      cols = "title, id, image, category";
       break;
   }
 
