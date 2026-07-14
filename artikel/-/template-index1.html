@@ -29,8 +29,8 @@
     <meta property="og:description" content="artikel teknologi inspirasi kehidupan komunitas literasi digital religi Islam serta panduan karier untuk pembaca masa kini berpikir kritis dan terbuka.">
     <meta property="og:url" content="https://dalam.web.id/">
     <meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
-    <meta property="og:image:width" content="1000">
-    <meta property="og:image:height" content="563">
+    <meta property="og:image:width" content="1208">
+    <meta property="og:image:height" content="680">
     <meta property="og:locale" content="id_ID">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@responaja">
@@ -657,13 +657,27 @@
       try {
         const provider = window.siteDataProvider;
         if (!provider) {
-          console.warn('siteDataProvider tidak aktif, mode SSG Murni berjalan.');
+          console.warn('⚠️ window.siteDataProvider tidak ditemukan (data-provider.js belum kepasang/kepanggil) — mode SSG Murni berjalan.');
           this._startHeroSlider();
           return;
         }
 
+        // DIAGNOSTIK: biar kelihatan di console browser persis di titik mana jembatan D1 putus.
+        console.log('🔌 siteDataProvider ketemu, manggil provider.getFor("homepage.ts")...');
         const raw = await provider.getFor('homepage.ts');
-        if (!raw) return;
+        console.log('📦 Respons provider.getFor("homepage.ts"):', raw);
+
+        if (!raw) {
+          // FIX: dulu kalau raw kosong/null/undefined, function ini langsung return di sini
+          // TANPA start hero slider ataupun kasih tanda ke sidebar — jadi halaman keliatan
+          // beku total (hero gak muter, sidebar nyangkut skeleton "Memuat artikel..." selamanya).
+          // Sekarang minimal hero tetep jalan dan sidebar dikasih pesan yang jelas.
+          console.warn('⚠️ provider.getFor("homepage.ts") balikin data kosong/null — kemungkinan jembatan ke D1 belum ngembaliin apa-apa.');
+          const sidebar = document.getElementById('random-sidebar-container');
+          if (sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Mode statis aktif.</p>';
+          this._startHeroSlider();
+          return;
+        }
 
         this.allData = this._parseRawData(raw);
         this.allData.sort((a, b) => b.date.getTime() - a.date.getTime());
@@ -691,7 +705,7 @@
         // HTML statis dari generator-pro.ts aman sentosa.
 
       } catch (err) {
-        console.error('JS Data hydration gagal, fallback penuh ke mode statis:', err);
+        console.error('❌ JS Data hydration gagal (cek tab Network di DevTools utk lihat request ke D1/Worker-nya), fallback ke mode statis:', err);
         const sidebar = document.getElementById('random-sidebar-container');
         if (sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Mode statis aktif.</p>';
         this._startHeroSlider();
