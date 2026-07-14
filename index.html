@@ -943,32 +943,32 @@
 
     // --- PERBAIKAN 2: PARSER MULTI-FORMAT ---
     _parseRawData(raw) {
-      const result = [];
+      let result = [];
 
-      // Ambil array utamanya (jaga-jaga kalau D1 membungkusnya di dalam properti 'results')
-      const dataList = Array.isArray(raw) ? raw : (raw.results ? raw.results : null);
+      // Jika raw adalah string (dari fetch), coba parse dulu
+      let data = raw;
+      if (typeof raw === 'string') {
+        try { data = JSON.parse(raw); } catch(e) { console.error("Gagal parse JSON:", e); }
+      }
 
-      if (dataList && Array.isArray(dataList)) {
-        // SKENARIO A: Format D1 Edge (Array of Objects)
-        // Strukturnya: { title, id, image, date, description, category }
+      // Pastikan data yang kita olah adalah array
+      const dataList = Array.isArray(data) ? data : (data.results ? data.results : []);
+
+      if (dataList.length > 0 && typeof dataList[0] === 'object' && !Array.isArray(dataList[0])) {
+        // SKENARIO A: Format D1 Edge (Array of Objects) - INI YANG KITA PAKAI SEKARANG
         dataList.forEach(item => {
-          // Skip kalau formatnya ngaco bukan object
-          if (typeof item !== 'object' || item === null) return;
-
           const cat = item.category || 'lainnya';
           const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
           const readableCat = this._formatCategoryName(cat);
-
           const originalImage = item.image || '/thumbnail.webp';
           const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
-
           const cleanTitle = this._decodeHTML(item.title || '').replace(/\s*-\s*Layar Kosong$/i, '');
 
           result.push({
             category: readableCat,
             categorySlug: catSlug,
             title: cleanTitle,
-            file: item.id || '', // ID dari DB biasanya adalah slug/file
+            file: item.id || '',
             img: smallImage,
             fullImg: originalImage,
             date: item.date ? new Date(item.date) : new Date(),
@@ -976,27 +976,21 @@
           });
         });
       } else {
-        // SKENARIO B: Format Json Statis Lama (Object berindeks Array bersarang)
-        for (const cat in raw) {
-          const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
-          const readableCat = this._formatCategoryName(cat);
-
-          // Pastikan iterasinya berupa array sebelum di-forEach
-          if (Array.isArray(raw[cat])) {
-            raw[cat].forEach(item => {
+        // SKENARIO B: Format Json Statis Lama (Object berindeks)
+        for (const cat in data) {
+          if (Array.isArray(data[cat])) {
+            const readableCat = this._formatCategoryName(cat);
+            data[cat].forEach(item => {
               const originalImage = item[2] || '/thumbnail.webp';
-              const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
-              const cleanTitle = this._decodeHTML(item[0]).replace(/\s*-\s*Layar Kosong$/i, '');
-
               result.push({
                 category: readableCat,
-                categorySlug: catSlug,
-                title: cleanTitle,
+                categorySlug: cat.toLowerCase().replace(/\s+/g, '-'),
+                title: this._decodeHTML(item[0]).replace(/\s*-\s*Layar Kosong$/i, ''),
                 file: item[1],
-                img: smallImage,
+                img: originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp'),
                 fullImg: originalImage,
                 date: item[3] ? new Date(item[3]) : new Date(),
-                summary: this._decodeHTML(item[4] || cleanTitle)
+                summary: this._decodeHTML(item[4] || item[0])
               });
             });
           }
