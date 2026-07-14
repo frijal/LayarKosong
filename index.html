@@ -220,7 +220,7 @@
   #slide-4:checked ~ .hero-rotator .slide-4,
   #slide-5:checked ~ .hero-rotator .slide-5,
   #slide-6:checked ~ .hero-rotator .slide-6 {
-    opacity: 1; pointer-events: auto; z-index: 2;
+  opacity: 1; pointer-events: auto; z-index: 2;
   }
 
   .hero-copy { padding: 1.125rem 1.125rem 1.375rem; } /* 18px 18px 22px */
@@ -352,14 +352,13 @@
   <body>
     <div class="page">
       <header class="topbar">
-        <a href="/" class="brand">Layar Kosong</a>
-        <nav class="nav" aria-label="Primary">
-          <a href="#world">World</a>
-          <a href="#politics">Politics</a>
-          <a href="#business">Business</a>
-          <a href="#culture">Culture</a>
-          <a href="#tech">Tech</a>
-        </nav>
+      <a href="/" class="brand">Layar Kosong</a>
+      <nav class="nav" aria-label="Primary">
+      <a href="/img" aria-label="Lihat koleksi foto album">Album</a>
+      <a href="/sitemap" aria-label="Lihat daftar isi situs">Daftar Isi</a>
+      <a href="/search" aria-label="Buka halaman pencarian artikel">Pencarian</a>
+      <a href="/feed" aria-label="Berlangganan melalui RSS Feed Atom">RSS Feed Atom</a>
+      </nav>
         <div class="spacer"></div>
         <div class="search">
           <div class="search-box">
@@ -504,7 +503,7 @@
             </h2>
             <div class="side-list" id="random-sidebar-container">
               <div class="side-item skeleton-item"><p>Memuat artikel...</p></div>
-            </div>
+            </div><button class="refresh-btn" id="random-refresh-btn" aria-label="Refresh random articles">⟳</button>
           </div>
         </aside>
       </section>
@@ -970,19 +969,15 @@
       }
 
       container.innerHTML = shuffled.map(item => {
-        const d = item.date;
-        const formattedDate = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
-        // Image fallback untuk sidebar
-        return `
-          <article class="side-item article-card">
-            <img src="${item.img}" alt="${item.title.replace(/"/g, '&quot;')}" loading="lazy" onerror="${this._imgFallbackAttr(item.img, item.fullImg)}">
-            <div>
-              <h3><a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="color:inherit;text-decoration:none;">${item.title}</a></h3>
-              <p>${formattedDate} · <span style="color:var(--accent);font-weight:700;text-transform:uppercase;font-size:0.75rem;">${item.category}</span></p>
-            </div>
-          </article>
-        `;
-      }).join('');
+  return `
+    <article class="side-item article-card">
+      <img src="${item.img}" alt="${item.title.replace(/"/g, '&quot;')}" loading="lazy" onerror="${this._imgFallbackAttr(item.img, item.fullImg)}">
+      <div>
+        <h3><a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="color:inherit;text-decoration:none;">${item.title}</a></h3>
+      </div>
+    </article>
+  `;
+}).join('');
     }
 
     _renderPagination() {
