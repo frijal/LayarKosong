@@ -1339,14 +1339,41 @@
     }
   }
 
-  // ========================================================================
+// ========================================================================
   // INISIALISASI (Aman & Tepat Waktu)
   // =======================================================================
   const app = new AppState();
+
+  async function jalankanSistem() {
+    try {
+      console.log("🚀 1. Memulai inisialisasi, mengambil data dari server...");
+
+      // Tambahkan 'await' agar skrip berhenti sejenak menunggu data selesai diambil
+      await app.initData();
+
+      console.log("📦 2. Data berhasil diproses! Isi app.data sekarang:", app.data);
+
+      // Pemicu render paksa (jaga-jaga kalau initData tidak punya perintah render bawaan)
+      if (app.data && app.data.length > 0) {
+        if (typeof app.render === 'function') {
+          app.render();
+          console.log("🎨 3. Grid berhasil ditampilkan dengan app.render()!");
+        } else if (typeof app._renderGrid === 'function') {
+          app._renderGrid();
+          console.log("🎨 3. Grid berhasil ditampilkan dengan app._renderGrid()!");
+        }
+      } else {
+        console.warn("⚠️ Data masih kosong setelah diambil. Pastikan _parseRawData sudah benar.");
+      }
+    } catch (err) {
+      console.error("💥 Error saat menyalakan sistem:", err);
+    }
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => app.initData());
+    document.addEventListener('DOMContentLoaded', jalankanSistem);
   } else {
-    app.initData();
+    jalankanSistem();
   }
 </script>
     <script defer src="/ext/balon-cf.js"></script>
