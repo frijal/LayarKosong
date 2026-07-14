@@ -736,19 +736,15 @@
       }
 
       container.innerHTML = shuffled.map(item => {
-        const d = item.date;
-        const formattedDate = `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
-        // Image fallback untuk sidebar
-        return `
-          <article class="side-item article-card">
-            <img src="${item.img}" alt="${item.title.replace(/"/g, '&quot;')}" loading="lazy" onerror="${this._imgFallbackAttr(item.img, item.fullImg)}">
-            <div>
-              <h3><a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="color:inherit;text-decoration:none;">${item.title}</a></h3>
-              <p>${formattedDate} · <span style="color:var(--accent);font-weight:700;text-transform:uppercase;font-size:0.75rem;">${item.category}</span></p>
-            </div>
-          </article>
-        `;
-      }).join('');
+  return `
+    <article class="side-item article-card">
+      <img src="${item.img}" alt="${item.title.replace(/"/g, '&quot;')}" loading="lazy" onerror="${this._imgFallbackAttr(item.img, item.fullImg)}">
+      <div>
+        <h3><a href="/${item.categorySlug}/${item.file.replace('.html', '')}" style="color:inherit;text-decoration:none;">${item.title}</a></h3>
+      </div>
+    </article>
+  `;
+}).join('');
     }
 
     _renderPagination() {
