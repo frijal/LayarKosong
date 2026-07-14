@@ -872,7 +872,7 @@
       this.displayedData = [];
       this.currentCategory = 'all';
       this.currentPage = 1;
-      this.itemsPerPage = 14; // FIX: disamain sama jumlah kartu statis dari generator-pro.ts (2 artikel x 7 kategori aktif)
+      this.itemsPerPage = 14;
       this.searchTerm = '';
       this.yearFilter = 'all';
       this.monthFilter = 'all';
@@ -880,89 +880,129 @@
       this.heroTimer = null;
       this.isHeroVisible = true;
 
-      // Standarisasi nama bulan agar filter cocok
       this.monthsName = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
     }
 
-    // Inisialisasi data secara ELEGAN & AMAN (Gabungan dengan Inisiator)
     async initData() {
       this._setupUI();
 
       try {
         console.log("Menginisiasi koneksi ke D1...");
+
+        // --- PERBAIKAN 1: POLLING JEMBATAN ---
+        // Tunggu maksimal 2 detik sampai data-provider.js selesai di-load oleh browser
+        let retries = 0;
+        while (!window.siteDataProvider && retries < 20) {
+          await new Promise(resolve => setTimeout(resolve, 100)); // Jeda 100ms
+          retries++;
+        }
+
         const provider = window.siteDataProvider;
 
-        // 1. Pengecekan Jembatan Data Provider
         if (!provider) {
-          console.warn('⚠️ Waduh, jembatan data-provider.js belum siap/tidak ditemukan. Halaman tetap di Mode Statis.');
+          console.warn('⚠️ Jembatan data-provider.js gagal dimuat setelah 2 detik. Mode Statis jalan terus.');
           this._startHeroSlider();
           return;
         }
 
-        // DIAGNOSTIK: biar kelihatan di console browser
-        console.log('🔌 siteDataProvider ketemu, manggil provider.getFor("homepage.ts")...');
-
-        // 2. Pemanggilan Data
+        console.log('🔌 siteDataProvider siap! Menarik data "homepage.ts"...');
         const raw = await provider.getFor('homepage.ts');
 
-        // 3. Validasi Data
-        if (!raw || Object.keys(raw).length === 0) {
-          console.warn('⚠️ provider.getFor("homepage.ts") balikin data kosong. Mode statis dipertahankan.');
+        if (!raw || (Array.isArray(raw) && raw.length === 0) || Object.keys(raw).length === 0) {
+          console.warn('⚠️ D1 mengembalikan data kosong. Mode statis dipertahankan.');
           const sidebar = document.getElementById('random-sidebar-container');
           if (sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Mode statis aktif.</p>';
           this._startHeroSlider();
           return;
         }
 
-        console.log(`Sukses! Data ditarik dari D1. Mode Dinamis aktif.`);
+        console.log(`✅ Sukses! Data ditarik dari D1. Melakukan Hydration...`);
 
-        // 4. Hydration (Menyuntikkan & Memparsing data ke AppState)
+        // Hydration data
         this.allData = this._parseRawData(raw);
         this.allData.sort((a, b) => b.date.getTime() - a.date.getTime());
         this.displayedData = [...this.allData];
-        this.currentPage = 1; // Kunci di Halaman 1 agar tidak bentrok dengan HTML Statis
+        this.currentPage = 1;
 
-        // 5. Render Komponen Pendukung (TANPA menyentuh Grid Utama Halaman 1)
+        // Render UI pendukung
         this._prepareHeroData();
         this._populateYearDropdown();
         this._renderPagination();
         this._renderSidebar();
 
-        // Nyalakan mesin slider statis (CSS-based hero control)
+        // Nyalakan slider hero statis
         this._startHeroSlider();
 
       } catch (err) {
-        console.error('❌ JS Data hydration gagal (cek tab Network di DevTools utk lihat request ke D1), fallback ke mode statis:', err);
+        console.error('❌ JS Data hydration gagal. Kemungkinan error parsing atau jaringan:', err);
         const sidebar = document.getElementById('random-sidebar-container');
-        if (sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Mode statis aktif.</p>';
-
-        // User tetap bisa pakai slider dan baca grid hasil generator-pro.ts
+        if (sidebar) sidebar.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;padding:10px;">Gagal memuat data dinamis. Mode statis aktif.</p>';
         this._startHeroSlider();
       }
     }
 
+    // --- PERBAIKAN 2: PARSER MULTI-FORMAT ---
     _parseRawData(raw) {
       const result = [];
-      for (const cat in raw) {
-        const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
-        const readableCat = this._formatCategoryName(cat);
-        raw[cat].forEach(item => {
-          const fileSlug = item[1].replace(/\.html$/, '');
-          const originalImage = item[2] || '/thumbnail.webp';
+
+      // Ambil array utamanya (jaga-jaga kalau D1 membungkusnya di dalam properti 'results')
+      const dataList = Array.isArray(raw) ? raw : (raw.results ? raw.results : null);
+
+      if (dataList && Array.isArray(dataList)) {
+        // SKENARIO A: Format D1 Edge (Array of Objects)
+        // Strukturnya: { title, id, image, date, description, category }
+        dataList.forEach(item => {
+          // Skip kalau formatnya ngaco bukan object
+          if (typeof item !== 'object' || item === null) return;
+
+          const cat = item.category || 'lainnya';
+          const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
+          const readableCat = this._formatCategoryName(cat);
+
+          const originalImage = item.image || '/thumbnail.webp';
           const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
-          const cleanTitle = this._decodeHTML(item[0]).replace(/\s*-\s*Layar Kosong$/i, '');
+
+          const cleanTitle = this._decodeHTML(item.title || '').replace(/\s*-\s*Layar Kosong$/i, '');
+
           result.push({
             category: readableCat,
             categorySlug: catSlug,
             title: cleanTitle,
-            file: item[1],
+            file: item.id || '', // ID dari DB biasanya adalah slug/file
             img: smallImage,
             fullImg: originalImage,
-            date: item[3] ? new Date(item[3]) : new Date(),
-            summary: this._decodeHTML(item[4] || cleanTitle)
+            date: item.date ? new Date(item.date) : new Date(),
+            summary: this._decodeHTML(item.description || cleanTitle)
           });
         });
+      } else {
+        // SKENARIO B: Format Json Statis Lama (Object berindeks Array bersarang)
+        for (const cat in raw) {
+          const catSlug = cat.toLowerCase().replace(/\s+/g, '-');
+          const readableCat = this._formatCategoryName(cat);
+
+          // Pastikan iterasinya berupa array sebelum di-forEach
+          if (Array.isArray(raw[cat])) {
+            raw[cat].forEach(item => {
+              const originalImage = item[2] || '/thumbnail.webp';
+              const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
+              const cleanTitle = this._decodeHTML(item[0]).replace(/\s*-\s*Layar Kosong$/i, '');
+
+              result.push({
+                category: readableCat,
+                categorySlug: catSlug,
+                title: cleanTitle,
+                file: item[1],
+                img: smallImage,
+                fullImg: originalImage,
+                date: item[3] ? new Date(item[3]) : new Date(),
+                summary: this._decodeHTML(item[4] || cleanTitle)
+              });
+            });
+          }
+        }
       }
+
       return result;
     }
 
@@ -977,7 +1017,6 @@
       return txt.value;
     }
 
-    // FIX: Fallback gambar dengan 3 tingkat (sm -> md -> asli -> thumbnail-sm)
     _imgFallbackAttr(smSrc, fullSrc) {
       const mdSrc = fullSrc.replace(/\.(jpg|jpeg|png|webp)$/i, '-md.webp');
       return `this.onerror=function(){this.onerror=function(){this.onerror=null;this.src='/thumbnail-sm.webp'};this.src='${fullSrc}'};this.src='${mdSrc}'`;
@@ -988,10 +1027,8 @@
       this.heroData = categories.map(cat => this.allData.find(item => item.category === cat)).filter(Boolean);
     }
 
-    // === SLIDER HERO STATIS ===
     _startHeroSlider() {
       if (this.heroTimer) clearInterval(this.heroTimer);
-      // Baca radio mana yang checked secara real-time
       this.heroTimer = setInterval(() => {
         const radios = [...document.querySelectorAll('.hero-radio')];
         const total = radios.length;
@@ -1009,7 +1046,6 @@
       }
     }
 
-    // === RENDER KHUSUS HASIL INTERAKSI (SEARCH/FILTER/HALAMAN > 1) ===
     _renderGrid() {
       const container = document.getElementById('main-articles-container');
       if (!container) return;
@@ -1094,7 +1130,6 @@
       if (nextBtn) nextBtn.disabled = (this.currentPage === totalPages || totalPages === 0);
     }
 
-    // === FILTER & NAVIGASI ===
     applyFilters() {
       const search = this.searchTerm.toLowerCase().trim();
       const year = this.yearFilter;
@@ -1116,7 +1151,6 @@
         this.currentPage = 1;
       }
 
-      // Begitu filter jalan, JS langsung take-over Grid dari Generator
       this._renderGrid();
       this._renderPagination();
       this._renderSidebar();
@@ -1126,7 +1160,6 @@
       const total = Math.ceil(this.displayedData.length / this.itemsPerPage);
       if (page < 1 || page > total) return;
       this.currentPage = page;
-      // JS otomatis merender Grid dinamis kalau pindah halaman
       this._renderGrid();
       this._renderPagination();
       this._renderSidebar();
@@ -1190,7 +1223,6 @@
       this._renderSidebar();
     }
 
-    // === UI SETUP ===
     _setupUI() {
       const searchInput = document.getElementById('search-input');
       const clearBtn = document.getElementById('search-clear-btn');
@@ -1250,9 +1282,14 @@
 
       document.querySelectorAll('.chip').forEach(chip => {
         chip.addEventListener('click', (e) => {
+          // Matikan semua chip dulu
           document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
-          e.target.classList.add('active');
+
           const cat = e.target.getAttribute('data-filter');
+
+          // 🔥 PERBAIKAN: Nyalakan semua chip yang punya filter yang sama (atas & bawah)
+          document.querySelectorAll(`.chip[data-filter="${cat}"]`).forEach(c => c.classList.add('active'));
+
           this.setCategory(cat);
 
           if (cat === 'all') {
