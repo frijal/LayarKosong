@@ -124,6 +124,15 @@
       padding: 0;
     }
 
+    .logo-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
     body {
       font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
@@ -271,6 +280,7 @@
         align-items: center;
         padding: 10px 20px;
       }
+      .logo-icon { width: 20px; height: 20px; }
       .nav-buttons {
         width: auto;
         overflow-x: visible;
@@ -314,6 +324,7 @@
     @media (min-width: 768px) {
       .articles-grid { grid-template-columns: 1fr 1fr; }
     }
+    .logo-icon { width: 20px; height: 20px; }
 
     .card {
       background: var(--card-bg);
@@ -459,9 +470,7 @@
   <!-- Top Bar -->
   <header class="top-bar">
     <div class="brand">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 4h16v16H4V4zm2 2v12h12V6H6z"/>
-      </svg>
+       <img src="/favicon.svg" alt="" class="logo-icon">
       <span>Layar Kosong</span>
     </div>
 
