@@ -1,6 +1,7 @@
 /**
  * =================================================================================
  * homepage.ts - Versi Integrasi Penuh dengan siteDataProvider (Optimized Images & Typography)
+ * + Fitur Search Enter Redirect
  * =================================================================================
  */
 
@@ -92,6 +93,7 @@ function initSite(): void {
   const heroSection = document.getElementById('hero');
 
   if (searchInput) {
+    // 1. Live Filter (Tetap dipertahankan biar UI responsif)
     searchInput.addEventListener('input', (e: Event) => {
       const val = (e.target as HTMLInputElement).value.toLowerCase();
       if (val.length > 0) {
@@ -109,6 +111,18 @@ function initSite(): void {
 
       renderFeed(true);
       renderSidebar();
+    });
+
+    // 2. 🔥 FITUR BARU: Trigger Enter untuk redirect ke halaman /search/?q=
+    searchInput.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault(); // Cegah default form submission kalau dibungkus <form>
+        const val = (e.target as HTMLInputElement).value.trim();
+        if (val.length > 0) {
+          // Redirect ke halaman pencarian dengan query yang di-encode
+          window.location.href = `/search/?q=${encodeURIComponent(val)}`;
+        }
+      }
     });
   }
 
