@@ -69,10 +69,8 @@
   --primary-color: #4f46e5;
   --btn-text: #ffffff;
 
-  /* Footer selalu gelap, jadi butuh warna teks khusus biar nggak nabrak */
-  --footer-bg: #1a1a1a;
-  --footer-text: #ffffff;
-  --footer-text-muted: #a3a3a3; /* 🔥 FIX: Warna abu-abu terang khusus footer */
+  --footer-bg: #1a1a1a;
+  --footer-text: #ffffff;
 
   --shadow: 0 2px 4px rgba(0, 0, 0, .1);
   --transition: .3s ease;
@@ -160,42 +158,35 @@ a {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,.1));
 }
 
+/* Atur ukuran dan perilaku gambar SVG */
 .nav-icon {
-  width: 20px;
-  height: 20px;
-  display: block;
-  object-fit: contain;
-  transition: transform 0.3s ease;
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
+/* Biar tombol ngebungkus icon di posisi tengah presisi */
 .nav-btn {
-  background: rgba(255,255,255,0.2);
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s ease;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease;
 }
 
 .nav-btn:hover {
-  background: var(--primary-color);
-}
-
-.nav-buttons {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-  overflow-x: auto;
-  padding-bottom: 5px;
-  scrollbar-width: none;
+  background: var(--primary-color);
 }
 
 .nav-buttons::-webkit-scrollbar {
-  display: none;
+  display: none;
 }
 
 .controls {
