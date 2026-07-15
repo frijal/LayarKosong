@@ -123,7 +123,7 @@ function initSite(): void {
       const val = searchInput.value.trim();
       if (val.length > 0) {
         // Redirect ke halaman pencarian dengan query yang di-encode
-        window.location.href = `/search/?q=${encodeURIComponent(val)}`;
+        window.location.href = `https://dalam.web.id/search/?q=${encodeURIComponent(val)}`;
       }
     });
   }
