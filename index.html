@@ -157,11 +157,18 @@ a {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,.1));
 }
 
-.nav-buttons {
+.nav-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  /* 🔥 Tambahan Biar SVG Rapi di Tengah 🔥 */
   display: flex;
-  gap: .625rem;
-  overflow-x: auto;
-  scrollbar-width: none;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-buttons::-webkit-scrollbar {
