@@ -521,6 +521,11 @@
           <section class="main-grid">
             <div class="grid-content-wrapper">
               <div class="body-grid" id="main-articles-container">
+               <div class="pagination" id="category-pagination">
+                <button class="page-btn" id="prev-page-btn" type="button" disabled>← Kiri</button>
+                <span id="page-indicator" style="font-size: 0.85rem; color: var(--muted); font-weight: 600;"></span>
+                <button class="page-btn" id="next-page-btn" type="button">Kanan →</button>
+              </div>
               <!-- BEGIN GRID AUTOGEN -->
 
                     <article class="thumb article-card" data-category="sistem-terbuka" data-year="2026" data-month="Juli">
@@ -696,7 +701,7 @@
             </h2>
             <div class="side-list" id="random-sidebar-container">
               <div class="side-item skeleton-item"><p>Memuat artikel...</p></div>
-            </div><button class="refresh-btn" id="random-refresh-btn" aria-label="Refresh random articles">⟳</button>
+            </div>
           </div>
         </aside>
 
