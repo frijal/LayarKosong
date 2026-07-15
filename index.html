@@ -566,7 +566,7 @@ footer {
       <h2>Artikel Acak</h2>
       <div class="random-list" id="sidebarRandom">
         <!-- Artikel random akan masuk sini via script -->
-      </div>
+      </div><div id="iposbrowser"></div>
     </aside>
   </div>
 
@@ -624,8 +624,9 @@ footer {
     const htmlEl = document.documentElement;
     const icon = themeToggle.querySelector('i');
 
-    // Cek localStorage atau system preference
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    // Cek sessionStorage atau system preference
+    // Data di sessionStorage akan otomatis terhapus saat tab ditutup
+    if (sessionStorage.getItem('theme') === 'dark' || (!sessionStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       htmlEl.classList.add('dark');
       icon.classList.replace('fa-moon', 'fa-sun');
     }
@@ -635,16 +636,16 @@ footer {
       htmlEl.classList.toggle('dark');
 
       if (htmlEl.classList.contains('dark')) {
-        localStorage.theme = 'dark';
+        sessionStorage.setItem('theme', 'dark');
         icon.classList.replace('fa-moon', 'fa-sun');
       } else {
         htmlEl.classList.remove('dark');
         htmlEl.classList.add('light'); // Paksa mode terang, nimpa prefers-color-scheme bawaan browser
-        localStorage.theme = 'light';
+        sessionStorage.setItem('theme', 'light');
         icon.classList.replace('fa-sun', 'fa-moon');
       }
     });
-  </script>
-
+</script>
+<script defer="" src="/ext/iposbrowser.js"></script>
 </body>
 </html>
