@@ -1,3 +1,31 @@
+/**
+ * ==============================================================================
+ * 🚀 GENERATOR HALAMAN DEPAN (STANDAR) - LAYAR KOSONG
+ * ==============================================================================
+ * Script ini berfungsi untuk menginjeksi artikel terbaru (Hero & Grid)
+ * ke dalam template tema HTML yang kamu buat.
+ *
+ * 📌 SYARAT THEMES / TEMPLATE AGAR BISA DI-INJECT:
+ * 1. Lokasi file template harus berada di: `artikel/-/template-index1.html`
+ *    (Kamu bisa ubah variabel `templatePath` di bawah jika nama filenya beda).
+ *
+ * 2. Wajib memiliki PLACEHOLDER HERO.
+ *    Script akan mencari dan menimpa SEMUA kode di antara dua tag komentar ini:
+ *    <!-- BEGIN HERO AUTOGEN -->
+ *    (kode apapun di sini akan ditimpa menjadi CSS Slider artikel terbaru)
+ *    <!-- END HERO AUTOGEN -->
+ *
+ * 3. Wajib memiliki PLACEHOLDER GRID.
+ *    Script akan mencari dan menimpa SEMUA kode di antara dua tag komentar ini:
+ *    <!-- BEGIN GRID AUTOGEN -->
+ *    (kode apapun di sini akan ditimpa menjadi daftar grid artikel ke-2 & ke-3)
+ *    <!-- END GRID AUTOGEN -->
+ *
+ * Selama tema barumu memiliki 2 blok komentar di atas, script ini akan
+ * otomatis menjahit datanya tanpa merusak struktur HTML tema barumu! 🕵️‍♂️✨
+ * ==============================================================================
+ */
+
 import { promises as fs } from 'fs';
 
 // Konstanta dasar yang dibutuhin untuk struktur folder
@@ -24,19 +52,19 @@ const getCategoryLabel = (catSlug: string) => {
 };
 
 const slug = (t: any) => t.toString().toLowerCase().trim()
-    .replace(/^[^\w\s]*/u, '')
-    .replace(/ & /g, '-and-')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
+.replace(/^[^\w\s]*/u, '')
+.replace(/ & /g, '-and-')
+.replace(/[^a-z0-9\s-]/g, '')
+.replace(/\s+/g, '-')
+.replace(/-+/g, '-');
 
 const escapeAttr = (s: string) => s.replace(/"/g, '&quot;');
 
 const escapeXML = (s: string) => s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+.replace(/&/g, '&amp;')
+.replace(/</g, '&lt;')
+.replace(/>/g, '&gt;')
+.replace(/"/g, '&quot;');
 
 const decodeHTML = (str: string) => {
     const entities: Record<string, string> = {
@@ -59,12 +87,12 @@ const imgWithFallback = (src: string, alt: string, extraAttrs: string = ''): str
 // ---------------------------------
 
 // =============================================================================
-// ── GENERATOR HALAMAN DEPAN (Stand-alone dari Tahap 4)
+// ── GENERATOR HALAMAN DEPAN
 // =============================================================================
 (async () => {
     console.log('✨ Menjalankan generator-depan.ts: Injeksi Hero & Grid ke index.html...');
     try {
-        // Ambil data final dari file JSON yang udah ada (pengganti variabel in-memory)
+        // Ambil data final dari file JSON
         const artikelJsonPath = `${C.root}/artikel.json`;
         const final: Record<string, any[]> = await Bun.file(artikelJsonPath).json().catch(() => ({}));
 
@@ -145,6 +173,7 @@ const imgWithFallback = (src: string, alt: string, extraAttrs: string = ''): str
         }
 
         // BACA DARI TEMPLATE-INDEX1.HTML
+        // (Ubah bagian ini kalau kamu mau ganti nama default template barumu nanti)
         const templatePath = `${C.art}/-/template-index1.html`;
         let indexHtml = await Bun.file(templatePath).text().catch(() => '');
 
@@ -176,7 +205,7 @@ const imgWithFallback = (src: string, alt: string, extraAttrs: string = ''): str
             await Bun.write(`${C.root}/index.html`, indexHtml);
             console.log('✅ Mantap! Injeksi Hero & Grid ke index.html sukses, Frijal! 🕵️‍♂️');
         } else {
-            console.log(`⚠️ Waduh, file template-index1.html nggak ketemu di path: ${templatePath}`);
+            console.log(`⚠️ Waduh, file template nggak ketemu di path: ${templatePath}`);
         }
     } catch (e) {
         console.log(`⚠️ Ngapunten, gagal menginjeksi HTML nih: ${e}`);
