@@ -8,7 +8,8 @@
     </a>
     </h4>
     <div style="display: flex; align-items: center; gap: 5px;">
-    <small style="color: #888; font-size: 0.65rem;">${x} •</small>
+    <!-- \uD83D\uDD25 FIX: Hapus #888 ganti dengan var(--text-muted) \uD83D\uDD25 -->
+    <small style="color: var(--text-muted); font-size: 0.65rem;">${x} •</small>
     <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${J.category}</span>
     </div>
     </div>
@@ -33,7 +34,8 @@
     <div class="card-body">
     <a href="${J.url}" class="card-link">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <time style="font-size: 0.8rem; opacity: 0.7;" datetime="${J.date.toISOString()}">
+    <!-- \uD83D\uDD25 FIX: Hapus opacity, pakai var(--text-muted) untuk datetime \uD83D\uDD25 -->
+    <time style="color: var(--text-muted); font-size: 0.8rem;" datetime="${J.date.toISOString()}">
     ${J.date.toLocaleDateString("id-ID",{day:"2-digit",month:"long",year:"numeric"})}
     </time>
     <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">${J.category}</small>

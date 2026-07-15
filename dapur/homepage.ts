@@ -2,6 +2,7 @@
  * =================================================================================
  * homepage.ts - Versi Integrasi Penuh dengan siteDataProvider (Optimized Images & Typography)
  * + Fitur Search Enter Redirect
+ * + WCAG AA Typography Compliance (Menggunakan var(--text-muted))
  * =================================================================================
  */
 
@@ -184,7 +185,8 @@ function renderSidebar(targetCat?: string) {
     </a>
     </h4>
     <div style="display: flex; align-items: center; gap: 5px;">
-    <small style="color: #888; font-size: 0.65rem;">${formattedDate} •</small>
+    <!-- 🔥 FIX: Hapus #888 ganti dengan var(--text-muted) 🔥 -->
+    <small style="color: var(--text-muted); font-size: 0.65rem;">${formattedDate} •</small>
     <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${item.category}</span>
     </div>
     </div>
@@ -301,7 +303,8 @@ function renderFeed(reset: boolean = false): void {
     <div class="card-body">
     <a href="${item.url}" class="card-link">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <time style="font-size: 0.8rem; opacity: 0.7;" datetime="${item.date.toISOString()}">
+    <!-- 🔥 FIX: Hapus opacity, pakai var(--text-muted) untuk datetime 🔥 -->
+    <time style="color: var(--text-muted); font-size: 0.8rem;" datetime="${item.date.toISOString()}">
     ${item.date.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}
     </time>
     <small style="color:var(--primary); font-weight:bold; text-transform: uppercase;">${item.category}</small>
