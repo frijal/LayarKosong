@@ -49,420 +49,425 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
 <script src="/ext/homepage.js" defer></script>
   <style>
+  /*
+=========================================================
+  Theme Full Width Optimized CSS
+  Mobile First + Auto Dark Mode
+  Optimized from provided HTML structure
+=========================================================
+*/
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --text-muted: #555555;
+
+  --border-color: #e0e0e0;
+  --card-bg: #f9f9f9;
+  --hover-color: #eef2ff;
+
+  --primary-color: #4f46e5;
+  --btn-text: #ffffff;
+
+  --footer-bg: #1a1a1a;
+  --footer-text: #ffffff;
+
+  --shadow: 0 2px 4px rgba(0, 0, 0, .1);
+  --transition: .3s ease;
+
+  --facebook: #1877f2;
+  --github: #ffffff;
+  --linkedin: #0a66c2;
+  --telegram: #229ed9;
+  --threads: #ffffff;
+  --twitter: #1da1f2;
+  --youtube: #ff0000;
+  --mastodon: #6364ff;
+  --discord: #5865f2;
+}
+
+@media (prefers-color-scheme: dark) {
   :root {
-      /* Background & Text Utama (WCAG Pass: 8.5:1) */
-      --bg-color: #ffffff;
-      --text-color: #333333;
+    --bg-color: #121212;
+    --text-color: #f5f5f5;
+    --text-muted: #a3a3a3;
 
-      /* Teks Muted/Caption (WCAG Pass: 5.0:1) - Jangan pakai #777! */
-      --text-muted: #555555;
+    --border-color: #333333;
+    --card-bg: #1e1e1e;
+    --hover-color: #2a2a2a;
 
-      --border-color: #e0e0e0;
-      --card-bg: #f9f9f9;
-      --hover-color: #eef2ff;
+    --primary-color: #818cf8;
+    --btn-text: #121212;
 
-      /* Primary Color (WCAG Pass: 6.2:1 dengan putih) */
-      --primary-color: #4f46e5;
-      --btn-text: #ffffff; /* Teks di atas primary color */
+    --shadow: 0 2px 4px rgba(255,255,255,.05);
+  }
+}
 
-      --footer-bg: #1a1a1a;
-      --footer-text: #ffffff;
-      --shadow: 0 2px 4px rgba(0,0,0,0.1);
-      --transition: all 0.3s ease;
+html.dark {
+  --bg-color: #121212;
+  --text-color: #f5f5f5;
+  --text-muted: #a3a3a3;
 
-      /* Social Media Brand Colors */
-      --facebook: #1877F2;
-      --github: #24292F;
-      --linkedin: #0A66C2;
-      --telegram: #229ED9;
-      --threads: #000000;
-      --twitter: #1DA1F2;
-      --youtube: #FF0000;
-      --reddit: #FF5700;
-      --mastodon: #6364FF;
-      --bluesky: #1185FE;
-      --discord: #5865F2;
-    }
+  --border-color: #333333;
+  --card-bg: #1e1e1e;
+  --hover-color: #2a2a2a;
 
-    html.dark {
-      /* Background & Text Utama (WCAG Pass: 15.1:1) */
-      --bg-color: #121212;
-      --text-color: #f5f5f5;
+  --primary-color: #818cf8;
+  --btn-text: #121212;
 
-      /* Teks Muted/Caption (WCAG Pass: 5.7:1 di atas #1e1e1e) */
-      --text-muted: #a3a3a3;
+  --shadow: 0 2px 4px rgba(255,255,255,.05);
+}
 
-      --border-color: #333333;
-      --card-bg: #1e1e1e;
-      --hover-color: #2a2a2a;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-      /* Primary Color Dark Mode itu Terang.
-         Makanya --btn-text WAJIB jadi gelap biar rasio (9.1:1) */
-      --primary-color: #818cf8;
-      --btn-text: #121212;
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color var(--transition), color var(--transition);
+}
 
-      --shadow: 0 2px 4px rgba(255,255,255,0.05);
-    }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    @media (prefers-color-scheme: dark) {
-      html:not(.light) {
-        --bg-color: #121212;
-        --text-color: #f5f5f5;
-        --text-muted: #a3a3a3;
-        --border-color: #333333;
-        --card-bg: #1e1e1e;
-        --hover-color: #2a2a2a;
-        --primary-color: #818cf8;
-        --btn-text: #121212;
-        --shadow: 0 2px 4px rgba(255,255,255,0.05);
-      }
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    .logo-icon {
+.logo-icon {
   width: 24px;
   height: 24px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.1));
 }
 
-    body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: var(--transition);
-      line-height: 1.6;
-    }
+/* Header */
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+.top-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: .75rem 1rem;
+  background: var(--bg-color);
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 1000;
+}
 
-    /* WCAG Addition: Accordion & Caption Fixes */
-    summary {
-      cursor: pointer;
-      font-weight: 600;
-      color: var(--text-color);
-      padding: 10px 0;
-    }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
 
-    caption, figcaption {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      text-align: left;
-      margin-top: 5px;
-    }
+.nav-buttons {
+  display: flex;
+  gap: .625rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
 
-    /* =========================================
-       Top Bar - Mobile First Cascade
-       ========================================= */
+.nav-buttons::-webkit-scrollbar {
+  display: none;
+}
 
-    .top-bar {
-      position: relative;
-      background-color: var(--bg-color);
-      box-shadow: var(--shadow);
-      z-index: 100;
-      padding: 12px 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 15px;
-    }
+.controls {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  flex-wrap: wrap;
+}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
+.search-container {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+}
 
-    .brand svg {
-      width: 32px;
-      height: 32px;
-      fill: var(--primary-color);
-    }
+.search-input,
+select {
+  width: 100%;
+  padding: .5rem .75rem;
+  border: 1px solid var(--border-color);
+  border-radius: .5rem;
+  background: var(--card-bg);
+  color: var(--text-color);
+}
 
-    .nav-buttons {
-      display: flex;
-      gap: 10px;
-      width: 100%;
-      overflow-x: auto;
-      padding-bottom: 5px;
-      scrollbar-width: none;
-    }
-    .nav-buttons::-webkit-scrollbar {
-      display: none;
-    }
+.search-input {
+  padding-right: 2.2rem;
+  border-radius: 999px;
+}
 
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 100%;
-      flex-wrap: wrap;
-    }
+.clear-btn {
+  position: absolute;
+  right: .75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-color);
+}
 
-    .search-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-      flex: 1;
-      min-width: 180px;
-    }
+.search-input:placeholder-shown + .clear-btn {
+  display: none;
+}
 
-    .search-input {
-      width: 100%;
-      padding: 8px 30px 8px 15px;
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      background-color: var(--card-bg);
-      color: var(--text-color);
-    }
+.theme-toggle {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+}
 
-    .clear-btn {
-      position: absolute;
-      right: 10px;
-      background: none;
-      border: none;
-      color: var(--text-color);
-      cursor: pointer;
-      display: none;
-    }
+/* Main Full Width Layout */
 
-    .search-input:not(:placeholder-shown) + .clear-btn {
-      display: block;
-    }
+.container {
+  width: 100%;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
-    select {
-      padding: 8px;
-      border: 1px solid var(--border-color);
-      border-radius: 5px;
-      background-color: var(--card-bg);
-      color: var(--text-color);
-      flex: 1;
-    }
+.main-col {
+  flex: 1 1 auto;
+  min-width: 0;
+}
 
-    .theme-toggle {
-      background: none;
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-      color: var(--text-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: var(--transition);
-      flex-shrink: 0;
-    }
+.sidebar {
+  flex: 0 0 auto;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: .75rem;
+  padding: 1.25rem;
+}
 
-    .theme-toggle:hover {
-      background-color: var(--hover-color);
-    }
+.sidebar h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 2px solid var(--primary-color);
+}
 
-    @media (min-width: 768px) {
-      .top-bar {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 20px;
-      }
-      .logo-icon { width: 20px; height: 20px; }
-      .nav-buttons {
-        width: auto;
-        overflow-x: visible;
-        flex-wrap: wrap;
-      }
-      .controls {
-        width: auto;
-        flex-wrap: nowrap;
-      }
-      .search-container {
-        flex: none;
-      }
-      select {
-        flex: none;
-      }
-    }
+/* Article Grid */
 
-    /* Main Content */
-    .container {
-      width: 100%;
-      max-width: none;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
+.articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
 
-    @media (min-width: 768px) {
-      .container { flex-direction: row; }
-      .main-col { width: 70%; }
-      .sidebar { width: 30%; }
-    }
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: .5rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
+}
 
-    /* Base styles for Articles Grid & Cards */
-    .articles-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
 
-    @media (min-width: 768px) {
-      .articles-grid { grid-template-columns: 1fr 1fr; }
-    }
-    .logo-icon { width: 20px; height: 20px; }
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-    }
+.card-body {
+  padding: 1rem;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow);
-    }
+.card-title {
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+}
 
-    .card-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+.card-excerpt,
+.article-date,
+.footer-links a {
+  color: var(--text-muted);
+}
 
-    .card-body {
-      padding: 15px;
-    }
+/* Hero */
 
-    .card-title {
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-    }
+#hero {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: .75rem;
+  margin-bottom: 2rem;
+}
 
-    /* Gunakan --text-muted agar aman di dark/light mode */
-    .card-excerpt, .article-date {
-      color: var(--text-muted);
-    }
+#heroSliderWrapper {
+  display: flex;
+  height: 100%;
+  transition: transform .5s ease;
+}
 
-    /* Base Sidebar */
-    .sidebar {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 20px;
-      border: 1px solid var(--border-color);
-      align-self: flex-start;
-      position: sticky;
-      top: 80px;
-    }
+.hero-slide {
+  min-width: 100%;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
 
-    .sidebar h2 {
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      border-bottom: 2px solid var(--primary-color);
-      padding-bottom: 10px;
-    }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.8));
+}
 
-    /* Base Footer */
-    footer {
-      background-color: var(--footer-bg);
-      color: var(--footer-text);
-      padding: 40px 20px;
-      margin-top: 40px;
-    }
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 2.5rem 1.25rem 1.25rem;
+  color: #fff;
+}
 
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
+/* Pills */
 
-    @media (min-width: 768px) {
-      .footer-content {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
+#categoryPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .625rem;
+}
 
-    .social-links {
-      display: flex;
-      gap: 15px;
-    }
+.pill {
+  padding: .5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  cursor: pointer;
+}
 
-    .social-links a {
-      font-size: 1.5rem;
-      transition: color 0.3s;
-    }
+.pill.active,
+.pill:hover {
+  background: var(--primary-color);
+  color: var(--btn-text);
+  border-color: var(--primary-color);
+}
 
-    .footer-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+/* Footer */
 
-    .footer-links a {
-      color: var(--text-muted);
-      transition: color 0.3s;
-    }
+footer {
+  margin-top: 2.5rem;
+  padding: 2.5rem 1.25rem;
+  background: var(--footer-bg);
+  color: var(--footer-text);
+}
 
-    .footer-links a:hover {
-      color: var(--footer-text); /* Hover jadi lebih terang */
-    }
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
-    /* 🔥 WARNA BRAND SOSMED DI FOOTER 🔥 */
-    /* Karena selector HTML lu pakainya .social-links, gue sesuain ke situ */
-    .social-links a.fa-facebook, .social-links a .fa-facebook { color: var(--facebook); }
-    .social-links a.fa-linkedin, .social-links a .fa-linkedin { color: var(--linkedin); }
-    .social-links a.fa-telegram, .social-links a .fa-telegram { color: var(--telegram); }
-    .social-links a.fa-youtube, .social-links a .fa-youtube { color: var(--youtube); }
-    .social-links a.fa-mastodon, .social-links a .fa-mastodon { color: var(--mastodon); }
-    .social-links a.fa-reddit, .social-links a .fa-reddit { color: var(--reddit); }
-    .social-links a.fa-twitter, .social-links a .fa-twitter { color: var(--twitter); }
-    .social-links a.fa-bluesky, .social-links a .fa-bluesky { color: var(--bluesky); }
-    .social-links a.fa-discord, .social-links a .fa-discord { color: var(--discord); }
+.footer-section p {
+  font-weight: 700;
+}
 
-    /* KHUSUS Github & Threads:
-       Karena background footer #1a1a1a (Gelap), warna asli mereka batal dipakai
-       dan diganti jadi Putih biar kontrasnya dapet & gak hilang ditelan kegelapan */
-    .social-links a.fa-github, .social-links a .fa-github { color: #ffffff; }
-    .social-links a.fa-threads, .social-links a .fa-threads { color: #ffffff; }
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+}
 
-    /* 🔥 CSS RENDER SCRIPT 🔥 */
-    #hero { position: relative; width: 100%; height: 400px; overflow: hidden; border-radius: 12px; margin-bottom: 30px; }
-    #heroSliderWrapper { display: flex; height: 100%; transition: transform 0.5s ease-in-out; }
-    .hero-slide { min-width: 100%; position: relative; background-size: cover; background-position: center; display: flex; align-items: flex-end; text-decoration: none; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); }
-    .hero-content { position: relative; z-index: 1; color: white; padding: 40px 20px 20px; width: 100%; }
-    .hero-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); z-index: 2; padding: 0 10px; }
+.social-links i {
+  font-size: 1.5rem;
+}
 
-    /* Ganti warna teks biar nggak mati di dark mode */
-    .nav-btn { background: rgba(255,255,255,0.2); border: none; color: white; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
-    .nav-btn:hover { background: var(--primary-color); color: var(--btn-text); }
+.social-links .fa-facebook { color: var(--facebook); }
+.social-links .fa-github { color: var(--github); }
+.social-links .fa-square-linkedin { color: var(--linkedin); }
+.social-links .fa-telegram { color: var(--telegram); }
+.social-links .fa-threads { color: var(--threads); }
+.social-links .fa-youtube { color: var(--youtube); }
+.social-links .fa-mastodon { color: var(--mastodon); }
+.social-links .fa-twitter { color: var(--twitter); }
+.social-links .fa-discord { color: var(--discord); }
 
-    #categoryPills { display: flex; gap: 10px; flex-wrap: wrap; }
-    .pill { padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 999px; cursor: pointer; font-weight: 500; transition: var(--transition); }
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+}
 
-    /* Ganti text color jadi var(--btn-text) */
-    .pill.active, .pill:hover { background-color: var(--primary-color); color: var(--btn-text); border-color: var(--primary-color); }
+.footer-copyright {
+  font-size: .75rem;
+  color: var(--text-muted);
+}
 
-    #loadMore { display: block; width: 100%; padding: 15px; text-align: center; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; margin-top: 20px; cursor: pointer; font-weight: bold; }
-    #loadMore:hover { background: var(--hover-color); }
+#loadMore {
+  width: 100%;
+  padding: .9rem;
+  margin-top: 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: .5rem;
+  background: var(--card-bg);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+#loadMore:hover {
+  background: var(--hover-color);
+}
+
+@media (min-width: 768px) {
+  .top-bar {
+    position: sticky;
+    top: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .controls {
+    flex-wrap: nowrap;
+    width: auto;
+  }
+
+  .search-container {
+    flex: 0 1 240px;
+  }
+
+  .container {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    flex: 0 0 320px;
+  }
+
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
     </style>
 </head>
 <body>
@@ -530,7 +535,8 @@
 
   <!-- Footer -->
   <footer>
-    <div class="footer-content"><p>Mari Kita Jaga, Supaya Data Pribadi Tetap Aman.</p>
+    <div class="footer-content">        <div class="footer-section">
+<p>Mari Kita Jaga, Supaya Data Pribadi Tetap Aman.</p></div>
       <div class="social-links">
        <a href="https://facebook.com/frijal" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-facebook"></i>
@@ -567,8 +573,9 @@
             <a href="/about">Tentang Kita</a>
             <a href="/disclaimer">Disclaimer</a>
             <a href="/artikel.json" target="_blank">Sumber Terbuka</a>
-      </div><p>🄯 2009 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</p>
-    </div>
+      </div><div class="footer-copyright">
+      <p>🄯 2009 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</p>
+    </div></div>
   </footer>
 
   <!-- 1. Script Utama (Data, Render UI, Filter) -->
