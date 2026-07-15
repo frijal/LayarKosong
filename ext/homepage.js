@@ -26,10 +26,10 @@
   </a>`).join("");let j=`
   <div class="hero-nav">
   <button class="nav-btn prev" id="heroPrev" aria-label="Previous">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/></svg>
+  <img src="/ext/icons/icon-arrow-left.svg" alt="Prev" width="20" height="20" class="nav-icon">
   </button>
   <button class="nav-btn next" id="heroNext" aria-label="Next">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></svg>
+  <img src="/ext/icons/icon-arrow-right.svg" alt="Next" width="20" height="20" class="nav-icon">
   </button>
   </div>`,G=q.querySelector(".hero-nav");if(G)G.remove();q.insertAdjacentHTML("beforeend",j),document.getElementById("heroPrev")?.addEventListener("click",(O)=>{O.preventDefault(),w(-1)}),document.getElementById("heroNext")?.addEventListener("click",(O)=>{O.preventDefault(),w(1)}),q.addEventListener("mouseenter",Y),q.addEventListener("mouseleave",A),P()}function P(){let q=document.getElementById("heroSliderWrapper");if(!q)return;let z=W*100;q.style.transform=`translateX(-${z}%)`,document.querySelectorAll(".hero-slide").forEach((G,O)=>{G.classList.toggle("active",O===W)})}function A(){if($)clearInterval($);$=setInterval(()=>{W=(W+1)%_.length,P()},4600)}function Y(){if($)clearInterval($),$=null}function w(q){if(W+=q,W>=_.length)W=0;else if(W<0)W=_.length-1;P(),Y(),A()}function k(q=!1){if(q)V=6;let z=document.getElementById("newsFeed");if(!z)return;z.innerHTML="";let j=document.getElementById("hero"),G=j&&j.style.display!=="none",O=_.map((J)=>J.title),K=Z.filter((J)=>{if(G&&O.includes(J.title))return!1;return!0});K.slice(0,V).forEach((J)=>{let L=J.title.replace(/"/g,"&quot;");z.innerHTML+=`
     <div class="card" style="animation: fadeIn 0.5s ease">
