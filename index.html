@@ -489,12 +489,14 @@
       </select>
 
 
- <div class="search-container">
+<!-- GANTI DIV JADI FORM -->
+      <form id="searchForm" class="search-container" action="javascript:void(0);">
         <input type="text" class="search-input" id="searchInput" placeholder="Cari...">
-        <button class="clear-btn" id="clearSearch" title="Clear">❌</button>
-      </div>
+        <!-- Kasih type="button" biar gak bikin form reload -->
+        <button type="button" class="clear-btn" id="clearSearch" title="Clear">❌</button>
+      </form>
       <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
-        <i class="fas fa-moon"></i>
+        <i class="fa-solid fa-moon"></i>
       </button>
     </div>
   </header>

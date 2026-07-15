@@ -1,7 +1,7 @@
 /**
  * =================================================================================
  * homepage.ts - Versi Integrasi Penuh dengan siteDataProvider (Optimized Images & Typography)
- * + Fitur Search Enter Redirect
+ * + Fitur Search Enter Redirect (Menggunakan Form Submit)
  * + WCAG AA Typography Compliance (Menggunakan var(--text-muted))
  * =================================================================================
  */
@@ -92,6 +92,7 @@ function initSite(): void {
   const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
   const clearBtn = document.getElementById('clearSearch');
   const heroSection = document.getElementById('hero');
+  const searchForm = document.getElementById('searchForm'); // Tambahan elemen form
 
   if (searchInput) {
     // 1. Live Filter (Tetap dipertahankan biar UI responsif)
@@ -113,16 +114,16 @@ function initSite(): void {
       renderFeed(true);
       renderSidebar();
     });
+  }
 
-    // 2. 🔥 FITUR BARU: Trigger Enter untuk redirect ke halaman /search/?q=
-    searchInput.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'Enter') {
-        e.preventDefault(); // Cegah default form submission kalau dibungkus <form>
-        const val = (e.target as HTMLInputElement).value.trim();
-        if (val.length > 0) {
-          // Redirect ke halaman pencarian dengan query yang di-encode
-          window.location.href = `/search/?q=${encodeURIComponent(val)}`;
-        }
+  // 2. 🔥 FITUR BARU: Event Submit Form untuk Redirect saat Enter/Klik Search di HP
+  if (searchForm && searchInput) {
+    searchForm.addEventListener('submit', (e: Event) => {
+      e.preventDefault(); // Mencegah form nge-reload halaman default
+      const val = searchInput.value.trim();
+      if (val.length > 0) {
+        // Redirect ke halaman pencarian dengan query yang di-encode
+        window.location.href = `/search/?q=${encodeURIComponent(val)}`;
       }
     });
   }
@@ -185,7 +186,6 @@ function renderSidebar(targetCat?: string) {
     </a>
     </h4>
     <div style="display: flex; align-items: center; gap: 5px;">
-    <!-- 🔥 FIX: Hapus #888 ganti dengan var(--text-muted) 🔥 -->
     <small style="color: var(--text-muted); font-size: 0.65rem;">${formattedDate} •</small>
     <span style="color: var(--primary); font-weight: bold; font-size: 0.65rem; text-transform: uppercase;">${item.category}</span>
     </div>
@@ -303,7 +303,6 @@ function renderFeed(reset: boolean = false): void {
     <div class="card-body">
     <a href="${item.url}" class="card-link">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-    <!-- 🔥 FIX: Hapus opacity, pakai var(--text-muted) untuk datetime 🔥 -->
     <time style="color: var(--text-muted); font-size: 0.8rem;" datetime="${item.date.toISOString()}">
     ${item.date.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' })}
     </time>
