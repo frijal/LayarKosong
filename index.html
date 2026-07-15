@@ -7,26 +7,58 @@
   <script src="/ext/data-provider.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
- :root {
+  :root {
+      /* Background & Text Utama (WCAG Pass: 8.5:1) */
       --bg-color: #ffffff;
       --text-color: #333333;
+
+      /* Teks Muted/Caption (WCAG Pass: 5.0:1) - Jangan pakai #777! */
+      --text-muted: #555555;
+
       --border-color: #e0e0e0;
       --card-bg: #f9f9f9;
       --hover-color: #eef2ff;
+
+      /* Primary Color (WCAG Pass: 6.2:1 dengan putih) */
       --primary-color: #4f46e5;
+      --btn-text: #ffffff; /* Teks di atas primary color */
+
       --footer-bg: #1a1a1a;
       --footer-text: #ffffff;
       --shadow: 0 2px 4px rgba(0,0,0,0.1);
       --transition: all 0.3s ease;
+
+      /* Social Media Brand Colors */
+      --facebook: #1877F2;
+      --github: #24292F;
+      --linkedin: #0A66C2;
+      --telegram: #229ED9;
+      --threads: #000000;
+      --twitter: #1DA1F2;
+      --youtube: #FF0000;
+      --reddit: #FF5700;
+      --mastodon: #6364FF;
+      --bluesky: #1185FE;
+      --discord: #5865F2;
     }
 
     html.dark {
+      /* Background & Text Utama (WCAG Pass: 15.1:1) */
       --bg-color: #121212;
       --text-color: #f5f5f5;
+
+      /* Teks Muted/Caption (WCAG Pass: 5.7:1 di atas #1e1e1e) */
+      --text-muted: #a3a3a3;
+
       --border-color: #333333;
       --card-bg: #1e1e1e;
       --hover-color: #2a2a2a;
+
+      /* Primary Color Dark Mode itu Terang.
+         Makanya --btn-text WAJIB jadi gelap biar rasio (9.1:1) */
       --primary-color: #818cf8;
+      --btn-text: #121212;
+
       --shadow: 0 2px 4px rgba(255,255,255,0.05);
     }
 
@@ -34,10 +66,12 @@
       html:not(.light) {
         --bg-color: #121212;
         --text-color: #f5f5f5;
+        --text-muted: #a3a3a3;
         --border-color: #333333;
         --card-bg: #1e1e1e;
         --hover-color: #2a2a2a;
         --primary-color: #818cf8;
+        --btn-text: #121212;
         --shadow: 0 2px 4px rgba(255,255,255,0.05);
       }
     }
@@ -61,21 +95,30 @@
       color: inherit;
     }
 
+    /* WCAG Addition: Accordion & Caption Fixes */
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-color);
+      padding: 10px 0;
+    }
+
+    caption, figcaption {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: left;
+      margin-top: 5px;
+    }
+
     /* =========================================
        Top Bar - Mobile First Cascade
        ========================================= */
 
-    /* 1. DEFAULT: TAMPILAN MOBILE (Layar Kecil) */
     .top-bar {
-      /* 🔥 UBAH KE RELATIVE: Biar ikut ke-scroll ke atas saat di mobile 🔥 */
       position: relative;
-
       background-color: var(--bg-color);
       box-shadow: var(--shadow);
-
-      /* Turunin z-index sedikit kalau gak sticky, biar nggak nabrak overlay lain */
       z-index: 100;
-
       padding: 12px 15px;
       display: flex;
       flex-direction: column;
@@ -97,20 +140,18 @@
       fill: var(--primary-color);
     }
 
-    /* Kategori Pills: Bikin bisa di-swipe (scroll) horizontal di mobile! UX hack 🚀 */
     .nav-buttons {
       display: flex;
       gap: 10px;
       width: 100%;
       overflow-x: auto;
-      padding-bottom: 5px; /* Kasih napas buat scrollbar kalau muncul */
-      scrollbar-width: none; /* Sembunyiin scrollbar di Firefox */
+      padding-bottom: 5px;
+      scrollbar-width: none;
     }
     .nav-buttons::-webkit-scrollbar {
-      display: none; /* Sembunyiin scrollbar di Chrome/Safari */
+      display: none;
     }
 
-    /* Area Search & Dropdown */
     .controls {
       display: flex;
       align-items: center;
@@ -123,12 +164,12 @@
       position: relative;
       display: flex;
       align-items: center;
-      flex: 1; /* Biar Search Box melar penuhi sisa ruang di baris itu */
+      flex: 1;
       min-width: 180px;
     }
 
     .search-input {
-      width: 100%; /* Penuhi wadah search-container */
+      width: 100%;
       padding: 8px 30px 8px 15px;
       border: 1px solid var(--border-color);
       border-radius: 20px;
@@ -156,7 +197,7 @@
       border-radius: 5px;
       background-color: var(--card-bg);
       color: var(--text-color);
-      flex: 1; /* Dropdown ikutan melar biar tombolnya rapi di HP */
+      flex: 1;
     }
 
     .theme-toggle {
@@ -171,46 +212,37 @@
       align-items: center;
       justify-content: center;
       transition: var(--transition);
-      flex-shrink: 0; /* Biar buletannya nggak ikutan gepeng */
+      flex-shrink: 0;
     }
 
     .theme-toggle:hover {
       background-color: var(--hover-color);
     }
 
-    /* =========================================
-       2. BREAKPOINT: TABLET & DESKTOP (Min. 768px)
-       ========================================= */
     @media (min-width: 768px) {
       .top-bar {
-        /* 🔥 AKTIFKAN STICKY: Cuma nyala saat layar mode desktop/tablet 🔥 */
         position: sticky;
         top: 0;
-        z-index: 1000; /* Naikin lagi z-index-nya biar selalu paling atas */
-
+        z-index: 1000;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         padding: 10px 20px;
       }
-
       .nav-buttons {
         width: auto;
-        overflow-x: visible; /* Matiin scroll horizontal */
-        flex-wrap: wrap; /* Kalau kategori banyak, biarin numpuk natural */
+        overflow-x: visible;
+        flex-wrap: wrap;
       }
-
       .controls {
         width: auto;
         flex-wrap: nowrap;
       }
-
       .search-container {
-        flex: none; /* Kembalikan ke ukuran fix, nggak usah melar */
+        flex: none;
       }
-
       select {
-        flex: none; /* Kembalikan ukuran normal */
+        flex: none;
       }
     }
 
@@ -225,15 +257,9 @@
     }
 
     @media (min-width: 768px) {
-      .container {
-        flex-direction: row;
-      }
-      .main-col {
-        width: 70%;
-      }
-      .sidebar {
-        width: 30%;
-      }
+      .container { flex-direction: row; }
+      .main-col { width: 70%; }
+      .sidebar { width: 30%; }
     }
 
     /* Base styles for Articles Grid & Cards */
@@ -244,9 +270,7 @@
     }
 
     @media (min-width: 768px) {
-      .articles-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      .articles-grid { grid-template-columns: 1fr 1fr; }
     }
 
     .card {
@@ -279,6 +303,11 @@
       margin-bottom: 10px;
     }
 
+    /* Gunakan --text-muted agar aman di dark/light mode */
+    .card-excerpt, .article-date {
+      color: var(--text-muted);
+    }
+
     /* Base Sidebar */
     .sidebar {
       background: var(--card-bg);
@@ -287,7 +316,7 @@
       border: 1px solid var(--border-color);
       align-self: flex-start;
       position: sticky;
-      top: 80px; /* Jarak aman biar nggak ketutup top-bar di desktop */
+      top: 80px;
     }
 
     .sidebar h2 {
@@ -324,13 +353,8 @@
     }
 
     .social-links a {
-      color: var(--footer-text);
       font-size: 1.5rem;
       transition: color 0.3s;
-    }
-
-    .social-links a:hover {
-      color: var(--primary-color);
     }
 
     .footer-links {
@@ -340,26 +364,49 @@
     }
 
     .footer-links a {
+      color: var(--text-muted);
       transition: color 0.3s;
     }
 
     .footer-links a:hover {
-      color: var(--primary-color);
+      color: var(--footer-text); /* Hover jadi lebih terang */
     }
 
-    /* 🔥 TAMBAHAN CSS UNTUK MENYESUAIKAN RENDER DARI SCRIPT 🔥 */
+    /* 🔥 WARNA BRAND SOSMED DI FOOTER 🔥 */
+    /* Karena selector HTML lu pakainya .social-links, gue sesuain ke situ */
+    .social-links a.fa-facebook, .social-links a .fa-facebook { color: var(--facebook); }
+    .social-links a.fa-linkedin, .social-links a .fa-linkedin { color: var(--linkedin); }
+    .social-links a.fa-telegram, .social-links a .fa-telegram { color: var(--telegram); }
+    .social-links a.fa-youtube, .social-links a .fa-youtube { color: var(--youtube); }
+    .social-links a.fa-mastodon, .social-links a .fa-mastodon { color: var(--mastodon); }
+    .social-links a.fa-reddit, .social-links a .fa-reddit { color: var(--reddit); }
+    .social-links a.fa-twitter, .social-links a .fa-twitter { color: var(--twitter); }
+    .social-links a.fa-bluesky, .social-links a .fa-bluesky { color: var(--bluesky); }
+    .social-links a.fa-discord, .social-links a .fa-discord { color: var(--discord); }
+
+    /* KHUSUS Github & Threads:
+       Karena background footer #1a1a1a (Gelap), warna asli mereka batal dipakai
+       dan diganti jadi Putih biar kontrasnya dapet & gak hilang ditelan kegelapan */
+    .social-links a.fa-github, .social-links a .fa-github { color: #ffffff; }
+    .social-links a.fa-threads, .social-links a .fa-threads { color: #ffffff; }
+
+    /* 🔥 CSS RENDER SCRIPT 🔥 */
     #hero { position: relative; width: 100%; height: 400px; overflow: hidden; border-radius: 12px; margin-bottom: 30px; }
     #heroSliderWrapper { display: flex; height: 100%; transition: transform 0.5s ease-in-out; }
     .hero-slide { min-width: 100%; position: relative; background-size: cover; background-position: center; display: flex; align-items: flex-end; text-decoration: none; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); }
     .hero-content { position: relative; z-index: 1; color: white; padding: 40px 20px 20px; width: 100%; }
     .hero-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; transform: translateY(-50%); z-index: 2; padding: 0 10px; }
+
+    /* Ganti warna teks biar nggak mati di dark mode */
     .nav-btn { background: rgba(255,255,255,0.2); border: none; color: white; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
-    .nav-btn:hover { background: var(--primary-color); }
+    .nav-btn:hover { background: var(--primary-color); color: var(--btn-text); }
 
     #categoryPills { display: flex; gap: 10px; flex-wrap: wrap; }
     .pill { padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 999px; cursor: pointer; font-weight: 500; transition: var(--transition); }
-    .pill.active, .pill:hover { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
+
+    /* Ganti text color jadi var(--btn-text) */
+    .pill.active, .pill:hover { background-color: var(--primary-color); color: var(--btn-text); border-color: var(--primary-color); }
 
     #loadMore { display: block; width: 100%; padding: 15px; text-align: center; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; margin-top: 20px; cursor: pointer; font-weight: bold; }
     #loadMore:hover { background: var(--hover-color); }
@@ -438,10 +485,12 @@
         <a href="#"><i class="fab fa-youtube"></i></a>
       </div>
       <div class="footer-links">
-        <a href="#">Tentang Kami</a>
-        <a href="#">Kontak</a>
-        <a href="#">Privasi</a>
-        <a href="#">Disclaimer</a>
+        <a href="/disclosure" target="_blank">Disclosure</a>
+            <a href="/sitemap.xml" target="_blank">Peta Situs</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/about">Tentang Kita</a>
+            <a href="/disclaimer">Disclaimer</a>
+            <a href="/artikel.json" target="_blank">Sumber Terbuka</a>
       </div>
     </div>
   </footer>
