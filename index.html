@@ -49,11 +49,11 @@
 <link rel="stylesheet" href="/ext/fontawesome.css">
 <script src="/ext/homepage.js" defer></script>
   <style>
-  /*
+/*
 =========================================================
   Theme Full Width Optimized CSS
   Mobile First + Auto Dark Mode
-  Optimized from provided HTML structure
+  Optimized from provided HTML structure & WCAG Compliant
 =========================================================
 */
 
@@ -137,15 +137,9 @@ a {
   text-decoration: none;
 }
 
-.logo-icon {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-  flex-shrink: 0;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,.1));
-}
-
-/* Header */
+/* =========================================
+   Top Bar
+   ========================================= */
 
 .top-bar {
   display: flex;
@@ -164,6 +158,14 @@ a {
   gap: .625rem;
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+.logo-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.1));
 }
 
 .nav-buttons {
@@ -230,7 +232,9 @@ select {
   cursor: pointer;
 }
 
-/* Main Full Width Layout */
+/* =========================================
+   Main Layout & Sidebar
+   ========================================= */
 
 .container {
   width: 100%;
@@ -260,7 +264,50 @@ select {
   border-bottom: 2px solid var(--primary-color);
 }
 
-/* Article Grid */
+/* =========================================
+   Hero Slider
+   ========================================= */
+
+#hero {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: .75rem;
+  margin-bottom: 2rem;
+}
+
+#heroSliderWrapper {
+  display: flex;
+  height: 100%;
+  transition: transform .5s ease;
+}
+
+.hero-slide {
+  min-width: 100%;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.8));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 2.5rem 1.25rem 1.25rem;
+  color: #fff;
+}
+
+/* =========================================
+   Article Grid & Cards
+   ========================================= */
 
 .articles-grid {
   display: grid;
@@ -301,51 +348,28 @@ select {
 }
 
 .card-excerpt,
-.article-date,
-.footer-links a {
+.article-date {
   color: var(--text-muted);
 }
 
-/* Hero */
-
-#hero {
+#loadMore {
   width: 100%;
-  height: 400px;
-  overflow: hidden;
-  border-radius: .75rem;
-  margin-bottom: 2rem;
+  padding: .9rem;
+  margin-top: 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: .5rem;
+  background: var(--card-bg);
+  color: var(--text-color);
+  cursor: pointer;
 }
 
-#heroSliderWrapper {
-  display: flex;
-  height: 100%;
-  transition: transform .5s ease;
+#loadMore:hover {
+  background: var(--hover-color);
 }
 
-.hero-slide {
-  min-width: 100%;
-  display: flex;
-  align-items: flex-end;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,.8));
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  padding: 2.5rem 1.25rem 1.25rem;
-  color: #fff;
-}
-
-/* Pills */
+/* =========================================
+   Category Pills
+   ========================================= */
 
 #categoryPills {
   display: flex;
@@ -367,7 +391,9 @@ select {
   border-color: var(--primary-color);
 }
 
-/* Footer */
+/* =========================================
+   Footer (Mobile First)
+   ========================================= */
 
 footer {
   margin-top: 2.5rem;
@@ -379,23 +405,41 @@ footer {
 .footer-content {
   display: flex;
   flex-direction: column;
+  text-align: center; /* Teks tengah untuk mobile */
   gap: 1.5rem;
 }
 
 .footer-section p {
   font-weight: 700;
+  color: var(--footer-text); /* FIX: Sebelumnya var(--text-main) */
 }
 
-.social-links {
+/* Penyatuan tata letak elemen footer */
+.social-links,
+.footer-links {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* Rata tengah di mobile */
   gap: .9rem;
+}
+
+.social-links a,
+.footer-links a {
+  transition: .3s ease;
+  color: var(--text-muted);
 }
 
 .social-links i {
   font-size: 1.5rem;
 }
 
+.social-links a:hover,
+.footer-links a:hover {
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* Inject warna brand sosmed */
 .social-links .fa-facebook { color: var(--facebook); }
 .social-links .fa-github { color: var(--github); }
 .social-links .fa-square-linkedin { color: var(--linkedin); }
@@ -406,33 +450,17 @@ footer {
 .social-links .fa-twitter { color: var(--twitter); }
 .social-links .fa-discord { color: var(--discord); }
 
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .9rem;
-}
-
 .footer-copyright {
   font-size: .75rem;
   color: var(--text-muted);
 }
 
-#loadMore {
-  width: 100%;
-  padding: .9rem;
-  margin-top: 1.25rem;
-  border: 1px solid var(--border-color);
-  border-radius: .5rem;
-  background: var(--card-bg);
-  color: var(--text-color);
-  cursor: pointer;
-}
-
-#loadMore:hover {
-  background: var(--hover-color);
-}
+/* =========================================
+   Desktop Breakpoint (Min 768px)
+   ========================================= */
 
 @media (min-width: 768px) {
+  /* Layout Top Bar */
   .top-bar {
     position: sticky;
     top: 0;
@@ -440,35 +468,43 @@ footer {
     align-items: center;
     justify-content: space-between;
   }
-
   .controls {
     flex-wrap: nowrap;
     width: auto;
   }
-
   .search-container {
     flex: 0 1 240px;
   }
 
+  /* Layout Main Body */
   .container {
     flex-direction: row;
   }
-
   .sidebar {
     flex: 0 0 320px;
+    position: sticky;
+    top: 80px; /* Biar sidebar turun dikit gak nabrak top bar */
   }
-
   .articles-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Layout Footer */
   .footer-content {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    text-align: left;
+  }
+  .social-links,
+  .footer-links {
+    justify-content: flex-start;
+  }
+  .footer-copyright {
+    text-align: right; /* Copyright mepet kanan di desktop */
   }
 }
-    </style>
+</style>
 </head>
 <body>
 
