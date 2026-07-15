@@ -74,16 +74,6 @@
 
   --shadow: 0 2px 4px rgba(0, 0, 0, .1);
   --transition: .3s ease;
-
-  --facebook: #1877f2;
-  --github: #ffffff;
-  --linkedin: #0a66c2;
-  --telegram: #229ed9;
-  --threads: #ffffff;
-  --twitter: #1da1f2;
-  --youtube: #ff0000;
-  --mastodon: #6364ff;
-  --discord: #5865f2;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -228,8 +218,32 @@ select {
   border-radius: 50%;
   border: 1px solid var(--border-color);
   background: transparent;
-  color: var(--text-color);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  background-color: var(--hover-color);
+}
+
+/* CSS Mask untuk ngerender SVG sebagai "stempel" warna */
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  background-color: var(--text-color); /* Warnanya otomatis ngikutin tema (gelap/terang) */
+  -webkit-mask: url('/ext/icons/icon-moon.svg') no-repeat center / contain;
+  mask: url('/ext/icons/icon-moon.svg') no-repeat center / contain;
+  transition: transform 0.3s ease;
+}
+
+/* Class pembantu buat ngerubah bentuk SVG lewat Javascript */
+.theme-icon.is-sun {
+  -webkit-mask: url('/ext/icons/icon-sun.svg') no-repeat center / contain;
+  mask: url('/ext/icons/icon-sun.svg') no-repeat center / contain;
 }
 
 /* =========================================
@@ -421,35 +435,34 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Rata tengah di mobile */
+  align-items: center; /* Biar gambar dan teks sejajar rapi */
   gap: .9rem;
 }
 
 .social-links a,
 .footer-links a {
   transition: .3s ease;
-  color: var(--text-muted);
+  color: var(--text-muted); /* Ini bakal berlaku ke teks di footer-links */
 }
 
-.social-links i {
-  font-size: 1.5rem;
+/* Biar <a> ngebungkus <img> dengan presisi */
+.social-links a {
+  display: inline-flex;
 }
 
+/* PENGGANTI .social-links i YANG LAMA */
+.social-links img.social-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* Efek Hover */
 .social-links a:hover,
 .footer-links a:hover {
   color: var(--primary-color);
-  transform: translateY(-2px);
+  transform: translateY(-3px); /* Ikon/teks bakal naik dikit pas disentuh */
 }
-
-/* Inject warna brand sosmed */
-.social-links .fa-facebook { color: var(--facebook); }
-.social-links .fa-github { color: var(--github); }
-.social-links .fa-square-linkedin { color: var(--linkedin); }
-.social-links .fa-telegram { color: var(--telegram); }
-.social-links .fa-threads { color: var(--threads); }
-.social-links .fa-youtube { color: var(--youtube); }
-.social-links .fa-mastodon { color: var(--mastodon); }
-.social-links .fa-twitter { color: var(--twitter); }
-.social-links .fa-discord { color: var(--discord); }
 
 .footer-copyright {
   font-size: .75rem;
@@ -538,7 +551,7 @@ footer {
         <button type="button" class="clear-btn" id="clearSearch" title="Clear">❌</button>
       </form>
       <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
-        <i class="fa-solid fa-moon"></i>
+        <div class="theme-icon"></div>
       </button>
     </div>
   </header>
@@ -571,37 +584,28 @@ footer {
   </div>
 
   <!-- Footer -->
-  <footer><div id="iposbrowser"></div>
+  <footer>
     <div class="footer-content">        <div class="footer-section">
 <p>Mari Kita Jaga, Supaya Data Pribadi Tetap Aman.</p></div>
       <div class="social-links">
-       <a href="https://facebook.com/frijal" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-facebook"></i>
-            </a>
-            <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-square-linkedin"></i>
-            </a>
-            <a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-telegram"></i>
-            </a>
-            <a href="https://threads.net/frijal" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-threads"></i>
-            </a>
-            <a href="https://youtube.com/@frijal" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a rel="me" href="https://mastodon.social/@frijal" target="_blank">
-              <i class="fa-brands fa-mastodon"></i>
-            </a>
-            <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-twitter"></i>
-            </a>
-            <a href="https://discord.gg/4fCnZSsJCM" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-discord"></i>
-            </a>
+        <a href="https://facebook.com/frijal" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="/ext/icons/icon-facebook.svg" alt="Facebook" class="social-icon" width="24" height="24">
+        </a>
+        <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="/ext/icons/icon-github.svg" alt="GitHub" class="social-icon" width="24" height="24">
+        </a>
+        <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="/ext/icons/icon-linkedin.svg" alt="LinkedIn" class="social-icon" width="24" height="24">
+        </a>
+        <a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><img src="/ext/icons/icon-telegram.svg" alt="Telegram" class="social-icon" width="24" height="24">
+        </a>
+        <a href="https://threads.net/frijal" target="_blank" rel="noopener noreferrer" aria-label="Threads"><img src="/ext/icons/icon-threads.svg" alt="Threads" class="social-icon" width="24" height="24">
+        </a>
+        <a href="https://youtube.com/@frijal" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="/ext/icons/icon-youtube.svg" alt="YouTube" class="social-icon" width="24" height="24">
+        </a>
+        <a rel="me" href="https://mastodon.social/@frijal" target="_blank" aria-label="Mastodon"><img src="/ext/icons/icon-mastodon.svg" alt="Mastodon" class="social-icon" width="24" height="24">
+        </a>
+        <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><img src="/ext/icons/icon-twitter.svg" alt="Twitter" class="social-icon" width="24" height="24">
+        </a>
+        <a href="https://discord.gg/4fCnZSsJCM" target="_blank" rel="noopener noreferrer" aria-label="Discord"><img src="/ext/icons/icon-discord.svg" alt="Discord" class="social-icon" width="24" height="24">
+        </a>
       </div>
       <div class="footer-links">
         <a href="/disclosure" target="_blank">Disclosure</a>
@@ -609,26 +613,21 @@ footer {
             <a href="/privacy">Privacy</a>
             <a href="/about">Tentang Kita</a>
             <a href="/disclaimer">Disclaimer</a>
-            <a href="/artikel.json" target="_blank">Sumber Terbuka</a>
+            <a href="/img" target="_blank">Sumber Terbuka</a>
       </div><div class="footer-copyright">
       <p>🄯 2009 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</p>
     </div></div>
   </footer>
 
-  <!-- 1. Script Utama (Data, Render UI, Filter) -->
-
-
-  <!-- 2. Script Theme Toggle (Dark/Light Mode) -->
   <script>
     const themeToggle = document.getElementById('themeToggle');
     const htmlEl = document.documentElement;
-    const icon = themeToggle.querySelector('i');
+    const iconEl = themeToggle.querySelector('.theme-icon'); // Ambil elemen div mask-nya
 
     // Cek sessionStorage atau system preference
-    // Data di sessionStorage akan otomatis terhapus saat tab ditutup
     if (sessionStorage.getItem('theme') === 'dark' || (!sessionStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       htmlEl.classList.add('dark');
-      icon.classList.replace('fa-moon', 'fa-sun');
+      if (iconEl) iconEl.classList.add('is-sun'); // Ganti mask jadi matahari
     }
 
     // Eksekusi ketika tombol diklik
@@ -637,15 +636,14 @@ footer {
 
       if (htmlEl.classList.contains('dark')) {
         sessionStorage.setItem('theme', 'dark');
-        icon.classList.replace('fa-moon', 'fa-sun');
+        if (iconEl) iconEl.classList.add('is-sun'); // Ganti mask ke matahari
       } else {
         htmlEl.classList.remove('dark');
-        htmlEl.classList.add('light'); // Paksa mode terang, nimpa prefers-color-scheme bawaan browser
+        htmlEl.classList.add('light'); // Paksa mode terang
         sessionStorage.setItem('theme', 'light');
-        icon.classList.replace('fa-sun', 'fa-moon');
+        if (iconEl) iconEl.classList.remove('is-sun'); // Balikin mask ke bulan
       }
     });
 </script>
-<script defer="" src="/ext/iposbrowser.js"></script>
 </body>
 </html>
