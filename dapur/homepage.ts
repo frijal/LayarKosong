@@ -340,7 +340,7 @@ function renderFeed(reset: boolean = false): void {
       loadMoreBtn.innerHTML = 'Kembali ke Atas ↑';
       loadMoreBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      loadMoreBtn.innerHTML = 'Klik Selanjutnya...';
+      loadMoreBtn.innerHTML = 'Klik Artikel Selanjutnya...';
       loadMoreBtn.onclick = () => { limit += 6; renderFeed(); renderSidebar(); };
     }
   }
