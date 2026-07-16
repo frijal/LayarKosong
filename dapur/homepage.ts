@@ -367,7 +367,7 @@ function renderArchives(): void {
   const years = [...new Set(allData.map(i => i.date.getFullYear()))].sort((a, b) => b - a);
   const ySelect = document.getElementById('yearFilter') as HTMLSelectElement | null;
   if (!ySelect) return;
-  ySelect.innerHTML = '<option value="">Pilih Tahun</option>';
+  ySelect.innerHTML = '<option value="">Tahun Pilihan</option>';
   years.forEach(y => {
     const opt = document.createElement('option');
     opt.value = y.toString();
