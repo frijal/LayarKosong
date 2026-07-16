@@ -301,7 +301,7 @@ a { color: inherit; text-decoration: none; }
 }
 #searchInput {
   width: 100%;
-  padding: 10px 30px 10px 4px; /* Padding kanan digedein biar teks ga nabrak tombol X */
+  padding: 10px 30px 10px 4px;
   font-family: var(--font-body);
   font-size: 15px;
   color: var(--color-ink);
@@ -319,11 +319,9 @@ a { color: inherit; text-decoration: none; }
   color: var(--color-muted);
   font-style: italic;
 }
-/* Sembunyikan tombol 'X' bawaan browser biar nggak bentrok */
 #searchInput::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
-/* Tombol Clear Custom */
 #clearSearch {
   position: absolute;
   right: 4px;
@@ -347,11 +345,11 @@ a { color: inherit; text-decoration: none; }
   max-width: 90vw;
   max-height: 90vh;
   margin: auto;
-  overflow: visible; /* Biar tombol close bisa keluar dikit dari batas gambar */
+  overflow: visible;
 }
 #imageLightbox::backdrop {
-  background: oklch(0% 0 0 / 0.85); /* Latar belakang gelap transparan */
-  backdrop-filter: blur(4px);       /* Efek blur modern */
+  background: oklch(0% 0 0 / 0.85);
+  backdrop-filter: blur(4px);
 }
 #lightboxImg {
   display: block;
@@ -442,7 +440,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-gutter) 64px; }
 }
 @media (max-width: 480px) {
   .card { grid-template-columns: minmax(0, 92px) minmax(0, 1fr); gap: 14px; }
-  .card p { display: none; }
+  .card p { display: none; } /* 🔥 Sembunyikan paragraf di mode mobile */
 }
 
 .card-thumb {
@@ -456,7 +454,6 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-gutter) 64px; }
   overflow: hidden;
 }
 
-/* Micro-interaction untuk Card & Thumbnail */
 .card:hover .card-thumb {
   border-color: var(--color-accent);
   background: var(--color-paper);
@@ -577,22 +574,22 @@ footer {
   @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 }
 
-/* ===== ANTI-CLS / LAYOUT SHIFT FIXES (Calculated) ===== */
+/* ===== ANTI-CLS / LAYOUT SHIFT FIXES ===== */
 
 /* 1. Mencegah lompatan footer saat JS me-render artikel */
 #railContainer {
-  /* Kalkulasi Desktop: 7 rubrik x 2 baris thumbnail (tinggi ~324px/rail) */
-  min-height: 2300px;
+  /* Kalkulasi Desktop: 7 rubrik (2300px) + 1 Slot Iklan (140px) = 2440px */
+  min-height: 2440px;
 }
 
 @media (max-width: 640px) {
   #railContainer {
-    /* Kalkulasi Mobile (1 kolom): 7 rubrik x 4 baris thumbnail (tinggi ~458px/rail) */
-    min-height: 3250px;
+    /* Kalkulasi Mobile: 7 rubrik (3250px) + 1 Slot Iklan (140px) = 3390px */
+    min-height: 3390px;
   }
 }
 
-/* 2. Mencegah goyangan saat font Fraunces selesai dimuat (Fix skor 0.001) */
+/* 2. Mencegah goyangan saat font Fraunces selesai dimuat */
 .mast-name {
   min-height: 0.95em;
 }

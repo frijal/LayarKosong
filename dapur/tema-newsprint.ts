@@ -94,6 +94,7 @@ function openLightbox(imageUrl: string): void {
 }
 (window as any).openLightbox = openLightbox;
 
+// Mesin cetak utama
 function renderRails(groupedData: Record<string, Article[]>): void {
   const containerEl = document.getElementById('railContainer');
   if (!containerEl) return;
@@ -106,9 +107,12 @@ function renderRails(groupedData: Record<string, Article[]>): void {
     return newestB - newestA;
   });
 
-  sortedCategories.forEach(cat => {
+  // 🔥 UPDATE: Kita pakai loop tradisional supaya gampang menyisipkan iklan di index tertentu
+  for (let i = 0; i < sortedCategories.length; i++) {
+    const cat = sortedCategories[i];
     const latestArticles = groupedData[cat].slice(0, 4);
-    if (latestArticles.length === 0) return;
+
+    if (latestArticles.length === 0) continue;
 
     const catSlug = latestArticles[0].categorySlug;
 
@@ -122,7 +126,6 @@ function renderRails(groupedData: Record<string, Article[]>): void {
     ${latestArticles.map(item => `
       <article class="card">
       <div class="card-thumb">
-      <!-- 🔥 UPDATE: Ganti jadi this.src.replace('-rg', '') -->
       <img src="${item.img}" alt="${item.title}" loading="lazy"
       onclick="openLightbox(this.src.replace('-rg', ''))"
       onerror="if(this.src.includes('-rg.webp')) { this.src=this.src.replace('-rg.webp', '.webp'); } else { this.style.display='none'; }"
@@ -137,9 +140,49 @@ function renderRails(groupedData: Record<string, Article[]>): void {
       </div>
       </section>
       `;
-  });
+
+      // 💰 ADS SLOT 💰
+      // Sisipkan iklan setelah rubrik kedua (index 1) dirender.
+      // Sesuaikan "i === 1" kalau mau ganti posisi (misal: i === 2 untuk setelah rubrik ke-3)
+      if (i === 1) {
+        htmlContent += `
+        <div class="ad-slot-editorial" style="
+        margin: 46px auto 0 auto; /* Menyamai jarak antar rail */
+        padding-bottom: 46px;
+        border-bottom: 1px solid var(--color-rule);
+        text-align: center;
+        width: 100%;
+        min-height: 140px; /* 🔥 PENTING: Anti-CLS, asumsikan tinggi iklan 90px + margin */
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        ">
+        <span style="display:none;" aria-hidden="true" class="ad-label">Pesan Sponsor</span>
+        <ins class="adsbygoogle" style="display: block; width: 100%; max-width: 970px; height: 90px;"
+        data-ad-client="ca-pub-8157928740123992"
+        data-ad-slot="4812703899"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+        </div>
+        `;
+      }
+  }
 
   containerEl.innerHTML = htmlContent;
+
+  // 💰 Inisialisasi Script AdSense SETELAH elemen masuk ke DOM
+  try {
+    const adsElements = document.querySelectorAll('.adsbygoogle');
+    if (adsElements.length > 0 && (window as any).adsbygoogle) {
+      // Loop untuk mendaftarkan semua unit iklan (kalau lu masukin lebih dari 1)
+      adsElements.forEach(() => {
+        (window as any).adsbygoogle.push({});
+      });
+    }
+  } catch (err) {
+    console.warn("Iklan gagal dimuat:", err);
+  }
 }
 
 function initSearch(): void {
