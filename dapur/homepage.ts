@@ -201,7 +201,22 @@ function filterByCat(cat: string, el?: HTMLElement): void {
     document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
     el.classList.add('active');
   }
-  displayedData = cat === 'All' ? [...allData] : allData.filter(i => i.category === cat);
+
+  const heroSection = document.getElementById('hero');
+
+  // Logika sembunyikan/tampilkan hero slider
+  if (cat === 'All') {
+    // Kalau klik tombol utama "Kategori" (All), tampilkan lagi hero-nya
+    if (heroSection) heroSection.style.display = 'block';
+    startHeroSlider();
+    displayedData = [...allData];
+  } else {
+    // Kalau klik kategori spesifik, sembunyikan hero dan matikan timer slider
+    if (heroSection) heroSection.style.display = 'none';
+    stopHeroSlider();
+    displayedData = allData.filter(i => i.category === cat);
+  }
+
   renderFeed(true);
   renderSidebar(cat);
 }
