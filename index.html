@@ -538,8 +538,16 @@ footer {
 }
 
 .footer-copyright {
+  display: block; /* Biar posisinya tetap rapi seolah-olah dia <p> atau <div> */
   font-size: .75rem;
-  color: var(--footer-text-muted); /* 🔥 FIX: Pakai warna khusus footer */
+  color: var(--footer-text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-copyright:hover {
+  color: var(--primary-color);
 }
 
 /* =========================================
@@ -688,7 +696,7 @@ footer {
             <a href="/disclaimer">Disclaimer</a>
             <a href="/img" target="_blank">Sumber Terbuka</a>
       </div><div class="footer-copyright">
-      <p>🄯 2009 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</p>
+      <a href="#" class="footer-copyright" title="Kembali ke atas">🄯 2009 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</a>
     </div></div>
   </footer>
 
