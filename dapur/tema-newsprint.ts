@@ -6,6 +6,7 @@
  * + Auto-Sort Kategori berdasarkan Update Terbaru
  * + Live Search Filter & Enter Redirect (dengan tombol Clear)
  * + Optimized Image Loading (-rg.webp)
+ * + Native Lightbox Support (Optimized URL replace)
  * =================================================================================
  */
 
@@ -27,7 +28,6 @@ async function fetchAndRenderRails(): Promise<void> {
     const data = await (window as any).siteDataProvider.getFor('editorial-index.ts');
     let groupedData: Record<string, Article[]> = {};
 
-    // Reset array global saat fetch
     allArticles = [];
 
     for (const cat in data) {
@@ -39,9 +39,7 @@ async function fetchAndRenderRails(): Promise<void> {
         const fileSlug = item.id.replace(/\.html$/, '');
         const originalImage = item.image || '/thumbnail.webp';
 
-        // 🔥 UPDATE: Gunakan -rg.webp (150x84px) yang super enteng
         const microImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-rg.webp');
-
         const cleanTitle = item.title.replace(/\s*-\s*Layar Kosong$/i, '');
         const summaryText = item.description || '';
 
@@ -59,12 +57,11 @@ async function fetchAndRenderRails(): Promise<void> {
       allArticles.push(articleObj);
       });
 
-      // Sort tiap artikel di dalam kategori berdasarkan tanggal terbaru (Descending)
       groupedData[readableCat].sort((a, b) => b.date.getTime() - a.date.getTime());
     }
 
     renderRails(groupedData);
-    initSearch(); // Inisialisasi fitur pencarian setelah data siap
+    initSearch();
 
   } catch (e) {
     console.error("Gagal menyajikan menu utama, Chef:", e);
@@ -73,13 +70,30 @@ async function fetchAndRenderRails(): Promise<void> {
   }
 }
 
-// Helper: Merapikan slug kategori jadi Title Case
 function formatCategoryName(slug: string): string {
   if (!slug) return 'Lainnya';
   return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
-// Mesin cetak utama
+// 🔥 FUNGSI LIGHTBOX
+function openLightbox(imageUrl: string): void {
+  const dialog = document.getElementById('imageLightbox') as HTMLDialogElement | null;
+  const imgEl = document.getElementById('lightboxImg') as HTMLImageElement | null;
+
+  if (dialog && imgEl) {
+    imgEl.src = imageUrl;
+    dialog.showModal();
+
+    dialog.addEventListener('click', (e) => {
+      const rect = dialog.getBoundingClientRect();
+      const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+      rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+      if (!isInDialog) dialog.close();
+    });
+  }
+}
+(window as any).openLightbox = openLightbox;
+
 function renderRails(groupedData: Record<string, Article[]>): void {
   const containerEl = document.getElementById('railContainer');
   if (!containerEl) return;
@@ -93,7 +107,6 @@ function renderRails(groupedData: Record<string, Article[]>): void {
   });
 
   sortedCategories.forEach(cat => {
-    // 🔥 UPDATE: Tampilkan maksimal 4 artikel per rail
     const latestArticles = groupedData[cat].slice(0, 4);
     if (latestArticles.length === 0) return;
 
@@ -109,10 +122,11 @@ function renderRails(groupedData: Record<string, Article[]>): void {
     ${latestArticles.map(item => `
       <article class="card">
       <div class="card-thumb">
-      <!-- 🔥 UPDATE: Fallback fallback ke -rg.webp -->
-      <img src="${item.img}" alt="Thumb" loading="lazy"
+      <!-- 🔥 UPDATE: Ganti jadi this.src.replace('-rg', '') -->
+      <img src="${item.img}" alt="${item.title}" loading="lazy"
+      onclick="openLightbox(this.src.replace('-rg', ''))"
       onerror="if(this.src.includes('-rg.webp')) { this.src=this.src.replace('-rg.webp', '.webp'); } else { this.style.display='none'; }"
-      style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px;">
+      style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px; cursor: zoom-in;">
       </div>
       <div class="card-body">
       <h3><a href="${item.url}">${item.title}</a></h3>
@@ -128,7 +142,6 @@ function renderRails(groupedData: Record<string, Article[]>): void {
   containerEl.innerHTML = htmlContent;
 }
 
-// 🔥 MESIN PENCARIAN & TOMBOL CLEAR
 function initSearch(): void {
   const searchForm = document.getElementById('searchForm');
   const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
@@ -140,66 +153,62 @@ function initSearch(): void {
 
   if (!searchForm || !searchInput || !searchResultsSection || !searchGrid || !railContainer || !searchHeading || !clearBtn) return;
 
-  // 1. Live Filter (Instant Display)
   searchInput.addEventListener('input', (e: Event) => {
     const val = (e.target as HTMLInputElement).value.toLowerCase().trim();
 
     if (val.length > 0) {
-      clearBtn.style.display = 'block'; // Tampilkan tombol Clear
+      clearBtn.style.display = 'block';
       railContainer.style.display = 'none';
       searchResultsSection.style.display = 'block';
 
-      // Saring semua data
-  const filtered = allArticles.filter(i =>
-  i.title.toLowerCase().includes(val) ||
-  i.summary.toLowerCase().includes(val)
-  );
+      const filtered = allArticles.filter(i =>
+      i.title.toLowerCase().includes(val) ||
+      i.summary.toLowerCase().includes(val)
+      );
 
-  // 🔥 UPDATE: Batasi maksimal 28 artikel (7 rubrik x 4 artikel)
-  const limitedResults = filtered.slice(0, 28);
+      const limitedResults = filtered.slice(0, 28);
 
-  if (limitedResults.length > 0) {
-    // Kasih tahu user kalau masih ada sisa hasil yang disembunyikan
-    if (filtered.length > 28) {
-      searchHeading.textContent = `Menampilkan 28 hasil teratas untuk "${val}". Tekan Enter untuk sisanya.`;
-      searchHeading.style.fontSize = "clamp(1rem, 2.5vw, 1.3rem)"; // Dikecilin dikit biar muat
-    } else {
-      searchHeading.textContent = `Hasil: "${val}"`;
-      searchHeading.style.fontSize = "clamp(1.25rem, 3vw, 1.6rem)"; // Ukuran normal
-    }
+      if (limitedResults.length > 0) {
+        if (filtered.length > 28) {
+          searchHeading.textContent = `Menampilkan 28 hasil teratas untuk "${val}". Tekan Enter untuk sisanya.`;
+          searchHeading.style.fontSize = "clamp(1rem, 2.5vw, 1.3rem)";
+        } else {
+          searchHeading.textContent = `Hasil: "${val}"`;
+          searchHeading.style.fontSize = "clamp(1.25rem, 3vw, 1.6rem)";
+        }
 
-    searchGrid.innerHTML = limitedResults.map(item => `
-    <article class="card" style="animation: fadeUp 0.4s ease-out both;">
-    <div class="card-thumb">
-    <img src="${item.img}" alt="Thumb" loading="lazy"
-    onerror="if(this.src.includes('-rg.webp')) { this.src=this.src.replace('-rg.webp', '.webp'); } else { this.style.display='none'; }"
-    style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px;">
-    </div>
-    <div class="card-body">
-    <span class="card-eyebrow">${item.category}</span>
-    <h3><a href="${item.url}">${item.title}</a></h3>
-    <p>${item.summary.length > 110 ? item.summary.substring(0, 110) + '...' : item.summary}</p>
-    </div>
-    </article>
-    `).join('');
-  } else {
-    searchHeading.textContent = `Tidak ditemukan: "${val}"`;
-    searchHeading.style.fontSize = "clamp(1.25rem, 3vw, 1.6rem)";
-    searchGrid.innerHTML = `<p style="grid-column: 1 / -1; color: var(--color-muted); padding-top: 12px;">Maaf, belum ada tulisan yang cocok. Coba kata kunci lain atau tekan Enter untuk pencarian mendalam.</p>`;
-  }
+        searchGrid.innerHTML = limitedResults.map(item => `
+        <article class="card" style="animation: fadeUp 0.4s ease-out both;">
+        <div class="card-thumb">
+        <!-- 🔥 UPDATE: Sama, ganti jadi this.src.replace('-rg', '') -->
+        <img src="${item.img}" alt="${item.title}" loading="lazy"
+        onclick="openLightbox(this.src.replace('-rg', ''))"
+        onerror="if(this.src.includes('-rg.webp')) { this.src=this.src.replace('-rg.webp', '.webp'); } else { this.style.display='none'; }"
+        style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px; cursor: zoom-in;">
+        </div>
+        <div class="card-body">
+        <span class="card-eyebrow">${item.category}</span>
+        <h3><a href="${item.url}">${item.title}</a></h3>
+        <p>${item.summary.length > 110 ? item.summary.substring(0, 110) + '...' : item.summary}</p>
+        </div>
+        </article>
+        `).join('');
+      } else {
+        searchHeading.textContent = `Tidak ditemukan: "${val}"`;
+        searchHeading.style.fontSize = "clamp(1.25rem, 3vw, 1.6rem)";
+        searchGrid.innerHTML = `<p style="grid-column: 1 / -1; color: var(--color-muted); padding-top: 12px;">Maaf, belum ada tulisan yang cocok. Coba kata kunci lain atau tekan Enter untuk pencarian lebih lanjut...</p>`;
+      }
     } else {
       resetSearchState();
     }
   });
 
-  // 2. Logika Tombol Clear
   clearBtn.addEventListener('click', () => {
     searchInput.value = '';
     resetSearchState();
-    searchInput.focus(); // Balikkan kursor ke input box
+    searchInput.focus();
   });
 
-  // Helper fungsi reset
   function resetSearchState() {
     clearBtn!.style.display = 'none';
     railContainer!.style.display = 'block';
@@ -207,7 +216,6 @@ function initSearch(): void {
     searchGrid!.innerHTML = '';
   }
 
-  // 3. Redirect ke Halaman Pencarian saat Enter
   searchForm.addEventListener('submit', (e: Event) => {
     e.preventDefault();
     const val = searchInput.value.trim();
@@ -217,7 +225,6 @@ function initSearch(): void {
   });
 }
 
-// Inisialisasi
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', fetchAndRenderRails);
 } else {

@@ -339,6 +339,60 @@ a { color: inherit; text-decoration: none; }
   color: var(--color-accent);
 }
 
+/* ===== Lightbox Native ===== */
+#imageLightbox {
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: auto;
+  overflow: visible; /* Biar tombol close bisa keluar dikit dari batas gambar */
+}
+#imageLightbox::backdrop {
+  background: oklch(0% 0 0 / 0.85); /* Latar belakang gelap transparan */
+  backdrop-filter: blur(4px);       /* Efek blur modern */
+}
+#lightboxImg {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lightbox-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  z-index: 10;
+}
+.lightbox-close button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border: 1px solid var(--color-rule);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.lightbox-close button:hover {
+  background: var(--color-accent);
+  color: white;
+  transform: scale(1.1);
+}
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 /* ===== Rails — Ecosystem Index ===== */
 main { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-gutter) 64px; }
 
@@ -388,6 +442,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-gutter) 64px; }
 }
 @media (max-width: 480px) {
   .card { grid-template-columns: minmax(0, 92px) minmax(0, 1fr); gap: 14px; }
+  .card p { display: none; }
 }
 
 .card-thumb {
@@ -611,6 +666,13 @@ footer {
       </div>
     </div>
   </footer>
+  <!-- ===== LIGHTBOX NATIVE ===== -->
+<dialog id="imageLightbox">
+  <form method="dialog" class="lightbox-close">
+    <button aria-label="Tutup gambar">&times;</button>
+  </form>
+  <img id="lightboxImg" src="" alt="Gambar ukuran penuh">
+</dialog>
   <script>
     if ("modelContext" in navigator) {
       navigator.modelContext.provideContext({
