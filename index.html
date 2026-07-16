@@ -521,14 +521,15 @@ footer {
   </nav>
   <hr class="mast-rule" aria-hidden="true">
 </header>
-
 <p class="intro">Tujuh rubrik, dua tulisan terbaru di tiap rubrik. Scroll ke bawah, atau langsung lompat ke yang bikin penasaran.</p>
+
 <!-- ===== FITUR BARU: Form Pencarian ===== -->
 <div class="search-container">
   <form id="searchForm" role="search">
     <input type="search" id="searchInput" placeholder="Cari tulisan atau topik..." aria-label="Cari tulisan">
   </form>
 </div>
+
 <main>
   <!-- ===== FITUR BARU: Wadah Hasil Pencarian Instan ===== -->
   <section id="searchResults" class="rail" style="display: none;">
@@ -539,184 +540,12 @@ footer {
       <!-- Hasil pencarian akan disuntikkan ke sini oleh JS -->
     </div>
   </section>
-    <!-- Wadah Rubrik Utama -->
+
+  <!-- ===== Wadah Rubrik Utama (Rails) ===== -->
   <div id="railContainer">
-    <!-- Rails akan di-render JS ke dalam sini -->
+    <!-- Script editorial-index.ts akan me-render semua rail rubrik secara dinamis ke dalam sini -->
   </div>
-  <section class="rail" id="warta-tekno">
-    <div class="rail-head">
-      <h2>Warta Tekno</h2>
-      <a class="rail-more" href="/warta-tekno">Lihat semua &rarr;</a>
-    </div>
-    <div class="card-grid">
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">12 Jul 2026 &middot; 6 menit baca</span>
-          <h3><a href="#">AI makin pintar, kita makin males mikir?</a></h3>
-          <p>Refleksi singkat soal apa yang hilang ketika mikir mulai kita delegasikan ke mesin.</p>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">9 Jul 2026 &middot; 4 menit baca</span>
-          <h3><a href="#">Rangkuman rilis teknologi yang sebenarnya nggak terlalu penting</a></h3>
-          <p>Bukan semua "breakthrough" itu beneran breakthrough. Ini daftarnya, dengan sedikit sinisme.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="rail" id="jejak-sejarah">
-    <div class="rail-head">
-      <h2>Jejak Sejarah</h2>
-      <a class="rail-more" href="/jejak-sejarah">Lihat semua &rarr;</a>
-    </div>
-    <div class="card-grid">
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">7 Jul 2026 &middot; 9 menit baca</span>
-          <h3><a href="#">Jalur rempah Nusantara yang jarang dibahas di buku sekolah</a></h3>
-          <p>Sebelum jadi komoditas global, rempah ini punya rute dan cerita yang lebih rumit dari peta.</p>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">3 Jul 2026 &middot; 7 menit baca</span>
-          <h3><a href="#">Bagaimana kereta api mengubah wajah Jawa abad ke-19</a></h3>
-          <p>Rel yang dibangun untuk angkut gula, ternyata ikut mengubah cara orang hidup dan berpindah.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="rail" id="opini-sosial">
-    <div class="rail-head">
-      <h2>Opini Sosial</h2>
-      <a class="rail-more" href="/opini-sosial">Lihat semua &rarr;</a>
-    </div>
-    <div class="card-grid">
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">14 Jul 2026 &middot; 5 menit baca</span>
-          <h3><a href="#">Mager kolektif: kenapa kita capek duluan sebelum mulai</a></h3>
-          <p>Bukan malas dalam arti klasik — ini soal energi yang habis sebelum sempat dipakai.</p>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">1 Jul 2026 &middot; 6 menit baca</span>
-          <h3><a href="#">Ruang publik yang makin sempit di kota besar</a></h3>
-          <p>Tempat buat sekadar duduk tanpa harus beli sesuatu, kok makin susah dicari.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="rail" id="gaya-hidup">
-    <div class="rail-head">
-      <h2>Gaya Hidup</h2>
-      <a class="rail-more" href="/gaya-hidup">Lihat semua &rarr;</a>
-    </div>
-    <div class="card-grid">
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">13 Jul 2026 &middot; 4 menit baca</span>
-          <h3><a href="#">Kenapa kita susah berhenti scroll padahal udah ngantuk</a></h3>
-          <p>Bukan soal kurang niat tidur — ada alasan lebih teknis kenapa jempol susah berhenti.</p>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">8 Jul 2026 &middot; 5 menit baca</span>
-          <h3><a href="#">Belajar masak dari YouTube: antara niat dan kenyataan</a></h3>
-          <p>Video 8 menit itu selalu bikin kelihatan gampang. Dapurnya belum tentu setuju.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="rail" id="sistem-terbuka">
-    <div class="rail-head">
-      <h2>Sistem Terbuka</h2>
-      <a class="rail-more" href="/sistem-terbuka">Lihat semua &rarr;</a>
-    </div>
-    <div class="card-grid">
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">10 Jul 2026 &middot; 7 menit baca</span>
-          <h3><a href="#">Kenapa Linux desktop masih jadi pilihan sunyi</a></h3>
-          <p>Nggak ramai dipakai bukan berarti nggak dipakai. Ini soal siapa yang butuh kontrol penuh.</p>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">5 Jul 2026 &middot; 8 menit baca</span>
-          <h3><a href="#">Belajar self-host: antara kontrol penuh dan sakit kepala</a></h3>
-          <p>Server sendiri di rumah itu memerdekakan — sampai listrik mati jam 2 pagi.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="rail" id="olah-media">
-    <div class="rail-head">
-      <h2>Olah Media</h2>
-      <a class="rail-more" href="/olah-media">Lihat semua &rarr;</a>
-    </div>
-    <div class="card-grid">
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">11 Jul 2026 &middot; 5 menit baca</span>
-          <h3><a href="#">Kenapa judul berita sekarang kayak clickbait semua</a></h3>
-          <p>Bukan cuma perasaan kamu — ada insentif algoritmik di balik judul yang makin dramatis.</p>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">2 Jul 2026 &middot; 6 menit baca</span>
-          <h3><a href="#">Belajar baca data di balik statistik yang dilempar media</a></h3>
-          <p>Angka yang sama bisa cerita dua hal berbeda, tergantung siapa yang motong grafiknya.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="rail" id="lainnya">
-    <div class="rail-head">
-      <h2>Lainnya</h2>
-      <a class="rail-more" href="/lainnya">Lihat semua &rarr;</a>
-    </div>
-    <div class="card-grid">
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">6 Jul 2026 &middot; 3 menit baca</span>
-          <h3><a href="#">Catatan pendek soal hal-hal yang nggak cukup panjang jadi satu artikel</a></h3>
-          <p>Kadang satu ide cuma butuh tiga paragraf, bukan tiga ribu kata.</p>
-        </div>
-      </article>
-      <article class="card">
-        <div class="card-thumb"><span>gambar</span></div>
-        <div class="card-body">
-          <span class="card-eyebrow">30 Jun 2026 &middot; 4 menit baca</span>
-          <h3><a href="#">Kumpulan pertanyaan yang nggak perlu dijawab serius</a></h3>
-          <p>Sesekali boleh kan nulis buat iseng, bukan buat SEO.</p>
-        </div>
-      </article>
-    </div>
-  </section>
+</main>
 
 </main>
 <footer>
