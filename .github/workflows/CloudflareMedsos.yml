@@ -150,15 +150,15 @@ jobs:
           set -o pipefail
           bun run dapur/post-to-mastodon.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
 
-      - name: 📷 2b. Pixelfed Autopost
-        id: pixelfed
-        if: github.event_name == 'schedule' || inputs.all || inputs.pixelfed
-        continue-on-error: true
-        env:
-          PIXELFED_TOKEN: ${{ secrets.PIXELFED_TOKEN }}
-        run: |
-          set -o pipefail
-          bun run dapur/post-to-pixelfed.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+  #    - name: 📷 2b. Pixelfed Autopost
+  #      id: pixelfed
+  #      if: github.event_name == 'schedule' || inputs.all || inputs.pixelfed
+  #      continue-on-error: true
+  #      env:
+  #        PIXELFED_TOKEN: ${{ secrets.PIXELFED_TOKEN }}
+  #      run: |
+  #        set -o pipefail
+  #        bun run dapur/post-to-pixelfed.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
 
       - name: ⚙️ 3. Threads Post Script
         id: threads
