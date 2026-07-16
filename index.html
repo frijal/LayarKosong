@@ -288,6 +288,37 @@ a { color: inherit; text-decoration: none; }
   font-size: 15px;
 }
 
+/* ===== Search Box ===== */
+.search-container {
+  max-width: 480px;
+  margin: 32px auto 0;
+  padding: 0 var(--page-gutter);
+}
+#searchInput {
+  width: 100%;
+  padding: 10px 4px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-rule);
+  outline: none;
+  transition: all 0.2s ease;
+  appearance: none; /* Hilangkan default style Apple/iOS */
+}
+#searchInput:focus {
+  border-bottom-color: var(--color-accent);
+}
+#searchInput::placeholder {
+  color: var(--color-muted);
+  font-style: italic;
+}
+/* Hilangkan tombol 'X' bawaan browser yang jelek */
+#searchInput::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
 /* ===== Rails — Ecosystem Index ===== */
 main { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-gutter) 64px; }
 
@@ -492,9 +523,26 @@ footer {
 </header>
 
 <p class="intro">Tujuh rubrik, dua tulisan terbaru di tiap rubrik. Scroll ke bawah, atau langsung lompat ke yang bikin penasaran.</p>
-
+<!-- ===== FITUR BARU: Form Pencarian ===== -->
+<div class="search-container">
+  <form id="searchForm" role="search">
+    <input type="search" id="searchInput" placeholder="Cari tulisan atau topik..." aria-label="Cari tulisan">
+  </form>
+</div>
 <main>
-
+  <!-- ===== FITUR BARU: Wadah Hasil Pencarian Instan ===== -->
+  <section id="searchResults" class="rail" style="display: none;">
+    <div class="rail-head">
+      <h2 id="searchHeading">Hasil Pencarian</h2>
+    </div>
+    <div class="card-grid" id="searchGrid">
+      <!-- Hasil pencarian akan disuntikkan ke sini oleh JS -->
+    </div>
+  </section>
+    <!-- Wadah Rubrik Utama -->
+  <div id="railContainer">
+    <!-- Rails akan di-render JS ke dalam sini -->
+  </div>
   <section class="rail" id="warta-tekno">
     <div class="rail-head">
       <h2>Warta Tekno</h2>
