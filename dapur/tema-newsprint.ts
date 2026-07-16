@@ -3,7 +3,7 @@
  * editorial-index.ts - Dapur Pacu buat Layout "Ecosystem Index"
  * + Auto-grouping by Category (Rubrik)
  * + Max 2 Artikel Terbaru per Rail
- * + Auto Read-Time Estimator & Date Formatting
+ * + Auto-Sort Kategori berdasarkan Update Terbaru (Dynamic Ordering)
  * =================================================================================
  */
 
@@ -13,16 +13,9 @@ interface Article {
   title: string;
   url: string;
   img: string;
-  date: Date;
+  date: Date; // Dipertahankan di sistem hanya untuk mesin sorting, tidak dirender ke UI
   summary: string;
-  readTime: number; // Disiapkan untuk UI meta data
 }
-
-// Urutan prioritas rail (sesuai masthead navigasi)
-const RUBRIK_ORDER = [
-  'Warta Tekno', 'Jejak Sejarah', 'Opini Sosial',
-  'Gaya Hidup', 'Sistem Terbuka', 'Olah Media', 'Lainnya'
-];
 
 async function fetchAndRenderRails(): Promise<void> {
   try {
@@ -41,20 +34,18 @@ async function fetchAndRenderRails(): Promise<void> {
         const cleanTitle = item.title.replace(/\s*-\s*Layar Kosong$/i, '');
         const summaryText = item.description || '';
 
-        groupedData[readableCat].push({
-          category: readableCat,
-          categorySlug: catSlug,
-          title: cleanTitle,
-          url: `/${catSlug}/${fileSlug}`,
-          img: smallImage,
-          date: item.date ? new Date(item.date) : new Date(),
-          summary: summaryText,
-          // Estimasi kasar waktu baca (200 kata/menit, minimal 2 menit)
-          readTime: Math.max(2, Math.ceil(summaryText.split(/\s+/).length / 30) + 1) 
-        });
+      groupedData[readableCat].push({
+        category: readableCat,
+        categorySlug: catSlug,
+        title: cleanTitle,
+        url: `/${catSlug}/${fileSlug}`,
+        img: smallImage,
+        date: item.date ? new Date(item.date) : new Date(),
+                                    summary: summaryText
+      });
       });
 
-      // Sort tiap kategori berdasarkan tanggal terbaru (Descending)
+      // Sort tiap artikel di dalam kategori berdasarkan tanggal terbaru (Descending)
       groupedData[readableCat].sort((a, b) => b.date.getTime() - a.date.getTime());
     }
 
@@ -73,12 +64,6 @@ function formatCategoryName(slug: string): string {
   return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
-// Helper: Format tanggal ala editorial (e.g., 12 Jul 2026)
-function formatEditorialDate(d: Date): string {
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
-}
-
 // Mesin cetak utama
 function renderRails(groupedData: Record<string, Article[]>): void {
   const mainEl = document.querySelector('main');
@@ -86,14 +71,15 @@ function renderRails(groupedData: Record<string, Article[]>): void {
 
   let htmlContent = '';
 
-  // Sortir keys berdasarkan RUBRIK_ORDER, sisa kategori tak terduga ditaruh di bawah
+  // 🔥 FITUR BARU: Sortir kategori murni berdasarkan artikel TERBARU di dalamnya
   const sortedCategories = Object.keys(groupedData).sort((a, b) => {
-    const idxA = RUBRIK_ORDER.indexOf(a);
-    const idxB = RUBRIK_ORDER.indexOf(b);
-    if (idxA === -1 && idxB === -1) return a.localeCompare(b);
-    if (idxA === -1) return 1;
-    if (idxB === -1) return -1;
-    return idxA - idxB;
+    // Karena artikel di dalam groupedData sudah di-sort descending,
+    // index [0] adalah artikel paling baru di rubrik tersebut.
+    const newestA = groupedData[a][0]?.date.getTime() || 0;
+    const newestB = groupedData[b][0]?.date.getTime() || 0;
+
+    // Urutkan kategori berdasarkan siapa yang punya artikel paling baru (Descending)
+    return newestB - newestA;
   });
 
   sortedCategories.forEach(cat => {
@@ -103,31 +89,31 @@ function renderRails(groupedData: Record<string, Article[]>): void {
 
     const catSlug = latestArticles[0].categorySlug;
 
+    // Elemen <span class="card-eyebrow"> sudah dihilangkan sepenuhnya
     htmlContent += `
-      <section class="rail" id="${catSlug}">
-        <div class="rail-head">
-          <h2>${cat}</h2>
-          <a class="rail-more" href="/${catSlug}">Lihat semua &rarr;</a>
-        </div>
-        <div class="card-grid">
-          ${latestArticles.map(item => `
-            <article class="card">
-              <div class="card-thumb">
-                <!-- Fallback ke gambar default kalau image error -->
-                <img src="${item.img}" alt="Thumb" loading="lazy" 
-                     onerror="if(this.src.includes('-sm.webp')) { this.src=this.src.replace('-sm.webp', '.webp'); } else { this.style.display='none'; }"
-                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px;">
-              </div>
-              <div class="card-body">
-                <span class="card-eyebrow">${formatEditorialDate(item.date)} &middot; ${item.readTime} menit baca</span>
-                <h3><a href="${item.url}">${item.title}</a></h3>
-                <p>${item.summary.length > 110 ? item.summary.substring(0, 110) + '...' : item.summary}</p>
-              </div>
-            </article>
-          `).join('')}
-        </div>
+    <section class="rail" id="${catSlug}">
+    <div class="rail-head">
+    <h2>${cat}</h2>
+    <a class="rail-more" href="/${catSlug}">Lihat semua &rarr;</a>
+    </div>
+    <div class="card-grid">
+    ${latestArticles.map(item => `
+      <article class="card">
+      <div class="card-thumb">
+      <!-- Fallback ke gambar default kalau image error -->
+      <img src="${item.img}" alt="Thumb" loading="lazy"
+      onerror="if(this.src.includes('-sm.webp')) { this.src=this.src.replace('-sm.webp', '.webp'); } else { this.style.display='none'; }"
+      style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px;">
+      </div>
+      <div class="card-body">
+      <h3><a href="${item.url}">${item.title}</a></h3>
+      <p>${item.summary.length > 110 ? item.summary.substring(0, 110) + '...' : item.summary}</p>
+      </div>
+      </article>
+      `).join('')}
+      </div>
       </section>
-    `;
+      `;
   });
 
   // Tembakkan ke DOM
