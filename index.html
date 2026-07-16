@@ -9,12 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="/ext/data-provider.js" defer></script>
   <script src="/ext/tema-newsprint.js" defer></script>
-<style>
+  <style>
 /* Konsep redesign — bukan file produksi.
    genre: editorial (default) · macrostructure: Ecosystem Index (rail per rubrik)
    theme fingerprint: turunan Newsprint, warna brand asli dipertahankan
-   nav: N6 masthead · footer: Ft3 index columns (meniru struktur footer asli)
-   pre-emit self-critique — Philosophy 5 · Hierarchy 5 · Execution 4 · Specificity 5 · Restraint 5 · Variety 4 */
+   nav: N6 masthead · footer: Centric Social & Links (Personal Editorial Vibe)
+   pre-emit self-critique — Philosophy 5 · Hierarchy 5 · Execution 5 · Specificity 5 · Restraint 5 · Variety 4 */
 
 /* ===== Tema Default: Light Mode (Kertas koran premium) ===== */
 :root {
@@ -47,7 +47,7 @@
 }
 
 * { box-sizing: border-box; }
-html, body { overflow-x: clip; }
+html, body { overflow-x: clip; scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--color-paper);
@@ -128,7 +128,7 @@ a { color: inherit; text-decoration: none; }
 /* ===== Rails — Ecosystem Index ===== */
 main { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-gutter) 64px; }
 
-.rail { padding-top: 46px; }
+.rail { padding-top: 46px; scroll-margin-top: 24px; }
 .rail + .rail { border-top: 1px solid var(--color-rule); }
 
 .rail-head {
@@ -170,6 +170,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-gutter) 64px; }
   display: grid;
   grid-template-columns: minmax(0, 128px) minmax(0, 1fr);
   gap: 18px;
+  transition: transform 0.2s ease;
 }
 @media (max-width: 480px) {
   .card { grid-template-columns: minmax(0, 92px) minmax(0, 1fr); gap: 14px; }
@@ -183,13 +184,14 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-gutter) 64px; }
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
-.card-thumb span {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--color-rule);
+
+/* Micro-interaction untuk Card & Thumbnail */
+.card:hover .card-thumb {
+  border-color: var(--color-accent);
+  background: var(--color-paper);
+  transition: all 0.2s ease;
 }
 
 .card-body { min-width: 0; }
@@ -210,7 +212,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-gutter) 64px; }
   overflow-wrap: anywhere;
 }
 .card h3 a { color: inherit; }
-.card h3 a:hover, .card h3 a:focus-visible {
+.card h3 a:hover, .card h3 a:focus-visible, .card:hover h3 a {
   text-decoration: underline;
   text-decoration-color: var(--color-accent);
   text-underline-offset: 3px;
@@ -225,43 +227,72 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-gutter) 64px; }
   overflow: hidden;
 }
 
-/* ===== Footer — Ft3 index columns (struktur footer asli dipertahankan) ===== */
+/* ===== Footer Baru — Centric & Personal ===== */
 footer {
   border-top: 1px solid var(--color-rule);
   margin-top: 16px;
-  padding: 44px var(--page-gutter) 30px;
-}
-.foot-grid {
-  max-width: 1180px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 30px;
-}
-@media (max-width: 640px) {
-  .foot-grid { grid-template-columns: minmax(0, 1fr); }
-}
-.foot-grid h4 {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-neutral);
-  margin: 0 0 12px;
-}
-.foot-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
-.foot-grid a { font-size: 14px; color: var(--color-muted); }
-.foot-grid a:hover, .foot-grid a:focus-visible { color: var(--color-accent); }
-
-.colophon {
-  max-width: 1180px;
-  margin: 34px auto 0;
-  padding-top: 20px;
-  border-top: 1px solid var(--color-rule);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--color-neutral);
+  padding: 48px var(--page-gutter) 40px;
   text-align: center;
+}
+.footer-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.footer-section p {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  color: var(--color-ink);
+  margin: 0 0 28px;
+}
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 36px;
+}
+.social-icon {
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transition: all 0.2s ease;
+}
+.social-links a:hover .social-icon,
+.social-links a:focus-visible .social-icon {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: translateY(-3px);
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 24px;
+  margin-bottom: 36px;
+}
+.footer-links a {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: var(--color-accent);
+}
+.footer-copyright {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+  color: var(--color-neutral);
+}
+.footer-copyright a {
+  color: inherit;
+  display: inline-block;
+}
+.footer-copyright a:hover,
+.footer-copyright a:focus-visible {
+  color: var(--color-accent);
 }
 
 /* motion — quiet, satu entrance, dihormati prefers-reduced-motion */
@@ -477,34 +508,46 @@ footer {
   </section>
 
 </main>
-
 <footer>
-  <div class="foot-grid">
-    <div>
-      <h4>Privasi &amp; Data</h4>
-      <ul>
-        <li><a href="/privacy">Kebijakan Privasi</a></li>
-        <li><a href="/data-deletion">Hapus Data</a></li>
-        <li><a href="/data-deletion-form">Formulir Hapus Data</a></li>
-      </ul>
+    <div class="footer-content">
+      <div class="footer-section">
+        <p>Mari Kita Jaga, Supaya Data Pribadi Tetap Aman.</p>
+      </div>
+      <div class="social-links">
+        <a href="https://facebook.com/frijal" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img
+            src="/ext/icons/icon-facebook.svg" alt="Facebook" class="social-icon" width="24" height="24" /></a>
+        <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img
+            src="/ext/icons/icon-github.svg" alt="GitHub" class="social-icon" width="24" height="24" /></a>
+        <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img
+            src="/ext/icons/icon-linkedin.svg" alt="LinkedIn" class="social-icon" width="24" height="24" /></a>
+        <a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><img
+            src="/ext/icons/icon-telegram.svg" alt="Telegram" class="social-icon" width="24" height="24" /></a>
+        <a href="https://threads.net/frijal" target="_blank" rel="noopener noreferrer" aria-label="Threads"><img
+            src="/ext/icons/icon-threads.svg" alt="Threads" class="social-icon" width="24" height="24" /></a>
+        <a href="https://youtube.com/@frijal" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img
+            src="/ext/icons/icon-youtube.svg" alt="YouTube" class="social-icon" width="24" height="24" /></a>
+        <a rel="me" href="https://mastodon.social/@frijal" target="_blank" aria-label="Mastodon"><img
+            src="/ext/icons/icon-mastodon.svg" alt="Mastodon" class="social-icon" width="24" height="24" /></a>
+        <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><img
+            src="/ext/icons/icon-twitter.svg" alt="Twitter" class="social-icon" width="24" height="24" /></a>
+        <a href="https://discord.gg/4fCnZSsJCM" target="_blank" rel="noopener noreferrer" aria-label="Discord"><img
+            src="/ext/icons/icon-discord.svg" alt="Discord" class="social-icon" width="24" height="24" /></a>
+      </div>
+      <div class="footer-links">
+        <a href="/disclosure" target="_blank">Disclosure</a>
+        <a href="/sitemap.xml" target="_blank">Peta Situs</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/about">Tentang Kita</a>
+        <a href="/disclaimer">Disclaimer</a>
+        <a href="/sitemap" target="_blank">Sumber Terbuka</a>
+      </div>
+      <div class="footer-copyright">
+        <a href="#" class="footer-copyright" title="Kembali ke atas">🄯 2009 - Layar Kosong - Dibuat dengan F/OSS sambil
+          Ngopi ☕ dari
+          Balikpapan.</a>
+      </div>
     </div>
-    <div>
-      <h4>Kepatuhan Hukum</h4>
-      <ul>
-        <li><a href="/disclaimer">Disclaimer</a></li>
-        <li><a href="/security-policy">Kebijakan Keamanan</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Karya &amp; Lisensi</h4>
-      <ul>
-        <li><a href="/lisensi">Lisensi (CC BY 4.0)</a></li>
-        <li><a href="/about">Tentang</a></li>
-      </ul>
-    </div>
-  </div>
-  <p class="colophon">Layar Kosong &middot; dalam.web.id &middot; konsep redesign, bukan build final</p>
-</footer>
+  </footer>
 
 </body>
 </html>
