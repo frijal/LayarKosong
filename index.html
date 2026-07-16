@@ -576,6 +576,29 @@ footer {
   .rail:nth-child(7) { animation-delay: .3s; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 }
+
+/* ===== ANTI-CLS / LAYOUT SHIFT FIXES (Calculated) ===== */
+
+/* 1. Mencegah lompatan footer saat JS me-render artikel */
+#railContainer {
+  /* Kalkulasi Desktop: 7 rubrik x 2 baris thumbnail (tinggi ~324px/rail) */
+  min-height: 2300px;
+}
+
+@media (max-width: 640px) {
+  #railContainer {
+    /* Kalkulasi Mobile (1 kolom): 7 rubrik x 4 baris thumbnail (tinggi ~458px/rail) */
+    min-height: 3250px;
+  }
+}
+
+/* 2. Mencegah goyangan saat font Fraunces selesai dimuat (Fix skor 0.001) */
+.mast-name {
+  min-height: 0.95em;
+}
+.intro {
+  min-height: 1.6em;
+}
 </style>
 </head>
 <body>
@@ -666,8 +689,8 @@ footer {
       </div>
     </div>
   </footer>
-  <!-- ===== LIGHTBOX NATIVE ===== -->
-<dialog id="imageLightbox">
+<!-- ===== LIGHTBOX NATIVE ===== -->
+<dialog id="imageLightbox" aria-label="Tampilan gambar ukuran penuh">
   <form method="dialog" class="lightbox-close">
     <button aria-label="Tutup gambar">&times;</button>
   </form>
