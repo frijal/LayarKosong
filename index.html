@@ -294,9 +294,14 @@ a { color: inherit; text-decoration: none; }
   margin: 32px auto 0;
   padding: 0 var(--page-gutter);
 }
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 #searchInput {
   width: 100%;
-  padding: 10px 4px;
+  padding: 10px 30px 10px 4px; /* Padding kanan digedein biar teks ga nabrak tombol X */
   font-family: var(--font-body);
   font-size: 15px;
   color: var(--color-ink);
@@ -305,7 +310,7 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid var(--color-rule);
   outline: none;
   transition: all 0.2s ease;
-  appearance: none; /* Hilangkan default style Apple/iOS */
+  appearance: none;
 }
 #searchInput:focus {
   border-bottom-color: var(--color-accent);
@@ -314,9 +319,24 @@ a { color: inherit; text-decoration: none; }
   color: var(--color-muted);
   font-style: italic;
 }
-/* Hilangkan tombol 'X' bawaan browser yang jelek */
+/* Sembunyikan tombol 'X' bawaan browser biar nggak bentrok */
 #searchInput::-webkit-search-cancel-button {
   -webkit-appearance: none;
+}
+/* Tombol Clear Custom */
+#clearSearch {
+  position: absolute;
+  right: 4px;
+  background: none;
+  border: none;
+  color: var(--color-muted);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+#clearSearch:hover, #clearSearch:focus-visible {
+  color: var(--color-accent);
 }
 
 /* ===== Rails — Ecosystem Index ===== */
@@ -526,7 +546,10 @@ footer {
 <!-- ===== FITUR BARU: Form Pencarian ===== -->
 <div class="search-container">
   <form id="searchForm" role="search">
-    <input type="search" id="searchInput" placeholder="Cari tulisan atau topik..." aria-label="Cari tulisan">
+    <div class="search-wrapper">
+      <input type="search" id="searchInput" placeholder="Cari tulisan atau topik..." aria-label="Cari tulisan">
+      <button type="button" id="clearSearch" aria-label="Bersihkan pencarian" style="display: none;">❌</button>
+    </div>
   </form>
 </div>
 

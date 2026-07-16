@@ -2,9 +2,10 @@
  * =================================================================================
  * editorial-index.ts - Dapur Pacu buat Layout "Ecosystem Index"
  * + Auto-grouping by Category (Rubrik)
- * + Max 2 Artikel Terbaru per Rail
+ * + Max 4 Artikel Terbaru per Rail
  * + Auto-Sort Kategori berdasarkan Update Terbaru
- * + Live Search Filter & Enter Redirect
+ * + Live Search Filter & Enter Redirect (dengan tombol Clear)
+ * + Optimized Image Loading (-rg.webp)
  * =================================================================================
  */
 
@@ -37,7 +38,10 @@ async function fetchAndRenderRails(): Promise<void> {
       data[cat].forEach((item: any) => {
         const fileSlug = item.id.replace(/\.html$/, '');
         const originalImage = item.image || '/thumbnail.webp';
-        const smallImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-sm.webp');
+
+        // 🔥 UPDATE: Gunakan -rg.webp (150x84px) yang super enteng
+        const microImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-rg.webp');
+
         const cleanTitle = item.title.replace(/\s*-\s*Layar Kosong$/i, '');
         const summaryText = item.description || '';
 
@@ -46,13 +50,13 @@ async function fetchAndRenderRails(): Promise<void> {
         categorySlug: catSlug,
         title: cleanTitle,
         url: `/${catSlug}/${fileSlug}`,
-        img: smallImage,
+        img: microImage,
         date: item.date ? new Date(item.date) : new Date(),
                         summary: summaryText
       };
 
       groupedData[readableCat].push(articleObj);
-      allArticles.push(articleObj); // Simpan ke wadah flat untuk di-search
+      allArticles.push(articleObj);
       });
 
       // Sort tiap artikel di dalam kategori berdasarkan tanggal terbaru (Descending)
@@ -77,7 +81,6 @@ function formatCategoryName(slug: string): string {
 
 // Mesin cetak utama
 function renderRails(groupedData: Record<string, Article[]>): void {
-  // 🔥 PERHATIAN: Sekarang kita render ke dalam #railContainer, bukan langsung ke main
   const containerEl = document.getElementById('railContainer');
   if (!containerEl) return;
 
@@ -90,7 +93,8 @@ function renderRails(groupedData: Record<string, Article[]>): void {
   });
 
   sortedCategories.forEach(cat => {
-    const latestArticles = groupedData[cat].slice(0, 2);
+    // 🔥 UPDATE: Tampilkan maksimal 4 artikel per rail
+    const latestArticles = groupedData[cat].slice(0, 4);
     if (latestArticles.length === 0) return;
 
     const catSlug = latestArticles[0].categorySlug;
@@ -105,8 +109,9 @@ function renderRails(groupedData: Record<string, Article[]>): void {
     ${latestArticles.map(item => `
       <article class="card">
       <div class="card-thumb">
+      <!-- 🔥 UPDATE: Fallback fallback ke -rg.webp -->
       <img src="${item.img}" alt="Thumb" loading="lazy"
-      onerror="if(this.src.includes('-sm.webp')) { this.src=this.src.replace('-sm.webp', '.webp'); } else { this.style.display='none'; }"
+      onerror="if(this.src.includes('-rg.webp')) { this.src=this.src.replace('-rg.webp', '.webp'); } else { this.style.display='none'; }"
       style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px;">
       </div>
       <div class="card-body">
@@ -123,40 +128,51 @@ function renderRails(groupedData: Record<string, Article[]>): void {
   containerEl.innerHTML = htmlContent;
 }
 
-// 🔥 MESIN PENCARIAN
+// 🔥 MESIN PENCARIAN & TOMBOL CLEAR
 function initSearch(): void {
   const searchForm = document.getElementById('searchForm');
   const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
+  const clearBtn = document.getElementById('clearSearch');
   const searchResultsSection = document.getElementById('searchResults');
   const searchGrid = document.getElementById('searchGrid');
   const railContainer = document.getElementById('railContainer');
   const searchHeading = document.getElementById('searchHeading');
 
-  if (!searchForm || !searchInput || !searchResultsSection || !searchGrid || !railContainer || !searchHeading) return;
+  if (!searchForm || !searchInput || !searchResultsSection || !searchGrid || !railContainer || !searchHeading || !clearBtn) return;
 
   // 1. Live Filter (Instant Display)
   searchInput.addEventListener('input', (e: Event) => {
     const val = (e.target as HTMLInputElement).value.toLowerCase().trim();
 
     if (val.length > 0) {
-      // Sembunyikan rubrik utama, tampilkan wadah pencarian
+      clearBtn.style.display = 'block'; // Tampilkan tombol Clear
       railContainer.style.display = 'none';
       searchResultsSection.style.display = 'block';
 
-      // Saring data dari array mentah
+      // Saring semua data
   const filtered = allArticles.filter(i =>
   i.title.toLowerCase().includes(val) ||
   i.summary.toLowerCase().includes(val)
   );
 
-  if (filtered.length > 0) {
-    searchHeading.textContent = `Hasil: "${val}"`;
-    // Tampilkan hasil (bisa lebih dari 2 karena ini hasil search)
-    searchGrid.innerHTML = filtered.map(item => `
+  // 🔥 UPDATE: Batasi maksimal 28 artikel (7 rubrik x 4 artikel)
+  const limitedResults = filtered.slice(0, 28);
+
+  if (limitedResults.length > 0) {
+    // Kasih tahu user kalau masih ada sisa hasil yang disembunyikan
+    if (filtered.length > 28) {
+      searchHeading.textContent = `Menampilkan 28 hasil teratas untuk "${val}". Tekan Enter untuk sisanya.`;
+      searchHeading.style.fontSize = "clamp(1rem, 2.5vw, 1.3rem)"; // Dikecilin dikit biar muat
+    } else {
+      searchHeading.textContent = `Hasil: "${val}"`;
+      searchHeading.style.fontSize = "clamp(1.25rem, 3vw, 1.6rem)"; // Ukuran normal
+    }
+
+    searchGrid.innerHTML = limitedResults.map(item => `
     <article class="card" style="animation: fadeUp 0.4s ease-out both;">
     <div class="card-thumb">
     <img src="${item.img}" alt="Thumb" loading="lazy"
-    onerror="if(this.src.includes('-sm.webp')) { this.src=this.src.replace('-sm.webp', '.webp'); } else { this.style.display='none'; }"
+    onerror="if(this.src.includes('-rg.webp')) { this.src=this.src.replace('-rg.webp', '.webp'); } else { this.style.display='none'; }"
     style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px;">
     </div>
     <div class="card-body">
@@ -168,19 +184,32 @@ function initSearch(): void {
     `).join('');
   } else {
     searchHeading.textContent = `Tidak ditemukan: "${val}"`;
+    searchHeading.style.fontSize = "clamp(1.25rem, 3vw, 1.6rem)";
     searchGrid.innerHTML = `<p style="grid-column: 1 / -1; color: var(--color-muted); padding-top: 12px;">Maaf, belum ada tulisan yang cocok. Coba kata kunci lain atau tekan Enter untuk pencarian mendalam.</p>`;
   }
     } else {
-      // Jika form dikosongkan, kembalikan ke tampilan semula
-      railContainer.style.display = 'block';
-      searchResultsSection.style.display = 'none';
-      searchGrid.innerHTML = '';
+      resetSearchState();
     }
   });
 
-  // 2. Redirect ke Halaman Pencarian saat Enter
+  // 2. Logika Tombol Clear
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    resetSearchState();
+    searchInput.focus(); // Balikkan kursor ke input box
+  });
+
+  // Helper fungsi reset
+  function resetSearchState() {
+    clearBtn!.style.display = 'none';
+    railContainer!.style.display = 'block';
+    searchResultsSection!.style.display = 'none';
+    searchGrid!.innerHTML = '';
+  }
+
+  // 3. Redirect ke Halaman Pencarian saat Enter
   searchForm.addEventListener('submit', (e: Event) => {
-    e.preventDefault(); // Cegah reload form default
+    e.preventDefault();
     const val = searchInput.value.trim();
     if (val.length > 0) {
       window.location.href = `https://dalam.web.id/search/?q=${encodeURIComponent(val)}`;
