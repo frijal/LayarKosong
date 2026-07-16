@@ -600,8 +600,7 @@ footer {
   }
 }
 </style>
-</head>
-<body>
+</head><body>
 
   <!-- Top Bar -->
   <header class="top-bar">
@@ -625,7 +624,7 @@ footer {
       </select>
 
 
-<!-- GANTI DIV JADI FORM -->
+      <!-- GANTI DIV JADI FORM -->
       <form id="searchForm" class="search-container" action="javascript:void(0);">
         <input type="text" class="search-input" id="searchInput" placeholder="Cari...">
         <!-- Kasih type="button" biar gak bikin form reload -->
@@ -645,13 +644,36 @@ footer {
         <div id="heroSliderWrapper"></div>
       </section>
 
+      <!-- 💰 ADS SLOT 1: TOP FEED (Sangat Terlihat) 💰 -->
+      <div class="ad-slot-home" style="margin: 0 auto 2rem auto; text-align: center; width: 100%; min-height: 90px; overflow: hidden;">
+        <!-- Script adsbygoogle.js sudah di-handle oleh GTM -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8157928740123992"
+             data-ad-slot="4812703899"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
       <!-- Wadah utama untuk feed berita (List Grid) -->
       <div id="newsFeed" class="articles-grid">
         <!-- Artikel akan masuk sini via script -->
       </div>
 
-      <!-- Tombol Load More -->
+  <!-- Tombol Load More -->
       <button id="loadMore">Klik Selanjutnya...</button>
+
+      <!-- 💰 ADS SLOT 2: BOTTOM FEED (Penahan sebelum tombol Load More) 💰 -->
+      <div class="ad-slot-home" style="margin: 2rem auto 1.5rem auto; text-align: center; width: 100%; min-height: 90px; overflow: hidden;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8157928740123992"
+             data-ad-slot="1947821695"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
 
     </main>
 
@@ -661,43 +683,49 @@ footer {
       <div class="random-list" id="sidebarRandom">
         <!-- Artikel random akan msuk sini via script -->
       </div>
+
+      <!-- 💰 ADS SLOT 3: SIDEBAR (Jackpot karena posisinya Sticky ngikutin scroll) 💰 -->
+      <div class="ad-slot-sidebar" style="margin-top: 2rem; text-align: center; min-height: 250px;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8157928740123992"
+             data-ad-slot="8648961411"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(window.adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
     </aside>
   </div>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-content">        <div class="footer-section">
-<p>Mari Kita Jaga, Supaya Data Pribadi Tetap Aman.</p></div>
+    <div class="footer-content">
+      <div class="footer-section">
+        <p>Mari Kita Jaga, Supaya Data Pribadi Tetap Aman.</p>
+      </div>
       <div class="social-links">
-        <a href="https://facebook.com/frijal" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="/ext/icons/icon-facebook.svg" alt="Facebook" class="social-icon" width="24" height="24">
-        </a>
-        <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="/ext/icons/icon-github.svg" alt="GitHub" class="social-icon" width="24" height="24">
-        </a>
-        <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="/ext/icons/icon-linkedin.svg" alt="LinkedIn" class="social-icon" width="24" height="24">
-        </a>
-        <a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><img src="/ext/icons/icon-telegram.svg" alt="Telegram" class="social-icon" width="24" height="24">
-        </a>
-        <a href="https://threads.net/frijal" target="_blank" rel="noopener noreferrer" aria-label="Threads"><img src="/ext/icons/icon-threads.svg" alt="Threads" class="social-icon" width="24" height="24">
-        </a>
-        <a href="https://youtube.com/@frijal" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="/ext/icons/icon-youtube.svg" alt="YouTube" class="social-icon" width="24" height="24">
-        </a>
-        <a rel="me" href="https://mastodon.social/@frijal" target="_blank" aria-label="Mastodon"><img src="/ext/icons/icon-mastodon.svg" alt="Mastodon" class="social-icon" width="24" height="24">
-        </a>
-        <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><img src="/ext/icons/icon-twitter.svg" alt="Twitter" class="social-icon" width="24" height="24">
-        </a>
-        <a href="https://discord.gg/4fCnZSsJCM" target="_blank" rel="noopener noreferrer" aria-label="Discord"><img src="/ext/icons/icon-discord.svg" alt="Discord" class="social-icon" width="24" height="24">
-        </a>
+        <a href="https://facebook.com/frijal" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="/ext/icons/icon-facebook.svg" alt="Facebook" class="social-icon" width="24" height="24"></a>
+        <a href="https://github.com/frijal" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="/ext/icons/icon-github.svg" alt="GitHub" class="social-icon" width="24" height="24"></a>
+        <a href="https://linkedin.com/in/frijal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="/ext/icons/icon-linkedin.svg" alt="LinkedIn" class="social-icon" width="24" height="24"></a>
+        <a href="https://t.me/frijal" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><img src="/ext/icons/icon-telegram.svg" alt="Telegram" class="social-icon" width="24" height="24"></a>
+        <a href="https://threads.net/frijal" target="_blank" rel="noopener noreferrer" aria-label="Threads"><img src="/ext/icons/icon-threads.svg" alt="Threads" class="social-icon" width="24" height="24"></a>
+        <a href="https://youtube.com/@frijal" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img src="/ext/icons/icon-youtube.svg" alt="YouTube" class="social-icon" width="24" height="24"></a>
+        <a rel="me" href="https://mastodon.social/@frijal" target="_blank" aria-label="Mastodon"><img src="/ext/icons/icon-mastodon.svg" alt="Mastodon" class="social-icon" width="24" height="24"></a>
+        <a href="https://x.com/responaja" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"><img src="/ext/icons/icon-twitter.svg" alt="Twitter" class="social-icon" width="24" height="24"></a>
+        <a href="https://discord.gg/4fCnZSsJCM" target="_blank" rel="noopener noreferrer" aria-label="Discord"><img src="/ext/icons/icon-discord.svg" alt="Discord" class="social-icon" width="24" height="24"></a>
       </div>
       <div class="footer-links">
         <a href="/disclosure" target="_blank">Disclosure</a>
-            <a href="/sitemap.xml" target="_blank">Peta Situs</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/about">Tentang Kita</a>
-            <a href="/disclaimer">Disclaimer</a>
-            <a href="/img" target="_blank">Sumber Terbuka</a>
-      </div><div class="footer-copyright">
-      <a href="#" class="footer-copyright" title="Kembali ke atas">🄯 2009 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</a>
-    </div></div>
+        <a href="/sitemap.xml" target="_blank">Peta Situs</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/about">Tentang Kita</a>
+        <a href="/disclaimer">Disclaimer</a>
+        <a href="/img" target="_blank">Sumber Terbuka</a>
+      </div>
+      <div class="footer-copyright">
+        <a href="#" class="footer-copyright" title="Kembali ke atas">🄯 2009 - Layar Kosong - Dibuat dengan F/OSS sambil Ngopi ☕ dari Balikpapan.</a>
+      </div>
+    </div>
   </footer>
 
   <script>
