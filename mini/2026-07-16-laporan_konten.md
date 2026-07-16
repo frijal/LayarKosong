@@ -1,5 +1,5 @@
 # 🔆 Laporan Ringkas Konten
-Update: 16 Jul 2026 | 17:47 WITA
+Update: 16 Jul 2026 | 22:54 WITA
 
 ### 📑 Statistik Global
 | Ekstensi | Jumlah | Lokasi Folder |
@@ -22,12 +22,12 @@ Update: 16 Jul 2026 | 17:47 WITA
 | 📄 cssX  | **1** | dapur |
 | 📄 csv   | **1** | sementara |
 | 🖼️ gif   | **1** | img |
-| 🎨 html  | **3187** | google2e9cfaf2f2923d27.html, disclaimer.html, search, lainnya, security-policy.html, sitemap.html, img, 404.html, privacy.html, feed.html, lisensi.html, data-deletion-form.html, sistem-terbuka, data-deletion.html, img.html, about.html, artikel, index.html, hit.html, dapur, disclosure.html, callback.html, opini-sosial, gaya-hidup, llms-index.html, jejak-sejarah, warta-tekno, ext, olah-media |
+| 🎨 html  | **3189** | google2e9cfaf2f2923d27.html, disclaimer.html, search, lainnya, security-policy.html, sitemap.html, img, 404.html, privacy.html, feed.html, lisensi.html, data-deletion-form.html, sistem-terbuka, data-deletion.html, img.html, about.html, artikel, index.html, hit.html, dapur, disclosure.html, callback.html, opini-sosial, gaya-hidup, llms-index.html, jejak-sejarah, warta-tekno, ext, olah-media |
 | 📄 html-bak | **1** | artikel |
 | 📄 htmlAA | **1** | index.htmlAA |
 | 📄 ico   | **4** | favicon.ico, artikel, dapur, ext |
 | 🖼️ jpg   | **3** | img, thumbnail.jpg |
-| 📜 js    | **70** | sementara, functions, dapur, ext |
+| 📜 js    | **71** | sementara, functions, dapur, ext |
 | 📄 jsX   | **1** | functions |
 | 🧩 json  | **12** | artikel-lite.json, img, tsconfig.json, sementara, artikel.json, artikel, dapur, redirectmap.json, ext, package.json |
 | 📄 lock  | **1** | bun.lock |
@@ -38,7 +38,7 @@ Update: 16 Jul 2026 | 17:47 WITA
 | 📜 sh    | **14** | sementara, artikel, dapur |
 | 📄 sql   | **1** | init.sql |
 | 🖼️ svg   | **102** | favicon.svg, img, artikel, dapur, ext |
-| 📜 ts    | **92** | search, sementara, functions, dapur, index.ts |
+| 📜 ts    | **93** | search, sementara, functions, dapur, index.ts |
 | 📄 tsAA  | **2** | dapur |
 | 📄 tsX   | **2** | dapur |
 | 📄 tsXX  | **1** | functions |
@@ -49,4 +49,4 @@ Update: 16 Jul 2026 | 17:47 WITA
 | 📄 xml   | **11** | sitemap.xml, warta-tekno.xml, sistem-terbuka.xml, sementara, gaya-hidup.xml, BingSiteAuth.xml, jejak-sejarah.xml, olah-media.xml, lainnya.xml, opini-sosial.xml, opensearch.xml |
 | 📄 xsl   | **3** | rss.xsl, sitemap.xsl, atom.xsl |
 
-**Total File:** 7351
+**Total File:** 7355

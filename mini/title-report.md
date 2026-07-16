@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/16/2026, 9:46:57 AM
+Generated on: 7/16/2026, 2:53:41 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -16,7 +16,7 @@ Generated on: 7/16/2026, 9:46:57 AM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v25.26 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v25.27 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -1526,7 +1526,7 @@ Generated on: 7/16/2026, 9:46:57 AM
 | `artikel/ultah-dalam-islam.html` | Hukum Perayaan Hari Kelahiran dalam Islam • Fatwa & Dalil Lengkap - Layar Kosong | Hukum Perayaan Hari Kelahiran dalam Islam • Fatwa & Dalil Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/umar-bin-khattab.html` | Kisah Umar bin Khattab: Penentang Jadi Pelindung Islam - Layar Kosong | Kisah Umar bin Khattab: Penentang Jadi Pelindung Islam | Layar Kosong | ✅ Perfect |
 | `artikel/unboxing-respiro-jne-balikpapan.html` | Unboxing Respiro: Paket Datang! (JNE Balikpapan) - Layar Kosong | Unboxing Respiro: Paket Datang! (JNE Balikpapan) | Layar Kosong | ✅ Perfect |
-| `artikel/uninstall-paket-global-npm.html` | Cara Uninstall Paket Global Node.js (npm, yarn, pnpm) - Layar Kosong | Cara Uninstall Paket Global Node.js (npm, yarn, pnpm) | Layar Kosong | ✅ Perfect |
+| `artikel/uninstall-paket-global-npm.html` | Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm) - Layar Kosong | Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm) | Layar Kosong | ✅ Perfect |
 | `artikel/unlicense-domain-publik.html` | Pahami UNLICENSE: Dedikasi Domain Publik Tanpa Basa-Basi - Layar Kosong | Pahami UNLICENSE: Dedikasi Domain Publik Tanpa Basa-Basi | Layar Kosong | ✅ Perfect |
 | `artikel/upgrade-online-10-04.html` | Upgrade Online Ubuntu 10.04 - Panduan Lengkap - Layar Kosong | Upgrade Online Ubuntu 10.04 - Panduan Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/uqbah-bin-nafi.html` | Kisah Uqbah bin Nāfi‘ al-Fihrī Muslim - Layar Kosong | Kisah Uqbah bin Nāfi‘ al-Fihrī Muslim | Layar Kosong | ✅ Perfect |
@@ -3155,7 +3155,7 @@ Generated on: 7/16/2026, 9:46:57 AM
 | `warta-tekno/tunnelmole-alternatif-cloudflare-tunnel.html` | Tunnelmole: Alternatif Cloudflare Tunnel Sederhana dengan HTTPS dapat - Layar Kosong | Tunnelmole: Alternatif Cloudflare Tunnel Sederhana dengan HTTPS dapat | Layar Kosong | ✅ Perfect |
 | `warta-tekno/tutorial-fts-cloudflare-d1.html` | Tutorial: Membangun Full-Text Search (FTS) Cloudflare D1 - Layar Kosong | Tutorial: Membangun Full-Text Search (FTS) Cloudflare D1 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/uji-kecepatan-internet-dari-terminal.html` | Uji Kecepatan Internet dari Terminal: Panduan Santai - Layar Kosong | Uji Kecepatan Internet dari Terminal: Panduan Santai | Layar Kosong | ✅ Perfect |
-| `warta-tekno/uninstall-paket-global-npm.html` | Cara Uninstall Paket Global Node.js (npm, yarn, pnpm) - Layar Kosong | Cara Uninstall Paket Global Node.js (npm, yarn, pnpm) | Layar Kosong | ✅ Perfect |
+| `warta-tekno/uninstall-paket-global-npm.html` | Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm) - Layar Kosong | Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm) | Layar Kosong | ✅ Perfect |
 | `warta-tekno/unlicense-domain-publik.html` | Pahami UNLICENSE: Dedikasi Domain Publik Tanpa Basa-Basi - Layar Kosong | Pahami UNLICENSE: Dedikasi Domain Publik Tanpa Basa-Basi | Layar Kosong | ✅ Perfect |
 | `warta-tekno/urutan-workflow-github.html` | Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache - Layar Kosong | Urutan Workflow GitHub Actions yang Benar: Checkout → Setup → Cache | Layar Kosong | ✅ Perfect |
 | `warta-tekno/verifikasi-wajah-claude-anthropic.html` | Verifikasi Wajah Claude Anthropic per 8 Juli 2026 - Layar Kosong | Verifikasi Wajah Claude Anthropic per 8 Juli 2026 | Layar Kosong | ✅ Perfect |
