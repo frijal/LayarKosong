@@ -1,27 +1,65 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
+<!DOCTYPE html><html lang="id" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm)</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm) - Layar Kosong</title>
     <meta name="description" content="Panduan praktis menghapus paket global Node.js di Linux, macOS, dan Windows. Perintah npm, yarn, dan pnpm untuk membersihkan tool yang tidak terpakai.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/uninstall-paket-global-npm">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Node.js, npm, yarn, pnpm, uninstall, global package, hapus paket, terminal, perintah">
+    <meta name="promphint" content="Bagaimana cara hapus paket global Node.js? | Gunakan perintah npm uninstall -g, yarn global remove, atau pnpm remove -g di terminal atau PowerShell.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
     <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/uninstall-paket-global-npm">
     <meta property="og:title" content="Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm)">
     <meta property="og:description" content="Bingung cara hapus paket global yang udah nggak kepake? Ikuti panduan sederhana ini untuk uninstall global packages di semua sistem operasi.">
-    <meta property="og:url" content="https://dalam.web.id/artikel/uninstall-paket-global-npm.html">
+    <meta property="og:updated_time" content="2025-10-24T22:36:00.203Z">
     <meta property="og:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfHmca374VyTQpTGZqI50OD14YY9bqX2q6-NtCxShz7853zf1fxJCMzpsVlnkpjFPgdLaacSxqmcj-xYu2ya698Vk9TiKiiecuTsodx6anjpecNheP_FzGqlJL_1KHtU77a9bpvv4P2fBl6la4U9E1twADlCZta9GQp3se1tbRf0zOIFCxSzz0xzxs7KY/s1600/npmlist.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfHmca374VyTQpTGZqI50OD14YY9bqX2q6-NtCxShz7853zf1fxJCMzpsVlnkpjFPgdLaacSxqmcj-xYu2ya698Vk9TiKiiecuTsodx6anjpecNheP_FzGqlJL_1KHtU77a9bpvv4P2fBl6la4U9E1twADlCZta9GQp3se1tbRf0zOIFCxSzz0xzxs7KY/s1600/npmlist.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfHmca374VyTQpTGZqI50OD14YY9bqX2q6-NtCxShz7853zf1fxJCMzpsVlnkpjFPgdLaacSxqmcj-xYu2ya698Vk9TiKiiecuTsodx6anjpecNheP_FzGqlJL_1KHtU77a9bpvv4P2fBl6la4U9E1twADlCZta9GQp3se1tbRf0zOIFCxSzz0xzxs7KY/s1600/npmlist.webp">
+    <meta property="og:image:alt" content="Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm)">
+    <meta property="og:image:width" content="1000">
+    <meta property="og:image:height" content="558">
+    <meta property="og:image:type" content="image/webp">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/uninstall-paket-global-npm">
     <meta name="twitter:title" content="Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm)">
     <meta name="twitter:description" content="Tutorial singkat dan jelas untuk menghapus paket global di Node.js menggunakan npm, yarn, atau pnpm. Cocok buat bersih-bersih tool lama.">
     <meta name="twitter:image" content="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfHmca374VyTQpTGZqI50OD14YY9bqX2q6-NtCxShz7853zf1fxJCMzpsVlnkpjFPgdLaacSxqmcj-xYu2ya698Vk9TiKiiecuTsodx6anjpecNheP_FzGqlJL_1KHtU77a9bpvv4P2fBl6la4U9E1twADlCZta9GQp3se1tbRf0zOIFCxSzz0xzxs7KY/s1600/npmlist.webp">
-    <link rel="canonical" href="https://dalam.web.id/artikel/uninstall-paket-global-npm.html">
-    <meta name="news_keywords" content="Node.js, npm, yarn, pnpm, uninstall, global package, hapus paket, terminal, perintah">
+    <meta name="twitter:image:alt" content="Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm)">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="twitter:account_id" content="1872520777138122752">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.rss">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.atom">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Node.js">
     <meta property="article:tag" content="Programming">
     <meta property="article:tag" content="Tutorial">
-    <meta name="promphint" content="Bagaimana cara hapus paket global Node.js? | Gunakan perintah npm uninstall -g, yarn global remove, atau pnpm remove -g di terminal atau PowerShell.">
-        <meta property="article:published_time" content="2025-10-24T22:29:10.316Z">
-    <meta property="article:modified_time" content="2025-12-20T10:31:44.740Z">
+    <meta property="article:published_time" content="2025-10-24T22:29:10.316Z">
+    <meta property="article:modified_time" content="2025-10-24T22:36:00.203Z">
     <style>
         /* ===== RESET & BASE ===== */
         *,
@@ -31,7 +69,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --screen-padding: 1rem;
             --nested-padding: 0rem;
@@ -54,14 +91,12 @@
             --code-text: #1a1a1a;
             --code-border: #d6d2cb;
         }
-
         @media (min-width: 1024px) {
             :root {
                 --screen-padding: 2.5rem;
                 --nested-padding: 1.5rem;
             }
         }
-
         @media (prefers-color-scheme: dark) {
             :root {
                 --bg-body: #121212;
@@ -80,11 +115,9 @@
                 --code-border: #444444;
             }
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: var(--font-body);
             background: var(--bg-body);
@@ -96,7 +129,6 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
         /* ===== CONTAINER ===== */
         .container {
             width: min(100%, var(--max-width));
@@ -104,7 +136,6 @@
             padding-inline: var(--screen-padding);
             padding-block: 2rem 1.5rem;
         }
-
         /* ===== CARD / ARTIKEL ===== */
         .article-card {
             background: var(--bg-card);
@@ -115,7 +146,6 @@
             border: 1px solid var(--border-color);
             transition: background 0.2s, border-color 0.2s;
         }
-
         @media (max-width: 640px) {
             .article-card {
                 background: transparent;
@@ -126,7 +156,6 @@
                 border-radius: 0;
             }
         }
-
         /* ===== TIPOGRAFI ===== */
         h1,
         h2,
@@ -137,13 +166,11 @@
             line-height: 1.25;
             color: var(--text-primary);
         }
-
         h1 {
             font-size: 2.2rem;
             margin-bottom: 0.5rem;
             letter-spacing: -0.02em;
         }
-
         .lead {
             font-size: 1.125rem;
             color: var(--text-secondary);
@@ -152,37 +179,31 @@
             padding-left: 1rem;
             font-weight: 400;
         }
-
         h2 {
             font-size: 1.6rem;
             margin-top: 2.5rem;
             margin-bottom: 0.75rem;
             color: var(--text-primary);
         }
-
         h3 {
             font-size: 1.3rem;
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
         }
-
         p {
             margin-bottom: 1rem;
             color: var(--text-secondary);
         }
-
         a {
             color: var(--link-color);
             text-decoration: underline;
             text-underline-offset: 2px;
             transition: color 0.15s;
         }
-
         a:hover {
             color: var(--link-hover);
         }
-
         /* ===== GAMBAR ===== */
         .article-image {
             width: 100%;
@@ -192,7 +213,6 @@
             background: var(--border-color);
             overflow: hidden;
         }
-
         .article-image img {
             width: 100%;
             height: auto;
@@ -201,7 +221,6 @@
             object-fit: cover;
             border-radius: var(--radius);
         }
-
         .article-image figcaption {
             font-size: 0.875rem;
             color: var(--text-muted);
@@ -209,7 +228,6 @@
             padding-top: 0.5rem;
             font-style: italic;
         }
-
         /* ===== CODE BLOCK ===== */
         pre {
             background: var(--code-bg);
@@ -223,7 +241,6 @@
             font-family: "JetBrains Mono", "Cascadia Code", "Fira Code", monospace;
             color: var(--code-text);
         }
-
         pre code {
             background: transparent;
             padding: 0;
@@ -231,7 +248,6 @@
             font-size: inherit;
             color: inherit;
         }
-
         code {
             background: var(--code-bg);
             padding: 0.15rem 0.4rem;
@@ -241,7 +257,6 @@
             color: var(--code-text);
             border: 1px solid var(--code-border);
         }
-
         /* ===== DETAILS / ACCORDION ===== */
         details {
             margin-top: 1.5rem;
@@ -252,11 +267,9 @@
             overflow: hidden;
             transition: border-color 0.2s;
         }
-
         details[open] {
             border-color: var(--link-color);
         }
-
         summary {
             cursor: pointer;
             padding: 0.9rem 1.25rem;
@@ -272,11 +285,9 @@
             gap: 0.5rem;
             user-select: none;
         }
-
         summary::-webkit-details-marker {
             display: none;
         }
-
         summary::before {
             content: "▸";
             font-size: 1.2rem;
@@ -285,15 +296,12 @@
             color: var(--link-color);
             margin-right: 0.25rem;
         }
-
         details[open] summary::before {
             transform: rotate(90deg);
         }
-
         summary:hover {
             background: var(--summary-hover);
         }
-
         summary h2,
         summary h3 {
             display: inline;
@@ -303,20 +311,16 @@
             padding: 0;
             color: inherit;
         }
-
         details> :not(summary) {
             padding: 0.25rem 1.25rem 1.25rem 1.25rem;
         }
-
         details> :not(summary) p:last-child {
             margin-bottom: 0;
         }
-
         details details {
             margin: 0.75rem 0;
             border-color: var(--border-color);
         }
-
         /* ===== INLINE FORMAT ===== */
         b {
             font-weight: 700;
@@ -333,18 +337,15 @@
             text-decoration: line-through;
             color: var(--text-muted);
         }
-
         /* ===== LIST ===== */
         ul,
         ol {
             margin: 0.5rem 0 1.25rem 1.5rem;
             color: var(--text-secondary);
         }
-
         li {
             margin-bottom: 0.35rem;
         }
-
         /* ===== BLOCKQUOTE ===== */
         blockquote {
             border-left: 4px solid var(--link-color);
@@ -355,11 +356,9 @@
             font-style: italic;
             color: var(--text-secondary);
         }
-
         blockquote p:last-child {
             margin-bottom: 0;
         }
-
         /* ===== FOOTER ===== */
         .article-footer {
             margin-top: 2.5rem;
@@ -373,18 +372,15 @@
             font-size: 0.9rem;
             color: var(--text-muted);
         }
-
         .article-footer span {
             display: inline-flex;
             align-items: center;
             gap: 0.3rem;
         }
-
         .article-footer .sep {
             color: var(--border-color);
             font-weight: 300;
         }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             body {
@@ -431,7 +427,6 @@
                 padding: 0.75rem;
             }
         }
-
         @media (max-width: 480px) {
             h1 {
                 font-size: 1.5rem;
@@ -462,7 +457,6 @@
                 padding: 0.6rem;
             }
         }
-
         /* ===== PRINT ===== */
         @media print {
             body {
@@ -506,100 +500,71 @@
             }
         }
     </style>
-</head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
-
     <main>
         <div class="container">
             <article class="article-card">
-
                 <header>
                     <h1>Cara Gampang Uninstall Paket Global Node.js (npm, yarn, pnpm)</h1>
                     <p class="lead">Sudah install banyak tool global tapi bingung cara hapusnya? Panduan santai ini bakal ngebantu kamu membersihkan paket-paket Node.js yang udah nggak kepake—di Linux, macOS, maupun Windows. Gampang, kok!</p>
                 </header>
-
                 <p>Pernah nggak sih, kamu iseng-install berbagai <b>tool global</b> di Node.js karena lihat tutorial atau pengen coba-coba? Lama-lama daftar paket jadi menumpuk, dan kamu lupa sebenernya paket itu masih dipake apa nggak. Atau mungkin kamu salah install dan bingung cara hapusnya. Tenang, ini adalah masalah yang wajar banget.</p>
-
                 <p>Untungnya, membersihkan paket global itu jauh lebih mudah daripada yang kamu bayangkan. <b>Perintahnya mirip banget sama waktu kamu install</b>. Cukup ganti kata <i>install</i> jadi <i>uninstall</i> atau <i>remove</i>, dan selesai! Di panduan ini, kita bakal bahas cara hapus paket global pakai tiga package manager paling populer: <b>npm, yarn, dan pnpm</b>—di semua sistem operasi.</p>
-
                 <figure class="article-image">
                     <img src="https://dalam.web.id/img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgfHmca374VyTQpTGZqI50OD14YY9bqX2q6-NtCxShz7853zf1fxJCMzpsVlnkpjFPgdLaacSxqmcj-xYu2ya698Vk9TiKiiecuTsodx6anjpecNheP_FzGqlJL_1KHtU77a9bpvv4P2fBl6la4U9E1twADlCZta9GQp3se1tbRf0zOIFCxSzz0xzxs7KY/s1600/npmlist.webp" alt="Tangkapan layar terminal yang menunjukkan perintah npm list -g --depth=0 dan npm uninstall -g untuk menghapus paket global" width="1200" height="675" fetchpriority="high" decoding="async">
                     <figcaption>Perintah uninstall global paket di terminal. Mudah dan cepat!</figcaption>
                 </figure>
-
                 <p>Sebelum mulai, pastikan kamu udah tahu dulu paket mana aja yang terpasang secara global. Kamu bisa pake perintah <code>npm list -g --depth=0</code> (atau versi yarn/pnpm-nya) buat lihat daftarnya. Setelah itu, tinggal pilih paket yang mau dihapus, dan ikuti langkah-langkah di bawah ini.</p>
-
                 <!-- ===== BAGIAN 1: LINUX & MACOS ===== -->
                 <details>
-                    <summary><h2>1. Terminal (Linux & macOS) 🐧🍎</h2></summary>
-
+                    <summary><h2>1. Terminal (Linux &amp; macOS) 🐧🍎</h2></summary>
                     <p>Buat kamu pengguna Linux (Ubuntu, Fedora, BlankOn, CachyOS, atau distro apapun) dan macOS, kabar baik: <b>perintahnya sama persis</b>. Nggak ada perbedaan berarti. Yuk, kita bahas satu per satu.</p>
-
                     <h3>Untuk NPM</h3>
                     <p>NPM punya perintah <code>uninstall</code> yang bisa langsung dipakai. Tambahkan flag <code>-g</code> (atau <code>--global</code>) biar paket yang kehapus adalah yang terinstall secara global, bukan lokal.</p>
                     <pre><code>npm uninstall -g &lt;nama-paket&gt;</code></pre>
                     <p>Ganti <code>&lt;nama-paket&gt;</code> dengan nama tool yang mau kamu hapus. Misal <code>npm uninstall -g nodemon</code>.</p>
-
                     <h3>Untuk Yarn</h3>
                     <p>Yarn punya sintaks yang sedikit berbeda, tapi nggak kalah simpel. Pakai perintah <code>global remove</code>.</p>
                     <pre><code>yarn global remove &lt;nama-paket&gt;</code></pre>
                     <p>Lebih deskriptif, ya? <i>Global remove</i> jelas banget maksudnya.</p>
-
                     <h3>Untuk PNPM</h3>
                     <p>PNPM mengikuti gaya NPM. Kamu bisa pake <code>remove</code> atau <code>rm</code>, plus flag <code>-g</code>.</p>
                     <pre><code>pnpm remove -g &lt;nama-paket&gt;</code></pre>
-
                     <p><b>Catatan Penting (Linux/macOS):</b> Kalau dulu kamu install paket-paket ini pake <code>sudo</code> (misal: <code>sudo npm install -g ...</code>), maka kamu <u>harus</u> pakai <code>sudo</code> juga waktu uninstall. Contoh: <code>sudo npm uninstall -g &lt;nama-paket&gt;</code>. Ini karena paket global sering disimpan di direktori sistem yang dilindungi.</p>
                 </details>
-
                 <!-- ===== BAGIAN 2: WINDOWS ===== -->
                 <details>
                     <summary><h2>2. Windows (PowerShell) 💻</h2></summary>
-
                     <p>Pengguna Windows, jangan khawatir! <b>Perintahnya tetap sama</b> di PowerShell. Kamu nggak perlu belajar sintaks baru.</p>
-
                     <h3>Untuk NPM</h3>
                     <pre><code>npm uninstall -g &lt;nama-paket&gt;</code></pre>
-
                     <h3>Untuk Yarn</h3>
                     <pre><code>yarn global remove &lt;nama-paket&gt;</code></pre>
-
                     <h3>Untuk PNPM</h3>
                     <pre><code>pnpm remove -g &lt;nama-paket&gt;</code></pre>
-
-                    <p><b>Catatan Penting (Windows):</b> Paket global di Windows biasanya terinstall di folder yang dilindungi sistem, seperti <code>C:\Program Files\nodejs</code>. Karena itu, kamu mungkin perlu menjalankan PowerShell <b>sebagai Administrator</b> (klik kanan ikon PowerShell > "Run as administrator") biar proses hapusnya lancar. Ini mirip kayak <code>sudo</code> di Linux, tapi versi Windows-nya.</p>
+                    <p><b>Catatan Penting (Windows):</b> Paket global di Windows biasanya terinstall di folder yang dilindungi sistem, seperti <code>C:\Program Files\nodejs</code>. Karena itu, kamu mungkin perlu menjalankan PowerShell <b>sebagai Administrator</b> (klik kanan ikon PowerShell &gt; "Run as administrator") biar proses hapusnya lancar. Ini mirip kayak <code>sudo</code> di Linux, tapi versi Windows-nya.</p>
                 </details>
-
                 <!-- ===== BAGIAN 3: CONTOH PRAKTIS ===== -->
                 <details>
                     <summary><h2>3. Contoh Praktis (Studi Kasus) 🧑💻</h2></summary>
-
                     <p>Biar makin jelas, kita coba studi kasus. Misalnya, beberapa waktu lalu kamu menjalankan perintah <code>npm list -g --depth=0</code> dan melihat ada dua paket yang udah nggak terpakai: <b>nodemon</b> dan <b>pm2</b>. Keduanya udah nggak kamu butuhin lagi karena project lama udah selesai.</p>
-
                     <p>Nah, untuk membersihkannya, tinggal eksekusi perintah uninstall satu per satu:</p>
-
                     <pre><code>npm uninstall -g nodemon
         npm uninstall -g pm2</code></pre>
-
                     <p>Atau kalau kamu pake Yarn:</p>
                     <pre><code>yarn global remove nodemon
         yarn global remove pm2</code></pre>
-
                     <p>Atau pake PNPM:</p>
                     <pre><code>pnpm remove -g nodemon
         pnpm remove -g pm2</code></pre>
-
                     <p>Selesai! Paket-paket itu sekarang udah bersih dari laptop kamu. Gampang, 'kan? Cuma butuh beberapa detik.</p>
-
                     <p>Kamu juga bisa menggabungkan beberapa paket dalam satu baris perintah (untuk npm dan pnpm) dengan memisahkan paket pakai spasi, misalnya <code>npm uninstall -g nodemon pm2</code>. Tapi buat keamanan, lebih baik satu-satu dulu.</p>
                 </details>
-
                 <!-- ===== BAGIAN 4: TIPS TAMBAHAN ===== -->
                 <details>
                     <summary><h2>4. Tips Tambahan dan Perhatian ⚠️</h2></summary>
-
                     <p>Sebelum kamu asal hapus, ada beberapa hal kecil yang perlu diperhatikan biar prosesnya mulus.</p>
-
                     <h3>Cek Daftar Paket Global Dulu</h3>
                     <p>Jangan hapus paket kalau kamu nggak yakin fungsinya apa. Beberapa paket mungkin masih digunakan oleh tool lain secara diam-diam. Cara paling aman: <b>cek dulu daftar paket global</b> kamu.</p>
                     <ul>
@@ -607,10 +572,8 @@
                         <li>Yarn: <code>yarn global list</code></li>
                         <li>PNPM: <code>pnpm list -g --depth=0</code></li>
                     </ul>
-
                     <h3>Hati-hati dengan Dependensi</h3>
                     <p>Beberapa paket global bisa saling bergantung satu sama lain. Meskipun jarang, ada kemungkinan menghapus satu paket bisa mempengaruhi paket lain. Kalau ragu, cari tahu dulu fungsi paket tersebut sebelum dihapus.</p>
-
                     <h3>Bersihkan Cache (Opsional)</h3>
                     <p>Setelah uninstall, kamu juga bisa membersihkan cache package manager untuk menghemat ruang penyimpanan. Tapi ini nggak wajib.</p>
                     <ul>
@@ -619,19 +582,13 @@
                         <li>PNPM: <code>pnpm store prune</code></li>
                     </ul>
                 </details>
-
                 <h2>Kesimpulan: Bersih-bersih Itu Menyenangkan</h2>
                 <p>Membersihkan paket global Node.js itu <b>mudah dan cepat</b>. Cukup satu perintah di terminal atau PowerShell, dan tool yang udah nggak terpakai bisa langsung lenyap. Ini bukan cuma soal menghemat ruang penyimpanan, tapi juga bikin lingkungan develop kamu lebih rapi dan mudah dikelola.</p>
-
                 <p>Jadi, lain kali kamu lihat daftar paket global yang penuh dan berantakan, jangan malas buat bersih-bersih. Dengan panduan ini, kamu udah punya semua yang diperlukan: <b>perintah untuk npm, yarn, dan pnpm</b>, di semua sistem operasi. Selamat membersihkan!</p>
-
                 <p>Oh iya, kalau artikel ini membantu, jangan lupa share ke teman-temanmu yang juga mungkin lagi berantem dengan paket-paket global yang numpuk. Mereka pasti berterima kasih.</p>
-
                 <!-- ===== SIGNATURE ===== -->
-                <!--wajib ini tulis signature artikel oleh LayarKosong-->
-
+                <div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>
             </article>
-
             <!-- ===== FOOTER ===== -->
             <footer class="article-footer">
                 <span>✍️ <b>Fakhrul</b></span>
@@ -639,9 +596,10 @@
                 <span>📅 27 Oktober 2025</span>
                                <span class="sep">|</span>
                 <span>📖 <a href="https://docs.npmjs.com/cli/v10/commands/npm-uninstall" target="_blank" rel="noopener noreferrer">NPM Docs</a></span>
-            </footer>
+             <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
         </div>
     </main>
-
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script defer="" src="/ext/balon-cf.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script>
+<script defer="" src="/ext/highlight.js"></script>
+<script>hljs.highlightAll();</script>
+</body></html>
