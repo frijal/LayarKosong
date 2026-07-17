@@ -579,7 +579,7 @@ if (isMobileLayout) {
 }
 
 // =========================================================================
-// 2c. FITUR WIDGET STICKY: BACK TO TOP (BTT) SMART SCROLL
+// 2c. FITUR WIDGET STICKY: BACK TO TOP (BTT) SMART SCROLL (INSTANT)
 // =========================================================================
 function initBackToTop(): void {
   if (document.querySelector('.layar-kosong-btt')) return;
@@ -587,18 +587,19 @@ function initBackToTop(): void {
   const btt = document.createElement('a');
   btt.href = '#';
   btt.className = 'layar-kosong-btt';
-  btt.textContent = '🔝';
-  btt.title = 'Kembali ke atas';
-  btt.setAttribute('aria-label', 'Kembali ke atas');
+btt.textContent = '🔝';
+btt.title = 'Kembali ke atas';
+btt.setAttribute('aria-label', 'Kembali ke atas');
 
-  btt.addEventListener('click', (e: MouseEvent) => {
-    e.preventDefault();
-    window.scrollTo(0, 0);
-  });
+btt.addEventListener('click', (e: MouseEvent) => {
+  e.preventDefault();
+  // ⚡ Modifikasi: Teleportasi instan ke 0px tanpa animasi
+  window.scrollTo({ top: 0, behavior: 'instant' });
+});
 
-  // Fitur Smart Visibility: Muncul hanya saat di-scroll ke bawah
-  btt.style.opacity = '0';
-  btt.style.pointerEvents = 'none';
+// Fitur Smart Visibility: Muncul hanya saat di-scroll ke bawah
+btt.style.opacity = '0';
+btt.style.pointerEvents = 'none';
 
 window.addEventListener('scroll', () => {
   if (window.scrollY > 300) {
