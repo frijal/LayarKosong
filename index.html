@@ -397,15 +397,19 @@ footer {
   gap: 18px;
   margin-bottom: 36px;
 }
+
 .social-icon {
-  opacity: 0.6;
-/*  filter: grayscale(100%); */
-  transition: all 0.2s ease;
+  opacity: 0.6; /* Sedikit transparan saat diam */
+  /* Cuma pakai drop-shadow buat aura tipis penyelamat ikon hitam */
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.6));
+  transition: all 0.3s ease;
 }
+
 .social-links a:hover .social-icon,
 .social-links a:focus-visible .social-icon {
-  opacity: 1;
-  filter: grayscale(0%);
+  opacity: 1; /* Warna jadi 100% pekat/jelas saat disentuh */
+  /* Glow makin terang dan ikon meloncat */
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 1));
   transform: translateY(-3px);
 }
 .footer-links {
