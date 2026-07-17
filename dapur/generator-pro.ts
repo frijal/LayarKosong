@@ -10,21 +10,11 @@ const C = {
     hub: 'https://pubsubhubbub.appspot.com/' // 🔔 Hub WebSub publik (Google, masih conform ke spec 0.4 per Juli 2026)
 };
 
-// --- KAMUS KATEGORI UNTUK META TAG SEO ---
-const CATEGORY_LABELS: Record<string, string> = {
-    "gaya-hidup": "Budaya, Kuliner, Lifestyle",
-    "jejak-sejarah": "Jejak Sejarah",
-    "lainnya": "Lainnya",
-    "olah-media": "Multimedia, Editing",
-    "opini-sosial": "Catatan, Sosial",
-    "sistem-terbuka": "Linux, Open Source",
-    "warta-tekno": "Windows, Teknologi Umum"
-};
-
+// --- FORMAT KATEGORI OTOMATIS ---
 const getCategoryLabel = (catSlug: string) => {
-    return CATEGORY_LABELS[catSlug] || catSlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    return catSlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 };
-// -----------------------------------------
+// --------------------------------------------------
 
 const BASE_RE = C.base.replace(/\./g, '\\.');
 
