@@ -328,10 +328,6 @@ if ($('script[src="/ext/lightbox.js"]').length === 0) {
       $("body").append(`<script defer src="/ext/response.js"></script>`);
   }
   
-  if ($('script[src="/ext/balon-cf.js"]').length === 0) {
-      $("body").append(`<script defer src="/ext/balon-cf.js"></script>`);
-  }
-  
   // --- GUARD KHUSUS UNTUK INLINE SCRIPT (LLMs) ---
   let hasLlmsScript = false;
   $("script:not([src])").each((_, el) => {
