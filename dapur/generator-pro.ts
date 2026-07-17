@@ -277,8 +277,8 @@ const distribute = async (
 
     const [eta, stm, mst] = await Promise.all([
         Bun.file(`${C.root}/artikel.json`).json().catch(() => ({})),
-                                              Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
-                                              Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
+        Bun.file(`${C.root}/sitemap.txt`).text().catch(() => ''),
+        Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
     ]);
 
     const urls  = new Set(stm.split('\n').filter(Boolean));
@@ -516,10 +516,10 @@ sitemapByCategory.get(catSlug)!.push(`
 
     await Promise.all([
         ...categorySitemapItems.map(it => Bun.write(`${C.root}/${it.fileName}`, it.content)),
-                      Bun.write(`${C.root}/sitemap.xml`, finalSitemapIndexContent),
-                      Bun.write(`${C.root}/sitemap.txt`, Array.from(urls).sort().join('\n') + '\n'),
-                      Bun.write(`${C.root}/rss.rss`, buildRss('Layar Kosong', flat.slice(0, C.limit), `${C.base}/rss.rss`, 'RSS Feed artikel terbaru dari Layar Kosong', globalSizes)),
-                      Bun.write(`${C.root}/atom.atom`, buildAtom('Layar Kosong', flat.slice(0, C.limit), `${C.base}/atom.atom`, 'Atom Feed artikel terbaru dari Layar Kosong', globalSizes)),
+        Bun.write(`${C.root}/sitemap.xml`, finalSitemapIndexContent),
+        Bun.write(`${C.root}/sitemap.txt`, Array.from(urls).sort().join('\n') + '\n'),
+        Bun.write(`${C.root}/rss.rss`, buildRss('Layar Kosong', flat.slice(0, C.limit), `${C.base}/rss.rss`, 'RSS Feed artikel terbaru dari Layar Kosong', globalSizes)),
+        Bun.write(`${C.root}/atom.atom`, buildAtom('Layar Kosong', flat.slice(0, C.limit), `${C.base}/atom.atom`, 'Atom Feed artikel terbaru dari Layar Kosong', globalSizes)),
     ]);
 
     const rootNewest = flat[0]?.loc;
