@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/16/2026, 2:53:41 PM
+Generated on: 7/17/2026, 2:26:40 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -12,11 +12,10 @@ Generated on: 7/16/2026, 2:53:41 PM
 | `disclosure.html` | FTC Disclosure & Transparansi Afiliasi - Layar Kosong | FTC Disclosure & Transparansi Afiliasi | Layar Kosong | ✅ Perfect |
 | `feed.html` | RSS Atom Feed - Artikel Terbaru - Layar Kosong | RSS Feed – Artikel Terbaru | Layar Kosong | ✅ Perfect |
 | `google2e9cfaf2f2923d27.html` | *(Missing)* | *(Missing)* | *(Missing)* | - |
-| `hit.html` | Dashboard Counter - Layar Kosong | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v25.27 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v25.30 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -742,6 +741,7 @@ Generated on: 7/16/2026, 2:53:41 PM
 | `artikel/kisah-al-khwarizmi.html` | Kisah al-Khwārizmī - Sang Bapak Aljabar - Layar Kosong | Kisah al-Khwārizmī - Sang Bapak Aljabar | Layar Kosong | ✅ Perfect |
 | `artikel/kisah-cinta-google-maps.html` | 10 Tahun Cinta Lansia di Google Maps: Dari Bahagia Bersama hingga Rumah Dirobohkan 😢 - Layar Kosong | 10 Tahun Cinta Lansia di Google Maps: Dari Bahagia Bersama hingga Rumah Dirobohkan 😢 | Layar Kosong | ✅ Perfect |
 | `artikel/kisah-gua-tsur-laba-laba-dan-burung-merpati-yang-melindungi-nabi-muhammad-saat-hijrah.html` | Kisah Gua Tsur: Laba-laba dan Burung Merpati yang Melindungi Nabi Muhammad SAW Saat Hijrah - Layar Kosong | Kisah Gua Tsur: Laba-laba dan Burung Merpati yang Melindungi Nabi Muhammad SAW Saat Hijrah | Layar Kosong | ✅ Perfect |
+| `artikel/kisah-inspiratif-dokter-cianjur-ijab-qabul.html` | Kisah Inspiratif Dokter di Cianjur: Berobat Sistem Ijab Qabul - Layar Kosong | Kisah Inspiratif Dokter di Cianjur: Berobat Sistem Ijab Qabul | Layar Kosong | ✅ Perfect |
 | `artikel/kisah-jenderal-soedirman.html` | Kisah Jenderal Soedirman: Dari Guru Ngaji Hingga Panglima Gerilya - Layar Kosong | Kisah Jenderal Soedirman: Dari Guru Ngaji Hingga Panglima Gerilya | Layar Kosong | ✅ Perfect |
 | `artikel/kisah-keluarga-sahabat-abu-dujanah.html` | Kisah Keluarga Sahabat: Air Mata Rasulullah Menetes - Abu Dujanah - Layar Kosong | Kisah Keluarga Sahabat: Air Mata Rasulullah Menetes - Abu Dujanah | Layar Kosong | ✅ Perfect |
 | `artikel/kisah-migrasi-oss-kutai.html` | Kisah Migrasi Software Legal di Kutai Kartanegara - Layar Kosong | Kisah Migrasi Software Legal di Kutai Kartanegara | Layar Kosong | ✅ Perfect |
@@ -810,6 +810,7 @@ Generated on: 7/16/2026, 2:53:41 PM
 | `artikel/libreoffice-online-kembali.html` | LibreOffice Online Kembali: Alternatif Open Source untuk Google Docs - Layar Kosong | LibreOffice Online Kembali: Alternatif Open Source untuk Google Docs | Layar Kosong | ✅ Perfect |
 | `artikel/lika-liku-perjalanan-ojol.html` | Lika-liku Perjalanan Ojol: Dari Perang Wilayah 2016 hingga Konflik Horizontal 2025 — Catatan Sejarah Transportasi Online Indonesia - Layar Kosong | Lika-liku Perjalanan Ojol: Dari Perang Wilayah 2016 hingga Konflik Horizontal 2025 — Catatan Sejarah Transportasi Online Indonesia | Layar Kosong | ✅ Perfect |
 | `artikel/lingkungan-desktop-linux-alternatif.html` | 5 Lingkungan Desktop Linux Alternatif: Lebih Ringan & Fleksibel dari GNOME - Layar Kosong | 5 Lingkungan Desktop Linux Alternatif: Lebih Ringan & Fleksibel dari GNOME | Layar Kosong | ✅ Perfect |
+| `artikel/linus-torvalds-ai-linux-kernel-sikap-resmi.html` | Linus Torvalds Buka Suara Soal AI di Linux Kernel: Begini Sikap Resminya - Layar Kosong | Linus Torvalds Buka Suara Soal AI di Linux Kernel: Begini Sikap Resminya | Layar Kosong | ✅ Perfect |
 | `artikel/linus-torvalds-linux.html` | Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua - Layar Kosong | Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua | Layar Kosong | ✅ Perfect |
 | `artikel/linux-bersama.html` | Linux Bisa Bekerja Sama dengan Windows & macOS - Layar Kosong | Linux Bisa Bekerja Sama dengan Windows & macOS | Layar Kosong | ✅ Perfect |
 | `artikel/linux-bukan-windows-adaptasi-produktivitas.html` | Linux Bukan Windows Cara Beradaptasi dan Meningkatkan Produktivitas Secara Maksimal - Layar Kosong | Linux Bukan Windows Cara Beradaptasi dan Meningkatkan Produktivitas Secara Maksimal | Layar Kosong | ✅ Perfect |
@@ -1822,6 +1823,7 @@ Generated on: 7/16/2026, 2:53:41 PM
 | `jejak-sejarah/keutamaan-salam.html` | Keutamaan Mengucapkan Salam dan Bahaya Singkatannya - Layar Kosong | Keutamaan Mengucapkan Salam dan Bahaya Singkatannya | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kisah-al-khwarizmi.html` | Kisah al-Khwārizmī - Sang Bapak Aljabar - Layar Kosong | Kisah al-Khwārizmī - Sang Bapak Aljabar | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kisah-gua-tsur-laba-laba-dan-burung-merpati-yang-melindungi-nabi-muhammad-saat-hijrah.html` | Kisah Gua Tsur: Laba-laba dan Burung Merpati yang Melindungi Nabi Muhammad SAW Saat Hijrah - Layar Kosong | Kisah Gua Tsur: Laba-laba dan Burung Merpati yang Melindungi Nabi Muhammad SAW Saat Hijrah | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/kisah-inspiratif-dokter-cianjur-ijab-qabul.html` | Kisah Inspiratif Dokter di Cianjur: Berobat Sistem Ijab Qabul - Layar Kosong | Kisah Inspiratif Dokter di Cianjur: Berobat Sistem Ijab Qabul | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kisah-keluarga-sahabat-abu-dujanah.html` | Kisah Keluarga Sahabat: Air Mata Rasulullah Menetes - Abu Dujanah - Layar Kosong | Kisah Keluarga Sahabat: Air Mata Rasulullah Menetes - Abu Dujanah | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kisah-nabi-nuh-dan-bahaya-kemusyrikan.html` | Kisah Nabi Nuh dan Bahaya Kemusyrikan yang Sering Tidak Disadari - Layar Kosong | Kisah Nabi Nuh dan Bahaya Kemusyrikan yang Sering Tidak Disadari | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/kisah-qarun.html` | Kisah Qarun: Pelajaran Pahit Tentang Harta dan Kesombongan (QS. Al-Qaṣaṣ) - Layar Kosong | Kisah Qarun: Pelajaran Pahit Tentang Harta dan Kesombongan (QS. Al-Qaṣaṣ) | Layar Kosong | ✅ Perfect |
@@ -2587,6 +2589,7 @@ Generated on: 7/16/2026, 2:53:41 PM
 | `sistem-terbuka/kutai-kartanegara-oss-2010.html` | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi - Layar Kosong | OSS Kutai Kartanegara 2010 - Sosialisasi & Migrasi | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/libreoffice-kritik-format-proprietary-xlsx-konsultasi-cra.html` | LibreOffice kritik Komisi Eropa pakai format XLSX proprietary di konsultasi CRA - Layar Kosong | LibreOffice kritik Komisi Eropa pakai format XLSX proprietary di konsultasi CRA | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/lingkungan-desktop-linux-alternatif.html` | 5 Lingkungan Desktop Linux Alternatif: Lebih Ringan & Fleksibel dari GNOME - Layar Kosong | 5 Lingkungan Desktop Linux Alternatif: Lebih Ringan & Fleksibel dari GNOME | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/linus-torvalds-ai-linux-kernel-sikap-resmi.html` | Linus Torvalds Buka Suara Soal AI di Linux Kernel: Begini Sikap Resminya - Layar Kosong | Linus Torvalds Buka Suara Soal AI di Linux Kernel: Begini Sikap Resminya | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linus-torvalds-linux.html` | Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua - Layar Kosong | Linus Torvalds, Sang Jenius di Balik Linux dan Git: Open Source untuk Semua | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-bersama.html` | Linux Bisa Bekerja Sama dengan Windows & macOS - Layar Kosong | Linux Bisa Bekerja Sama dengan Windows & macOS | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/linux-bukan-windows-adaptasi-produktivitas.html` | Linux Bukan Windows Cara Beradaptasi dan Meningkatkan Produktivitas Secara Maksimal - Layar Kosong | Linux Bukan Windows Cara Beradaptasi dan Meningkatkan Produktivitas Secara Maksimal | Layar Kosong | ✅ Perfect |
