@@ -179,6 +179,10 @@ https://:version.:project.pages.dev/*
   Content-Type: application/rss+xml; charset=utf-8
 /atom.atom
   Content-Type: application/atom+xml; charset=utf-8
+/jejak-sejarah.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/jejak-sejarah.atom
+  Content-Type: application/atom+xml; charset=utf-8
 /sistem-terbuka.rss
   Content-Type: application/rss+xml; charset=utf-8
 /sistem-terbuka.atom
@@ -202,9 +206,5 @@ https://:version.:project.pages.dev/*
 /gaya-hidup.rss
   Content-Type: application/rss+xml; charset=utf-8
 /gaya-hidup.atom
-  Content-Type: application/atom+xml; charset=utf-8
-/jejak-sejarah.rss
-  Content-Type: application/rss+xml; charset=utf-8
-/jejak-sejarah.atom
   Content-Type: application/atom+xml; charset=utf-8
 # --- END LK-AUTOGEN ---
