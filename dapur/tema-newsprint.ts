@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * homepage.ts - Dapur Pacu buat Layout "Ecosystem Index"
+ * tema-newsprint.ts - Dapur Pacu buat Layout "Ecosystem Index"
  * + Auto-grouping by Category (Rubrik)
  * + Max 4 Artikel Terbaru per Rail
  * + Auto-Sort Kategori berdasarkan Update Terbaru
