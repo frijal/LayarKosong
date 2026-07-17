@@ -390,7 +390,7 @@ async function processFile(file: string, baseUrl: string, fallbackTime: string) 
 
     // --- 3. OPERASI STERILISASI (CLEANUP) ---
     $("html")
-    .attr("lang", "id")
+    .attr("lang", "id-ID")
     .attr("prefix", "og: https://ogp.me/ns# article: https://ogp.me/ns/article#");
 
     $("title").remove();
