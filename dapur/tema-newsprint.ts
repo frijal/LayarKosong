@@ -142,17 +142,15 @@ function renderRails(groupedData: Record<string, Article[]>): void {
       `;
 
       // 💰 ADS SLOT 💰
-      // Sisipkan iklan setelah rubrik kedua (index 1) dirender.
-      // Sesuaikan "i === 1" kalau mau ganti posisi (misal: i === 2 untuk setelah rubrik ke-3)
       if (i === 1) {
         htmlContent += `
         <div class="ad-slot-editorial" style="
-        margin: 46px auto 0 auto; /* Menyamai jarak antar rail */
+        margin: 46px auto 0 auto;
         padding-bottom: 46px;
         border-bottom: 1px solid var(--color-rule);
         text-align: center;
         width: 100%;
-        min-height: 140px; /* 🔥 PENTING: Anti-CLS, asumsikan tinggi iklan 90px + margin */
+        min-height: 140px; /* Anti-CLS, akan dihapus jika iklan kosong */
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -175,7 +173,6 @@ function renderRails(groupedData: Record<string, Article[]>): void {
   try {
     const adsElements = document.querySelectorAll('.adsbygoogle');
     if (adsElements.length > 0 && (window as any).adsbygoogle) {
-      // Loop untuk mendaftarkan semua unit iklan (kalau lu masukin lebih dari 1)
       adsElements.forEach(() => {
         (window as any).adsbygoogle.push({});
       });
@@ -183,6 +180,29 @@ function renderRails(groupedData: Record<string, Article[]>): void {
   } catch (err) {
     console.warn("Iklan gagal dimuat:", err);
   }
+
+  // 🔥 SCRIPT TUKANG SAPU: AUTO-COLLAPSE GAP JIKA IKLAN DIBLOKIR 🔥
+  // Kita taruh di luar try-catch supaya tetap jalan meskipun AdBlocker memblokir total script Google
+  setTimeout(() => {
+    document.querySelectorAll('.ad-slot-editorial').forEach((wrapper) => {
+      const ins = wrapper.querySelector('.adsbygoogle') as HTMLElement;
+
+      // Syarat iklan diblokir/kosong:
+      // 1. Elemen ins tidak ada
+      // 2. innerHTML kosong (AdBlocker mencegat iframe Google)
+      // 3. Status 'unfilled' (Google tidak punya stok iklan untuk ditampilkan)
+      // 4. offsetHeight 0 (Disembunyikan paksa oleh AdBlocker via CSS)
+      if (
+        !ins ||
+        ins.innerHTML.trim() === '' ||
+        ins.getAttribute('data-ad-status') === 'unfilled' ||
+        ins.offsetHeight === 0
+      ) {
+        // Runtuhkan total wrapper-nya! Margin, padding, dan border ikut lenyap.
+        (wrapper as HTMLElement).style.display = 'none';
+      }
+    });
+  }, 2000); // Toleransi waktu 2 detik (ngasih waktu buat AdSense mikir/loading)
 }
 
 function initSearch(): void {
