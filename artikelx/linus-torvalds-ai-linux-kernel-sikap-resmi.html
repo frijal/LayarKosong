@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Linus Torvalds Buka Suara Soal AI di Linux Kernel: Begini Sikap Resminya</title>
+    <meta name="description" content="Linus Torvalds secara terbuka menyatakan bahwa Linux bukan proyek anti-AI. Ia menegaskan AI adalah alat yang berguna, asalkan digunakan dengan bijak untuk membantu maintainer, bukan sekadar sumber masalah.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Linus Torvalds Buka Suara Soal AI di Linux Kernel: Begini Sikap Resminya">
+    <meta property="og:description" content="Dalam diskusi milis kernel, Linus menolak sikap anti-AI dan menegaskan bahwa AI adalah alat teknis yang sah. Namun ia juga mengingatkan agar alat ini benar-benar membantu, bukan merepotkan maintainer.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/linus-torvalds-ai-linux-kernel-sikap-resmi.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2017%2C%202026%2C%2011_52_03%20AM.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Linus Torvalds Buka Suara Soal AI di Linux Kernel: Sikap Resmi">
+    <meta name="twitter:description" content="Linus Torvalds menegaskan Linux tidak anti-AI, tapi AI harus membantu maintainer. Simak pernyataan lengkapnya dan apa implikasinya bagi kontributor kernel.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2017%2C%202026%2C%2011_52_03%20AM.png">
+    <link rel="canonical" href="https://dalam.web.id/artikel/linus-torvalds-ai-linux-kernel-sikap-resmi.html">
+    <meta name="news_keywords" content="Linus Torvalds, Linux kernel, AI, artificial intelligence, open source, kernel development, maintainer, LLM, coding assistant">
+    <meta property="article:tag" content="Linus Torvalds">
+    <meta property="article:tag" content="Linux kernel">
+    <meta property="article:tag" content="AI">
+    <meta property="article:tag" content="open source">
+    <meta name="promphint" content="Apakah Linux melarang penggunaan AI untuk kontribusi kernel? | Tidak, Linux tidak melarang. Linus Torvalds menegaskan AI adalah alat yang berguna, asalkan digunakan untuk membantu maintainer, bukan sekadar mengirim kode asal-asalan.">
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+            --bg-body: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-primary: #1e1e2a;
+            --text-secondary: #2d2d3f;
+            --text-muted: #4a4a5e;
+            --border-light: #e2e4ea;
+            --accent: #0d6efd;
+            --accent-hover: #0b5ed7;
+            --shadow-card: 0 2px 8px rgba(0,0,0,0.06);
+            --radius-card: 12px;
+            --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-heading: var(--font-body);
+            --line-height-body: 1.7;
+            --line-height-heading: 1.3;
+        }
+
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 1.5rem;
+            }
+        }
+
+        body {
+            background: var(--bg-body);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1.125rem;
+            line-height: var(--line-height-body);
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 64rem;
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+            padding-block: 2rem;
+        }
+
+        /* Main card article */
+        .article-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-card);
+            padding: 1.5rem 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .article-card {
+                padding: 2rem 1.8rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .article-card {
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                border-radius: 0;
+            }
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            line-height: var(--line-height-heading);
+            color: var(--text-primary);
+            margin-top: 1.8rem;
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-top: 2.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.6rem;
+            margin-bottom: 0.4rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+        /* Images */
+        .article-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            display: block;
+            background: #e9ecef;
+        }
+
+        figcaption {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Detail / Accordion */
+        details {
+            margin: 1.8rem 0 1.2rem 0;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 0.5rem 0.8rem;
+            background: rgba(255,255,255,0.4);
+            transition: background 0.2s;
+        }
+        details:hover {
+            background: rgba(255,255,255,0.8);
+        }
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.4rem 0.2rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary::before {
+            content: "▶";
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+            color: var(--accent);
+        }
+        details[open] summary::before {
+            content: "▼";
+        }
+        details[open] {
+            background: rgba(255,255,255,0.9);
+            border-color: var(--accent);
+        }
+        details > *:not(summary) {
+            padding: 0.5rem 0.2rem 0.8rem 0.2rem;
+        }
+        details h2, details h3 {
+            margin-top: 0.8rem;
+        }
+        details h2:first-of-type, details h3:first-of-type {
+            margin-top: 0.2rem;
+        }
+
+        /* Inline formatting */
+        b { font-weight: 700; }
+        i { font-style: italic; }
+        u { text-decoration: underline; }
+        s { text-decoration: line-through; }
+
+        /* Footer */
+        .article-footer {
+            margin-top: 2.8rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.8rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .article-footer span {
+            display: inline-block;
+        }
+
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #12121a;
+                --bg-card: #1e1e2a;
+                --text-primary: #eaeef2;
+                --text-secondary: #d0d4dc;
+                --text-muted: #a8b0be;
+                --border-light: #2d3344;
+                --shadow-card: 0 2px 8px rgba(0,0,0,0.4);
+                --accent: #6ea8fe;
+                --accent-hover: #8bb9ff;
+            }
+            details {
+                background: rgba(30,30,42,0.6);
+            }
+            details:hover {
+                background: rgba(30,30,42,0.9);
+            }
+            details[open] {
+                background: rgba(30,30,42,0.95);
+            }
+            .article-image {
+                background: #2a2a3a;
+            }
+            .lead {
+                border-left-color: var(--accent);
+            }
+        }
+
+        /* Responsive fine-tune */
+        @media (max-width: 640px) {
+            body {
+                font-size: 1rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            h3 {
+                font-size: 1.2rem;
+            }
+            .lead {
+                font-size: 1rem;
+                padding-left: 0.8rem;
+            }
+            .container {
+                padding-block: 1rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .article-card {
+                padding: 2.8rem 2.5rem;
+            }
+        }
+
+        /* Extra spacing for nested elements inside details */
+        details p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <article class="article-card">
+            <header>
+                <h1>Linus Torvalds Buka Suara Soal AI di Linux Kernel: Begini Sikap Resminya</h1>
+                <p class="lead">Dalam diskusi di milis pengembang kernel, Linus Torvalds menegaskan bahwa Linux bukanlah proyek anti-AI. Ia menyebut AI sebagai alat yang jelas berguna, namun menekankan bahwa tujuannya adalah membantu para maintainer, bukan menambah beban mereka.</p>
+            </header>
+
+            <p>Beberapa hari terakhir, jagat pengembang open source dihebohkan oleh sebuah unggahan email dari <b>Linus Torvalds</b>, sang pencipta dan pemelihara utama kernel Linux. Email tersebut menjadi sorotan karena secara terang-terangan membahas sikap proyek Linux terhadap penggunaan kecerdasan buatan (AI) dalam pengembangan kernel. Banyak yang penasaran: <i>apakah Linux akan melarang kontribusi berbantuan AI?</i> atau <i>apakah Linus justru membuka pintu selebar-lebarnya?</i></p>
+
+            <p>Pertanyaan-pertanyaan itu muncul bukan tanpa sebab. Beberapa proyek open source besar mulai menerapkan kebijakan ketat terkait kontribusi yang dihasilkan oleh model bahasa besar (LLM) seperti ChatGPT, Copilot, atau sejenisnya. Namun, sikap Linus ternyata berbeda. Ia dengan tegas menyatakan bahwa Linux <b>bukanlah proyek anti-AI</b>, dan bahwa AI adalah alat yang sama seperti alat bantu lainnya.</p>
+
+            <img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/ChatGPT%20Image%20Jul%2017%2C%202026%2C%2011_52_03%20AM.png" alt="Ilustrasi konsep AI dan kernel Linux" class="article-image" width="1200" height="630" fetchpriority="high" decoding="async">
+
+            <p>Pernyataan ini tentu saja memicu diskusi hangat di kalangan kontributor dan pengamat teknologi. Di satu sisi, ada kegembiraan karena pengakuan bahwa AI bisa menjadi asisten yang berguna. Di sisi lain, ada kekhawatiran bahwa kode berkualitas rendah hasil generate AI akan membanjiri milis dan merepotkan para <i>maintainer</i> yang sudah sibuk. Linus sendiri mengakui bahwa AI bisa menjadi alat yang "menyakitkan" bagi maintainer, tetapi menurutnya solusinya bukan dengan berpura-pura tidak mendengar, melainkan dengan memastikan alat tersebut benar-benar membantu.</p>
+
+            <p>Untuk memahami lebih dalam apa yang sebenarnya disampaikan oleh Linus, mari kita bedah email tersebut secara utuh, lengkap dengan konteks diskusi yang melatarbelakanginya.</p>
+
+            <!-- Bagian 1: Konteks diskusi -->
+            <details>
+                <summary><h2>Latar Belakang: Dari Patchwork hingga Sashiko</h2></summary>
+                <p>Diskusi yang memicu respons Linus berawal dari topik teknis tentang <b>Patchwork</b> dan <b>Sashiko</b>. Patchwork adalah alat yang digunakan oleh para maintainer kernel untuk melacak patch yang masuk, sementara Sashiko adalah sebuah sistem yang diusulkan untuk membantu mengelola alur kerja maintainer dengan bantuan AI. Beberapa pengembang menyuarakan kekhawatiran bahwa penggunaan AI dalam Sashiko justru akan membuat pekerjaan maintainer menjadi lebih rumit, bukan lebih mudah.</p>
+
+                <p>Roman Gushchin, salah satu pengembang inti, menyampaikan pendapat bahwa jika tujuan dari Sashiko adalah membantu maintainer, maka penggunaan AI seharusnya tidak membuat segalanya lebih kompleks. Ia bahkan menyentuh sentimen anti-LLM yang mulai menguat di sebagian komunitas open source.</p>
+
+                <p>Di sinilah Linus masuk. Dalam balasannya, ia dengan jelas menyatakan bahwa ia tidak setuju dengan sikap anti-AI secara umum. Baginya, Linux adalah proyek yang berfokus pada teknologi, dan keputusan harus diambil berdasarkan manfaat teknis, bukan ketakutan akan alat baru.</p>
+            </details>
+
+            <!-- Bagian 2: Pernyataan kunci Linus -->
+            <h2>Apa yang Sebenarnya Dikatakan Linus?</h2>
+            <p>Email Linus yang ditujukan kepada Roman Gushchin dan para pengembang lainnya ini mengandung beberapa poin penting yang layak disorot. Pertama, ia dengan tegas mengatakan bahwa Linux <b>bukanlah proyek anti-AI</b>. Ia bahkan menyatakan bahwa jika ada pengembang yang sangat tidak setuju dengan penggunaan AI, mereka dipersilakan untuk melakukan <i>fork</i> atau keluar dari proyek. Ini adalah pernyataan yang sangat kuat dari seorang pemimpin proyek.</p>
+
+            <p>Kedua, Linus menyebut AI sebagai <b>alat yang jelas berguna</b>. Ia mengakui bahwa setahun lalu mungkin masih ada perdebatan tentang manfaat AI, tetapi sekarang sudah tidak ada lagi. Ia merujuk pada pengalaman praktis: siapa pun yang meragukan kegunaan AI, menurutnya, pasti belum pernah menggunakannya secara nyata.</p>
+
+            <p>Ketiga, ia tidak menutup mata terhadap masalah yang ditimbulkan AI. Ia menyebut bahwa AI bisa menjadi alat yang "menyakitkan" bagi maintainer, baik karena meningkatkan beban kerja maupun karena "terus menemukan bug-bug memalukan". Namun, ia menolak sikap <i>ostrich</i> (kepala pasir) yang berpura-pura AI tidak ada. Sebaliknya, ia mendorong agar alat tersebut <b>dibuat lebih membantu</b> para maintainer, bukan sekadar menambah masalah.</p>
+
+            <!-- Bagian 3: Analisis mendalam -->
+            <details>
+                <summary><h2>Analisis: Mengapa Sikap Linus Ini Penting?</h2></summary>
+                <p>Sikap Linus ini sangat penting karena memberikan arah bagi ribuan kontributor kernel di seluruh dunia. Pertama, ini memberi sinyal bahwa <b>kontribusi berbantuan AI tidak dilarang</b> secara otomatis. Namun, ini bukan berarti semua hasil AI bisa diterima begitu saja. Linus menekankan bahwa alat tersebut harus membantu, bukan merusak kualitas.</p>
+
+                <h3>Pesan Tersembunyi: Tanggung Jawab Tetap di Manusia</h3>
+                <p>Meskipun ia membela AI sebagai alat, Linus tidak pernah mengatakan bahwa AI boleh menggantikan penilaian manusia. Para maintainer tetap bertanggung jawab penuh atas kode yang masuk. AI hanyalah asisten, bukan pengganti. Ini penting untuk dipahami agar tidak terjadi salah tafsir.</p>
+
+                <h3>Konteks Sosial: Open Source Bukan Gerakan Sosial</h3>
+                <p>Linus juga menegaskan bahwa kernel Linux bukanlah proyek "pejuang sosial" (<i>social warrior</i>). Baginya, open source dilakukan karena menghasilkan teknologi yang lebih baik, bukan karena alasan agama atau ideologi. Dengan demikian, keputusan diambil berdasarkan <b>merit teknis</b>, bukan karena ketakutan terhadap tren atau tekanan sosial.</p>
+
+                <p>Pernyataan ini sekaligus menjadi peringatan bagi mereka yang ingin memaksakan agenda anti-AI ke dalam proyek Linux. Linus dengan jelas mengatakan bahwa ia akan "mengabaikan dengan keras" orang-orang yang mencoba melarang orang lain menggunakan AI.</p>
+            </details>
+
+            <!-- Bagian 4: Implikasi bagi kontributor -->
+            <h2>Implikasi bagi Kontributor Kernel dan Pengembang Open Source</h2>
+            <p>Bagi para pengembang yang berkontribusi ke kernel Linux, email ini memberikan beberapa implikasi praktis. Pertama, mereka <b>tidak perlu takut</b> menggunakan AI sebagai alat bantu, misalnya untuk menulis kode boilerplate, mereview patch, atau menemukan potensi bug. Namun, mereka tetap harus memastikan bahwa hasil akhirnya memenuhi standar kualitas kernel yang sangat tinggi.</p>
+
+            <p>Kedua, para maintainer diharapkan untuk <b>lebih terbuka</b> terhadap patch yang dihasilkan dengan bantuan AI, selama patch tersebut sudah diuji dan divalidasi dengan baik. Linus sendiri mengakui bahwa AI sering menemukan bug yang terlewat oleh manusia, dan itu justru bisa menjadi nilai tambah.</p>
+
+            <p>Ketiga, bagi proyek open source lain yang masih ragu-ragu dengan AI, sikap Linus bisa menjadi referensi bahwa <b>tidak ada salahnya</b> mengadopsi AI asalkan digunakan secara bijak dan bertanggung jawab. Yang terpenting adalah menjaga kualitas dan kesejahteraan para maintainer.</p>
+
+            <!-- Bagian 5: FAQ dan mitos -->
+            <details>
+                <summary><h2>Mitos dan Fakta Seputar AI di Linux Kernel</h2></summary>
+                <p>Sejak email Linus beredar, banyak spekulasi dan misinterpretasi yang muncul. Mari kita luruskan beberapa di antaranya.</p>
+
+                <h3>Mitos: Linus menyuruh semua orang menggunakan ChatGPT untuk menulis kernel</h3>
+                <p><b>Fakta:</b> Tidak. Linus hanya mengatakan AI adalah alat yang berguna, tetapi ia juga mengingatkan bahwa alat tersebut bisa menyakitkan. Ia mendorong agar alat tersebut <i>dibuat</i> untuk membantu, bukan sekadar digunakan tanpa filter.</p>
+
+                <h3>Mitos: Linux akan menerima patch dari AI tanpa review</h3>
+                <p><b>Fakta:</b> Sama sekali tidak. Semua patch tetap harus melalui proses review yang ketat. AI hanyalah salah satu alat bantu dalam proses tersebut.</p>
+
+                <h3>Mitos: Linus membenci pengembang yang anti-AI</h3>
+                <p><b>Fakta:</b> Linus tidak membenci siapa pun. Ia hanya mengatakan bahwa ia akan mengabaikan argumen yang melarang orang lain menggunakan AI. Setiap orang bebas memilih alatnya masing-masing, tetapi tidak boleh memaksakan pandangan anti-AI kepada orang lain.</p>
+            </details>
+
+            <!-- Bagian 6: Penutup dan pesan akhir -->
+            <h2>Kesimpulan: AI Boleh Dipakai, Tapi Tetap Jaga Kualitas</h2>
+            <p>Email Linus Torvalds adalah pengingat bahwa <b>teknologi adalah alat</b>, dan alat harus dinilai dari manfaatnya, bukan dari ketakutan. Linux tetap menjadi proyek yang berfokus pada kualitas teknis, dan AI tidak dikecualikan dari prinsip itu. Namun, penggunaan AI harus diiringi dengan tanggung jawab, pengujian, dan tetap berorientasi pada membantu para maintainer, bukan merepotkan mereka.</p>
+
+            <p>Bagi para kontributor, ini adalah <b>angin segar</b> yang memberi ruang untuk bereksperimen dengan alat modern, tanpa harus khawatir dicap "curang" atau "tidak profesional". Yang penting adalah hasil akhirnya: kode yang stabil, aman, dan berkontribusi pada kemajuan kernel Linux.</p>
+
+            <p>Sebagai penutup, mari kita ingat kembali kalimat Linus yang paling menggema: <i>"AI is a tool, just like other tools we use. And it's clearly a useful one."</i> Gunakanlah dengan bijak, dan jadikan Linux lebih baik lagi.</p>
+
+            <!-- Signature wajib -->
+            <!--wajib ini tulis signature artikel oleh LayarKosong-->
+
+            <footer class="article-footer">
+                <span>✍️ Oleh Tim Redaksi Dalam.Web.ID</span>
+                <span>📅 Dipublikasikan 17 Juli 2026</span>
+                <span>🔗 Sumber: Arsip milis <a href="https://lore.kernel.org/linux-media/CAHk-=wi4zC+Ze8e+p3tMv8TtG_80KzsZ1syL9anBtmEh5Z40vg@mail.gmail.com/" target="_blank" rel="noopener">linux-media@vger.kernel.org</a></span>
+            </footer>
+        </article>
+    </main>
+</body>
+</html>
