@@ -1,6 +1,6 @@
 /**
  * =================================================================================
- * editorial-index.ts - Dapur Pacu buat Layout "Ecosystem Index"
+ * homepage.ts - Dapur Pacu buat Layout "Ecosystem Index"
  * + Auto-grouping by Category (Rubrik)
  * + Max 4 Artikel Terbaru per Rail
  * + Auto-Sort Kategori berdasarkan Update Terbaru
@@ -25,7 +25,7 @@ let allArticles: Article[] = [];
 
 async function fetchAndRenderRails(): Promise<void> {
   try {
-    const data = await (window as any).siteDataProvider.getFor('editorial-index.ts');
+    const data = await (window as any).siteDataProvider.getFor('homepage.ts');
     let groupedData: Record<string, Article[]> = {};
 
     allArticles = [];
