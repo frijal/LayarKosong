@@ -643,3 +643,48 @@ background-color: var(--border, #eee);
   .search-floating-container { right: 0.625rem; top: 0.9375rem; width: 9.375rem; }
   .search-floating-container:focus-within { width: 10rem; }
 }
+
+/* ========================
+ * 10. BACK TO TOP (SMART BTT)
+ * ======================== */
+.layar-kosong-btt {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+
+  /* Gaya Glassmorphism khas Layar Kosong */
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  box-shadow: 0 0.25rem 0.5rem var(--shadow-color);
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+
+  /* Alignment Emoji */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.layar-kosong-btt:hover {
+  transform: translateY(-0.3rem);
+  border-color: var(--accent);
+  background: var(--bg-card);
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 48rem) {
+  .layar-kosong-btt {
+    bottom: 1rem;
+    right: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.2rem;
+  }
+}

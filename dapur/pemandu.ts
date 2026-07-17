@@ -578,6 +578,41 @@ if (isMobileLayout) {
   }
 }
 
+// =========================================================================
+// 2c. FITUR WIDGET STICKY: BACK TO TOP (BTT) SMART SCROLL
+// =========================================================================
+function initBackToTop(): void {
+  if (document.querySelector('.layar-kosong-btt')) return;
+
+  const btt = document.createElement('a');
+  btt.href = '#';
+  btt.className = 'layar-kosong-btt';
+  btt.textContent = '🔝';
+  btt.title = 'Kembali ke atas';
+  btt.setAttribute('aria-label', 'Kembali ke atas');
+
+  btt.addEventListener('click', (e: MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+  });
+
+  // Fitur Smart Visibility: Muncul hanya saat di-scroll ke bawah
+  btt.style.opacity = '0';
+  btt.style.pointerEvents = 'none';
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    btt.style.opacity = '1';
+    btt.style.pointerEvents = 'auto';
+  } else {
+    btt.style.opacity = '0';
+    btt.style.pointerEvents = 'none';
+  }
+}, { passive: true }); // passive: true bikin scroll tetap mulus (60fps)
+
+document.body.appendChild(btt);
+}
+
 // ---------------------------
 // 3. MAIN INITIALIZATION
 // ---------------------------
@@ -598,6 +633,7 @@ async function initializeApp(): Promise<void> {
 
     initRelatedGrid(currentFile);
     initRandomPlayground();
+    initBackToTop();
 
   } catch (err) {
     console.error("Gagal inisialisasi Pemandu:", err);
