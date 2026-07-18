@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/17/2026, 2:26:40 PM
+Generated on: 7/18/2026, 2:17:47 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -15,7 +15,7 @@ Generated on: 7/17/2026, 2:26:40 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v25.30 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v25.32 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -196,6 +196,7 @@ Generated on: 7/17/2026, 2:26:40 PM
 | `artikel/belajar-perintah-curl.html` | Belajar Perintah cURL: Cheat Sheet Lengkap untuk Pemula - Layar Kosong | Belajar Perintah cURL: Cheat Sheet Lengkap untuk Pemula | Layar Kosong | ✅ Perfect |
 | `artikel/belanda-sebagai-ulil-amri-kritik-sejarah.html` | Hindia Belanda Sebagai Ulil Amri? Kritik Sejarah & Masa Kini - Layar Kosong | Hindia Belanda Sebagai Ulil Amri? Kritik Sejarah & Masa Kini | Layar Kosong | ✅ Perfect |
 | `artikel/berapa-banyak-disk-dan-partisi-ter-mount.html` | 💽 Melihat Berapa Banyak Disk dan Partisi yang Ter-mount di Linux - Layar Kosong | 💽 Melihat Berapa Banyak Disk dan Partisi yang Ter-mount di Linux | Layar Kosong | ✅ Perfect |
+| `artikel/berhenti-menghakimi-bahaya-membuka-aib.html` | Berhenti Menghakimi: Bahaya Membuka Aib dan Rahasia Taubat yang Tersembunyi - Layar Kosong | Berhenti Menghakimi: Bahaya Membuka Aib dan Rahasia Taubat yang Tersembunyi | Layar Kosong | ✅ Perfect |
 | `artikel/berkunjung-ke-dataran-tinggi-dieng.html` | Berkunjung ke Dataran Tinggi Dieng: Pesona Alam dan Sejarah - Layar Kosong | Berkunjung ke Dataran Tinggi Dieng: Pesona Alam dan Sejarah | Layar Kosong | ✅ Perfect |
 | `artikel/bersih-pip-cache.html` | Skrip Shell Bersih Cache pip di Linux - Layar Kosong | Skrip Shell Bersih Cache pip di Linux | Layar Kosong | ✅ Perfect |
 | `artikel/bersihkan-akun-windows-hapus-jejak-digital.html` | Cara Sapu Bersih Akun Windows & Hapus Jejak Digital - Layar Kosong | Cara Sapu Bersih Akun Windows & Hapus Jejak Digital | Layar Kosong | ✅ Perfect |
@@ -1608,6 +1609,7 @@ Generated on: 7/17/2026, 2:26:40 PM
 | `gaya-hidup/bahaya-marah-islam-medis.html` | Bahaya Marah: Tinjauan Lengkap Islam dan Medis - Layar Kosong | Bahaya Marah: Tinjauan Lengkap Islam dan Medis | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/bahaya-perpecahan-menjaga-lisan-ukhuwah.html` | Bahaya Perpecahan: Menjaga Lisan dan Ukhuwah di Akhir Zaman - Dalam Web - Layar Kosong | Bahaya Perpecahan: Menjaga Lisan dan Ukhuwah di Akhir Zaman - Dalam Web | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/bayar-pajak-kendaraan-tanpa-ktp.html` | Bayar Pajak Kendaraan Bermotor Tanpa KTP: Fakta Penting dan Risiko Serius - Layar Kosong | Bayar Pajak Kendaraan Bermotor Tanpa KTP: Fakta Penting dan Risiko Serius | Layar Kosong | ✅ Perfect |
+| `gaya-hidup/berhenti-menghakimi-bahaya-membuka-aib.html` | Berhenti Menghakimi: Bahaya Membuka Aib dan Rahasia Taubat yang Tersembunyi - Layar Kosong | Berhenti Menghakimi: Bahaya Membuka Aib dan Rahasia Taubat yang Tersembunyi | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/bikersmu-lampung-resmi-dibentuk.html` | BIKERSMU Lampung: Ruang Dakwah Baru di Atas Aspal - Layar Kosong | BIKERSMU Lampung: Ruang Dakwah Baru di Atas Aspal | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/budi-pekerti-luntur.html` | Budi Pekerti yang Luntur: Kita Kehilangan Moral, atau Kehilangan Keberanian? - Layar Kosong | Budi Pekerti yang Luntur: Kita Kehilangan Moral, atau Kehilangan Keberanian? | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/bukalapak-berbagi-2017.html` | Kopdar & Berbagi Bareng Pelapak Balikpapan 2017 - Layar Kosong | Kopdar & Berbagi Bareng Pelapak Balikpapan 2017 | Layar Kosong | ✅ Perfect |
@@ -1631,7 +1633,7 @@ Generated on: 7/17/2026, 2:26:40 PM
 | `gaya-hidup/herbal-tekanan-darah-tinggi.html` | 7 Herbal Alami Turunkan Darah Tinggi | Tanpa Efek Samping - Layar Kosong | 7 Herbal Alami Turunkan Darah Tinggi | Tanpa Efek Samping | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/hidup-bahagia.html` | Cara Hidup Bahagia dengan Sistem Teknologi Terbuka - Layar Kosong | Cara Hidup Bahagia dengan Sistem Teknologi Terbuka | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/hidup-bukan-sekedar-eksistensi-tapi-pengabdian.html` | Hidup Bukan Sekedar Eksistensi, Tapi Pengabdian - Layar Kosong | Hidup Bukan Sekedar Eksistensi, Tapi Pengabdian | Layar Kosong | ✅ Perfect |
-| `gaya-hidup/index.html` | Budaya, Kuliner, Lifestyle - Layar Kosong | Budaya, Kuliner, Lifestyle | Layar Kosong | ✅ Perfect |
+| `gaya-hidup/index.html` | Gaya Hidup - Layar Kosong | Gaya Hidup | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/indonesia-darurat-membaca-pemahaman-anak-era-informasi.html` | Indonesia Darurat Membaca? Memahami Kemampuan Anak di Era Informasi - Layar Kosong | Indonesia Darurat Membaca? Memahami Kemampuan Anak di Era Informasi | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/introducing-chatgpt-health.html` | Introducing ChatGPT Health - Pengalaman Kesehatan Terdedikasi - OpenAI - Layar Kosong | Introducing ChatGPT Health - Pengalaman Kesehatan Terdedikasi - OpenAI | Layar Kosong | ✅ Perfect |
 | `gaya-hidup/jagung-godog-gerimis.html` | Nikmat Sederhana Saat Gerimis: Jagung Godog yang Menghangatkan - Layar Kosong | Nikmat Sederhana Saat Gerimis: Jagung Godog yang Menghangatkan | Layar Kosong | ✅ Perfect |
@@ -2123,7 +2125,7 @@ Generated on: 7/17/2026, 2:26:40 PM
 | `olah-media/imagemagick-konversi-png-ke-jpg-massal.html` | Konversi massal PNG ke JPG dengan ImageMagick di Linux, macOS, dan Windows - Layar Kosong | Konversi massal PNG ke JPG dengan ImageMagick di Linux, macOS, dan Windows | Layar Kosong | ✅ Perfect |
 | `olah-media/imagemagick-paksa-rasio-16-9.html` | ImageMagick: Trik Memaksa Gambar Jadi Rasio 16:9 (Bash) - Layar Kosong | ImageMagick: Trik Memaksa Gambar Jadi Rasio 16:9 (Bash) | Layar Kosong | ✅ Perfect |
 | `olah-media/imagemagick-resize-semua-foto-dalam-satu-folder-lalu-menyimpannya-di-folder-tujuan.html` | Resize Semua Foto dengan ImageMagick (Shell Script) - Layar Kosong | Resize Semua Foto dengan ImageMagick (Shell Script) | Layar Kosong | ✅ Perfect |
-| `olah-media/index.html` | Multimedia, Editing - Layar Kosong | Multimedia, Editing | Layar Kosong | ✅ Perfect |
+| `olah-media/index.html` | Olah Media - Layar Kosong | Olah Media | Layar Kosong | ✅ Perfect |
 | `olah-media/iptv-linux.html` | Linux dan Internet Protocol Television (IPTV) 📺 - Layar Kosong | Linux dan Internet Protocol Television (IPTV) 📺 | Layar Kosong | ✅ Perfect |
 | `olah-media/jasa-editing-video-dihargai-nol.html` | Jasa Editing Video Dihargai Nol? Ancaman untuk Industri Kreatif - Layar Kosong | Jasa Editing Video Dihargai Nol? Ancaman untuk Industri Kreatif | Layar Kosong | ✅ Perfect |
 | `olah-media/kalkulator-dimensi-gambar.html` | Kalkulator Rasio dan Dimensi Gambar Otomatis - Layar Kosong | Kalkulator Rasio dan Dimensi Gambar Otomatis | Layar Kosong | ✅ Perfect |
@@ -2238,7 +2240,7 @@ Generated on: 7/17/2026, 2:26:40 PM
 | `opini-sosial/hukum-pinjaman-online.html` | Hukum Pinjol dalam Islam: Haram dan Penuh Bahaya - Layar Kosong | Hukum Pinjol dalam Islam: Haram dan Penuh Bahaya | Layar Kosong | ✅ Perfect |
 | `opini-sosial/ilusi-koperasi-palsu-merah-putih.html` | Ilusi Koperasi dipertanyakan Merah-Putih: Catatan Kritis Kebijakan Top-Down - Layar Kosong | Ilusi Koperasi dipertanyakan Merah-Putih: Catatan Kritis Kebijakan Top-Down | Layar Kosong | ✅ Perfect |
 | `opini-sosial/ilusi-transparansi-intelijen.html` | Ilusi Transparansi: Mengapa File Bocor Hanya Sampah Digital? - Layar Kosong | Ilusi Transparansi: Mengapa File Bocor Hanya Sampah Digital? | Layar Kosong | ✅ Perfect |
-| `opini-sosial/index.html` | Catatan, Sosial - Layar Kosong | Catatan, Sosial | Layar Kosong | ✅ Perfect |
+| `opini-sosial/index.html` | Opini Sosial - Layar Kosong | Opini Sosial | Layar Kosong | ✅ Perfect |
 | `opini-sosial/indonesia-kehilangan-ribuan-triliun-investasi.html` | Indonesia Kehilangan Ribuan Triliun Investasi: Saat Kita Mengusir Investor - Layar Kosong | Indonesia Kehilangan Ribuan Triliun Investasi: Saat Kita Mengusir Investor | Layar Kosong | ✅ Perfect |
 | `opini-sosial/indonesia-mulai-redup-energi-kepercayaan-padam.html` | Indonesia Mulai Redup? Saat Energi dan Kepercayaan Padam - Layar Kosong | Indonesia Mulai Redup? Saat Energi dan Kepercayaan Padam | Layar Kosong | ✅ Perfect |
 | `opini-sosial/inovator-lokal-terhambat-regulasi.html` | Inovator Lokal Indonesia Terhambat Regulasi: Fakta dan Solusi - Layar Kosong | Inovator Lokal Indonesia Terhambat Regulasi: Fakta dan Solusi | Layar Kosong | ✅ Perfect |
@@ -2552,7 +2554,7 @@ Generated on: 7/17/2026, 2:26:40 PM
 | `sistem-terbuka/hapus-os-ilegal-aman.html` | Hapus OS Ilegal dengan Aman Tanpa Live USB - Layar Kosong | Hapus OS Ilegal dengan Aman Tanpa Live USB | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/history-of-linux-project.html` | History of Linux Project (HOLP) - Sejarah Kernel Linux dari Awal Sampai Sekarang - Layar Kosong | History of Linux Project (HOLP) - Sejarah Kernel Linux dari Awal Sampai Sekarang | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/hst-oss.html` | Implementasi Open Source Software di Hulu Sungai Tengah - Layar Kosong | Implementasi Open Source Software di Hulu Sungai Tengah | Layar Kosong | ✅ Perfect |
-| `sistem-terbuka/index.html` | Linux, Open Source - Layar Kosong | Linux, Open Source | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/index.html` | Sistem Terbuka - Layar Kosong | Sistem Terbuka | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/instal-cloudflare-warp-linux-2025.html` | Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) - Update 2025! - Layar Kosong | Cara Instal Cloudflare WARP di Linux (Debian 13, Ubuntu, RHEL/CentOS) - Update 2025! | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/instal-nextcloud-docker-compose.html` | Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian - Layar Kosong | Panduan Instal Nextcloud Docker Compose: Cloud Pribadi di Debian | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/install-coffee-linux.html` | Cara Install Coffee di Linux Biar Gak Ngantuk Lagi ☕ - Layar Kosong | Cara Install Coffee di Linux Biar Gak Ngantuk Lagi ☕ | Layar Kosong | ✅ Perfect |
@@ -2990,7 +2992,7 @@ Generated on: 7/17/2026, 2:26:40 PM
 | `warta-tekno/grammarly-ai-writing-assistant.html` | Grammarly: Nulis Keren dan Profesional Pakai Bantuan AI - Layar Kosong | Grammarly: Nulis Keren dan Profesional Pakai Bantuan AI | Layar Kosong | ✅ Perfect |
 | `warta-tekno/hemat-kelola-blog-tanpa-server.html` | Cara Hemat Kelola Blog Tanpa Pusing Update Server - Layar Kosong | Cara Hemat Kelola Blog Tanpa Pusing Update Server | Layar Kosong | ✅ Perfect |
 | `warta-tekno/html-converter-escaped-code-dashboard.html` | HTML Converter Escaped Code Dashboard v.2 - Layar Kosong | HTML Converter Escaped Code Dashboard v.2 | Layar Kosong | ✅ Perfect |
-| `warta-tekno/index.html` | Windows, Teknologi Umum - Layar Kosong | Windows, Teknologi Umum | Layar Kosong | ✅ Perfect |
+| `warta-tekno/index.html` | Warta Tekno - Layar Kosong | Warta Tekno | Layar Kosong | ✅ Perfect |
 | `warta-tekno/internet-archive-menang-bertahan-kalah-di-sistem.html` | Internet Archive: Menang Bertahan, Kalah di Sistem - Layar Kosong | Internet Archive: Menang Bertahan, Kalah di Sistem | Layar Kosong | ✅ Perfect |
 | `warta-tekno/jangan-andalkan-satu-ai.html` | Jangan Cuma Andalkan Satu AI, Manfaatkan Kelebihan Masing-Masing! - Layar Kosong | Jangan Cuma Andalkan Satu AI, Manfaatkan Kelebihan Masing-Masing! | Layar Kosong | ✅ Perfect |
 | `warta-tekno/jangan-larang-medsos-anak-regulasi-platform.html` | Jangan Larang Medsos Untuk Bocil Pesan Menohok Komisaris HAM Eropa Michael O Flaherty - Layar Kosong | Jangan Larang Medsos Untuk Bocil Pesan Menohok Komisaris HAM Eropa Michael O Flaherty | Layar Kosong | ✅ Perfect |
