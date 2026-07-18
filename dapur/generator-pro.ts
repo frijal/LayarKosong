@@ -214,7 +214,7 @@ const distribute = async (
         html = html.replace('</head>', `    <link rel="canonical" href="${url}">${seoInjection}\n</head>`);
     }
 
-    const breadcrumbHtml = `<nav class="static-crumb" aria-label="Breadcrumb" style="font-size: .85rem;"><a href="https://dalam.web.id">Beranda</a> / <a href="/${catSlug}">${catLabel}...</a></nav>`;
+    const breadcrumbHtml = `<nav class="static-crumb" aria-label="Breadcrumb" style="font-size: .85rem;"><a href="https://dalam.web.id">Beranda</a> / <a href="/${catSlug}">${catLabel}</a></nav>`;
 
     const H1_OPEN_RE = /<h1[^>]*>/i;
     if (html.match(H1_OPEN_RE)) {
