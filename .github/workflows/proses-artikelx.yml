@@ -1,10 +1,10 @@
 name: 🔄 Proses ArtikelX
 
 on:
-  push:
-    branches: ['main']
-    paths:
-      - 'artikelx/*.html'
+#  push:
+#    branches: ['main']
+#    paths:
+#      - 'artikelx/*.html'
   workflow_dispatch:
 
 permissions:
