@@ -1,0 +1,310 @@
+name: 🚀 Master Pipeline Layar Kosong
+
+on:
+  # Pemicu otomatis saat ada push di folder artikelx
+  push:
+    branches: ['main']
+    paths:
+      - 'artikelx/*.html'
+      
+  # Pemicu manual dengan menu opsi yang rapi
+  workflow_dispatch:
+    inputs:
+      run_proses_artikel:
+        description: '1️⃣ Proses Artikel Baru (artikelx/ -> artikel/)'
+        type: boolean
+        default: true
+      run_build_generator:
+        description: '2️⃣ Generate Data (JSON, XML, Sitemap, LLMs)'
+        type: boolean
+        default: true
+      run_srcset:
+        description: '2️⃣ Optimize Images & Srcset'
+        type: boolean
+        default: true
+      run_schema:
+        description: '2️⃣ Inject Schema.org'
+        type: boolean
+        default: true
+      run_minify:
+        description: '2️⃣ Minify HTML, JSON & XML'
+        type: boolean
+        default: true
+      deploy_mode:
+        description: '3️⃣ Mode Cloudflare Deploy'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+          - full          # Deploy + D1 Sync + Purge Edge Cache
+          - update-only   # Hanya Deploy ke CF Pages
+          - skip          # Lewati fase deploy sepenuhnya
+
+permissions:
+  contents: write
+  deployments: write
+
+jobs:
+  master_executor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15 # Waktu maksimal dinaikkan sedikit karena menggabungkan 3 tugas
+
+    steps:
+      # =========================================================
+      # 0. SETUP AWAL KILAT (Hanya Dijalankan 1x)
+      # =========================================================
+      - name: 📥 Checkout repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: ⚙️ Setup Node.js v24 (Untuk Cloudflare Wrangler)
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.18.0
+
+      - name: 🥟 Setup Bun.js (Engine Utama)
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: latest
+
+      - name: 📦 Install Dependencies
+        run: bun install
+
+
+      # =========================================================
+      # 1. FASE PROSES ARTIKELX
+      # =========================================================
+      - name: 🔰 Edit Komponen HTML & Ganti Font/Highlight
+        if: ${{ github.event_name == 'push' || github.event.inputs.run_proses_artikel == 'true' }}
+        run: |
+          set -euo pipefail
+          bun run dapur/Edit-Komponen-HTML.ts
+          bun dapur/gantifontshighlight.ts --no-backup
+
+      - name: 🖼️ Inject SEO, Mirror Images & WebP
+        if: ${{ github.event_name == 'push' || github.event.inputs.run_proses_artikel == 'true' }}
+        run: |
+          set -euo pipefail
+          bun run dapur/seo-fixer.ts artikelx/
+
+      - name: 📂 Pindahkan ke artikel/ & Simpan State Commit
+        if: ${{ github.event_name == 'push' || github.event.inputs.run_proses_artikel == 'true' }}
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(artikelx/*.html)
+          if [[ ${#files[@]} -gt 0 ]]; then
+            mv -f "${files[@]}" artikel/
+            echo "Berhasil pindahkan ${#files[@]} file ke artikel/"
+          fi
+          
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          
+          # Catatan: Kita melakukan commit lokal di sini, tetapi TIDAK melakukan push 
+          # agar nanti bisa didorong bersamaan dengan hasil fase build.
+          if git diff --staged --quiet; then
+            echo "Tidak ada perubahan di fase ArtikelX."
+          else
+            git commit -m "Proses ArtikelX: Move, Mirror & WebP"
+          fi
+
+
+      # =========================================================
+      # 2. FASE BUILD & GENERATE SITE FILES
+      # =========================================================
+      - name: 🏗️ Generate artikel.json, Sitemap XML & RSS
+        if: ${{ github.event_name == 'push' || github.event.inputs.run_build_generator == 'true' }}
+        env:
+          RSS_LIMIT: 30
+        run: bun run dapur/generator-pro.ts
+
+      - name: 🖼️ Optimize Images & Generate Srcset
+        if: ${{ github.event_name == 'push' || github.event.inputs.run_srcset == 'true' }}
+        run: bun run dapur/srcset-generator.ts
+
+      - name: 🗺️ Update sitemap.txt, LLMs & Redirects
+        if: ${{ github.event_name == 'push' || github.event.inputs.run_build_generator == 'true' }}
+        run: |
+          bun run dapur/koki.ts --once
+          bun run dapur/bikin-sitemap-txt.ts
+          bun run dapur/generate_llms.ts
+          bun run dapur/redirectmap.ts
+
+      - name: 💉 Inject SEO Schema
+        if: ${{ github.event_name == 'push' || github.event.inputs.run_schema == 'true' }}
+        run: bun run dapur/inject-schema.ts
+
+      - name: 🗜️ Minify Semua Aset (HTML, JSON, XML)
+        if: ${{ github.event_name == 'push' || github.event.inputs.run_minify == 'true' }}
+        run: |
+          bun run dapur/minify-html.ts
+          bun run dapur/minify-jsonxml.ts
+
+      - name: 💾 Final Commit & Push ke Repositori
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git add .
+          
+          if git diff --staged --quiet; then
+            echo "✅ Tidak ada perubahan data tambahan untuk di-commit."
+            # Push perubahan dari Fase 1 (jika ada) ke origin
+            git push origin main || true
+          else
+            git commit -m "beres: 🚀 update data site [$(date +'%Y-%m-%d %H:%M')]"
+            git pull --rebase origin main
+            git push origin main
+          fi
+
+
+      # =========================================================
+      # 3. FASE CLOUDFLARE DEPLOY & D1 SYNC
+      # =========================================================
+      - name: 🧹 Prepare Clean Directory (rsync)
+        if: ${{ github.event_name == 'push' || (github.event.inputs.deploy_mode != 'skip' && github.event.inputs.deploy_mode != '') }}
+        run: |
+          mkdir -p deploy_dir
+          
+          # Rsync dengan Whitelist Super Ketat (Sesuai List Explicit)
+          rsync -av --delete \
+            `# 1. EXCLUDE FOLDER BERAT & MENTAH (Skip cepat)` \
+            --exclude='deploy_dir/***' \
+            --exclude='.git/***' \
+            --exclude='.github/***' \
+            --exclude='node_modules/***' \
+            --exclude='dapur/***' \
+            --exclude='mini/***' \
+            --exclude='artikelx/***' \
+            --exclude='artikel/***' \
+            `# 2. INCLUDE FOLDER KONTEN & ASET` \
+            --include='.well-known/***' \
+            --include='ext/***' \
+            --include='gaya-hidup/***' \
+            --include='img/***' \
+            --include='jejak-sejarah/***' \
+            --include='lainnya/***' \
+            --include='olah-media/***' \
+            --include='opini-sosial/***' \
+            --include='search/***' \
+            --include='sistem-terbuka/***' \
+            --include='warta-tekno/***' \
+            `# 3. INCLUDE FILE ROOT BERDASARKAN EKSTENSI` \
+            --include='*.html' \
+            --include='*.xml' \
+            --include='*.atom' \
+            --include='*.rss' \
+            --include='*.xsl' \
+            --include='*.txt' \
+            --include='*.png' \
+            --include='*.jpg' \
+            --include='*.webp' \
+            --include='*.ico' \
+            --include='*.svg' \
+            `# 4. INCLUDE FILE ROOT SPESIFIK LAINNYA` \
+            --include='auth.md' \
+            --include='llms.md' \
+            --include='redirectmap.json' \
+            --include='site.webmanifest' \
+            `# 5. TENDANG SEMUA YANG TIDAK TERDAFTAR DI ATAS` \
+            --exclude='*' \
+            ./ deploy_dir/
+
+      - name: 🔑 Create Wrangler Config
+        if: ${{ github.event_name == 'push' || (github.event.inputs.deploy_mode != 'skip' && github.event.inputs.deploy_mode != '') }}
+        run: |
+          cat <<EOF > wrangler.toml
+          #:schema https://raw.githubusercontent.com/cloudflare/wrangler2/sys-types/pages/modules/config-schema.json
+          name = "layarkosong"
+          compatibility_date = "2025-12-01"
+          pages_build_output_dir = "deploy_dir"
+          [vars]
+          BUN_VERSION = "latest"
+          NODE_VERSION = "24"
+          [[d1_databases]]
+          binding = "DB"
+          database_name = "layarkosong-db"
+          database_id = "${{ secrets.CLOUDFLARE_ID_D1 }}"
+          EOF
+
+      - name: 📦 Download State D1 Terakhir
+        if: ${{ github.event_name == 'push' || github.event.inputs.deploy_mode == 'full' }}
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          echo "⬇️ Mengunduh state D1 saat ini..."
+          bunx wrangler@latest d1 execute layarkosong-db --remote --command="SELECT id, date, code FROM articles_fts" --json -c wrangler.toml > current_d1_state.json
+          ls -lah current_d1_state.json
+
+      - name: 🔍 Jalankan Script Diff & Generate Patch SQL
+        if: ${{ github.event_name == 'push' || github.event.inputs.deploy_mode == 'full' }}
+        run: bun run search/sync-d1-diff.ts 
+
+      - name: 🚀 Eksekusi Patch SQL ke D1
+        if: ${{ github.event_name == 'push' || github.event.inputs.deploy_mode == 'full' }}
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          # Menggunakan flag -s untuk mengecek apakah file ada DAN ukurannya lebih dari 0
+          if [ -s "d1-patch.sql" ]; then
+             echo "Terdapat data baru/berubah. Mengeksekusi patch ke D1..."
+             bunx wrangler@latest d1 execute layarkosong-db --remote --file=d1-patch.sql -c wrangler.toml
+          else
+             echo "File SQL kosong atau tidak ada. Melewati eksekusi D1."
+          fi
+
+      - name: 🌐 Deploy ke Cloudflare Pages
+        if: ${{ github.event_name == 'push' || (github.event.inputs.deploy_mode != 'skip' && github.event.inputs.deploy_mode != '') }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        run: |
+          max_attempts=3
+          attempt=1
+          until [ $attempt -gt $max_attempts ]
+          do
+            echo "🚀 Attempt $attempt to deploy..."
+            # Wrangler otomatis mencari folder functions/ di direktori saat ini (root)
+            if bunx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main --commit-dirty=true; then
+              echo "✅ Deploy succeeded on attempt $attempt!"
+              break
+            else
+              echo "⚠️ Deploy failed on attempt $attempt"
+              attempt=$((attempt+1))
+              [ $attempt -le $max_attempts ] && sleep 15
+            fi
+          done
+
+      - name: 🔥 Purge Cache API Katalog Spesifik (Single-file Purge)
+        if: ${{ github.event_name == 'push' || github.event.inputs.deploy_mode == 'full' }}
+        continue-on-error: true
+        shell: bash
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+        run: |
+          echo "Menghapus cache khusus untuk endpoint /katalog di Cloudflare Edge..."
+          curl -s -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
+               -H "Authorization: Bearer $CF_API_TOKEN" \
+               -H "Content-Type: application/json" \
+               --data '{
+                 "files": [
+                   "https://dalam.web.id/katalog?ui=halaman-pencarian.ts",
+                   "https://dalam.web.id/katalog?ui=homepage.ts",
+                   "https://dalam.web.id/katalog?ui=img.html",
+                   "https://dalam.web.id/katalog?ui=iposbrowser.ts",
+                   "https://dalam.web.id/katalog?ui=pemandu.ts",
+                   "https://dalam.web.id/katalog?ui=sitemap.ts"
+                 ]
+               }'
+          echo -e "\n✅ Permintaan Purge Cache terkirim!"
+          
+          echo -e "\nMembersihkan deployment usang..."
+          bun run dapur/rapikan-cloudflare.ts
