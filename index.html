@@ -399,16 +399,14 @@ footer {
 }
 
 .social-icon {
-  opacity: 0.6; /* Sedikit transparan saat diam */
-  /* Cuma pakai drop-shadow buat aura tipis penyelamat ikon hitam */
+  /* Aura cahaya tipis penyelamat ikon hitam */
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.6));
   transition: all 0.3s ease;
 }
 
 .social-links a:hover .social-icon,
 .social-links a:focus-visible .social-icon {
-  opacity: 1; /* Warna jadi 100% pekat/jelas saat disentuh */
-  /* Glow makin terang dan ikon meloncat */
+  /* Cahaya memendar lebih terang dan ikon meloncat */
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 1));
   transform: translateY(-3px);
 }
