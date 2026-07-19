@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ironi PageSpeed Insights: Saat Google Saling Senggol, Web Kita Kena Getahnya</title>
+
+    <meta name="description" content="Cerita unik di balik skor Praktik Terbaik 81 di PageSpeed Insights karena script AdSense lidar.js milik Google sendiri. Simak penjelasan teknisnya di sini.">
+    <meta property="og:description" content="Bingung kenapa skor Best Practices tertahan di angka 81 padahal performa web ngebut? Ternyata biang keroknya adalah API jadul dari layanan Google AdSense.">
+    <meta name="twitter:description" content="Mengungkap ironi lucu saat Lighthouse mengomel soal API usang unload, tapi pelakunya justru script pelacak iklan raksasa dari divisi Google yang lain.">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Ironi PageSpeed Insights: Saat Google Saling Senggol, Web Kita Kena Getahnya">
+    <meta property="og:url" content="https://dalam.web.id/artikel/ironi-pagespeed-insights-saat-google-saling-senggol.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/ss/Gemini_Generated_Image_lj3avzlj3avzlj3a.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ironi PageSpeed Insights: Saat Google Saling Senggol, Web Kita Kena Getahnya">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/ss/Gemini_Generated_Image_lj3avzlj3avzlj3a.png">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/ironi-pagespeed-insights-saat-google-saling-senggol.html">
+
+    <meta name="news_keywords" content="PageSpeed Insights, Google AdSense, Core Web Vitals, bfcache, optimasi website, SEO teknis">
+    <meta property="article:tag" content="Web Development, SEO, Opini Santai">
+
+    <meta name="promphint" content="Kenapa skor praktik terbaik PageSpeed turun padahal performa bagus? | Karena script lidar.js dari Google AdSense masih menggunakan API unload yang sudah usang.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <style>
+        :root {
+            --bg-color: #fdfbf7;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --heading-color: #1a1a1a;
+            --link-color: #2980b9;
+            --border-color: #e0dcd3;
+            --callout-bg: #f0f4f8;
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --transition-speed: 0.3s;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-main: #e0e0e0;
+                --text-muted: #a0a0a0;
+                --heading-color: #ffffff;
+                --link-color: #66b3ff;
+                --border-color: #333333;
+                --callout-bg: #1e272e;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 1.5rem;
+            }
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.65;
+            font-size: 1.125rem;
+            margin: 0;
+            padding: 0;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+        }
+
+        article {
+            padding-inline: var(--nested-padding);
+        }
+
+        header {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            color: var(--heading-color);
+            font-size: 2.2rem;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--heading-color);
+            font-size: 1.6rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            color: var(--heading-color);
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--link-color);
+        }
+
+        a:hover {
+            border-bottom-style: solid;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 2rem 0;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            background-color: var(--callout-bg);
+        }
+
+        .image-caption {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        /* Accordion Styling */
+        details {
+            background-color: var(--callout-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            transition: all var(--transition-speed) ease;
+        }
+
+        summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "+";
+            font-size: 2rem;
+            line-height: 1;
+            color: var(--heading-color);
+            transition: transform var(--transition-speed);
+        }
+
+        details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        summary h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            border-bottom: none;
+        }
+
+        details > *:not(summary) {
+            margin-top: 1.5rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Code Block Styling */
+        pre {
+            background-color: #0d1117;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        code {
+            font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-inline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-inline span {
+            position: relative;
+        }
+
+        .footer-inline span:not(:last-child)::after {
+            content: "•";
+            position: absolute;
+            right: -0.65rem;
+            color: var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <article>
+            <header>
+                <h1>Ironi PageSpeed Insights: Saat Google Saling Senggol, Web Kita Kena Getahnya</h1>
+                <p class="lead">Menembus skor 100 di PageSpeed Insights adalah impian setiap web developer. Tapi bagaimana jadinya jika satu-satunya penghalang kesempurnaan itu justru berasal dari kode usang milik Google sendiri?</p>
+            </header>
+
+            <p>Pernahkah kamu menghabiskan waktu berjam-jam, menyeduh bergelas-gelas kopi, hanya demi melihat deretan angka hijau paripurna di alat uji coba performa web? Kamu sudah memeras otak untuk mengoptimasi gambar, membersihkan file CSS yang tidak terpakai, menunda eksekusi JavaScript yang berat, dan hasilnya sungguh memuaskan: Performa nyaris menyentuh 100, Aksesibilitas sempurna 100, dan SEO juga mantap di angka 100.</p>
+
+            <p>Namun, di tengah euforia kesempurnaan teknis itu, matamu tertuju pada satu noda peringatan berwarna kuning yang cukup menyebalkan. Skor <b>Praktik Terbaik</b> (<i>Best Practices</i>) tertahan di angka 81. Saat dicek lebih teliti, peringatannya berbunyi: <i>"Pemroses peristiwa penghapusan muatan tidak digunakan lagi"</i> atau <i>"Menggunakan API yang tidak digunakan lagi"</i>.</p>
+
+            <img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/ss/Screenshot%20From%202026-07-19%2020-50-11.png" alt="Screenshot Google PageSpeed Insights versi desktop menunjukkan skor Praktik Terbaik di angka 81 karena masalah API usang." width="1200" height="526" style="aspect-ratio: 1200/526;" fetchpriority="high" decoding="async">
+            <span class="image-caption">Laporan PageSpeed Insights menampilkan peringatan API kadaluarsa.</span>
+
+            <h2>Mengenal Sang Biang Kerok: Script Iklan lidar.js</h2>
+
+            <p>Siapa pelakunya? Apakah plugin pihak ketiga yang kurang terurus? Atau tema website yang usianya sudah puluhan tahun? Ternyata bukan keduanya. Jika kita membedah log peringatan tersebut secara teknis, URL yang ditunjuk oleh mesin audit PageSpeed adalah <code>pagead2.googlesyndication.com</code>, lebih spesifiknya pada pemanggilan aset bernama <code>lidar.js</code>.</p>
+
+            <p>Bagi para pengelola blog atau website yang memasang monetisasi, URL raksasa ini pasti sudah sangat tidak asing lagi. Ya, itu adalah baris kode pelacak inti milik <b>Google AdSense</b> (yang juga terafiliasi dengan DoubleClick Ads). Sumpah, ini adalah salah satu ironi paling jenaka di dunia pengembangan web modern.</p>
+
+            <p>Akar masalah teknisnya sebenarnya cukup lurus: file <code>lidar.js</code> masih secara aktif menggunakan fungsi <i>event listener</i> bernama <code>unload</code> di dalam JavaScript. Di era penjelajahan web saat ini, browser modern—terutama Google Chrome—sedang gencar-gencarnya melakukan pembersihan untuk membunuh API <code>unload</code> ini.</p>
+
+            <p>Alasannya sangat logis dan berpusat pada pengalaman pengguna. Penggunaan <i>event</i> tersebut sering kali merusak kapabilitas fitur <b>Back/Forward Cache (bfcache)</b>. Jika fitur bfcache rusak atau dinonaktifkan gara-gara script ini, maka saat pengunjung menekan tombol kembali (<i>Back</i>) atau maju (<i>Forward</i>) di browser ponsel mereka, halaman harus memuat ulang seluruh aset dari nol. Tentu saja, ini membuat pengalaman berselancar terasa lambat dan patah-patah.</p>
+
+            <h2>Analogi Kocak: Divisi A vs Divisi B</h2>
+
+            <p>Kenyataan ini melahirkan sebuah komedi birokrasi. Coba bayangkan di dalam markas besar Google, terdapat dua divisi raksasa yang saling bekerja secara terisolasi dan kurang koordinasi.</p>
+
+            <p>Di satu sisi, ada Tim Lighthouse dan PageSpeed (kita sebut saja Divisi A). Mereka bertindak sebagai wasit yang sangat perfeksionis. Tugas utama mereka adalah mendikte standar web masa depan yang super cepat. Mesin audit yang mereka ciptakan bekerja seratus persen objektif dan buta huruf terhadap toleransi. Jika ada kode yang melanggar standar web modern, algoritma mereka akan langsung memberikan rapor merah, tanpa peduli apakah kode itu buatan tetangga sebelah atau buatan saudara sendiri.</p>
+
+            <p>Di sisi lain gedung, ada Tim Google Ads (kita sebut Divisi B). Ini adalah kapal induk pengeruk keuntungan raksasa yang pergerakannya sangat lambat. Mereka memiliki tanggung jawab berat memastikan script iklan mereka kompatibel dan berjalan mulus di jutaan website di seluruh pelosok bumi, merentang dari website berteknologi mutakhir hingga server usang peninggalan satu dekade lalu.</p>
+
+            <img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/ss/Screenshot%20From%202026-07-19%2020-23-44.png" alt="Screenshot PageSpeed versi Desktop membuktikan bahwa skor Performa tetap 99 meski Praktik Terbaik tertahan di 81." width="1200" height="716" style="aspect-ratio: 1200/716;" loading="lazy" decoding="async">
+            <span class="image-caption">Faktanya, skor Performa utama tetap sukses menyentuh angka 99 di perangkat desktop.</span>
+
+            <p>Jadi, narasi singkat yang terjadi di layar PageSpeed kita adalah: Google Divisi A sedang mengomel dan menyentil Google Divisi B, tetapi website kitalah yang dijadikan samsak tinju dan kehilangan skor sempurna seratus.</p>
+
+            <details>
+                <summary><h2>Misteri Keterlambatan Update Tim Google Ads</h2></summary>
+
+                <p>Melihat betapa mudahnya mendeteksi kesalahan tersebut, sebuah pertanyaan besar muncul: Mengapa jajaran <i>engineer</i> jenius di Tim Ads tidak langsung saja memperbarui kode <code>lidar.js</code> mereka ke fungsi yang jauh lebih modern?</p>
+
+                <h3>Beban Triliunan Rupiah di Balik Sepotong Kode</h3>
+
+                <p>Jawaban atas pertanyaan tersebut bermuara pada satu alasan klasik: stabilitas uang. Ekosistem iklan milik Google adalah mesin pencetak laba bernilai triliunan rupiah setiap tahunnya. Melakukan perombakan pada <i>core tracking script</i>—sekalipun hanya mengganti satu baris <i>event listener</i>—membawa risiko bisnis berskala global yang masif.</p>
+
+                <p>Sebagai perbandingan teknis, praktik masa kini menyarankan para pengembang untuk beralih menggunakan <i>event</i> yang bersahabat dengan bfcache. Berikut adalah perbedaan mendasarnya:</p>
+
+<pre><code>// Praktek Usang yang Masih Dipakai AdSense (Merusak bfcache)
+window.addEventListener('unload', function(event) {
+    // Kirim data pelacakan terakhir ke server Google
+    navigator.sendBeacon('/log', analyticsData);
+});
+
+// Praktek Modern yang Direkomendasikan Chrome
+window.addEventListener('pagehide', function(event) {
+    if (event.persisted === false) {
+        // Halaman benar-benar ditutup, aman kirim data
+        navigator.sendBeacon('/log', analyticsData);
+    }
+});</code></pre>
+
+                <h3>Proses Pengujian yang Sangat Alot</h3>
+
+                <p>Bila script iklan yang baru ternyata gagal dieksekusi pada peramban tertentu, atau secara keliru gagal melacak klik tayangan secara presisi, kerugian pendapatan yang ditimbulkan bisa luar biasa menghancurkan. Kerugian ini tidak hanya dirasakan oleh para pencipta konten (<i>publisher</i>), tetapi juga menghantam margin laba Google secara langsung.</p>
+
+                <p>Oleh sebab itu, tahapan Jaminan Kualitas (<i>Quality Assurance</i>) untuk pembaruan script selevel AdSense membutuhkan durasi yang sangat panjang. Mereka secara logis akan lebih memilih mempertahankan kode warisan yang sudah terbukti puluhan tahun keandalannya dalam menghasilkan uang, alih-alih mengejar skor warna hijau di mesin audit buatan kolega mereka sendiri.</p>
+            </details>
+
+            <h2>Ujian Sadis Mobile dan Bukti Ketangguhan Web</h2>
+
+            <p>Jika kamu berpikir kelucuan sistem ini hanya berlaku di lingkungan PC, kamu keliru. Konsistensi birokrasi Google ini merambat hingga ke pengujian ranah seluler. Karena kode <code>lidar.js</code> tersebut diunduh dan dipanggil di semua jenis penampang layar, perayap PageSpeed versi perangkat bergerak (<i>mobile</i>) pasti akan menemukan dosa API yang sama.</p>
+
+            <img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/ss/Screenshot%20From%202026-07-19%2020-26-27.png" alt="Screenshot PageSpeed versi Mobile memperlihatkan pencapaian luar biasa dengan skor Performa 98 meski ada script iklan." width="1200" height="716" style="aspect-ratio: 1200/716;" loading="lazy" decoding="async">
+            <span class="image-caption">Bahkan di simulasi jaringan yang diperlambat, perangkat seluler sanggup menembus skor 98.</span>
+
+            <p>Namun, justru di situlah letak keajaibannya. Meraih skor Performa 98 pada simulasi perangkat bergerak sembari membawa beban eksternal berupa <i>script</i> iklan pihak ketiga adalah sebuah pencapaian yang bisa disejajarkan dengan menemukan <i>unicorn</i>. Ini sangat luar biasa gila.</p>
+
+            <p>Perlu diingat, ujian versi seluler dari Google dirancang dengan tingkat kekejaman yang tinggi. Mereka tidak mengeksekusi tes web kamu menggunakan koneksi nirkabel tingkat dewa atau telepon pintar kelas atas. Mereka sengaja mengatur simulasi pemuatan menggunakan kondisi jaringan seluler 4G yang diperlambat secara paksa, dipadukan dengan prosesor ponsel cerdas kelas menengah ke bawah. Bisa menembus angka nyaris sempurna di bawah tekanan seketat itu membuktikan bahwa fondasi teknis struktur kodemu memang sudah dibangun dengan sangat efisien dan berkinerja tinggi.</p>
+
+            <h2>Ignorance is Bliss: Biarkan Saja</h2>
+
+            <p>Pada konklusi akhirnya, peringatan menakutkan tentang API kadaluarsa ini tidak lebih dari sekadar teguran operasional standar. Peringatan tersebut bersarang secara eksklusif di dalam kategori Praktik Terbaik, bukan pada matrik kecepatan utama. Ini berarti teguran itu tidak memiliki dampak destruktif secara langsung terhadap nilai <b>Core Web Vitals</b> milikmu (seperti <i>Largest Contentful Paint</i> atau <i>Total Blocking Time</i>).</p>
+
+            <p>Mesin pencari utama tetap akan memandang situsmu sebagai entitas digital yang sangat cepat, andal, dan ramah pengguna. Mengorbankan potensi pemasukan finansial atau merusak pelacakan iklan hanya demi menambal satu skor kuning murni bukanlah keputusan bisnis yang rasional.</p>
+<img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/ss/Gemini_Generated_Image_lj3avzlj3avzlj3a.png" alt="kita harus berdamai dengan sedikit ketidaksempurnaan" width="1200" height="716" style="aspect-ratio: 1200/716;" loading="lazy" decoding="async">
+            <p>Terkadang, sebagai seorang pengembang dan kreator, ada momen di mana kita harus berdamai dengan sedikit ketidaksempurnaan. Biarlah insinyur Google menyelesaikan benang kusut birokrasi internal mereka pada waktunya sendiri. Bagi kita? Matikan alat penganalisis kecepatan itu sesekali, kembalilah ke layar penulisan, dan berfokuslah meracik kembali tulisan-tulisan bernas yang memang dinantikan oleh audiens setiamu.</p>
+
+            <!--wajib ini tulis signature artikel oleh LayarKosong-->
+        </article>
+    </main>
+
+    <footer>
+        <div class="container footer-inline">
+            <span>Ditulis oleh: Developer Jadul</span>
+            <span>Kategori: Web Development & Opini Santai</span>
+            <span>Referensi: PageSpeed Insights Audit Logs</span>
+        </div>
+    </footer>
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>
