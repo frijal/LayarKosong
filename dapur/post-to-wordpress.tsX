@@ -5,8 +5,8 @@ import nodemailer from "nodemailer";
  */
 const CONFIG = {
     articleFile: "artikel.json",
-    databaseFile: "mini/posted-wordpress.txt", // Database khusus satelit WordPress
-    baseUrl: "https://dalam.web.id",
+    databaseFile: "mini/posted-wordpress.txt", // Database khusus satelit WordPress[cite: 2]
+    baseUrl: "https://dalam.web.id", //[cite: 2, 7]
 
     // Ambil dari Bun.env
     smtpHost: Bun.env.SMTP_HOST || "smtp.gmail.com",
@@ -19,6 +19,7 @@ const CONFIG = {
 /* =====================
  * Interfaces
  * ===================== */
+// Struktur sesuai artikel.json terbaru: [judul, path, gambar, tanggal, deskripsi][cite: 7]
 type RawArticle = [string, string, string, string, string?];
 interface ArticleData {
     [category: string]: RawArticle[];
@@ -59,7 +60,7 @@ async function run(): Promise<void> {
         process.exit(1);
     }
 
-    // Load Database satelit
+    // Load Database pakai Bun.file (gaya script Discord-mu)[cite: 2]
     const dbFile = Bun.file(CONFIG.databaseFile);
     const postedDatabase = (await dbFile.exists()) ? await dbFile.text() : "";
 
@@ -69,20 +70,19 @@ async function run(): Promise<void> {
     for (const [category, items] of Object.entries(rawData)) {
         const catSlug = slugify(category);
         for (const item of items) {
-            const [title, fileName, imageUrl, isoDate, description] = item;
+            const [title, fileName, imageUrl, isoDate, description] = item; //[cite: 7]
             const fileSlug = fileName.replace('.html', '').replace(/^\//, '');
 
-            // Skip agregat
             if (fileSlug.startsWith("agregat-20")) continue;
 
             const fullUrl = `${CONFIG.baseUrl}/${catSlug}/${fileSlug}`;
 
-            if (!postedDatabase.includes(fullUrl)) {
+            if (!postedDatabase.includes(fileSlug)) {
                 allArticles.push({
                     title,
                     url: fullUrl,
                     slug: fileSlug,
-                    image: imageUrl,
+                    image: imageUrl, // Kita ambil url gambarnya di sini[cite: 7]
                     date: isoDate,
                     desc: description || "Archive.",
                     category
@@ -103,44 +103,37 @@ async function run(): Promise<void> {
     console.log(`🚀 Mengirim Email Post ke WordPress Planet: ${target.title}`);
 
     /* =====================
-     * Otomatisasi Tag
-     * ===================== */
+     * Otomatisasi Tag (Adaptasi Gaya Mastodon)[cite: 6]
+     = ==*================== */
     const tags = new Set<string>();
-    tags.add("fediverse");
+    tags.add("fediverse"); //[cite: 6]
     tags.add("repost");
     tags.add(cleanTag(target.category));
 
+    // Ambil kata dari judul yang panjangnya lebih dari 4 huruf untuk dijadikan tag tambahan[cite: 6]
     target.title
     .split(/\s+/)
     .filter(w => w.length > 4)
     .slice(0, 3)
     .forEach(w => tags.add(cleanTag(w).toLowerCase()));
 
+    // Format shortcode tag bawaan WordPress.com Post by Email
     const wpTagsShortcode = `[tags ${[...tags].join(", ")}]`;
 
     /* =====================
-     * Format Body Email (Strict WordPress Markdown Extra)
+     * Format Body Email (HTML Super Polos & Ringan)
      * ===================== */
-    // - Line break menggunakan "regular line break" (cukup \n)
-    // - Gambar + Link pakai format [![Alt](Img "Title")](URL "Title")
-    // - Menampilkan kembali seluruh URL secara utuh sebagai text
-    const imageMarkdown = target.image
-    ? `[![${target.title}](${target.image} "${target.title}")](${target.url} "Baca di Layar Kosong")`
-    : "";
-
     const emailContent = `
-    ${target.desc}
-
-    ${imageMarkdown}
-
-    Baca artikel selengkapnya di: [${target.url}](${target.url})
-
-    ${wpTagsShortcode}
-    `.trim();
+    <p>${target.desc}</p>
+    ${target.image ? `<p><a href="${target.url}"><img src="${target.image}" alt="${target.title}"/></a></p>` : ""}
+    <p>Baca artikel selengkapnya di: <a href="${target.url}">${target.url}</a></p>
+    <br><br>
+    <p>${wpTagsShortcode}</p>
+    `;
 
     /* =====================
      * Setup Nodemailer & Kirim
-     * ===================== */
+     = ==*================== */
     const transporter = nodemailer.createTransport({
         host: CONFIG.smtpHost,
         port: CONFIG.smtpPort,
@@ -155,15 +148,15 @@ async function run(): Promise<void> {
         await transporter.sendMail({
             from: `"Layar Kosong Syndication" <${CONFIG.smtpUser}>`,
             to: CONFIG.wpPostEmail,
-            subject: target.title,
-            text: emailContent, // Dikirim sebagai plain-text agar di-parse parser Markdown WP
+            subject: target.title, // Subject otomatis jadi Judul Postingan WP
+            html: emailContent,    // Body HTML otomatis jadi Isi Postingan WP + Gambar
         });
 
-        // Simpan Log pakai Bun.write
+        // Simpan Log pakai Bun.write[cite: 2]
         const newContent = postedDatabase + target.url + "\n";
         await Bun.write(CONFIG.databaseFile, newContent);
 
-        console.log(`✅ Berhasil! Artikel terposting ke WordPress dengan format Markdown.`);
+        console.log(`✅ Berhasil! Artikel terposting ke WordPress beserta gambarnya.`);
 
     } catch (err: any) {
         console.error("❌ Gagal mengirim email ke WordPress:", err.message);
