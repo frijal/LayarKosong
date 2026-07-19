@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Advanced Network Device Fingerprint Footprint Scanner</title>
+<meta name="robots" content="index, follow" />
+<meta name="description" content="Advanced client-side network device fingerprint scanner. Analyze IP intelligence, WebRTC leaks, DNS resolver, browser & OS details, canvas & audio hashes, VPN/proxy detection, and HTTP headers – all locally in your browser." />
+<meta name="keywords" content="device fingerprint, browser fingerprint, network scanner, IP intelligence, WebRTC leak test, DNS detection, VPN proxy detection, canvas fingerprint, audio fingerprint, privacy scanner, security tool" />
+<meta name="author" content="Spyboy Fingerprint Project" />
+<meta name="theme-color" content="#3b82f6" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Fingerprint Scanner" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:url" content="https://dalam.web.id/artikel/fingerprint-scanner.html" />
+<meta property="og:title" content="Advanced Network Device Fingerprint Footprint Scanner" />
+<meta property="og:description" content="Scan your browser’s digital footprint with IP intelligence, WebRTC, DNS, canvas & audio fingerprinting, and VPN detection. 100% client-side." />
+<meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_rhfvv8rhfvv8rhfv.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Fingerprint Scanner" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://dalam.web.id/artikel/fingerprint-scanner.html" />
+<meta name="twitter:title" content="Advanced Network Device Fingerprint Footprint Scanner" />
+<meta name="twitter:description" content="Instantly reveal your browser’s unique fingerprint and network identity. IP, WebRTC, DNS, Canvas, Audio, VPN/Proxy heuristics." />
+<meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_rhfvv8rhfvv8rhfv.png" />
+
+<!-- Canonical & Favicon -->
+<link rel="canonical" href="https://dalam.web.id/artikel/fingerprint-scanner.html" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Tailwind CSS (Play CDN for quick prototyping) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'media', // Mengikuti prefers-color-scheme OS/Browser
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Highlight.js for Code Snippet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- Custom Styles untuk class yang di-generate oleh JavaScript bawaan -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            /* Styling class dari Javascript */
+            .data-row { @apply flex justify-between items-start py-2 border-b border-gray-200 dark:border-gray-700 gap-4; }
+            .data-row:last-child { @apply border-b-0 pb-0 mb-0; }
+            .data-label { @apply font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap text-xs uppercase tracking-wider; }
+            .data-value { @apply text-right break-all text-gray-800 dark:text-gray-200 font-semibold text-sm; }
+            .highlight { @apply text-blue-600 dark:text-blue-400 font-bold; }
+
+            .signals-list { @apply flex flex-col gap-2 mt-2; }
+            .signal-item { @apply flex justify-between text-xs bg-gray-50 dark:bg-gray-700/50 p-2 rounded border border-gray-100 dark:border-gray-600; }
+
+            .ip-list { @apply flex flex-wrap justify-end gap-1; }
+            .ip-tag { @apply bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs px-2 py-1 rounded font-mono border border-green-200 dark:border-green-800; }
+            .warning-tag { @apply bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800; }
+
+            .fingerprint-score { @apply font-bold text-center py-2 px-3 rounded text-sm mb-3; }
+            .score-high { @apply bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800; }
+            .score-medium { @apply bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-400 border border-yellow-200 dark:border-yellow-800; }
+            .score-low { @apply bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800; }
+
+            .table-scroll { @apply overflow-x-auto w-full mt-2 border border-gray-200 dark:border-gray-700 rounded; }
+            .headers-table { @apply w-full text-left text-xs; }
+            .headers-table th { @apply bg-gray-100 dark:bg-gray-800 p-2 font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-200 dark:border-gray-700; }
+            .headers-table td { @apply p-2 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-300 break-all; }
+            .headers-table tr:last-child td { @apply border-b-0; }
+
+            .loading { @apply flex items-center justify-center gap-2 text-gray-400 text-sm py-4; }
+            .spinner { @apply animate-spin rounded-full h-4 w-4 border-2 border-gray-300 border-t-blue-500; }
+
+            iframe { @apply w-full h-[250px] rounded border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 mt-2; }
+
+            #map-links { @apply flex flex-wrap gap-2 mt-3; }
+            #map-links a { @apply text-xs bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-800/50 text-blue-600 dark:text-blue-400 px-3 py-1.5 rounded-full transition-colors border border-blue-200 dark:border-blue-800; }
+        }
+    </style>
+</head>
+<!-- overflow-x-hidden untuk mencegah scroll horizontal, w-full agar mengisi penuh layar -->
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased overflow-x-hidden min-h-screen">
+
+    <!-- Header Section -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
+        <div class="w-full px-4 sm:px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 text-white p-2 rounded-lg">
+                    <i class="fa-solid fa-radar fa-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold leading-tight">Digital Footprint Scanner</h1>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Client-Side Heuristics & Network Intelligence</p>
+                </div>
+            </div>
+            <a href="https://dalam.web.id/" target="_blank" class="hidden sm:flex items-center gap-2 text-sm text-gray-500 hover:text-blue-500 transition-colors">
+                <i class="fa-solid fa-code"></i> Frijal (Layar Kosong)
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Grid - Full Wider, Mobile First -->
+    <!-- Grid akan melar: 1 kolom (HP) -> 2 kolom (Tablet) -> 3 kolom (Laptop) -> 4 kolom (Desktop) -> 5 kolom (Ultrawide) -->
+    <main class="w-full p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6 items-start">
+
+        <!-- 1. Network Identity -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-globe text-blue-500 w-5 text-center"></i> Network Identity
+            </div>
+            <div class="p-4 flex-grow flex flex-col gap-4">
+                <div id="ip-info"><div class="loading"><div class="spinner"></div></div></div>
+                <div class="border-t border-dashed border-gray-200 dark:border-gray-700 pt-4"></div>
+                <div id="ipv6-info"><div class="loading"><div class="spinner"></div></div></div>
+            </div>
+        </div>
+
+        <!-- 2. Geolocation -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-location-crosshairs text-red-500 w-5 text-center"></i> Geolocation Details
+            </div>
+            <div class="p-4 flex-grow" id="ip-details">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 3. Interactive Map (Takes up full width on mobile, 2 cols on tablet, 1 col on bigger screens if needed, but let's keep it standard for grid) -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full md:col-span-2 xl:col-span-1">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-map text-emerald-500 w-5 text-center"></i> Map Visualization
+            </div>
+            <div class="p-4 flex-grow flex flex-col">
+                <div id="map-frame" class="flex-grow">
+                    <div class="loading"><div class="spinner"></div></div>
+                </div>
+                <div id="map-links"></div>
+            </div>
+        </div>
+
+        <!-- 4. Network Leaks -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-user-secret text-purple-500 w-5 text-center"></i> DNS & WebRTC Leaks
+            </div>
+            <div class="p-4 flex-grow flex flex-col gap-4">
+                <div id="dns-info"><div class="loading"><div class="spinner"></div></div></div>
+                <div class="border-t border-dashed border-gray-200 dark:border-gray-700 pt-4"></div>
+                <div id="webrtc-info"><div class="loading"><div class="spinner"></div></div></div>
+            </div>
+        </div>
+
+        <!-- 5. VPN & Proxy Analysis -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-shield-halved text-orange-500 w-5 text-center"></i> VPN / Proxy Analysis
+            </div>
+            <div class="p-4 flex-grow" id="vpn-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 6. Fingerprint Hash -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-fingerprint text-indigo-500 w-5 text-center"></i> Device Fingerprint
+            </div>
+            <div class="p-4 flex-grow" id="fingerprint-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 7. Hardware Fingerprint -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-microchip text-pink-500 w-5 text-center"></i> Hardware Fingerprint
+            </div>
+            <div class="p-4 flex-grow" id="canvas-audio-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 8. Browser & OS -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full md:col-span-2 xl:col-span-1">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-brands fa-chrome text-yellow-500 w-5 text-center"></i> Browser & OS
+            </div>
+            <div class="p-4 flex-grow" id="browser-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 9. System Specs -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-laptop-code text-slate-500 w-5 text-center"></i> System Hardware
+            </div>
+            <div class="p-4 flex-grow" id="system-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 10. Display & Screen -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-desktop text-cyan-500 w-5 text-center"></i> Display Metrics
+            </div>
+            <div class="p-4 flex-grow" id="screen-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 11. Network Connection -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-wifi text-green-500 w-5 text-center"></i> Connection API
+            </div>
+            <div class="p-4 flex-grow" id="connection-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 12. Time & Locale -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-regular fa-clock text-teal-500 w-5 text-center"></i> Locale & Timezone
+            </div>
+            <div class="p-4 flex-grow" id="locale-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 13. Graphics & WebGL -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full md:col-span-2 xl:col-span-1">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-cubes text-fuchsia-500 w-5 text-center"></i> Graphics & WebGL
+            </div>
+            <div class="p-4 flex-grow" id="graphics-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 14. Privacy Signals -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-user-lock text-rose-500 w-5 text-center"></i> Privacy Settings
+            </div>
+            <div class="p-4 flex-grow" id="privacy-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+        <!-- 15. HTTP Headers -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden flex flex-col h-full md:col-span-2 xl:col-span-3 2xl:col-span-4">
+            <div class="bg-gray-50 dark:bg-gray-800/50 px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-server text-gray-500 w-5 text-center"></i> HTTP Headers
+            </div>
+            <div class="p-4 flex-grow" id="headers-info">
+                <div class="loading"><div class="spinner"></div></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Source Code Section (Highlight.js Implementation) -->
+    <section class="w-full p-4 sm:p-6 pt-0">
+        <details class="bg-gray-800 text-gray-300 rounded-xl shadow-lg overflow-hidden group">
+            <summary class="px-6 py-4 cursor-pointer flex items-center justify-between bg-gray-900 hover:bg-gray-950 transition-colors list-none">
+                <span class="font-semibold text-white"><i class="fa-solid fa-code mr-2 text-blue-400"></i> Lihat Source Code Script Utama</span>
+                <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform"></i>
+            </summary>
+            <div class="p-4 border-t border-gray-700">
+                <pre><code class="language-javascript rounded-lg" id="script-viewer"></code></pre>
+            </div>
+        </details>
+    </section>
+
+    <!-- KODE JAVASCRIPT ASLI DARI PROMPT (Tidak diubah logikanya, hanya dirapikan) -->
+    <script id="core-script">
+        const $ = (id) => document.getElementById(id);
+        function setHTML(id, html) {
+            const node = $(id);
+            if (node) node.innerHTML = html;
+        }
+        function createDataRow(label, value, highlight = false) {
+            return `
+                <div class="data-row">
+                    <span class="data-label">${label}</span>
+                    <span class="data-value ${highlight ? 'highlight' : ''}">${value}</span>
+                </div>
+            `;
+        }
+        function renderSignalList(signals = []) {
+            if (!signals.length) {
+                return `<p class="data-label">No signals collected.</p>`;
+            }
+            return `
+                <div class="signals-list">
+                    ${signals.map(([label, value]) => `
+                        <div class="signal-item">
+                            <span class="font-medium">${label}</span>
+                            <span>${value}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+        async function hashString(source) {
+            const text = String(source || '');
+            if (window.crypto?.subtle) {
+                const buffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+                return Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 16);
+            }
+            let hash = 0;
+            for (let i = 0; i < text.length; i += 1) {
+                hash = (hash << 5) - hash + text.charCodeAt(i);
+                hash |= 0;
+            }
+            return Math.abs(hash).toString(16);
+        }
+        async function fetchIPDetails() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                setHTML('ip-info', `
+                    ${createDataRow('Public IP (IPv4)', data.ip || 'Unknown', true)}
+                    ${createDataRow('IP Version', data.version || 'Unknown')}
+                    ${createDataRow('ASN', data.asn || 'Unknown')}
+                    ${createDataRow('Organization', data.org || 'Unknown')}
+                `);
+                setHTML('ip-details', `
+                    ${createDataRow('Country', `${data.country_name || 'Unknown'} (${data.country_code || '--'})`)}
+                    ${createDataRow('Region', data.region || 'Unknown')}
+                    ${createDataRow('City', data.city || 'Unknown')}
+                    ${createDataRow('Timezone', data.timezone || 'Unknown')}
+                    ${createDataRow('Latitude', data.latitude || 'Unknown')}
+                    ${createDataRow('Longitude', data.longitude || 'Unknown')}
+                `);
+                updateVPNSignals(data);
+                updateMapVisualization(data);
+            } catch (error) {
+                setHTML('ip-info', createDataRow('Error', 'Failed to fetch IP'));
+                setHTML('ip-details', createDataRow('Error', 'Failed to fetch details'));
+                setHTML('vpn-info', createDataRow('Status', 'IP intelligence unavailable'));
+                setHTML('map-frame', `<div class="loading"><div class="spinner"></div> Map requires geo data.</div>`);
+                setHTML('map-links', `<span class="data-label">Unable to render links without coordinates.</span>`);
+            }
+        }
+        function updateMapVisualization(data = {}) {
+            const latitude = parseFloat(data.latitude ?? data.lat);
+            const longitude = parseFloat(data.longitude ?? data.lon);
+            if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+                setHTML('map-frame', `<div class="loading"><div class="spinner"></div> Coordinates unavailable.</div>`);
+                setHTML('map-links', `<span class="data-label">Waiting for provider to expose lat/long.</span>`);
+                return;
+            }
+            const latFixed = latitude.toFixed(5);
+            const lonFixed = longitude.toFixed(5);
+            const delta = 0.08;
+            const bbox = [
+                (longitude - delta).toFixed(5),
+                (latitude - delta).toFixed(5),
+                (longitude + delta).toFixed(5),
+                (latitude + delta).toFixed(5),
+            ];
+            const osmEmbed = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox.join('%2C')}&layer=mapnik&marker=${latFixed}%2C${lonFixed}`;
+            setHTML('map-frame', `
+                <iframe src="${osmEmbed}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map preview for ${latFixed}, ${lonFixed}"></iframe>
+            `);
+            const google = `https://maps.google.com/?q=${latFixed},${lonFixed}`;
+            const openstreet = `https://www.openstreetmap.org/?mlat=${latFixed}&mlon=${lonFixed}#map=12/${latFixed}/${lonFixed}`;
+            const bing = `https://www.bing.com/maps?cp=${latFixed}~${lonFixed}&lvl=12`;
+            const apple = `https://maps.apple.com/?ll=${latFixed},${lonFixed}&q=${encodeURIComponent(data.city || 'Pin')}`;
+            setHTML('map-links', `
+                <a href="${google}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-google"></i> Google Maps</a>
+                <a href="${openstreet}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-map-location"></i> OSM</a>
+                <a href="${bing}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-microsoft"></i> Bing</a>
+                <a href="${apple}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-apple"></i> Apple</a>
+            `);
+        }
+        async function detectIPv6() {
+            try {
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 4000);
+                const response = await fetch('https://api64.ipify.org?format=json', { signal: controller.signal });
+                clearTimeout(timeout);
+                const data = await response.json();
+                if (data?.ip && data.ip.includes(':')) {
+                    setHTML('ipv6-info', `
+                        ${createDataRow('IPv6 Detected', data.ip, true)}
+                        ${createDataRow('Status', 'Native IPv6 support ✓')}
+                    `);
+                    return;
+                }
+                setHTML('ipv6-info', `
+                    ${createDataRow('IPv6 Detected', 'Not available')}
+                    ${createDataRow('Status', 'No IPv6 address returned')}
+                `);
+            } catch (error) {
+                setHTML('ipv6-info', `
+                    ${createDataRow('IPv6 Detected', 'Unknown')}
+                    ${createDataRow('Status', 'IPv6 lookup timed out')}
+                `);
+            }
+        }
+        function detectWebRTC() {
+            const localIPs = new Set();
+            const publicIPs = new Set();
+            try {
+                const RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+                if (!RTCPeerConnection) {
+                    setHTML('webrtc-info', createDataRow('Status', 'WebRTC not supported in this browser'));
+                    return;
+                }
+                const pc = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
+                pc.createDataChannel('');
+                pc.createOffer().then(offer => pc.setLocalDescription(offer));
+                pc.onicecandidate = (event) => {
+                    if (!event.candidate) return;
+                    const candidate = event.candidate.candidate;
+                    const ipRegex = /([0-9]{1,3}(?:\.[0-9]{1,3}){3})|([a-f0-9:]{3,})/gi;
+                    const matches = candidate.match(ipRegex);
+                    if (matches) {
+                        matches.forEach((ip) => {
+                            if (ip.includes(':')) {
+                                publicIPs.add(ip);
+                            } else if (ip.startsWith('10.') || ip.startsWith('192.168.') || ip.startsWith('172.')) {
+                                localIPs.add(ip);
+                            } else if (!ip.startsWith('0.') && ip !== '0.0.0.0') {
+                                publicIPs.add(ip);
+                            }
+                        });
+                        updateWebRTCDisplay([...localIPs], [...publicIPs]);
+                    }
+                };
+                setTimeout(() => {
+                    pc.close();
+                    if (!localIPs.size && !publicIPs.size) {
+                        setHTML('webrtc-info', createDataRow('Status', 'No WebRTC leaks detected ✓'));
+                    }
+                }, 3500);
+            } catch (error) {
+                setHTML('webrtc-info', createDataRow('Status', 'WebRTC detection unavailable'));
+            }
+        }
+        function updateWebRTCDisplay(localIPs, publicIPs) {
+            let html = '';
+            if (localIPs.length) {
+                html += `
+                    <div class="data-row">
+                        <span class="data-label">Local IPs</span>
+                        <div class="ip-list">${localIPs.map(ip => `<span class="ip-tag">${ip}</span>`).join('')}</div>
+                    </div>`;
+            }
+            if (publicIPs.length) {
+                html += `
+                    <div class="data-row">
+                        <span class="data-label">Public IPs (Leak!)</span>
+                        <div class="ip-list">${publicIPs.map(ip => `<span class="ip-tag warning-tag">${ip}</span>`).join('')}</div>
+                    </div>`;
+            }
+            if (html) setHTML('webrtc-info', html);
+        }
+        async function detectDNS() {
+            try {
+                const response = await fetch('https://edns.ip-api.com/json');
+                const data = await response.json();
+                if (data.dns?.ip) {
+                    setHTML('dns-info', `
+                        ${createDataRow('DNS Server', data.dns.ip, true)}
+                        ${createDataRow('DNS Location', data.dns.geo || 'Unknown')}
+                        ${createDataRow('Resolver', data.dns.engine || 'Unknown')}
+                    `);
+                } else {
+                    setHTML('dns-info', createDataRow('Status', 'Unable to detect DNS server'));
+                }
+            } catch (error) {
+                setHTML('dns-info', createDataRow('Status', 'DNS detection unavailable'));
+            }
+        }
+        function getSystemInfo() {
+            const nav = navigator;
+            setHTML('system-info', `
+                ${createDataRow('Platform', nav.platform || 'Unknown')}
+                ${createDataRow('Language', nav.language || 'Unknown')}
+                ${createDataRow('Languages', (nav.languages || []).join(', ') || 'Unknown')}
+                ${createDataRow('CPU Cores', nav.hardwareConcurrency || 'Unknown')}
+                ${createDataRow('Device Memory', nav.deviceMemory ? `${nav.deviceMemory} GB` : 'Unknown')}
+                ${createDataRow('Online Status', nav.onLine ? 'Online ✓' : 'Offline')}
+                ${createDataRow('Cookies Enabled', nav.cookieEnabled ? 'Yes' : 'No')}
+            `);
+        }
+        function getBrowserInfo() {
+            const ua = navigator.userAgent;
+            let browser = 'Unknown';
+            let version = '';
+            if (ua.includes('Firefox/')) {
+                browser = 'Firefox';
+                version = ua.match(/Firefox\/([0-9.]+)/)?.[1] || '';
+            } else if (ua.includes('Edg/')) {
+                browser = 'Edge';
+                version = ua.match(/Edg\/([0-9.]+)/)?.[1] || '';
+            } else if (ua.includes('Chrome/')) {
+                browser = 'Chrome';
+                version = ua.match(/Chrome\/([0-9.]+)/)?.[1] || '';
+            } else if (ua.includes('Safari/') && !ua.includes('Chrome')) {
+                browser = 'Safari';
+                version = ua.match(/Version\/([0-9.]+)/)?.[1] || '';
+            }
+            let os = 'Unknown';
+            if (ua.includes('Windows')) os = 'Windows';
+            else if (ua.includes('Mac')) os = 'macOS';
+            else if (ua.includes('Linux')) os = 'Linux';
+            else if (ua.includes('Android')) os = 'Android';
+            else if (ua.includes('iPhone') || ua.includes('iPad')) os = 'iOS';
+            setHTML('browser-info', `
+                ${createDataRow('Browser', `${browser}${version ? ` ${version}` : ''}`)}
+                ${createDataRow('Operating System', os)}
+                ${createDataRow('User Agent', ua)}
+                ${createDataRow('Vendor', navigator.vendor || 'Unknown')}
+                ${createDataRow('App Version', navigator.appVersion?.split(' ')[0] || 'Unknown')}
+            `);
+        }
+        function getScreenInfo() {
+            const screen = window.screen;
+            setHTML('screen-info', `
+                ${createDataRow('Resolution', `${screen.width} × ${screen.height}`)}
+                ${createDataRow('Available', `${screen.availWidth} × ${screen.availHeight}`)}
+                ${createDataRow('Color Depth', `${screen.colorDepth} bit`)}
+                ${createDataRow('Pixel Ratio', window.devicePixelRatio)}
+                ${createDataRow('Viewport', `${window.innerWidth} × ${window.innerHeight}`)}
+                ${createDataRow('Orientation', screen.orientation?.type || 'Unknown')}
+            `);
+        }
+        function getConnectionInfo() {
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const nav = navigator;
+            const baseSignals = [
+                createDataRow('Online', nav.onLine ? 'Yes' : 'No'),
+                createDataRow('Platform', nav.platform || 'Unknown'),
+            ];
+            const navigationEntries = performance?.getEntriesByType?.('navigation') || [];
+            if (navigationEntries.length) {
+                const navEntry = navigationEntries[0];
+                baseSignals.push(
+                    createDataRow('Load Type', navEntry.type || 'Unknown'),
+                    createDataRow('Transfer Size', navEntry.transferSize ? `${(navEntry.transferSize / 1024).toFixed(1)} KB` : 'Unknown'),
+                );
+            } else if (performance?.timing) {
+                const timing = performance.timing;
+                const transfer = timing.transferSize || timing.responseEnd - timing.requestStart;
+                baseSignals.push(
+                    createDataRow('Response Time', transfer ? `${transfer} ms` : 'Unknown'),
+                );
+            }
+            if (!connection) {
+                setHTML('connection-info', `
+                    ${createDataRow('Status', 'Network Information API unavailable')}
+                    ${baseSignals.join('')}
+                `);
+                return;
+            }
+            setHTML('connection-info', `
+                ${createDataRow('Type', connection.type || 'Unknown')}
+                ${createDataRow('Effective Type', connection.effectiveType || 'Unknown')}
+                ${createDataRow('Downlink', connection.downlink ? `${connection.downlink} Mbps` : 'Unknown')}
+                ${createDataRow('RTT', connection.rtt ? `${connection.rtt} ms` : 'Unknown')}
+                ${createDataRow('Data Saver', connection.saveData ? 'Enabled' : 'Disabled')}
+                ${baseSignals.join('')}
+            `);
+        }
+        function getLocaleInfo() {
+            const now = new Date();
+            const options = Intl.DateTimeFormat().resolvedOptions();
+            const offsetMinutes = -now.getTimezoneOffset();
+            const sign = offsetMinutes >= 0 ? '+' : '-';
+            const hours = String(Math.floor(Math.abs(offsetMinutes) / 60)).padStart(2, '0');
+            const minutes = String(Math.abs(offsetMinutes) % 60).padStart(2, '0');
+            const offset = `UTC${sign}${hours}:${minutes}`;
+            setHTML('locale-info', `
+                ${createDataRow('Locale', navigator.language || options.locale || 'Unknown')}
+                ${createDataRow('Time Zone', options.timeZone || 'Unknown')}
+                ${createDataRow('Local Time', now.toLocaleString())}
+                ${createDataRow('UTC Offset', offset)}
+                ${createDataRow('Hour Cycle', (options.hourCycle || (options.hour12 ? 'h12' : 'h23')).toUpperCase())}
+            `);
+        }
+        function getGraphicsInfo() {
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (!gl) {
+                    setHTML('graphics-info', createDataRow('Status', 'WebGL not supported'));
+                    return;
+                }
+                const ext = gl.getExtension('WEBGL_debug_renderer_info');
+                const vendor = ext ? gl.getParameter(ext.UNMASKED_VENDOR_WEBGL) : gl.getParameter(gl.VENDOR);
+                const renderer = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
+                setHTML('graphics-info', `
+                    ${createDataRow('Vendor', vendor)}
+                    ${createDataRow('Renderer', renderer)}
+                    ${createDataRow('WebGL Version', gl.getParameter(gl.VERSION))}
+                    ${createDataRow('Shader Version', gl.getParameter(gl.SHADING_LANGUAGE_VERSION))}
+                `);
+            } catch (error) {
+                setHTML('graphics-info', createDataRow('Status', 'Unable to query WebGL context'));
+            }
+        }
+        function storageAvailable(type) {
+            try {
+                const storage = window[type];
+                const testKey = '__spyboy_storage_test__';
+                storage.setItem(testKey, testKey);
+                storage.removeItem(testKey);
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+        function renderPrivacySignals() {
+            const nav = navigator;
+            const signals = [
+                ['Do Not Track', nav.doNotTrack === '1' ? 'Enabled' : 'Disabled'],
+                ['Global Privacy Control', nav.globalPrivacyControl ? 'Enabled' : 'Unavailable'],
+                ['Cookies Enabled', nav.cookieEnabled ? 'Yes' : 'No'],
+                ['Local Storage', storageAvailable('localStorage') ? 'Accessible' : 'Blocked'],
+                ['Session Storage', storageAvailable('sessionStorage') ? 'Accessible' : 'Blocked'],
+                ['Battery API', nav.getBattery ? 'Available' : 'Unavailable'],
+            ];
+            setHTML('privacy-info', renderSignalList(signals));
+        }
+        function getHeaders() {
+            const headers = [
+                ['Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'],
+                ['Accept-Language', navigator.language],
+                ['User-Agent', navigator.userAgent],
+                ['Connection', 'keep-alive'],
+                ['Sec-Fetch-Dest', 'document'],
+                ['Sec-Fetch-Mode', 'navigate'],
+                ['Sec-Fetch-Site', 'none'],
+            ];
+            setHTML('headers-info', `
+                <div class="table-scroll">
+                    <table class="headers-table">
+                        <thead>
+                            <tr><th>Header</th><th>Value</th></tr>
+                        </thead>
+                        <tbody>
+                            ${headers.map(([name, value]) => `<tr><td>${name}</td><td>${value}</td></tr>`).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `);
+        }
+        function updateVPNSignals(ipData = {}) {
+            const keywords = ['vpn', 'proxy', 'hosting', 'datacenter', 'cloud', 'colo', 'digitalocean', 'aws', 'azure', 'gcp', 'ovh', 'linode'];
+            const signals = [];
+            const org = (ipData.org || '').toLowerCase();
+            const keyword = keywords.find(key => org.includes(key));
+            if (keyword) signals.push(['ASN Organization', ipData.org || 'Unknown']);
+            if (ipData.asn && /^AS\d{5,}/.test(ipData.asn)) signals.push(['Large ASN', ipData.asn]);
+            if (ipData.country_code_iso3 && ipData.country_code_iso3 !== ipData.country_code) {
+                signals.push(['Country Code Variance', `${ipData.country_code_iso3} vs ${ipData.country_code}`]);
+            }
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            if (connection?.type) signals.push(['Device Network Type', connection.type]);
+            if (connection?.effectiveType) signals.push(['Effective Type', connection.effectiveType]);
+            const riskClass = signals.length >= 3 ? 'score-high' : signals.length === 2 ? 'score-medium' : 'score-low';
+            const riskLabel = signals.length >= 3 ? 'High' : signals.length === 2 ? 'Medium' : 'Low';
+            const summary = `<div class="fingerprint-score ${riskClass}">Client heuristics: ${riskLabel} VPN/Proxy likelihood</div>`;
+            const detail = signals.length ? renderSignalList(signals) : `<p class="data-label">No obvious VPN/proxy traits detected from client-side heuristics.</p>`;
+            setHTML('vpn-info', summary + detail);
+        }
+        async function renderFingerprintScore() {
+            const nav = navigator;
+            const screen = window.screen;
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const signals = [
+                nav.userAgent,
+                nav.language,
+                (nav.languages || []).join(','),
+                nav.platform,
+                nav.hardwareConcurrency,
+                nav.deviceMemory,
+                `${screen.width}x${screen.height}`,
+                screen.colorDepth,
+                window.devicePixelRatio,
+                Intl.DateTimeFormat().resolvedOptions().timeZone,
+                connection?.effectiveType || 'unknown',
+            ];
+            const hash = await hashString(signals.join('|'));
+            const entropy = Math.min(10, new Set(signals.filter(Boolean)).size);
+            const levelClass = entropy >= 8 ? 'score-high' : entropy >= 5 ? 'score-medium' : 'score-low';
+            const levelLabel = entropy >= 8 ? 'High' : entropy >= 5 ? 'Medium' : 'Low';
+            setHTML('fingerprint-info', `
+                <div class="fingerprint-score ${levelClass}">${levelLabel} uniqueness (${entropy}/10)</div>
+                ${createDataRow('Fingerprint ID', hash)}
+                ${createDataRow('Signals Count', `${signals.filter(Boolean).length}`)}
+            `);
+        }
+        function generateCanvasData() {
+            try {
+                const canvas = document.createElement('canvas');
+                canvas.width = 300;
+                canvas.height = 150;
+                const ctx = canvas.getContext('2d');
+                ctx.textBaseline = 'top';
+                ctx.font = "16px 'Poppins'";
+                ctx.fillStyle = '#f1ec40';
+                ctx.fillText('spyboy-fingerprint', 2, 2);
+                ctx.fillStyle = '#dc143c';
+                ctx.fillRect(10, 40, 150, 8);
+                ctx.globalCompositeOperation = 'multiply';
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(120, 60, 20, 0, Math.PI * 2);
+                ctx.fill();
+                return canvas.toDataURL();
+            } catch (error) {
+                return 'unavailable';
+            }
+        }
+        async function generateAudioData() {
+            const AudioContext = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+            if (!AudioContext) return 'unavailable';
+            try {
+                const context = new AudioContext(1, 44100, 44100);
+                const oscillator = context.createOscillator();
+                oscillator.type = 'triangle';
+                oscillator.frequency.value = 1000;
+                const compressor = context.createDynamicsCompressor();
+                oscillator.connect(compressor);
+                compressor.connect(context.destination);
+                oscillator.start(0);
+                const buffer = await context.startRendering();
+                let sum = 0;
+                const channelData = buffer.getChannelData(0);
+                for (let i = 0; i < channelData.length; i += 100) {
+                    sum += Math.abs(channelData[i]);
+                }
+                return sum.toString();
+            } catch (error) {
+                return 'unavailable';
+            }
+        }
+        async function renderCanvasAudioFingerprint() {
+            const canvasData = generateCanvasData();
+            const audioData = await generateAudioData();
+            const [canvasHash, audioHash] = await Promise.all([
+                hashString(canvasData),
+                hashString(audioData),
+            ]);
+            setHTML('canvas-audio-info', `
+                ${createDataRow('Canvas Hash', canvasHash)}
+                ${createDataRow('Audio Hash', audioHash)}
+                ${createDataRow('WebGL Seed', canvasData === 'unavailable' ? 'Unavailable' : 'Captured')}
+            `);
+        }
+
+        // Menjalankan semua deteksi
+        fetchIPDetails();
+        detectIPv6();
+        detectWebRTC();
+        detectDNS();
+        getSystemInfo();
+        getBrowserInfo();
+        getScreenInfo();
+        getConnectionInfo();
+        getLocaleInfo();
+        getGraphicsInfo();
+        renderPrivacySignals();
+        getHeaders();
+        renderFingerprintScore();
+        renderCanvasAudioFingerprint();
+    </script>
+
+    <!-- Script untuk memasukkan source code ke blok Highlight.js -->
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const scriptContent = document.getElementById('core-script').innerText;
+            document.getElementById('script-viewer').textContent = scriptContent.trim();
+            hljs.highlightAll();
+        });
+    </script>
+</body>
+</html>
