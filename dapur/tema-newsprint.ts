@@ -150,7 +150,7 @@ function renderRails(groupedData: Record<string, Article[]>): void {
         border-bottom: 1px solid var(--color-rule);
         text-align: center;
         width: 100%;
-        min-height: 140px; /* Anti-CLS, akan dihapus oleh Tukang Sapu Global jika iklan kosong */
+        min-height: 140px; /* Anti-CLS: Akan disapu GTM jika kosong */
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -169,16 +169,10 @@ function renderRails(groupedData: Record<string, Article[]>): void {
 
   containerEl.innerHTML = htmlContent;
 
-  // 💰 Inisialisasi Script AdSense SETELAH elemen masuk ke DOM
-  try {
-    const adsElements = document.querySelectorAll('.adsbygoogle');
-    if (adsElements.length > 0 && (window as any).adsbygoogle) {
-      adsElements.forEach(() => {
-        (window as any).adsbygoogle.push({});
-      });
-    }
-  } catch (err) {
-    console.warn("Iklan gagal dimuat:", err);
+  // 💰 Inisialisasi Script AdSense (Satu Baris, Ringkas)
+  // Eksekusi push hanya jika elemen <ins> benar-benar ada di dalam container
+  if (htmlContent.includes('adsbygoogle')) {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
   }
 }
 
