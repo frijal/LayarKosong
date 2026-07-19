@@ -53,12 +53,12 @@
     <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
     <link rel="me" href="https://mastodon.social/@frijal">
     <link rel="me" href="https://github.com/frijal">
-    <script defer="" src="/ext/data-provider.js"></script>
+    <script defer src="/ext/data-provider.js"></script>
     <meta property="article:tag" content="Linux, Tutorial, SysAdmin, Web Development">
     <meta property="article:published_time" content="2016-02-14T07:20:38.000Z">
     <meta property="article:modified_time" content="2016-02-14T07:22:08.116Z">
   <!-- Aset eksternal untuk syntax highlighting (tidak dipreload) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/tokyo-night-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="/ext/tokyo-night-dark.min.css">
   <style>
     /* ---------------------------------------------------------
        CSS Variables & Anti "Padding Inception" Strategy
@@ -277,7 +277,7 @@
           <p>Urusan tempel-menempel logo di ratusan foto kini tidak perlu lagi bikin <em>mouse</em> rusak. Mari kita bahas cara paling <em>geeky</em> nan efisien untuk otomatisasi watermark gambar massal murni menggunakan terminal.</p>
         </header>
         <p>Bagi instansi, fotografer, atau kreator konten digital, menjaga karya sebelum dipublikasikan ke belantara internet adalah sebuah keharusan. Hak cipta perlu dilindungi, dan salah satu cara paling konvensional nan efektif adalah dengan memberikan <i>watermark</i> atau tanda air pada gambar.</p>
-        <p>Masalahnya muncul saat Anda baru saja pulang dari acara <em>gathering</em> kantor dan harus menempelkan logo instansi di 500 keping foto yang berbeda. Melakukan ini secara manual? Tentu sangat menguras waktu. Banyak desainer beralih menggunakan fitur "Action" di <em>Adobe Photoshop</em>, yang mana memang sangat membantu. Tapi, buat Anda yang kebetulan sedang berada di lingkungan peladen (<i>server</i>) atau beraktivitas harian menggunakan sistem operasi berbasis <b>GNU/Linux</b>, membuka GUI <em>software</em> berat hanya untuk urusan <em>watermark</em> rasanya terlalu berlebihan dan, <i>yah</i>, kurang greget.</p>
+        <p>Masalahnya muncul saat Anda baru saja pulang dari acara <em>gathering</em> kantor dan harus menempelkan logo instansi di 500 keping foto yang berbeda. Melakukan ini secara manual? Tentu sangat menguras waktu. Banyak desainer beralih menggunakan fitur &quot;Action&quot; di <em>Adobe Photoshop</em>, yang mana memang sangat membantu. Tapi, buat Anda yang kebetulan sedang berada di lingkungan peladen (<i>server</i>) atau beraktivitas harian menggunakan sistem operasi berbasis <b>GNU/Linux</b>, membuka GUI <em>software</em> berat hanya untuk urusan <em>watermark</em> rasanya terlalu berlebihan dan, <i>yah</i>, kurang greget.</p>
         <img src="https://dalam.web.id/img/raw.githubusercontent.com/c00ad4303c5dd901.webp" alt="Logo resmi ImageMagick sang pesulap manipulasi gambar baris perintah" width="1600" height="900" fetchpriority="high" decoding="async">
         <p>Tenang, di ranah <em>open-source</em>, kita punya pesulap tangguh bernama <b>ImageMagick</b>. Ini adalah utilitas pemrosesan gambar lewat <em>command line</em> (CLI) yang kemampuannya nyaris tak terbatas. Dengan menyatukannya bersama skrip Bash sederhana, kita bisa menyulap rutinitas membosankan tadi menjadi operasi otomatis yang selesai dalam hitungan detik. <i>Yo wis</i>, mari kita bedah <em>script</em>-nya.</p>
         <details>
@@ -292,42 +292,42 @@
             <p>Salin blok kode Bash berikut ini dan simpan. Untuk konfigurasi mendalam, kita akan membahasnya di sub-bagian setelah blok ini.</p>
 <pre><code class="language-bash">#!/bin/bash
 # Skrip untuk memberi watermark pada semua gambar di direktori saat ini.
-# Dependensi: ImageMagick (paket 'imagemagick')
+# Dependensi: ImageMagick (paket &apos;imagemagick&apos;)
 # --- KONFIGURASI ---
 # Lokasi file watermark Anda (ganti sesuai path absolut di PC Anda)
-WM_FILE="$HOME/Pictures/watermark.png"
+WM_FILE=&quot;&#x24;HOME/Pictures/watermark.png&quot;
 # Skala ukuran watermark dalam persen relatif terhadap gambar utama (misal: 25%)
-SCALE="25"
+SCALE=&quot;25&quot;
 # Tingkat transparansi watermark (0 sangat transparan, 100 tidak transparan)
-DISSOLVE="50"
+DISSOLVE=&quot;50&quot;
 # Posisi watermark (center, north, southeast, southwest, dll.)
-GRAVITY="southeast"
+GRAVITY=&quot;southeast&quot;
 # --- AKHIR KONFIGURASI ---
 # --- EKSEKUSI ---
-echo "⚠️ Skrip ini akan menambahkan watermark ke semua gambar di folder ini dan menimpa file aslinya."
-read -p "Lanjutkan? (Y/n): " REPLY
-if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
+echo &quot;&#x26a0;&#xfe0f; Skrip ini akan menambahkan watermark ke semua gambar di folder ini dan menimpa file aslinya.&quot;
+read -p &quot;Lanjutkan? (Y/n): &quot; REPLY
+if [[ &#x24;REPLY =~ ^[Yy]&#x24; ]] || [[ -z &#x24;REPLY ]]; then
     for IMAGE in *.jpg *.jpeg *.png *.gif; do
         # Pastikan yang dilooping benar-benar sebuah file biasa
-        if [ -f "$IMAGE" ]; then
-            echo "🎨 Memberi watermark pada: $IMAGE"
-            # Perintah inti ImageMagick menggunakan tool 'composite'
-            composite -dissolve ${DISSOLVE}% -gravity ${GRAVITY} -quality 100 \
-            \( "$WM_FILE" -resize ${SCALE}% \) "$IMAGE" "$IMAGE"
+        if [ -f &quot;&#x24;IMAGE&quot; ]; then
+            echo &quot;&#x1f3a8; Memberi watermark pada: &#x24;IMAGE&quot;
+            # Perintah inti ImageMagick menggunakan tool &apos;composite&apos;
+            composite -dissolve &#x24;{DISSOLVE}% -gravity &#x24;{GRAVITY} -quality 100 \
+            \( &quot;&#x24;WM_FILE&quot; -resize &#x24;{SCALE}% \) &quot;&#x24;IMAGE&quot; &quot;&#x24;IMAGE&quot;
         fi
     done
-    echo "✅ Semua gambar selesai diproses!"
+    echo &quot;&#x2705; Semua gambar selesai diproses!&quot;
 else
-    echo "❌ Operasi dibatalkan oleh pengguna."
+    echo &quot;&#x274c; Operasi dibatalkan oleh pengguna.&quot;
     exit 0
 fi
 exit 0</code></pre>
             <h3>Membedah Parameter Konfigurasi</h3>
             <p>Agar hasilnya sesuai dengan selera estetika instansi Anda, perhatikan tiga variabel variabel krusial ini:</p>
             <ul>
-              <li><b><code>SCALE="25"</code></b>: Nilai ini menentukan seberapa besar logo <em>watermark</em> Anda saat ditempel. Angka 25 berarti lebar logo akan diubah ukurannya menjadi 25% dari lebar kanvas foto utamanya. Semakin besar foto asli, logo akan ikut membesar secara proporsional.</li>
-              <li><b><code>DISSOLVE="50"</code></b>: Mengontrol <em>opacity</em>. Kalau Anda tidak ingin logonya terlihat terlalu <em>ngejreng</em> sampai menutupi objek utama, angka 50 (setengah transparan) adalah titik manis yang enak dipandang.</li>
-              <li><b><code>GRAVITY="southeast"</code></b>: Ini adalah istilah teknis di ImageMagick untuk menentukan koordinat kompas. <i>Southeast</i> berarti tenggara, alias pojok kanan bawah. Jika mau di pojok kiri atas, ganti menjadi <i>northwest</i>. Mau di tengah pas? Gunakan <i>center</i>.</li>
+              <li><b><code>SCALE=&quot;25&quot;</code></b>: Nilai ini menentukan seberapa besar logo <em>watermark</em> Anda saat ditempel. Angka 25 berarti lebar logo akan diubah ukurannya menjadi 25% dari lebar kanvas foto utamanya. Semakin besar foto asli, logo akan ikut membesar secara proporsional.</li>
+              <li><b><code>DISSOLVE=&quot;50&quot;</code></b>: Mengontrol <em>opacity</em>. Kalau Anda tidak ingin logonya terlihat terlalu <em>ngejreng</em> sampai menutupi objek utama, angka 50 (setengah transparan) adalah titik manis yang enak dipandang.</li>
+              <li><b><code>GRAVITY=&quot;southeast&quot;</code></b>: Ini adalah istilah teknis di ImageMagick untuk menentukan koordinat kompas. <i>Southeast</i> berarti tenggara, alias pojok kanan bawah. Jika mau di pojok kiri atas, ganti menjadi <i>northwest</i>. Mau di tengah pas? Gunakan <i>center</i>.</li>
             </ul>
           </div>
         </details>
@@ -349,23 +349,23 @@ exit 0</code></pre>
       </article>
       <footer>
         <div class="footer-meta">
-          <span>✍️ Frijal</span>
-          <span>📅 10 Juli 2026</span>
-          <span>🌐 Referensi: Dokumentasi Resmi CLI ImageMagick</span>
+          <span>&#x270d;&#xfe0f; Frijal</span>
+          <span>&#x1f4c5; 10 Juli 2026</span>
+          <span>&#x1f310; Referensi: Dokumentasi Resmi CLI ImageMagick</span>
         </div>
-        <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.85rem;">🄯 2026 Tutorial Linux · Bekerja lebih cerdas dengan otomatisasi baris perintah.</p>
-       <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+        <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.85rem;">&#x1f12f; 2026 Tutorial Linux &#xb7; Bekerja lebih cerdas dengan otomatisasi baris perintah.</p>
+       <a target="_blank" rel="noopener noreferrer" href="/about">&#x2615;</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">&#x1f6e1;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">&#x26a0;&#xfe0f;</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">&#x1f4dd;</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">&#x1f4da;</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">&#x1f530;</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">&#x2694;&#xfe0f;</a></footer>
     </main>
   </div>
   <!-- Aset eksternal untuk inisialisasi syntax highlighting (Dipanggil dengan standar defer) -->
-  <script src="/ext/highlight.js" defer=""></script>
+  <script src="/ext/highlight.js" defer></script>
 <script>hljs.highlightAll();</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/bash.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer=""></script>
-  <script defer="">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/bash.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script defer>
     document.addEventListener('DOMContentLoaded', (event) => {
       document.querySelectorAll('pre code').forEach((block) => {
         hljs.highlightElement(block);
       });
     });
   </script>
-<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer src="/ext/pemandu.js"></script><script defer src="/ext/iposbrowser.js"></script><script defer src="/ext/lightbox.js"></script><script defer src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
