@@ -171,7 +171,7 @@ jobs:
           mkdir -p deploy_dir
           
           # Rsync dengan Whitelist Super Ketat (Sesuai List Explicit)
-          rsync -av --delete \
+          rsync -a --delete \
             `# 1. EXCLUDE FOLDER BERAT & MENTAH (Skip cepat)` \
             --exclude='deploy_dir/***' \
             --exclude='.git/***' \
@@ -289,6 +289,8 @@ jobs:
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}     # <-- Tambahan wajib
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }} # <-- Tambahan wajib
         run: |
           echo "Menghapus cache khusus untuk endpoint /katalog di Cloudflare Edge..."
           curl -s -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE_ID/purge_cache" \
