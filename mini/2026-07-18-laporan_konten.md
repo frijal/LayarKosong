@@ -42,7 +42,7 @@ Update: 18 Jul 2026 | 22:18 WITA
 | 📄 tsAA  | **2** | dapur |
 | 📄 tsX   | **2** | dapur |
 | 📄 tsXX  | **1** | functions |
-| 📄 txt   | **33** | llms.txt, sitemap.txt, artikel, img, robots.txt, ads.txt, dapur, sementara, EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX.txt |
+| 📄 txt   | **33** | llms.txt, sitemap.txt, artikel, img, robots.txt, ads.txt, dapur, sementara, sgdsgsgsdg.txt |
 | 📄 webmanifest | **1** | site.webmanifest |
 | 🖼️ webp  | **3569** | thumbnail-md.webp, img, thumbnail-rg.webp, thumbnail-sm.webp, thumbnail.webp |
 | 📄 woff2 | **8** | ext, dapur |

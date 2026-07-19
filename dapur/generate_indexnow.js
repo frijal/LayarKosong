@@ -4,7 +4,7 @@ import path from 'path';
 
 // --- Konfigurasi ---
 const HOST = "dalam.web.id";
-const KEY = "EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX";
+const KEY = "sgdsgsgsdg";
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 const ARTIKEL_JSON_PATH = 'artikel.json'; // Path ke file JSON di root
 // --------------------
