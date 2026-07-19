@@ -30,6 +30,7 @@ const MAP: MapItem[] = [
 
   { rx: /https:\/\/.*\/atom-one-dark\.min\.css/i,                   repl: "/ext/atom-one-dark.min.css", isHljs: true },
   { rx: /https:\/\/.*\/atom-one-light\.min\.css/i,                  repl: "/ext/atom-one-light.min.css", isHljs: true },
+  { rx: /https:\/\/.*\/tokyo-night-dark\.min\.css/i,                repl: "/ext/tokyo-night-dark.min.css", isHljs: true },
 
   { rx: /https:\/\/.*\/prism-okaidia\.min\.css/i,                   repl: "/ext/prism-okaidia.min.css", isHljs: true },
   { rx: /https:\/\/.*\/prism-tomorrow\.min\.css/i,                  repl: "/ext/prism-tomorrow.min.css", isHljs: true },
