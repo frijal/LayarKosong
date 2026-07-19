@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cara Ampuh Mengatasi Wi-Fi Terhubung tetapi Tanpa Internet</title>
+
+    <meta name="description" content="Ikon Wi-Fi penuh tapi tidak bisa browsing? Temukan penyebab status Connected no internet dan panduan langkah demi langkah untuk memperbaikinya secara tuntas.">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Cara Ampuh Mengatasi Wi-Fi Terhubung tetapi Tanpa Internet">
+    <meta property="og:description" content="Jangan keburu banting router! Pelajari akar masalah mengapa Wi-Fi terhubung tapi tidak ada koneksi internet, lengkap dengan solusi jaringan dari CMD hingga DNS.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/mengatasi-wifi-terhubung-tanpa-internet.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_gs19lngs19lngs19.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Solusi Wi-Fi Terhubung tapi Tidak Ada Internet">
+    <meta name="twitter:description" content="Koneksi ngadat padahal ikon Wi-Fi penuh? Ikuti panduan teknis ini untuk memperbaiki masalah jaringan internet Anda di Windows dan perangkat lainnya.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_gs19lngs19lngs19.png">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/mengatasi-wifi-terhubung-tanpa-internet.html">
+
+    <meta name="news_keywords" content="Wi-Fi Tanpa Internet, Masalah Koneksi Jaringan, Cara Memperbaiki Wi-Fi, Flush DNS Windows, Troubleshooting Router">
+    <meta property="article:tag" content="Jaringan">
+    <meta property="article:tag" content="Troubleshooting">
+    <meta property="article:tag" content="Tutorial PC">
+
+    <meta name="promphint" content="Bagaimana cara mengatasi Wi-Fi yang terhubung tapi tidak ada internet? | Restart router Anda, lakukan flush DNS via Command Prompt, ganti pengaturan DNS ke 8.8.8.8, atau hubungi ISP jika terjadi gangguan massal.">
+
+    <!-- CSS Syntax Highlighting Theme (Bukan Preload) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <style>
+        :root {
+            /* Pendekatan Mobile-First: Anti Padding Inception */
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+
+            /* Palet Warna - Mode Terang */
+            --bg-body: #f3f4f6;
+            --bg-article: #ffffff;
+            --text-main: #1f2937;
+            --text-dim: #4b5563;
+            --accent-primary: #0284c7;
+            --accent-hover: #0369a1;
+            --border-line: #e5e7eb;
+            --accordion-bg: #f9fafb;
+            --accordion-hover: #f3f4f6;
+
+            /* Tipografi */
+            --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            --fs-h1: 2rem;
+            --fs-h2: 1.5rem;
+            --fs-h3: 1.25rem;
+            --fs-p: 1.125rem;
+            --fs-sm: 0.9rem;
+            --line-height: 1.7;
+
+            /* Spasi */
+            --sp-sm: 0.5rem;
+            --sp-md: 1rem;
+            --sp-lg: 2rem;
+            --sp-xl: 3rem;
+        }
+
+        /* Penyesuaian Viewport Desktop */
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 2rem;
+                --fs-h1: 2.75rem;
+                --fs-h2: 1.75rem;
+                --fs-h3: 1.35rem;
+            }
+        }
+
+        /* Transisi Mode Gelap */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #0f172a;
+                --bg-article: #1e293b;
+                --text-main: #f1f5f9;
+                --text-dim: #94a3b8;
+                --accent-primary: #38bdf8;
+                --accent-hover: #7dd3fc;
+                --border-line: #334155;
+                --accordion-bg: #0f172a;
+                --accordion-hover: #1e293b;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-base);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-size: var(--fs-p);
+            line-height: var(--line-height);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+            padding-block: var(--sp-xl);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: var(--sp-xl);
+        }
+
+        h1 {
+            font-size: var(--fs-h1);
+            color: var(--text-main);
+            line-height: 1.3;
+            margin-bottom: var(--sp-md);
+        }
+
+        .lead {
+            font-size: var(--fs-h3);
+            color: var(--text-dim);
+            max-width: 50rem;
+            margin: 0 auto;
+        }
+
+        /* Taktik Anti Padding Inception */
+        .article-body {
+            background-color: var(--bg-article);
+            border: 1px solid var(--border-line);
+            border-radius: 0.75rem;
+            padding-block: var(--sp-xl);
+            padding-inline: var(--nested-padding);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 640px) {
+            .article-body {
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                padding-block: 0;
+            }
+        }
+
+        p {
+            margin-bottom: var(--sp-md);
+        }
+
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            border-bottom: 1px dashed transparent;
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+            border-bottom: 1px solid var(--accent-hover);
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-block: var(--sp-lg);
+            background-color: var(--border-line);
+        }
+
+        h2 {
+            font-size: var(--fs-h2);
+            color: var(--text-main);
+            margin-top: var(--sp-xl);
+            margin-bottom: var(--sp-md);
+            padding-bottom: var(--sp-sm);
+            border-bottom: 2px solid var(--border-line);
+        }
+
+        h3 {
+            font-size: var(--fs-h3);
+            color: var(--text-main);
+            margin-top: var(--sp-lg);
+            margin-bottom: var(--sp-sm);
+        }
+
+        ul, ol {
+            margin-bottom: var(--sp-md);
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: var(--sp-sm);
+        }
+
+        blockquote {
+            background-color: var(--accordion-bg);
+            border-left: 4px solid var(--accent-primary);
+            padding: 1rem 1.5rem;
+            margin-block: var(--sp-lg);
+            border-radius: 0 0.5rem 0.5rem 0;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        /* Desain Accordion CSS Murni */
+        details {
+            background-color: var(--bg-article);
+            border: 1px solid var(--border-line);
+            border-radius: 0.5rem;
+            margin-block: var(--sp-lg);
+            overflow: hidden;
+        }
+
+        summary {
+            cursor: pointer;
+            padding: var(--sp-md) var(--sp-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--accordion-bg);
+            transition: background-color 0.2s ease;
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary:hover {
+            background-color: var(--accordion-hover);
+        }
+
+        summary h2 {
+            margin: 0;
+            border: none;
+            padding: 0;
+            font-size: var(--fs-h2);
+        }
+
+        summary::after {
+            content: "▼";
+            font-size: var(--fs-sm);
+            color: var(--text-dim);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .details-content {
+            padding: var(--sp-lg);
+            border-top: 1px solid var(--border-line);
+            background-color: var(--bg-article);
+        }
+
+        /* Kode & Pre */
+        pre {
+            background-color: #1a1b26; /* Senada dengan tokyo-night */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            margin-block: var(--sp-md);
+            border: 1px solid var(--border-line);
+        }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+        }
+
+        /* Kode Inline */
+        p code, li code {
+            background-color: var(--accordion-hover);
+            color: var(--text-main);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.85em;
+        }
+
+        footer {
+            margin-top: var(--sp-xl);
+            padding-top: var(--sp-lg);
+            border-top: 1px solid var(--border-line);
+            text-align: center;
+            font-size: var(--fs-sm);
+            color: var(--text-dim);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <article>
+            <header>
+                <h1>Panduan Lengkap Mengatasi Wi-Fi Terhubung tetapi Tanpa Internet</h1>
+                <p class="lead">Pernahkah ikon Wi-Fi penuh, statusnya "Connected", tapi halaman web malah memunculkan dinosaurus offline? Mari bedah akar masalahnya dan tuntaskan bersama.</p>
+            </header>
+
+            <div class="article-body">
+                <p>Ada beberapa hal di dunia teknologi yang sukses memancing emosi, dan salah satunya adalah saat perangkat Anda mengklaim bahwa ia sudah terhubung dengan baik ke jaringan Wi-Fi, namun Anda sama sekali tidak bisa melakukan apa pun. Tidak bisa membuka situs web, gagal mengirim pesan WhatsApp, dan permainan daring terputus begitu saja. Status di sudut layar dengan sombongnya menampilkan <i>"Connected, Secured"</i> (Terhubung, Teraman), sementara *browser* Anda justru meneriakkan <i>"No Internet"</i>.</p>
+
+                <p>Anda mungkin bingung, di mana letak kerusakannya? Situasi ironis ini sebenarnya memiliki penjelasan logis: perangkat genggam atau laptop Anda memang telah berhasil berjabat tangan dan berkomunikasi dengan <i>router</i> Wi-Fi lokal di rumah Anda, namun <i>router</i> tersebut ternyata tidak memiliki jalur koneksi yang valid menuju jaringan internet global di luar sana. Ibarat Anda berhasil masuk ke dalam mobil, mesinnya menyala, tetapi jalan rayanya ditutup total.</p>
+
+                <img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_gs19lngs19lngs19.png" alt="Ilustrasi seseorang sedang bingung menatap layar laptop yang terhubung ke Wi-Fi namun tidak ada koneksi internet" width="800" height="450" fetchpriority="high" decoding="async">
+
+                <p>Masalah pemutusan jembatan komunikasi ini bisa terletak pada perangkat pribadi Anda yang sedang "linglung", <i>router</i> yang kelelahan, atau bahkan Penyedia Layanan Internet (ISP) yang sedang mengalami gangguan massal. Untuk tidak membuang waktu menduga-duga, panduan ini akan memandu Anda memahami penyebab utamanya dan menyajikan urutan langkah terstruktur layaknya seorang teknisi jaringan profesional untuk memulihkan koneksi Anda.</p>
+
+                <details>
+                    <summary><h2>Menyelidiki Akar Masalah Jaringan</h2></summary>
+                    <div class="details-content">
+                        <p>Sebelum kita mulai mengetikkan perintah perbaikan, ada baiknya kita memetakan dulu siapa tersangka utama di balik lumpuhnya koneksi internet Anda. Berikut adalah beberapa skenario yang paling sering terjadi:</p>
+
+                        <h3>1. Gangguan Penyedia Layanan Internet (ISP)</h3>
+                        <p>Terkadang, masalahnya sama sekali bukan salah Anda. ISP langganan Anda (seperti Telkom, Biznet, First Media, dll.) mungkin sedang mengalami pemadaman perangkat keras regional, pemeliharaan <i>server</i> tak terduga, atau kabel <i>fiber optic</i> yang putus. Jika ini terjadi, <i>router</i> akan tetap memancarkan sinyal Wi-Fi, tapi tidak ada data yang bisa masuk.</p>
+
+                        <h3>2. Router atau Modem Perlu Disegarkan</h3>
+                        <p>Sama seperti manusia, perangkat elektronik yang menyala selama berminggu-minggu tanpa henti bisa mengalami kelelahan memori atau <i>glitch</i> perangkat lunak sementara. Penumpukan data sementara di dalam <i>router</i> sering kali membuat fungsi peruteannya macet mendadak.</p>
+
+                        <h3>3. Konflik Pengaturan IP dan DNS</h3>
+                        <p>Agar bisa berselancar di internet, perangkat Anda membutuhkan alamat IP dan panduan DNS yang benar. Jika sistem DHCP di <i>router</i> salah mendistribusikan alamat IP otomatis, atau <i>cache</i> DNS di perangkat Anda kedaluwarsa, maka perangkat Anda akan tersesat dan gagal membuka situs web mana pun.</p>
+
+                        <h3>4. Server DNS Mengalami "Down"</h3>
+                        <p>Buku telepon internet (DNS) yang digunakan oleh ISP Anda bisa saja sedang tumbang. Akibatnya, saat Anda mengetikkan nama situs web, <i>browser</i> tidak tahu harus menerjemahkannya ke alamat IP angka yang mana, sehingga koneksi pun tertolak.</p>
+
+                        <h3>5. Blokir Sepihak dari Firewall atau Antivirus</h3>
+                        <p>Perangkat lunak keamanan yang terlalu protektif (<i>over-protective</i>) terkadang mengalami pembaruan sistem yang salah mengartikan koneksi jaringan rumah Anda sebagai ancaman berbahaya, sehingga mereka memblokir seluruh gerbang akses keluar-masuk internet.</p>
+
+                        <h3>6. Kualitas Sinyal Wi-Fi Terdistorsi</h3>
+                        <p>Meskipun ikon Wi-Fi terlihat terhubung, jika Anda berada terlalu jauh atau ada dinding tebal serta interferensi gelombang elektromagnetik dari perangkat lain, paket data yang dikirimkan akan hancur sebelum sampai ke <i>router</i>.</p>
+
+                        <h3>7. Driver Adaptor Jaringan Usang</h3>
+                        <p>Perangkat keras adaptor Wi-Fi di dalam laptop Anda berkomunikasi melalui <i>driver</i>. Jika <i>driver</i> ini mengalami <i>crash</i> atau usang, ia mungkin bisa menerima sinyal radio, tapi gagal memproses protokol internet (TCP/IP) di dalamnya.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary><h2>9 Langkah Taktis Memperbaiki Koneksi</h2></summary>
+                    <div class="details-content">
+                        <p>Ikuti langkah-langkah di bawah ini secara berurutan, dari yang paling sederhana hingga ke metode yang sedikit bernuansa teknis. Jangan melompat ke langkah akhir jika langkah awal sudah bisa mengembalikan senyum Anda.</p>
+
+                        <h3>1. Restart Modem dan Router (Ritual Sakti)</h3>
+                        <p>Ini adalah prosedur pertolongan pertama yang paling diremehkan namun memiliki tingkat keberhasilan tertinggi. Cabut kabel daya modem dan <i>router</i> Wi-Fi Anda dari stopkontak. <b>Tunggu dengan sabar selama 30 detik</b> agar sisa listrik statis di dalamnya benar-benar habis. Setelah itu, colokkan kembali dan biarkan lampu indikatornya menyala stabil (biasanya memakan waktu 1-2 menit).</p>
+
+                        <h3>2. Restart Perangkat Anda</h3>
+                        <p>Setelah <i>router</i> segar kembali, lakukan hal yang sama pada komputer, laptop, atau ponsel Anda yang bermasalah. Ini akan memaksa sistem operasi untuk meminta ulang izin jaringan yang bersih.</p>
+
+                        <h3>3. Lakukan Uji Silang Perangkat</h3>
+                        <p>Periksa apakah ponsel pintar atau komputer anggota keluarga lain yang terhubung ke jaringan Wi-Fi yang sama memiliki akses internet. Ini adalah langkah krusial: jika <u>semua perangkat</u> gagal terkoneksi, berarti masalahnya ada di <i>router</i> atau ISP. Namun jika <u>hanya satu perangkat Anda</u> yang bermasalah, maka fokus perbaikan ada di mesin Anda.</p>
+
+                        <h3>4. Lupakan Jaringan (Forget Network)</h3>
+                        <p>Buka pengaturan Wi-Fi di perangkat Anda, klik jaringan Anda saat ini, lalu pilih <b>Lupakan (Forget)</b>. Setelah itu, matikan Wi-Fi, nyalakan kembali, dan sambungkan ulang dengan memasukkan kata sandi yang benar. Ini akan menghapus profil jaringan lama yang mungkin korup.</p>
+
+                        <h3>5. Manfaatkan Windows Network Troubleshooter</h3>
+                        <p>Bagi pengguna OS Windows, klik kanan pada ikon Wi-Fi di sudut kanan bawah (<i>system tray</i>) dan pilih <b>Diagnose network problems</b> atau jalankan <i>Network Troubleshooter</i> dari menu Pengaturan. Windows sering kali cukup pintar untuk mendeteksi port yang tertutup atau IP yang berbenturan dan memperbaikinya sendiri.</p>
+
+                        <h3>6. Perintah Reset Jaringan via Command Prompt</h3>
+                        <p>Jika masalah bersumber dari singgahan (<i>cache</i>) DNS yang menyesatkan, kita akan membersihkannya secara manual. Cari <b>Command Prompt</b> di menu Start Windows, klik kanan, dan pilih <b>Run as administrator</b>. Jalankan kumpulan baris perintah berikut satu per satu (ketik lalu tekan <b>Enter</b> setelah setiap baris):</p>
+
+<pre><code class="language-dos">ipconfig /release
+ipconfig /renew
+ipconfig /flushdns
+netsh winsock reset</code></pre>
+
+                        <p>Setelah menyelesaikan baris perintah terakhir, mulailah ulang komputer Anda agar pengaturan <i>Winsock</i> yang baru dapat diterapkan secara permanen.</p>
+
+                        <h3>7. Konfigurasi DNS Secara Manual</h3>
+                        <p>Mari kita ganti buku telepon ISP Anda yang mungkin sedang rusak dengan buku telepon super cepat milik Google. Buka pengaturan adaptor jaringan Anda (<i>Network & Internet settings</i> &rarr; <i>Change adapter options</i>). Klik kanan Wi-Fi Anda, pilih <b>Properties</b>. Pilih <b>Internet Protocol Version 4 (TCP/IPv4)</b> dan klik <b>Properties</b>. Pilih <i>"Use the following DNS server addresses"</i> dan masukkan:</p>
+                        <ul>
+                            <li><b>DNS Utama (Preferred):</b> <code>8.8.8.8</code></li>
+                            <li><b>DNS Alternatif (Alternate):</b> <code>8.8.4.4</code></li>
+                        </ul>
+                        <p>Klik OK dan lihat apakah internet Anda langsung tersambung.</p>
+
+                        <h3>8. Perbarui Driver Adaptor Wi-Fi</h3>
+                        <p>Buka <b>Device Manager</b> (tekan Win+X), temukan bagian <i>Network adapters</i>, klik kanan pada nama kartu Wi-Fi Anda (biasanya berlabel Intel, Realtek, atau Qualcomm), dan pilih <b>Update driver</b>. Jika Anda sedang sama sekali tidak memiliki internet untuk mengunduh, pilih <i>Uninstall device</i> lalu <i>restart</i> PC agar Windows memasang kembali versi dasarnya secara otomatis.</p>
+
+                        <h3>9. Hubungi Teknisi ISP Anda</h3>
+                        <p>Jika semua perangkat di rumah sudah Anda uji dan semuanya tetap membisu, maka sah sudah; masalah berada di luar kendali rumah Anda. Segera angkat telepon atau hubungi layanan pelanggan ISP Anda (melalui aplikasi atau media sosial) untuk menanyakan apakah ada kabel optik yang terputus atau <i>maintenance</i> di sekitar wilayah tempat tinggal Anda.</p>
+                    </div>
+                </details>
+
+                <h2>Tips Cepat & Workflow Penanganan Masalah</h2>
+                <p>Menghafal pola indikator di perangkat Anda akan sangat membantu mempercepat diagnosis di masa depan. Berikut adalah rangkuman visual yang wajib Anda pahami:</p>
+
+                <blockquote>
+                    <b>💡 QUICK TIP:</b> Jika ikon Wi-Fi Anda menunjukkan status <i>"Connected, Secured"</i> namun peramban web tidak bisa memuat halaman apa pun, hal PERTAMA yang wajib Anda lakukan adalah <b>menguji perangkat lain</b> di jaringan yang sama. Jika perangkat lain juga mati, hemat waktu Anda dengan langsung merestart <i>router</i> atau menghubungi ISP. Jangan mengutak-atik pengaturan laptop jika masalahnya ada di tiang listrik.
+                </blockquote>
+
+                <h3>Membaca Workflow Status Jaringan</h3>
+                <p>Memahami transisi simbol jaringan akan menyelamatkan kewarasan Anda saat melakukan <i>troubleshooting</i>:</p>
+                <ul>
+                    <li><b>Terhubung (Tanpa Masalah):</b> Ikon Wi-Fi penuh berwarna solid &rarr; <i>Sistem berjalan normal, internet mengalir lancar.</i></li>
+                    <li><b>Tanpa Internet (Masalah Internal):</b> Muncul tanda seru atau peringatan segitiga kuning &rarr; <i>Ini adalah status masalah saat ini. Menandakan ada IP yang konflik atau DNS yang tertolak.</i></li>
+                    <li><b>Periksa Router atau ISP:</b> Muncul ikon bola dunia (<i>globe</i>) yang dicoret &rarr; <i>Ini adalah panggilan bertindak (action required). Router Anda sama sekali tidak menerima pakan data dari pusat.</i></li>
+                </ul>
+
+                <p>Dengan berbekal ketenangan dan metode sistematis di atas, menghadapi koneksi Wi-Fi yang merajuk tidak akan lagi menjadi drama yang membuang banyak waktu Anda. Selamat mencoba!</p>
+
+                <!--wajib ini tulis signature artikel oleh LayarKosong-->
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <span>Ditulis dengan saksama oleh: Frijal</span>
+        <span>&bull;</span>
+        <span>Diperbarui pada: 19 Juli 2026</span>
+        <span>&bull;</span>
+        <span>Referensi Teknis: Panduan Troubleshooting Jaringan Dasar OS Windows</span>
+    </footer>
+
+    <!-- Highlight.js Scripts Load -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html>

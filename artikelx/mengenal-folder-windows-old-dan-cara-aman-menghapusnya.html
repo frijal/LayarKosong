@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mengenal Folder Windows.old dan Cara Aman Menghapusnya</title>
+
+    <meta name="description" content="Pernah melihat folder Windows.old di drive C yang memakan puluhan gigabyte? Ketahui fungsi utama cadangan sistem ini dan langkah teknis untuk menghapusnya.">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Mengenal Folder Windows.old dan Cara Aman Menghapusnya">
+    <meta property="og:description" content="Jangan asal hapus folder Windows.old! Pahami terlebih dahulu apa isi di dalamnya, alasan sistem membuatnya setelah pembaruan, serta trik bersih-bersih disk.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/mengenal-folder-windows-old-dan-cara-aman-menghapusnya.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_39vq9439vq9439vq.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Panduan Membersihkan Folder Windows.old di PC Anda">
+    <meta name="twitter:description" content="Drive C penuh mendadak setelah update OS? Folder Windows.old sering kali menjadi penyebabnya. Baca panduan ini untuk membersihkannya tanpa risiko sistem error.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_39vq9439vq9439vq.png">
+
+    <link rel="canonical" href="https://dalam.web.id/artikel/mengenal-folder-windows-old-dan-cara-aman-menghapusnya.html">
+
+    <meta name="news_keywords" content="Folder Windows.old, Cara Hapus Windows.old, Update Windows, Membersihkan Drive C, Tips Komputer">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="Tips PC">
+    <meta property="article:tag" content="Troubleshooting">
+
+    <meta name="promphint" content="Apa itu folder Windows.old dan bolehkah dihapus? | Windows.old adalah folder cadangan berisi file instalasi lama. Boleh dihapus dengan aman melalui fitur Disk Cleanup jika Windows versi baru sudah stabil.">
+
+    <style>
+        :root {
+            /* Mobile-First Variables (Anti Padding Inception) */
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+
+            /* Light Theme Palette */
+            --bg-body: #f4f6f8;
+            --bg-article: #ffffff;
+            --text-primary: #1a1a1c;
+            --text-secondary: #4a4a4e;
+            --accent-color: #005fb8;
+            --accent-hover: #00468c;
+            --border-color: #e2e4e8;
+            --alert-bg: #f8f9fa;
+            --alert-border: #005fb8;
+
+            /* Typography */
+            --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            --fs-h1: 2rem;
+            --fs-h2: 1.4rem;
+            --fs-h3: 1.2rem;
+            --fs-body: 1.125rem;
+            --fs-small: 0.9rem;
+            --lh-body: 1.7;
+        }
+
+        /* Desktop View Adjustments */
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 2rem;
+                --fs-h1: 2.6rem;
+                --fs-h2: 1.7rem;
+                --fs-h3: 1.35rem;
+            }
+        }
+
+        /* Dark Theme Auto Switch */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #0d1117;
+                --bg-article: #161b22;
+                --text-primary: #e6edf3;
+                --text-secondary: #8b949e;
+                --accent-color: #58a6ff;
+                --accent-hover: #79c0ff;
+                --border-color: #30363d;
+                --alert-bg: #1c2128;
+                --alert-border: #58a6ff;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+            padding-block: 2.5rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: var(--fs-h1);
+            color: var(--text-primary);
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .lead {
+            font-size: var(--fs-h3);
+            color: var(--text-secondary);
+            max-width: 50rem;
+            margin: 0 auto;
+        }
+
+        .article-body {
+            background-color: var(--bg-article);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding-block: 2.5rem;
+            padding-inline: var(--nested-padding);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Taktik Anti Padding Inception di HP */
+        @media (max-width: 640px) {
+            .article-body {
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                padding-block: 0;
+            }
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.2s ease;
+        }
+
+        a:hover {
+            border-bottom: 1px solid var(--accent-hover);
+            color: var(--accent-hover);
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-block: 2rem;
+            background-color: var(--border-color);
+        }
+
+        h2 {
+            font-size: var(--fs-h2);
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: var(--fs-h3);
+            color: var(--text-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote {
+            background-color: var(--alert-bg);
+            border-left: 4px solid var(--alert-border);
+            padding: 1rem 1.5rem;
+            margin-block: 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        /* Accordion CSS Murni */
+        details {
+            background-color: var(--alert-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--bg-article);
+            transition: background-color 0.2s ease;
+            list-style: none;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary:hover {
+            background-color: var(--border-color);
+        }
+
+        summary h2 {
+            margin: 0;
+            border: none;
+            padding: 0;
+            font-size: var(--fs-h2);
+        }
+
+        summary::after {
+            content: "▼";
+            font-size: var(--fs-small);
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .details-content {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: var(--fs-small);
+            color: var(--text-secondary);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <article>
+            <header>
+                <h1>Mengenal Folder Windows.old dan Cara Aman Menghapusnya</h1>
+                <p class="lead">Mengalami ruang penyimpanan yang mendadak menyusut drastis setelah pembaruan sistem? Mari bedah fungsi cadangan raksasa ini dan pelajari teknik membersihkannya.</p>
+            </header>
+
+            <div class="article-body">
+                <p>Pernahkah Anda menyadari ruang penyimpanan di <i>drive</i> C: komputer Anda tiba-tiba menyusut hingga puluhan gigabyte setelah melakukan pembaruan sistem operasi? Jika Anda menyelidiki lebih lanjut melalui antarmuka <i>File Explorer</i>, kemungkinan besar Anda akan menemukan sebuah folder raksasa yang bercokol di direktori utama dengan nama <b>Windows.old</b>.</p>
+
+                <p>Bagi banyak pengguna, kehadiran folder ini kerap memicu kebingungan. Ukurannya yang sangat masif sering kali membuat laptop dengan kapasitas penyimpanan SSD yang terbatas menjerit kehabisan ruang. Sebelum Anda bertindak gegabah dengan menekan tombol <i>Delete</i>, sangat penting untuk menyelami anatomi dari folder ini guna menghindari penyesalan di kemudian hari.</p>
+
+                <img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_39vq9439vq9439vq.png" alt="Ilustrasi folder Windows.old yang mengonsumsi kapasitas penyimpanan disk drive C" width="800" height="450" fetchpriority="high" decoding="async">
+
+                <h2>Mengenal Karakteristik dan Isi Folder Pembaruan</h2>
+                <p>Folder <b>Windows.old</b> bukanlah <i>malware</i> atau sekadar sampah digital yang tercipta karena <i>bug</i>. Ini adalah direktori arsip yang dibuat secara otomatis oleh sistem operasi Windows pada skenario-skenario tertentu, seperti saat Anda meningkatkan (<i>upgrade</i>) PC dari Windows 10 ke Windows 11, melakukan instalasi ulang tanpa memformat <i>drive</i> sistem, atau ketika sistem baru saja menyelesaikan pembaruan fitur (<i>feature update</i>) skala besar.</p>
+                <p>Apabila Anda membedah masuk ke dalam <code>C:\Windows.old</code>, Anda akan menemukan bahwa struktur di dalamnya hampir menyerupai cermin dari <i>drive</i> C: Anda sebelumnya. Komposisi arsip ini mencakup:</p>
+                <ul>
+                    <li><b>Fondasi Sistem Lama:</b> Seluruh berkas inti dari instalasi Windows Anda versi sebelumnya.</li>
+                    <li><b>Direktori Pengguna (Users):</b> Arsip lengkap yang mencakup Dokumen, Desktop, Unduhan, Gambar, dan personalisasi profil dari akun pengguna lama Anda.</li>
+                    <li><b>Arsip Program (Program Files):</b> Rangkaian berkas program dari perangkat lunak yang sebelumnya terinstal, meskipun sebagian besar tidak lagi bisa dijalankan secara langsung dari folder ini.</li>
+                    <li><b>Registri dan Pengaturan:</b> Preferensi serta konfigurasi sistem operasi lama yang tersimpan dalam format mentah.</li>
+                </ul>
+
+                <h2>Fungsi Vital Sebagai Jaring Pengaman Sistem</h2>
+                <p>Microsoft tidak dengan sengaja menjejalkan folder raksasa ini hanya untuk menghabiskan memori Anda. Direktori ini berfungsi ganda sebagai brankas penyelamat sekaligus kapsul waktu. Fungsi krusial pertamanya adalah sebagai jalur <b>evakuasi berkas pribadi</b>. Terkadang, proses migrasi sistem operasi tidak berjalan mulus dan ada <i>file</i> yang tertinggal. Lewat folder ini, Anda bisa menyelam masuk dan menyalin dokumen berharga yang lupa Anda cadangkan secara manual.</p>
+                <p>Fungsi kedua yang tak kalah penting adalah memfasilitasi <b>penurunan versi (Rollback)</b>. Jika pembaruan Windows terbaru ternyata menyebabkan komputer Anda sering mengalami <i>crash</i>, layar biru, atau tidak kompatibel dengan perangkat lunak kerja Anda, Anda bisa memerintahkan Windows untuk mundur ke versi sebelumnya. Sistem akan menggunakan data dari Windows.old untuk memutar balik waktu ke kondisi PC sebelum <i>update</i> dilakukan. Namun, jaring pengaman ini memiliki masa kedaluwarsa; secara <i>default</i>, Windows akan menghancurkan folder ini dengan sendirinya setelah 10 hari pemakaian.</p>
+
+
+
+                <details>
+                    <summary><h2>Panduan Teknis Membersihkan Sisa Instalasi Secara Aman</h2></summary>
+                    <div class="details-content">
+                        <p>Satu kesalahan fatal yang sering dilakukan pengguna adalah mencoba menghapus direktori <code>Windows.old</code> dengan cara menyorotnya di <i>File Explorer</i> lalu menekan tombol <i>Shift + Delete</i>. Karena folder ini dilindungi oleh hak akses sistem (<i>System Permissions</i>), cara primitif tersebut biasanya akan berujung pada pesan <i>"Access Denied"</i> atau penghapusan yang tidak bersih. Gunakanlah alat bawaan resmi berikut untuk mengeksekusinya dengan mulus.</p>
+
+                        <h3>Metode 1: Menggunakan Antarmuka Pengaturan (Rekomendasi Utama)</h3>
+                        <p>Cara ini paling modern dan minim risiko karena menggunakan antarmuka Windows versi terbaru.</p>
+                        <ol>
+                            <li>Buka menu <b>Start</b> lalu klik ikon gir untuk membuka jendela <b>Pengaturan</b> (<i>Settings</i>).</li>
+                            <li>Arahkan navigasi Anda ke menu <b>Sistem</b> (<i>System</i>), lalu pilih tab <b>Penyimpanan</b> (<i>Storage</i>) di deretan sebelah kiri.</li>
+                            <li>Tunggu sejenak hingga sistem selesai memindai kalkulasi ruang Anda, lalu klik pada bagian <b>File sementara</b> (<i>Temporary files</i>).</li>
+                            <li>Gulir ke bawah dan berikan tanda centang pada kotak opsi <b>Instalasi Windows sebelumnya</b> (<i>Previous Windows installation(s)</i>).</li>
+                            <li>Pastikan opsi lain yang tidak ingin Anda hapus (seperti keranjang sampah atau unduhan) sudah dihilangkan centangnya, lalu klik tombol <b>Hapus file</b> (<i>Remove files</i>) di bagian atas.</li>
+                        </ol>
+
+                        <h3>Metode 2: Menggunakan Utilitas Pembersihan Disk Klasik</h3>
+                        <p>Jika Anda lebih menyukai alat <i>legacy</i> yang sudah ada sejak era Windows lawas, fitur <i>Disk Cleanup</i> masih bekerja dengan sangat prima.</p>
+                        <ol>
+                            <li>Tekan tombol Windows pada <i>keyboard</i>, ketikkan <b>Pembersihan Disk</b> (<i>Disk Cleanup</i>), dan jalankan aplikasinya.</li>
+                            <li>Jika muncul pilihan <i>drive</i>, pastikan Anda memilih <i>Drive</i> C: (tempat OS berada) dan klik OK.</li>
+                            <li>Pada jendela kecil yang muncul, perhatikan bagian kiri bawah dan klik tombol berlambang perisai yang bertuliskan <b>Bersihkan file sistem</b> (<i>Clean up system files</i>). Sistem akan meminta konfirmasi administratif dan melakukan pemindaian ulang.</li>
+                            <li>Setelah jendela kembali terbuka, cari dan centang opsi <b>Instalasi Windows sebelumnya</b> dari dalam daftar.</li>
+                            <li>Klik <b>OK</b>, lalu konfirmasikan peringatan <i>pop-up</i> bahwa Anda tidak akan bisa kembali ke versi OS sebelumnya. Proses penghapusan latar belakang akan segera dimulai.</li>
+                        </ol>
+
+                        <blockquote>
+                            <b>Peringatan Akhir:</b> Begitu proses pembersihan di atas selesai dilakukan, jembatan ke masa lalu telah resmi dibakar. Anda tidak akan pernah bisa memulihkan pengaturan sistem versi lama. Lakukan dengan kesadaran penuh demi ruang <i>disk</i> yang lebih lega.
+                        </blockquote>
+                    </div>
+                </details>
+  <h2>Pertimbangan Penting Sebelum Melakukan Penghapusan</h2>
+                <p>Bolehkah folder bongsor ini dilenyapkan secara manual? Jawabannya adalah <b>boleh</b>. Mengingat ukurannya bisa merampas 10 GB hingga 30 GB ruang disk berharga Anda, menghapusnya adalah langkah efisiensi yang sangat logis.</p>
+                <p>Kendati demikian, Anda hanya boleh mengeksekusi penghapusan jika memenuhi dua syarat mutlak: Anda sudah 100% yakin bahwa seluruh dokumen kerja, foto, dan <i>file</i> penting lainnya telah berpindah dengan selamat ke sistem yang baru, serta performa Windows yang Anda jalankan saat ini terasa stabil tanpa ada niat sedikit pun untuk melakukan <i>rollback</i> atau kembali ke versi lama.</p>
+                <!--wajib ini tulis signature artikel oleh LayarKosong-->
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <span>Ditulis oleh: Frijal</span>
+        <span>&bull;</span>
+        <span>Dipublikasikan: 19 Juli 2026</span>
+        <span>&bull;</span>
+        <span>Sumber: Referensi Dukungan Penyimpanan Microsoft Windows</span>
+    </footer>
+
+</body>
+</html>
