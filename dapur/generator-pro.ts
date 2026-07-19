@@ -3,7 +3,7 @@ import { titleToCategory } from './titleToCategory.ts';
 
 const C = {
     root: `${import.meta.dir}/..`,
-    art:  `${import.meta.dir}/../artikel`,
+    art: `${import.meta.dir}/../artikel`,
     base: 'https://dalam.web.id',
     limit: 30, // Limit ini SEKARANG HANYA dipakai untuk membatasi RSS & JSON Lite!
     cats: ['gaya-hidup', 'jejak-sejarah', 'lainnya', 'olah-media', 'opini-sosial', 'sistem-terbuka', 'warta-tekno'],
@@ -25,7 +25,7 @@ const decodeHTML = (str: string) => {
         '&mdash;': '—', '&nbsp;': ' '
     };
     let t = str.replace(/&[a-z0-9#]+;/gi, (m) => entities[m.toLowerCase()] || m);
-    t = t.replace(/&#(\d+);/g,        (_, dec) => String.fromCharCode(parseInt(dec, 10)));
+    t = t.replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)));
     t = t.replace(/&#x([a-f0-9]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
     return t.trim();
 };
@@ -33,22 +33,22 @@ const decodeHTML = (str: string) => {
 const buildDate = new Date().toISOString().split('T')[0];
 
 const slug = (t: any) => t.toString().toLowerCase().trim()
-.replace(/^[^\w\s]*/u, '')
-.replace(/ & /g, '-and-')
-.replace(/[^a-z0-9\s-]/g, '')
-.replace(/\s+/g, '-')
-.replace(/-+/g, '-');
+    .replace(/^[^\w\s]*/u, '')
+    .replace(/ & /g, '-and-')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
 
 const iso = (d: any) => {
     const parsed = new Date(d);
-    const base   = isNaN(parsed.getTime()) ? new Date() : parsed;
+    const base = isNaN(parsed.getTime()) ? new Date() : parsed;
     return base.toISOString();
 };
 
 const sanitize = (r: string) => r.replace(/^\p{Emoji_Presentation}\s*/u, '').trim();
 
 const mime = (u: string) =>
-({ png: 'image/png', webp: 'image/webp', svg: 'image/svg+xml' }[u.split('.').pop()!] || 'image/jpeg');
+    ({ png: 'image/png', webp: 'image/webp', svg: 'image/svg+xml' }[u.split('.').pop()!] || 'image/jpeg');
 
 const escapeAttr = (s: string) => s.replace(/"/g, '&quot;');
 
@@ -61,10 +61,10 @@ const imgWithFallback = (src: string, alt: string, extraAttrs: string = ''): str
 };
 
 const escapeXML = (s: string) => s
-.replace(/&/g, '&amp;')
-.replace(/</g, '&lt;')
-.replace(/>/g, '&gt;')
-.replace(/"/g, '&quot;');
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 
 const safeCDATA = (s: string) => s.replace(/]]>/g, ']]]]><![CDATA[>');
 
@@ -104,10 +104,10 @@ const buildAtom = (t: string, items: any[], feedUrl: string, desc: string, sizes
 };
 
 const buildSitemapUrlset = (entries: string): string =>
-`<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n${entries}\n</urlset>`;
+    `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n${entries}\n</urlset>`;
 
 const buildSitemapIndex = (items: { loc: string; lastmod: string }[]): string =>
-`<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items.map(it => `  <sitemap>\n    <loc>${escapeXML(it.loc)}</loc>\n    <lastmod>${it.lastmod}</lastmod>\n  </sitemap>`).join('')}\n</sitemapindex>`;
+    `<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items.map(it => `  <sitemap>\n    <loc>${escapeXML(it.loc)}</loc>\n    <lastmod>${it.lastmod}</lastmod>\n  </sitemap>`).join('')}\n</sitemapindex>`;
 
 const cleanupOldSitemaps = async (): Promise<number> => {
     let removed = 0;
@@ -138,7 +138,7 @@ const pingWebSub = async (feedUrls: string[]): Promise<void> => {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: body.toString(),
-                                signal: AbortSignal.timeout(10_000)
+            signal: AbortSignal.timeout(10_000)
         });
         console.log(`📡 WebSub ping → ${C.hub} → HTTP ${res.status} (${feedUrls.length} feed berubah)`);
         feedUrls.forEach(u => console.log(`    🔗 ${u}`));
@@ -149,11 +149,11 @@ const pingWebSub = async (feedUrls: string[]): Promise<void> => {
 
 const upsertManagedBlock = async (path: string, block: string): Promise<void> => {
     const MARK_START = '# --- BEGIN LK-AUTOGEN (komposisi.ts — jangan edit manual) ---';
-    const MARK_END   = '# --- END LK-AUTOGEN ---';
+    const MARK_END = '# --- END LK-AUTOGEN ---';
     const existing = await Bun.file(path).text().catch(() => '');
 
     const startIdx = existing.indexOf(MARK_START);
-    const endIdx   = existing.indexOf(MARK_END);
+    const endIdx = existing.indexOf(MARK_END);
     let stripped = existing;
     if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
         stripped = existing.slice(0, startIdx) + existing.slice(endIdx + MARK_END.length);
@@ -193,18 +193,18 @@ const distribute = async (
         prevNextTags += `\n    <link rel="next" href="${nextData.url}" title="${safeTitle}">`;
     }
 
-    const catRssUrl  = `${C.base}/${catSlug}.rss`;
+    const catRssUrl = `${C.base}/${catSlug}.rss`;
     const catAtomUrl = `${C.base}/${catSlug}.atom`;
     const feedLinkTags = `\n    <link rel="alternate" type="application/rss+xml" title="Feed RSS ${catLabel} - Layar Kosong" href="${catRssUrl}">\n    <link rel="alternate" type="application/atom+xml" title="Feed Atom ${catLabel} - Layar Kosong" href="${catAtomUrl}">`;
 
     html = html
-    .replace(/<nav class="static-crumb"[\s\S]*?<\/nav>\s*/gi, '')
-    .replace(/<meta property="article:tag" content="[^"]*">\s*/gi, '')
-    .replace(/<link rel="(prev|next)" [^>]*>\s*/gi, '')
-    .replace(/<link rel="alternate" type="application\/(rss|atom)\+xml" title="Feed (RSS|Atom)[^"]+"[^>]*>\s*/gi, '')
-    .replace(/<meta property="article:section" content="[^"]*">\s*/gi, '')
-    .replace(/<meta property="og:url" content="[^"]*">\s*/gi, '')
-    .replace(/<meta name="twitter:url" content="[^"]*">\s*/gi, '');
+        .replace(/<nav class="static-crumb"[\s\S]*?<\/nav>\s*/gi, '')
+        .replace(/<meta property="article:tag" content="[^"]*">\s*/gi, '')
+        .replace(/<link rel="(prev|next)" [^>]*>\s*/gi, '')
+        .replace(/<link rel="alternate" type="application\/(rss|atom)\+xml" title="Feed (RSS|Atom)[^"]+"[^>]*>\s*/gi, '')
+        .replace(/<meta property="article:section" content="[^"]*">\s*/gi, '')
+        .replace(/<meta property="og:url" content="[^"]*">\s*/gi, '')
+        .replace(/<meta name="twitter:url" content="[^"]*">\s*/gi, '');
 
     const seoInjection = `${prevNextTags}\n    <meta property="og:url" content="${url}">\n    <meta name="twitter:url" content="${url}">\n    <meta property="article:section" content="${catLabel}">\n    ${tagsHtml}${feedLinkTags}`;
 
@@ -222,8 +222,8 @@ const distribute = async (
     }
 
     html = html
-    .replace(new RegExp(`${BASE_RE}/artikelx?/${f.replace('.html', '')}`, 'g'), url)
-    .replace(/\/artikelx?\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
+        .replace(new RegExp(`${BASE_RE}/artikelx?/${f.replace('.html', '')}`, 'g'), url)
+        .replace(/\/artikelx?\/-\/([a-z-]+)(\.html)?\/?/g, '/$1');
 
     if (modTime) {
         html = html.replace(/<meta property="article:modified_time" content="[^"]*">/i, `<meta property="article:modified_time" content="${modTime}">`);
@@ -239,7 +239,7 @@ const distribute = async (
     console.log('🚀 Komposisi Blog V10.6 - Nama Output Seragam (slug.rss/.atom/.xml) + Feed Autodiscovery Tags (Fixed)');
 
     const CACHE_TODAY_FILE = `${C.root}/mini/edited-today.txt`;
-    await fs.mkdir(`${C.root}/mini`, { recursive: true }).catch(() => {});
+    await fs.mkdir(`${C.root}/mini`, { recursive: true }).catch(() => { });
 
     const editedTodayMap = new Map<string, string>();
     const usedTimes = new Set<string>();
@@ -256,7 +256,7 @@ const distribute = async (
                 }
             }
         }
-    } catch (e) {}
+    } catch (e) { }
 
     const getUniqueModTimeForToday = (filename: string): string => {
         if (editedTodayMap.has(filename)) return editedTodayMap.get(filename)!;
@@ -281,10 +281,10 @@ const distribute = async (
         Bun.file(`${C.art}/artikel.json`).json().catch(() => ({}))
     ]);
 
-    const urls  = new Set(stm.split('\n').filter(Boolean));
+    const urls = new Set(stm.split('\n').filter(Boolean));
     const files = [...new Bun.Glob("*.html").scanSync(C.art)].filter(f => !f.startsWith('-'));
     let final: any = {};
-    const flat:  any[] = [];
+    const flat: any[] = [];
     const valid = new Set();
 
     for (const f of files) {
@@ -313,7 +313,7 @@ const distribute = async (
             continue;
         }
 
-        const txt  = await Bun.file(`${C.art}/${f}`).text();
+        const txt = await Bun.file(`${C.art}/${f}`).text();
         const rawT = (
             txt.match(/property="og:title" content="(.*?)"/i)?.[1] ||
             txt.match(/<title>(.*?)<\/title>/i)?.[1].replace(/\s*-\s*Layar Kosong$/i, '') ||
@@ -351,7 +351,7 @@ const distribute = async (
         }
 
         const date = masterDate || publishedTime || finalModTime;
-        const img  = txt.match(/(og|twitter):image" content="(.*?)"/i)?.[2] || `${C.base}/img/${f.replace('.html', '')}.webp`;
+        const img = txt.match(/(og|twitter):image" content="(.*?)"/i)?.[2] || `${C.base}/img/${f.replace('.html', '')}.webp`;
         const desc = (txt.match(/description" content="(.*?)"/i)?.[1] || '').trim();
 
         flat.push({ title: t, file: f, img, lastmod: iso(date), desc, category: c, loc: url, finalModTime });
@@ -439,26 +439,26 @@ const distribute = async (
     const newWebsubState: Record<string, string> = {};
     const feedsToNotify: string[] = [];
 
-    const globalSizes      = new Map<string, number>();
+    const globalSizes = new Map<string, number>();
     const sitemapByCategory = new Map<string, string[]>();
 
     for (const it of flat) {
         const [txt, size] = await Promise.all([
             Bun.file(`${C.art}/${it.file}`).text(),
-                                              imgSize(it.img)
+            imgSize(it.img)
         ]);
         globalSizes.set(it.img, size);
 
         const vids = [...txt.matchAll(/<iframe[^>]+src="([^"]+)"/gi)]
-        .map(m => m[1]).filter(s => !s.endsWith('.js'));
+            .map(m => m[1]).filter(s => !s.endsWith('.js'));
 
         let videoXml = '';
-vids.forEach(s => {
-    const id = s.match(/embed\/([^/?]+)/)?.[1];
-    if (id) {
-        const videoTitle = decodeHTML(it.title).substring(0, 100);
-        const videoDesc  = (it.desc || decodeHTML(it.title)).substring(0, 2048);
-        videoXml += `
+        vids.forEach(s => {
+            const id = s.match(/embed\/([^/?]+)/)?.[1];
+            if (id) {
+                const videoTitle = decodeHTML(it.title).substring(0, 100);
+                const videoDesc = (it.desc || decodeHTML(it.title)).substring(0, 2048);
+                videoXml += `
         <video:video>
         <video:thumbnail_loc>https://img.youtube.com/vi/${id}/hqdefault.jpg</video:thumbnail_loc>
         <video:title><![CDATA[${safeCDATA(videoTitle)}]]></video:title>
@@ -467,12 +467,12 @@ vids.forEach(s => {
         <video:publication_date>${it.lastmod}</video:publication_date>
         <video:family_friendly>yes</video:family_friendly>
         </video:video>`;
-    }
-});
+            }
+        });
 
-const catSlug = slug(it.category);
-if (!sitemapByCategory.has(catSlug)) sitemapByCategory.set(catSlug, []);
-sitemapByCategory.get(catSlug)!.push(`
+        const catSlug = slug(it.category);
+        if (!sitemapByCategory.has(catSlug)) sitemapByCategory.set(catSlug, []);
+        sitemapByCategory.get(catSlug)!.push(`
 <url>
 <loc>${escapeXML(it.loc)}</loc>
 <lastmod>${it.lastmod}</lastmod>
@@ -487,26 +487,26 @@ sitemapByCategory.get(catSlug)!.push(`
     // 🔄 MIGRASI FORMAT FEED: hapus sisa file dari skema penamaan-penamaan sebelumnya
     await Promise.all([
         fs.rm(`${C.root}/rss.xml`, { force: true }),
-                      fs.rm(`${C.root}/atom.xml`, { force: true }),
-                      ...C.cats.flatMap(s => [
-                          fs.rm(`${C.root}/feed-${s}.xml`, { force: true }),
-                                        fs.rm(`${C.root}/feed-${s}-atom.xml`, { force: true }),
-                                        fs.rm(`${C.root}/feed-${s}.rss`, { force: true }),
-                                        fs.rm(`${C.root}/feed-${s}.atom`, { force: true }),
-                                        fs.rm(`${C.root}/sitemap-${s}.xml`, { force: true }),
-                      ]),
+        fs.rm(`${C.root}/atom.xml`, { force: true }),
+        ...C.cats.flatMap(s => [
+            fs.rm(`${C.root}/feed-${s}.xml`, { force: true }),
+            fs.rm(`${C.root}/feed-${s}-atom.xml`, { force: true }),
+            fs.rm(`${C.root}/feed-${s}.rss`, { force: true }),
+            fs.rm(`${C.root}/feed-${s}.atom`, { force: true }),
+            fs.rm(`${C.root}/sitemap-${s}.xml`, { force: true }),
+        ]),
     ]);
 
     const categorySitemapItems = [...sitemapByCategory.entries()].map(([catSlug, entries]) => {
         const fileName = `${catSlug}.xml`;
         const latestInCat = flat.find(it => slug(it.category) === catSlug);
-        const lastmod     = latestInCat?.lastmod || new Date().toISOString();
+        const lastmod = latestInCat?.lastmod || new Date().toISOString();
         return {
             fileName,
-            loc:     `${C.base}/${fileName}`,
+            loc: `${C.base}/${fileName}`,
             lastmod,
             content: buildSitemapUrlset(entries.join('')),
-                                                                      count:   entries.length
+            count: entries.length
         };
     });
 
@@ -538,20 +538,20 @@ sitemapByCategory.get(catSlug)!.push(`
 
     if (tmp) {
         for (const [cat, arts] of Object.entries(final)) {
-            const s                   = slug(cat);
-            const rUrl              = `${C.base}/${s}.rss`;
-            const rAtomUrl          = `${C.base}/${s}.atom`;
-            const seoCategoryLabel  = getCategoryLabel(s);
+            const s = slug(cat);
+            const rUrl = `${C.base}/${s}.rss`;
+            const rAtomUrl = `${C.base}/${s}.atom`;
+            const seoCategoryLabel = getCategoryLabel(s);
 
             const categoryArticlesHTML = (arts as any[])
-            .sort((a, b) => new Date(b[3]).getTime() - new Date(a[3]).getTime())
-            .map(a => {
-                const title         = sanitize(a[0]);
-                const cleanUrl      = a[1].replace('.html', '');
-                const image         = a[2];
-                const formattedDate = dateFormatter.format(new Date(a[3]));
-                const displayDesc   = sanitize((a[4] || a[0]).substring(0, 100) + '...');
-                return `
+                .sort((a, b) => new Date(b[3]).getTime() - new Date(a[3]).getTime())
+                .map(a => {
+                    const title = sanitize(a[0]);
+                    const cleanUrl = a[1].replace('.html', '');
+                    const image = a[2];
+                    const formattedDate = dateFormatter.format(new Date(a[3]));
+                    const displayDesc = sanitize((a[4] || a[0]).substring(0, 100) + '...');
+                    return `
                 <a href="${cleanUrl}" class="article-card">
                 <div class="card-thumbnail">
                 ${imgWithFallback(image, title, 'loading="lazy" width="300" height="200"')}
@@ -562,19 +562,19 @@ sitemapByCategory.get(catSlug)!.push(`
                 <span class="card-meta">${formattedDate}</span>
                 </div>
                 </a>`;
-            }).join('');
+                }).join('');
 
             const pg = tmp
-            .replace(/%%TITLE%%/g, seoCategoryLabel)
-            .replace(/%%DESCRIPTION%%/g, seoCategoryLabel)
-            .replace(/%%CATEGORY_NAME%%/g, seoCategoryLabel)
-            .replace(/%%RSS_URL%%/g,               rUrl)
-            .replace(/%%ATOM_URL%%/g,               rAtomUrl)
-            .replace(/%%CANONICAL_URL%%/g,         `${C.base}/${s}`)
-            .replace(/%%ICON%%/g,                  cat.match(/(\p{Emoji})/u)?.[0] || '📁')
-            .replace('<span id="category-title-text">Memuat...</span>', `<span id="category-title-text">${seoCategoryLabel}</span>`)
-            .replace('<div id="loading">Memuat...</div>', '')
-            .replace('<div id="article-grid"></div>', `<div id="article-grid">${categoryArticlesHTML}`);
+                .replace(/%%TITLE%%/g, seoCategoryLabel)
+                .replace(/%%DESCRIPTION%%/g, seoCategoryLabel)
+                .replace(/%%CATEGORY_NAME%%/g, seoCategoryLabel)
+                .replace(/%%RSS_URL%%/g, rUrl)
+                .replace(/%%ATOM_URL%%/g, rAtomUrl)
+                .replace(/%%CANONICAL_URL%%/g, `${C.base}/${s}`)
+                .replace(/%%ICON%%/g, cat.match(/(\p{Emoji})/u)?.[0] || '📁')
+                .replace('<span id="category-title-text">Memuat...</span>', `<span id="category-title-text">${seoCategoryLabel}</span>`)
+                .replace('<div id="loading">Memuat...</div>', '')
+                .replace('<div id="article-grid"></div>', `<div id="article-grid">${categoryArticlesHTML}`);
 
             const catItems = (arts as any[]).map(a => ({
                 title: a[0], file: a[1], img: a[2], lastmod: a[3], desc: a[4],
@@ -584,8 +584,8 @@ sitemapByCategory.get(catSlug)!.push(`
 
             await Promise.all([
                 Bun.write(`${C.root}/${s}/index.html`, pg),
-                              Bun.write(`${C.root}/${s}.rss`, buildRss(`Kategori ${seoCategoryLabel}`, catItems, rUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
-                              Bun.write(`${C.root}/${s}.atom`, buildAtom(`Kategori ${seoCategoryLabel}`, catItems, rAtomUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
+                Bun.write(`${C.root}/${s}.rss`, buildRss(`Kategori ${seoCategoryLabel}`, catItems, rUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
+                Bun.write(`${C.root}/${s}.atom`, buildAtom(`Kategori ${seoCategoryLabel}`, catItems, rAtomUrl, `Artikel ${seoCategoryLabel}`, globalSizes)),
             ]);
 
             const catNewest = catItems[0]?.loc;
@@ -629,19 +629,19 @@ sitemapByCategory.get(catSlug)!.push(`
         }).join('');
 
         const finalFeedPage = feedTemplate
-        .replace('<div id="loading"></div>', '')
-        .replace('<div id="feed-container"></div>', `<div id="feed-container">${feedItemsHTML}</div>`)
-        .replace(/<script>[\s\S]*?fetchAndDisplayFeed\(\);[\s\S]*?<\/script>/, '')
-        .replace('%%DATE_MODIFIED%%', buildDate);
+            .replace('<div id="loading"></div>', '')
+            .replace('<div id="feed-container"></div>', `<div id="feed-container">${feedItemsHTML}</div>`)
+            .replace(/<script>[\s\S]*?fetchAndDisplayFeed\(\);[\s\S]*?<\/script>/, '')
+            .replace('%%DATE_MODIFIED%%', buildDate);
         await Bun.write(`${C.root}/feed.html`, finalFeedPage);
     }
 
     if (editedTodayMap.size > 0) {
         let cacheOut = buildDate + '\n';
-for (const [filename, timeStr] of editedTodayMap.entries()) {
-    cacheOut += `${filename}|${timeStr}\n`;
-}
-await Bun.write(CACHE_TODAY_FILE, cacheOut);
+        for (const [filename, timeStr] of editedTodayMap.entries()) {
+            cacheOut += `${filename}|${timeStr}\n`;
+        }
+        await Bun.write(CACHE_TODAY_FILE, cacheOut);
     }
 
     // Ping WebSub & tulis file cache pelacakan
