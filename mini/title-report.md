@@ -461,7 +461,7 @@ Generated on: 7/18/2026, 2:17:47 PM
 | `artikel/fix-signature-unknown-trust.html` | Memperbaiki Error Signature Unknown Trust Bad Signature di Arch Linux - Layar Kosong | Memperbaiki Error Signature Unknown Trust Bad Signature di Arch Linux | Layar Kosong | ✅ Perfect |
 | `artikel/fix-windows-network-drive-smb.html` | Cara Memperbaiki Mapping Network Drive Windows 10/11 (SMB) - Panduan Lengkap - Layar Kosong | Cara Memperbaiki Mapping Network Drive Windows 10/11 (SMB) - Panduan Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/fix-windows-time-sync.html` | Perbaiki Sinkronisasi Waktu Windows 10-11: Layanan Waktu & NTP - Layar Kosong | Perbaiki Sinkronisasi Waktu Windows 10-11: Layanan Waktu & NTP | Layar Kosong | ✅ Perfect |
-| `artikel/flash-fill-excel-otomatis.html` | Flash Fill Excel: Fitur Paling PINTAR Buat Beresin Data Tanpa Rumus - Layar Kosong | Flash Fill Excel: Fitur Paling PINTAR Buat Beresin Data Tanpa Rumus | Layar Kosong | ✅ Perfect |
+| `artikel/flash-fill-excel-otomatis.html` | Flash Fill Excel: Beresin Data Tanpa Rumus - Layar Kosong | Flash Fill Excel: Beresin Data Tanpa Rumus | Layar Kosong | ✅ Perfect |
 | `artikel/flatpak-flathub-santai.html` | Flatpak & Flathub: Kotak Ajaib untuk Aplikasi Linux - Layar Kosong | Flatpak & Flathub: Kotak Ajaib untuk Aplikasi Linux | Layar Kosong | ✅ Perfect |
 | `artikel/flatpak-linux.html` | Panduan Flatpak: Satu Aplikasi untuk Semua Distro Linux 📦 - Layar Kosong | Panduan Flatpak: Satu Aplikasi untuk Semua Distro Linux 📦 | Layar Kosong | ✅ Perfect |
 | `artikel/fotografi-privasi-hak-potret.html` | Motret Candid di Ruang Publik: Privasi, Hak Potret, dan UU PDP - Layar Kosong | Motret Candid di Ruang Publik: Privasi, Hak Potret, dan UU PDP | Layar Kosong | ✅ Perfect |
@@ -2111,7 +2111,7 @@ Generated on: 7/18/2026, 2:17:47 PM
 | `olah-media/FFmpeg-split-video-durasi-otomatis.html` | FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀 - Layar Kosong | FFmpeg: Cara Split Video Otomatis Berdasarkan Durasi (Script Bash) 🚀 | Layar Kosong | ✅ Perfect |
 | `olah-media/FFmpeg-ubah-gambar-menjadi-video.html` | FFmpeg: Mengubah Gambar Menjadi Video (Image to Video) - Layar Kosong | FFmpeg: Mengubah Gambar Menjadi Video (Image to Video) | Layar Kosong | ✅ Perfect |
 | `olah-media/firefox-split-view-146.html` | Firefox 146 Akhirnya Punya Fitur Split View: Begini Cara Aktifkannya! 🚀 - Layar Kosong | Firefox 146 Akhirnya Punya Fitur Split View: Begini Cara Aktifkannya! 🚀 | Layar Kosong | ✅ Perfect |
-| `olah-media/flash-fill-excel-otomatis.html` | Flash Fill Excel: Fitur Paling PINTAR Buat Beresin Data Tanpa Rumus - Layar Kosong | Flash Fill Excel: Fitur Paling PINTAR Buat Beresin Data Tanpa Rumus | Layar Kosong | ✅ Perfect |
+| `olah-media/flash-fill-excel-otomatis.html` | Flash Fill Excel: Beresin Data Tanpa Rumus - Layar Kosong | Flash Fill Excel: Beresin Data Tanpa Rumus | Layar Kosong | ✅ Perfect |
 | `olah-media/gabung-pdf.html` | Gabungkan PDF dengan pdftk: Panduan Cepat & Praktis - Layar Kosong | Gabungkan PDF dengan pdftk: Panduan Cepat & Praktis | Layar Kosong | ✅ Perfect |
 | `olah-media/gabung-video-ffmpeg.html` | Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Tanpa Audio) - Layar Kosong | Gabungkan Semua File MP4 di Linux dengan FFmpeg (Lengkap + Tanpa Audio) | Layar Kosong | ✅ Perfect |
 | `olah-media/gabung-video-tanpa-audio.html` | Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio - Layar Kosong | Script FFmpeg: Gabung Semua Video .mp4 + Versi Tanpa Audio | Layar Kosong | ✅ Perfect |
