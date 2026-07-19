@@ -129,23 +129,31 @@
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased overflow-x-hidden min-h-screen">
 
     <!-- Header Section -->
-    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
-        <div class="w-full px-4 sm:px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="bg-blue-600 text-white p-2 rounded-lg">
-                    <i class="fa-solid fa-radar fa-lg"></i>
-                </div>
-                <div>
-                    <nav class="static-crumb" aria-label="Breadcrumb" style="font-size: .85rem;"><a href="https://dalam.web.id">Beranda</a> / <a href="/lainnya">Lainnya</a></nav>
-    <h1 class="text-xl font-bold leading-tight">Digital Footprint Scanner</h1>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">Client-Side Heuristics & Network Intelligence</p>
-                </div>
+   <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-50">
+    <div class="w-full px-4 sm:px-6 py-4 flex items-center justify-between">
+
+        <!-- Bagian Kiri: Ikon & Judul -->
+        <div class="flex items-center gap-3">
+            <div class="bg-blue-600 text-white p-2 rounded-lg">
+                <i class="fa-sharp-duotone fa-regular fa-satellite-dish"></i>
             </div>
-            <a href="https://dalam.web.id/" target="_blank" class="hidden sm:flex items-center gap-2 text-sm text-gray-500 hover:text-blue-500 transition-colors">
-                <i class="fa-solid fa-code"></i> Frijal (Layar Kosong)
-            </a>
+            <div>
+                <nav class="static-crumb" aria-label="Breadcrumb" style="font-size: .85rem;"><a href="https://dalam.web.id">Beranda</a> / <a href="/lainnya">Lainnya</a></nav>
+    <h1 class="text-xl font-bold leading-tight">Digital Footprint Scanner</h1>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Client-Side Heuristics & Network Intelligence</p>
+            </div>
         </div>
-    </header>
+
+        <!-- Bagian Kanan: Link Frijal & Favicon (Dibungkus khusus anti-pecah) -->
+        <div class="hidden sm:flex items-center gap-3">
+            <a href="https://dalam.web.id/" target="_blank" class="flex items-center gap-2 text-sm text-gray-500 hover:text-blue-500 transition-colors">
+                <i class="fa-solid fa-code"></i> Frijal - Layar Kosong.
+            </a>
+            <img src="https://dalam.web.id/favicon.svg" alt="Logo Layar Kosong" class="w-9 h-9 object-contain" />
+        </div>
+
+    </div>
+</header>
 
     <!-- Main Grid - Full Wider, Mobile First -->
     <!-- Grid akan melar: 1 kolom (HP) -> 2 kolom (Tablet) -> 3 kolom (Laptop) -> 4 kolom (Desktop) -> 5 kolom (Ultrawide) -->
