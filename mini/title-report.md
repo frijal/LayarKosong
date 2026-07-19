@@ -948,7 +948,7 @@ Generated on: 7/18/2026, 2:17:47 PM
 | `artikel/mengenal-jenis-domain-name.html` | Jenis Domain: TLD, gTLD, ccTLD, SLD, dan 3LD - Layar Kosong | Jenis Domain: TLD, gTLD, ccTLD, SLD, dan 3LD | Layar Kosong | ✅ Perfect |
 | `artikel/mengenal-linux-dan-floss.html` | Linux dan FLOSS: Panduan Lengkap untuk Pemula - Layar Kosong | Linux dan FLOSS: Panduan Lengkap untuk Pemula | Layar Kosong | ✅ Perfect |
 | `artikel/mengenal-openmandriva-linux.html` | OpenMandriva: Warisan Mandriva Linux dan Evolusi ROME - Layar Kosong | OpenMandriva: Warisan Mandriva Linux dan Evolusi ROME | Layar Kosong | ✅ Perfect |
-| `artikel/mengenal-openmandriva.html` | OpenMandriva: Kelanjutan Legenda Mandrake yang Ditenagai Clang - Layar Kosong | OpenMandriva: Kelanjutan Legenda Mandrake yang Ditenagai Clang | Layar Kosong | ✅ Perfect |
+| `artikel/mengenal-openmandriva.html` | OpenMandriva: Penerus Mandrake Berbasis Clang - Layar Kosong | OpenMandriva: Penerus Mandrake Berbasis Clang | Layar Kosong | ✅ Perfect |
 | `artikel/mengenal-taktik-darvo-denial-attack-reverse-victim-offender.html` | Mengenal Taktik DARVO: Manipulasi Psikologis yang Membalikkan Peran - Layar Kosong | Mengenal Taktik DARVO: Manipulasi Psikologis yang Membalikkan Peran | Layar Kosong | ✅ Perfect |
 | `artikel/mengenal-teknologi-kabel-laut-jasuka.html` | JaSuKa: "Urat Nadi" Internet Indonesia yang Sering membuat Galau - Layar Kosong | JaSuKa: "Urat Nadi" Internet Indonesia yang Sering membuat Galau | Layar Kosong | ✅ Perfect |
 | `artikel/mengenal-upscrolled-media-sosial-anti-sensor.html` | UpScrolled: Media Sosial Anti Sensor dan Masa Depan Kebebasan Berekspresi - Layar Kosong | UpScrolled: Media Sosial Anti Sensor dan Masa Depan Kebebasan Berekspresi | Layar Kosong | ✅ Perfect |
@@ -2646,7 +2646,7 @@ Generated on: 7/18/2026, 2:17:47 PM
 | `sistem-terbuka/mengatasi-tombol-brightness-linux-lenovo.html` | Cara Mengatasi Tombol Brightness Linux yang Mati di Laptop Lenovo (Debian 13) - Layar Kosong | Cara Mengatasi Tombol Brightness Linux yang Mati di Laptop Lenovo (Debian 13) | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mengenal-linux-dan-floss.html` | Linux dan FLOSS: Panduan Lengkap untuk Pemula - Layar Kosong | Linux dan FLOSS: Panduan Lengkap untuk Pemula | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mengenal-openmandriva-linux.html` | OpenMandriva: Warisan Mandriva Linux dan Evolusi ROME - Layar Kosong | OpenMandriva: Warisan Mandriva Linux dan Evolusi ROME | Layar Kosong | ✅ Perfect |
-| `sistem-terbuka/mengenal-openmandriva.html` | OpenMandriva: Kelanjutan Legenda Mandrake yang Ditenagai Clang - Layar Kosong | OpenMandriva: Kelanjutan Legenda Mandrake yang Ditenagai Clang | Layar Kosong | ✅ Perfect |
+| `sistem-terbuka/mengenal-openmandriva.html` | OpenMandriva: Penerus Mandrake Berbasis Clang - Layar Kosong | OpenMandriva: Penerus Mandrake Berbasis Clang | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/mengganti-kata-dengan-perl.html` | Mengganti Kata dalam Banyak Dokumen dengan Perl - Layar Kosong | Mengganti Kata dalam Banyak Dokumen dengan Perl | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/menghapus-entri-boot-lama-uefi-dan-grub.html` | Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux - Layar Kosong | Menghapus Entri Boot Lama di UEFI dan Membersihkan Menu GRUB Linux | Layar Kosong | ✅ Perfect |
 | `sistem-terbuka/menghidupkan-kembali-laptop-tua-pentium-m-dengan-antix.html` | Menghidupkan Kembali Laptop Tua Pentium M dengan antiX Linux - Layar Kosong | Menghidupkan Kembali Laptop Tua Pentium M dengan antiX Linux | Layar Kosong | ✅ Perfect |
