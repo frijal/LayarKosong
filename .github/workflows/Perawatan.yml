@@ -109,6 +109,7 @@ jobs:
           cp -f node_modules/@highlightjs/cdn-assets/styles/tomorrow-night-bright.css dapur/prism-tomorrow.min.css
           cp -f node_modules/@highlightjs/cdn-assets/styles/vs.min.css dapur/vs.min.css
           cp -f node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css dapur/vs-dark.min.css
+          cp -f node_modules/@highlightjs/cdn-assets/styles/tokyo-night-dark.min.css dapur/tokyo-night-dark.min.css
 
           cp -f node_modules/html2canvas/dist/html2canvas.min.js dapur/html2canvas.min.js
           cp -f node_modules/html2pdf.js/dist/html2pdf.bundle.min.js dapur/html2pdf.bundle.min.js
