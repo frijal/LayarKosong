@@ -81,7 +81,7 @@ jobs:
         run: |
           set -euo pipefail
           bun run dapur/Edit-Komponen-HTML.ts
-          bun dapur/gantifontshighlight.ts --no-backup
+          bun run dapur/gantifontshighlight.ts --no-backup
 
       - name: 🖼️ Inject SEO, Mirror Images & WebP
         if: ${{ github.event_name == 'push' || github.event.inputs.run_proses_artikel == 'true' }}
