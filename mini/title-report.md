@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/19/2026, 2:21:28 PM
+Generated on: 7/20/2026, 3:04:30 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -15,7 +15,7 @@ Generated on: 7/19/2026, 2:21:28 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v25.44 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v25.49 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -420,6 +420,7 @@ Generated on: 7/19/2026, 2:21:28 PM
 | `artikel/fedora-opensuse-auto-mirror-selection.html` | Cara Otomatis Memilih Mirror Linux Tercepat di Semua Distro - Layar Kosong | Cara Otomatis Memilih Mirror Linux Tercepat di Semua Distro | Layar Kosong | ✅ Perfect |
 | `artikel/fedora-remote-installer-berbasis-browser.html` | Fedora Remote Installer Berbasis Browser - Layar Kosong | Fedora Remote Installer Berbasis Browser | Layar Kosong | ✅ Perfect |
 | `artikel/fedora15-networkmanager-fix.html` | Solusi Modem USB Ngadat di Fedora 15 Lewat NetworkManager - Layar Kosong | Solusi Modem USB Ngadat di Fedora 15 Lewat NetworkManager | Layar Kosong | ✅ Perfect |
+| `artikel/feed-preview.html` | Feed Preview - Layar Kosong | Feed Preview | Layar Kosong | ✅ Perfect |
 | `artikel/fenomena-gereja-diubah-jadi-masjid-di-amerika-serikat.html` | Fenomena Gereja Diubah Jadi Masjid di Amerika Serikat: Alasan Praktis dan Contoh Nyata - Layar Kosong | Fenomena Gereja Diubah Jadi Masjid di Amerika Serikat: Alasan Praktis dan Contoh Nyata | Layar Kosong | ✅ Perfect |
 | `artikel/fenomena-login-muhammadiyah.html` | Fenomena Login Muhammadiyah: Anak Makin Melek Islam Berkemajuan - Layar Kosong | Fenomena Login Muhammadiyah: Anak Makin Melek Islam Berkemajuan | Layar Kosong | ✅ Perfect |
 | `artikel/FFmpeg-batch-convert-audio.html` | FFmpeg: Batch Convert Audio Sekaligus via Command Line - Layar Kosong | FFmpeg: Batch Convert Audio Sekaligus via Command Line | Layar Kosong | ✅ Perfect |
@@ -1321,6 +1322,7 @@ Generated on: 7/19/2026, 2:21:28 PM
 | `artikel/risiko-fiskal-indonesia-2026.html` | Truk Tua Menuju Indonesia Emas: Ambisi vs Realitas Fiskal 2026 - Layar Kosong | Truk Tua Menuju Indonesia Emas: Ambisi vs Realitas Fiskal 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/rpul-rpal-search-engine-90an.html` | Kompilasi Materi RPUL dan RPAL: Instrumen Informasi Utama Pelajar Era Kontemporer Sebelum Digitalisasi 🌍✨ - Layar Kosong | Kompilasi Materi RPUL dan RPAL: Instrumen Informasi Utama Pelajar Era Kontemporer Sebelum Digitalisasi 🌍✨ | Layar Kosong | ✅ Perfect |
 | `artikel/rss-feed-fondasi-otomatisasi-blog-modern-anti-algoritma.html` | RSS Feed: Fondasi Otomatisasi Blog Modern dan Anti Algoritma - Layar Kosong | RSS Feed: Fondasi Otomatisasi Blog Modern dan Anti Algoritma | Layar Kosong | ✅ Perfect |
+| `artikel/rss-vs-atom-panduan-teknis-terbaik-2026.html` | RSS vs Atom: Panduan Teknis & Praktik Terbaik Format Feed 2026 - Layar Kosong | RSS vs Atom: Panduan Teknis & Praktik Terbaik Format Feed 2026 | Layar Kosong | ✅ Perfect |
 | `artikel/rsync-a-vs-delete.html` | Rsync -a vs Rsync -a --delete: Pilih Mana untuk Backup? - Layar Kosong | Rsync -a vs Rsync -a --delete: Pilih Mana untuk Backup? | Layar Kosong | ✅ Perfect |
 | `artikel/ruang-publik-yang-makin-sempit-di-kota-besar.html` | Ruang Publik yang Makin Sempit: Tempat Duduk Gratis di Kota Makin Susah - Layar Kosong | Ruang Publik yang Makin Sempit: Tempat Duduk Gratis di Kota Makin Susah | Layar Kosong | ✅ Perfect |
 | `artikel/rumah-bukan-privasi-membela-diri-jadi-tersangka.html` | Rumah Bukan Privasi: Membela Diri Malah Tersangka - Layar Kosong | Rumah Bukan Privasi: Membela Diri Malah Tersangka | Layar Kosong | ✅ Perfect |
@@ -1989,6 +1991,7 @@ Generated on: 7/19/2026, 2:21:28 PM
 | `lainnya/editor-json-pro.html` | Editor Artikel JSON Pro - Kelola Konten Layar Kosong - Layar Kosong | Editor Artikel JSON Pro - Kelola Konten Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lainnya/era-digital-tilang-elektronik-vs-tilang-manual.html` | Era Digital Tilang Elektronik vs Tilang Manual Jangan Mau Diajak Damai 📸🚔 - Layar Kosong | Era Digital Tilang Elektronik vs Tilang Manual Jangan Mau Diajak Damai 📸🚔 | Layar Kosong | ✅ Perfect |
 | `lainnya/fakhrul-rijal-hrga-supervisor-talent-acquisition.html` | Fakhrul Rijal - HRGA Supervisor - Talent Acquisition Specialist - Layar Kosong | Fakhrul Rijal - HRGA Supervisor - Talent Acquisition Specialist | Layar Kosong | ✅ Perfect |
+| `lainnya/feed-preview.html` | Feed Preview - Layar Kosong | Feed Preview | Layar Kosong | ✅ Perfect |
 | `lainnya/fingerprint-scanner.html` | Advanced Network Device Fingerprint Footprint Scanner - Layar Kosong | Advanced Network Device Fingerprint Footprint Scanner | Layar Kosong | ✅ Perfect |
 | `lainnya/fotokopi-e-ktp-kini-dilarang-negara.html` | Fotokopi e-KTP Kini Dilarang Negara - Layar Kosong | Fotokopi e-KTP Kini Dilarang Negara | Layar Kosong | ✅ Perfect |
 | `lainnya/gaji-guru-layak-prasyarat-kualitas.html` | Gaji Layak Guru: Hadiah atau Prasyarat Kualitas Pendidikan? - Layar Kosong | Gaji Layak Guru: Hadiah atau Prasyarat Kualitas Pendidikan? | Layar Kosong | ✅ Perfect |
@@ -3171,6 +3174,7 @@ Generated on: 7/19/2026, 2:21:28 PM
 | `warta-tekno/revolusi-ai-dan-masa-depan-jurnalisme-2.html` | Dampak AI Pada Ekosistem Berita: Membangun Fondasi Baru - Layar Kosong | Dampak AI Pada Ekosistem Berita: Membangun Fondasi Baru | Layar Kosong | ✅ Perfect |
 | `warta-tekno/revolusi-ai-dan-masa-depan-jurnalisme.html` | Revolusi AI dan Masa Depan Jurnalisme: Kawan Atau Ancaman - Layar Kosong | Revolusi AI dan Masa Depan Jurnalisme: Kawan Atau Ancaman | Layar Kosong | ✅ Perfect |
 | `warta-tekno/rss-feed-fondasi-otomatisasi-blog-modern-anti-algoritma.html` | RSS Feed: Fondasi Otomatisasi Blog Modern dan Anti Algoritma - Layar Kosong | RSS Feed: Fondasi Otomatisasi Blog Modern dan Anti Algoritma | Layar Kosong | ✅ Perfect |
+| `warta-tekno/rss-vs-atom-panduan-teknis-terbaik-2026.html` | RSS vs Atom: Panduan Teknis & Praktik Terbaik Format Feed 2026 - Layar Kosong | RSS vs Atom: Panduan Teknis & Praktik Terbaik Format Feed 2026 | Layar Kosong | ✅ Perfect |
 | `warta-tekno/schema-validation-static-site.html` | Apakah Schema Validation Penting untuk Static Site? - Layar Kosong | Apakah Schema Validation Penting untuk Static Site? | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sejarah-gravitasi-ilmuwan-muslim.html` | Jejak Awal Konsep Gravitasi dalam Sains Islam - Layar Kosong | Jejak Awal Konsep Gravitasi dalam Sains Islam | Layar Kosong | ✅ Perfect |
 | `warta-tekno/sejarah-layout-keyboard-qwerty.html` | Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️ - Layar Kosong | Misteri Layout QWERTY: Kenapa Keyboard Kita Gak Urut Abjad? ⌨️ | Layar Kosong | ✅ Perfect |
