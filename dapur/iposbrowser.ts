@@ -1,7 +1,7 @@
 /**
  * =================================================================================
- * PageCounter v6.8
- * Ultra-Optimized + D1 Counter + Copy URL & Feed Features
+ * PageCounter v6.9
+ * Ultra-Optimized + D1 Counter + Smart Feed Preview Routing
  * Crafted for Frijal
  * =================================================================================
  */
@@ -20,10 +20,10 @@ const FETCH_TIMEOUT_MS = 2500;
 async function initIposBrowser(): Promise<void> {
     const target = document.getElementById('iposbrowser');
     if (!target) return;
-    
+
     // --- A. DETEKSI USER AGENT ---
     const ua = navigator.userAgent.toLowerCase();
-    
+
     const os = ua.includes('android')
     ? 'Android'
 : /iphone|ipad|ipod/.test(ua)
@@ -48,7 +48,7 @@ const browser = (ua.includes('firefox') || ua.includes('fxios'))
 
 const getIcon = (name: string): string => {
     const file = (name === 'iOS' || name === 'macOS') ? 'macios' : name.toLowerCase();
-    
+
     return `<img src="/ext/icons/${file}.svg" alt="${name}" onerror="this.src='/ext/icons/unknown.svg'" style="width:1.2em;height:1.2em;vertical-align:middle;margin-right:4px;display:inline-block;border-radius:2px;">`;
 };
 
@@ -56,9 +56,9 @@ const getIcon = (name: string): string => {
 const fetchStats = (async (): Promise<PageStats | null> => {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-    
+
     const workerURL = `${COUNTER_ENDPOINT}?url=${encodeURIComponent(window.location.pathname)}`;
-    
+
     try {
         const res = await fetch(workerURL, {
             method: 'GET',
@@ -66,11 +66,11 @@ const fetchStats = (async (): Promise<PageStats | null> => {
             cache: 'no-store',
             signal: controller.signal
         });
-        
+
         if (!res.ok) return null;
-        
+
         const data = await res.json() as Partial<PageStats>;
-        
+
         return {
             t: Number(data.t || 0),
                     v: Number(data.v || 0)
@@ -99,7 +99,7 @@ const data = await dp.getFor('iposbrowser.ts');
 
 for (const cat in data) {
     const match = data[cat].find((item: any) => item.slug === fileName);
-    
+
     if (match && match.date) {
         return new Date(match.date).toLocaleDateString('id-ID', {
             day: 'numeric',
@@ -111,22 +111,22 @@ for (const cat in data) {
         } catch {
             // silent fallback
         }
-        
+
         return null;
     };
-    
+
     const dp = (window as any).siteDataProvider;
-    
+
     if (dp) {
         getMatchDate(dp).then(resolve);
         return;
     }
-    
+
     let attempts = 0;
-    
+
     const timer = window.setInterval(async () => {
         const dynamicDp = (window as any).siteDataProvider;
-        
+
         if (dynamicDp) {
             window.clearInterval(timer);
             getMatchDate(dynamicDp).then(resolve);
@@ -179,8 +179,22 @@ const checkSVG = `
 <polyline points="20 6 9 17 4 12"></polyline>
 </svg>`;
 
-// --- F. RENDER DOM ---
-// href diganti menjadi button interaktif untuk menyalin URL Feed
+// --- F. SMART ROUTING URL ---
+// Deteksi URL Feed berdasarkan path Kategori vs Global
+const pathSegments = window.location.pathname.split('/').filter(Boolean);
+const catSlug = (pathSegments.length >= 2)
+? pathSegments[0]
+: (pathSegments.length === 1 && !pathSegments[0].endsWith('.html') ? pathSegments[0] : '');
+
+// Membangun URL parameter mentah (misal: /warta-tekno.rss atau /rss.rss)
+const rawRssPath = catSlug ? `/${catSlug}.rss` : '/rss.rss';
+const rawAtomPath = catSlug ? `/${catSlug}.atom` : '/atom.atom';
+
+// Menyambungkan path mentah ke URL halaman Interactive Feed Preview
+const previewRssUrl = `/lainnya/feed-preview?feed=${encodeURIComponent(rawRssPath)}`;
+const previewAtomUrl = `/lainnya/feed-preview?feed=${encodeURIComponent(rawAtomPath)}`;
+
+// --- G. RENDER DOM ---
 target.innerHTML = `
 <div id="pagecounter-wrapper" style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:15px;margin:20px 0 30px;font-size:0.85em;color:var(--text-muted);line-height:1.5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
 <span style="display:inline-flex;align-items:center;white-space:nowrap;">${getIcon(browser)}${browser}</span>
@@ -191,30 +205,34 @@ ${articleDate ? `
     <span style="display:inline-flex;align-items:center;white-space:nowrap;">
     🗓️ <span style="margin-left:4px;">${articleDate}</span>
     </span>` : ''}
-    
+
     ${statsHTML}
-    
+
     <span style="display:inline-flex;align-items:center;gap:10px;white-space:nowrap;margin-left:5px;">
-    <button
-    id="btn-copy-atom"
-    aria-label="Copy Atom Feed URL"
-    title="Salin URL Feed Atom"
-    type="button"
-    style="background:none;border:none;padding:0;cursor:pointer;color:#2563eb;display:inline-flex;justify-content:center;align-items:center;transition:transform 0.2s;"
+    <!-- Link langsung ke halaman Preview Feed Interaktif -->
+    <a
+    aria-label="Buka Interaktif Atom Feed"
+    title="Lihat Feed Atom"
+    href="${previewAtomUrl}"
+    target="_blank"
+    rel="noopener noreferrer"
+    style="color:#2563eb;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;transition:transform 0.2s;"
     onmouseover="this.style.transform='scale(1.1)'"
     onmouseout="this.style.transform='scale(1)'"
-    >${atomSVG}</button>
-    
-    <button
-    id="btn-copy-rss"
-    aria-label="Copy RSS Feed URL"
-    title="Salin URL Feed RSS"
-    type="button"
-    style="background:none;border:none;padding:0;cursor:pointer;color:#f97316;display:inline-flex;justify-content:center;align-items:center;transition:transform 0.2s;"
+    >${atomSVG}</a>
+
+    <a
+    aria-label="Buka Interaktif RSS Feed"
+    title="Lihat Feed RSS"
+    href="${previewRssUrl}"
+    target="_blank"
+    rel="noopener noreferrer"
+    style="color:#f97316;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;transition:transform 0.2s;"
     onmouseover="this.style.transform='scale(1.1)'"
     onmouseout="this.style.transform='scale(1)'"
-    >${rssSVG}</button>
-    
+    >${rssSVG}</a>
+
+    <!-- Tombol Copy URL Artikel tetap dipertahankan -->
     <button
     id="btn-copy-url"
     aria-label="Copy Page URL"
@@ -226,45 +244,28 @@ ${articleDate ? `
     >${copySVG}</button>
     </span>
     </div>`;
-    
-    // --- G. EVENT LISTENER COPY URL & FEEDS ---
-    const handleCopyClick = (btnId: string, textToCopy: string, originalSVG: string, successTitle: string, originalTitle: string) => {
-        const btn = document.getElementById(btnId);
-        if (!btn) return;
-        
-        btn.addEventListener('click', async () => {
+
+    // --- H. EVENT LISTENER COPY URL ARTIKEL ---
+    const btnCopy = document.getElementById('btn-copy-url');
+    if (btnCopy) {
+        btnCopy.addEventListener('click', async () => {
             try {
-                await navigator.clipboard.writeText(textToCopy);
-                btn.innerHTML = checkSVG;
-                btn.title = successTitle;
-                
-                window.setTimeout(() => {
-                    btn.innerHTML = originalSVG;
-                    btn.title = originalTitle;
-                }, 2000);
+                await navigator.clipboard.writeText(window.location.href);
+                btnCopy.innerHTML = checkSVG;
+                btnCopy.title = 'Tautan Artikel Tersalin!';
+
+        window.setTimeout(() => {
+            btnCopy.innerHTML = copySVG;
+            btnCopy.title = 'Salin Tautan Artikel';
+        }, 2000);
             } catch (err) {
                 console.error('Gagal menyalin:', err);
             }
         });
-    };
-    
-    // Deteksi URL Feed berdasarkan path Kategori vs Global
-    const pathSegments = window.location.pathname.split('/').filter(Boolean);
-    const catSlug = (pathSegments.length >= 2) 
-    ? pathSegments[0] 
-    : (pathSegments.length === 1 && !pathSegments[0].endsWith('.html') ? pathSegments[0] : '');
-    
-    const feedBaseUrl = window.location.origin;
-    const feedRssUrl = feedBaseUrl + (catSlug ? `/${catSlug}.rss` : '/rss.rss');
-    const feedAtomUrl = feedBaseUrl + (catSlug ? `/${catSlug}.atom` : '/atom.atom');
-    
-    // Inisialisasi Fungsi Copy
-    handleCopyClick('btn-copy-url', window.location.href, copySVG, 'Tautan Artikel Tersalin!', 'Salin Tautan Artikel');
-    handleCopyClick('btn-copy-rss', feedRssUrl, rssSVG, 'URL RSS Tersalin!', 'Salin URL Feed RSS');
-    handleCopyClick('btn-copy-atom', feedAtomUrl, atomSVG, 'URL Atom Tersalin!', 'Salin URL Feed Atom');
+    }
 }
 
-// --- H. SMART INITIALIZATION ---
+// --- I. SMART INITIALIZATION ---
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initIposBrowser);
 } else {
