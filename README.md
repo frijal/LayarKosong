@@ -3,6 +3,7 @@
 # 🚀 Panduan Membuat Static Site
 
 [![Proses](thumbnail.webp)](https://github.com/frijal/LayarKosong/fork)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffrijal%2FLayarKosong.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffrijal%2FLayarKosong?ref=badge_shield)
 
 Selamat datang! Panduan ini akan membantumu membangun situs statis yang super cepat, ringan, dan **otomatis ter-deploy ke Cloudflare Pages** menggunakan *repository* **Layar Kosong**.
 
@@ -379,3 +380,7 @@ Terima kasih untuk semua yang telah berkontribusi pada halaman ini. 🙏
 ```bash
 docker pull ghcr.io/frijal/layarkosong:latest
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ffrijal%2FLayarKosong.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ffrijal%2FLayarKosong?ref=badge_large)
