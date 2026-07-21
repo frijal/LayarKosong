@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registrasi SIM Biometrik: Wajah Jadi Password, Amankah?</title>
+    <meta name="description" content="Evaluasi kebijakan verifikasi wajah untuk registrasi SIM per Juli 2026. Modus penyelewengan, kelalaian operator, dan ancaman keamanan data Dukcapil yang masih mengkhawatirkan.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Registrasi SIM Biometrik: Wajah Jadi Password, Amankah Infrastruktur Kita?">
+    <meta property="og:description" content="Sejak 1 Juli 2026, verifikasi wajah wajib untuk semua SIM baru. Namun di balik klaim 6,8 juta pendaftaran, modus penipuan dan kebocoran data Dukcapil masih menghantui.">
+    <meta property="og:url" content="https://dalam.web.id/artikel/registrasi-sim-biometrik-wajah-amankah.html">
+    <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/a1.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Registrasi SIM Biometrik: Wajah Jadi Password, Amankah Infrastruktur Kita?">
+    <meta name="twitter:description" content="Verifikasi wajah untuk SIM baru resmi berlaku. Namun kelalaian operator besar dan modus baru pengecer justru memperlihatkan celah sistem yang mengkhawatirkan.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/a1.jpg">
+    <link rel="canonical" href="https://dalam.web.id/artikel/registrasi-sim-biometrik-wajah-amankah.html">
+    <meta name="news_keywords" content="registrasi SIM biometrik, verifikasi wajah, Komdigi, XLSmart, Indosat, Dukcapil, kebocoran data, PDN ransomware, UU PDP, keamanan data">
+    <meta property="article:tag" content="Teknologi">
+    <meta property="article:tag" content="Keamanan Data">
+    <meta property="article:tag" content="Regulasi">
+    <meta property="article:tag" content="Telekomunikasi">
+    <meta name="promphint" content="Apakah registrasi SIM biometrik sudah aman? | Belum sepenuhnya. Masih ada celah manipulasi, kelalaian operator, dan infrastruktur Dukcapil yang rawan bocor.">
+    <style>
+        /* ===== CSS Variables & Reset ===== */
+        :root {
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+            --bg-body: #f8f7f4;
+            --bg-card: #ffffff;
+            --text-primary: #1c1a1a;
+            --text-secondary: #2d2a2a;
+            --text-muted: #4a4545;
+            --border-subtle: #e5e1db;
+            --accent: #b45309;
+            --accent-hover: #92400e;
+            --link-color: #b45309;
+            --link-hover: #78350f;
+            --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --radius-card: 12px;
+            --font-base: 1.125rem;
+            --font-leading: 1.7;
+            --max-width: 64rem;
+        }
+
+        /* ===== Dark Mode ===== */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-body: #161514;
+                --bg-card: #232120;
+                --text-primary: #eeebe7;
+                --text-secondary: #d6d2cb;
+                --text-muted: #b0aaa0;
+                --border-subtle: #3a3632;
+                --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.5);
+                --accent: #e68a3a;
+                --accent-hover: #f0a55a;
+                --link-color: #e68a3a;
+                --link-hover: #f0a55a;
+            }
+        }
+
+        /* ===== Desktop Padding ===== */
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 1.5rem;
+            }
+        }
+
+        /* ===== Reset & Base ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            font-size: var(--font-base);
+            line-height: var(--font-leading);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== Container ===== */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+            padding-block: 2rem;
+        }
+
+        /* ===== Main Card / Article Wrapper ===== */
+        .article-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-card);
+            padding-block: 2rem;
+            padding-inline: var(--nested-padding);
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+
+        @media (max-width: 640px) {
+            .article-card {
+                background: transparent;
+                box-shadow: none;
+                border-radius: 0;
+                padding-block: 0;
+                padding-inline: 0;
+            }
+        }
+
+        /* ===== Typography ===== */
+        h1 {
+            font-size: 2rem;
+            line-height: 1.25;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        @media (min-width: 640px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            line-height: 1.3;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            line-height: 1.35;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        b {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        i {
+            font-style: italic;
+        }
+        u {
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        s {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.15s;
+        }
+        a:hover {
+            color: var(--link-hover);
+        }
+
+        /* ===== Images ===== */
+        .article-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 1.75rem 0;
+            display: block;
+            background-color: var(--border-subtle);
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .article-image--lcp {
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        figcaption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        /* ===== Details / Accordion ===== */
+        details {
+            margin: 1.75rem 0 0.5rem 0;
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            background-color: var(--bg-body);
+            transition: background-color 0.2s;
+            overflow: hidden;
+        }
+
+        details[open] {
+            background-color: var(--bg-card);
+            border-color: var(--accent);
+        }
+
+        summary {
+            cursor: pointer;
+            padding: 1rem 1.25rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            transition: background-color 0.15s, color 0.15s;
+            border-radius: 10px;
+            user-select: none;
+        }
+
+        summary:hover {
+            background-color: var(--border-subtle);
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-subtle);
+            border-radius: 10px 10px 0 0;
+            background-color: var(--border-subtle);
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: "▾";
+            font-size: 0.9rem;
+            margin-left: auto;
+            transition: transform 0.2s;
+            color: var(--text-muted);
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        details summary h2,
+        details summary h3 {
+            display: inline;
+            margin: 0;
+            font-size: inherit;
+            font-weight: inherit;
+            color: inherit;
+        }
+
+        .details-content {
+            padding: 1.25rem 1.25rem 0.5rem 1.25rem;
+        }
+
+        .details-content p:last-child {
+            margin-bottom: 1rem;
+        }
+
+        .details-content h3 {
+            margin-top: 1.25rem;
+        }
+
+        /* ===== Footer ===== */
+        .article-footer {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .article-footer span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .article-footer .dot {
+            color: var(--border-subtle);
+            font-weight: 300;
+        }
+
+        @media (max-width: 480px) {
+            .article-footer {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            .article-footer .dot {
+                display: none;
+            }
+        }
+
+        /* ===== Responsive Fine-tune ===== */
+        @media (max-width: 480px) {
+            body {
+                font-size: 1rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.25rem;
+                margin-top: 2rem;
+            }
+            h3 {
+                font-size: 1.1rem;
+            }
+            .lead {
+                font-size: 1.05rem;
+            }
+            summary {
+                font-size: 1rem;
+                padding: 0.85rem 1rem;
+            }
+            .details-content {
+                padding: 1rem 1rem 0.25rem 1rem;
+            }
+        }
+
+        /* ===== WCAG Contrast overrides ===== */
+        /* All text colors already meet WCAG AA via variables */
+        /* Link colors are contrasting against backgrounds */
+
+        /* ===== Signature placement ===== */
+        .signature-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="container">
+        <article class="article-card">
+
+            <!-- ===== HEADER ===== -->
+            <header>
+                <h1>Registrasi SIM Biometrik: Wajah Jadi 'Password', Amankah Infrastruktur Kita?</h1>
+                <p class="lead">
+                    Sejak 1 Juli 2026, verifikasi wajah wajib untuk semua pendaftaran SIM baru. Di balik angka 6,8 juta pendaftaran, modus penyelewengan dan kelalaian operator besar justru mengungkap celah sistem yang mengkhawatirkan.
+                </p>
+            </header>
+
+            <!-- ===== OPENING PARAGRAPHS ===== -->
+            <p>
+                Aturan baru yang dimuat dalam <b>Permenkomdigi No. 7/2026</b> mewajibkan semua pendaftaran nomor SIM baru untuk menyertakan verifikasi wajah, tidak lagi sekadar menggunakan NIK dan KK. Tujuannya gamblang: memastikan sebuah nomor telepon tidak bisa lagi didaftarkan dan dipakai secara bebas atas nama orang lain. Kementerian Komunikasi dan Digital (Komdigi) dengan percaya diri mengklaim bahwa dari periode Januari hingga Juli 2026, sistem ini telah sukses memproses pendaftaran biometrik milik <b>6,8 juta orang</b>.
+            </p>
+
+            <p>
+                Namun sayang, angka besar tersebut tidak menceritakan realitas utuh di lapangan. Evaluasi bulan pertama bergulirnya registrasi SIM biometrik ini justru memperlihatkan bahwa sistem yang katanya sudah <i>"siap nasional"</i> ternyata masih sangat bolong. Belum genap sebulan kebijakan ini diterapkan secara penuh, berbagai modus penyelewengan baru malah muncul ke permukaan, hingga berujung pada teguran keras terhadap dua operator telekomunikasi besar.
+            </p>
+
+            <!-- ===== FIRST IMAGE (LCP) ===== -->
+            <img
+            src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/a1.jpg"
+            alt="Petugas operator melayani pelanggan dalam proses registrasi SIM card baru menggunakan pemindaian wajah biometrik di konter resmi"
+            width="1200"
+            height="675"
+            fetchpriority="high"
+            decoding="async"
+            class="article-image article-image--lcp"
+            >
+
+            <!-- ===== MAIN CONTENT ===== -->
+
+            <!-- ===== SECTION 1: Modus Baru ===== -->
+            <h2>Modus Baru Pengecer dan Kelalaian Operator Besar</h2>
+
+            <p>
+                Alih-alih menjadi standar pelindungan mutakhir, hari pertama berlakunya aturan ini justru diwarnai oleh insiden memalukan di tingkat penyedia layanan. Komdigi sendiri terpaksa turun tangan memberikan teguran langsung kepada <b>XLSmart</b> dan <b>Indosat</b> karena kedua operator raksasa tersebut kedapatan masih memproses aktivasi pelanggan baru menggunakan sistem lama, yakni hanya bermodal NIK dan KK biasa tanpa melibatkan biometrik sama sekali. Fakta bahwa sistem bolong di dua operator besar sekaligus menampar narasi kesiapan infrastruktur nasional yang selama ini didengungkan.
+            </p>
+
+            <p>
+                Di level pengecer, masalahnya semakin kompleks dan berbahaya. Pada <b>20 Juli 2026</b>, Komdigi mendapati sebuah modus kejahatan baru yang sangat rapi. Para penjual di konter secara diam-diam mengaktifkan kartu SIM baru menggunakan pindaian wajah mereka sendiri, lalu menyodorkan kartu yang sudah aktif tersebut kepada sang pembeli. Begitu kartu tersebut mulai dipakai, si penjual dengan sigap melakukan <i>unregister</i> dari sistem. Akibatnya sangat fatal: nomor telepon tersebut kembali beredar bebas namun tidak tercatat atas nama pemilik aslinya, membuktikan bahwa kebijakan yang seharusnya melindungi justru menciptakan celah manipulasi baru.
+            </p>
+
+            <!-- ===== SECOND IMAGE ===== -->
+            <img
+            src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/a2.jpg"
+            alt="Pelanggan mengeluhkan masalah registrasi kepada petugas konter kecil akibat sistem biometrik yang bermasalah"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+            class="article-image"
+            >
+
+            <!-- ===== SECTION 2: Keluhan Infrastruktur (wrapped in details) ===== -->
+            <details>
+                <summary><h2>Keluhan Infrastruktur dan Jejak Kelam Keamanan Data</h2></summary>
+                <div class="details-content">
+
+                    <p>
+                        Kekacauan administrasi ini belum menghitung tekanan teknis yang dirasakan langsung oleh masyarakat kelas bawah. Di sudut-sudut jalan, konter pulsa berskala kecil terpaksa menelan pil pahit dari kebijakan ini.
+                    </p>
+
+                    <!-- ===== SUB 1: Konter Kecil ===== -->
+                    <h3>Konter Kecil Menjadi Tameng Komplain</h3>
+                    <p>
+                        Menurut pengamatan para ahli telekomunikasi, konter-konter kecil kini bernasib nahas karena menjadi muara pertama yang menampung tumpukan komplain dari para pelanggan yang merasa dipersulit. Padahal secara fungsi, mereka hanyalah perantara yang murni bertugas membantu jalannya proses pendaftaran. Masalah nyata di lapangan seperti kendala jaringan internet, aplikasi pemindai wajah yang <i>error</i>, sampai kurangnya sosialisasi dari pemerintah, hingga kini belum ada pihak berwenang yang benar-benar turun tangan untuk menyelesaikannya.
+                    </p>
+
+                    <!-- ===== THIRD IMAGE ===== -->
+                    <img
+                    src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/a3.jpg"
+                    alt="Ilustrasi ancaman siber ransomware dan kebocoran data di sistem pencatatan Dukcapil"
+                    width="1200"
+                    height="675"
+                    loading="lazy"
+                    decoding="async"
+                    class="article-image"
+                    >
+
+                    <!-- ===== SUB 2: Dukcapil & Ransomware ===== -->
+                    <h3>Tragedi Dukcapil dan Ransomware PDN</h3>
+                    <p>
+                        Kecemasan masyarakat untuk menyerahkan data wajah mereka jelas bukan ketakutan yang mengada-ada. Verifikasi wajah dari kartu SIM ini pada akhirnya tersambung langsung ke dalam pusat data Dukcapil. Masalahnya, riwayat keamanan pangkalan data tersebut hingga kini masih memicu tanda tanya besar. Mari menengok ke belakang pada <b>tahun 2023</b>, ketika Dukcapil diduga kuat mengalami kebobolan yang berujung pada bocornya <b>337 juta baris data vital</b>, meliputi nama lengkap, NIK, KK, hingga akta kelahiran. Kendati Dukcapil dengan keras membantah bahwa data yang tersebar itu cocok dengan basis data internal mereka, hingga detik ini belum pernah ada satu pun audit independen yang dipublikasikan secara terbuka untuk meredam polemik tersebut secara tuntas.
+                    </p>
+
+                    <p>
+                        Publik belum sempat bernapas lega ketika setahun berikutnya, tepat pada <b>Juni 2024</b>, serangan <i>ransomware</i> sukses melumpuhkan Pusat Data Nasional (PDN). Badan Siber dan Sandi Negara (BSSN) mengungkap fakta tragis: <b>210 instansi pemerintah</b> ikut terkena dampak kelumpuhan tersebut, dan dari total keseluruhan pangkalan data, hanya <b>2%</b> yang memiliki berkas cadangan.
+                    </p>
+
+                    <!-- ===== FOURTH IMAGE ===== -->
+                    <img
+                    src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/a4.jpg"
+                    alt="Suasana persidangan Mahkamah Konstitusi terkait belum berdirinya lembaga pengawas data pribadi dan tuntutan penundaan aturan"
+                    width="1200"
+                    height="675"
+                    loading="lazy"
+                    decoding="async"
+                    class="article-image"
+                    >
+
+                    <!-- ===== SUB 3: Lembaga Pengawas ===== -->
+                    <h3>Lembaga Pengawas yang Masih Sebatas Wacana</h3>
+                    <p>
+                        Jika nanti <i>blueprint</i> biometrik jutaan warga ini diselewengkan dan dipakai di luar tujuan awal pencegahan penipuan, siapa pihak yang akan menindak tegas? Celakanya, institusi yang akan mengawasi justru bukanlah lembaga independen, melainkan pemerintah yang notabene adalah pihak penyimpan data itu sendiri. Catatan Mahkamah Konstitusi pada <b>Mei 2026</b> menegaskan ironi ini: lembaga pengawas independen yang secara gamblang diwajibkan oleh <b>Undang-Undang Pelindungan Data Pribadi (UU PDP)</b> sejak tahun 2022, sama sekali belum berdiri.
+                    </p>
+
+                    <p>
+                        Asosiasi Penyelenggara Telekomunikasi Seluruh Indonesia (ATSI) memang sempat berusaha meredakan kepanikan dengan menyatakan bahwa operator telekomunikasi tidak pernah mengalami kebocoran data pelanggannya. Namun, klaim sepihak dari asosiasi industri ini dianggap belum cukup kuat. Karena alasan itulah, sejak <b>Februari 2026</b>, LBH Pers telah mendesak agar aturan verifikasi wajah ini segera ditinjau ulang hingga lembaga pengawas independen PDP tersebut benar-benar terbentuk secara fisik, dan bukan cuma direncanakan di atas secarik kertas.
+                    </p>
+
+                    <!-- ===== FIFTH IMAGE ===== -->
+                    <img
+                    src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/rawgithub/a5.jpg"
+                    alt="Seorang pria melakukan verifikasi biometrik pada ponselnya sambil mempertanyakan siapa penjamin keamanan data wajah tersebut"
+                    width="1200"
+                    height="675"
+                    loading="lazy"
+                    decoding="async"
+                    class="article-image"
+                    >
+
+                </div>
+            </details>
+
+            <!-- ===== SECTION 3: Langkah Perlindungan ===== -->
+            <h2>Langkah Perlindungan: Yang Bisa Kamu Lakukan Sekarang</h2>
+
+            <p>
+                Di tengah absennya pengawas yang objektif, sebuah pertanyaan besar menggantung: keamanan data wajahmu sebenarnya dijamin oleh siapa—apakah oleh operator, Komdigi, atau cuma sebatas janji-janji manis regulasi?
+            </p>
+
+            <p>
+                Karena jaminan sistematis belum terbentuk sempurna, kewaspadaan harus dikendalikan sendiri. Hal paling krusial yang bisa kamu lakukan sekarang adalah mengecek secara berkala daftar nomor telepon yang tercatat atas nama NIK kamu. Jika suatu hari kamu menemukan ada nomor asing yang ikut terdaftar tanpa seizinmu, jangan ragu untuk segera meminta operator melakukan pemblokiran.
+            </p>
+
+            <p>
+                Selain itu, jaga ketat kerahasiaan identitas digitalmu. Jangan pernah sekalipun mengirimkan dokumen penting seperti NIK, KK, swafoto wajah, ataupun menyetorkan kode rahasia OTP melalui <i>tautan</i> (<u>link</u>) asing yang beredar di luar aplikasi resmi operator. Tetaplah waspada meskipun oknum pengirim tautan tersebut terlihat begitu meyakinkan dan terang-terangan mengaku sebagai <i>"petugas"</i>.
+            </p>
+
+            <p>
+                Mengubah wajah menjadi <b>password</b> adalah sebuah transisi besar yang tidak bisa dibatalkan; ketika fondasi infrastruktur belum benar-benar kebal dari peretasan, kita tidak boleh percaya begitu saja. Sikap kritis dan langkah protektif mandiri adalah benteng terakhir yang saat ini paling bisa diandalkan.
+            </p>
+
+            <!-- ===== SIGNATURE ===== -->
+            <!--wajib ini tulis signature artikel oleh LayarKosong-->
+
+            <!-- ===== FOOTER ===== -->
+            <footer class="article-footer">
+                <span><b>Penulis:</b> Fakhrul Rijal</span>
+                <span class="dot">&bull;</span>
+                <span><b>Diterbitkan:</b> 21 Juli 2026</span>
+                <span class="dot">&bull;</span>
+                <span><b>Referensi:</b> Permenkomdigi No. 7/2026, Laporan BSSN Juni 2024 &amp; Catatan MK Mei 2026</span>
+            </footer>
+
+        </article>
+    </main>
+
+</body>
+</html>
