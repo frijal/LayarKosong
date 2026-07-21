@@ -384,7 +384,7 @@ if (related.length === 0) {
 }
 
 grid.innerHTML = related.map((item: any, idx: number) => {
-  const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.webp` : STATIC_FALLBACK;
+  const rg = item.image ? `${item.image.replace(/\.[^/.]+$/, '')}-rg.avif` : STATIC_FALLBACK;
   const url = `/${catInfo.slug}/${cleanSlug(item.id)}`;
 
   const cleanTitle = cleanArticleTitle(item.title);

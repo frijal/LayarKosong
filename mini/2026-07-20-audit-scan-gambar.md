@@ -19,16 +19,16 @@ Audit ini dibuat khusus dari step:
 
 ```text
  M img/gambarnganggur.txt
-D  img/pbs.twimg.com/9a7b42ad0f908ee-rg.webp
-D  img/raw.githubusercontent.com/34749186b5a27e14-rg.webp
+D  img/pbs.twimg.com/9a7b42ad0f908ee-rg.avif
+D  img/raw.githubusercontent.com/34749186b5a27e14-rg.avif
 D  img/ss/Gemini_Generated_Image_rced6mrced6mrced.png
 D  img/ss/Gemini_Generated_Image_z5dqhjz5dqhjz5dq.png
 ```
 
 ## File Terhapus
 
-- img/pbs.twimg.com/9a7b42ad0f908ee-rg.webp
-- img/raw.githubusercontent.com/34749186b5a27e14-rg.webp
+- img/pbs.twimg.com/9a7b42ad0f908ee-rg.avif
+- img/raw.githubusercontent.com/34749186b5a27e14-rg.avif
 - img/ss/Gemini_Generated_Image_rced6mrced6mrced.png
 - img/ss/Gemini_Generated_Image_z5dqhjz5dqhjz5dq.png
 

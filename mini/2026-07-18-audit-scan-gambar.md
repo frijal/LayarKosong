@@ -20,13 +20,13 @@ Audit ini dibuat khusus dari step:
 ```text
 D  img/AAAAAA/Gemini_Generated_Image_cvux7jcvux7jcvux.png
  M img/gambarnganggur.txt
-D  img/pbs.twimg.com/bd5376148d5b1031-rg.webp
+D  img/pbs.twimg.com/bd5376148d5b1031-rg.avif
 ```
 
 ## File Terhapus
 
 - img/AAAAAA/Gemini_Generated_Image_cvux7jcvux7jcvux.png
-- img/pbs.twimg.com/bd5376148d5b1031-rg.webp
+- img/pbs.twimg.com/bd5376148d5b1031-rg.avif
 
 ## File Baru
 

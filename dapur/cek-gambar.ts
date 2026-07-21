@@ -180,15 +180,15 @@ function loadArtikelLite() {
             const rawName = path.basename(baseName, path.extname(baseName));
             const nameSafe = rawName.replace(FORBIDDEN_CHARS, "-");
 
-            // KHUSUS meloloskan file -rg.webp ke dalam whitelist
-            usedBasenames.add(`${nameSafe}-rg.webp`);
+            // KHUSUS meloloskan file -rg.avif ke dalam whitelist
+            usedBasenames.add(`${nameSafe}-rg.avif`);
             protectedCount++;
           }
         }
       }
     }
 
-    console.log(`🛡️  Whitelist Related Grid: ${protectedCount} varian -rg.webp dilindungi dari artikel-lite.json.`);
+    console.log(`🛡️  Whitelist Related Grid: ${protectedCount} varian -rg.avif dilindungi dari artikel-lite.json.`);
   } catch (e) {
     console.error(`❌ Gagal membaca ${ARTIKEL_LITE_FILE}:`, e);
   }

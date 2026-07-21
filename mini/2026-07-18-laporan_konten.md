@@ -44,7 +44,7 @@ Update: 18 Jul 2026 | 22:18 WITA
 | 📄 tsXX  | **1** | functions |
 | 📄 txt   | **33** | llms.txt, sitemap.txt, artikel, img, robots.txt, ads.txt, dapur, sementara, EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX.txt |
 | 📄 webmanifest | **1** | site.webmanifest |
-| 🖼️ webp  | **3569** | thumbnail-md.webp, img, thumbnail-rg.webp, thumbnail-sm.webp, thumbnail.webp |
+| 🖼️ webp  | **3569** | thumbnail-md.webp, img, thumbnail-rg.avif, thumbnail-sm.webp, thumbnail.webp |
 | 📄 woff2 | **8** | ext, dapur |
 | 📄 xml   | **11** | lainnya.xml, olah-media.xml, sistem-terbuka.xml, warta-tekno.xml, jejak-sejarah.xml, gaya-hidup.xml, opini-sosial.xml, BingSiteAuth.xml, opensearch.xml, sementara, sitemap.xml |
 | 📄 xsl   | **3** | atom.xsl, sitemap.xsl, rss.xsl |

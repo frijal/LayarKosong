@@ -28,12 +28,12 @@ D  img/blogger.googleusercontent.com/img/a/AVvXsEjcZbsltz6bN5b8GweqgwSmwRWkuEDII
  M img/gambarnganggur.txt
 D  img/lumen5-video-maker-ai-sm.webp
 D  img/lumen5-video-maker-ai.webp
-D  img/pbs.twimg.com/523dab53d4cfd20a-rg.webp
-D  img/pbs.twimg.com/5ecdbd25520d5c97-rg.webp
-D  img/pbs.twimg.com/7288ae2b6e9af2d2-rg.webp
-D  img/pbs.twimg.com/76226e49ba25f002-rg.webp
-D  img/pbs.twimg.com/8e64e9291c808b88-rg.webp
-D  img/pbs.twimg.com/cc5ad8b2990a6ec3-rg.webp
+D  img/pbs.twimg.com/523dab53d4cfd20a-rg.avif
+D  img/pbs.twimg.com/5ecdbd25520d5c97-rg.avif
+D  img/pbs.twimg.com/7288ae2b6e9af2d2-rg.avif
+D  img/pbs.twimg.com/76226e49ba25f002-rg.avif
+D  img/pbs.twimg.com/8e64e9291c808b88-rg.avif
+D  img/pbs.twimg.com/cc5ad8b2990a6ec3-rg.avif
 D  img/pictory-ai-video-marketing-sm.webp
 D  img/pictory-ai-video-marketing.webp
 D  "img/rawgithub/ChatGPT Image Jul 10, 2026, 01_29_23 AM.png"
@@ -49,8 +49,8 @@ D  img/rawgithub/Gemini_Generated_Image_qct2y2qct2y2qct2.png
 D  img/rawgithub/Gemini_Generated_Image_v1y1smv1y1smv1y1.png
 D  img/rawgithub/Gemini_Generated_Image_zdhcotzdhcotzdhc.png
 D  "img/rawgithub/Screenshot From 2026-07-10 01-40-15.png"
-D  img/scontent_sin6_1.xx.fbcdn.net/7a248806fb32404-rg.webp
-D  img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674-rg.webp
+D  img/scontent_sin6_1.xx.fbcdn.net/7a248806fb32404-rg.avif
+D  img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674-rg.avif
 D  img/upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.webp
 D  img/upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.webp
 D  img/upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.webp
@@ -67,12 +67,12 @@ D  img/upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.webp
 - img/blogger.googleusercontent.com/img/a/AVvXsEjcZbsltz6bN5b8GweqgwSmwRWkuEDIIqOlqGkc8gBaPO76oxVqAdPETaeEnQotT4N2MvGur2cyYWhnc-aF5bOeeSwyg5hu_hIRuAyyjH_yRaI4KgxBRWUlnXJfBScax0fkB4u-45kT9FH6Eib4DwyvFW5RtmjWPsfYbenOciqqiHgrMmEvYAQwigG4nvQ.webp
 - img/lumen5-video-maker-ai-sm.webp
 - img/lumen5-video-maker-ai.webp
-- img/pbs.twimg.com/523dab53d4cfd20a-rg.webp
-- img/pbs.twimg.com/5ecdbd25520d5c97-rg.webp
-- img/pbs.twimg.com/7288ae2b6e9af2d2-rg.webp
-- img/pbs.twimg.com/76226e49ba25f002-rg.webp
-- img/pbs.twimg.com/8e64e9291c808b88-rg.webp
-- img/pbs.twimg.com/cc5ad8b2990a6ec3-rg.webp
+- img/pbs.twimg.com/523dab53d4cfd20a-rg.avif
+- img/pbs.twimg.com/5ecdbd25520d5c97-rg.avif
+- img/pbs.twimg.com/7288ae2b6e9af2d2-rg.avif
+- img/pbs.twimg.com/76226e49ba25f002-rg.avif
+- img/pbs.twimg.com/8e64e9291c808b88-rg.avif
+- img/pbs.twimg.com/cc5ad8b2990a6ec3-rg.avif
 - img/pictory-ai-video-marketing-sm.webp
 - img/pictory-ai-video-marketing.webp
 - "img/rawgithub/ChatGPT Image Jul 10, 2026, 01_29_23 AM.png"
@@ -88,8 +88,8 @@ D  img/upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.webp
 - img/rawgithub/Gemini_Generated_Image_v1y1smv1y1smv1y1.png
 - img/rawgithub/Gemini_Generated_Image_zdhcotzdhcotzdhc.png
 - "img/rawgithub/Screenshot From 2026-07-10 01-40-15.png"
-- img/scontent_sin6_1.xx.fbcdn.net/7a248806fb32404-rg.webp
-- img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674-rg.webp
+- img/scontent_sin6_1.xx.fbcdn.net/7a248806fb32404-rg.avif
+- img/scontent_sin6_2.xx.fbcdn.net/9f4e1c9496651674-rg.avif
 - img/upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.webp
 - img/upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.webp
 - img/upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.webp

@@ -21,7 +21,7 @@ Audit ini dibuat khusus dari step:
 D  img/daftar-alternatif-windows-linux-sm.webp
 D  img/daftar-alternatif-windows-linux.webp
  M img/gambarnganggur.txt
-D  img/pbs.twimg.com/6eb1775fbe21db42-rg.webp
+D  img/pbs.twimg.com/6eb1775fbe21db42-rg.avif
 D  img/rawgithub/Gemini_Generated_Image_1yx66f1yx66f1yx6.png
 ```
 
@@ -29,7 +29,7 @@ D  img/rawgithub/Gemini_Generated_Image_1yx66f1yx66f1yx6.png
 
 - img/daftar-alternatif-windows-linux-sm.webp
 - img/daftar-alternatif-windows-linux.webp
-- img/pbs.twimg.com/6eb1775fbe21db42-rg.webp
+- img/pbs.twimg.com/6eb1775fbe21db42-rg.avif
 - img/rawgithub/Gemini_Generated_Image_1yx66f1yx66f1yx6.png
 
 ## File Baru

@@ -78,7 +78,7 @@ async function generateRgImages() {
     const ext          = path.extname(cleanPath);
     const baseNameSafe = path.basename(cleanPath, ext).replace(FORBIDDEN_CHARS, "-");
     
-    const rgPath = path.join(dirName, `${baseNameSafe}-rg.webp`);
+    const rgPath = path.join(dirName, `${baseNameSafe}-rg.avif`);
     const absRgPath = path.join(process.cwd(), rgPath);
 
     if (!existsSync(absRgPath)) {

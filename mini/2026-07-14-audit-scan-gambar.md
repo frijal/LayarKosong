@@ -19,15 +19,15 @@ Audit ini dibuat khusus dari step:
 
 ```text
  M img/gambarnganggur.txt
-D  img/raw.githubusercontent.com/78386c12f3aa3038-rg.webp
-D  img/raw.githubusercontent.com/ebdbc53a3dc70ec4-rg.webp
+D  img/raw.githubusercontent.com/78386c12f3aa3038-rg.avif
+D  img/raw.githubusercontent.com/ebdbc53a3dc70ec4-rg.avif
 D  "img/rawgithub/Screenshot From 2026-07-14 15-46-09.png"
 ```
 
 ## File Terhapus
 
-- img/raw.githubusercontent.com/78386c12f3aa3038-rg.webp
-- img/raw.githubusercontent.com/ebdbc53a3dc70ec4-rg.webp
+- img/raw.githubusercontent.com/78386c12f3aa3038-rg.avif
+- img/raw.githubusercontent.com/ebdbc53a3dc70ec4-rg.avif
 - "img/rawgithub/Screenshot From 2026-07-14 15-46-09.png"
 
 ## File Baru

@@ -5,7 +5,7 @@
  * + Max 4 Artikel Terbaru per Rail
  * + Auto-Sort Kategori berdasarkan Update Terbaru
  * + Live Search Filter & Enter Redirect (dengan tombol Clear)
- * + Optimized Image Loading (-rg.webp)
+ * + Optimized Image Loading (-rg.avif)
  * + Native Lightbox Support (Optimized URL replace)
  * =================================================================================
  */
@@ -39,7 +39,7 @@ async function fetchAndRenderRails(): Promise<void> {
         const fileSlug = item.id.replace(/\.html$/, '');
         const originalImage = item.image || '/thumbnail.webp';
 
-        const microImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-rg.webp');
+        const microImage = originalImage.replace(/\.(jpg|jpeg|png|webp)$/i, '-rg.avif');
         const cleanTitle = item.title.replace(/\s*-\s*Layar Kosong$/i, '');
         const summaryText = item.description || '';
 
@@ -128,7 +128,7 @@ function renderRails(groupedData: Record<string, Article[]>): void {
       <div class="card-thumb">
       <img src="${item.img}" alt="${item.title}" loading="lazy"
       onclick="openLightbox(this.src.replace('-rg', ''))"
-      onerror="if(this.src.includes('-rg.webp')) { this.src=this.src.replace('-rg.webp', '.webp'); } else { this.style.display='none'; }"
+      onerror="if(this.src.includes('-rg.avif')) { this.src=this.src.replace('-rg.avif', '.webp'); } else { this.style.display='none'; }"
       style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px; cursor: zoom-in;">
       </div>
       <div class="card-body">
@@ -217,7 +217,7 @@ function initSearch(): void {
         <!-- 🔥 UPDATE: Sama, ganti jadi this.src.replace('-rg', '') -->
         <img src="${item.img}" alt="${item.title}" loading="lazy"
         onclick="openLightbox(this.src.replace('-rg', ''))"
-        onerror="if(this.src.includes('-rg.webp')) { this.src=this.src.replace('-rg.webp', '.webp'); } else { this.style.display='none'; }"
+        onerror="if(this.src.includes('-rg.avif')) { this.src=this.src.replace('-rg.avif', '.webp'); } else { this.style.display='none'; }"
         style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px; cursor: zoom-in;">
         </div>
         <div class="card-body">

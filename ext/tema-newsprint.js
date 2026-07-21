@@ -1,4 +1,4 @@
-(()=>{var $=[];async function L(){try{let K=await window.siteDataProvider.getFor("homepage.ts"),q={};$=[];for(let P in K){let Q=P.toLowerCase().replace(/\s+/g,"-"),z=N(P);q[z]=[],K[P].forEach((J)=>{let M=J.id.replace(/\.html$/,""),V=(J.image||"/thumbnail.webp").replace(/\.(jpg|jpeg|png|webp)$/i,"-rg.webp"),W=J.title.replace(/\s*-\s*Layar Kosong$/i,""),_=J.description||"",Z={category:z,categorySlug:Q,title:W,url:`/${Q}/${M}`,img:V,date:J.date?new Date(J.date):new Date,summary:_};q[z].push(Z),$.push(Z)}),q[z].sort((J,M)=>M.date.getTime()-J.date.getTime())}F(q),O()}catch(K){console.error("Gagal menyajikan menu utama, Chef:",K);let q=document.getElementById("railContainer");if(q)q.innerHTML="<p class='intro'>Data sedang mogok kerja. Coba muat ulang halaman.</p>"}}function N(K){if(!K)return"Lainnya";return K.split("-").map((q)=>q.charAt(0).toUpperCase()+q.slice(1)).join(" ")}function x(K){let q=document.getElementById("imageLightbox"),P=document.getElementById("lightboxImg");if(q&&P)P.src=K,q.showModal(),q.addEventListener("click",(Q)=>{let z=q.getBoundingClientRect();if(!(z.top<=Q.clientY&&Q.clientY<=z.top+z.height&&z.left<=Q.clientX&&Q.clientX<=z.left+z.width))q.close()})}window.openLightbox=x;function F(K){let q=document.getElementById("railContainer");if(!q)return;let P="",Q=Object.keys(K).sort((z,J)=>{let M=K[z][0]?.date.getTime()||0;return(K[J][0]?.date.getTime()||0)-M});for(let z=0;z<Q.length;z++){let J=Q[z],M=K[J].slice(0,4);if(M.length===0)continue;let Y=M[0].categorySlug;if(P+=`
+(()=>{var $=[];async function L(){try{let K=await window.siteDataProvider.getFor("homepage.ts"),q={};$=[];for(let P in K){let Q=P.toLowerCase().replace(/\s+/g,"-"),z=N(P);q[z]=[],K[P].forEach((J)=>{let M=J.id.replace(/\.html$/,""),V=(J.image||"/thumbnail.webp").replace(/\.(jpg|jpeg|png|webp)$/i,"-rg.avif"),W=J.title.replace(/\s*-\s*Layar Kosong$/i,""),_=J.description||"",Z={category:z,categorySlug:Q,title:W,url:`/${Q}/${M}`,img:V,date:J.date?new Date(J.date):new Date,summary:_};q[z].push(Z),$.push(Z)}),q[z].sort((J,M)=>M.date.getTime()-J.date.getTime())}F(q),O()}catch(K){console.error("Gagal menyajikan menu utama, Chef:",K);let q=document.getElementById("railContainer");if(q)q.innerHTML="<p class='intro'>Data sedang mogok kerja. Coba muat ulang halaman.</p>"}}function N(K){if(!K)return"Lainnya";return K.split("-").map((q)=>q.charAt(0).toUpperCase()+q.slice(1)).join(" ")}function x(K){let q=document.getElementById("imageLightbox"),P=document.getElementById("lightboxImg");if(q&&P)P.src=K,q.showModal(),q.addEventListener("click",(Q)=>{let z=q.getBoundingClientRect();if(!(z.top<=Q.clientY&&Q.clientY<=z.top+z.height&&z.left<=Q.clientX&&Q.clientX<=z.left+z.width))q.close()})}window.openLightbox=x;function F(K){let q=document.getElementById("railContainer");if(!q)return;let P="",Q=Object.keys(K).sort((z,J)=>{let M=K[z][0]?.date.getTime()||0;return(K[J][0]?.date.getTime()||0)-M});for(let z=0;z<Q.length;z++){let J=Q[z],M=K[J].slice(0,4);if(M.length===0)continue;let Y=M[0].categorySlug;if(P+=`
     <section class="rail" id="${Y}">
     <div class="rail-head">
     <h2>${J}</h2>
@@ -10,7 +10,7 @@
       <div class="card-thumb">
       <img src="${V.img}" alt="${V.title}" loading="lazy"
       onclick="openLightbox(this.src.replace('-rg', ''))"
-      onerror="if(this.src.includes('-rg.webp')) { this.src=this.src.replace('-rg.webp', '.webp'); } else { this.style.display='none'; }"
+      onerror="if(this.src.includes('-rg.avif')) { this.src=this.src.replace('-rg.avif', '.webp'); } else { this.style.display='none'; }"
       style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px; cursor: zoom-in;">
       </div>
       <div class="card-body">
@@ -47,7 +47,7 @@
         <!-- \uD83D\uDD25 UPDATE: Sama, ganti jadi this.src.replace('-rg', '') -->
         <img src="${X.img}" alt="${X.title}" loading="lazy"
         onclick="openLightbox(this.src.replace('-rg', ''))"
-        onerror="if(this.src.includes('-rg.webp')) { this.src=this.src.replace('-rg.webp', '.webp'); } else { this.style.display='none'; }"
+        onerror="if(this.src.includes('-rg.avif')) { this.src=this.src.replace('-rg.avif', '.webp'); } else { this.style.display='none'; }"
         style="width: 100%; height: 100%; object-fit: cover; border-radius: 1px; cursor: zoom-in;">
         </div>
         <div class="card-body">

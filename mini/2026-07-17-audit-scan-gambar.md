@@ -20,17 +20,17 @@ Audit ini dibuat khusus dari step:
 ```text
 D  img/AAAAAA/Gemini_Generated_Image_hx9zoyhx9zoyhx9z.png
  M img/gambarnganggur.txt
-D  img/raw.githubusercontent.com/5152ab09945f62a2-rg.webp
+D  img/raw.githubusercontent.com/5152ab09945f62a2-rg.avif
 D  "img/rawgithub/ChatGPT Image Jul 17, 2026, 11_52_03 AM.png"
-D  img/scontent_sin2_1.xx.fbcdn.net/bf9455b6cbae7151-rg.webp
+D  img/scontent_sin2_1.xx.fbcdn.net/bf9455b6cbae7151-rg.avif
 ```
 
 ## File Terhapus
 
 - img/AAAAAA/Gemini_Generated_Image_hx9zoyhx9zoyhx9z.png
-- img/raw.githubusercontent.com/5152ab09945f62a2-rg.webp
+- img/raw.githubusercontent.com/5152ab09945f62a2-rg.avif
 - "img/rawgithub/ChatGPT Image Jul 17, 2026, 11_52_03 AM.png"
-- img/scontent_sin2_1.xx.fbcdn.net/bf9455b6cbae7151-rg.webp
+- img/scontent_sin2_1.xx.fbcdn.net/bf9455b6cbae7151-rg.avif
 
 ## File Baru
 

@@ -26,7 +26,7 @@ D  img/blogger.googleusercontent.com/303f37412e5077af.webp
 D  img/blogger.googleusercontent.com/35225633d844ad08.webp
 D  img/blogger.googleusercontent.com/3899fd1ed6ca23e7.webp
 D  img/blogger.googleusercontent.com/432ce038db93eb54.webp
-D  img/blogger.googleusercontent.com/4e0657bbc27dbcb1-rg.webp
+D  img/blogger.googleusercontent.com/4e0657bbc27dbcb1-rg.avif
 D  img/blogger.googleusercontent.com/5cf6489d3c82dc2e.webp
 D  img/blogger.googleusercontent.com/68c586e22cb24964.webp
 D  img/blogger.googleusercontent.com/6cc6c7fc17bde4f5.webp
@@ -36,7 +36,7 @@ D  img/blogger.googleusercontent.com/7917368adb3ea249.webp
 D  img/blogger.googleusercontent.com/7e519830628c9fe2.webp
 D  img/blogger.googleusercontent.com/830ff944b00d71fa.webp
 D  img/blogger.googleusercontent.com/926fd5440dacc30d.webp
-D  img/blogger.googleusercontent.com/957c506eaade2a81-rg.webp
+D  img/blogger.googleusercontent.com/957c506eaade2a81-rg.avif
 D  img/blogger.googleusercontent.com/a276e27534d70b7f.webp
 D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhganXW3zB6t4LlMl8WREctj76Oy_pRYVduezqI76gM4FTafyzxh1Y_iW6Q3N1-WJYdzJMLclETGP2YFeqlcSmKknxh2Gwbfp9LfZjIUopOxT6Lw_peIYAVDBPi0ERNKI4z_2UQpsL3tL3j/s1600/DSC07865.resized-sm.webp
 D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhganXW3zB6t4LlMl8WREctj76Oy_pRYVduezqI76gM4FTafyzxh1Y_iW6Q3N1-WJYdzJMLclETGP2YFeqlcSmKknxh2Gwbfp9LfZjIUopOxT6Lw_peIYAVDBPi0ERNKI4z_2UQpsL3tL3j/s1600/DSC07865.resized.webp
@@ -75,14 +75,14 @@ D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjshzZ1a97unZyaZD_D052J
 D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjshzZ1a97unZyaZD_D052JuV7s3_UDH2Id7uChiSAWpVuik4LVElg1h4oqRpMvy0XHl6_766iP08HQdaLEhdhsG6-0t6CWx2es4tB_wPpDenGN1G6cdvT1lleEuNNfe-XkpJ6RiJ9HTRRi/s320/DSC07776+-+Copy.resized.webp
 D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvz5WwwQwnZVFGQ8SFJvJetflY8Gzt0NrzXJPlWqC4MlH2cQE0Z5lFGaT4bcgWTcgBWMftyd3iBMtkcRluv6JYAM9QXbYnWPojqn1yOtSK1lpTKrtxWZd9lfXT99NyhkDWGbDRnYjEthJ2/s1600/DSC07770.resized.webp
 D  img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvz5WwwQwnZVFGQ8SFJvJetflY8Gzt0NrzXJPlWqC4MlH2cQE0Z5lFGaT4bcgWTcgBWMftyd3iBMtkcRluv6JYAM9QXbYnWPojqn1yOtSK1lpTKrtxWZd9lfXT99NyhkDWGbDRnYjEthJ2/s320/DSC07770.resized.webp
-D  img/distrowatch.com/4e1b7e91552d68f4-rg.webp
-D  img/docs.getaurora.dev/6365a62e4c59ecf9-rg.webp
+D  img/distrowatch.com/4e1b7e91552d68f4-rg.avif
+D  img/docs.getaurora.dev/6365a62e4c59ecf9-rg.avif
  M img/gambarnganggur.txt
-D  img/pbs.twimg.com/218661e4c703954-rg.webp
-D  img/pbs.twimg.com/5d99eda537ac3d6c-rg.webp
-D  img/pbs.twimg.com/cab942a9d8aca8ad-rg.webp
-D  img/pbs.twimg.com/f1524250a096e3f7-rg.webp
-D  img/pbs.twimg.com/f57c24ed56400a48-rg.webp
+D  img/pbs.twimg.com/218661e4c703954-rg.avif
+D  img/pbs.twimg.com/5d99eda537ac3d6c-rg.avif
+D  img/pbs.twimg.com/cab942a9d8aca8ad-rg.avif
+D  img/pbs.twimg.com/f1524250a096e3f7-rg.avif
+D  img/pbs.twimg.com/f57c24ed56400a48-rg.avif
 D  img/placehold.co/900x450/3182ce/ffffff-md.webp
 D  img/placehold.co/900x450/3182ce/ffffff-sm.webp
 D  img/placehold.co/900x450/3182ce/ffffff.webp
@@ -90,7 +90,7 @@ D  img/placehold.co/900x450/4a5568/ffffff-md.webp
 D  img/placehold.co/900x450/4a5568/ffffff-sm.webp
 D  img/placehold.co/900x450/4a5568/ffffff.webp
 D  img/raw.githubusercontent.com/3d7a906092e556c8-md.webp
-D  img/raw.githubusercontent.com/3d7a906092e556c8-rg.webp
+D  img/raw.githubusercontent.com/3d7a906092e556c8-rg.avif
 D  img/raw.githubusercontent.com/3d7a906092e556c8-sm.webp
 D  img/raw.githubusercontent.com/3d7a906092e556c8.webp
 D  img/rawgithub/1.jpg
@@ -118,10 +118,10 @@ D  img/rawgithub/ob-nov-22-dat-tinggi-6.jpg
 D  img/rawgithub/ob-nov-22-dat-tinggi-7.jpg
 D  img/rawgithub/ob-nov-22-dat-tinggi-8.jpg
 D  "img/rawgithub/\342\200\224Pngtree\342\200\224aerial view of dieng village_15510068.png"
-D  img/scontent_cgk2_1.xx.fbcdn.net/483c657388a9a26-rg.webp
-D  img/scontent_sin2_2.xx.fbcdn.net/12bb7f922dfc0906-rg.webp
-D  img/scontent_sin2_3.xx.fbcdn.net/7aecc3a8f0b3a721-rg.webp
-D  img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix-Template-rg.webp
+D  img/scontent_cgk2_1.xx.fbcdn.net/483c657388a9a26-rg.avif
+D  img/scontent_sin2_2.xx.fbcdn.net/12bb7f922dfc0906-rg.avif
+D  img/scontent_sin2_3.xx.fbcdn.net/7aecc3a8f0b3a721-rg.avif
+D  img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix-Template-rg.avif
 ```
 
 ## File Terhapus
@@ -134,7 +134,7 @@ D  img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix
 - img/blogger.googleusercontent.com/35225633d844ad08.webp
 - img/blogger.googleusercontent.com/3899fd1ed6ca23e7.webp
 - img/blogger.googleusercontent.com/432ce038db93eb54.webp
-- img/blogger.googleusercontent.com/4e0657bbc27dbcb1-rg.webp
+- img/blogger.googleusercontent.com/4e0657bbc27dbcb1-rg.avif
 - img/blogger.googleusercontent.com/5cf6489d3c82dc2e.webp
 - img/blogger.googleusercontent.com/68c586e22cb24964.webp
 - img/blogger.googleusercontent.com/6cc6c7fc17bde4f5.webp
@@ -144,7 +144,7 @@ D  img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix
 - img/blogger.googleusercontent.com/7e519830628c9fe2.webp
 - img/blogger.googleusercontent.com/830ff944b00d71fa.webp
 - img/blogger.googleusercontent.com/926fd5440dacc30d.webp
-- img/blogger.googleusercontent.com/957c506eaade2a81-rg.webp
+- img/blogger.googleusercontent.com/957c506eaade2a81-rg.avif
 - img/blogger.googleusercontent.com/a276e27534d70b7f.webp
 - img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhganXW3zB6t4LlMl8WREctj76Oy_pRYVduezqI76gM4FTafyzxh1Y_iW6Q3N1-WJYdzJMLclETGP2YFeqlcSmKknxh2Gwbfp9LfZjIUopOxT6Lw_peIYAVDBPi0ERNKI4z_2UQpsL3tL3j/s1600/DSC07865.resized-sm.webp
 - img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhganXW3zB6t4LlMl8WREctj76Oy_pRYVduezqI76gM4FTafyzxh1Y_iW6Q3N1-WJYdzJMLclETGP2YFeqlcSmKknxh2Gwbfp9LfZjIUopOxT6Lw_peIYAVDBPi0ERNKI4z_2UQpsL3tL3j/s1600/DSC07865.resized.webp
@@ -183,13 +183,13 @@ D  img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix
 - img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjshzZ1a97unZyaZD_D052JuV7s3_UDH2Id7uChiSAWpVuik4LVElg1h4oqRpMvy0XHl6_766iP08HQdaLEhdhsG6-0t6CWx2es4tB_wPpDenGN1G6cdvT1lleEuNNfe-XkpJ6RiJ9HTRRi/s320/DSC07776+-+Copy.resized.webp
 - img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvz5WwwQwnZVFGQ8SFJvJetflY8Gzt0NrzXJPlWqC4MlH2cQE0Z5lFGaT4bcgWTcgBWMftyd3iBMtkcRluv6JYAM9QXbYnWPojqn1yOtSK1lpTKrtxWZd9lfXT99NyhkDWGbDRnYjEthJ2/s1600/DSC07770.resized.webp
 - img/blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvz5WwwQwnZVFGQ8SFJvJetflY8Gzt0NrzXJPlWqC4MlH2cQE0Z5lFGaT4bcgWTcgBWMftyd3iBMtkcRluv6JYAM9QXbYnWPojqn1yOtSK1lpTKrtxWZd9lfXT99NyhkDWGbDRnYjEthJ2/s320/DSC07770.resized.webp
-- img/distrowatch.com/4e1b7e91552d68f4-rg.webp
-- img/docs.getaurora.dev/6365a62e4c59ecf9-rg.webp
-- img/pbs.twimg.com/218661e4c703954-rg.webp
-- img/pbs.twimg.com/5d99eda537ac3d6c-rg.webp
-- img/pbs.twimg.com/cab942a9d8aca8ad-rg.webp
-- img/pbs.twimg.com/f1524250a096e3f7-rg.webp
-- img/pbs.twimg.com/f57c24ed56400a48-rg.webp
+- img/distrowatch.com/4e1b7e91552d68f4-rg.avif
+- img/docs.getaurora.dev/6365a62e4c59ecf9-rg.avif
+- img/pbs.twimg.com/218661e4c703954-rg.avif
+- img/pbs.twimg.com/5d99eda537ac3d6c-rg.avif
+- img/pbs.twimg.com/cab942a9d8aca8ad-rg.avif
+- img/pbs.twimg.com/f1524250a096e3f7-rg.avif
+- img/pbs.twimg.com/f57c24ed56400a48-rg.avif
 - img/placehold.co/900x450/3182ce/ffffff-md.webp
 - img/placehold.co/900x450/3182ce/ffffff-sm.webp
 - img/placehold.co/900x450/3182ce/ffffff.webp
@@ -197,7 +197,7 @@ D  img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix
 - img/placehold.co/900x450/4a5568/ffffff-sm.webp
 - img/placehold.co/900x450/4a5568/ffffff.webp
 - img/raw.githubusercontent.com/3d7a906092e556c8-md.webp
-- img/raw.githubusercontent.com/3d7a906092e556c8-rg.webp
+- img/raw.githubusercontent.com/3d7a906092e556c8-rg.avif
 - img/raw.githubusercontent.com/3d7a906092e556c8-sm.webp
 - img/raw.githubusercontent.com/3d7a906092e556c8.webp
 - img/rawgithub/1.jpg
@@ -225,10 +225,10 @@ D  img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix
 - img/rawgithub/ob-nov-22-dat-tinggi-7.jpg
 - img/rawgithub/ob-nov-22-dat-tinggi-8.jpg
 - "img/rawgithub/\342\200\224Pngtree\342\200\224aerial view of dieng village_15510068.png"
-- img/scontent_cgk2_1.xx.fbcdn.net/483c657388a9a26-rg.webp
-- img/scontent_sin2_2.xx.fbcdn.net/12bb7f922dfc0906-rg.webp
-- img/scontent_sin2_3.xx.fbcdn.net/7aecc3a8f0b3a721-rg.webp
-- img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix-Template-rg.webp
+- img/scontent_cgk2_1.xx.fbcdn.net/483c657388a9a26-rg.avif
+- img/scontent_sin2_2.xx.fbcdn.net/12bb7f922dfc0906-rg.avif
+- img/scontent_sin2_3.xx.fbcdn.net/7aecc3a8f0b3a721-rg.avif
+- img/www.smartsheet.com/sites/default/files/2025-10/IC-Project-Priority-Matrix-Template-rg.avif
 
 ## File Baru
 
