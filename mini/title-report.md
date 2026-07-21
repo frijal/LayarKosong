@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/20/2026, 3:04:30 PM
+Generated on: 7/21/2026, 2:58:41 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -15,7 +15,7 @@ Generated on: 7/20/2026, 3:04:30 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v25.49 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v25.52 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -93,6 +93,7 @@ Generated on: 7/20/2026, 3:04:30 PM
 | `artikel/aku-cinta-indonesia.html` | ACI 1985: Mengenang Serial Anak Penuh Nilai Karakter - Layar Kosong | ACI 1985: Mengenang Serial Anak Penuh Nilai Karakter | Layar Kosong | ✅ Perfect |
 | `artikel/akun-lokal-vs-microsoft-pilihan-terbaik-untuk-pc-windows.html` | Akun Lokal vs Microsoft: Pilihan Terbaik untuk PC Windows - Layar Kosong | Akun Lokal vs Microsoft: Pilihan Terbaik untuk PC Windows | Layar Kosong | ✅ Perfect |
 | `artikel/al-baqarah-11-12-tafsir-kerusakan.html` | Quran Surat Al-Baqarah Ayat 11-12: Hati-Hati dengan Klaim Perbaikan yang Merusak - Layar Kosong | Quran Surat Al-Baqarah Ayat 11-12: Hati-Hati dengan Klaim Perbaikan yang Merusak | Layar Kosong | ✅ Perfect |
+| `artikel/al-quran-memerintahkan-luzumul-jamaah-keajaiban-persatuan-umat.html` | Al-Qur'an Memerintahkan Luzūmul Jamā'ah? Keajaiban Persatuan Umat - Layar Kosong | Al-Qur'an Memerintahkan Luzūmul Jamā'ah? Keajaiban Persatuan Umat | Layar Kosong | ✅ Perfect |
 | `artikel/alasan-banyak-orang-pakai-windows.html` | Kenapa Banyak Orang Masih Pakai Windows? (Walaupun Linux Gratis) - Layar Kosong | Kenapa Banyak Orang Masih Pakai Windows? (Walaupun Linux Gratis) | Layar Kosong | ✅ Perfect |
 | `artikel/alasan-pengguna-linux-enggan-kembali-windows-manajer-paket.html` | Manajer Paket Linux Adalah Alasan Pengguna Enggan Kembali ke Windows - Layar Kosong | Manajer Paket Linux Adalah Alasan Pengguna Enggan Kembali ke Windows | Layar Kosong | ✅ Perfect |
 | `artikel/album-thumbnail-json-generator.html` | Album Thumbnail Viewer & JSON Generator - Layar Kosong | Album Thumbnail Viewer & JSON Generator | Layar Kosong | ✅ Perfect |
@@ -198,6 +199,7 @@ Generated on: 7/20/2026, 3:04:30 PM
 | `artikel/belajar-masak-dari-youtube-antara-niat-dan-kenyataan.html` | Belajar Masak dari YouTube: Antara Niat dan Kenyataan - Layar Kosong | Belajar Masak dari YouTube: Antara Niat dan Kenyataan | Layar Kosong | ✅ Perfect |
 | `artikel/belajar-perintah-curl.html` | Belajar Perintah cURL: Cheat Sheet Lengkap untuk Pemula - Layar Kosong | Belajar Perintah cURL: Cheat Sheet Lengkap untuk Pemula | Layar Kosong | ✅ Perfect |
 | `artikel/belanda-sebagai-ulil-amri-kritik-sejarah.html` | Hindia Belanda Sebagai Ulil Amri? Kritik Sejarah & Masa Kini - Layar Kosong | Hindia Belanda Sebagai Ulil Amri? Kritik Sejarah & Masa Kini | Layar Kosong | ✅ Perfect |
+| `artikel/benarkah-takdir-bisa-berubah-kisah-kaum-nabi-yunus.html` | Benarkah Takdir Bisa Berubah? Kisah Kaum Nabi Yunus yang Tidak Jadi Kena Azab - Layar Kosong | Benarkah Takdir Bisa Berubah? Kisah Kaum Nabi Yunus yang Tidak Jadi Kena Azab | Layar Kosong | ✅ Perfect |
 | `artikel/berapa-banyak-disk-dan-partisi-ter-mount.html` | 💽 Melihat Berapa Banyak Disk dan Partisi yang Ter-mount di Linux - Layar Kosong | 💽 Melihat Berapa Banyak Disk dan Partisi yang Ter-mount di Linux | Layar Kosong | ✅ Perfect |
 | `artikel/berhenti-menghakimi-bahaya-membuka-aib.html` | Berhenti Menghakimi: Bahaya Membuka Aib dan Rahasia Taubat yang Tersembunyi - Layar Kosong | Berhenti Menghakimi: Bahaya Membuka Aib dan Rahasia Taubat yang Tersembunyi | Layar Kosong | ✅ Perfect |
 | `artikel/berkunjung-ke-dataran-tinggi-dieng.html` | Berkunjung ke Dataran Tinggi Dieng: Pesona Alam dan Sejarah - Layar Kosong | Berkunjung ke Dataran Tinggi Dieng: Pesona Alam dan Sejarah | Layar Kosong | ✅ Perfect |
@@ -1294,6 +1296,7 @@ Generated on: 7/20/2026, 3:04:30 PM
 | `artikel/refresh-codespaces-browser-github.html` | Refresh GitHub Codespaces dari browser: Rebuild, Full Rebuild, Restart - Layar Kosong | Refresh GitHub Codespaces dari browser: Rebuild, Full Rebuild, Restart | Layar Kosong | ✅ Perfect |
 | `artikel/refresh-codespaces-browser.html` | Refresh GitHub Codespaces dari Browser: Rebuild, Full Rebuild, Restart - Layar Kosong | Refresh GitHub Codespaces dari Browser: Rebuild, Full Rebuild, Restart | Layar Kosong | ✅ Perfect |
 | `artikel/refresh-desktop.html` | Fungsi Refresh Desktop Windows: Kebiasaan atau Kebutuhan - Layar Kosong | Fungsi Refresh Desktop Windows: Kebiasaan atau Kebutuhan | Layar Kosong | ✅ Perfect |
+| `artikel/registrasi-sim-biometrik-wajah-amankah.html` | Registrasi SIM Biometrik: Wajah Jadi Password, Amankah? - Layar Kosong | Registrasi SIM Biometrik: Wajah Jadi Password, Amankah? | Layar Kosong | ✅ Perfect |
 | `artikel/registrasi-sim-wajah-2026.html` | Komdigi Diminta Hentikan Registrasi Kartu SIM Berbasis Biometrik - Analisis Lengkap - Layar Kosong | Komdigi Diminta Hentikan Registrasi Kartu SIM Berbasis Biometrik - Analisis Lengkap | Layar Kosong | ✅ Perfect |
 | `artikel/regulasi-agen-properti-permendag-33-2025.html` | Regulasi Agen Properti Permendag 33 Tahun 2025: Perlindungan Konsumen atau Penyaringan Pasar? - Layar Kosong | Regulasi Agen Properti Permendag 33 Tahun 2025: Perlindungan Konsumen atau Penyaringan Pasar? | Layar Kosong | ✅ Perfect |
 | `artikel/rekam-desktop-gnome3.html` | Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan - Layar Kosong | Rekam Desktop di Gnome 3: Fitur Bawaan Tanpa Aplikasi Tambahan | Layar Kosong | ✅ Perfect |
@@ -1777,6 +1780,7 @@ Generated on: 7/20/2026, 3:04:30 PM
 | `jejak-sejarah/adab-menasehati-publik.html` | Adab Menasihati di Depan Umum: Kapan Boleh dan Kenapa Sebaiknya Rahasia? - Layar Kosong | Adab Menasihati di Depan Umum: Kapan Boleh dan Kenapa Sebaiknya Rahasia? | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/akidah-lima-alasan.html` | Lima Alasan Kenapa Harus Belajar Akidah - Layar Kosong | Lima Alasan Kenapa Harus Belajar Akidah | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/al-baqarah-11-12-tafsir-kerusakan.html` | Quran Surat Al-Baqarah Ayat 11-12: Hati-Hati dengan Klaim Perbaikan yang Merusak - Layar Kosong | Quran Surat Al-Baqarah Ayat 11-12: Hati-Hati dengan Klaim Perbaikan yang Merusak | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/al-quran-memerintahkan-luzumul-jamaah-keajaiban-persatuan-umat.html` | Al-Qur'an Memerintahkan Luzūmul Jamā'ah? Keajaiban Persatuan Umat - Layar Kosong | Al-Qur'an Memerintahkan Luzūmul Jamā'ah? Keajaiban Persatuan Umat | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/amanah-indra-al-isra-36-kritis-berkemajuan.html` | Al-Isra: 36 - Amanah Indrawi dan Kritis di Era Banjir Informasi 💡 - Layar Kosong | Al-Isra: 36 - Amanah Indrawi dan Kritis di Era Banjir Informasi 💡 | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/amr-bin-al-ash.html` | Amr bin al-‘Āsh - Diplomasi, Ambisi, dan Cahaya Risalah - Layar Kosong | Amr bin al-‘Āsh - Diplomasi, Ambisi, dan Cahaya Risalah | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/analisis-kritis-dukungan-ormas-islam-indonesia-board-of-peace-trump.html` | Dukungan Ormas Islam Indonesia pada Board of Peace Trump dan Dampaknya Bagi Palestina - Layar Kosong | Dukungan Ormas Islam Indonesia pada Board of Peace Trump dan Dampaknya Bagi Palestina | Layar Kosong | ✅ Perfect |
@@ -1794,6 +1798,7 @@ Generated on: 7/20/2026, 3:04:30 PM
 | `jejak-sejarah/barqa-tripoli-baqt-nubia.html` | Barqa & Tripoli serta Baqt Nubia - 22-23 H / 643-644 M - Layar Kosong | Barqa & Tripoli serta Baqt Nubia - 22-23 H / 643-644 M | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/beda-hadis-dengan-sunnah.html` | Beda Hadis dengan Sunnah: Penjelasan Penting yang Wajib Dipahami Umat Islam - Layar Kosong | Beda Hadis dengan Sunnah: Penjelasan Penting yang Wajib Dipahami Umat Islam | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/belanda-sebagai-ulil-amri-kritik-sejarah.html` | Hindia Belanda Sebagai Ulil Amri? Kritik Sejarah & Masa Kini - Layar Kosong | Hindia Belanda Sebagai Ulil Amri? Kritik Sejarah & Masa Kini | Layar Kosong | ✅ Perfect |
+| `jejak-sejarah/benarkah-takdir-bisa-berubah-kisah-kaum-nabi-yunus.html` | Benarkah Takdir Bisa Berubah? Kisah Kaum Nabi Yunus yang Tidak Jadi Kena Azab - Layar Kosong | Benarkah Takdir Bisa Berubah? Kisah Kaum Nabi Yunus yang Tidak Jadi Kena Azab | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/berkunjung-ke-dataran-tinggi-dieng.html` | Berkunjung ke Dataran Tinggi Dieng: Pesona Alam dan Sejarah - Layar Kosong | Berkunjung ke Dataran Tinggi Dieng: Pesona Alam dan Sejarah | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/bilal-bin-rabah-budak-bintang-iman.html` | Bilal bin Rabah: Budak yang Menjadi Bintang Iman - Layar Kosong | Bilal bin Rabah: Budak yang Menjadi Bintang Iman | Layar Kosong | ✅ Perfect |
 | `jejak-sejarah/board-of-peace-trump-vs-perjanjian-hudaibiyyah.html` | Board of Peace vs Perjanjian Hudaibiyyah: Analisis Perbandingan Mendalam - Layar Kosong | Board of Peace vs Perjanjian Hudaibiyyah: Analisis Perbandingan Mendalam | Layar Kosong | ✅ Perfect |
@@ -3167,6 +3172,7 @@ Generated on: 7/20/2026, 3:04:30 PM
 | `warta-tekno/refresh-codespaces-browser-github.html` | Refresh GitHub Codespaces dari browser: Rebuild, Full Rebuild, Restart - Layar Kosong | Refresh GitHub Codespaces dari browser: Rebuild, Full Rebuild, Restart | Layar Kosong | ✅ Perfect |
 | `warta-tekno/refresh-codespaces-browser.html` | Refresh GitHub Codespaces dari Browser: Rebuild, Full Rebuild, Restart - Layar Kosong | Refresh GitHub Codespaces dari Browser: Rebuild, Full Rebuild, Restart | Layar Kosong | ✅ Perfect |
 | `warta-tekno/refresh-desktop.html` | Fungsi Refresh Desktop Windows: Kebiasaan atau Kebutuhan - Layar Kosong | Fungsi Refresh Desktop Windows: Kebiasaan atau Kebutuhan | Layar Kosong | ✅ Perfect |
+| `warta-tekno/registrasi-sim-biometrik-wajah-amankah.html` | Registrasi SIM Biometrik: Wajah Jadi Password, Amankah? - Layar Kosong | Registrasi SIM Biometrik: Wajah Jadi Password, Amankah? | Layar Kosong | ✅ Perfect |
 | `warta-tekno/registrasi-sim-wajah-2026.html` | Komdigi Diminta Hentikan Registrasi Kartu SIM Berbasis Biometrik - Analisis Lengkap - Layar Kosong | Komdigi Diminta Hentikan Registrasi Kartu SIM Berbasis Biometrik - Analisis Lengkap | Layar Kosong | ✅ Perfect |
 | `warta-tekno/rekor-ddos-29tbps-aisuru-botnet.html` | Rekor Serangan DDoS Terbesar di Dunia: 29,7 Tbps dari Botnet AISURU dengan 4 Juta Perangkat Zombie! - Layar Kosong | Rekor Serangan DDoS Terbesar di Dunia: 29,7 Tbps dari Botnet AISURU dengan 4 Juta Perangkat Zombie! | Layar Kosong | ✅ Perfect |
 | `warta-tekno/remove-windows-ai.html` | Remove Windows AI: Hapus Copilot dan Recall - Layar Kosong | Remove Windows AI: Hapus Copilot dan Recall | Layar Kosong | ✅ Perfect |
