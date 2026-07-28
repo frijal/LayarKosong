@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/27/2026, 3:38:30 PM
+Generated on: 7/28/2026, 3:13:54 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -15,7 +15,7 @@ Generated on: 7/27/2026, 3:38:30 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v25.52 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v25.53 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -256,6 +256,7 @@ Generated on: 7/27/2026, 3:38:30 PM
 | `artikel/cara-cek-vram-windows-11.html` | Cara Cek VRAM di Windows 11 - Layar Kosong | Cara Cek VRAM di Windows 11 | Layar Kosong | ✅ Perfect |
 | `artikel/cara-dihormati-tanpa-jabatan.html` | 7 Cara Jitu Dihormati di Kantor Tanpa Nunggu Jabatan - Layar Kosong | 7 Cara Jitu Dihormati di Kantor Tanpa Nunggu Jabatan | Layar Kosong | ✅ Perfect |
 | `artikel/cara-hapus-snap-ubuntu.html` | Cara Menghapus Snap dari Ubuntu: Bersihkan Bloatware dan Ambil Alih Kendali Sistem! 🚀 - Layar Kosong | Cara Menghapus Snap dari Ubuntu: Bersihkan Bloatware dan Ambil Alih Kendali Sistem! 🚀 | Layar Kosong | ✅ Perfect |
+| `artikel/cara-hitung-hour-meter-hm-alat-berat-spreadsheet.html` | Cara Hitung Hour Meter (HM) Alat Berat di Spreadsheet - Layar Kosong | Cara Hitung Hour Meter (HM) Alat Berat di Spreadsheet | Layar Kosong | ✅ Perfect |
 | `artikel/cara-hitung-lembur-hari-raya.html` | Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021 - Layar Kosong | Cara Hitung Lembur Hari Raya: Cek Hak Anda Sesuai PP 35/2021 | Layar Kosong | ✅ Perfect |
 | `artikel/cara-instal-paru-arch.html` | Cara Instal dan Pakai Paru di Arch Linux, Manjaro, dan Distro Arch Lain - Layar Kosong | Cara Instal dan Pakai Paru di Arch Linux, Manjaro, dan Distro Arch Lain | Layar Kosong | ✅ Perfect |
 | `artikel/cara-install-xfce-desktop-linux.html` | Cara Install XFCE Desktop Environment di Berbagai Distro Linux - Layar Kosong | Cara Install XFCE Desktop Environment di Berbagai Distro Linux | Layar Kosong | ✅ Perfect |
@@ -1985,6 +1986,7 @@ Generated on: 7/27/2026, 3:38:30 PM
 | `lainnya/bookmark-link-manager.html` | Layar Kosong Bookmark Link Manager - Layar Kosong | Layar Kosong Bookmark Link Manager | Layar Kosong | ⚠️ Partial |
 | `lainnya/buruk-sangka-menggunjing.html` | Panduan Islam Atasi Buruk Sangka dan Kebiasaan Ghibah - Layar Kosong | Panduan Islam Atasi Buruk Sangka dan Kebiasaan Ghibah | Layar Kosong | ✅ Perfect |
 | `lainnya/cara-ampuh-mengubah-layar-kosong-menjadi-ide-karya.html` | Cara Ampuh Mengubah Layar Kosong Menjadi Ide Karya - Layar Kosong | Cara Ampuh Mengubah Layar Kosong Menjadi Ide Karya | Layar Kosong | ⚠️ Partial |
+| `lainnya/cara-hitung-hour-meter-hm-alat-berat-spreadsheet.html` | Cara Hitung Hour Meter (HM) Alat Berat di Spreadsheet - Layar Kosong | Cara Hitung Hour Meter (HM) Alat Berat di Spreadsheet | Layar Kosong | ✅ Perfect |
 | `lainnya/cara-menghitung-pesangon.html` | Cara Menghitung Pesangon: Panduan Lengkap dengan Contoh & Kalkulator - Layar Kosong | Cara Menghitung Pesangon: Panduan Lengkap dengan Contoh & Kalkulator | Layar Kosong | ✅ Perfect |
 | `lainnya/catatan-pendek-ide-yang-cukup-tiga-paragraf.html` | Catatan Pendek: Ide yang Cukup Tiga Paragraf - Layar Kosong | Catatan Pendek: Ide yang Cukup Tiga Paragraf | Layar Kosong | ✅ Perfect |
 | `lainnya/Cuti-Tahun-2012.html` | Daftar Cuti Bersama dan Hari Libur Nasional Tahun 2012 - Layar Kosong | Daftar Cuti Bersama dan Hari Libur Nasional Tahun 2012 | Layar Kosong | ✅ Perfect |
