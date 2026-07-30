@@ -1,12 +1,61 @@
-<!doctype html>
-<html lang="id">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#0f766e">
-  <title>Dashboard Hour Meter Alat</title>
-  <meta name="description" content="Dashboard pencatatan Hour Meter alat dengan perhitungan durasi dan jam selesai otomatis.">
+<!DOCTYPE html><html lang="id-ID" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dashboard Hour Meter Alat - Layar Kosong</title>
+    <meta name="description" content="Dashboard pencatatan Hour Meter alat dengan perhitungan durasi dan jam selesai otomatis.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/dashboard-hourmeter">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="Dashboard Hour Meter Alat, Layar Kosong">
+    <meta name="promphint" content="Dashboard Hour Meter Alat | Pencatatan HM alat, durasi operasi, dan jam selesai otomatis">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/dashboard-hourmeter">
+    <meta property="og:title" content="Dashboard Hour Meter Alat">
+    <meta property="og:description" content="Dashboard pencatatan Hour Meter alat dengan perhitungan durasi dan jam selesai otomatis.">
+    <meta property="og:updated_time" content="2026-07-30T21:14:44.212Z">
+    <meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/thumbnail.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/thumbnail.webp">
+    <meta property="og:image:alt" content="Dashboard Hour Meter Alat">
+    <meta property="og:image:width" content="1208">
+    <meta property="og:image:height" content="680">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/dashboard-hourmeter">
+    <meta name="twitter:title" content="Dashboard Hour Meter Alat">
+    <meta name="twitter:description" content="Dashboard pencatatan Hour Meter alat dengan perhitungan durasi dan jam selesai otomatis.">
+    <meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
+    <meta name="twitter:image:alt" content="Dashboard Hour Meter Alat">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="twitter:account_id" content="1872520777138122752">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.rss">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.atom">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:published_time" content="2026-07-30T21:06:55.247Z">
+    <meta property="article:modified_time" content="2026-07-30T21:14:44.212Z">
   <style>
     :root {
       --bg: #f3f6f8;
@@ -29,11 +78,8 @@
       --radius-sm: 0.65rem;
       --focus: 0 0 0 0.2rem rgb(15 118 110 / 0.2);
     }
-
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
       min-width: 20rem;
@@ -43,20 +89,16 @@
       font-size: 1rem;
       line-height: 1.5;
     }
-
     button,
     input,
     select,
     textarea { font: inherit; }
-
     button { cursor: pointer; }
-
     .app-shell {
       width: min(100% - 1.5rem, 90rem);
       margin-inline: auto;
       padding-block: 1rem 3rem;
     }
-
     .topbar {
       display: flex;
       align-items: flex-start;
@@ -69,13 +111,11 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
-
     .brand {
       display: flex;
       align-items: center;
       gap: 0.8rem;
     }
-
     .brand-mark {
       display: grid;
       flex: 0 0 auto;
@@ -86,26 +126,21 @@
       background: #fff;
       border-radius: 0.8rem;
     }
-
     .brand-mark svg { width: 1.65rem; height: 1.65rem; }
-
     h1,
     h2,
     h3,
     p { margin-top: 0; }
-
     h1 {
       margin-bottom: 0.15rem;
       font-size: clamp(1.35rem, 4vw, 1.9rem);
       line-height: 1.2;
     }
-
     .subtitle {
       margin-bottom: 0;
       color: rgb(255 255 255 / 0.82);
       font-size: 0.92rem;
     }
-
     .today {
       flex: 0 0 auto;
       padding-top: 0.15rem;
@@ -113,14 +148,12 @@
       font-size: 0.88rem;
       text-align: right;
     }
-
     .summary-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.75rem;
       margin-bottom: 1rem;
     }
-
     .summary-card,
     .panel {
       background: var(--surface);
@@ -128,14 +161,12 @@
       border-radius: var(--radius);
       box-shadow: 0 0.2rem 0.8rem rgb(15 23 42 / 0.04);
     }
-
     .summary-card {
       position: relative;
       min-height: 7.4rem;
       overflow: hidden;
       padding: 1rem;
     }
-
     .summary-card::after {
       position: absolute;
       right: -1.1rem;
@@ -147,7 +178,6 @@
       content: "";
       opacity: 0.75;
     }
-
     .summary-label {
       display: block;
       margin-bottom: 0.35rem;
@@ -157,7 +187,6 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
-
     .summary-value {
       display: block;
       margin-bottom: 0.15rem;
@@ -165,19 +194,15 @@
       font-weight: 800;
       line-height: 1.15;
     }
-
     .summary-meta {
       color: var(--muted);
       font-size: 0.82rem;
     }
-
     .layout {
       display: grid;
       gap: 1rem;
     }
-
     .panel { padding: 1rem; }
-
     .panel-header {
       display: flex;
       align-items: flex-start;
@@ -185,36 +210,28 @@
       gap: 1rem;
       margin-bottom: 1rem;
     }
-
     .panel-title {
       margin-bottom: 0.2rem;
       font-size: 1.12rem;
     }
-
     .panel-description {
       margin-bottom: 0;
       color: var(--muted);
       font-size: 0.88rem;
     }
-
     .form-grid {
       display: grid;
       gap: 0.85rem;
     }
-
     .field { min-width: 0; }
-
     .field-wide { grid-column: 1 / -1; }
-
     label {
       display: block;
       margin-bottom: 0.35rem;
       font-size: 0.86rem;
       font-weight: 700;
     }
-
     .required { color: var(--danger); }
-
     input,
     select,
     textarea {
@@ -227,32 +244,27 @@
       border-radius: var(--radius-sm);
       outline: none;
     }
-
     textarea {
       min-height: 5.6rem;
       resize: vertical;
     }
-
     input:focus,
     select:focus,
     textarea:focus {
       border-color: var(--primary);
       box-shadow: var(--focus);
     }
-
     input[readonly] {
       color: var(--text);
       background: var(--surface-2);
       font-weight: 700;
     }
-
     .hint {
       display: block;
       margin-top: 0.3rem;
       color: var(--muted);
       font-size: 0.78rem;
     }
-
     .calculation-box {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -263,9 +275,7 @@
       border: 0.0625rem dashed rgb(15 118 110 / 0.42);
       border-radius: var(--radius-sm);
     }
-
     .calc-item { min-width: 0; }
-
     .calc-label {
       display: block;
       color: #285e59;
@@ -273,7 +283,6 @@
       font-weight: 700;
       text-transform: uppercase;
     }
-
     .calc-value {
       display: block;
       overflow: hidden;
@@ -282,19 +291,16 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-
     .form-actions,
     .toolbar-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 0.55rem;
     }
-
     .form-actions {
       grid-column: 1 / -1;
       margin-top: 0.2rem;
     }
-
     .button {
       display: inline-flex;
       min-height: 2.55rem;
@@ -309,63 +315,50 @@
       font-weight: 750;
       text-decoration: none;
     }
-
     .button:hover { background: var(--surface-2); }
-
     .button:focus-visible {
       outline: none;
       box-shadow: var(--focus);
     }
-
     .button-primary {
       color: #fff;
       background: var(--primary);
       border-color: var(--primary);
     }
-
     .button-primary:hover { background: var(--primary-hover); }
-
     .button-danger {
       color: var(--danger);
       background: var(--danger-soft);
       border-color: transparent;
     }
-
     .button-small {
       min-height: 2rem;
       padding: 0.35rem 0.55rem;
       font-size: 0.8rem;
     }
-
     .button svg { width: 1rem; height: 1rem; }
-
     .toolbar {
       display: grid;
       gap: 0.75rem;
       margin-bottom: 0.85rem;
     }
-
     .filters {
       display: grid;
       gap: 0.55rem;
     }
-
     .filters input,
     .filters select { min-height: 2.5rem; }
-
     .table-wrap {
       overflow: auto;
       border: 0.0625rem solid var(--line);
       border-radius: var(--radius-sm);
     }
-
     table {
       width: 100%;
       min-width: 72rem;
       border-collapse: collapse;
       background: var(--surface);
     }
-
     th,
     td {
       padding: 0.72rem 0.65rem;
@@ -375,7 +368,6 @@
       vertical-align: top;
       white-space: nowrap;
     }
-
     th {
       position: sticky;
       top: 0;
@@ -386,20 +378,16 @@
       letter-spacing: 0.025em;
       text-transform: uppercase;
     }
-
     tbody tr:hover { background: var(--surface-2); }
     tbody tr:last-child td { border-bottom: 0; }
-
     td.wrap {
       max-width: 15rem;
       white-space: normal;
     }
-
     .number {
       font-variant-numeric: tabular-nums;
       text-align: right;
     }
-
     .badge {
       display: inline-flex;
       align-items: center;
@@ -408,22 +396,18 @@
       font-size: 0.75rem;
       font-weight: 800;
     }
-
     .badge-day {
       color: #854d0e;
       background: #fef3c7;
     }
-
     .badge-night {
       color: #3730a3;
       background: #e0e7ff;
     }
-
     .row-actions {
       display: flex;
       gap: 0.35rem;
     }
-
     .icon-button {
       display: inline-grid;
       width: 2rem;
@@ -434,24 +418,20 @@
       border: 0.0625rem solid var(--line);
       border-radius: 0.5rem;
     }
-
     .icon-button:hover { background: var(--surface-2); }
     .icon-button.danger { color: var(--danger); }
     .icon-button svg { width: 0.95rem; height: 0.95rem; }
-
     .empty-state {
       padding: 2.5rem 1rem;
       color: var(--muted);
       text-align: center;
     }
-
     .empty-state strong {
       display: block;
       margin-bottom: 0.3rem;
       color: var(--text);
       font-size: 1rem;
     }
-
     .table-footer {
       display: flex;
       flex-wrap: wrap;
@@ -462,40 +442,33 @@
       color: var(--muted);
       font-size: 0.83rem;
     }
-
     .unit-list {
       display: grid;
       gap: 0.8rem;
     }
-
     .unit-item {
       display: grid;
       gap: 0.3rem;
     }
-
     .unit-line {
       display: flex;
       justify-content: space-between;
       gap: 1rem;
       font-size: 0.86rem;
     }
-
     .unit-line strong { overflow-wrap: anywhere; }
-
     .progress {
       height: 0.48rem;
       overflow: hidden;
       background: var(--surface-2);
       border-radius: 999rem;
     }
-
     .progress > span {
       display: block;
       height: 100%;
       background: var(--primary);
       border-radius: inherit;
     }
-
     .notice {
       position: fixed;
       right: 1rem;
@@ -512,15 +485,12 @@
       transform: translateY(1rem);
       transition: opacity 160ms ease, transform 160ms ease;
     }
-
     .notice.show {
       opacity: 1;
       transform: translateY(0);
     }
-
     .notice.error { background: var(--danger); }
     .notice.success { background: var(--success); }
-
     .modal {
       width: min(100% - 2rem, 32rem);
       padding: 0;
@@ -530,18 +500,14 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
-
     .modal::backdrop { background: rgb(15 23 42 / 0.55); }
-
     .modal-content { padding: 1.1rem; }
-
     .modal-actions {
       display: flex;
       justify-content: flex-end;
       gap: 0.55rem;
       margin-top: 1rem;
     }
-
     .sr-only {
       position: absolute;
       width: 0.0625rem;
@@ -552,7 +518,6 @@
       white-space: nowrap;
       border: 0;
     }
-
     @media (min-width: 42rem) {
       .app-shell { width: min(100% - 2rem, 90rem); }
       .summary-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -560,7 +525,6 @@
       .filters { grid-template-columns: minmax(12rem, 2fr) repeat(3, minmax(9rem, 1fr)); }
       .toolbar { align-items: end; }
     }
-
     @media (min-width: 70rem) {
       .layout { grid-template-columns: minmax(20rem, 0.8fr) minmax(0, 2.2fr); }
       .form-panel { grid-row: span 2; }
@@ -568,7 +532,6 @@
       .analytics-panel { grid-column: 1; }
       .records-panel { grid-column: 2; grid-row: 1 / span 2; }
     }
-
     @media (max-width: 34rem) {
       .today { display: none; }
       .calculation-box { grid-template-columns: 1fr; }
@@ -576,7 +539,6 @@
       .toolbar-actions .button { flex: 1 1 auto; }
       .summary-card { min-height: 6.8rem; }
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #0b1117;
@@ -597,7 +559,6 @@
         --shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.3);
         --focus: 0 0 0 0.2rem rgb(45 212 191 / 0.2);
       }
-
       .topbar { background: linear-gradient(135deg, #115e59, #164e63); }
       .brand-mark { color: #0f766e; }
       .summary-card::after { opacity: 0.4; }
@@ -605,7 +566,6 @@
       .badge-day { color: #fde68a; background: #4c3d13; }
       .badge-night { color: #c7d2fe; background: #252a61; }
     }
-
     @media print {
       :root {
         --bg: #fff;
@@ -615,7 +575,6 @@
         --muted: #444;
         --line: #ccc;
       }
-
       body { background: #fff; }
       .app-shell { width: 100%; padding: 0; }
       .topbar { color: #111; background: #fff; border: 0; box-shadow: none; }
@@ -630,7 +589,7 @@
       th, td { padding: 0.35rem; font-size: 0.65rem; }
     }
   </style>
-</head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
   <main class="app-shell">
     <header class="topbar">
@@ -649,7 +608,6 @@
       </div>
       <div class="today" id="todayLabel"></div>
     </header>
-
     <section class="summary-grid">
       <article class="summary-card">
         <span class="summary-label">Total Catatan</span>
@@ -672,7 +630,6 @@
         <span class="summary-meta" id="summaryUnitsMeta">Belum ada unit</span>
       </article>
     </section>
-
     <div class="layout">
       <section class="panel form-panel" id="formPanel">
         <div class="panel-header">
@@ -681,58 +638,48 @@
             <p class="panel-description">Isi HM awal dan akhir. Durasi serta jam selesai dihitung otomatis.</p>
           </div>
         </div>
-
         <form id="hmForm" autocomplete="off">
           <input type="hidden" id="recordId">
           <div class="form-grid">
             <div class="field">
               <label for="workDate">Tanggal <span class="required">*</span></label>
-              <input id="workDate" name="workDate" type="date" required>
+              <input id="workDate" name="workDate" type="date" required="">
             </div>
-
             <div class="field">
               <label for="shift">Shift <span class="required">*</span></label>
-              <select id="shift" name="shift" required>
+              <select id="shift" name="shift" required="">
                 <option value="Day">Day Shift</option>
                 <option value="Night">Night Shift</option>
               </select>
             </div>
-
             <div class="field">
               <label for="unit">Unit / Equipment <span class="required">*</span></label>
-              <input id="unit" name="unit" type="text" placeholder="Contoh: HD-785-01" maxlength="50" required>
+              <input id="unit" name="unit" type="text" placeholder="Contoh: HD-785-01" maxlength="50" required="">
             </div>
-
             <div class="field">
               <label for="operator">Operator</label>
               <input id="operator" name="operator" type="text" placeholder="Nama operator" maxlength="80">
             </div>
-
             <div class="field field-wide">
               <label for="activity">Aktivitas / Lokasi</label>
               <input id="activity" name="activity" type="text" placeholder="Contoh: Hauling OB — Pit Timur" maxlength="120">
             </div>
-
             <div class="field">
               <label for="startTime">Jam Mulai <span class="required">*</span></label>
-              <input id="startTime" name="startTime" type="time" step="60" required>
+              <input id="startTime" name="startTime" type="time" step="60" required="">
             </div>
-
             <div class="field">
               <label for="endTime">Jam Selesai</label>
-              <input id="endTime" name="endTime" type="text" placeholder="Otomatis" readonly>
+              <input id="endTime" name="endTime" type="text" placeholder="Otomatis" readonly="">
             </div>
-
             <div class="field">
               <label for="hmStart">HM Awal <span class="required">*</span></label>
-              <input id="hmStart" name="hmStart" type="text" inputmode="decimal" placeholder="Contoh: 16713,1" required>
+              <input id="hmStart" name="hmStart" type="text" inputmode="decimal" placeholder="Contoh: 16713,1" required="">
             </div>
-
             <div class="field">
               <label for="hmEnd">HM Akhir <span class="required">*</span></label>
-              <input id="hmEnd" name="hmEnd" type="text" inputmode="decimal" placeholder="Contoh: 16718,3" required>
+              <input id="hmEnd" name="hmEnd" type="text" inputmode="decimal" placeholder="Contoh: 16718,3" required="">
             </div>
-
             <div class="calculation-box">
               <div class="calc-item">
                 <span class="calc-label">Total HM</span>
@@ -747,12 +694,10 @@
                 <strong class="calc-value" id="calcEndTime">--:--</strong>
               </div>
             </div>
-
             <div class="field field-wide">
               <label for="notes">Catatan</label>
               <textarea id="notes" name="notes" placeholder="Kendala, standby, breakdown, atau keterangan lain" maxlength="500"></textarea>
             </div>
-
             <div class="form-actions">
               <button class="button button-primary" type="submit" id="saveButton">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -761,13 +706,12 @@
                 </svg>
                 Simpan Catatan
               </button>
-              <button class="button" type="button" id="cancelEdit" hidden>Batal Edit</button>
+              <button class="button" type="button" id="cancelEdit" hidden="">Batal Edit</button>
               <button class="button" type="reset">Kosongkan</button>
             </div>
           </div>
         </form>
       </section>
-
       <section class="panel records-panel">
         <div class="panel-header">
           <div>
@@ -775,7 +719,6 @@
             <p class="panel-description">Data tersimpan di browser perangkat ini.</p>
           </div>
         </div>
-
         <div class="toolbar">
           <div class="filters">
             <div class="field">
@@ -803,7 +746,6 @@
               </select>
             </div>
           </div>
-
           <div class="toolbar-actions">
             <button class="button button-small" type="button" id="exportCsv">Ekspor CSV</button>
             <button class="button button-small" type="button" id="backupJson">Backup JSON</button>
@@ -813,7 +755,6 @@
             <button class="button button-small button-danger" type="button" id="clearData">Hapus Semua</button>
           </div>
         </div>
-
         <div class="table-wrap">
           <table>
             <thead>
@@ -840,13 +781,11 @@
             Data yang disimpan melalui formulir akan muncul di sini.
           </div>
         </div>
-
         <div class="table-footer">
           <span id="resultInfo">Menampilkan 0 catatan</span>
           <strong id="filteredTotal">Total: 0,0 HM · 00:00</strong>
         </div>
       </section>
-
       <section class="panel analytics-panel">
         <div class="panel-header">
           <div>
@@ -863,9 +802,7 @@
       </section>
     </div>
   </main>
-
   <div class="notice" id="notice"></div>
-
   <dialog class="modal" id="confirmDialog">
     <div class="modal-content">
       <h2 class="panel-title" id="confirmTitle">Konfirmasi</h2>
@@ -876,11 +813,9 @@
       </div>
     </div>
   </dialog>
-
   <script>
     (() => {
       "use strict";
-
       const STORAGE_KEY = "hour-meter-dashboard-v1";
       const collator = new Intl.Collator("id-ID", { numeric: true, sensitivity: "base" });
       const numberFormat = new Intl.NumberFormat("id-ID", {
@@ -898,7 +833,6 @@
         month: "short",
         year: "numeric"
       });
-
       const elements = {
         form: document.querySelector("#hmForm"),
         formPanel: document.querySelector("#formPanel"),
@@ -948,24 +882,19 @@
         confirmCancel: document.querySelector("#confirmCancel"),
         confirmAccept: document.querySelector("#confirmAccept")
       };
-
       let records = loadRecords();
       let pendingConfirm = null;
       let noticeTimer = null;
-
       function localISODate(date = new Date()) {
         const offset = date.getTimezoneOffset();
         return new Date(date.getTime() - offset * 60000).toISOString().slice(0, 10);
       }
-
       function parseDecimal(value) {
         const text = String(value ?? "").trim().replace(/\s/g, "");
         if (!text) return NaN;
-
         let normalized = text;
         const hasComma = normalized.includes(",");
         const hasDot = normalized.includes(".");
-
         if (hasComma && hasDot) {
           if (normalized.lastIndexOf(",") > normalized.lastIndexOf(".")) {
             normalized = normalized.replace(/\./g, "").replace(",", ".");
@@ -975,57 +904,46 @@
         } else if (hasComma) {
           normalized = normalized.replace(",", ".");
         }
-
         const number = Number(normalized);
         return Number.isFinite(number) ? number : NaN;
       }
-
       function roundHM(value) {
         return Math.round((value + Number.EPSILON) * 100) / 100;
       }
-
       function hmToMinutes(hours) {
         return Math.round(hours * 60);
       }
-
       function formatDuration(minutes) {
         const safeMinutes = Math.max(0, Math.round(Number(minutes) || 0));
         const hours = Math.floor(safeMinutes / 60);
         const mins = safeMinutes % 60;
         return `${String(hours).padStart(2, "0")}:${String(mins).padStart(2, "0")}`;
       }
-
       function calculateEndTime(startTime, durationMinutes) {
         if (!/^\d{2}:\d{2}$/.test(startTime)) return { text: "--:--", time: "", dayOffset: 0 };
-
         const [hours, minutes] = startTime.split(":").map(Number);
         if (hours > 23 || minutes > 59) return { text: "--:--", time: "", dayOffset: 0 };
-
         const total = hours * 60 + minutes + Math.max(0, Math.round(durationMinutes));
         const dayOffset = Math.floor(total / 1440);
         const minuteOfDay = total % 1440;
         const endHours = Math.floor(minuteOfDay / 60);
         const endMinutes = minuteOfDay % 60;
         const time = `${String(endHours).padStart(2, "0")}:${String(endMinutes).padStart(2, "0")}`;
-
         return {
           time,
           dayOffset,
           text: dayOffset > 0 ? `${time} (+${dayOffset})` : time
         };
       }
-
       function parseDateOnly(value) {
         if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
         const [year, month, day] = value.split("-").map(Number);
         return new Date(year, month - 1, day);
       }
-
       function formatDate(value) {
         const date = parseDateOnly(value);
         return date ? shortDateFormat.format(date) : value;
       }
-
       function escapeHTML(value) {
         return String(value ?? "")
           .replace(/&/g, "&amp;")
@@ -1034,12 +952,10 @@
           .replace(/"/g, "&quot;")
           .replace(/'/g, "&#039;");
       }
-
       function uid() {
         if (globalThis.crypto?.randomUUID) return crypto.randomUUID();
         return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
       }
-
       function loadRecords() {
         try {
           const raw = localStorage.getItem(STORAGE_KEY);
@@ -1050,11 +966,9 @@
           return [];
         }
       }
-
       function isValidRecord(record) {
         return record && typeof record === "object" && record.id && record.workDate && record.unit;
       }
-
       function normalizeRecord(record) {
         const hmStart = Number(record.hmStart) || 0;
         const hmEnd = Number(record.hmEnd) || 0;
@@ -1065,7 +979,6 @@
           ? Math.round(Number(record.durationMinutes))
           : hmToMinutes(totalHM);
         const end = calculateEndTime(record.startTime || "", durationMinutes);
-
         return {
           id: String(record.id),
           workDate: String(record.workDate || ""),
@@ -1085,7 +998,6 @@
           updatedAt: record.updatedAt || record.createdAt || new Date().toISOString()
         };
       }
-
       function saveRecords() {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
@@ -1096,12 +1008,10 @@
           return false;
         }
       }
-
       function getCalculation() {
         const hmStart = parseDecimal(elements.hmStart.value);
         const hmEnd = parseDecimal(elements.hmEnd.value);
         const startTime = elements.startTime.value;
-
         if (!Number.isFinite(hmStart) || !Number.isFinite(hmEnd) || hmEnd < hmStart) {
           return {
             valid: false,
@@ -1112,14 +1022,11 @@
             end: calculateEndTime(startTime, 0)
           };
         }
-
         const totalHM = roundHM(hmEnd - hmStart);
         const durationMinutes = hmToMinutes(totalHM);
         const end = calculateEndTime(startTime, durationMinutes);
-
         return { valid: true, hmStart, hmEnd, totalHM, durationMinutes, end };
       }
-
       function updateCalculation() {
         const calculation = getCalculation();
         elements.calcTotalHM.textContent = calculation.valid ? numberFormat.format(calculation.totalHM) : "0,0";
@@ -1127,7 +1034,6 @@
         elements.calcEndTime.textContent = calculation.valid && elements.startTime.value ? calculation.end.text : "--:--";
         elements.endTime.value = calculation.valid && elements.startTime.value ? calculation.end.text : "";
       }
-
       function resetFormState() {
         elements.recordId.value = "";
         elements.formTitle.textContent = "Tambah Catatan HM";
@@ -1138,42 +1044,34 @@
         elements.startTime.value = "07:00";
         updateCalculation();
       }
-
       function handleSubmit(event) {
         event.preventDefault();
-
         const calculation = getCalculation();
         const workDate = elements.workDate.value;
         const unit = elements.unit.value.trim();
         const startTime = elements.startTime.value;
-
         if (!workDate || !unit || !startTime) {
           showNotice("Tanggal, unit, dan jam mulai wajib diisi.", "error");
           return;
         }
-
         if (!Number.isFinite(calculation.hmStart) || !Number.isFinite(calculation.hmEnd)) {
           showNotice("HM awal dan HM akhir harus berupa angka.", "error");
           elements.hmStart.focus();
           return;
         }
-
         if (calculation.hmEnd < calculation.hmStart) {
           showNotice("HM akhir tidak boleh lebih kecil dari HM awal.", "error");
           elements.hmEnd.focus();
           return;
         }
-
         if (calculation.totalHM > 24) {
           showNotice("Total HM lebih dari 24 jam. Periksa kembali angkanya.", "error");
           elements.hmEnd.focus();
           return;
         }
-
         const now = new Date().toISOString();
         const existingIndex = records.findIndex(record => record.id === elements.recordId.value);
         const existing = existingIndex >= 0 ? records[existingIndex] : null;
-
         const record = {
           id: existing?.id || uid(),
           workDate,
@@ -1192,25 +1090,20 @@
           createdAt: existing?.createdAt || now,
           updatedAt: now
         };
-
         if (existingIndex >= 0) {
           records[existingIndex] = record;
         } else {
           records.push(record);
         }
-
         if (!saveRecords()) return;
-
         elements.form.reset();
         resetFormState();
         renderAll();
         showNotice(existingIndex >= 0 ? "Catatan berhasil diperbarui." : "Catatan HM berhasil disimpan.", "success");
       }
-
       function editRecord(id) {
         const record = records.find(item => item.id === id);
         if (!record) return;
-
         elements.recordId.value = record.id;
         elements.workDate.value = record.workDate;
         elements.shift.value = record.shift;
@@ -1228,18 +1121,15 @@
         elements.formPanel.scrollIntoView({ behavior: "smooth", block: "start" });
         elements.unit.focus({ preventScroll: true });
       }
-
       function cancelEdit() {
         elements.form.reset();
         resetFormState();
       }
-
       function requestConfirmation({ title, message, acceptLabel = "Hapus", action }) {
         pendingConfirm = action;
         elements.confirmTitle.textContent = title;
         elements.confirmMessage.textContent = message;
         elements.confirmAccept.textContent = acceptLabel;
-
         if (typeof elements.confirmDialog.showModal === "function") {
           elements.confirmDialog.showModal();
         } else if (globalThis.confirm(message)) {
@@ -1247,11 +1137,9 @@
           pendingConfirm = null;
         }
       }
-
       function deleteRecord(id) {
         const record = records.find(item => item.id === id);
         if (!record) return;
-
         requestConfirmation({
           title: "Hapus catatan?",
           message: `Catatan ${record.unit} tanggal ${formatDate(record.workDate)} akan dihapus permanen dari browser ini.`,
@@ -1264,12 +1152,10 @@
           }
         });
       }
-
       function getFilteredRecords() {
         const search = elements.searchInput.value.trim().toLocaleLowerCase("id-ID");
         const selectedUnit = elements.unitFilter.value;
         const selectedDate = elements.dateFilter.value;
-
         const filtered = records.filter(record => {
           const haystack = [record.unit, record.operator, record.activity, record.notes, record.shift]
             .join(" ")
@@ -1279,7 +1165,6 @@
           const matchesDate = !selectedDate || record.workDate === selectedDate;
           return matchesSearch && matchesUnit && matchesDate;
         });
-
         const sort = elements.sortBy.value;
         filtered.sort((a, b) => {
           if (sort === "date-asc") return `${a.workDate}T${a.startTime}`.localeCompare(`${b.workDate}T${b.startTime}`);
@@ -1288,24 +1173,19 @@
           if (sort === "unit-asc") return collator.compare(a.unit, b.unit) || b.workDate.localeCompare(a.workDate);
           return `${b.workDate}T${b.startTime}`.localeCompare(`${a.workDate}T${a.startTime}`);
         });
-
         return filtered;
       }
-
       function renderTable() {
         const filtered = getFilteredRecords();
         elements.recordRows.textContent = "";
         elements.emptyState.hidden = filtered.length > 0;
-
         if (filtered.length > 0) {
           const fragment = document.createDocumentFragment();
-
           filtered.forEach(record => {
             const row = document.createElement("tr");
             const endTimeText = record.endDayOffset > 0
               ? `${record.endTime} (+${record.endDayOffset})`
               : record.endTime;
-
             row.innerHTML = `
               <td>${escapeHTML(formatDate(record.workDate))}</td>
               <td><span class="badge ${record.shift === "Night" ? "badge-night" : "badge-day"}">${escapeHTML(record.shift)}</span></td>
@@ -1336,16 +1216,13 @@
             `;
             fragment.appendChild(row);
           });
-
           elements.recordRows.appendChild(fragment);
         }
-
         const totalHM = filtered.reduce((sum, record) => sum + record.totalHM, 0);
         const totalMinutes = filtered.reduce((sum, record) => sum + record.durationMinutes, 0);
         elements.resultInfo.textContent = `Menampilkan ${filtered.length} dari ${records.length} catatan`;
         elements.filteredTotal.textContent = `Total: ${numberFormat.format(totalHM)} HM · ${formatDuration(totalMinutes)}`;
       }
-
       function renderSummary() {
         const totalRecords = records.length;
         const totalHM = records.reduce((sum, record) => sum + record.totalHM, 0);
@@ -1355,7 +1232,6 @@
         const today = localISODate();
         const todayRecords = records.filter(record => record.workDate === today);
         const latestRecord = [...records].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
-
         elements.summaryRecords.textContent = String(totalRecords);
         elements.summaryRecordsMeta.textContent = todayRecords.length
           ? `${todayRecords.length} catatan hari ini`
@@ -1366,22 +1242,18 @@
         elements.summaryUnits.textContent = String(units.length);
         elements.summaryUnitsMeta.textContent = latestRecord ? `Terakhir: ${latestRecord.unit}` : "Belum ada unit";
       }
-
       function renderUnitFilter() {
         const selected = elements.unitFilter.value;
         const units = [...new Set(records.map(record => record.unit))].sort(collator.compare);
         elements.unitFilter.innerHTML = '<option value="">Semua unit</option>';
-
         units.forEach(unit => {
           const option = document.createElement("option");
           option.value = unit;
           option.textContent = unit;
           elements.unitFilter.appendChild(option);
         });
-
         elements.unitFilter.value = units.includes(selected) ? selected : "";
       }
-
       function renderUnitBreakdown() {
         const totals = new Map();
         records.forEach(record => {
@@ -1391,10 +1263,8 @@
           current.count += 1;
           totals.set(record.unit, current);
         });
-
         const entries = [...totals.entries()].sort((a, b) => b[1].totalHM - a[1].totalHM);
         elements.unitBreakdown.textContent = "";
-
         if (!entries.length) {
           elements.unitBreakdown.innerHTML = `
             <div class="empty-state">
@@ -1404,10 +1274,8 @@
           `;
           return;
         }
-
         const maxHM = Math.max(...entries.map(([, stats]) => stats.totalHM), 1);
         const fragment = document.createDocumentFragment();
-
         entries.forEach(([unit, stats]) => {
           const item = document.createElement("div");
           item.className = "unit-item";
@@ -1422,17 +1290,14 @@
           `;
           fragment.appendChild(item);
         });
-
         elements.unitBreakdown.appendChild(fragment);
       }
-
       function renderAll() {
         renderUnitFilter();
         renderSummary();
         renderTable();
         renderUnitBreakdown();
       }
-
       function showNotice(message, type = "") {
         clearTimeout(noticeTimer);
         elements.notice.textContent = message;
@@ -1440,7 +1305,6 @@
         requestAnimationFrame(() => elements.notice.classList.add("show"));
         noticeTimer = setTimeout(() => elements.notice.classList.remove("show"), 2800);
       }
-
       function downloadFile(filename, content, mimeType) {
         const blob = new Blob([content], { type: mimeType });
         const url = URL.createObjectURL(blob);
@@ -1452,18 +1316,15 @@
         link.remove();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
       }
-
       function csvCell(value) {
         const text = String(value ?? "");
         return `"${text.replace(/"/g, '""')}"`;
       }
-
       function exportCSV() {
         if (!records.length) {
           showNotice("Belum ada data untuk diekspor.", "error");
           return;
         }
-
         const headers = [
           "Tanggal", "Shift", "Unit", "Operator", "Aktivitas/Lokasi", "Jam Mulai", "Jam Selesai",
           "HM Awal", "HM Akhir", "Total HM", "Durasi", "Catatan"
@@ -1488,13 +1349,11 @@
         downloadFile(`hour-meter-${localISODate()}.csv`, csv, "text/csv;charset=utf-8");
         showNotice("CSV berhasil dibuat.", "success");
       }
-
       function backupJSON() {
         if (!records.length) {
           showNotice("Belum ada data untuk dicadangkan.", "error");
           return;
         }
-
         const payload = {
           app: "Dashboard Hour Meter",
           version: 1,
@@ -1508,19 +1367,15 @@
         );
         showNotice("Backup JSON berhasil dibuat.", "success");
       }
-
       async function restoreJSON(file) {
         if (!file) return;
-
         try {
           const text = await file.text();
           const parsed = JSON.parse(text);
           const imported = Array.isArray(parsed) ? parsed : parsed.records;
           if (!Array.isArray(imported)) throw new Error("Format tidak cocok");
-
           const cleanRecords = imported.filter(isValidRecord).map(normalizeRecord);
           if (!cleanRecords.length) throw new Error("Tidak ada catatan valid");
-
           requestConfirmation({
             title: "Pulihkan backup?",
             message: `${cleanRecords.length} catatan dari file akan menggantikan seluruh data saat ini.`,
@@ -1540,13 +1395,11 @@
           elements.restoreJson.value = "";
         }
       }
-
       function clearAllData() {
         if (!records.length) {
           showNotice("Data sudah kosong.");
           return;
         }
-
         requestConfirmation({
           title: "Hapus seluruh data?",
           message: `${records.length} catatan akan dihapus permanen dari browser ini. Buat backup terlebih dahulu bila diperlukan.`,
@@ -1560,7 +1413,6 @@
           }
         });
       }
-
       function handleTableClick(event) {
         const button = event.target.closest("button[data-action]");
         if (!button) return;
@@ -1568,7 +1420,6 @@
         if (action === "edit") editRecord(id);
         if (action === "delete") deleteRecord(id);
       }
-
       elements.form.addEventListener("submit", handleSubmit);
       elements.form.addEventListener("reset", () => setTimeout(resetFormState));
       elements.cancelEdit.addEventListener("click", cancelEdit);
@@ -1596,11 +1447,9 @@
         if (typeof action === "function") action();
       });
       elements.confirmDialog.addEventListener("cancel", () => { pendingConfirm = null; });
-
       elements.todayLabel.textContent = dateFormat.format(new Date());
       resetFormState();
       renderAll();
     })();
   </script>
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
