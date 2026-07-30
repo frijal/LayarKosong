@@ -1,0 +1,637 @@
+<!doctype html><html prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#" lang="id-ID"><head><meta charset="UTF-8"><meta content="width=device-width,initial-scale=1" name="viewport"><title>Dashboard Hour Meter Alat - Layar Kosong</title><meta content="Dashboard pencatatan Hour Meter alat dengan perhitungan durasi dan jam selesai otomatis." name="description"><link href="https://dalam.web.id/lainnya/dashboard-hourmeter" rel="canonical"><link title="Cara Hitung Hour Meter (HM) Alat Berat di Spreadsheet" href="https://dalam.web.id/lainnya/cara-hitung-hour-meter-hm-alat-berat-spreadsheet" rel="prev"><meta content="https://dalam.web.id/lainnya/dashboard-hourmeter" property="og:url"><meta content="https://dalam.web.id/lainnya/dashboard-hourmeter" name="twitter:url"><meta content="Lainnya" property="article:section"><meta content="Lainnya" property="article:tag"><link title="Feed RSS Lainnya - Layar Kosong" href="https://dalam.web.id/lainnya.rss" rel="alternate" type="application/rss+xml"><link title="Feed Atom Lainnya - Layar Kosong" href="https://dalam.web.id/lainnya.atom" rel="alternate" type="application/atom+xml"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="robots"><meta content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large" name="googlebot"><meta content="Fakhrul Rijal" name="author"><meta content="#00b0ed" name="theme-color"><meta content="light dark" name="color-scheme"><meta content="strict-origin-when-cross-origin" name="referrer"><meta content="Layar Kosong" name="application-name"><meta content="Layar Kosong" name="apple-mobile-web-app-title"><meta content="Dashboard Hour Meter Alat, Layar Kosong" name="news_keywords"><meta content="Dashboard Hour Meter Alat | Pencatatan HM alat, durasi operasi, dan jam selesai otomatis" name="promphint"><meta content="Layar Kosong" property="og:site_name"><meta content="id_ID" property="og:locale"><meta content="article" property="og:type"><meta content="Dashboard Hour Meter Alat" property="og:title"><meta content="Dashboard pencatatan Hour Meter alat dengan perhitungan durasi dan jam selesai otomatis." property="og:description"><meta content="2026-07-30T21:14:44.212Z" property="og:updated_time"><meta content="https://dalam.web.id/thumbnail.webp" property="og:image"><meta content="https://dalam.web.id/thumbnail.webp" property="og:image:url"><meta content="https://dalam.web.id/thumbnail.webp" property="og:image:secure_url"><meta content="Dashboard Hour Meter Alat" property="og:image:alt"><meta content="1208" property="og:image:width"><meta content="680" property="og:image:height"><meta content="image/webp" property="og:image:type"><meta content="summary_large_image" name="twitter:card"><meta content="dalam.web.id" name="twitter:domain"><meta content="Dashboard Hour Meter Alat" name="twitter:title"><meta content="Dashboard pencatatan Hour Meter alat dengan perhitungan durasi dan jam selesai otomatis." name="twitter:description"><meta content="https://dalam.web.id/thumbnail.webp" name="twitter:image"><meta content="Dashboard Hour Meter Alat" name="twitter:image:alt"><meta content="on" name="twitter:widgets:new-embed-design"><meta content="@responaja" name="twitter:site"><meta content="@responaja" name="twitter:creator"><meta content="1872520777138122752" name="twitter:account_id"><meta content="@frijal@mastodon.social" name="fediverse:creator"><meta content="https://facebook.com/frijal" property="article:author"><meta content="https://facebook.com/frijalpage" property="article:publisher"><meta content="175216696195384" property="fb:app_id"><meta content="917962134736490" property="fb:pages"><link href="/favicon.svg" rel="icon" sizes="any" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico" type="image/x-icon"><link href="/site.webmanifest" rel="manifest"><link title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.rss" rel="alternate" type="application/rss+xml"><link title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.atom" rel="alternate" type="application/atom+xml"><link title="Layar Kosong" href="/opensearch.xml" rel="search" type="application/opensearchdescription+xml"><link href="https://creativecommons.org/licenses/by/4.0/" rel="license"><link href="https://mastodon.social/@frijal" rel="me"><link href="https://github.com/frijal" rel="me"><script defer="" src="/ext/data-provider.js"></script><meta content="2026-07-30T21:06:55.247Z" property="article:published_time"><meta content="2026-07-30T21:07:53.949Z" property="article:modified_time"><style>:root{--bg:#f3f6f8;--surface:#fff;--surface-2:#f8fafc;--text:#17212b;--muted:#64748b;--line:#d9e1e8;--primary:#0f766e;--primary-hover:#0b5f59;--primary-soft:#dff6f2;--danger:#b42318;--danger-soft:#fee4e2;--warning:#a15c00;--warning-soft:#fff1d6;--success:#067647;--success-soft:#dcfae6;--shadow:0 .5rem 1.5rem #0f172a14;--radius:.9rem;--radius-sm:.65rem;--focus:0 0 0 .2rem #0f766e33}*{box-sizing:border-box}html{scroll-behavior:smooth}body{min-width:20rem;color:var(--text);background:var(--bg);margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;font-size:1rem;line-height:1.5}button,input,select,textarea{font:inherit}button{cursor:pointer}.app-shell{width:min(100% - 1.5rem,90rem);margin-inline:auto;padding-block:1rem 3rem}.topbar{color:#fff;border-radius:var(--radius);box-shadow:var(--shadow);background:linear-gradient(135deg,#0f766e,#155e75);justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem;padding:1rem 1.1rem;display:flex}.brand{align-items:center;gap:.8rem;display:flex}.brand-mark{color:#0f766e;background:#fff;border-radius:.8rem;flex:none;place-items:center;width:2.8rem;height:2.8rem;display:grid}.brand-mark svg{width:1.65rem;height:1.65rem}h1,h2,h3,p{margin-top:0}h1{margin-bottom:.15rem;font-size:clamp(1.35rem,4vw,1.9rem);line-height:1.2}.subtitle{color:#ffffffd1;margin-bottom:0;font-size:.92rem}.today{color:#ffffffe0;text-align:right;flex:none;padding-top:.15rem;font-size:.88rem}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin-bottom:1rem;display:grid}.summary-card,.panel{background:var(--surface);border:.0625rem solid var(--line);border-radius:var(--radius);box-shadow:0 .2rem .8rem #0f172a0a}.summary-card{min-height:7.4rem;padding:1rem;position:relative;overflow:hidden}.summary-card:after{background:var(--primary-soft);content:"";opacity:.75;border-radius:50%;width:5rem;height:5rem;position:absolute;bottom:-1.7rem;right:-1.1rem}.summary-label{color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.35rem;font-size:.82rem;font-weight:700;display:block}.summary-value{margin-bottom:.15rem;font-size:clamp(1.45rem,4vw,2rem);font-weight:800;line-height:1.15;display:block}.summary-meta{color:var(--muted);font-size:.82rem}.layout{gap:1rem;display:grid}.panel{padding:1rem}.panel-header{justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem;display:flex}.panel-title{margin-bottom:.2rem;font-size:1.12rem}.panel-description{color:var(--muted);margin-bottom:0;font-size:.88rem}.form-grid{gap:.85rem;display:grid}.field{min-width:0}.field-wide{grid-column:1/-1}label{margin-bottom:.35rem;font-size:.86rem;font-weight:700;display:block}.required{color:var(--danger)}input,select,textarea{width:100%;min-height:2.75rem;color:var(--text);background:var(--surface);border:.0625rem solid var(--line);border-radius:var(--radius-sm);outline:none;padding:.62rem .72rem}textarea{resize:vertical;min-height:5.6rem}input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:var(--focus)}input[readonly]{color:var(--text);background:var(--surface-2);font-weight:700}.hint{color:var(--muted);margin-top:.3rem;font-size:.78rem;display:block}.calculation-box{background:var(--primary-soft);border-radius:var(--radius-sm);border:.0625rem dashed #0f766e6b;grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;padding:.75rem;display:grid}.calc-item{min-width:0}.calc-label{color:#285e59;text-transform:uppercase;font-size:.74rem;font-weight:700;display:block}.calc-value{text-overflow:ellipsis;white-space:nowrap;font-size:1.05rem;font-weight:800;display:block;overflow:hidden}.form-actions,.toolbar-actions{flex-wrap:wrap;gap:.55rem;display:flex}.form-actions{grid-column:1/-1;margin-top:.2rem}.button{min-height:2.55rem;color:var(--text);background:var(--surface);border:.0625rem solid var(--line);border-radius:var(--radius-sm);justify-content:center;align-items:center;gap:.45rem;padding:.55rem .85rem;font-weight:750;text-decoration:none;display:inline-flex}.button:hover{background:var(--surface-2)}.button:focus-visible{box-shadow:var(--focus);outline:none}.button-primary{color:#fff;background:var(--primary);border-color:var(--primary)}.button-primary:hover{background:var(--primary-hover)}.button-danger{color:var(--danger);background:var(--danger-soft);border-color:#0000}.button-small{min-height:2rem;padding:.35rem .55rem;font-size:.8rem}.button svg{width:1rem;height:1rem}.toolbar{gap:.75rem;margin-bottom:.85rem;display:grid}.filters{gap:.55rem;display:grid}.filters input,.filters select{min-height:2.5rem}.table-wrap{border:.0625rem solid var(--line);border-radius:var(--radius-sm);overflow:auto}table{border-collapse:collapse;background:var(--surface);width:100%;min-width:72rem}th,td{border-bottom:.0625rem solid var(--line);text-align:left;vertical-align:top;white-space:nowrap;padding:.72rem .65rem;font-size:.84rem}th{z-index:1;color:var(--muted);background:var(--surface-2);letter-spacing:.025em;text-transform:uppercase;font-size:.75rem;position:sticky;top:0}tbody tr:hover{background:var(--surface-2)}tbody tr:last-child td{border-bottom:0}td.wrap{white-space:normal;max-width:15rem}.number{font-variant-numeric:tabular-nums;text-align:right}.badge{border-radius:999rem;align-items:center;padding:.2rem .5rem;font-size:.75rem;font-weight:800;display:inline-flex}.badge-day{color:#854d0e;background:#fef3c7}.badge-night{color:#3730a3;background:#e0e7ff}.row-actions{gap:.35rem;display:flex}.icon-button{width:2rem;height:2rem;color:var(--text);background:var(--surface);border:.0625rem solid var(--line);border-radius:.5rem;place-items:center;display:inline-grid}.icon-button:hover{background:var(--surface-2)}.icon-button.danger{color:var(--danger)}.icon-button svg{width:.95rem;height:.95rem}.empty-state{color:var(--muted);text-align:center;padding:2.5rem 1rem}.empty-state strong{color:var(--text);margin-bottom:.3rem;font-size:1rem;display:block}.table-footer{color:var(--muted);flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem;margin-top:.75rem;font-size:.83rem;display:flex}.unit-list{gap:.8rem;display:grid}.unit-item{gap:.3rem;display:grid}.unit-line{justify-content:space-between;gap:1rem;font-size:.86rem;display:flex}.unit-line strong{overflow-wrap:anywhere}.progress{background:var(--surface-2);border-radius:999rem;height:.48rem;overflow:hidden}.progress>span{background:var(--primary);border-radius:inherit;height:100%;display:block}.notice{z-index:10;color:#fff;border-radius:var(--radius-sm);max-width:min(24rem,100% - 2rem);box-shadow:var(--shadow);opacity:0;pointer-events:none;background:#1f2937;padding:.8rem 1rem;transition:opacity .16s,transform .16s;position:fixed;bottom:1rem;right:1rem;transform:translateY(1rem)}.notice.show{opacity:1;transform:translateY(0)}.notice.error{background:var(--danger)}.notice.success{background:var(--success)}.modal{width:min(100% - 2rem,32rem);color:var(--text);background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow);border:0;padding:0}.modal::backdrop{background:#0f172a8c}.modal-content{padding:1.1rem}.modal-actions{justify-content:flex-end;gap:.55rem;margin-top:1rem;display:flex}.sr-only{clip:rect(0,0,0,0);white-space:nowrap;border:0;width:.0625rem;height:.0625rem;padding:0;position:absolute;overflow:hidden}@media (width>=42rem){.app-shell{width:min(100% - 2rem,90rem)}.summary-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{grid-template-columns:minmax(12rem,2fr) repeat(3,minmax(9rem,1fr))}.toolbar{align-items:end}}@media (width>=70rem){.layout{grid-template-columns:minmax(20rem,.8fr) minmax(0,2.2fr)}.form-panel{grid-row:span 2}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.analytics-panel{grid-column:1}.records-panel{grid-area:1/2/span 2}}@media (width<=34rem){.today{display:none}.calculation-box{grid-template-columns:1fr}.form-actions .button,.toolbar-actions .button{flex:auto}.summary-card{min-height:6.8rem}}@media (prefers-color-scheme:dark){:root{--bg:#0b1117;--surface:#111922;--surface-2:#17212b;--text:#e6edf3;--muted:#9aa9b8;--line:#2a3947;--primary:#2dd4bf;--primary-hover:#14b8a6;--primary-soft:#123c39;--danger:#ff8a80;--danger-soft:#47201f;--warning:#fdb022;--warning-soft:#483512;--success:#47cd89;--success-soft:#123b2b;--shadow:0 .5rem 1.5rem #0000004d;--focus:0 0 0 .2rem #2dd4bf33}.topbar{background:linear-gradient(135deg,#115e59,#164e63)}.brand-mark{color:#0f766e}.summary-card:after{opacity:.4}.calc-label{color:#9ce9df}.badge-day{color:#fde68a;background:#4c3d13}.badge-night{color:#c7d2fe;background:#252a61}}@media print{:root{--bg:#fff;--surface:#fff;--surface-2:#f5f5f5;--text:#111;--muted:#444;--line:#ccc}body{background:#fff}.app-shell{width:100%;padding:0}.topbar{color:#111;box-shadow:none;background:#fff;border:0}.subtitle,.today{color:#444}.brand-mark,.form-panel,.analytics-panel,.toolbar,.row-actions,.notice{display:none!important}.layout{display:block}.records-panel{box-shadow:none;border:0}.summary-grid{grid-template-columns:repeat(4,1fr)}.summary-card{min-height:auto;box-shadow:none}.table-wrap{border:0;overflow:visible}table{min-width:0}th,td{padding:.35rem;font-size:.65rem}}</style><link href="/ext/pemandu.css" rel="stylesheet"><script type="application/ld+json">{"@context":"https:\/\/schema.org","@graph":[{"@type":"BlogPosting","@id":"https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter#article","isPartOf":{"@id":"https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter"},"author":{"name":"Fakhrul Rijal","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal"},"headline":"Dashboard Hour Meter Alat","description":"Dashboard pencatatan Hour Meter alat dengan perhitungan durasi dan jam selesai otomatis.","datePublished":"2026-07-30T21:06:55.247Z","dateModified":"2026-07-30T21:07:53.949Z","mainEntityOfPage":{"@id":"https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter"},"wordCount":170,"publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"image":["https:\/\/dalam.web.id\/thumbnail.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/thumbnail.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/thumbnail.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/thumbnail.webp","keywords":["Lainnya","Dashboard Hour Meter Alat","Layar Kosong","dashboard","hour","meter","alat","hourmeter"],"articleSection":["Lainnya"],"inLanguage":"id-ID","license":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"},{"@type":"WebPage","@id":"https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter","url":"https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter","name":"Dashboard Hour Meter Alat - Layar Kosong","isPartOf":{"@id":"https:\/\/dalam.web.id\/#website"},"primaryImageOfPage":{"@id":"https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter#primaryimage"},"image":["https:\/\/dalam.web.id\/thumbnail.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=960,height=720,fit=crop\/thumbnail.webp","https:\/\/dalam.web.id\/cdn-cgi\/image\/width=720,height=720,fit=crop\/thumbnail.webp"],"thumbnailUrl":"https:\/\/dalam.web.id\/thumbnail.webp","datePublished":"2026-07-30T21:06:55.247Z","dateModified":"2026-07-30T21:07:53.949Z","description":"Dashboard pencatatan Hour Meter alat dengan perhitungan durasi dan jam selesai otomatis.","breadcrumb":{"@id":"https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter#breadcrumb"},"inLanguage":"id-ID","potentialAction":[{"@type":"ReadAction","target":["https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter"]}]},{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter#primaryimage","url":"https:\/\/dalam.web.id\/thumbnail.webp","contentUrl":"https:\/\/dalam.web.id\/thumbnail.webp","width":1208,"height":680,"caption":"Dashboard Hour Meter Alat","encodingFormat":"image\/webp"},{"@type":"BreadcrumbList","@id":"https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https:\/\/dalam.web.id"},{"@type":"ListItem","position":2,"name":"Lainnya","item":"https:\/\/dalam.web.id\/lainnya"},{"@type":"ListItem","position":3,"name":"Dashboard Hour Meter Alat","item":"https:\/\/dalam.web.id\/lainnya\/dashboard-hourmeter"}]},{"@type":"WebSite","@id":"https:\/\/dalam.web.id\/#website","url":"https:\/\/dalam.web.id","name":"Layar Kosong","description":"Catatan digital tentang teknologi, sejarah, sosial, budaya, dan kehidupan.","publisher":{"@id":"https:\/\/dalam.web.id\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/dalam.web.id\/search\/?q={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"id-ID"},{"@type":"Organization","@id":"https:\/\/dalam.web.id\/#organization","name":"Layar Kosong","url":"https:\/\/dalam.web.id","logo":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#logo","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":1024,"height":1024,"caption":"Layar Kosong","representativeOfPage":true},"image":{"@id":"https:\/\/dalam.web.id\/#logo"},"sameAs":["https:\/\/facebook.com\/frijalpage","https:\/\/x.com\/responaja","https:\/\/www.youtube.com\/@frijal"]},{"@type":"Person","@id":"https:\/\/dalam.web.id\/#fakhrul-rijal","name":"Fakhrul Rijal","url":"https:\/\/dalam.web.id\/about","sameAs":["https:\/\/facebook.com\/frijal","https:\/\/github.com\/frijal","https:\/\/linkedin.com\/in\/frijal","https:\/\/x.com\/responaja","https:\/\/threads.net\/frijal","https:\/\/www.youtube.com\/@frijal","https:\/\/www.tiktok.com\/@gibah.dilarang","https:\/\/mastodon.social\/@frijal","https:\/\/www.reddit.com\/user\/Fearless_Economics69"],"image":{"@type":"ImageObject","inLanguage":"id-ID","@id":"https:\/\/dalam.web.id\/#author-image","url":"https:\/\/dalam.web.id\/favicon.svg","contentUrl":"https:\/\/dalam.web.id\/favicon.svg","width":512,"height":512,"caption":"Fakhrul Rijal","encodingFormat":"image\/svg+xml"}}]}</script></head><body><main class="app-shell"><header class="topbar"><div class="brand"><span class="brand-mark"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v5l3 2"></path><path d="M5 3 3 5M19 3l2 2"></path></svg> </span><div><nav aria-label="Breadcrumb" class="static-crumb" style="font-size:.85rem"><a href="https://dalam.web.id">Beranda</a> / <a href="/lainnya">Lainnya</a></nav><h1>Dashboard Hour Meter</h1><p class="subtitle">Pencatatan HM alat, durasi operasi, dan jam selesai otomatis</p></div></div><div class="today" id="todayLabel"></div></header><section class="summary-grid"><article class="summary-card"><span class="summary-label">Total Catatan</span><strong class="summary-value" id="summaryRecords">0</strong><span class="summary-meta" id="summaryRecordsMeta">Belum ada data</span></article><article class="summary-card"><span class="summary-label">Total HM</span><strong class="summary-value" id="summaryHM">0,0</strong><span class="summary-meta" id="summaryHMMeta">Setara 00:00 jam</span></article><article class="summary-card"><span class="summary-label">Rata-rata HM</span><strong class="summary-value" id="summaryAverage">0,0</strong><span class="summary-meta">Per catatan operasi</span></article><article class="summary-card"><span class="summary-label">Unit Tercatat</span><strong class="summary-value" id="summaryUnits">0</strong><span class="summary-meta" id="summaryUnitsMeta">Belum ada unit</span></article></section><div class="layout"><section class="panel form-panel" id="formPanel"><div class="panel-header"><div><h2 class="panel-title" id="formTitle">Tambah Catatan HM</h2><p class="panel-description">Isi HM awal dan akhir. Durasi serta jam selesai dihitung otomatis.</p></div></div><form autocomplete="off" id="hmForm"><input id="recordId" type="hidden"><div class="form-grid"><div class="field"><label for="workDate">Tanggal <span class="required">*</span></label><input id="workDate" name="workDate" required="" type="date"></div><div class="field"><label for="shift">Shift <span class="required">*</span></label><select id="shift" name="shift" required=""><option value="Day">Day Shift</option><option value="Night">Night Shift</option></select></div><div class="field"><label for="unit">Unit / Equipment <span class="required">*</span></label><input placeholder="Contoh: HD-785-01" id="unit" maxlength="50" name="unit" required=""></div><div class="field"><label for="operator">Operator</label><input placeholder="Nama operator" id="operator" maxlength="80" name="operator"></div><div class="field field-wide"><label for="activity">Aktivitas / Lokasi</label><input placeholder="Contoh: Hauling OB — Pit Timur" id="activity" maxlength="120" name="activity"></div><div class="field"><label for="startTime">Jam Mulai <span class="required">*</span></label><input id="startTime" name="startTime" required="" step="60" type="time"></div><div class="field"><label for="endTime">Jam Selesai</label><input id="endTime" name="endTime" placeholder="Otomatis" readonly=""></div><div class="field"><label for="hmStart">HM Awal <span class="required">*</span></label><input placeholder="Contoh: 16713,1" id="hmStart" inputmode="decimal" name="hmStart" required=""></div><div class="field"><label for="hmEnd">HM Akhir <span class="required">*</span></label><input placeholder="Contoh: 16718,3" id="hmEnd" inputmode="decimal" name="hmEnd" required=""></div><div class="calculation-box"><div class="calc-item"><span class="calc-label">Total HM</span><strong class="calc-value" id="calcTotalHM">0,0</strong></div><div class="calc-item"><span class="calc-label">Durasi</span><strong class="calc-value" id="calcDuration">00:00</strong></div><div class="calc-item"><span class="calc-label">Selesai</span><strong class="calc-value" id="calcEndTime">--:--</strong></div></div><div class="field field-wide"><label for="notes">Catatan</label><textarea placeholder="Kendala, standby, breakdown, atau keterangan lain" id="notes" maxlength="500" name="notes"></textarea></div><div class="form-actions"><button class="button button-primary" id="saveButton"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"></path><path d="M17 21v-8H7v8M7 3v5h8"></path></svg> Simpan Catatan</button><button class="button" hidden="" id="cancelEdit" type="button">Batal Edit</button><button class="button" type="reset">Kosongkan</button></div></div></form></section><section class="panel records-panel"><div class="panel-header"><div><h2 class="panel-title">Riwayat Hour Meter</h2><p class="panel-description">Data tersimpan di browser perangkat ini.</p></div></div><div class="toolbar"><div class="filters"><div class="field"><label class="sr-only" for="searchInput">Cari data</label><input placeholder="Cari unit, operator, aktivitas..." id="searchInput" type="search"></div><div class="field"><label class="sr-only" for="unitFilter">Filter unit</label><select id="unitFilter"><option value="">Semua unit</option></select></div><div class="field"><label class="sr-only" for="dateFilter">Filter tanggal</label><input id="dateFilter" type="date"></div><div class="field"><label class="sr-only" for="sortBy">Urutkan data</label><select id="sortBy"><option value="date-desc">Terbaru</option><option value="date-asc">Terlama</option><option value="hm-desc">HM terbesar</option><option value="hm-asc">HM terkecil</option><option value="unit-asc">Unit A–Z</option></select></div></div><div class="toolbar-actions"><button class="button button-small" id="exportCsv" type="button">Ekspor CSV</button><button class="button button-small" id="backupJson" type="button">Backup JSON</button><label class="button button-small" for="restoreJson">Pulihkan JSON</label><input accept="application/json,.json" class="sr-only" id="restoreJson" type="file"><button class="button button-small" id="printData" type="button">Cetak</button><button class="button button-small button-danger" id="clearData" type="button">Hapus Semua</button></div></div><div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>Shift</th><th>Unit</th><th>Operator</th><th>Aktivitas / Lokasi</th><th>Mulai</th><th>Selesai</th><th class="number">HM Awal</th><th class="number">HM Akhir</th><th class="number">Total HM</th><th>Durasi</th><th>Catatan</th><th>Aksi</th></tr></thead><tbody id="recordRows"></tbody></table><div class="empty-state" id="emptyState"><strong>Belum ada catatan Hour Meter</strong> Data yang disimpan melalui formulir akan muncul di sini.</div></div><div class="table-footer"><span id="resultInfo">Menampilkan 0 catatan</span><strong id="filteredTotal">Total: 0,0 HM · 00:00</strong></div></section><section class="panel analytics-panel"><div class="panel-header"><div><h2 class="panel-title">Akumulasi per Unit</h2><p class="panel-description">Perbandingan total HM dari seluruh catatan.</p></div></div><div class="unit-list" id="unitBreakdown"><div class="empty-state"><strong>Belum ada data unit</strong> Ringkasan akan terbentuk otomatis.</div></div></section></div></main><div class="notice" id="notice"></div><dialog class="modal" id="confirmDialog"><div class="modal-content"><h2 class="panel-title" id="confirmTitle">Konfirmasi</h2><p class="panel-description" id="confirmMessage"></p><div class="modal-actions"><button class="button" id="confirmCancel" type="button">Batal</button><button class="button button-danger" id="confirmAccept" type="button">Hapus</button></div></div></dialog><script>(() => {
+ "use strict";
+ const STORAGE_KEY = "hour-meter-dashboard-v1";
+ const collator = new Intl.Collator("id-ID", { numeric: true, sensitivity: "base" });
+ const numberFormat = new Intl.NumberFormat("id-ID", {
+ minimumFractionDigits: 1,
+ maximumFractionDigits: 2
+ });
+ const dateFormat = new Intl.DateTimeFormat("id-ID", {
+ weekday: "long",
+ day: "2-digit",
+ month: "long",
+ year: "numeric"
+ });
+ const shortDateFormat = new Intl.DateTimeFormat("id-ID", {
+ day: "2-digit",
+ month: "short",
+ year: "numeric"
+ });
+ const elements = {
+ form: document.querySelector("#hmForm"),
+ formPanel: document.querySelector("#formPanel"),
+ formTitle: document.querySelector("#formTitle"),
+ recordId: document.querySelector("#recordId"),
+ workDate: document.querySelector("#workDate"),
+ shift: document.querySelector("#shift"),
+ unit: document.querySelector("#unit"),
+ operator: document.querySelector("#operator"),
+ activity: document.querySelector("#activity"),
+ startTime: document.querySelector("#startTime"),
+ endTime: document.querySelector("#endTime"),
+ hmStart: document.querySelector("#hmStart"),
+ hmEnd: document.querySelector("#hmEnd"),
+ notes: document.querySelector("#notes"),
+ calcTotalHM: document.querySelector("#calcTotalHM"),
+ calcDuration: document.querySelector("#calcDuration"),
+ calcEndTime: document.querySelector("#calcEndTime"),
+ saveButton: document.querySelector("#saveButton"),
+ cancelEdit: document.querySelector("#cancelEdit"),
+ searchInput: document.querySelector("#searchInput"),
+ unitFilter: document.querySelector("#unitFilter"),
+ dateFilter: document.querySelector("#dateFilter"),
+ sortBy: document.querySelector("#sortBy"),
+ recordRows: document.querySelector("#recordRows"),
+ emptyState: document.querySelector("#emptyState"),
+ resultInfo: document.querySelector("#resultInfo"),
+ filteredTotal: document.querySelector("#filteredTotal"),
+ unitBreakdown: document.querySelector("#unitBreakdown"),
+ summaryRecords: document.querySelector("#summaryRecords"),
+ summaryRecordsMeta: document.querySelector("#summaryRecordsMeta"),
+ summaryHM: document.querySelector("#summaryHM"),
+ summaryHMMeta: document.querySelector("#summaryHMMeta"),
+ summaryAverage: document.querySelector("#summaryAverage"),
+ summaryUnits: document.querySelector("#summaryUnits"),
+ summaryUnitsMeta: document.querySelector("#summaryUnitsMeta"),
+ todayLabel: document.querySelector("#todayLabel"),
+ notice: document.querySelector("#notice"),
+ exportCsv: document.querySelector("#exportCsv"),
+ backupJson: document.querySelector("#backupJson"),
+ restoreJson: document.querySelector("#restoreJson"),
+ printData: document.querySelector("#printData"),
+ clearData: document.querySelector("#clearData"),
+ confirmDialog: document.querySelector("#confirmDialog"),
+ confirmTitle: document.querySelector("#confirmTitle"),
+ confirmMessage: document.querySelector("#confirmMessage"),
+ confirmCancel: document.querySelector("#confirmCancel"),
+ confirmAccept: document.querySelector("#confirmAccept")
+ };
+ let records = loadRecords();
+ let pendingConfirm = null;
+ let noticeTimer = null;
+ function localISODate(date = new Date()) {
+ const offset = date.getTimezoneOffset();
+ return new Date(date.getTime() - offset * 60000).toISOString().slice(0, 10);
+ }
+ function parseDecimal(value) {
+ const text = String(value ?? "").trim().replace(/\s/g, "");
+ if (!text) return NaN;
+ let normalized = text;
+ const hasComma = normalized.includes(",");
+ const hasDot = normalized.includes(".");
+ if (hasComma && hasDot) {
+ if (normalized.lastIndexOf(",") > normalized.lastIndexOf(".")) {
+ normalized = normalized.replace(/\./g, "").replace(",", ".");
+ } else {
+ normalized = normalized.replace(/,/g, "");
+ }
+ } else if (hasComma) {
+ normalized = normalized.replace(",", ".");
+ }
+ const number = Number(normalized);
+ return Number.isFinite(number) ? number : NaN;
+ }
+ function roundHM(value) {
+ return Math.round((value + Number.EPSILON) * 100) / 100;
+ }
+ function hmToMinutes(hours) {
+ return Math.round(hours * 60);
+ }
+ function formatDuration(minutes) {
+ const safeMinutes = Math.max(0, Math.round(Number(minutes) || 0));
+ const hours = Math.floor(safeMinutes / 60);
+ const mins = safeMinutes % 60;
+ return `${String(hours).padStart(2, "0")}:${String(mins).padStart(2, "0")}`;
+ }
+ function calculateEndTime(startTime, durationMinutes) {
+ if (!/^\d{2}:\d{2}$/.test(startTime)) return { text: "--:--", time: "", dayOffset: 0 };
+ const [hours, minutes] = startTime.split(":").map(Number);
+ if (hours > 23 || minutes > 59) return { text: "--:--", time: "", dayOffset: 0 };
+ const total = hours * 60 + minutes + Math.max(0, Math.round(durationMinutes));
+ const dayOffset = Math.floor(total / 1440);
+ const minuteOfDay = total % 1440;
+ const endHours = Math.floor(minuteOfDay / 60);
+ const endMinutes = minuteOfDay % 60;
+ const time = `${String(endHours).padStart(2, "0")}:${String(endMinutes).padStart(2, "0")}`;
+ return {
+ time,
+ dayOffset,
+ text: dayOffset > 0 ? `${time} (+${dayOffset})` : time
+ };
+ }
+ function parseDateOnly(value) {
+ if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+ const [year, month, day] = value.split("-").map(Number);
+ return new Date(year, month - 1, day);
+ }
+ function formatDate(value) {
+ const date = parseDateOnly(value);
+ return date ? shortDateFormat.format(date) : value;
+ }
+ function escapeHTML(value) {
+ return String(value ?? "")
+ .replace(/&/g, "&amp;")
+ .replace(/</g, "&lt;")
+ .replace(/>/g, "&gt;")
+ .replace(/"/g, "&quot;")
+ .replace(/'/g, "&#039;");
+ }
+ function uid() {
+ if (globalThis.crypto?.randomUUID) return crypto.randomUUID();
+ return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+ }
+ function loadRecords() {
+ try {
+ const raw = localStorage.getItem(STORAGE_KEY);
+ const parsed = raw ? JSON.parse(raw) : [];
+ return Array.isArray(parsed) ? parsed.filter(isValidRecord).map(normalizeRecord) : [];
+ } catch (error) {
+ console.error("Gagal membaca data:", error);
+ return [];
+ }
+ }
+ function isValidRecord(record) {
+ return record && typeof record === "object" && record.id && record.workDate && record.unit;
+ }
+ function normalizeRecord(record) {
+ const hmStart = Number(record.hmStart) || 0;
+ const hmEnd = Number(record.hmEnd) || 0;
+ const totalHM = Number.isFinite(Number(record.totalHM))
+ ? roundHM(Number(record.totalHM))
+ : roundHM(Math.max(0, hmEnd - hmStart));
+ const durationMinutes = Number.isFinite(Number(record.durationMinutes))
+ ? Math.round(Number(record.durationMinutes))
+ : hmToMinutes(totalHM);
+ const end = calculateEndTime(record.startTime || "", durationMinutes);
+ return {
+ id: String(record.id),
+ workDate: String(record.workDate || ""),
+ shift: record.shift === "Night" ? "Night" : "Day",
+ unit: String(record.unit || "").trim(),
+ operator: String(record.operator || "").trim(),
+ activity: String(record.activity || "").trim(),
+ startTime: String(record.startTime || ""),
+ endTime: String(record.endTime || end.time),
+ endDayOffset: Number(record.endDayOffset) || end.dayOffset,
+ hmStart,
+ hmEnd,
+ totalHM,
+ durationMinutes,
+ notes: String(record.notes || "").trim(),
+ createdAt: record.createdAt || new Date().toISOString(),
+ updatedAt: record.updatedAt || record.createdAt || new Date().toISOString()
+ };
+ }
+ function saveRecords() {
+ try {
+ localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+ return true;
+ } catch (error) {
+ console.error("Gagal menyimpan data:", error);
+ showNotice("Penyimpanan browser penuh atau tidak tersedia.", "error");
+ return false;
+ }
+ }
+ function getCalculation() {
+ const hmStart = parseDecimal(elements.hmStart.value);
+ const hmEnd = parseDecimal(elements.hmEnd.value);
+ const startTime = elements.startTime.value;
+ if (!Number.isFinite(hmStart) || !Number.isFinite(hmEnd) || hmEnd < hmStart) {
+ return {
+ valid: false,
+ hmStart,
+ hmEnd,
+ totalHM: 0,
+ durationMinutes: 0,
+ end: calculateEndTime(startTime, 0)
+ };
+ }
+ const totalHM = roundHM(hmEnd - hmStart);
+ const durationMinutes = hmToMinutes(totalHM);
+ const end = calculateEndTime(startTime, durationMinutes);
+ return { valid: true, hmStart, hmEnd, totalHM, durationMinutes, end };
+ }
+ function updateCalculation() {
+ const calculation = getCalculation();
+ elements.calcTotalHM.textContent = calculation.valid ? numberFormat.format(calculation.totalHM) : "0,0";
+ elements.calcDuration.textContent = calculation.valid ? formatDuration(calculation.durationMinutes) : "00:00";
+ elements.calcEndTime.textContent = calculation.valid && elements.startTime.value ? calculation.end.text : "--:--";
+ elements.endTime.value = calculation.valid && elements.startTime.value ? calculation.end.text : "";
+ }
+ function resetFormState() {
+ elements.recordId.value = "";
+ elements.formTitle.textContent = "Tambah Catatan HM";
+ elements.saveButton.lastChild.textContent = " Simpan Catatan";
+ elements.cancelEdit.hidden = true;
+ elements.workDate.value = localISODate();
+ elements.shift.value = "Day";
+ elements.startTime.value = "07:00";
+ updateCalculation();
+ }
+ function handleSubmit(event) {
+ event.preventDefault();
+ const calculation = getCalculation();
+ const workDate = elements.workDate.value;
+ const unit = elements.unit.value.trim();
+ const startTime = elements.startTime.value;
+ if (!workDate || !unit || !startTime) {
+ showNotice("Tanggal, unit, dan jam mulai wajib diisi.", "error");
+ return;
+ }
+ if (!Number.isFinite(calculation.hmStart) || !Number.isFinite(calculation.hmEnd)) {
+ showNotice("HM awal dan HM akhir harus berupa angka.", "error");
+ elements.hmStart.focus();
+ return;
+ }
+ if (calculation.hmEnd < calculation.hmStart) {
+ showNotice("HM akhir tidak boleh lebih kecil dari HM awal.", "error");
+ elements.hmEnd.focus();
+ return;
+ }
+ if (calculation.totalHM > 24) {
+ showNotice("Total HM lebih dari 24 jam. Periksa kembali angkanya.", "error");
+ elements.hmEnd.focus();
+ return;
+ }
+ const now = new Date().toISOString();
+ const existingIndex = records.findIndex(record => record.id === elements.recordId.value);
+ const existing = existingIndex >= 0 ? records[existingIndex] : null;
+ const record = {
+ id: existing?.id || uid(),
+ workDate,
+ shift: elements.shift.value,
+ unit,
+ operator: elements.operator.value.trim(),
+ activity: elements.activity.value.trim(),
+ startTime,
+ endTime: calculation.end.time,
+ endDayOffset: calculation.end.dayOffset,
+ hmStart: calculation.hmStart,
+ hmEnd: calculation.hmEnd,
+ totalHM: calculation.totalHM,
+ durationMinutes: calculation.durationMinutes,
+ notes: elements.notes.value.trim(),
+ createdAt: existing?.createdAt || now,
+ updatedAt: now
+ };
+ if (existingIndex >= 0) {
+ records[existingIndex] = record;
+ } else {
+ records.push(record);
+ }
+ if (!saveRecords()) return;
+ elements.form.reset();
+ resetFormState();
+ renderAll();
+ showNotice(existingIndex >= 0 ? "Catatan berhasil diperbarui." : "Catatan HM berhasil disimpan.", "success");
+ }
+ function editRecord(id) {
+ const record = records.find(item => item.id === id);
+ if (!record) return;
+ elements.recordId.value = record.id;
+ elements.workDate.value = record.workDate;
+ elements.shift.value = record.shift;
+ elements.unit.value = record.unit;
+ elements.operator.value = record.operator;
+ elements.activity.value = record.activity;
+ elements.startTime.value = record.startTime;
+ elements.hmStart.value = String(record.hmStart).replace(".", ",");
+ elements.hmEnd.value = String(record.hmEnd).replace(".", ",");
+ elements.notes.value = record.notes;
+ elements.formTitle.textContent = "Edit Catatan HM";
+ elements.saveButton.lastChild.textContent = " Perbarui Catatan";
+ elements.cancelEdit.hidden = false;
+ updateCalculation();
+ elements.formPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+ elements.unit.focus({ preventScroll: true });
+ }
+ function cancelEdit() {
+ elements.form.reset();
+ resetFormState();
+ }
+ function requestConfirmation({ title, message, acceptLabel = "Hapus", action }) {
+ pendingConfirm = action;
+ elements.confirmTitle.textContent = title;
+ elements.confirmMessage.textContent = message;
+ elements.confirmAccept.textContent = acceptLabel;
+ if (typeof elements.confirmDialog.showModal === "function") {
+ elements.confirmDialog.showModal();
+ } else if (globalThis.confirm(message)) {
+ action();
+ pendingConfirm = null;
+ }
+ }
+ function deleteRecord(id) {
+ const record = records.find(item => item.id === id);
+ if (!record) return;
+ requestConfirmation({
+ title: "Hapus catatan?",
+ message: `Catatan ${record.unit} tanggal ${formatDate(record.workDate)} akan dihapus permanen dari browser ini.`,
+ action: () => {
+ records = records.filter(item => item.id !== id);
+ saveRecords();
+ if (elements.recordId.value === id) cancelEdit();
+ renderAll();
+ showNotice("Catatan berhasil dihapus.", "success");
+ }
+ });
+ }
+ function getFilteredRecords() {
+ const search = elements.searchInput.value.trim().toLocaleLowerCase("id-ID");
+ const selectedUnit = elements.unitFilter.value;
+ const selectedDate = elements.dateFilter.value;
+ const filtered = records.filter(record => {
+ const haystack = [record.unit, record.operator, record.activity, record.notes, record.shift]
+ .join(" ")
+ .toLocaleLowerCase("id-ID");
+ const matchesSearch = !search || haystack.includes(search);
+ const matchesUnit = !selectedUnit || record.unit === selectedUnit;
+ const matchesDate = !selectedDate || record.workDate === selectedDate;
+ return matchesSearch && matchesUnit && matchesDate;
+ });
+ const sort = elements.sortBy.value;
+ filtered.sort((a, b) => {
+ if (sort === "date-asc") return `${a.workDate}T${a.startTime}`.localeCompare(`${b.workDate}T${b.startTime}`);
+ if (sort === "hm-desc") return b.totalHM - a.totalHM;
+ if (sort === "hm-asc") return a.totalHM - b.totalHM;
+ if (sort === "unit-asc") return collator.compare(a.unit, b.unit) || b.workDate.localeCompare(a.workDate);
+ return `${b.workDate}T${b.startTime}`.localeCompare(`${a.workDate}T${a.startTime}`);
+ });
+ return filtered;
+ }
+ function renderTable() {
+ const filtered = getFilteredRecords();
+ elements.recordRows.textContent = "";
+ elements.emptyState.hidden = filtered.length > 0;
+ if (filtered.length > 0) {
+ const fragment = document.createDocumentFragment();
+ filtered.forEach(record => {
+ const row = document.createElement("tr");
+ const endTimeText = record.endDayOffset > 0
+ ? `${record.endTime} (+${record.endDayOffset})`
+ : record.endTime;
+ row.innerHTML = `
+ <td>${escapeHTML(formatDate(record.workDate))}</td>
+ <td><span class="badge ${record.shift === "Night" ? "badge-night" : "badge-day"}">${escapeHTML(record.shift)}</span></td>
+ <td><strong>${escapeHTML(record.unit)}</strong></td>
+ <td>${escapeHTML(record.operator || "—")}</td>
+ <td class="wrap">${escapeHTML(record.activity || "—")}</td>
+ <td>${escapeHTML(record.startTime)}</td>
+ <td>${escapeHTML(endTimeText)}</td>
+ <td class="number">${numberFormat.format(record.hmStart)}</td>
+ <td class="number">${numberFormat.format(record.hmEnd)}</td>
+ <td class="number"><strong>${numberFormat.format(record.totalHM)}</strong></td>
+ <td><strong>${formatDuration(record.durationMinutes)}</strong></td>
+ <td class="wrap">${escapeHTML(record.notes || "—")}</td>
+ <td>
+ <div class="row-actions">
+ <button class="icon-button" type="button" data-action="edit" data-id="${escapeHTML(record.id)}" title="Edit catatan">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"></path>
+ </svg>
+ </button>
+ <button class="icon-button danger" type="button" data-action="delete" data-id="${escapeHTML(record.id)}" title="Hapus catatan">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5"></path>
+ </svg>
+ </button>
+ </div>
+ </td>
+ `;
+ fragment.appendChild(row);
+ });
+ elements.recordRows.appendChild(fragment);
+ }
+ const totalHM = filtered.reduce((sum, record) => sum + record.totalHM, 0);
+ const totalMinutes = filtered.reduce((sum, record) => sum + record.durationMinutes, 0);
+ elements.resultInfo.textContent = `Menampilkan ${filtered.length} dari ${records.length} catatan`;
+ elements.filteredTotal.textContent = `Total: ${numberFormat.format(totalHM)} HM · ${formatDuration(totalMinutes)}`;
+ }
+ function renderSummary() {
+ const totalRecords = records.length;
+ const totalHM = records.reduce((sum, record) => sum + record.totalHM, 0);
+ const totalMinutes = records.reduce((sum, record) => sum + record.durationMinutes, 0);
+ const units = [...new Set(records.map(record => record.unit))];
+ const averageHM = totalRecords ? totalHM / totalRecords : 0;
+ const today = localISODate();
+ const todayRecords = records.filter(record => record.workDate === today);
+ const latestRecord = [...records].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
+ elements.summaryRecords.textContent = String(totalRecords);
+ elements.summaryRecordsMeta.textContent = todayRecords.length
+ ? `${todayRecords.length} catatan hari ini`
+ : "Belum ada catatan hari ini";
+ elements.summaryHM.textContent = numberFormat.format(totalHM);
+ elements.summaryHMMeta.textContent = `Setara ${formatDuration(totalMinutes)} jam`;
+ elements.summaryAverage.textContent = numberFormat.format(averageHM);
+ elements.summaryUnits.textContent = String(units.length);
+ elements.summaryUnitsMeta.textContent = latestRecord ? `Terakhir: ${latestRecord.unit}` : "Belum ada unit";
+ }
+ function renderUnitFilter() {
+ const selected = elements.unitFilter.value;
+ const units = [...new Set(records.map(record => record.unit))].sort(collator.compare);
+ elements.unitFilter.innerHTML = '<option value="">Semua unit</option>';
+ units.forEach(unit => {
+ const option = document.createElement("option");
+ option.value = unit;
+ option.textContent = unit;
+ elements.unitFilter.appendChild(option);
+ });
+ elements.unitFilter.value = units.includes(selected) ? selected : "";
+ }
+ function renderUnitBreakdown() {
+ const totals = new Map();
+ records.forEach(record => {
+ const current = totals.get(record.unit) || { totalHM: 0, minutes: 0, count: 0 };
+ current.totalHM += record.totalHM;
+ current.minutes += record.durationMinutes;
+ current.count += 1;
+ totals.set(record.unit, current);
+ });
+ const entries = [...totals.entries()].sort((a, b) => b[1].totalHM - a[1].totalHM);
+ elements.unitBreakdown.textContent = "";
+ if (!entries.length) {
+ elements.unitBreakdown.innerHTML = `
+ <div class="empty-state">
+ <strong>Belum ada data unit</strong>
+ Ringkasan akan terbentuk otomatis.
+ </div>
+ `;
+ return;
+ }
+ const maxHM = Math.max(...entries.map(([, stats]) => stats.totalHM), 1);
+ const fragment = document.createDocumentFragment();
+ entries.forEach(([unit, stats]) => {
+ const item = document.createElement("div");
+ item.className = "unit-item";
+ const width = Math.max(2, (stats.totalHM / maxHM) * 100);
+ item.innerHTML = `
+ <div class="unit-line">
+ <strong>${escapeHTML(unit)}</strong>
+ <span>${numberFormat.format(stats.totalHM)} HM · ${formatDuration(stats.minutes)}</span>
+ </div>
+ <div class="progress"><span style="width:${width.toFixed(2)}%"></span></div>
+ <span class="hint">${stats.count} catatan</span>
+ `;
+ fragment.appendChild(item);
+ });
+ elements.unitBreakdown.appendChild(fragment);
+ }
+ function renderAll() {
+ renderUnitFilter();
+ renderSummary();
+ renderTable();
+ renderUnitBreakdown();
+ }
+ function showNotice(message, type = "") {
+ clearTimeout(noticeTimer);
+ elements.notice.textContent = message;
+ elements.notice.className = `notice ${type}`.trim();
+ requestAnimationFrame(() => elements.notice.classList.add("show"));
+ noticeTimer = setTimeout(() => elements.notice.classList.remove("show"), 2800);
+ }
+ function downloadFile(filename, content, mimeType) {
+ const blob = new Blob([content], { type: mimeType });
+ const url = URL.createObjectURL(blob);
+ const link = document.createElement("a");
+ link.href = url;
+ link.download = filename;
+ document.body.appendChild(link);
+ link.click();
+ link.remove();
+ setTimeout(() => URL.revokeObjectURL(url), 1000);
+ }
+ function csvCell(value) {
+ const text = String(value ?? "");
+ return `"${text.replace(/"/g, '""')}"`;
+ }
+ function exportCSV() {
+ if (!records.length) {
+ showNotice("Belum ada data untuk diekspor.", "error");
+ return;
+ }
+ const headers = [
+ "Tanggal", "Shift", "Unit", "Operator", "Aktivitas/Lokasi", "Jam Mulai", "Jam Selesai",
+ "HM Awal", "HM Akhir", "Total HM", "Durasi", "Catatan"
+ ];
+ const rows = [...records]
+ .sort((a, b) => `${a.workDate}T${a.startTime}`.localeCompare(`${b.workDate}T${b.startTime}`))
+ .map(record => [
+ record.workDate,
+ record.shift,
+ record.unit,
+ record.operator,
+ record.activity,
+ record.startTime,
+ record.endDayOffset > 0 ? `${record.endTime} (+${record.endDayOffset})` : record.endTime,
+ String(record.hmStart).replace(".", ","),
+ String(record.hmEnd).replace(".", ","),
+ String(record.totalHM).replace(".", ","),
+ formatDuration(record.durationMinutes),
+ record.notes
+ ]);
+ const csv = "\ufeff" + [headers, ...rows].map(row => row.map(csvCell).join(";")).join("\r\n");
+ downloadFile(`hour-meter-${localISODate()}.csv`, csv, "text/csv;charset=utf-8");
+ showNotice("CSV berhasil dibuat.", "success");
+ }
+ function backupJSON() {
+ if (!records.length) {
+ showNotice("Belum ada data untuk dicadangkan.", "error");
+ return;
+ }
+ const payload = {
+ app: "Dashboard Hour Meter",
+ version: 1,
+ exportedAt: new Date().toISOString(),
+ records
+ };
+ downloadFile(
+ `backup-hour-meter-${localISODate()}.json`,
+ JSON.stringify(payload, null, 2),
+ "application/json;charset=utf-8"
+ );
+ showNotice("Backup JSON berhasil dibuat.", "success");
+ }
+ async function restoreJSON(file) {
+ if (!file) return;
+ try {
+ const text = await file.text();
+ const parsed = JSON.parse(text);
+ const imported = Array.isArray(parsed) ? parsed : parsed.records;
+ if (!Array.isArray(imported)) throw new Error("Format tidak cocok");
+ const cleanRecords = imported.filter(isValidRecord).map(normalizeRecord);
+ if (!cleanRecords.length) throw new Error("Tidak ada catatan valid");
+ requestConfirmation({
+ title: "Pulihkan backup?",
+ message: `${cleanRecords.length} catatan dari file akan menggantikan seluruh data saat ini.`,
+ acceptLabel: "Pulihkan",
+ action: () => {
+ records = cleanRecords;
+ saveRecords();
+ cancelEdit();
+ renderAll();
+ showNotice("Backup berhasil dipulihkan.", "success");
+ }
+ });
+ } catch (error) {
+ console.error(error);
+ showNotice("File JSON tidak valid atau tidak sesuai format.", "error");
+ } finally {
+ elements.restoreJson.value = "";
+ }
+ }
+ function clearAllData() {
+ if (!records.length) {
+ showNotice("Data sudah kosong.");
+ return;
+ }
+ requestConfirmation({
+ title: "Hapus seluruh data?",
+ message: `${records.length} catatan akan dihapus permanen dari browser ini. Buat backup terlebih dahulu bila diperlukan.`,
+ acceptLabel: "Hapus Semua",
+ action: () => {
+ records = [];
+ saveRecords();
+ cancelEdit();
+ renderAll();
+ showNotice("Seluruh data telah dihapus.", "success");
+ }
+ });
+ }
+ function handleTableClick(event) {
+ const button = event.target.closest("button[data-action]");
+ if (!button) return;
+ const { action, id } = button.dataset;
+ if (action === "edit") editRecord(id);
+ if (action === "delete") deleteRecord(id);
+ }
+ elements.form.addEventListener("submit", handleSubmit);
+ elements.form.addEventListener("reset", () => setTimeout(resetFormState));
+ elements.cancelEdit.addEventListener("click", cancelEdit);
+ [elements.hmStart, elements.hmEnd, elements.startTime].forEach(input => {
+ input.addEventListener("input", updateCalculation);
+ });
+ [elements.searchInput, elements.unitFilter, elements.dateFilter, elements.sortBy].forEach(input => {
+ input.addEventListener("input", renderTable);
+ input.addEventListener("change", renderTable);
+ });
+ elements.recordRows.addEventListener("click", handleTableClick);
+ elements.exportCsv.addEventListener("click", exportCSV);
+ elements.backupJson.addEventListener("click", backupJSON);
+ elements.restoreJson.addEventListener("change", event => restoreJSON(event.target.files?.[0]));
+ elements.printData.addEventListener("click", () => window.print());
+ elements.clearData.addEventListener("click", clearAllData);
+ elements.confirmCancel.addEventListener("click", () => {
+ pendingConfirm = null;
+ elements.confirmDialog.close();
+ });
+ elements.confirmAccept.addEventListener("click", () => {
+ const action = pendingConfirm;
+ pendingConfirm = null;
+ elements.confirmDialog.close();
+ if (typeof action === "function") action();
+ });
+ elements.confirmDialog.addEventListener("cancel", () => { pendingConfirm = null; });
+ elements.todayLabel.textContent = dateFormat.format(new Date());
+ resetFormState();
+ renderAll();
+ })();</script><div id="progress"></div><a href="https://dalam.web.id/" id="layar-kosong-header"></a><div class="search-floating-container"><input placeholder="cari artikel..." autocomplete="off" id="floatingSearchInput"><span class="clear-button" id="floatingSearchClear"></span><div class="floating-results-container" id="floatingSearchResults"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script><noscript>schema_oleh_Fakhrul_Rijal_2026-07-30</noscript><noscript>minify_oleh_Fakhrul_Rijal</noscript></body></html>
