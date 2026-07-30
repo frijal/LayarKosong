@@ -1,5 +1,5 @@
 # Website Metadata Audit Report
-Generated on: 7/29/2026, 3:05:50 PM
+Generated on: 7/30/2026, 3:05:24 PM
 
 | File Path | Page Title (SEO) | OG Title (Social) | OG Site Name | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -15,7 +15,7 @@ Generated on: 7/29/2026, 3:05:50 PM
 | `img.html` | Galeri Gambar - Koleksi Visual Artikel - Layar Kosong | Galeri Gambar | Layar Kosong | ✅ Perfect |
 | `index.html` | Layar Kosong | Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `lisensi.html` | CC BY 4.0 International Legal Code - Layar Kosong | CC BY 4.0 International Legal Code | Layar Kosong | ✅ Perfect |
-| `llms-index.html` | Layar Kosong - LLM Index v25.53 | *(Missing)* | *(Missing)* | ⚠️ Partial |
+| `llms-index.html` | Layar Kosong - LLM Index v25.54 | *(Missing)* | *(Missing)* | ⚠️ Partial |
 | `privacy.html` | Kebijakan Privasi & Informasi Hukum Legal - Layar Kosong | Kebijakan Privasi & Informasi Hukum Legal | Layar Kosong | ✅ Perfect |
 | `security-policy.html` | Security Policy - Layar Kosong | Security Policy - Layar Kosong | Layar Kosong | ⚠️ Partial |
 | `sitemap.html` | Sitemap Artikel - Daftar Isi Lengkap - Layar Kosong | Sitemap Artikel – Daftar Isi Lengkap | Layar Kosong | ✅ Perfect |
@@ -338,6 +338,7 @@ Generated on: 7/29/2026, 3:05:50 PM
 | `artikel/dampak-rupiah-melemah-terhadap-harga-barang.html` | Dampak Rupiah Melemah: 50 Barang yang Bakal Meroket Harganya - Layar Kosong | Dampak Rupiah Melemah: 50 Barang yang Bakal Meroket Harganya | Layar Kosong | ✅ Perfect |
 | `artikel/dari-nabi-adam-ke-era-viral.html` | Dari Zaman Nabi Adam ke Era Viral: Mengapa Kejahatan Terasa Makin Kacau? - Layar Kosong | Dari Zaman Nabi Adam ke Era Viral: Mengapa Kejahatan Terasa Makin Kacau? | Layar Kosong | ✅ Perfect |
 | `artikel/dari-rahim-aisyiyah-perempuan-yang-menguatkan-para-tokoh-bangsa.html` | Dari Rahim Aisyiyah: Perempuan yang Menguatkan Para Tokoh Bangsa - Layar Kosong | Dari Rahim Aisyiyah: Perempuan yang Menguatkan Para Tokoh Bangsa | Layar Kosong | ✅ Perfect |
+| `artikel/dashboard-hourmeter.html` | Dashboard Hour Meter Alat - Layar Kosong | Dashboard Hour Meter Alat | Layar Kosong | ✅ Perfect |
 | `artikel/data-center-rack-enclosure-panduan-lengkap.html` | Data Center Rack & Enclosure: Jantung Infrastruktur Digital Modern - Layar Kosong | Data Center Rack & Enclosure: Jantung Infrastruktur Digital Modern | Layar Kosong | ✅ Perfect |
 | `artikel/dbsc-chrome-146-keamanan-session-cookie.html` | DBSC Chrome 146: Senjata Baru Google Lawan Pencurian Session Cookie - Layar Kosong | DBSC Chrome 146: Senjata Baru Google Lawan Pencurian Session Cookie | Layar Kosong | ✅ Perfect |
 | `artikel/dd-hdd-copy.html` | Salin Isi HDD dengan dd - Layar Kosong | Salin Isi HDD dengan dd | Layar Kosong | ✅ Perfect |
@@ -1991,6 +1992,7 @@ Generated on: 7/29/2026, 3:05:50 PM
 | `lainnya/catatan-pendek-ide-yang-cukup-tiga-paragraf.html` | Catatan Pendek: Ide yang Cukup Tiga Paragraf - Layar Kosong | Catatan Pendek: Ide yang Cukup Tiga Paragraf | Layar Kosong | ✅ Perfect |
 | `lainnya/Cuti-Tahun-2012.html` | Daftar Cuti Bersama dan Hari Libur Nasional Tahun 2012 - Layar Kosong | Daftar Cuti Bersama dan Hari Libur Nasional Tahun 2012 | Layar Kosong | ✅ Perfect |
 | `lainnya/dampak-rupiah-melemah-terhadap-harga-barang.html` | Dampak Rupiah Melemah: 50 Barang yang Bakal Meroket Harganya - Layar Kosong | Dampak Rupiah Melemah: 50 Barang yang Bakal Meroket Harganya | Layar Kosong | ✅ Perfect |
+| `lainnya/dashboard-hourmeter.html` | Dashboard Hour Meter Alat - Layar Kosong | Dashboard Hour Meter Alat | Layar Kosong | ✅ Perfect |
 | `lainnya/defisit-di-meja-perundingan.html` | Defisit di Meja Perundingan Analisis Kedaulatan Pangan dan Komitmen Impor 2026 - Layar Kosong | Defisit di Meja Perundingan Analisis Kedaulatan Pangan dan Komitmen Impor 2026 | Layar Kosong | ✅ Perfect |
 | `lainnya/diesel-runaway-horor-mesin-ngamuk.html` | Diesel Runaway: Horor Mesin Ngamuk, Penyebab & Cara Membunuhnya - Layar Kosong | Diesel Runaway: Horor Mesin Ngamuk, Penyebab & Cara Membunuhnya | Layar Kosong | ✅ Perfect |
 | `lainnya/dilema-hemat-gas-pedagang-makanan.html` | Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas - Layar Kosong | Dilema Penjual Soto dan Bakso: Efisiensi vs Rasa di Tengah Imbauan Hemat Gas | Layar Kosong | ✅ Perfect |
