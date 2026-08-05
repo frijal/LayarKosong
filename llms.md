@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.55
+document_version: 25.56
 last_updated: 2026-08-05
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 5 Agustus 2026)
-> Menampilkan 1607 artikel versi 25.55.
+> Menampilkan 1608 artikel versi 25.56.
 
 ## Gaya Hidup
 - [Koperasi Desa Bisa Dibangun Sukses di Pelosok, Mengapa Sekolah Tidak?](https://dalam.web.id/gaya-hidup/koperasi-desa-sukses-mengapa-sekolah-tidak) : Fenomena Koperasi Desa Merah Putih yang dibangun seragam hingga pelosok menyoroti kontrasnya prioritas pembangunan fasilitas pendidikan kita.
@@ -641,6 +641,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Analisis Hukum Jam Kerja & Roster Tambang Batubara: Permenaker 15/2005 & UU Ketenagakerjaan](https://dalam.web.id/opini-sosial/hukum-jam-kerja-roster-tambang) : Kaji tuntas hukum ketenagakerjaan sektor tambang batubara. Bedah legalitas roster kerja 6:2, batas jam kerja harian 08:00-17:00, hak libur mid-roster, dan kalkulasi upah lembur sektoral.
 - [Sekolah Negeri Sepi Peminat: Analisis dan Solusi di Era Digital](https://dalam.web.id/opini-sosial/sekolah-negeri-sepi-peminat-analisis-dan-solusi) : Fenomena sekolah negeri yang tidak kebagian siswa baru menjadi masalah serius. Analisis lengkap penyebab dan solusi preventif yang bisa dilakukan pemerintah.
 - [Ruang Publik yang Makin Sempit: Tempat Duduk Gratis di Kota Makin Susah](https://dalam.web.id/opini-sosial/ruang-publik-yang-makin-sempit-di-kota-besar) : Di kota besar, tempat untuk sekadar duduk tanpa membeli sesuatu makin sulit ditemukan. Ruang publik yang hilang dan dampaknya bagi kehidupan sosial warga.
 - [Jalur Rempah Nusantara: Peta Rumit yang Tak Pernah Diajarkan di Sekolah](https://dalam.web.id/opini-sosial/jalur-rempah-nusantara-peta-rumit) : Jauh sebelum bangsa Eropa datang, Nusantara sudah memiliki jaringan perdagangan rempah yang luas dan rumit. Cerita yang jarang diungkap di buku pelajaran.
@@ -36440,6 +36441,60 @@ Setelah itu, coba buka kembali dokumen jaringan — LibreOffice akan terasa jauh
 
 
 ## Kategori: Opini Sosial
+
+### Analisis Hukum Jam Kerja & Roster Tambang Batubara: Permenaker 15/2005 & UU Ketenagakerjaan
+
+**Kategori:** Opini-sosial | **Tanggal:** 2026-08-05T07:00:00.000Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/opini-sosial/hukum-jam-kerja-roster-tambang)
+
+Di dunia pertambangan batubara, adu argumen antara pekerja site dengan manajemen HRD/Legal soal jam kerja dan skema roster adalah makanan sehari-hari. Perusahaan sering kali menjadikan dalih “lokasi terpencil (remote area)” sebagai tameng untuk memberlakukan jam kerja maraton tanpa hari libur mingguan.
+
+Namun, apakah skema kerja 08:00 – 17:00 WIB dengan roster 6 minggu kerja (ON) dan 2 minggu cuti (OFF) sudah benar-benar sesuai aturan hukum ketenagakerjaan di Indonesia? Mari kita bedah secara komprehensif!
+
+#### 1. Studi Kasus Lapangan
+
+Seorang pekerja kontraktor tambang batubara bekerja dengan ketentuan sebagai berikut:
+
+- Jam Kerja Harian: 08.00 – 17.00 WIB (Total 9 jam rentang waktu).
+- Ketentuan Lembur: Lebih dari jam 17:00 WIB baru dihitung lembur harian.
+- Skema Roster: 6 minggu kerja berturut-turut : 2 minggu istirahat/cuti.
+#### 2. Dasar Hukum Regulasi Sektoral Tambang
+
+Secara umum, Pasal 77 UU No. 13 Tahun 2003 tentang Ketenagakerjaan mengatur standar jam kerja umum (40 jam/minggu). Namun, khusus sektor pertambangan di daerah operasi tertentu, berlaku prinsip hukum Lex Specialist Derogat Legi Generali melalui regulasi sektoral:
+
+- Kepmenakertrans No. Kep-234/Men/2003: Waktu Kerja dan Istirahat pada Sektor Usaha Energi dan Sumber Daya Mineral pada Daerah Tertentu.
+- Permenakertrans No. Per.15/Men/VII/2005: Waktu Kerja dan Istirahat pada Sektor Usaha Pertambangan Umum pada Daerah Operasi Tertentu.
+#### 3. Bedah 3 Pelanggaran & Celah Hukum Utama
+
+#### A. Pelanggaran Hak Istirahat Mid-Roster (Hari Libur "Tengah Roster")
+
+Berdasarkan Pasal 2 ayat (1) huruf b Permenakertrans 15/2005, perusahaan memang dibolehkan memilih skema kerja maksimal 10 minggu ON dan 2 minggu OFF. Namun, aturan tersebut menegaskan syarat mutlak:
+
+#### ⚠️ Ketentuan Wajib Permenaker 15/2005:
+
+"Setiap 2 (dua) minggu dalam periode kerja, pekerja wajib diberikan 1 (satu) hari istirahat."
+
+Jika pekerja dihajar kerja 6 minggu berturut-turut (42 hari tanpa henti), berarti ada 3 hari hak istirahat mingguan yang dihanguskan oleh perusahaan (pada akhir minggu ke-2, ke-4, dan ke-6). Apabila 3 hari ini dipaksa kerja, maka kategorinya adalah Kerja di Hari Libur / Lembur Hari Libur.
+
+#### B. Tunggakan Akumulasi Upah Lembur Tersembunyi
+
+Jam kerja 08:00–17:00 (dipotong 1 jam istirahat) menghasilkan 8 jam kerja bersih per hari. Jika bekerja 7 hari seminggu, akumulasinya mencapai 56 jam/minggu.
+
+Jika perusahaan menganggap jam 08:00–17:00 sebagai jam kerja biasa tanpa memperhitungkan pengali lembur mingguan/sektoral, perusahaan berpotensi menunggak upah lembur dalam jumlah besar.
+
+#### C. Tarif Pengali Lembur Sektoral Tambang
+
+Mengacu pada Pasal 2 ayat (3) Permenakertrans 15/2005, sistem kerja harian yang melebihi standar wajib dibayarkan dengan kompensasi pengali sektoral khusus (misal: pengali 3,5 × upah sejam untuk skema harian tertentu), bukan sekadar tarif lembur biasa.
+
+#### 4. Matriks Perbandingan: Kasus vs Regulasi
+
+#### 5. Kesimpulan & Relevansi UU Cipta Kerja (PP 35/2021)
+
+Meskipun PP No. 35 Tahun 2021 mengatur batas lembur umum maksimal 4 jam/hari atau 18 jam/minggu, regulasi sektoral pertambangan seperti Permenakertrans 15/2005 tetap berlaku khusus sepanjang perusahaan mengantongi izin penetapan waktu kerja khusus dari kementerian terkait.
+
+Rekomendasi bagi Pekerja: Mintalah transparansi Perjanjian Kerja Bersama (PKB) atau Surat Keputusan Penetapan Waktu Kerja Khusus dari HRD. Jika perusahaan tidak memiliki izin sektoral tersebut, maka seluruh kelebihan jam kerja wajib dikembalikan ke rumus lembur umum yang nilainya sangat menguntungkan pekerja.
+
+---
+
 
 ### Sekolah Negeri Sepi Peminat: Analisis dan Solusi di Era Digital
 
