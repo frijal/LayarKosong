@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week Counter Cihuy by Frijal</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-main: #334155;
+            --accent: #3b82f6;
+            --box-bg: #ffffff;
+        }
+        body { 
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card { 
+            background: var(--box-bg); 
+            padding: 2.5rem; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            max-width: 450px; 
+            width: 100%; 
+            text-align: center; 
+            border-top: 5px solid var(--accent);
+        }
+        h1 { 
+            font-size: 1.5rem; 
+            margin-bottom: 0.5rem; 
+            margin-top: 0;
+            color: #0f172a; 
+        }
+        .subtitle {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+        .result-box { 
+            background: #eff6ff; 
+            padding: 1.5rem; 
+            border-radius: 12px; 
+            margin-bottom: 2rem; 
+            border: 1px dashed #93c5fd;
+        }
+        .result-box p { 
+            margin: 0; 
+            font-size: 0.95rem; 
+            color: #475569; 
+        }
+        .result-box h2 { 
+            margin: 10px 0; 
+            font-size: 3.5rem; 
+            color: var(--accent); 
+            line-height: 1;
+        }
+        .input-group {
+            text-align: left;
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 0.5rem; 
+            font-size: 0.9rem; 
+            color: #334155;
+        }
+        input[type="date"] { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            font-size: 1rem; 
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        input[type="date"]:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .custom-result { 
+            margin-top: 1rem; 
+            font-weight: 600; 
+            color: #ea580c; 
+            min-height: 24px; 
+            text-align: center;
+        }
+        .footer { 
+            margin-top: 2rem; 
+            font-size: 0.8rem; 
+            color: #94a3b8; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🗓️ Kalkulator Minggu (Week Counter)</h1>
+    <div class="subtitle">Biar nggak oleng ngitungin target mingguan</div>
+    
+    <div class="result-box">
+        <p>Sekarang kita lagi di minggu ke:</p>
+        <h2 id="current-week">--</h2>
+        <p id="current-date-info">Tunggu sedelok...</p>
+    </div>
+
+    <div class="input-group">
+        <label for="custom-date">Cek tanggal lain (monggo dipilih):</label>
+        <input type="date" id="custom-date">
+        <div class="custom-result" id="custom-result"></div>
+    </div>
+    
+    <div class="footer">
+        Digawe khusus nggo ngitung waktu ben ra keteteran.
+    </div>
+</div>
+
+<script>
+    /**
+     * Fungsi buat ngitung ISO 8601 Week Number
+     * Nggak bisa cuma dibagi 7, karena standar ISO netapin minggu ke-1 
+     * adalah minggu yang punya hari Kamis pertama di tahun tersebut.
+     */
+    function getWeekNumber(d) {
+        // Copy tanggal biar nggak ngubah referensi asli
+        const date = new Date(d.getTime());
+        // Set jam ke 00:00:00 biar aman dari offset zona waktu
+        date.setHours(0, 0, 0, 0);
+        // Geser ke hari Kamis di minggu yang sama (Minggu=0, Senin=1, dst)
+        date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+        // Ambil tanggal 4 Januari dari tahun yang udah digeser (pasti masuk minggu 1)
+        const week1 = new Date(date.getFullYear(), 0, 4);
+        // Hitung selisih hari, lalu bagi 7 dapet deh minggu ke berapa
+        return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+    }
+
+    // Nampilin data hari ini pas halaman diload
+    const today = new Date();
+    const currentWeek = getWeekNumber(today);
+    
+    document.getElementById('current-week').innerText = currentWeek;
+    
+    // Bikin format tanggalnya lebih manusiawi (bahasa Indo)
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('current-date-info').innerText = today.toLocaleDateString('id-ID', options);
+
+    // Dengerin perubahan di kotak input tanggal
+    const dateInput = document.getElementById('custom-date');
+    const customResult = document.getElementById('custom-result');
+
+    dateInput.addEventListener('change', function(e) {
+        if (this.value) {
+            const selectedDate = new Date(this.value);
+            const weekNum = getWeekNumber(selectedDate);
+            customResult.innerText = `Mantap, tanggal itu masuk di minggu ke-${weekNum} lur!`;
+        } else {
+            customResult.innerText = '';
+        }
+    });
+</script>
+</body>
+</html>
