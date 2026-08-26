@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.58
+document_version: 25.59
 last_updated: 2026-08-26
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 26 Agustus 2026)
-> Menampilkan 1610 artikel versi 25.58.
+> Menampilkan 1611 artikel versi 25.59.
 
 ## Gaya Hidup
 - [Koperasi Desa Bisa Dibangun Sukses di Pelosok, Mengapa Sekolah Tidak?](https://dalam.web.id/gaya-hidup/koperasi-desa-sukses-mengapa-sekolah-tidak) : Fenomena Koperasi Desa Merah Putih yang dibangun seragam hingga pelosok menyoroti kontrasnya prioritas pembangunan fasilitas pendidikan kita.
@@ -1302,6 +1302,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Catatan perjalanan Ubuntu Jogja ke GCOS Jakarta: bus malam, singgah Kebumen, silaturahmi KPLI, dan penghargaan Komunitas FOSS terbaik.
 
 ## Warta Tekno
+- [Cara Menghitung ISO 8601 Week Number dengan JavaScript](https://dalam.web.id/warta-tekno/cara-menghitung-iso-8601-week-number-javascript) : Belajar cara menghitung minggu ke-berapa dalam setahun (ISO 8601 week number) pakai JavaScript murni tanpa library tambahan. Yuk bedah algoritmanya!
 - [Registrasi SIM Biometrik: Wajah Jadi Password, Amankah?](https://dalam.web.id/warta-tekno/registrasi-sim-biometrik-wajah-amankah) : Aturan registrasi SIM biometrik tuai kritik karena celah keamanan dan kelalaian operator. Amankah data wajah Anda tanpa pengawasan independen?
 - [Mengupas Perbedaan IPv4 vs IPv6: Transisi Menuju Internet Masa Depan](https://dalam.web.id/warta-tekno/ipv4-vs-ipv6-perbedaan-lengkap) : Kupas tuntas perbedaan IPv4 vs IPv6. Mengapa internet mulai meninggalkan IPv4 dan beralih ke IPv6? Pahami konsep alamat IP, NAT, dan keamanannya di sini.
 - [10 Tips Ampuh Optimasi SSD Komputer Agar Awet dan Ngebut](https://dalam.web.id/warta-tekno/10-tips-ampuh-optimasi-ssd-komputer-agar-awet-dan-ngebut) : Komputer mulai lemot? Temukan 10 tips sederhana optimasi SSD agar performa PC Anda kembali ngebut, awet, dan tahan lama tanpa perlu ke tukang servis.
@@ -77348,6 +77349,55 @@ Catatan seperti ini penting karena menunjukkan bahwa open source bukan hanya uru
 
 
 ## Kategori: Warta Tekno
+
+### Cara Menghitung ISO 8601 Week Number dengan JavaScript
+
+**Kategori:** Warta-tekno | **Tanggal:** 2026-08-26T22:29:25.319Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/warta-tekno/cara-menghitung-iso-8601-week-number-javascript)
+
+Membuat fitur kalender atau pelaporan performa mingguan di antarmuka web sering kali menjadi jebakan Batman bagi para Frontend Developer. Secara logika mentah, kita mungkin berpikir bahwa minggu pertama selalu dimulai pada tanggal 1 Januari. Kenyataannya, standar industri logistik, perbankan, dan manufaktur berpegang teguh pada sistem kalender ISO 8601.
+
+Kalau kamu menggunakan library berat seperti Moment.js, hal ini mungkin selesai dengan satu baris pemanggilan fungsi. Tapi hari gini, memasukkan library raksasa hanya untuk mencari angka minggu tentu sangat tidak efisien untuk performa aplikasimu. Untungnya, kita bisa mengeksekusi logika ini dengan Vanilla JavaScript.
+
+#### Kenapa Tidak Bisa Asal Bagi 7?
+
+Standar internasional ISO 8601 menetapkan aturan yang cukup unik dan strict terkait definisi sebuah minggu. Sebuah minggu (dimulai dari hari Senin) baru bisa diakui sebagai "Minggu ke-1" pada tahun tersebut HANYA JIKA minggu itu memiliki hari Kamis pertama di tahun yang sama.
+
+Artinya, jika tanggal 1 Januari jatuh pada hari Jumat, Sabtu, atau Minggu, maka hari-hari tersebut masih nebeng dan dihitung sebagai minggu terakhir (minggu ke-52 atau 53) dari tahun sebelumnya. Ribet? Memang. Tapi dengan menyusun algoritma penggeseran hari yang tepat di JavaScript, kalkulasi ini bisa dilakukan dengan instan.
+
+#### Script JavaScript Murni ISO Week Number
+
+Di bawah ini adalah kode JavaScript siap pakai yang tidak hanya menghitung minggu saat ini (current week), tetapi juga sudah saya lengkapi dengan contoh integrasi DOM untuk menampilkan output dari interaksi kotak input tanggal. Silakan salin snippet ini ke proyekmu.
+
+#### Bedah Kode: Bagaimana Algoritma Ini Bekerja?
+
+Melihat kode matematika berbasis waktu memang kadang bikin sakit mata. Namun, mari kita bedah pelan-pelan logika dari fungsi getWeekNumber() di atas agar kamu paham dasar mekanismenya.
+
+#### 1. Pengamanan Referensi dan Zona Waktu
+
+Di awal blok fungsi, kita membuat instansi Date baru. Ini wajib dilakukan agar objek tanggal asli yang kita masukkan tidak ikut berubah secara tak sengaja (mutasi). Selanjutnya, kita me-reset waktu menjadi 00:00:00. Tujuannya murni defensif: untuk mencegah kalkulasi hari meleset gara-gara perubahan Daylight Saving Time (DST) atau perbedaan zona waktu lokal di mesin client.
+
+#### 2. Matematika "Menggeser ke Kamis"
+
+Kunci utama dari standar ISO 8601 adalah hari Kamis. Perintah date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7); bertugas memaksa kalender untuk menggeser tanggal ke hari Kamis pada minggu yang sama. Dengan kalkulasi modulus ini, baik kamu memasukkan hari Senin maupun Minggu, pointer tanggal akan otomatis terkunci di posisi hari Kamis.
+
+#### 3. Patokan Abadi: 4 Januari
+
+Mengapa tiba-tiba muncul tanggal 4 Januari di baris const week1 = new Date(date.getFullYear(), 0, 4);? Ini adalah trik legendaris para programmer.
+
+Berdasarkan rumusan ISO, hari Kamis pertama selalu jatuh antara tanggal 1 hingga 7 Januari. Artinya, tanggal 4 Januari selalu masuk ke dalam wilayah minggu pertama, apa pun yang terjadi pada tahun tersebut. Dengan menjadikan 4 Januari sebagai titik start absolut (Minggu 1), kita tinggal menghitung selisih milidetik dari tanggal yang kita cari terhadap patokan tersebut.
+
+#### 4. Kalkulasi Milidetik ke Angka Minggu
+
+Langkah terakhir adalah murni matematika anak SD. Kita mengurangi milidetik tanggal yang dicari dengan milidetik tanggal 4 Januari. Hasilnya dibagi 86400000 (jumlah milidetik dalam sehari) untuk mendapatkan total hari. Selisih hari tersebut tinggal dibagi tujuh, lalu ditambah satu. Boom! Keluarlah hasil ISO Week Number yang sangat presisi.
+
+#### Integrasi Interaktif ke DOM HTML
+
+Pada paruh kedua script tersebut, saya juga menyisipkan logika interaktif. Ketika user memilih tanggal di kotak kalender buatan (berbasis input type date), fungsi addEventListener('change') akan langsung menangkap data value tersebut, memprosesnya kembali melalui mesin getWeekNumber(), dan mencetak hasilnya secara langsung (real-time) tanpa perlu memuat ulang halaman.
+
+Penggunaan metode bawaan toLocaleDateString('id-ID', options) juga sangat direkomendasikan untuk mencetak format tanggal lokal yang lebih ramah dibaca manusia secara native. Nggak perlu pusing lagi kan kalau dapet tugas aneh-aneh terkait kalender?
+
+---
+
 
 ### Registrasi SIM Biometrik: Wajah Jadi Password, Amankah?
 
