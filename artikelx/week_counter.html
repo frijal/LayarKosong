@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Live Tool: Kalkulator ISO 8601 Week Number & Script JS</title>
+    <meta name="description" content="Coba langsung live tool kalkulator untuk menghitung minggu ke-berapa (ISO 8601 Week Number) menggunakan JavaScript murni, lengkap dengan bedah kodenya.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Kalkulator Live ISO 8601 Week Number dengan Vanilla JS">
+    <meta property="og:description" content="Tools interaktif untuk mengecek minggu ke-berapa dalam setahun berdasarkan standar ISO 8601. Dibuat pakai JavaScript murni, langsung siap copas!">
+    <meta property="og:url" content="https://dalam.web.id/artikel/week_counter.html">
+    <meta property="og:image" content="https://pbs.twimg.com/media/HQpTVmubgAAaAo4?format=jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Script & Demo Live: Hitung ISO Week Number Pakai JS">
+    <meta name="twitter:description" content="Nggak perlu Moment.js! Cobain langsung live demo kalkulator minggu ke-berapa standar ISO 8601 dan pelajari algoritma JavaScript murninya di sini.">
+    <meta name="twitter:image" content="https://pbs.twimg.com/media/HQpTVmubgAAaAo4?format=jpg">
+    <link rel="canonical" href="https://dalam.web.id/artikel/week_counter.html">
+    <meta name="news_keywords" content="iso 8601 week number, javascript live tool, date calculation js, kalkulator minggu, frontend development">
+    <meta property="article:tag" content="JavaScript, Web Development, Tools, Frontend">
+    <meta name="promphint" content="Bagaimana cara mengecek ISO 8601 week number secara live? | Gunakan form interaktif di halaman ini yang memproses objek Date JavaScript murni untuk mencari letak hari Kamis pertama.">
+
+    <!-- Syntax Highlighting Eksternal Tanpa Preload/Noscript -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/dracula.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+        });
+    </script>
+
+    <style>
+        /* Strategi Anti Padding Inception & Mobile First */
+        :root {
+            --screen-padding: 1rem;
+            --nested-padding: 0rem;
+            --bg-color: #ffffff;
+            --text-color: #202124;
+            --heading-color: #1a1a1a;
+            --link-color: #1a73e8;
+            --border-color: #dadce0;
+            --summary-bg: #f8f9fa;
+            --summary-hover: #f1f3f4;
+            --footer-text: #5f6368;
+            --code-bg: #282a36;
+            --box-bg: #f3f8ff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e8eaed;
+                --heading-color: #ffffff;
+                --link-color: #8ab4f8;
+                --border-color: #3c4043;
+                --summary-bg: #1e1e1e;
+                --summary-hover: #2a2a2a;
+                --footer-text: #9aa0a6;
+                --code-bg: #1e1f29;
+                --box-bg: #1a2332;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            :root {
+                --screen-padding: 2.5rem;
+                --nested-padding: 1.5rem;
+            }
+        }
+
+        /* Base Typography & Reset */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            line-height: 1.25;
+            margin-block-start: 1.5rem;
+            margin-block-end: 1rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            line-height: 1.35;
+            margin-block-start: 2.5rem;
+            margin-block-end: 1.25rem;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            line-height: 1.4;
+            margin-block-start: 2rem;
+            margin-block-end: 1rem;
+        }
+
+        p {
+            margin-block-start: 0;
+            margin-block-end: 1.25rem;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        a:hover {
+            border-bottom: 1px solid var(--link-color);
+        }
+
+        ul, ol {
+            margin-block-end: 1.25rem;
+            padding-inline-start: 1.5rem;
+        }
+
+        li {
+            margin-block-end: 0.5rem;
+        }
+
+        /* Layout Container */
+        .container {
+            width: min(100%, 64rem);
+            margin: 0 auto;
+            padding-inline: var(--screen-padding);
+        }
+
+        .article-body {
+            padding-inline: var(--nested-padding);
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            color: var(--footer-text);
+            margin-block-end: 2rem;
+        }
+
+        /* Media & Image */
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            margin-block-start: 2rem;
+            margin-block-end: 2.5rem;
+            background-color: var(--border-color);
+        }
+
+        /* Interactive Box Styling */
+        .interactive-box {
+            background-color: var(--box-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-block-start: 2rem;
+            margin-block-end: 2.5rem;
+        }
+
+        .interactive-box h3 {
+            margin-block-start: 0;
+        }
+
+        .input-date {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 320px;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-date:focus {
+            outline: none;
+            border-color: var(--link-color);
+        }
+
+        .result-text {
+            margin-top: 1.25rem;
+            font-weight: 700;
+            color: var(--link-color);
+            min-height: 1.7rem;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            margin-block-start: 1.5rem;
+            margin-block-end: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        code {
+            font-family: "Fira Code", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        }
+
+        /* Accordion / Details */
+        details {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-block-start: 2.5rem;
+            margin-block-end: 2.5rem;
+            overflow: hidden;
+            background-color: var(--bg-color);
+        }
+
+        summary {
+            background-color: var(--summary-bg);
+            cursor: pointer;
+            padding: 1.25rem 1.5rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background-color 0.2s ease;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary:hover {
+            background-color: var(--summary-hover);
+        }
+
+        summary h2 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        summary::after {
+            content: "▼";
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        details > *:not(summary) {
+            padding-inline: 1.5rem;
+        }
+
+        details > p:first-of-type {
+            margin-block-start: 1.5rem;
+        }
+
+        details > *:last-child {
+            margin-block-end: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-block-start: 4rem;
+            padding-block: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--footer-text);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .footer-item {
+            display: inline-flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <article class="article-body">
+            <header>
+                <h1>Live Tool: Kalkulator ISO 8601 Week Number JavaScript</h1>
+                <p class="lead">Bosan meraba-raba logika penanggalan yang njelimet? Halaman ini menyajikan <i>tool</i> interaktif yang langsung mengeksekusi script Vanilla JavaScript untuk menghitung standar ISO 8601 Week Number.</p>
+            </header>
+
+            <p>Mendapatkan <i>task</i> untuk membangun fitur pelaporan mingguan di <i>dashboard</i> terkadang menjadi jebakan tak terduga bagi <i>Frontend Developer</i>. Secara sekilas, menghitung "minggu ke-berapa" terdengar sesederhana membagi total hari dengan angka tujuh. Namun di dunia nyata, industri menggunakan standar ketat bernama <b>ISO 8601</b>.</p>
+
+            <p>Standar ini punya aturan saklek: sebuah minggu hanya diakui sebagai "Minggu ke-1" jika ia memiliki hari Kamis pertama di tahun tersebut. Daripada pusing membayangkan teorinya, mari kita langsung buktikan cara kerja algoritma ini melalui kalkulator interaktif di bawah.</p>
+
+            <img src="https://pbs.twimg.com/media/HQpTVmubgAAaAo4?format=jpg" alt="Ilustrasi kalender digital dan kode JavaScript menyala di layar monitor" width="1200" height="675" style="aspect-ratio: 16/9;" fetchpriority="high" decoding="async">
+
+            <h2>Uji Coba Kalkulator Live</h2>
+            <p>Di bawah ini adalah eksekusi langsung dari fungsi JavaScript yang akan kita bahas. Secara <i>default</i>, skrip membaca tanggal hari ini. Kamu juga bisa memilih tanggal apa saja secara manual untuk melihat hasilnya secara <i>real-time</i>.</p>
+
+            <div class="interactive-box">
+                <h3>🗓️ Info Tanggal Hari Ini</h3>
+                <p>Saat ini adalah: <b style="color: var(--link-color);"><span id="current-date-info">Memuat data...</span></b></p>
+                <p>Berdasarkan standar ISO 8601, hari ini masuk di <b>Minggu ke-<span id="current-week">...</span></b></p>
+
+                <hr style="margin-block: 1.5rem; border: 0; border-top: 1px dashed var(--border-color);">
+
+                <h3>🔍 Cek Manual Tanggal Lain</h3>
+                <label for="custom-date" style="display: block; margin-bottom: 0.75rem; font-weight: bold;">Pilih kalender untuk simulasi:</label>
+                <input type="date" id="custom-date" class="input-date">
+                <div id="custom-result" class="result-text"></div>
+            </div>
+
+            <details>
+                <summary><h2>Bedah Kode JavaScript Murni</h2></summary>
+                <p>Kamu nggak perlu mengunduh <i>library</i> bongsor seperti Moment.js atau date-fns hanya untuk mengeksekusi fitur sesederhana ini. Berikut adalah <i>source code</i> asli yang berjalan di balik kalkulator interaktif di atas.</p>
+
+                <h3>Algoritma Utama</h3>
+                <p>Fungsi <code>getWeekNumber()</code> di bawah bertugas memanipulasi salinan objek tanggal (agar aman dari mutasi <i>reference</i>) dan menggesernya paksa ke hari Kamis. Setelah itu, kita jadikan tanggal 4 Januari sebagai garis <i>start</i> absolut untuk mulai menghitung selisih milidetiknya.</p>
+
+<pre><code class="language-javascript">&lt;script&gt;
+    /**
+     * Fungsi buat ngitung ISO 8601 Week Number
+     * Nggak bisa cuma dibagi 7, karena standar ISO netapin minggu ke-1
+     * adalah minggu yang punya hari Kamis pertama di tahun tersebut.
+     */
+    function getWeekNumber(d) {
+        // Copy tanggal biar nggak ngubah referensi asli
+        const date = new Date(d.getTime());
+
+        // Set jam ke 00:00:00 biar aman dari offset zona waktu
+        date.setHours(0, 0, 0, 0);
+
+        // Geser ke hari Kamis di minggu yang sama (Minggu=0, Senin=1, dst)
+        date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+
+        // Ambil tanggal 4 Januari dari tahun yang udah digeser (pasti masuk minggu 1)
+        const week1 = new Date(date.getFullYear(), 0, 4);
+
+        // Hitung selisih hari, lalu bagi 7 dapet deh minggu ke berapa
+        return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+    }
+
+    // Nampilin data hari ini pas halaman diload
+    const today = new Date();
+    const currentWeek = getWeekNumber(today);
+
+    // Injeksi angka ke elemen HTML
+    document.getElementById('current-week').innerText = currentWeek;
+
+    // Bikin format tanggalnya lebih manusiawi (bahasa Indo)
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('current-date-info').innerText = today.toLocaleDateString('id-ID', options);
+
+    // Dengerin perubahan di kotak input tanggal
+    const dateInput = document.getElementById('custom-date');
+    const customResult = document.getElementById('custom-result');
+
+    dateInput.addEventListener('change', function(e) {
+        if (this.value) {
+            const selectedDate = new Date(this.value);
+            const weekNum = getWeekNumber(selectedDate);
+            customResult.innerText = `Mantap, tanggal itu masuk di minggu ke-${weekNum} lur!`;
+        } else {
+            customResult.innerText = '';
+        }
+    });
+&lt;/script&gt;</code></pre>
+
+                <h3>Penjelasan Teknis Penggeseran Hari</h3>
+                <p>Rahasia utamanya ada di baris <code>date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);</code>. Rumus modulus ini akan selalu menarik tanggal berapapun yang kita pilih tepat menuju hari Kamis pada minggu yang sama. Setelah mesin berhasil "berpijak" di hari Kamis, menghitung jarak hari ke tanggal 4 Januari (sebagai patokan permanen minggu pertama) menjadi perhitungan selisih matematika dasar biasa.</p>
+            </details>
+
+            <h2>Kesimpulan Integrasi DOM</h2>
+            <p>Mengintegrasikan perhitungan ISO 8601 ke dalam DOM HTML secara <i>live</i> membuktikan bahwa Vanilla JavaScript sudah sangat mumpuni untuk menangani manipulasi tanggal. Penggunaan <i>event listener</i> tipe <code>change</code> pada elemen kalender <code>&lt;input type="date"&gt;</code> menjamin perhitungan angka minggu langsung di-<i>render</i> ke antarmuka pengguna tanpa memicu <i>reload</i> halaman.</p>
+
+            <p>Silakan <i>copas</i> kerangka <i>script</i> di atas ke dalam proyekmu, dan ucapkan selamat tinggal pada kutu (<i>bug</i>) perhitungan minggu ke-53 yang sering muncul di akhir tahun!</p>
+
+            <!--wajib ini tulis signature artikel oleh LayarKosong-->
+        </article>
+    </main>
+    <footer>
+        <div class="container footer-content">
+            <span class="footer-item"><b>Penulis:</b> Frijal (Senior Frontend Developer)</span>
+            <span class="footer-item"><b>Dipublikasikan pada:</b> 26 Agustus 2026</span>
+            <span class="footer-item"><b>Referensi:</b> ISO 8601 Date and Time Format, MDN Web Docs</span>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * Fungsi buat ngitung ISO 8601 Week Number
+         */
+        function getWeekNumber(d) {
+            const date = new Date(d.getTime());
+            date.setHours(0, 0, 0, 0);
+            date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+            const week1 = new Date(date.getFullYear(), 0, 4);
+            return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date();
+            const currentWeek = getWeekNumber(today);
+
+            const currentWeekEl = document.getElementById('current-week');
+            if(currentWeekEl) currentWeekEl.innerText = currentWeek;
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const currentDateInfoEl = document.getElementById('current-date-info');
+            if(currentDateInfoEl) currentDateInfoEl.innerText = today.toLocaleDateString('id-ID', options);
+
+            const dateInput = document.getElementById('custom-date');
+            const customResult = document.getElementById('custom-result');
+
+            if (dateInput && customResult) {
+                dateInput.addEventListener('change', function(e) {
+                    if (this.value) {
+                        // Memastikan render zona waktu lokal aman saat parsing value HTML
+                        const selectedDate = new Date(this.value + 'T00:00:00');
+                        const weekNum = getWeekNumber(selectedDate);
+                        customResult.innerText = `Mantap, tanggal itu masuk di minggu ke-${weekNum} lur!`;
+                    } else {
+                        customResult.innerText = '';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
