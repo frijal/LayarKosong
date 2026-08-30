@@ -1,31 +1,65 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Membedah Log actions/checkout GitHub Actions dan Hint Git 3.0</title>
-
-  <meta name="description" content="Panduan mendalam membaca log checkout repository di GitHub Actions, memahami hint default branch Git 3.0, dan cara mengoptimalkannya dengan tepat.">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="Membedah Log actions/checkout GitHub Actions &amp; Hint Git 3.0">
-  <meta property="og:description" content="Bedah tuntas log workflow GitHub Actions checkout. Pelajari arti baris eksekusi, penanganan pesan hint branch Git 3.0, dan trik optimasi repository.">
-  <meta property="og:url" content="https://dalam.web.id/artikel/log-actions-checkout-github-actions.html">
-  <meta property="og:image" content="https://pbs.twimg.com/media/HQ-M3zVa4AAIuJx?format=jpg&name=4096x4096">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Membedah Log actions/checkout GitHub Actions &amp; Hint Git 3.0">
-  <meta name="twitter:description" content="Pahami alur kerja actions/checkout pada GitHub Actions. Simak analisis log, penjelasan hint defaultBranch Git 3.0, serta cara menyembunyikannya.">
-  <meta name="twitter:image" content="https://pbs.twimg.com/media/HQ-M3zVa4AAIuJx?format=jpg&name=4096x4096">
-
-  <link rel="canonical" href="https://dalam.web.id/artikel/log-actions-checkout-github-actions.html">
-  <meta name="news_keywords" content="GitHub Actions, Git checkout, CI CD, Git 3.0 hint, defaultBranch, LayarKosong">
-  <meta property="article:tag" content="GitHub Actions">
-  <meta property="article:tag" content="Git">
-  <meta property="article:tag" content="DevOps">
-  <meta name="promphint" content="Apakah pesan hint default branch pada log actions/checkout merupakan error? | Bukan error, itu sekadar informasi transisi penamaan default branch Git dari master ke main pada rilis Git 3.0 mendatang.">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-
+<!DOCTYPE html><html lang="id-ID" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Membedah Log actions/checkout GitHub Actions dan Hint Git 3.0 - Layar Kosong</title>
+    <meta name="description" content="membaca log checkout repository di GitHub Actions, memahami hint default branch Git 3.0, dan cara mengoptimalkannya dengan tepat.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/log-actions-checkout-github-actions">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="GitHub Actions, Git checkout, CI CD, Git 3.0 hint, defaultBranch, LayarKosong">
+    <meta name="promphint" content="Apakah pesan hint default branch pada log actions/checkout merupakan error? | Bukan error, itu sekadar informasi transisi penamaan default branch Git dari master ke main pada rilis Git 3.0 mendatang.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/log-actions-checkout-github-actions">
+    <meta property="og:title" content="Membedah Log actions/checkout GitHub Actions dan Hint Git 3.0">
+    <meta property="og:description" content="Bedah tuntas log workflow GitHub Actions checkout. Pelajari arti baris eksekusi, penanganan pesan hint branch Git 3.0, dan trik optimasi repository.">
+    <meta property="og:updated_time" content="2026-08-30T16:08:09.416Z">
+    <meta property="og:image" content="https://dalam.web.id/img/pbs.twimg.com/16f50087b3e5d737.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/pbs.twimg.com/16f50087b3e5d737.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/pbs.twimg.com/16f50087b3e5d737.webp">
+    <meta property="og:image:alt" content="Membedah Log actions/checkout GitHub Actions dan Hint Git 3.0">
+    <meta property="og:image:width" content="2752">
+    <meta property="og:image:height" content="1536">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/log-actions-checkout-github-actions">
+    <meta name="twitter:title" content="Membedah Log actions/checkout GitHub Actions dan Hint Git 3.0">
+    <meta name="twitter:description" content="Pahami alur kerja actions/checkout pada GitHub Actions. Simak analisis log, penjelasan hint defaultBranch Git 3.0, serta cara menyembunyikannya.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/pbs.twimg.com/16f50087b3e5d737.webp">
+    <meta name="twitter:image:alt" content="Membedah Log actions/checkout GitHub Actions dan Hint Git 3.0">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="twitter:account_id" content="1872520777138122752">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.rss">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.atom">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="GitHub Actions">
+    <meta property="article:tag" content="Git">
+    <meta property="article:tag" content="DevOps">
+    <meta property="article:published_time" content="2026-08-30T16:00:24.572Z">
+    <meta property="article:modified_time" content="2026-08-30T16:08:09.416Z">
+  <link rel="stylesheet" href="/ext/github-dark.min.css">
   <style>
     :root {
       --bg-color: #ffffff;
@@ -39,7 +73,6 @@
       --code-bg: #0d1117;
       --code-color: #c9d1d9;
     }
-
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-color: #0f172a;
@@ -52,20 +85,17 @@
         --code-color: #e6edf3;
       }
     }
-
     @media (min-width: 1024px) {
       :root {
         --screen-padding: 2.5rem;
         --nested-padding: 1.5rem;
       }
     }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
@@ -73,35 +103,29 @@
       line-height: 1.75;
       font-size: 1.125rem;
     }
-
     .container {
       width: min(100%, 64rem);
       margin: 0 auto;
       padding-inline: var(--screen-padding);
       padding-block: 2rem;
     }
-
     header.article-header {
       margin-bottom: 2rem;
     }
-
     h1 {
       font-size: 2.25rem;
       color: var(--heading-color);
       line-height: 1.3;
       margin-bottom: 1rem;
     }
-
     .lead {
       font-size: 1.2rem;
       color: var(--text-color);
       opacity: 0.9;
     }
-
     .article-body {
       padding-inline: var(--nested-padding);
     }
-
     @media (max-width: 640px) {
       .article-body {
         background: transparent;
@@ -109,34 +133,28 @@
         box-shadow: none;
       }
     }
-
     h2 {
       font-size: 1.6rem;
       color: var(--heading-color);
       margin-top: 1.5rem;
       margin-bottom: 1rem;
     }
-
     h3 {
       font-size: 1.3rem;
       color: var(--heading-color);
       margin-top: 1.25rem;
       margin-bottom: 0.75rem;
     }
-
     p {
       margin-bottom: 1.25rem;
     }
-
     ul, ol {
       margin-bottom: 1.25rem;
       padding-left: 1.5rem;
     }
-
     li {
       margin-bottom: 0.5rem;
     }
-
     img {
       width: 100%;
       height: auto;
@@ -146,7 +164,6 @@
       margin-block: 1.5rem;
       display: block;
     }
-
     details {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -155,11 +172,9 @@
       padding: 1rem;
       transition: background-color 0.2s ease;
     }
-
     details[open] {
       padding: 1.25rem;
     }
-
     summary {
       cursor: pointer;
       font-weight: bold;
@@ -169,30 +184,24 @@
       justify-content: space-between;
       align-items: center;
     }
-
     summary::-webkit-details-marker {
       display: none;
     }
-
     summary h2 {
       margin: 0;
       font-size: 1.4rem;
     }
-
     summary::after {
       content: "➕";
       font-size: 1rem;
       margin-left: 0.5rem;
     }
-
     details[open] summary::after {
       content: "➖";
     }
-
     summary:hover {
       opacity: 0.85;
     }
-
     pre {
       background-color: var(--code-bg);
       color: var(--code-color);
@@ -203,16 +212,13 @@
       font-size: 0.95rem;
       border: 1px solid var(--border-color);
     }
-
     code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
-
     a {
       color: var(--link-color);
       text-decoration: underline;
     }
-
     footer {
       margin-top: 3rem;
       padding-top: 1.5rem;
@@ -220,13 +226,11 @@
       text-align: center;
       font-size: 0.9rem;
     }
-
     footer p {
       margin-bottom: 0.5rem;
     }
   </style>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+  <script src="/ext/highlight.js" defer=""></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       if (typeof hljs !== 'undefined') {
@@ -234,7 +238,7 @@
       }
     });
   </script>
-</head>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
   <main class="container">
     <article>
@@ -242,25 +246,17 @@
         <h1>Membedah Log actions/checkout GitHub Actions dan Hint Git 3.0</h1>
         <p class="lead">Memahami secara mendalam proses eksekusi checkout repositori di CI/CD, mengidentifikasi status sukses, serta mengatasi peringatan default branch Git tanpa rasa panik.</p>
       </header>
-
       <section class="article-body">
         <p>Ketika membangun otomasi CI/CD di platform GitHub Actions, langkah awal yang hampir selalu ada di setiap berkas workflow adalah eksekusi <b>actions/checkout</b>. Tindakan ini bertugas mengunduh seluruh kode sumber dari repositori remote ke dalam direktori kerja runner virtual. Namun, bagi pengembang yang baru pertama kali memeriksa keluaran log konsol secara rinci, munculnya rentetan teks <i>hint</i> peringatan sering kali memicu keraguan apakah proses tersebut berjalan dengan benar atau mengalami kegagalan teknis.</p>
-
         <p>Pemeriksaan log build secara seksama merupakan kebiasaan penting bagi seorang praktisi DevOps maupun Frontend Developer. Setiap baris instruksi memberikan visibilitas penuh mengenai konfigurasi yang diterapkan, versi biner Git yang digunakan oleh lingkungan sistem operasi runner, hingga proses ekstraksi berkas yang berlangsung di latar belakang saat pipeline dipicu.</p>
-
-        <img src="https://pbs.twimg.com/media/HQ-M3zVa4AAIuJx?format=jpg&name=4096x4096" alt="Ilustrasi workflow GitHub Actions dan eksekusi checkout repositori" width="1200" height="630" fetchpriority="high" decoding="async">
-
+        <img src="https://dalam.web.id/img/pbs.twimg.com/16f50087b3e5d737.webp" alt="Ilustrasi workflow GitHub Actions dan eksekusi checkout repositori" width="1200" height="630" fetchpriority="high" decoding="async">
         <h2>Anatomi Log Checkout Repository dan Indikator Keberhasilannya</h2>
         <p>Berdasarkan log eksekusi workflow yang ditampilkan, dapat dipastikan bahwa proses <b>Checkout Repository</b> berjalan dengan <b>sempurna, sukses, dan tanpa kegagalan sama sekali</b>. Tidak ada pesan kesalahan berstatus fatal (<i>error</i> atau <i>fatal exception</i>) yang menghentikan alur kerja.</p>
-
         <p>Proses ini diawali dengan pembacaan opsi parameter bawaan action seperti <code>fetch-depth: 1</code> untuk menghemat memori, pengaktifan <code>persist-credentials: true</code> agar otentikasi token tetap terjaga, serta pembersihan direktori kerja runner (<code>clean: true</code>). Selanjutnya, perintah <code>git init</code> dieksekusi untuk merancang lingkungan Git lokal sementara di dalam direktori runner <code>/home/runner/work/LayarKosong/LayarKosong</code>.</p>
-
         <p>Tahap krusial berikutnya adalah sinkronisasi dan pengunduhan berkas proyek. Log menunjukkan progres transfer data yang bertahap mulai dari 84% hingga 100%, menandakan sebanyak <b>11.420 berkas proyek LayarKosong</b> berhasil diuraikan sepenuhnya ke dalam sistem berkas runner. Di akhir langkah checkout, sistem melakukan perpindahan branch secara otomatis ke <code>main</code> yang telah dipasangkan dengan <code>origin/main</code>, serta menampilkan hash unik commit terakhir yaitu <code>a70ebbf3c40137de2d82751b35e72b74fcd41a63</code>.</p>
-
         <details>
           <summary><h2>Mengenal Pesan Hint Default Branch pada Git 3.0</h2></summary>
           <p>Satu-satunya elemen visual dalam log yang sering memicu pertanyaan adalah hadirnya beberapa baris teks berawalan <i>hint</i> seperti berikut:</p>
-
 <pre><code class="language-text">hint: Using 'master' as the name for the initial branch. This default branch name
 hint: will change to "main" in Git 3.0. To configure the initial branch name
 hint: to use in all of your new repositories, which will suppress this warning,
@@ -269,48 +265,36 @@ hint:
 hint: 	git config --global init.defaultBranch &lt;name&gt;
 hint:
 hint: Disable this message with "git config set advice.defaultBranchName false"</code></pre>
-
           <h3>Alasan Munculnya Peringatan Transisi Branch</h3>
           <p>Pesan tersebut merupakan pemberitahuan resmi dari pengembang inti biner Git mengenai rencana pembaruan standar penamaan branch awal di versi mayor <b>Git 3.0</b> mendatang. Secara historis, biner <code>git init</code> secara otomatis membuat branch awal bernama <b>master</b> jika pengguna tidak menentukan opsi lain. Namun, standar industri modern telah beralih menggunakan nama <b>main</b> sebagai cabang utama.</p>
-
           <h3>Dampak Peringatan Terhadap Jalannya Workflow</h3>
           <p>Penting untuk diingat bahwa pesan ini <b>bukanlah sebuah kesalahan (error)</b>. Log tersebut hanyalah petunjuk normatif dari biner Git versi 2.55.0 yang terpasang di runner Ubuntu. Action <code>actions/checkout</code> sendiri sudah sangat cerdas; segera setelah perintah <code>git init</code> selesai dieksekusi, action ini secara otomatis merenam cabang awal dan mengalihkan checkout menuju branch target <code>main</code> seperti yang tercatat pada log <code>Switched to a new branch 'main'</code>.</p>
-
           <h3>Cara Menyembunyikan Pesan Hint Secara Global</h3>
           <p>Jika ingin membuat tampilan log runner menjadi lebih bersih dan bebas dari pesan petunjuk transisi branch tersebut, konfigurasi Git global dapat disisipkan dalam langkah workflow sebelum instruksi checkout berjalan:</p>
-
 <pre><code class="language-yaml">- name: Configure Git Global Settings
   run: |
     git config --global init.defaultBranch main
     git config --global advice.defaultBranchName false
-
 - name: Checkout Repository
   uses: actions/checkout@v4
   with:
     fetch-depth: 1</code></pre>
         </details>
-
         <details>
           <summary><h2>Praktik Terbaik Optimasi Checkout Workflow di GitHub Actions</h2></summary>
           <p>Mengelola pipeline CI/CD yang efisien membutuhkan pemahaman mendalam tentang opsi-opsi yang disediakan oleh plugin checkout resmi GitHub. Optimasi yang tepat tidak hanya mempercepat durasi build, tetapi juga menghemat konsumsi kuota menit runner bulanan.</p>
-
           <h3>Mengatur Depth Fetch untuk Mempercepat CI/CD</h3>
           <p>Secara default pada versi <code>actions/checkout</code> terbaru, opsi <code>fetch-depth</code> diatur ke nilai <code>1</code> (<i>shallow clone</i>). Opsi ini sangat direkomendasikan untuk workflow pengujian, pembuatan build statis, maupun deployment produksi karena hanya mengunduh sejarah commit paling akhir. Jika pipeline memerlukan histori commit lengkap (misalnya untuk komputasi changelog atau rilis otomatis), nilai ini dapat disesuaikan kembali menjadi <code>0</code>.</p>
-
           <h3>Mengamankan Kredensial dan Manajemen Token</h3>
           <p>Fitur <code>persist-credentials: true</code> secara otomatis mengonfigurasi biner Git di runner agar menggunakan token autentikasi bawaan <code>GITHUB_TOKEN</code>. Hal ini sangat memudahkan apabila ada langkah selanjutnya dalam workflow yang membutuhkan hak akses untuk mendorong balik perubahan (<i>push</i>) ke repositori, seperti pembaruan dokumentasi atau pembuatan rilis tag otomatis.</p>
         </details>
-
         <p>Secara keseluruhan, struktur log eksekusi checkout yang dihasilkan oleh runner sudah berada dalam kondisi yang sangat ideal. Pengembang dapat melanjutkan tahap-tahap berikutnya dalam pipeline CI/CD, seperti proses pengujian sintaksis, kompilasi aset statis, hingga deployment akhir tanpa ada kekhawatiran terkait integritas repositori lokal di runner.</p>
       </section>
-
-      <!--wajib ini tulis signature artikel oleh LayarKosong-->
+      <div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>
     </article>
   </main>
-
   <footer>
     <p>Penulis: <b>Frijal</b> | Dipublikasikan pada: <b>30 Agustus 2026</b></p>
-    <p>Referensi Eksternal: <a href="https://docs.github.com/en/actions" target="_blank" rel="noopener noreferrer">Dokumentasi Resmi GitHub Actions</a> &bull; <a href="https://git-scm.com/docs" target="_blank" rel="noopener noreferrer">Dokumentasi SCM Git</a></p>
-  </footer>
-</body>
-</html>
+    <p>Referensi Eksternal: <a href="https://docs.github.com/en/actions" target="_blank" rel="noopener noreferrer">Dokumentasi Resmi GitHub Actions</a> • <a href="https://git-scm.com/docs" target="_blank" rel="noopener noreferrer">Dokumentasi SCM Git</a></p>
+   <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
