@@ -1,14 +1,22 @@
 # =========================================================
-# 1. ATURAN GLOBAL, KEAMANAN & AGENT DISCOVERY (RFC 8288)
-# Semua request akan dapat header ini secara otomatis
+# 1. ATURAN GLOBAL, KEAMANAN & AGENT DISCOVERY (RFC 8288 & ARD)
 # =========================================================
 /*
   X-Content-Type-Options: nosniff
+  Link: </.well-known/ai-catalog.json>; rel="ai-catalog"
   Link: </.well-known/api-catalog>; rel="api-catalog"
   Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
   Link: </.well-known/agent-card.json>; rel="agent-card"
   Link: </llms.txt>; rel="alternate"; type="text/markdown"
   Link: </llms.md>; rel="alternate"; type="text/markdown"
+
+# =========================================================
+# PERLAKUAN KHUSUS MANIFEST ARD (CORS & Content-Type)
+# =========================================================
+/.well-known/ai-catalog.json
+  Content-Type: application/json; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Prevent Indexing for Preview Domains
 https://:project.pages.dev/*
