@@ -1,0 +1,55 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/schema/v1/ai-catalog.json",
+  "specVersion": "1.0",
+  "host": {
+    "name": "Layar Kosong",
+    "url": "https://dalam.web.id",
+    "description": "Media independen seputar teknologi, sistem operasi Linux, pengembangan web, dan opini sosial."
+  },
+  "entries": [
+    {
+      "id": "urn:air:dalam.web.id:content:llms-txt",
+      "displayName": "Layar Kosong LLMs Context Summary",
+      "type": "text/plain",
+      "url": "https://dalam.web.id/llms.txt",
+      "representativeQueries": [
+        "Cari ringkasan artikel dan topik blog Layar Kosong",
+        "Apa saja pembahasan utama di dalam.web.id",
+        "Get site overview and markdown content index"
+      ]
+    },
+    {
+      "id": "urn:air:dalam.web.id:agent:skills",
+      "displayName": "Agent Skills Index",
+      "type": "application/json",
+      "url": "https://dalam.web.id/.well-known/agent-skills/index.json",
+      "representativeQueries": [
+        "Kapabilitas dan keterampilan agent apa saja yang tersedia",
+        "Daftar agent skills Layar Kosong",
+        "List available agent tools and skills"
+      ]
+    },
+    {
+      "id": "urn:air:dalam.web.id:agent:card",
+      "displayName": "A2A Agent Profile Card",
+      "type": "application/json",
+      "url": "https://dalam.web.id/.well-known/agent-card.json",
+      "representativeQueries": [
+        "Profil dan identitas agen A2A",
+        "Fetch Agent Card metadata for Agent-to-Agent communication",
+        "Spesifikasi agen cerdas Layar Kosong"
+      ]
+    },
+    {
+      "id": "urn:air:dalam.web.id:api:catalog",
+      "displayName": "API Catalog Linkset",
+      "type": "application/linkset+json",
+      "url": "https://dalam.web.id/.well-known/api-catalog",
+      "representativeQueries": [
+        "Katalog API publik RFC 9727",
+        "Daftar endpoint API Layar Kosong",
+        "Get public API catalog endpoints"
+      ]
+    }
+  ]
+}
