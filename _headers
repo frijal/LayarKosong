@@ -1,9 +1,14 @@
 # =========================================================
-# 1. ATURAN GLOBAL & KEAMANAN
-# Semua request akan dapet header ini otomatis
+# 1. ATURAN GLOBAL, KEAMANAN & AGENT DISCOVERY (RFC 8288)
+# Semua request akan dapat header ini secara otomatis
 # =========================================================
 /*
   X-Content-Type-Options: nosniff
+  Link: </.well-known/api-catalog>; rel="api-catalog"
+  Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
+  Link: </.well-known/agent-card.json>; rel="agent-card"
+  Link: </llms.txt>; rel="alternate"; type="text/markdown"
+  Link: </llms.md>; rel="alternate"; type="text/markdown"
 
 # Prevent Indexing for Preview Domains
 https://:project.pages.dev/*
@@ -30,8 +35,6 @@ https://:version.:project.pages.dev/*
 
 # =========================================================
 # 3. ASET STATIS UMUM (Long-term Cache)
-# Ditulis LEBIH AWAL agar file spesifik di bawah bisa melakukan override.
-# Sisa file di folder /ext/ (seperti fonts / asset pasif) aman di sini.
 # =========================================================
 /img/*
   Cache-Control: public, max-age=31536000, immutable
@@ -155,15 +158,8 @@ https://:version.:project.pages.dev/*
   Cache-Control: public, max-age=0, must-revalidate
 
 # =========================================================
-# 5. HEADERS LINK AGENT & DISCOVERY (Paling Bawah)
+# 5. HALAMAN DENGAN PERLAKUAN KHUSUS
 # =========================================================
-/*
-  Link: </.well-known/agent-skills/index.json>; rel="agent-skills"
-  Link: </.well-known/api-catalog>; rel="api-catalog"
-  Link: </llms.txt>; rel="alternate"; type="text/markdown"
-  Link: </llms.md>; rel="alternate"; type="text/markdown"
-
-
 /hit.html
   Content-Type: text/html; charset=utf-8
   X-Robots-Tag: noindex, nofollow, noarchive
