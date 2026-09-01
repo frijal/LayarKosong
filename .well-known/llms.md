@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.66
-last_updated: 2026-08-30
+document_version: 25.67
+last_updated: 2026-09-01
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -39,8 +39,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 30 Agustus 2026)
-> Menampilkan 1615 artikel versi 25.66.
+## Index Artikel Terbaru (Updated: 1 September 2026)
+> Menampilkan 1616 artikel versi 25.67.
 
 ## Gaya Hidup
 - [Koperasi Desa Bisa Dibangun Sukses di Pelosok, Mengapa Sekolah Tidak?](https://dalam.web.id/gaya-hidup/koperasi-desa-sukses-mengapa-sekolah-tidak) : Fenomena Koperasi Desa Merah Putih yang dibangun seragam hingga pelosok menyoroti kontrasnya prioritas pembangunan fasilitas pendidikan kita.
@@ -1305,6 +1305,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Catatan perjalanan Ubuntu Jogja ke GCOS Jakarta: bus malam, singgah Kebumen, silaturahmi KPLI, dan penghargaan Komunitas FOSS terbaik.
 
 ## Warta Tekno
+- [Cara Mengetahui Jenis Hard Disk di Windows](https://dalam.web.id/warta-tekno/cara-mengetahui-jenis-hard-disk-di-windows) : cara mengetahui jenis hard disk di Windows, mulai dari HDD, SSD SATA, hingga SSD NVMe dengan Task Manager, Optimize Drives, dan PowerShell.
 - [Membedah Log actions/checkout GitHub Actions dan Hint Git 3.0](https://dalam.web.id/warta-tekno/log-actions-checkout-github-actions) : membaca log checkout repository di GitHub Actions, memahami hint default branch Git 3.0, dan cara mengoptimalkannya dengan tepat.
 - [Cara Menghitung ISO 8601 Week Number dengan JavaScript](https://dalam.web.id/warta-tekno/cara-menghitung-iso-8601-week-number-javascript) : Belajar cara menghitung minggu ke-berapa dalam setahun (ISO 8601 week number) pakai JavaScript murni tanpa library tambahan. Yuk bedah algoritmanya!
 - [Registrasi SIM Biometrik: Wajah Jadi Password, Amankah?](https://dalam.web.id/warta-tekno/registrasi-sim-biometrik-wajah-amankah) : Aturan registrasi SIM biometrik tuai kritik karena celah keamanan dan kelalaian operator. Amankah data wajah Anda tanpa pengawasan independen?
@@ -77509,6 +77510,104 @@ Catatan seperti ini penting karena menunjukkan bahwa open source bukan hanya uru
 
 
 ## Kategori: Warta Tekno
+
+### Cara Mengetahui Jenis Hard Disk di Windows
+
+**Kategori:** Warta-tekno | **Tanggal:** 2026-09-01T18:49:12.659Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/warta-tekno/cara-mengetahui-jenis-hard-disk-di-windows)
+
+Mengetahui jenis media penyimpanan bukan sekadar urusan penasaran. Informasi ini berguna ketika ingin melakukan upgrade, menentukan jenis SSD yang kompatibel, memeriksa performa komputer, atau sekadar memastikan apakah sebuah perangkat masih menggunakan hard disk mekanis lama.
+
+Secara umum, penyimpanan komputer Windows dapat berupa HDD atau SSD. SSD sendiri bisa menggunakan koneksi SATA atau antarmuka yang lebih cepat seperti NVMe, yang umumnya ditemukan pada SSD berbentuk M.2. Bentuk fisik M.2 dan jenis protokol NVMe juga perlu dibedakan karena M.2 adalah bentuk perangkat, sedangkan NVMe merupakan protokol komunikasi penyimpanan.
+
+Kabar baiknya, pengecekan tersebut dapat dilakukan langsung dari Windows. Anda tidak perlu membuka casing komputer, melepas drive, atau mengandalkan aplikasi pihak ketiga hanya untuk mengetahui informasi dasar tersebut.
+
+#### Memeriksa Jenis Drive dari Task Manager
+
+Task Manager merupakan cara yang paling praktis jika Anda ingin melihat informasi drive secara cepat. Fitur ini tersedia langsung pada Windows dan tidak membutuhkan instalasi perangkat lunak tambahan.
+
+#### Membuka halaman Performance
+
+Tekan Ctrl + Shift + Esc untuk membuka Task Manager. Setelah jendela terbuka, pilih tab Performance, kemudian pilih disk yang ingin diperiksa, misalnya Disk 0 (C:).
+
+Pada panel informasi disk, Windows dapat menampilkan informasi mengenai jenis media dan koneksi yang digunakan. Perhatikan bagian seperti Type dan Bus type. Keterangan tersebut membantu membedakan SSD dan HDD, sekaligus menunjukkan apakah koneksi penyimpanannya menggunakan SATA, NVMe, atau jenis bus lainnya.
+
+#### Membaca informasi yang ditampilkan
+
+Jika Windows menampilkan SSD, berarti perangkat tersebut menggunakan media penyimpanan solid-state. Jika tertulis HDD, perangkat menggunakan piringan magnetis yang berputar secara mekanis.
+
+Sementara itu, informasi Bus type menjelaskan jalur komunikasi perangkat dengan sistem. Jika terlihat NVMe, Anda sedang berhadapan dengan perangkat penyimpanan berbasis protokol NVMe. Jika tertulis SATA, perangkat menggunakan antarmuka SATA.
+
+#### Mengecek Media Type dengan Optimize Drives
+
+Cara berikutnya menggunakan aplikasi Windows yang dikenal sebagai Defragment and Optimize Drives. Namanya memang masih mengandung kata defragment, tetapi Windows juga menggunakan alat ini untuk mengenali jenis media penyimpanan yang terpasang.
+
+#### Membuka Optimize Drives
+
+Buka pencarian Windows, kemudian ketik Defragment. Pilih aplikasi Defragment and Optimize Drives dari hasil pencarian.
+
+Setelah aplikasi terbuka, Anda akan melihat daftar drive yang tersedia. Salah satu kolom penting adalah Media type. Windows biasanya akan mengidentifikasinya sebagai Solid state drive atau Hard disk drive.
+
+#### Kapan cara ini lebih praktis?
+
+Metode ini cocok jika tujuan Anda hanya ingin mengetahui apakah drive tersebut HDD atau SSD. Tampilannya sederhana sehingga tidak perlu memahami banyak istilah teknis.
+
+Namun, jika Anda ingin mengetahui informasi bus atau mendapatkan data fisik yang lebih detail, PowerShell memberikan informasi yang lebih berguna.
+
+#### Mengecek Jenis Hard Disk dengan PowerShell
+
+Untuk pengguna yang membutuhkan informasi lebih terstruktur, PowerShell menjadi pilihan yang menarik. PowerShell adalah shell dan lingkungan otomasi bawaan Windows yang dapat membaca informasi perangkat melalui perintah sistem.
+
+#### Perintah yang digunakan
+
+Buka PowerShell, kemudian jalankan perintah berikut:
+
+Perintah tersebut meminta Windows mengambil daftar physical disk, lalu hanya menampilkan tiga informasi penting: FriendlyName, MediaType, dan BusType.
+
+#### Memahami hasil PowerShell
+
+FriendlyName menunjukkan nama perangkat fisik yang dikenali Windows. Nama ini dapat membantu mengidentifikasi model atau keluarga drive yang digunakan.
+
+MediaType menunjukkan kategori media penyimpanan, misalnya SSD atau HDD. Informasi ini menjawab pertanyaan paling dasar mengenai jenis media yang digunakan perangkat.
+
+Sementara BusType menunjukkan jenis bus atau antarmuka yang digunakan. Pada sistem yang mendukung informasi tersebut, nilai seperti SATA atau NVMe dapat membantu mengetahui jalur komunikasi penyimpanan.
+
+Contohnya, jika hasilnya menunjukkan media SSD dengan bus NVMe, maka perangkat tersebut merupakan SSD NVMe. Jika media menunjukkan SSD dengan bus SATA, maka perangkat tersebut menggunakan SSD SATA.
+
+#### Memahami Perbedaan HDD, SSD SATA, dan SSD NVMe
+
+Ketiga istilah ini sering tercampur karena sebenarnya membahas dua hal yang berbeda: jenis media penyimpanan dan cara perangkat berkomunikasi dengan komputer.
+
+Hal penting yang perlu diingat adalah M.2 tidak selalu berarti NVMe. M.2 merupakan bentuk fisik atau form factor. Ada SSD M.2 yang menggunakan SATA dan ada pula yang menggunakan NVMe. Karena itu, jangan hanya melihat bentuk perangkat ketika menentukan kompatibilitas upgrade.
+
+#### Metode Mana yang Sebaiknya Digunakan?
+
+Jika hanya ingin mengetahui apakah penyimpanan komputer berupa HDD atau SSD, Optimize Drives merupakan pilihan yang paling sederhana. Anda tinggal membuka aplikasi tersebut dan melihat kolom Media type.
+
+Jika ingin memperoleh gambaran lebih lengkap mengenai jenis media sekaligus bus yang digunakan, Task Manager biasanya lebih informatif dan tetap mudah dipahami.
+
+Untuk pemeriksaan beberapa drive sekaligus atau kebutuhan administrasi sistem, PowerShell lebih unggul karena hasilnya berbentuk data terstruktur dan dapat dikembangkan menjadi bagian dari skrip otomasi.
+
+- Cepat dan sederhana: gunakan Optimize Drives.
+- Informasi visual: gunakan Task Manager.
+- Informasi teknis dan banyak drive: gunakan PowerShell.
+#### Mengapa Informasi Jenis Drive Penting?
+
+Mengetahui jenis penyimpanan sangat berguna ketika komputer terasa lambat dan Anda ingin menentukan komponen mana yang layak di-upgrade. Mengganti HDD dengan SSD, misalnya, dapat memberikan perubahan responsivitas yang sangat terasa pada banyak komputer karena waktu akses penyimpanan jauh lebih rendah.
+
+Informasi ini juga penting ketika melakukan instalasi ulang Windows atau migrasi sistem. Mengetahui drive mana yang merupakan SSD NVMe, SSD SATA, atau HDD membantu mengurangi risiko salah memilih perangkat ketika bekerja dengan beberapa media penyimpanan sekaligus.
+
+Selain itu, identifikasi jenis drive dapat membantu ketika mencari spesifikasi perangkat. Setelah mengetahui bahwa komputer menggunakan SSD NVMe, misalnya, Anda dapat melanjutkan pemeriksaan model, kapasitas, generasi PCIe, dan kecepatan baca-tulis untuk menentukan opsi upgrade yang sesuai.
+
+#### Kesimpulan
+
+Windows sudah menyediakan berbagai cara untuk mengetahui jenis hard disk tanpa aplikasi tambahan. Task Manager cocok untuk pemeriksaan cepat melalui halaman Performance, sedangkan Defragment and Optimize Drives memberikan informasi sederhana mengenai apakah media tersebut HDD atau SSD.
+
+Jika membutuhkan informasi yang lebih detail, gunakan PowerShell dengan perintah Get-PhysicalDisk | Select-Object FriendlyName, MediaType, BusType. Dari hasilnya, Anda dapat melihat nama perangkat, jenis media, dan bus yang digunakan.
+
+Dengan memahami perbedaan HDD, SSD SATA, dan SSD NVMe, Anda tidak hanya mengetahui isi komputer saat ini, tetapi juga memiliki dasar yang lebih baik ketika hendak melakukan upgrade penyimpanan.
+
+---
+
 
 ### Membedah Log actions/checkout GitHub Actions dan Hint Git 3.0
 
