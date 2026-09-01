@@ -8,7 +8,7 @@
   },
   "entries": [
     {
-      "id": "urn:air:dalam.web.id:content:llms-txt",
+      "identifier": "urn:air:dalam.web.id:content:llms-txt",
       "displayName": "Layar Kosong LLMs Context Summary",
       "type": "text/plain",
       "url": "https://dalam.web.id/llms.txt",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "id": "urn:air:dalam.web.id:agent:skills",
+      "identifier": "urn:air:dalam.web.id:agent:skills",
       "displayName": "Agent Skills Index",
       "type": "application/json",
       "url": "https://dalam.web.id/.well-known/agent-skills/index.json",
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "id": "urn:air:dalam.web.id:agent:card",
+      "identifier": "urn:air:dalam.web.id:agent:card",
       "displayName": "A2A Agent Profile Card",
       "type": "application/json",
       "url": "https://dalam.web.id/.well-known/agent-card.json",
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "id": "urn:air:dalam.web.id:api:catalog",
+      "identifier": "urn:air:dalam.web.id:api:catalog",
       "displayName": "API Catalog Linkset",
       "type": "application/linkset+json",
       "url": "https://dalam.web.id/.well-known/api-catalog",
