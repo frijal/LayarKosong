@@ -130,7 +130,7 @@ jobs:
           # 6. Sesuaikan path fontawesome
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
 
-          # 7. Eksekusi Koki (Transpile markdown.ts ke /ext/markdown.js)
+          # 7. Eksekusi Koki (Transpile berkas.ts ke /ext/berkas.js)
           bun dapur/koki.ts --once
 
           # 8. Update Metadata
