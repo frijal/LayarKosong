@@ -56,7 +56,7 @@ jobs:
 
       - name: 🧹 Prepare Clean Directory (rsync)
         run: |
-          mkdir deploy_dir
+          mkdir -p deploy_dir
           rsync -a --delete \
             --include='gaya-hidup/***' \
             --include='jejak-sejarah/***' \
@@ -91,6 +91,14 @@ jobs:
             --include='*.webmanifest' \
             --exclude='*' \
             source/ deploy_dir/
+
+          # 🛡️ Force Copy & Verification Guard
+          echo "📋 Memeriksa keberadaan file kontrol Cloudflare..."
+          [ -f "source/_headers" ] && cp -f source/_headers deploy_dir/_headers && echo "✅ _headers berhasil disalin!" || echo "⚠️ WARN: source/_headers TIDAK ditemukan!"
+          [ -f "source/_redirects" ] && cp -f source/_redirects deploy_dir/_redirects && echo "✅ _redirects berhasil disalin!" || echo "⚠️ WARN: source/_redirects TIDAK ditemukan!"
+
+          echo "🔍 Isi deploy_dir saat ini:"
+          ls -la deploy_dir/_headers deploy_dir/_redirects || true
 
       # 🔑 Create Config (selalu dibuat — dibutuhkan oleh D1 maupun deploy)
       - name: Create Temporary Wrangler Config
