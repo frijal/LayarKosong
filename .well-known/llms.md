@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.68
+document_version: 25.69
 last_updated: 2026-09-02
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 2 September 2026)
-> Menampilkan 1617 artikel versi 25.68.
+> Menampilkan 1618 artikel versi 25.69.
 
 ## Gaya Hidup
 - [Koperasi Desa Bisa Dibangun Sukses di Pelosok, Mengapa Sekolah Tidak?](https://dalam.web.id/gaya-hidup/koperasi-desa-sukses-mengapa-sekolah-tidak) : Fenomena Koperasi Desa Merah Putih yang dibangun seragam hingga pelosok menyoroti kontrasnya prioritas pembangunan fasilitas pendidikan kita.
@@ -1306,6 +1306,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Catatan perjalanan Ubuntu Jogja ke GCOS Jakarta: bus malam, singgah Kebumen, silaturahmi KPLI, dan penghargaan Komunitas FOSS terbaik.
 
 ## Warta Tekno
+- [Cara Install Ulang OS Windows dengan Benar](https://dalam.web.id/warta-tekno/cara-install-ulang-windows-dengan-benar) : install ulang laptop Windows dari flashdisk, mulai backup data, membuat bootable USB, mengatur partisi hingga memasang driver.
 - [Cara Mengetahui Jenis Hard Disk di Windows](https://dalam.web.id/warta-tekno/cara-mengetahui-jenis-hard-disk-di-windows) : cara mengetahui jenis hard disk di Windows, mulai dari HDD, SSD SATA, hingga SSD NVMe dengan Task Manager, Optimize Drives, dan PowerShell.
 - [Membedah Log actions/checkout GitHub Actions dan Hint Git 3.0](https://dalam.web.id/warta-tekno/log-actions-checkout-github-actions) : membaca log checkout repository di GitHub Actions, memahami hint default branch Git 3.0, dan cara mengoptimalkannya dengan tepat.
 - [Cara Menghitung ISO 8601 Week Number dengan JavaScript](https://dalam.web.id/warta-tekno/cara-menghitung-iso-8601-week-number-javascript) : Belajar cara menghitung minggu ke-berapa dalam setahun (ISO 8601 week number) pakai JavaScript murni tanpa library tambahan. Yuk bedah algoritmanya!
@@ -77558,6 +77559,212 @@ Catatan seperti ini penting karena menunjukkan bahwa open source bukan hanya uru
 
 
 ## Kategori: Warta Tekno
+
+### Cara Install Ulang OS Windows dengan Benar
+
+**Kategori:** Warta-tekno | **Tanggal:** 2026-09-02T20:52:50.331Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/warta-tekno/cara-install-ulang-windows-dengan-benar)
+
+Laptop yang mulai lambat, sering mengalami error, terkena masalah software, atau sudah terlalu penuh dengan aplikasi yang tidak diperlukan terkadang memang membutuhkan instalasi ulang. Namun, proses ini bukan sekadar memasukkan flashdisk lalu menekan tombol Next berulang kali. Ada beberapa tahap penting yang perlu diperhatikan agar sistem dapat terpasang dengan benar dan data pribadi tidak ikut hilang.
+
+Cara yang dibahas di sini menggunakan flashdisk bootable Windows dan metode Custom Install untuk mendapatkan instalasi yang bersih. Metode tersebut cocok ketika Windows lama ingin diganti dengan sistem baru, tetapi pengaturan drive dan partisi harus dilakukan dengan sangat hati-hati.
+
+Bagian yang paling berisiko justru bukan proses pemasangan Windows, melainkan ketika memilih dan menghapus partisi. Karena itu, sebelum masuk ke installer, pastikan data penting sudah memiliki salinan cadangan.
+
+#### Persiapan Sebelum Install Ulang
+
+Persiapan menentukan apakah proses instalasi ulang berjalan lancar atau berubah menjadi sesi pemulihan data yang panjang. Sebelum menghapus partisi apa pun, identifikasi terlebih dahulu file yang masih diperlukan.
+
+#### Backup data penting
+
+Simpan dokumen, foto, video, file pekerjaan, database lokal, dan data aplikasi ke media penyimpanan lain. Folder seperti Desktop, Documents, Downloads, dan Pictures juga perlu diperiksa karena sering menjadi tempat penyimpanan file pribadi.
+
+Jika laptop mempunyai beberapa partisi, misalnya C: dan D:, jangan langsung menganggap semua partisi aman. Ketahui terlebih dahulu partisi mana yang berisi Windows dan partisi mana yang digunakan untuk menyimpan data.
+
+#### Siapkan flashdisk
+
+Gunakan flashdisk dengan kapasitas yang mencukupi untuk media instalasi Windows. Dalam panduan ini digunakan rekomendasi minimal 8 GB. Isi flashdisk sebaiknya sudah dipindahkan karena proses pembuatan bootable dapat menghapus data yang ada di dalamnya.
+
+#### Siapkan file ISO Windows
+
+Gunakan file ISO Windows yang berasal dari sumber resmi. File instalasi yang tidak jelas asalnya dapat menimbulkan risiko keamanan dan masalah aktivasi.
+
+#### Pastikan laptop mendapat daya
+
+Hubungkan laptop ke charger sebelum memulai. Proses instalasi dapat berlangsung cukup lama dan laptop akan melakukan restart beberapa kali. Kehabisan daya ketika proses instalasi sedang berlangsung adalah kondisi yang sebaiknya dihindari.
+
+#### Membuat Flashdisk Bootable Windows
+
+Flashdisk bootable adalah media USB yang berisi file instalasi dan dapat digunakan laptop untuk menjalankan Windows Setup sebelum sistem operasi yang ada di SSD atau HDD dimuat.
+
+#### Menggunakan Rufus
+
+- Colokkan flashdisk ke komputer.
+- Jalankan aplikasi Rufus.
+- Pilih flashdisk yang akan digunakan pada bagian perangkat.
+- Pilih file ISO Windows sebagai sumber instalasi.
+- Sesuaikan skema partisi dengan konfigurasi laptop.
+- Untuk laptop modern dengan UEFI, konfigurasi yang umum adalah GPT dengan target UEFI.
+- Klik Start dan konfirmasikan peringatan yang muncul.
+Setelah proses selesai, flashdisk dapat digunakan sebagai media untuk melakukan boot dan menjalankan installer Windows.
+
+Perhatian: pastikan flashdisk yang dipilih benar. Jangan sampai drive eksternal berisi data penting ikut terpilih sebagai target pembuatan bootable.
+
+#### Boot Laptop dari Flashdisk
+
+Setelah flashdisk bootable selesai dibuat, masukkan flashdisk tersebut ke laptop yang akan di-install ulang. Laptop harus diarahkan untuk melakukan boot dari USB, bukan langsung dari SSD atau HDD internal.
+
+#### Masuk ke Boot Menu
+
+- Colokkan flashdisk bootable ke laptop.
+- Nyalakan atau restart laptop.
+- Tekan tombol Boot Menu sesuai merek dan model laptop.
+- Pilih perangkat USB atau flashdisk dari daftar boot.
+- Tekan Enter untuk menjalankan Windows Setup.
+Tombol yang digunakan dapat berbeda antara satu perangkat dengan perangkat lainnya. Beberapa kombinasi yang umum digunakan dapat dilihat pada tabel berikut.
+
+Daftar tersebut bersifat umum. Model tertentu dapat menggunakan tombol yang berbeda, sehingga dokumentasi perangkat tetap menjadi rujukan terbaik apabila tombol tidak bekerja.
+
+#### Memulai Instalasi Windows
+
+Jika boot dari USB berhasil, Windows Setup akan muncul. Pada tahap awal, pilih bahasa, format waktu, dan layout keyboard sesuai kebutuhan.
+
+- Pilih bahasa instalasi.
+- Atur format waktu dan keyboard.
+- Klik Next.
+- Klik Install now.
+Installer kemudian akan melanjutkan ke proses pemilihan jenis instalasi dan lokasi Windows akan dipasang.
+
+Jika installer meminta product key, gunakan lisensi yang sesuai dengan perangkat atau edisi Windows yang digunakan. Aktivasi setelah instalasi bergantung pada jenis lisensi dan konfigurasi perangkat.
+
+#### Memilih Custom Install untuk Instalasi Bersih
+
+Untuk melakukan pemasangan Windows dari awal, pilih opsi Custom: Install Windows only (advanced).
+
+Opsi Custom memungkinkan pengguna menentukan lokasi instalasi Windows dan mengelola partisi yang tersedia. Inilah bagian yang membutuhkan perhatian paling besar karena kesalahan memilih partisi dapat menyebabkan data hilang.
+
+#### Bedanya dengan upgrade
+
+Instalasi upgrade berfokus pada mempertahankan sistem dan file yang kompatibel, sedangkan clean install digunakan ketika Windows ingin dipasang kembali dari kondisi yang lebih bersih. Pilihan yang digunakan harus disesuaikan dengan tujuan instalasi.
+
+Jangan menghapus partisi hanya karena namanya terlihat asing. Partisi seperti System Reserved, EFI, Recovery, dan partisi data dapat memiliki fungsi berbeda. Pastikan fungsi serta isi partisi sudah dipahami sebelum melakukan perubahan.
+
+#### Mengatur Partisi SSD atau HDD
+
+Windows Setup akan menampilkan daftar drive dan partisi yang tersedia. Pada tahap ini, perhatikan nama drive, kapasitas, dan jenis partisi sebelum melakukan Delete, Format, atau membuat partisi baru.
+
+#### Jika ingin melakukan clean install
+
+Apabila seluruh data pada partisi sistem sudah dicadangkan dan memang ingin menghapus instalasi Windows lama, partisi sistem dapat dikelola dari halaman pemilihan drive. Jangan menyamakan clean install dengan kewajiban menghapus seluruh drive.
+
+Jika terdapat partisi data yang ingin dipertahankan, partisi tersebut tidak perlu dihapus. Pilih hanya partisi yang memang menjadi target instalasi ulang dan sudah dipastikan aman untuk dihapus atau diformat.
+
+#### Membuat partisi baru
+
+Setelah ruang penyimpanan tersedia sebagai Unallocated Space, pilih ruang tersebut kemudian gunakan opsi New untuk membuat partisi baru sesuai kebutuhan. Windows juga dapat membuat partisi sistem tambahan yang diperlukan secara otomatis.
+
+Untuk konfigurasi modern, kombinasi UEFI dan GPT merupakan konfigurasi yang umum. Namun, pengaturan tersebut tetap harus disesuaikan dengan konfigurasi firmware dan media penyimpanan laptop.
+
+Berhenti jika ragu. Lebih baik memeriksa ulang struktur partisi daripada kehilangan file penting karena salah memilih Drive 0, Partition 1, Partition 2, atau partisi lainnya.
+
+#### Menunggu Proses Instalasi Windows
+
+Setelah lokasi instalasi dipilih, klik Next. Windows akan mulai menyalin file, memasang komponen sistem, dan melakukan konfigurasi.
+
+Proses dapat menampilkan beberapa tahap seperti penyalinan file Windows, pemasangan fitur, instalasi driver, dan konfigurasi sistem. Durasi sangat bergantung pada kecepatan SSD atau HDD, media instalasi, dan spesifikasi laptop.
+
+#### Laptop restart beberapa kali
+
+Restart otomatis selama proses instalasi merupakan hal yang normal. Jangan mematikan laptop secara paksa hanya karena layar berubah atau perangkat melakukan restart.
+
+Setelah tahap tertentu, pastikan komputer tidak kembali menjalankan installer dari flashdisk apabila Windows sudah mulai melakukan boot dari penyimpanan internal. Jika diperlukan, keluarkan flashdisk setelah installer tidak lagi membutuhkannya.
+
+Tips: biarkan laptop tetap terhubung ke charger sampai proses instalasi dan konfigurasi awal benar-benar selesai.
+
+#### Setup Windows Setelah Instalasi Selesai
+
+Setelah Windows berhasil dipasang, sistem akan menjalankan konfigurasi awal. Tahap ini menyiapkan lingkungan Windows agar siap digunakan sehari-hari.
+
+- Pilih region atau wilayah.
+- Pilih layout keyboard.
+- Hubungkan laptop ke Wi-Fi atau jaringan internet.
+- Login menggunakan akun Microsoft apabila diperlukan.
+- Periksa dan sesuaikan pengaturan privasi.
+Setelah konfigurasi selesai, desktop Windows akan tersedia. Namun, pekerjaan belum sepenuhnya selesai karena driver dan pembaruan sistem masih perlu diperiksa.
+
+#### Install Driver dan Aplikasi Penting
+
+Instalasi Windows dapat membuat sebagian besar perangkat langsung berfungsi, tetapi beberapa komponen mungkin membutuhkan driver khusus dari produsen laptop. Karena itu, setelah masuk desktop, periksa driver sebelum menggunakan laptop untuk pekerjaan penting.
+
+#### Driver yang perlu diperiksa
+
+- Chipset
+- GPU atau VGA
+- Wi-Fi
+- LAN
+- Bluetooth
+- Audio
+- Touchpad
+- Storage controller
+- Fingerprint jika tersedia
+- Hotkey atau function key
+Prioritaskan driver dari situs resmi produsen laptop dan gunakan model perangkat yang tepat. Driver untuk model berbeda belum tentu kompatibel meskipun nama seri laptopnya terlihat mirip.
+
+#### Pasang aplikasi yang benar-benar dibutuhkan
+
+Setelah driver selesai, pasang aplikasi utama seperti browser, aplikasi perkantoran, pembaca PDF, aplikasi pekerjaan, dan perangkat lunak keamanan sesuai kebutuhan.
+
+Hindari memasang terlalu banyak aplikasi utilitas yang tidak diperlukan. Semakin banyak program yang berjalan otomatis, semakin besar pula kemungkinan sistem kembali terasa berat.
+
+#### Jalankan Windows Update
+
+Hubungkan laptop ke internet dan periksa Windows Update. Pasang pembaruan penting yang tersedia, kemudian restart apabila diminta. Setelah restart, periksa kembali pembaruan hingga sistem berada pada kondisi yang sesuai.
+
+#### Hal yang Sebaiknya Dilakukan Setelah Install Ulang
+
+Setelah Windows dan aplikasi utama selesai dipasang, lakukan pemeriksaan singkat sebelum mengembalikan seluruh data pekerjaan.
+
+- Pastikan Windows sudah aktif sesuai lisensi.
+- Periksa koneksi Wi-Fi dan Bluetooth.
+- Uji audio dan mikrofon.
+- Periksa resolusi dan driver GPU.
+- Pastikan touchpad dan keyboard berfungsi.
+- Periksa kapasitas penyimpanan.
+- Jalankan Windows Update.
+- Pasang aplikasi pekerjaan yang diperlukan.
+- Kembalikan data dari backup.
+Untuk laptop yang digunakan bekerja, sebaiknya jangan langsung mengembalikan seluruh isi backup secara membabi buta. Pilih file yang memang diperlukan agar sistem baru tetap rapi.
+
+#### Checklist Install Ulang OS Windows
+
+- Backup data penting.
+- Backup bookmark dan data aplikasi yang diperlukan.
+- Siapkan flashdisk minimal 8 GB.
+- Siapkan ISO Windows.
+- Buat flashdisk bootable.
+- Periksa konfigurasi UEFI dan GPT.
+- Boot laptop dari flashdisk.
+- Jalankan Windows Setup.
+- Pilih Custom Install jika membutuhkan instalasi bersih.
+- Periksa partisi dengan teliti.
+- Pilih lokasi instalasi Windows.
+- Tunggu proses instalasi sampai selesai.
+- Selesaikan konfigurasi awal Windows.
+- Install driver.
+- Jalankan Windows Update.
+- Install aplikasi yang diperlukan.
+- Restore data dari backup.
+#### Kesimpulan
+
+Install ulang laptop Windows dari flashdisk sebenarnya cukup sistematis. Urutannya dapat diringkas menjadi backup data → membuat bootable USB → boot dari USB → menjalankan Windows Setup → memilih partisi → memasang Windows → setup awal → install driver → update → memasang aplikasi.
+
+Tahap yang paling membutuhkan kehati-hatian adalah pengelolaan partisi. Instalasi ulang tidak selalu berarti seluruh isi SSD atau HDD harus dihapus. Jika terdapat partisi data yang masih diperlukan, identifikasi dan lindungi partisi tersebut sebelum melakukan Delete atau Format.
+
+Dengan backup yang benar, media instalasi yang siap, sumber driver yang tepat, serta pemahaman terhadap struktur partisi, proses install ulang dapat dilakukan dengan lebih aman dan terkontrol.
+
+Ingat aturan paling penting: sebelum menghapus atau memformat sebuah partisi, pastikan Anda benar-benar mengetahui isinya. Tombol Delete memang sederhana, tetapi akibatnya bisa sangat permanen.
+
+---
+
 
 ### Cara Mengetahui Jenis Hard Disk di Windows
 
