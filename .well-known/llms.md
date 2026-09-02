@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.69
+document_version: 25.70
 last_updated: 2026-09-02
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 2 September 2026)
-> Menampilkan 1618 artikel versi 25.69.
+> Menampilkan 1619 artikel versi 25.70.
 
 ## Gaya Hidup
 - [Koperasi Desa Bisa Dibangun Sukses di Pelosok, Mengapa Sekolah Tidak?](https://dalam.web.id/gaya-hidup/koperasi-desa-sukses-mengapa-sekolah-tidak) : Fenomena Koperasi Desa Merah Putih yang dibangun seragam hingga pelosok menyoroti kontrasnya prioritas pembangunan fasilitas pendidikan kita.
@@ -388,6 +388,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Keajaiban Istighfar: Kunci Sederhana Pembuka Pintu Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : keajaiban istighfar sebagai kunci pembuka pintu langit dan rezeki. Pelajari rahasia spiritual dan janji Allah dalam QS Nuh untuk hidup yang lebih lapang.
 
 ## Lainnya
+- [3 Hal yang Dihindari Suami Saat Marah](https://dalam.web.id/lainnya/3-hal-yang-dihindari-suami-saat-marah) : tiga hal yang perlu dihindari suami ketika marah kepada istri: memukul wajah, menghina pasangan, dan mempermalukannya di luar rumah.
 - [Analisis Kejadian PA, MA, UA pada Alat Berat Tambang](https://dalam.web.id/lainnya/evaluasi-efisiensi-alat-berat-tambang-pa-ma-ua) : tentang cara mengevaluasi efisiensi alat berat di pertambangan berdasarkan skenario kombinasi indikator PA, MA, dan UA yang rendah dan tinggi.
 - [Mengapa Perusahaan Memilih MOOH 16 Jam untuk Alat Berat?](https://dalam.web.id/lainnya/mengapa-perusahaan-pilih-mooh-16-jam-alat-berat) : Membongkar alasan mengapa manajemen armada tambang dan industri ngotot menggunakan standar MOOH 16 jam penuh demi optimasi utilisasi aset dan operasional.
 - [Week Counter Cihuy by Frijal](https://dalam.web.id/lainnya/week_counter) : Sekarang kita lagi di minggu ke:
@@ -23100,6 +23101,144 @@ Istighfar bukan sekadar deretan kata tanpa makna; ia adalah cara terbaik untuk p
 
 
 ## Kategori: Lainnya
+
+### 3 Hal yang Dihindari Suami Saat Marah
+
+**Kategori:** Lainnya | **Tanggal:** 2026-09-02T11:11:17.450Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/lainnya/3-hal-yang-dihindari-suami-saat-marah)
+
+Kehidupan rumah tangga tidak selalu berjalan tanpa perbedaan pendapat. Dua orang yang hidup bersama tentu dapat memiliki pandangan berbeda mengenai pekerjaan, keuangan, keluarga, komunikasi, maupun persoalan sehari-hari. Perbedaan tersebut terkadang berkembang menjadi pertengkaran dan membuat emosi meningkat.
+
+Persoalannya bukan semata-mata apakah seorang suami pernah merasa marah kepada istrinya. Yang lebih penting adalah apa yang dilakukan ketika kemarahan tersebut muncul. Kemarahan yang tidak terkendali dapat mendorong seseorang mengucapkan perkataan yang menyakitkan, melakukan tindakan fisik, atau membuka persoalan pribadi kepada orang lain.
+
+Materi dalam poster yang menjadi dasar tulisan ini menekankan tiga hal yang perlu dihindari ketika seorang suami sedang marah kepada istrinya. Ketiganya berkaitan dengan larangan menyakiti secara fisik, menjaga ucapan, serta menjaga kehormatan dan privasi rumah tangga.
+
+#### 1. Jangan Memukul Wajah Istri
+
+Hal pertama yang ditekankan dalam poster adalah larangan memukul wajah istri. Wajah merupakan bagian tubuh yang memiliki kehormatan dan juga sangat rentan mengalami cedera. Karena itu, kemarahan tidak seharusnya menjadi alasan untuk melakukan kekerasan terhadap pasangan.
+
+Poster mengutip sebuah hadis yang pada intinya memberikan arahan agar seseorang menghindari wajah ketika memukul. Rujukan yang dicantumkan dalam poster adalah riwayat Bukhari dan Muslim.
+
+“Jika salah seorang dari kalian memukul, maka hindarilah wajah.”
+
+Dalam konteks kehidupan rumah tangga modern, pesan tersebut perlu dibaca dengan prinsip kehati-hatian. Pembahasan mengenai teks-teks fikih terkait disiplin dalam rumah tangga memiliki konteks, syarat, batasan, dan perbedaan penjelasan ulama. Karena itu, materi ini tidak boleh digunakan sebagai pembenaran untuk melakukan kekerasan terhadap pasangan.
+
+#### Kemarahan tidak boleh berubah menjadi kekerasan
+
+Ketika seseorang sedang marah, pilihan paling aman adalah menghentikan eskalasi konflik. Mengambil waktu untuk menenangkan diri jauh lebih baik daripada melakukan tindakan yang dapat menyebabkan cedera atau meninggalkan trauma.
+
+Jika pembicaraan sudah berubah menjadi pertengkaran yang sulit dikendalikan, suami dapat mengatakan bahwa percakapan akan dilanjutkan setelah kedua pihak lebih tenang. Jeda semacam ini bukan berarti masalah diabaikan, melainkan memberikan kesempatan agar penyelesaian tidak dilakukan dalam kondisi emosi yang memuncak.
+
+Penting: kekerasan fisik bukan cara yang sehat untuk menyelesaikan konflik rumah tangga. Jika seseorang merasa akan kehilangan kendali, prioritaskan keselamatan, hentikan pertengkaran, dan cari bantuan dari pihak yang dapat dipercaya.
+
+#### 2. Jangan Menjelek-Jelekkan atau Menghina Istri
+
+Hal kedua yang menjadi perhatian adalah ucapan ketika marah. Kata-kata sering dianggap lebih ringan daripada tindakan fisik, padahal penghinaan yang terus-menerus dapat merusak rasa aman dan kepercayaan dalam sebuah hubungan.
+
+Poster mencantumkan hadis yang menggambarkan seorang mukmin bukan sebagai orang yang gemar mencela, melaknat, berkata keji, atau berkata kotor. Rujukan yang dicantumkan adalah riwayat Tirmidzi dan disebut sebagai hadis hasan.
+
+“Seorang mukmin bukanlah orang yang suka mencela, suka melaknat, berkata keji dan berkata kotor.”
+
+Pesan tersebut relevan ketika diterapkan dalam komunikasi suami dan istri. Saat konflik, seseorang mungkin mengetahui banyak kelemahan pasangannya. Justru karena informasi itu diketahui secara pribadi, kelemahan tersebut seharusnya tidak dijadikan senjata untuk merendahkan pasangan.
+
+#### Jangan menjadikan kesalahan pasangan sebagai amunisi
+
+Mengungkit kesalahan masa lalu, menghina fisik, memberikan julukan yang merendahkan, memaki, atau sengaja mempermalukan pasangan dapat membuat masalah yang awalnya kecil menjadi jauh lebih besar.
+
+Perselisihan seharusnya membahas masalah yang sedang terjadi, bukan menyerang harga diri orang yang sedang diajak menyelesaikan masalah tersebut.
+
+#### Makna pasangan sebagai pakaian
+
+Poster juga menghubungkan pembahasan ini dengan QS. Al-Baqarah ayat 187 yang menggambarkan suami dan istri sebagai pakaian satu sama lain. Gambaran tersebut memberikan konteks tentang kedekatan, perlindungan, dan hubungan yang bersifat sangat pribadi.
+
+Pakaian pada dasarnya menutup dan melindungi. Dalam konteks yang dibawa poster, pasangan tidak semestinya menjadikan kekurangan satu sama lain sebagai bahan untuk mempermalukan. Persoalan rumah tangga tidak harus diketahui semua orang.
+
+Prinsip praktis: ketika sedang marah, bicarakan perilaku atau masalahnya, bukan merendahkan karakter dan martabat orangnya.
+
+#### 3. Jangan Mempermalukan Istri dengan Membawanya ke Luar Rumah
+
+Poin ketiga dalam poster berkaitan dengan tindakan hajr atau boikot dalam konteks konflik rumah tangga. Poster mengutip hadis Abu Dawud nomor 2142 dan menekankan bahwa tindakan tersebut memiliki batas serta tidak seharusnya berubah menjadi penghinaan terhadap pasangan.
+
+Dalam materi poster, contoh yang disebut sebagai bentuk boikot di dalam rumah antara lain tidak tidur seranjang dan tidak makan bersama. Pada saat yang sama, poster memberikan penekanan agar persoalan tersebut tidak berubah menjadi tindakan mempermalukan istri di hadapan orang lain.
+
+#### Jangan menjadikan rumah tangga sebagai tontonan
+
+Konflik suami istri pada dasarnya merupakan persoalan pribadi. Ketika seseorang sedang marah, ada godaan untuk mencari dukungan dengan menceritakan keburukan pasangannya kepada orang lain. Padahal, membuka semua masalah rumah tangga dapat memperluas konflik dan membuat persoalan menjadi semakin sulit diperbaiki.
+
+Hal yang sama berlaku terhadap media sosial. Mengunggah sindiran, membagikan percakapan pribadi, menyebarkan foto atau rekaman pertengkaran, maupun menceritakan aib pasangan kepada publik dapat meninggalkan konsekuensi yang panjang.
+
+#### Privasi bukan berarti menutup diri dari bantuan
+
+Menjaga privasi rumah tangga bukan berarti pasangan harus menghadapi semua masalah sendirian. Jika konflik sudah sulit diselesaikan, meminta bantuan kepada orang yang dipercaya dapat menjadi pilihan yang lebih baik.
+
+Yang perlu dibedakan adalah mencari bantuan untuk menyelesaikan masalah dengan menyebarkan keburukan pasangan untuk mempermalukannya. Keduanya memiliki tujuan yang berbeda.
+
+Jika terdapat kekerasan atau ancaman keselamatan di dalam rumah tangga, mencari bantuan dan perlindungan bukanlah tindakan mempermalukan pasangan. Keselamatan harus menjadi prioritas.
+
+#### Menjaga Aib Pasangan Ketika Sedang Marah
+
+Ketiga pembahasan di atas memiliki satu benang merah, yaitu menjaga kehormatan pasangan bahkan ketika hubungan sedang berada dalam konflik. Ini bukan perkara sederhana karena justru pada saat emosi memuncak seseorang paling mudah kehilangan pertimbangan.
+
+Pasangan mengetahui banyak hal yang tidak diketahui orang lain. Ia mengetahui kelemahan, kebiasaan, kekhawatiran, kesalahan, dan persoalan pribadi pasangannya. Pengetahuan tersebut seharusnya menjadi tanggung jawab untuk saling menjaga, bukan menjadi kumpulan amunisi yang dikeluarkan setiap kali terjadi pertengkaran.
+
+Gagasan bahwa aib istri juga berkaitan dengan kehormatan suami dapat menjadi pengingat agar persoalan pribadi tidak diumbar tanpa alasan yang tepat. Demikian pula sebaliknya, pasangan juga perlu menjaga privasi dan martabat suaminya.
+
+#### Jaga tangan
+
+Jangan membiarkan kemarahan berkembang menjadi tindakan fisik yang menyakiti pasangan.
+
+#### Jaga lisan
+
+Hindari makian, penghinaan, celaan, dan perkataan yang sengaja merendahkan pasangan.
+
+#### Jaga privasi
+
+Jangan menjadikan konflik pribadi sebagai bahan tontonan orang lain atau konsumsi media sosial.
+
+#### Ketika Marah, Berhenti Sebelum Bertindak
+
+Mengendalikan kemarahan bukan berarti menekan semua emosi dan berpura-pura tidak ada masalah. Kemarahan dapat menjadi tanda bahwa ada persoalan yang memang perlu dibicarakan. Yang perlu dikendalikan adalah tindakan yang muncul akibat emosi tersebut.
+
+#### Berikan jeda
+
+Ketika percakapan sudah berubah menjadi saling meninggikan suara, mengambil jeda dapat membantu menurunkan intensitas emosi. Percakapan dapat dilanjutkan setelah kondisi lebih tenang.
+
+#### Fokus pada masalah
+
+Saat pembicaraan dilanjutkan, usahakan membahas persoalan yang menjadi sumber konflik. Hindari mengumpulkan seluruh kesalahan pasangan dari masa lalu hanya untuk memenangkan perdebatan hari ini.
+
+#### Jangan mengambil keputusan permanen ketika emosi memuncak
+
+Ancaman, penghinaan, tindakan impulsif, atau keputusan drastis yang dibuat ketika sedang marah dapat menimbulkan masalah baru. Berikan waktu untuk berpikir sebelum menentukan langkah yang memiliki dampak panjang terhadap keluarga.
+
+Jika konflik berulang dan tidak kunjung menemukan jalan keluar, bantuan pihak ketiga yang bijaksana dapat dipertimbangkan. Tujuannya bukan mencari siapa yang kalah, tetapi mencari cara agar masalah dapat diselesaikan dengan lebih sehat.
+
+#### Jangan Salah Memahami Pesan Poster
+
+Materi poster menggunakan bahasa yang tegas mengenai beberapa tindakan yang perlu dihindari ketika suami marah. Namun, pembaca sebaiknya tidak mengambil satu potongan kalimat secara terpisah lalu menjadikannya pembenaran untuk melakukan kekerasan, penghinaan, atau pengusiran.
+
+Pembahasan mengenai teks hadis dan hukum keluarga memiliki konteks yang luas. Teks yang dikutip dalam poster sebaiknya dipahami bersama penjelasan ulama, konteks hadis, serta pembahasan fikih yang lengkap. Tulisan ini berfokus pada pesan moral dan bahan bacaan yang terdapat dalam poster, bukan menetapkan fatwa atau menggantikan penjelasan ahli.
+
+Dalam praktik kehidupan rumah tangga, prinsip yang paling aman adalah menyelesaikan perselisihan tanpa kekerasan, tanpa penghinaan, dan tanpa mempermalukan pasangan. Jika terdapat risiko keselamatan, persoalan tersebut harus ditangani secara serius dan bantuan yang tepat perlu dicari.
+
+#### Ringkasan Pengingat Ketika Marah
+
+- Jangan menyakiti pasangan secara fisik, termasuk menjadikan wajah sebagai sasaran ketika marah.
+- Jaga ucapan dan hindari celaan, makian, penghinaan, serta perkataan yang merendahkan.
+- Jaga kehormatan rumah tangga dan jangan mengumbar keburukan pasangan kepada publik.
+- Berikan jeda ketika emosi memuncak sebelum melanjutkan percakapan.
+- Cari bantuan yang tepat jika konflik sudah sulit diselesaikan atau menyangkut keselamatan.
+#### Kesimpulan
+
+Marah merupakan bagian dari kehidupan manusia, termasuk dalam kehidupan suami dan istri. Perbedaan pendapat tidak selalu dapat dihindari. Yang dapat dijaga adalah cara merespons perbedaan tersebut.
+
+Berdasarkan isi poster yang menjadi dasar artikel ini, terdapat tiga pengingat utama bagi suami ketika sedang marah: jangan menyakiti pasangan secara fisik, jangan menghina atau menjelek-jelekkannya, dan jangan mempermalukannya dengan membuka persoalan rumah tangga kepada orang lain.
+
+Ketiganya dapat dirangkum menjadi satu prinsip sederhana: kemarahan tidak menghapus kewajiban untuk menghormati pasangan. Konflik boleh terjadi, tetapi penyelesaiannya tetap perlu mempertahankan martabat, keselamatan, dan privasi kedua belah pihak.
+
+Pada akhirnya, keberhasilan dalam menyelesaikan pertengkaran bukan ditentukan oleh siapa yang paling keras berbicara atau siapa yang berhasil membuat pasangannya kalah. Rumah tangga justru membutuhkan kemampuan untuk berhenti ketika emosi meningkat, berbicara ketika sudah tenang, dan menyelesaikan masalah tanpa meninggalkan luka yang tidak perlu.
+
+---
+
 
 ### Analisis Kejadian PA, MA, UA pada Alat Berat Tambang
 
