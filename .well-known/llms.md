@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.73
+document_version: 25.74
 last_updated: 2026-09-03
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 3 September 2026)
-> Menampilkan 1622 artikel versi 25.73.
+> Menampilkan 1623 artikel versi 25.74.
 
 ## Gaya Hidup
 - [Koperasi Desa Bisa Dibangun Sukses di Pelosok, Mengapa Sekolah Tidak?](https://dalam.web.id/gaya-hidup/koperasi-desa-sukses-mengapa-sekolah-tidak) : Fenomena Koperasi Desa Merah Putih yang dibangun seragam hingga pelosok menyoroti kontrasnya prioritas pembangunan fasilitas pendidikan kita.
@@ -168,6 +168,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Mengapa Muhammadiyah Lebih Banyak Membangun Sekolah?](https://dalam.web.id/jejak-sejarah/mengapa-muhammadiyah-lebih-banyak-membangun-sekolah) : Alasan mendasar mengapa Muhammadiyah lebih dominan mendirikan sekolah dan perguruan tinggi dibanding pesantren berdasarkan integrasi ilmu KH Ahmad Dahlan.
 - [Rahasia Muktamar Muhammadiyah Selalu Adem dan Dewasa](https://dalam.web.id/jejak-sejarah/rahasia-muktamar-muhammadiyah-selalu-adem) : mengapa Muktamar Muhammadiyah selalu berlangsung adem, matangnya sistem Formatur 13, dan etos kepemimpinan berbasis amanah publik.
 - [Al-Qur'an Memerintahkan Luzūmul Jamā'ah? Keajaiban Persatuan Umat](https://dalam.web.id/jejak-sejarah/al-quran-memerintahkan-luzumul-jamaah-keajaiban-persatuan-umat) : Makna Luzūmul Jamā'ah dalam Islam bukan sekadar berkumpul, melainkan bersatu di atas kebenaran. Pelajari prinsip persatuan yang diajarkan Al-Qur'an dan Sunnah.
 - [Benarkah Takdir Bisa Berubah? Kisah Kaum Nabi Yunus yang Tidak Jadi Kena Azab](https://dalam.web.id/jejak-sejarah/benarkah-takdir-bisa-berubah-kisah-kaum-nabi-yunus) : Kisah unik kaum Nabi Yunus yang selamat dari azab karena taubat nasuha. Pelajaran tentang harapan, rahmat Allah, dan kekuatan kembali kepada-Nya sebelum terlambat.
@@ -8945,6 +8946,45 @@ Jika suatu waktu kendaraan di depan Anda mengerem mendadak, dengan menjaga jarak
 
 
 ## Kategori: Jejak Sejarah
+
+### Mengapa Muhammadiyah Lebih Banyak Membangun Sekolah?
+
+**Kategori:** Jejak-sejarah | **Tanggal:** 2026-09-03T10:49:16.630Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/jejak-sejarah/mengapa-muhammadiyah-lebih-banyak-membangun-sekolah)
+
+Sering muncul pertanyaan menarik di tengah masyarakat: mengapa Muhammadiyah jauh lebih banyak mendirikan sekolah umum dan universitas ketimbang madrasah maupun pesantren? Sebagai organisasi kemasyarakatan Islam besar di Indonesia, pilihan strategi ini sering kali mengundang rasa penasaran.
+
+Jawabannya tidak terletak pada rasa enggan mendirikan pesantren, melainkan pada visi besar pendirinya, KH Ahmad Dahlan. Sejak awal abad ke-20, beliau merancang sistem pendidikan terintegrasi yang mampu menjawab tantangan zaman tanpa memisahkan ilmu agama dari pengetahuan umum.
+
+#### Kritik Dualisme dan Lahirnya Model Sekolah Modern
+
+Pada era kolonial Hindia Belanda, dunia pendidikan Indonesia mengalami dikotomi yang tajam. Di satu sisi, sekolah pemerintah kolonial mengajarkan sains modern namun hampa nilai keislaman. Di sisi lain, lembaga tradisional sangat kuat dalam pengajaran agama tetapi belum menyentuh pengetahuan umum secara terstruktur.
+
+#### Menghapus Jurang Pemisah Antara Agama dan Sains
+
+KH Ahmad Dahlan melihat dikotomi tersebut sebagai hambatan kemajuan umat. Beliau mempertanyakan mengapa seorang Muslim harus dipaksa memilih antara menjadi ahli ilmu agama atau penguasa ilmu pengetahuan umum. Melalui gagasan pembaruan, lahir konsep pendidikan terpadu yang memadukan keduanya dalam satu atap.
+
+#### Eksperimen Pendidikan Sejak 1911
+
+Sebelum Muhammadiyah resmi berdiri pada 1912, KH Ahmad Dahlan telah mendirikan Madrasah Ibtidaiyah Diniyah Islamiyah pada 1 Desember 1911. Lembaga ini mengajarkan ilmu agama sekaligus membaca huruf Latin, berhitung, dan geografi. Pendekatan ini membuktikan bahwa Muhammadiyah sejak awal mengusung pembaharuan sekolah agama menjadi lembaga modern terintegrasi.
+
+#### Strategi Mencetak Profesional Berjiwa Islam dan Data Lembaga
+
+Langkah Muhammadiyah memperbanyak sekolah umum berciri khas Islam didasari oleh kebutuhan strategis jangka panjang. Umat Islam tidak hanya memerlukan ulama dan guru agama, tetapi juga dokter, insinyur, teknokrat, pengusaha, serta birokrat yang memiliki fondasi keimanan yang kokoh.
+
+#### Data Jumlah Lembaga Pendidikan Muhammadiyah
+
+Berdasarkan data jaringan pendidikan Muhammadiyah terbaru, struktur kuantitatif lembaga pendidikan yang dikelola menunjukkan fokus dominan pada jalur sekolah formal:
+
+#### Dua Jalur Tradisi Pendidikan yang Saling Melengkapi
+
+Data di atas memperlihatkan bahwa Muhammadiyah menjalankan dua jalur pendidikan yang saling mengisi:
+
+- Sekolah Formal & Perguruan Tinggi: Menjadi pilar utama dakwah sosial untuk menguasai teknologi, sains, serta mencetak tenaga profesional Muslim.
+- Pesantren: Berfungsi sebagai wadah khusus pencetakan kader ulama dan pendalaman keilmuan Islam intensif berbasis asrama.
+Dominasi jumlah sekolah ketimbang pesantren bukan penanda berkurangnya nilai keislaman Muhammadiyah. Ini adalah bentuk dakwah peradaban agar umat Islam tidak hanya mahir dalam ritual ibadah (sekadar saleh individual), tetapi juga hadir memberi solusi nyata bagi kemajuan masyarakat modern.
+
+---
+
 
 ### Rahasia Muktamar Muhammadiyah Selalu Adem dan Dewasa
 
