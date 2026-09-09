@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bedah Teknis Deepin 25.2.2: Lompatan Treeland Wayland</title>
+
+  <!-- SEO & Canonical -->
+  <meta name="description" content="Ulasan teknis deepin 25.2.2: migrasi Treeland ke wlroots 0.20, refraksi Liquid Glass berbasis fisika, dan protokol pointer mutakhir untuk gaming di Wayland.">
+  <link rel="canonical" href="https://dalam.web.id/artikel/deepin-25-2-2-treeland-wayland.html">
+  <meta name="news_keywords" content="deepin 25.2.2, treeland compositor, wayland linux, wlroots 0.20, liquid glass deepin">
+  <meta property="article:tag" content="Linux">
+  <meta property="article:tag" content="Deepin">
+  <meta property="article:tag" content="Wayland">
+  <meta property="article:tag" content="Treeland">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Bedah Teknis Deepin 25.2.2: Lompatan Treeland Wayland">
+  <meta property="og:description" content="Eksplorasi mendalam rilis deepin 25.2.2. Menguak peningkatan compositor Treeland, optimasi aplikasi Electron Wayland, serta manajemen split window responsif.">
+  <meta property="og:url" content="https://dalam.web.id/artikel/deepin-25-2-2-treeland-wayland.html">
+  <meta property="og:image" content="https://scontent.fpnk2-1.fna.fbcdn.net/v/t39.99422-6/800595752_1829603878044669_221063734975101677_n.png?stp=dst-jpg_tt6&cstp=mx1920x1080&ctp=s1920x1080&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEaRFp9ujbVIFyxfsRw15U-iI282XPPVJiIjbzZc89UmOerARk_EKEk9rvJ-sl0BOU&_nc_ohc=KeJQZb6VwIAQ7kNvwG2qk58&_nc_oc=AdqQ1rTBw9FrbFGAuLCEK9I577dvrZ3GVKHwR6dlWdEFx_KWcHg1MNMDXKQTAHw0Qrk&_nc_zt=14&_nc_ht=scontent.fpnk2-1.fna&_nc_gid=bMrekj7dc0lcPKdBenZWZA&_nc_ss=7b2a8&oh=00_AQLO7fZIdBXco_W16guhdMiVAdGUQs1_5AuJh7yr0fXZtg&oe=6AA70206">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bedah Teknis Deepin 25.2.2: Lompatan Treeland Wayland">
+  <meta name="twitter:description" content="Bukan sekadar kosmetik, deepin 25.2.2 bawa lompatan besar pada compositor Treeland: adopsi wlroots 0.20 murni, input gaming presisi, dan perbaikan performa.">
+  <meta name="twitter:image" content="https://scontent.fpnk2-1.fna.fbcdn.net/v/t39.99422-6/800595752_1829603878044669_221063734975101677_n.png?stp=dst-jpg_tt6&cstp=mx1920x1080&ctp=s1920x1080&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEaRFp9ujbVIFyxfsRw15U-iI282XPPVJiIjbzZc89UmOerARk_EKEk9rvJ-sl0BOU&_nc_ohc=KeJQZb6VwIAQ7kNvwG2qk58&_nc_oc=AdqQ1rTBw9FrbFGAuLCEK9I577dvrZ3GVKHwR6dlWdEFx_KWcHg1MNMDXKQTAHw0Qrk&_nc_zt=14&_nc_ht=scontent.fpnk2-1.fna&_nc_gid=bMrekj7dc0lcPKdBenZWZA&_nc_ss=7b2a8&oh=00_AQLO7fZIdBXco_W16guhdMiVAdGUQs1_5AuJh7yr0fXZtg&oe=6AA70206">
+
+  <!-- Promphint Meta -->
+  <meta name="promphint" content="Apa pembaruan utama deepin 25.2.2? | Deepin 25.2.2 memutakhirkan compositor Treeland ke wlroots 0.20 murni, menghadirkan refraksi Liquid Glass berbasis fisika, dan menyematkan protokol pointer gaming.">
+
+  <!-- Syntax Highlighting (highlight.js) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --screen-padding: 1rem;
+      --nested-padding: 0rem;
+      --bg-canvas: #f8fafc;
+      --surface-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #475569;
+      --heading-color: #0f172a;
+      --primary-accent: #0284c7;
+      --primary-hover: #0369a1;
+      --border-line: #e2e8f0;
+      --code-bg: #0f172a;
+      --summary-hover: #f1f5f9;
+      --radius: 0.75rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-canvas: #090d16;
+        --surface-card: #111827;
+        --text-main: #cbd5e1;
+        --text-muted: #94a3b8;
+        --heading-color: #f8fafc;
+        --primary-accent: #38bdf8;
+        --primary-hover: #7dd3fc;
+        --border-line: #1f2937;
+        --code-bg: #030712;
+        --summary-hover: #1e293b;
+      }
+    }
+
+    @media (min-width: 64rem) {
+      :root {
+        --screen-padding: 2.5rem;
+        --nested-padding: 1.5rem;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.8;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: min(100%, 64rem);
+      margin: 0 auto;
+      padding-inline: var(--screen-padding);
+      padding-block: 2.5rem;
+    }
+
+    .article-card {
+      background-color: var(--surface-card);
+      border: 0.0625rem solid var(--border-line);
+      border-radius: var(--radius);
+      padding-block: 2rem;
+      padding-inline: var(--nested-padding);
+    }
+
+    @media (max-width: 40rem) {
+      .article-card {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding-block: 0.5rem;
+        padding-inline: 0;
+      }
+    }
+
+    header {
+      margin-bottom: 2rem;
+      border-bottom: 0.0625rem solid var(--border-line);
+      padding-bottom: 1.5rem;
+    }
+
+    h1 {
+      color: var(--heading-color);
+      font-size: 2.25rem;
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      line-height: 1.6;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+
+    a {
+      color: var(--primary-accent);
+      text-decoration: underline;
+      text-underline-offset: 0.25rem;
+    }
+
+    a:hover {
+      color: var(--primary-hover);
+    }
+
+    .media-container {
+      margin-block: 2rem;
+    }
+
+    .article-image {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 0.0625rem solid var(--border-line);
+      display: block;
+    }
+
+    figcaption {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    details {
+      border: 0.0625rem solid var(--border-line);
+      border-radius: var(--radius);
+      margin-bottom: 1.5rem;
+      background-color: var(--surface-card);
+      overflow: hidden;
+      transition: background-color 0.2s ease;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 1.25rem 1.5rem;
+      list-style: none;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary:hover {
+      background-color: var(--summary-hover);
+    }
+
+    summary h2 {
+      margin-bottom: 0;
+      display: inline-block;
+      font-size: 1.45rem;
+      color: var(--heading-color);
+      line-height: 1.35;
+    }
+
+    summary::after {
+      content: "+";
+      font-size: 1.5rem;
+      line-height: 1;
+      font-weight: 700;
+      color: var(--primary-accent);
+      transition: transform 0.2s ease;
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    .details-content {
+      padding: 1.5rem;
+      border-top: 0.0625rem solid var(--border-line);
+    }
+
+    h3 {
+      color: var(--heading-color);
+      font-size: 1.35rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    pre {
+      background-color: var(--code-bg);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-block: 1.5rem;
+      overflow-x: auto;
+      border: 0.0625rem solid var(--border-line);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.95rem;
+    }
+
+    p code, li code {
+      background-color: var(--summary-hover);
+      color: var(--primary-accent);
+      padding: 0.15rem 0.35rem;
+      border-radius: 0.25rem;
+      border: 0.0625rem solid var(--border-line);
+    }
+
+    footer {
+      border-top: 0.0625rem solid var(--border-line);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .footer-meta {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .footer-separator {
+      color: var(--border-line);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <article class="article-card">
+      <header>
+        <h1>Bedah Teknis Deepin 25.2.2: Lompatan Treeland Wayland</h1>
+        <p class="lead">Pembaruan deepin 25.2.2 membuktikan bahwa evolusi antarmuka Linux tidak lagi sekadar riasan visual, melainkan transformasi radikal pada lapisan arsitektur grafis dan efisiensi manajemen jendela desktop modern.</p>
+      </header>
+
+      <p>Ketika mendengar nama deepin, sebagian besar pegiat sistem operasi sumber terbuka langsung terbayang pada visual estetik yang memikat, tata letak elegan, dan transisi desktop yang memanjakan mata. Namun, rilis <b>deepin 25.2.2</b> yang diluncurkan pada September 2026 menegaskan posisi yang jauh lebih serius. Pembaruan ini menyentuh fondasi sistem grafis paling mendasar, membawa peningkatan signifikan bagi siapa saja yang mendambakan lingkungan kerja Wayland yang stabil, tangguh, dan gesit.</p>
+
+      <p>Bukan rahasia lagi bahwa transisi ekosistem Linux menuju protokol Wayland penuh dengan tantangan teknis, mulai dari urusan tangkapan layar hingga kendali pointer aplikasi 3D dan game. Melalui iterasi terbarunya, pengembang deepin tidak sekadar menambal kekurangan kosmetik, melainkan mengarahkan tenaga penuh pada pengembangan <b>Treeland</b>, <i>compositor</i> Wayland independen yang dibangun khusus untuk memberikan pengalaman interaksi desktop yang benar-benar mulus.</p>
+
+      <div class="media-container">
+        <img src="https://scontent.fpnk2-1.fna.fbcdn.net/v/t39.99422-6/800595752_1829603878044669_221063734975101677_n.png?stp=dst-jpg_tt6&cstp=mx1920x1080&ctp=s1920x1080&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEaRFp9ujbVIFyxfsRw15U-iI282XPPVJiIjbzZc89UmOerARk_EKEk9rvJ-sl0BOU&_nc_ohc=KeJQZb6VwIAQ7kNvwG2qk58&_nc_oc=AdqQ1rTBw9FrbFGAuLCEK9I577dvrZ3GVKHwR6dlWdEFx_KWcHg1MNMDXKQTAHw0Qrk&_nc_zt=14&_nc_ht=scontent.fpnk2-1.fna&_nc_gid=bMrekj7dc0lcPKdBenZWZA&_nc_ss=7b2a8&oh=00_AQLO7fZIdBXco_W16guhdMiVAdGUQs1_5AuJh7yr0fXZtg&oe=6AA70206" alt="Arsitektur Compositor Treeland Wayland pada Deepin" class="article-image" width="1200" height="675" fetchpriority="high" decoding="async">
+        <figcaption>Implementasi arsitektur compositor Wayland Treeland pada sistem operasi deepin.</figcaption>
+      </div>
+
+      <p>Menyelami catatan pembaruan resminya, perubahan yang dihadirkan melintasi berbagai lapisan sistem: mulai dari pustaka <i>wlroots</i>, protokol penanganan input periferal, penataan jendela interaktif, optimalisasi aplikasi Electron, perbaikan latensi rekam layar, hingga penambalan kerentanan keamanan inti. Mari kita bedah lapisan-lapisan teknis yang menjadikan rilis ini tonggak penting bagi perkembangan desktop Linux kontemporer.</p>
+
+      <details>
+        <summary><h2>Arsitektur Treeland dan Adopsi wlroots 0.20</h2></summary>
+        <div class="details-content">
+          <p>Treeland merupakan jantung dari strategi jangka panjang deepin dalam mengarungi era Wayland. Compositor ini dibangun di atas pondasi <i>wlroots</i> dipadukan dengan <i>QtQuick</i> untuk menghasilkan antarmuka grafis yang lentur serta efisien. Pada versi 25.2.2, perubahan paling monumental yang luput dari sorotan publik awam adalah keputusan berani untuk menyingkirkan ketergantungan pada <code>qwlroots</code> dan langsung bermigrasi ke <b>wlroots 0.20 murni</b>.</p>
+
+          <h3>Pelepasan Ketergantungan qwlroots Menuju Upstream</h3>
+          <p>Sebelumnya, Treeland memanfaatkan <code>qwlroots</code> sebagai lapisan abstraksi jembatan C++ antara kerangka kerja Qt dan pustaka C wlroots. Kendati praktis di tahap awal riset, lapisan perantara semacam ini kerap menimbulkan <i>upstream lag</i>—setiap pembaruan protokol Wayland resmi di wlroots harus menunggu penyesuaian di tingkat abstraksi terlebih dahulu. Dengan beralih langsung ke basis kode wlroots 0.20, tim pengembang memangkas <i>technical debt</i>, meminimalkan <i>overhead</i> pemanggilan fungsi, dan memudahkan sinkronisasi dengan inovasi ekosistem Wayland global.</p>
+
+          <h3>Dampak Langsung pada Latensi dan Gesture Sentuh</h3>
+          <p>Penyelarasan arsitektur ini berdampak konkret pada kenyamanan pemakaian sehari-hari. Berkurangnya lapisan perantara membuat penanganan sinyal input menjadi jauh lebih cepat. Salah satu perbaikan paling terasa adalah hilangnya jeda atau respon lambat pada gestur sentuh empat jari (<i>four-finger gesture</i>) di touchpad. Animasi perpindahan ruang kerja kini mengalir presisi mengikuti laju jari tanpa gejala stutter.</p>
+
+          <p>Selain touchpad, interoperabilitas XWayland, mekanisme drag-and-drop antarjendela, kestabilan multi-layar, hingga penanganan aplikasi berbasis Electron ikut dirombak. Bagi pengembang dan profesional yang mengandalkan editor kode atau alat kolaborasi modern, Treeland kini mengoptimalkan inisialisasi aplikasi Electron di bawah lingkungan Wayland agar tidak lagi memerlukan pengaturan flag manual yang merepotkan.</p>
+
+          <pre><code class="language-bash"># Menjalankan aplikasi berbasis Electron dengan backend Wayland murni di Treeland
+code --enable-features=UseOzonePlatform --ozone-platform=wayland</code></pre>
+
+          <p>Pengoptimalan metode startup standar tersebut secara drastis menekan konsumsi memori dan menghilangkan isu teks kabur saat penskalaan pecahan (<i>fractional scaling</i>) aktif di layar beresolusi tinggi.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><h2>Teknologi Liquid Glass: Refraksi Berbasis Fisika</h2></summary>
+        <div class="details-content">
+          <p>Banyak ulasan awal mengira fitur <b>Liquid Glass</b> di deepin 25.2.2 hanyalah penamaan pemasaran untuk efek transparansi kaca buram biasa. Anggapan tersebut keliru. Dalam dokumentasi teknisnya, deepin mengganti teknik blur konvensional dengan kalkulasi refraksi optik berbasis fisika (<i>physically-based refraction effect</i>).</p>
+
+          <h3>Bukan Sekadar Blur Konvensional</h3>
+          <p>Algoritma blur konvensional, seperti <i>Gaussian</i> atau <i>Dual-Kawase blur</i> yang lumrah dipakai berbagai desktop environment, hanya melakukan perataan konvolusi piksel pada buffer latar belakang di balik jendela transparan. Hasilnya adalah efek permukaan kaca es susu yang statis dan seragam tanpa memperhitungkan sudut datang cahaya.</p>
+
+          <h3>Kalkulasi Refraksi Fisika Cahaya</h3>
+          <p>Sebaliknya, shader refraksi Treeland menghitung vektor pembiasan berdasarkan hukum pembiasan cahaya menggunakan peta normal (<i>normal map</i>) pada kontur batas jendela. Hasil visualnya memberikan distorsi kelengkungan alami di tepi-tepi kaca antarmuka: elemen latar belakang tampak melengkung secara realistis saat jendela digeser melintasi kontras warna tinggi. Implementasi kalkulasi shader tingkat lanjut ini dieksekusi langsung pada unit komputasi GPU, menghadirkan estetika premium tanpa mengorbankan siklus kerja CPU utama.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><h2>Window Management dan Penanganan Input Game 3D</h2></summary>
+        <div class="details-content">
+          <p>Di samping estetika dan perombakan compositor, deepin 25.2.2 memperkenalkan peningkatan utilitas kerja yang menjawab keluhan klasik pengguna desktop Linux, khususnya dalam hal produktivitas tata letak jendela dan kenyamanan bermain game.</p>
+
+          <h3>Split-Screen Instan untuk Multitasking</h3>
+          <p>Manajemen jendela Treeland kini dilengkapi kemampuan penataan cepat separuh layar (<i>window split-screen</i>). Pengguna dapat dengan mudah menempelkan jendela aktif ke sisi kiri atau kanan layar secara presisi. Fitur ini menyederhanakan alur kerja tanpa perlu bergantung pada ekstensi pihak ketiga atau konfigurasi <i>tiling window manager</i> manual yang rumit.</p>
+
+          <h3>Protokol Pointer Constraints dan Relative Pointer</h3>
+          <p>Salah satu hambatan paling menjengkelkan saat menjalankan game atau software grafis 3D seperti Blender di Wayland adalah perilaku kursor mouse. Karena filosofi keamanan ketat Wayland, aplikasi secara bawaan dilarang mengurung kursor atau membaca koordinat posisi absolut di luar batas jendelanya sendiri. Akibatnya, pada game FPS atau navigasi kamera viewport 3D, rotasi pandangan kerap macet saat kursor menyentuh tepi layar monitor.</p>
+
+          <p>Deepin 25.2.2 secara resmi mengintegrasikan dua protokol krusial untuk mengatasi problem tersebut:</p>
+          <ul>
+            <li><b>pointer-constraints:</b> Memungkinkan aplikasi meminta sistem mengunci kursor di area tertentu saat mode interaksi kamera aktif.</li>
+            <li><b>relative-pointer:</b> Mentransmisikan selisih pergerakan relatif (<i>delta movement</i>) mouse ke mesin aplikasi secara mulus tanpa terpengaruh batas dimensi resolusi layar.</li>
+          </ul>
+
+          <p>Dengan hadirnya kedua protokol ini, game aksi 3D dan simulasi dapat dinikmati di lingkungan Wayland Treeland dengan kebebasan kendali kamera yang sepenuhnya natural.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><h2>Stabilitas Sistem, Tangkapan Layar, dan Keamanan</h2></summary>
+        <div class="details-content">
+          <p>Aspek kestabilan fungsional harian juga memperoleh sentuhan menyeluruh. Komponen utilitas penangkap layar (<i>screen capture</i>) yang sebelumnya mengalami jeda respon kini telah dipangkas latensinya secara drastis. Perbaikan serupa disematkan pada perekam layar penuh (<i>full-screen recording</i>), memberantas bug lawas di mana proses perekaman video bisa berhenti mendadak secara acak.</p>
+
+          <h3>Stabilitas Firefox dan Sesi Antarmuka</h3>
+          <p>Bagi peselancar web setia peramban Mozilla Firefox, deepin 25.2.2 mengatasi insiden <i>crash</i> fatal yang kerap muncul ketika peramban dibuka atau saat pengguna berpindah sesi dari terminal TTY kembali ke antarmuka grafis desktop. Kordinasi buffer tampilan antara Treeland dan mesin peramban kini jauh lebih stabil.</p>
+
+          <h3>Tambalan Kerentanan Komponen Inti</h3>
+          <p>Tidak hanya mempercantik bagian luar, sistem fondasi diperkuat dengan paket pembaruan keamanan komprehensif pada pustaka esensial, mencakup penambalan pada <i>GLib</i>, <i>GStreamer</i>, <i>Ghostscript</i>, <i>curl</i>, server display <i>X.Org</i>, subsistem <i>XWayland</i>, serta modul layanan pembaruan otomatis (<i>update services</i>).</p>
+
+          <p>Mengenai ketersediaan instalasi, portal unduhan deepin umumnya mendistribusikan pembaruan semacam ini secara bertahap melalui lumbung repositori paket resmi sebelum memperbarui berkas citra ISO lengkap. Pengguna deepin 25 cukup melakukan sinkronisasi pembaruan sistem reguler untuk menikmati seluruh keunggulan Treeland terbaru ini, sembari menantikan rilis lanjutan versi 25.3.0 pada peta jalan pengembangan berikutnya.</p>
+        </div>
+      </details>
+
+      <!--wajib ini tulis signature artikel oleh LayarKosong-->
+    </article>
+
+    <footer>
+      <div class="footer-meta">
+        <span>Oleh Tim Redaksi Layar Kosong</span>
+        <span class="footer-separator">•</span>
+        <span>Publikasi: September 2026</span>
+        <span class="footer-separator">•</span>
+        <span>Sumber: <a href="https://bbs.deepin.org" target="_blank" rel="noopener noreferrer">Deepin BBS</a> &amp; <a href="https://github.com/linuxdeepin/treeland" target="_blank" rel="noopener noreferrer">GitHub Treeland</a></span>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
