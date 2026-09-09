@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Firefox Bisa Merge PDF Gratis, Tapi Bukan di Android</title>
+
+  <meta name="description" content="Firefox bisa menggabungkan PDF secara gratis di desktop tanpa layanan berlangganan. Simak langkahnya dan pahami mengapa fitur ini berbeda di Fennec Android.">
+  <meta name="keywords" content="Firefox merge PDF, merge PDF Firefox, Firefox PDF editor, Fennec Firefox 155, Firefox Android, gabung PDF gratis">
+  <meta name="news_keywords" content="Firefox, Merge PDF, Firefox PDF Editor, Fennec, Firefox Android">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Firefox Bisa Merge PDF Gratis, Tapi Bukan di Android">
+  <meta property="og:description" content="Fitur Merge PDF bawaan Firefox memang gratis, tetapi dokumentasi Mozilla menempatkannya di Firefox desktop. Ketahui batasannya sebelum mencoba di Fennec.">
+  <meta property="og:url" content="https://dalam.web.id/artikel/firefox-bisa-merge-pdf-gratis-tapi-bukan-di-android.html">
+  <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Untitled.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Firefox Bisa Merge PDF Gratis, Tapi Bukan di Android">
+  <meta name="twitter:description" content="Poster Firefox dan merge PDF itu sebagian benar. Simak fitur Merge PDF desktop, cara menggunakannya, serta perbedaan dukungan Fennec Firefox 155 di Android.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Untitled.jpg">
+
+  <meta name="promphint" content="Apakah Firefox bisa merge PDF gratis? | Ya, tetapi fitur Merge PDF bawaan tersebut ditujukan untuk Firefox desktop, bukan Fennec Android.">
+
+  <meta property="article:tag" content="Firefox">
+  <meta property="article:tag" content="PDF">
+  <meta property="article:tag" content="Fennec">
+  <meta property="article:tag" content="Firefox Android">
+  <meta property="article:tag" content="Mozilla">
+
+  <link rel="canonical" href="https://dalam.web.id/artikel/firefox-bisa-merge-pdf-gratis-tapi-bukan-di-android.html">
+
+  <style>
+    :root {
+      --screen-padding: 1rem;
+      --nested-padding: 0rem;
+      --page-bg: #f7f7f8;
+      --surface: #ffffff;
+      --surface-soft: #f0f1f3;
+      --text: #17181a;
+      --text-secondary: #4a4d52;
+      --heading: #101114;
+      --border: #d5d8dc;
+      --accent: #005fcc;
+      --accent-hover: #004a9f;
+      --accent-soft: #e8f1ff;
+      --code-bg: #17191d;
+      --code-text: #f1f3f5;
+      --radius: 0.75rem;
+      --content-width: 64rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --page-bg: #111214;
+        --surface: #191b1f;
+        --surface-soft: #22252a;
+        --text: #f0f1f2;
+        --text-secondary: #c3c6ca;
+        --heading: #ffffff;
+        --border: #3a3e44;
+        --accent: #70b7ff;
+        --accent-hover: #9acbff;
+        --accent-soft: #1b3048;
+        --code-bg: #0b0c0e;
+        --code-text: #f1f3f5;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--text);
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      font-size: 1.125rem;
+      line-height: 1.75;
+    }
+
+    .container {
+      width: min(100%, var(--content-width));
+      margin-inline: auto;
+      padding-inline: var(--screen-padding);
+    }
+
+    main {
+      padding-block: 2rem 3rem;
+    }
+
+    article {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .article-body {
+      padding-inline: var(--nested-padding);
+    }
+
+    .article-header {
+      padding-block: 2.5rem 1rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--heading);
+      line-height: 1.25;
+      text-wrap: balance;
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+    }
+
+    h2 {
+      margin: 2.5rem 0 1rem;
+      font-size: clamp(1.5rem, 4vw, 1.8rem);
+    }
+
+    h3 {
+      margin: 2rem 0 0.75rem;
+      font-size: clamp(1.25rem, 3vw, 1.45rem);
+    }
+
+    p {
+      margin: 0 0 1.25rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 0.1rem;
+      text-underline-offset: 0.18rem;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    .lead {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .article-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 2rem 0;
+      border-radius: var(--radius);
+    }
+
+    figure {
+      margin: 2rem 0;
+    }
+
+    figcaption {
+      margin-top: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .note {
+      margin: 1.5rem 0;
+      padding: 1rem 1.25rem;
+      background: var(--accent-soft);
+      border-inline-start: 0.3rem solid var(--accent);
+      border-radius: 0.5rem;
+    }
+
+    .note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .comparison {
+      width: 100%;
+      margin: 1.5rem 0;
+      border-collapse: collapse;
+      font-size: 1rem;
+    }
+
+    .comparison th,
+    .comparison td {
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .comparison th {
+      background: var(--surface-soft);
+      color: var(--heading);
+    }
+
+    details {
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    summary {
+      position: relative;
+      cursor: pointer;
+      padding: 1rem 3rem 1rem 1.25rem;
+      background: var(--surface-soft);
+      color: var(--heading);
+      transition: background-color 0.2s ease;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      position: absolute;
+      top: 50%;
+      right: 1.25rem;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    summary:hover {
+      background: var(--accent-soft);
+    }
+
+    summary h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 4vw, 1.65rem);
+    }
+
+    details > :not(summary) {
+      margin-inline: 1.25rem;
+    }
+
+    details > :last-child {
+      margin-bottom: 1.5rem;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 1.5rem;
+      padding-inline-start: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    .verdict {
+      margin: 2rem 0;
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+    }
+
+    .verdict p:last-child {
+      margin-bottom: 0;
+    }
+
+    footer {
+      margin-top: 2rem;
+      padding-block: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .footer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem 1rem;
+    }
+
+    .footer-meta span,
+    .footer-meta a {
+      white-space: nowrap;
+    }
+
+    .footer-separator {
+      color: var(--border);
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        --screen-padding: 2.5rem;
+        --nested-padding: 1.5rem;
+      }
+
+      main {
+        padding-block: 3rem 4rem;
+      }
+
+      .article-header {
+        padding-block: 3rem 1rem;
+      }
+
+      article {
+        box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.08);
+      }
+    }
+
+    @media (max-width: 640px) {
+      article {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .article-header {
+        padding-block: 1.5rem 0.5rem;
+      }
+
+      .article-image {
+        border-radius: 0.5rem;
+      }
+
+      details {
+        border-radius: 0.5rem;
+      }
+
+      .comparison {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <article>
+      <header class="article-header">
+        <h1>Firefox Bisa Merge PDF Gratis, Tapi Bukan di Android</h1>
+        <p class="lead">
+          Poster yang menyebut Firefox dapat menggabungkan PDF tanpa berlangganan memang punya dasar yang benar. Namun ada satu detail penting yang mudah terlewat: fitur <i>Merge PDF</i> tersebut ditujukan untuk <b>Firefox desktop</b>, bukan Firefox Android atau Fennec.
+        </p>
+      </header>
+
+      <div class="article-body">
+        <p>
+          Belakangan muncul informasi yang cukup menarik tentang Firefox: kita tidak perlu membayar langganan aplikasi PDF hanya untuk menggabungkan beberapa dokumen. Firefox memiliki penampil PDF bawaan yang kini dilengkapi kemampuan untuk menggabungkan file PDF lain ke dokumen yang sedang dibuka.
+        </p>
+
+        <p>
+          Sekilas, kabar ini terdengar sederhana. Buka Firefox, pilih menu untuk mengedit PDF, masukkan dokumen lain, lalu simpan. Masalahnya muncul ketika informasi tersebut dibawa ke perangkat Android. Antarmuka Firefox di komputer dan Firefox Android tidak sama, dan kemampuan PDF-nya juga tidak boleh dianggap identik.
+        </p>
+
+        <p>
+          Karena itu, poster seperti <i>“Using Firefox to merge PDFs for free”</i> sebaiknya dibaca dengan konteks platform. Gratisnya benar, kemampuan merge-nya benar, tetapi penerapannya adalah pada <b>Firefox desktop</b>.
+        </p>
+
+        <figure>
+          <img
+            class="article-image"
+            src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Untitled.jpg"
+            width="1000"
+            height="563"
+            alt="Ilustrasi Firefox dan penggunaan fitur PDF pada komputer"
+            fetchpriority="high"
+            decoding="async">
+          <figcaption>
+            Fitur Merge PDF Firefox yang dimaksud dalam poster berkaitan dengan Firefox desktop.
+          </figcaption>
+        </figure>
+
+        <details>
+          <summary><h2>Firefox memang bisa menggabungkan PDF secara gratis</h2></summary>
+
+          <p>
+            Mozilla mendokumentasikan kemampuan <b>Merge PDF files</b> pada penampil PDF bawaan Firefox. Dengan fitur tersebut, pengguna dapat membuka sebuah PDF kemudian menambahkan file PDF lain ke dokumen yang sedang terbuka. Hasil gabungannya dapat disimpan sebagai PDF baru.
+          </p>
+
+          <p>
+            Artinya, untuk kebutuhan sederhana seperti menggabungkan laporan, formulir, lampiran, atau beberapa dokumen administrasi menjadi satu file, pengguna desktop tidak harus mengunggah dokumen ke layanan PDF berbasis web atau berlangganan aplikasi pengolah PDF komersial.
+          </p>
+
+          <h3>Alur penggabungan PDF di Firefox desktop</h3>
+
+          <p>
+            Prosesnya dilakukan langsung dari penampil PDF Firefox. Buka sebuah file PDF terlebih dahulu, kemudian tampilkan bilah sisi halaman di sebelah kiri. Di bagian atas bilah sisi terdapat tombol <b>+</b> yang digunakan untuk menambahkan file PDF lain.
+          </p>
+
+          <ol>
+            <li>Buka file PDF pertama menggunakan Firefox desktop.</li>
+            <li>Buka <i>page sidebar</i> di sisi kiri jika belum terlihat.</li>
+            <li>Klik tombol <b>+</b> di bagian kanan atas bilah sisi.</li>
+            <li>Pilih file PDF yang ingin ditambahkan.</li>
+            <li>Firefox memasukkan halaman PDF tersebut ke dokumen yang sedang terbuka.</li>
+            <li>Simpan dokumen gabungan sebagai PDF baru.</li>
+          </ol>
+
+          <p>
+            Setelah file kedua ditambahkan, halaman-halamannya dapat dilihat melalui bilah sisi. Ini membuat Firefox bukan sekadar pembaca PDF, tetapi juga menyediakan sejumlah fungsi pengelolaan dokumen langsung dari penampil PDF-nya.
+          </p>
+
+          <div class="note">
+            <p>
+              <b>Catatan penting:</b> fitur yang dimaksud di sini adalah fitur PDF bawaan Firefox desktop. Jangan menganggap keberadaan fitur tersebut otomatis berarti Firefox Android memiliki menu dan kemampuan yang sama.
+            </p>
+          </div>
+
+          <h3>Apakah harus menggunakan Adobe Acrobat?</h3>
+
+          <p>
+            Tidak untuk kebutuhan merge PDF sederhana tersebut. Firefox menyediakan fungsi penggabungan langsung pada penampil PDF-nya sehingga pengguna dapat menyelesaikan pekerjaan dasar tanpa aplikasi PDF terpisah.
+          </p>
+
+          <p>
+            Tentu saja, aplikasi PDF profesional dapat menawarkan fungsi yang jauh lebih luas. Penyuntingan dokumen tingkat lanjut, OCR, formulir kompleks, alur tanda tangan tertentu, atau fitur kolaborasi merupakan kebutuhan yang berbeda. Tetapi jika pekerjaannya hanya <i>“PDF A digabung dengan PDF B”</i>, Firefox desktop sudah dapat menangani skenario tersebut.
+          </p>
+        </details>
+
+        <details>
+          <summary><h2>Mengapa poster menyebut “Tools → Edit PDFs”?</h2></summary>
+
+          <p>
+            Bagian ini perlu dibaca lebih hati-hati. Poster yang beredar menggambarkan alur antarmuka tertentu, tetapi dokumentasi Mozilla yang sekarang menjelaskan penggabungan PDF melalui <b>penampil PDF dan bilah sisi halaman</b>.
+          </p>
+
+          <p>
+            Jadi, jangan terpaku pada nama menu <i>Tools → Edit PDFs</i> seolah-olah itu adalah satu-satunya cara untuk menemukan fitur tersebut. Antarmuka Firefox terus berubah mengikuti perkembangan versi, sedangkan dokumentasi resmi Mozilla menjelaskan mekanisme fitur melalui PDF viewer.
+          </p>
+
+          <p>
+            Yang jauh lebih penting adalah membedakan dua hal: <b>fitur PDF-nya</b> dan <b>platform tempat fitur tersebut tersedia</b>. Fitur Merge PDF memang ada pada Firefox desktop modern. Hal itu berbeda dari mengatakan bahwa semua varian Firefox di semua perangkat memiliki kemampuan yang sama.
+          </p>
+
+          <h3>Kapan fitur Merge PDF mulai muncul?</h3>
+
+          <p>
+            Mozilla mencatat penambahan bagian Merge PDF pada dokumentasi Firefox desktop 151. Dengan demikian, fitur ini bukan sekadar trik menggunakan layanan web tersembunyi, melainkan bagian dari pengembangan PDF viewer Firefox desktop.
+          </p>
+
+          <p>
+            Pada Firefox desktop yang cukup baru, workflow penggabungannya dilakukan langsung di dalam browser. Karena itu, jika menggunakan Firefox di Windows, Linux, atau macOS dan fitur tersebut tersedia pada versi yang digunakan, tidak diperlukan aplikasi web tambahan hanya untuk menyatukan beberapa PDF.
+          </p>
+        </details>
+
+        <details>
+          <summary><h2>Lalu bagaimana dengan Fennec Firefox 155 di Android?</h2></summary>
+
+          <p>
+            Nah, di sinilah poster tersebut bisa menimbulkan salah persepsi. <b>Fennec F-Droid 155.0.0 adalah browser Android</b>, bukan Firefox desktop yang diperkecil ke layar ponsel.
+          </p>
+
+          <p>
+            F-Droid saat ini mencantumkan Fennec F-Droid versi 155.0.0 sebagai salah satu rilis terbaru. Fennec merupakan varian Firefox untuk Android yang didistribusikan melalui F-Droid dengan beberapa komponen proprietary dan telemetri Mozilla yang dihapus.
+          </p>
+
+          <p>
+            Sementara itu, arsitektur Firefox Android dikenal sebagai Fenix dan menggunakan GeckoView serta komponen Android milik Mozilla. Karena platform dan antarmukanya berbeda, fitur yang masuk ke Firefox desktop tidak otomatis muncul dalam versi Android.
+          </p>
+
+          <h3>Apakah Fennec 155 memiliki Merge PDF bawaan?</h3>
+
+          <p>
+            <b>Tidak ada indikasi resmi bahwa Fennec F-Droid 155 menyediakan fitur Merge PDF bawaan seperti Firefox desktop.</b> Dokumentasi Mozilla yang menjelaskan Merge PDF menempatkan kemampuan tersebut pada Firefox desktop, sedangkan dokumentasi Firefox Android tidak menunjukkan workflow PDF merge yang sama.
+          </p>
+
+          <p>
+            Dengan kata lain, jika Mas Rijal membuka PDF menggunakan Fennec 155 di Android lalu mencari sidebar halaman dengan tombol <b>+</b> untuk memasukkan PDF kedua, jangan heran jika antarmuka tersebut tidak tersedia. Fitur desktop tidak dapat dianggap sebagai fitur universal seluruh produk Firefox.
+          </p>
+
+          <p>
+            Ini juga menjelaskan mengapa instruksi <i>“Click on Tools then Edit PDFs”</i> tidak cocok dijadikan panduan untuk Fennec. Fennec tidak memiliki lingkungan menu desktop tersebut.
+          </p>
+
+          <div class="note">
+            <p>
+              <b>Kesimpulan untuk Fennec 155:</b> jangan mengharapkan menu Merge PDF dari Firefox desktop muncul begitu saja di Android. Untuk menggabungkan PDF di ponsel, diperlukan solusi lain, misalnya aplikasi PDF khusus atau alat lokal Android yang memang mendukung penggabungan dokumen.
+            </p>
+          </div>
+        </details>
+
+        <section>
+          <h2>Perbandingan Firefox desktop dan Fennec Android</h2>
+
+          <p>
+            Supaya tidak tertukar, berikut gambaran sederhananya berdasarkan kondisi fitur yang dibahas dalam artikel ini.
+          </p>
+
+          <table class="comparison">
+            <thead>
+              <tr>
+                <th>Fitur</th>
+                <th>Firefox desktop</th>
+                <th>Fennec Android 155</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Membuka PDF</td>
+                <td>Ya</td>
+                <td>Ya</td>
+              </tr>
+              <tr>
+                <td>PDF viewer bawaan</td>
+                <td>Ya</td>
+                <td>Ya</td>
+              </tr>
+              <tr>
+                <td>Merge PDF bawaan yang didokumentasikan Mozilla</td>
+                <td><b>Ya</b></td>
+                <td><b>Tidak tersedia</b></td>
+              </tr>
+              <tr>
+                <td>Sidebar halaman untuk workflow Merge PDF</td>
+                <td>Ya</td>
+                <td>Tidak seperti workflow desktop</td>
+              </tr>
+              <tr>
+                <td>Menu Tools → Edit PDFs</td>
+                <td>Tidak perlu dijadikan patokan utama</td>
+                <td>Tidak ada</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <details>
+          <summary><h2>Jadi, apakah poster tersebut benar?</h2></summary>
+
+          <p>
+            <b>Benar secara substansi, tetapi kurang lengkap dalam menyebut platform.</b> Pernyataan bahwa Firefox dapat menggabungkan PDF secara gratis memang benar untuk Firefox desktop yang mendukung fitur tersebut.
+          </p>
+
+          <p>
+            Yang berpotensi menyesatkan adalah jika pembaca mengartikannya sebagai kemampuan semua Firefox, termasuk Firefox Android dan Fennec. Padahal ekosistem Firefox memiliki beberapa produk dengan antarmuka dan implementasi berbeda.
+          </p>
+
+          <p>
+            Untuk pengguna desktop, kabar tersebut justru cukup berguna. Firefox dapat menjadi alternatif praktis untuk pekerjaan PDF sederhana tanpa harus membuka situs merger PDF pihak ketiga. Dokumen juga dapat tetap diproses dari komputer tanpa perlu mengunggahnya ke layanan online hanya untuk melakukan operasi penggabungan.
+          </p>
+
+          <p>
+            Untuk pengguna Android, ceritanya berbeda. Fennec 155 tetap merupakan browser yang sangat berguna untuk menjelajah web, tetapi fitur PDF desktop tidak otomatis ikut terbawa ke dalam aplikasi Android tersebut.
+          </p>
+
+          <h3>Hal yang perlu diingat saat membaca tutorial Firefox</h3>
+
+          <p>
+            Jika sebuah tutorial menyebut menu, tombol, atau panel yang tidak ditemukan di perangkatmu, periksa terlebih dahulu platform dan versi Firefox yang digunakan. Tutorial untuk Firefox Windows atau Linux tidak selalu dapat diterapkan satu per satu pada Firefox Android.
+          </p>
+
+          <p>
+            Ini terutama berlaku untuk fitur baru. Mozilla dapat memperkenalkan kemampuan tertentu lebih dahulu di desktop karena kebutuhan antarmuka, integrasi file system, atau kesiapan komponen berbeda dengan Android.
+          </p>
+        </details>
+
+        <section>
+          <h2>Kesimpulan</h2>
+
+          <p>
+            Firefox memang memiliki <b>Merge PDF gratis</b> yang terintegrasi dengan PDF viewer. Pengguna Firefox desktop dapat membuka PDF, menambahkan file PDF lain melalui sidebar halaman, lalu menyimpan dokumen gabungannya sebagai PDF baru.
+          </p>
+
+          <p>
+            Namun, fitur tersebut <b>bukan fitur yang dapat diasumsikan tersedia di Firefox Android</b>. Fennec F-Droid 155 yang digunakan di Android memiliki basis dan antarmuka aplikasi Android, sehingga workflow PDF desktop seperti Merge PDF tidak tersedia di dalamnya.
+          </p>
+
+          <p>
+            Jadi kalau melihat poster yang mengatakan <i>“Using Firefox to merge PDFs for free”</i>, bacalah kalimatnya sebagai <b>“menggunakan Firefox desktop untuk menggabungkan PDF secara gratis”</b>. Tambahkan dua kata tersebut dan informasinya menjadi jauh lebih akurat.
+          </p>
+
+          <div class="verdict">
+            <p>
+              <b>Ringkasnya:</b> Firefox desktop = bisa merge PDF secara gratis. Fennec Firefox 155 Android = jangan mencari fitur Merge PDF desktop karena belum tersedia sebagai fitur bawaan yang sama.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Referensi</h2>
+
+          <p>
+            Dokumentasi resmi Mozilla menjelaskan workflow penggabungan PDF melalui PDF viewer Firefox, termasuk penggunaan sidebar dan tombol <b>+</b>. Mozilla juga mencatat fitur Merge PDF tersebut dalam pembaruan dokumentasi untuk Firefox desktop 151.
+          </p>
+
+          <p>
+            Untuk Fennec, halaman F-Droid mencatat rilis Fennec F-Droid 155.0.0, sementara dokumentasi proyek Firefox Android menjelaskan bahwa Firefox for Android menggunakan arsitektur Fenix berbasis GeckoView dan Android Components.
+          </p>
+
+          <ul>
+            <li>
+              <a href="https://support.mozilla.org/id/kb/Membuka%20File%20PDF%20di%20Firefox" rel="noopener noreferrer">Mozilla Support — Membuka dan mengedit file PDF di Firefox</a>
+            </li>
+            <li>
+              <a href="https://wiki.mozilla.org/Support/Firefox151" rel="noopener noreferrer">Mozilla Wiki — Firefox 151 Desktop Content Update</a>
+            </li>
+            <li>
+              <a href="https://f-droid.org/id/packages/org.mozilla.fennec_fdroid/" rel="noopener noreferrer">F-Droid — Fennec F-Droid</a>
+            </li>
+            <li>
+              <a href="https://github.com/mozilla-mobile/firefox-android" rel="noopener noreferrer">Mozilla — Firefox for Android / Fenix</a>
+            </li>
+          </ul>
+        </section>
+
+        <!--wajib ini tulis signature artikel oleh LayarKosong-->
+      </div>
+
+      <footer>
+        <div class="footer-meta">
+          <span>Penulis: Frijal — Layar Kosong</span>
+          <span class="footer-separator">•</span>
+          <span>Dipublikasikan: <time datetime="2026-09-09">9 September 2026</time></span>
+          <span class="footer-separator">•</span>
+          <a href="https://dalam.web.id/" rel="author">Layar Kosong</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
