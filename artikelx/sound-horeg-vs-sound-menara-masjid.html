@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sound Horeg vs Sound Menara Masjid: Jangan Hanya Membandingkan Angka dB</title>
+<meta name="description" content="Mengapa angka dB sound horeg dan pengeras suara menara masjid tidak bisa dibandingkan begitu saja? Bahas SPL, jarak, arah horn, dan ketinggian.">
+<meta name="author" content="Fakhrul Rijal">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://dalam.web.id/artikel/sound-horeg-vs-sound-menara-masjid-jangan-hanya-membandingkan-angka-db.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sound Horeg vs Sound Menara Masjid: Jangan Hanya Membandingkan Angka dB">
+<meta property="og:description" content="Mengapa angka dB sound horeg dan pengeras suara menara masjid tidak bisa dibandingkan begitu saja? Bahas SPL, jarak, arah horn, dan ketinggian.">
+<meta property="og:url" content="https://dalam.web.id/artikel/sound-horeg-vs-sound-menara-masjid-jangan-hanya-membandingkan-angka-db.html">
+<meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/file_00000000dc508230ab2aef542bee3d90.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sound Horeg vs Sound Menara Masjid: Jangan Hanya Membandingkan Angka dB">
+<meta name="twitter:description" content="SPL tidak hanya soal angka sumber. Jarak, ketinggian, directivity horn, arah pancaran, dan titik ukur ikut menentukan suara yang diterima.">
+<style>
+:root{color-scheme:light dark;--bg:#fff;--fg:#202124;--muted:#62676d;--line:#dfe3e7;--accent:#b42318;--accent-soft:#fff1f0;--surface:#f7f8f9;--max:64rem}
+@media(prefers-color-scheme:dark){:root{--bg:#111315;--fg:#eceff1;--muted:#aeb4b9;--line:#343a40;--accent:#ff8177;--accent-soft:#321817;--surface:#191c1f}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);font:1.125rem/1.75 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.site{width:min(100%,var(--max));margin:auto;padding:1rem}@media(min-width:48rem){.site{padding:2.5rem}}header{margin-bottom:2rem}h1{font-size:clamp(2rem,5vw,2.5rem);line-height:1.15;letter-spacing:-.025em;margin:.4rem 0 1rem}h2{font-size:1.5rem;line-height:1.3;margin:2.2rem 0 .8rem}p{margin:1rem 0}a{color:inherit}figure{margin:1.5rem 0}figure img{display:block;width:100%;height:auto;border-radius:.7rem}figcaption{font-size:.9rem;line-height:1.5;color:var(--muted);margin-top:.6rem}.lead{font-size:1.2rem;color:var(--muted)}.meta{color:var(--muted);font-size:.95rem}.callout{background:var(--surface);border-left:.3rem solid var(--accent);padding:1rem 1.1rem;margin:1.5rem 0}.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--surface);padding:.12rem .35rem;border-radius:.25rem}.table-wrap{overflow-x:auto;margin:1.25rem 0}table{border-collapse:collapse;width:100%;font-size:1rem}th,td{text-align:left;padding:.65rem .7rem;border-bottom:1px solid var(--line)}th{background:var(--surface)}.red{color:var(--accent);font-weight:700}.signature{margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--line)}footer{color:var(--muted);font-size:.9rem;margin-top:3rem;padding:1.5rem 0;border-top:1px solid var(--line)}ul{padding-left:1.4rem}strong{font-weight:700}
+</style>
+</head>
+<body>
+<main class="site">
+<header>
+<p class="meta">Layar Kosong · Catatan Teknologi, Linux, dan Kehidupan.</p>
+<h1>Sound Horeg vs Sound Menara Masjid: Jangan Hanya Membandingkan Angka dB</h1>
+<p class="lead">Angka desibel pada sumber suara tidak otomatis menggambarkan tingkat suara yang diterima masyarakat. Jarak, ketinggian, arah pancaran, karakter loudspeaker, dan titik pengukuran sangat menentukan.</p>
+</header>
+
+<article>
+<figure>
+<img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/file_00000000dc508230ab2aef542bee3d90.png" alt="Ilustrasi penurunan tingkat tekanan suara berdasarkan jarak pada sound horeg dan pengeras suara menara masjid" fetchpriority="high" width="1664" height="936">
+<figcaption>Ilustrasi hubungan jarak dan SPL. Angka pada gambar bersifat ilustratif untuk menjelaskan prinsip penurunan sekitar 6 dB setiap jarak menjadi dua kali lebih jauh dalam kondisi free field.</figcaption>
+</figure>
+
+<p>Menjawab pernyataan sebagian pengusaha sound horeg bahwa suara dari menara masjid dapat mencapai <strong>150 dB</strong>, mari kita lihat persoalannya secara teknis melalui hubungan antara <strong>tingkat tekanan suara (Sound Pressure Level/SPL)</strong> dan jarak.</p>
+
+<h2>Setiap jarak menjadi dua kali, SPL turun sekitar 6 dB</h2>
+<p>Dalam kondisi ideal <strong>free field</strong>, ketika jarak dari sumber suara menjadi dua kali lebih jauh, SPL akan berkurang sekitar <strong>6 dB</strong>. Prinsip ini dikenal sebagai <em>inverse-square law</em> untuk penyebaran energi suara dari sumber titik dalam medan bebas.</p>
+
+<div class="callout"><strong>Contoh sederhana:</strong> apabila sebuah loudspeaker menghasilkan <strong>120 dB pada jarak 1 meter</strong>, maka secara teoritis menjadi sekitar <strong>114 dB pada 2 meter</strong>, <strong>108 dB pada 4 meter</strong>, <strong>102 dB pada 8 meter</strong>, dan <strong>96 dB pada 16 meter</strong>.</div>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Jarak dari sumber</th><th>SPL teoritis</th><th>Perubahan</th></tr></thead>
+<tbody>
+<tr><td>1 m</td><td class="red">120 dB</td><td>—</td></tr>
+<tr><td>2 m</td><td class="red">114 dB</td><td>-6 dB</td></tr>
+<tr><td>4 m</td><td class="red">108 dB</td><td>-6 dB</td></tr>
+<tr><td>8 m</td><td class="red">102 dB</td><td>-6 dB</td></tr>
+<tr><td>16 m</td><td class="red">96 dB</td><td>-6 dB</td></tr>
+<tr><td>32 m</td><td class="red">90 dB</td><td>-6 dB</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Di sinilah sound horeg dan speaker menara mulai berbeda</h2>
+<p><strong>Sound horeg</strong> berada relatif dekat dengan permukaan tanah. Karena itu, masyarakat dapat berada hanya beberapa meter dari sistem loudspeaker dengan SPL yang sangat tinggi. Dalam situasi seperti ini, jarak pendengar terhadap sumber menjadi faktor yang sangat penting.</p>
+
+<p>Sementara itu, <strong>loudspeaker masjid ditempatkan di atas menara</strong>. Jika ketinggian menara kita ilustrasikan sekitar 15 meter, jarak antara loudspeaker dengan orang yang berada di permukaan tanah sudah cukup besar bahkan sebelum memperhitungkan jarak horizontal.</p>
+
+<h2>Jarak sebenarnya bukan sekadar jarak horizontal</h2>
+<p>Misalnya loudspeaker berada 15 meter di atas tanah dan seseorang berdiri tepat di bawahnya, jarak geometris antara sumber dan penerima secara sederhana sudah sekitar <strong>15 meter</strong>. Dalam model free field dengan acuan 120 dB pada 1 meter, penurunan karena jarak saja sudah membuat SPL berada di kisaran pertengahan 96 dB dan 90 dB.</p>
+
+<p>Namun, contoh tersebut <strong>bukan hasil pengukuran lapangan</strong>. Kondisi nyata jauh lebih kompleks karena sumber suara bukan sumber titik ideal, lingkungan memiliki pantulan dan hambatan, dan karakter loudspeaker menentukan distribusi energinya.</p>
+
+<h2>Horn atau corong membuat penyebaran suara menjadi directional</h2>
+<p>Itu pun baru perhitungan teoritis <em>free field</em>, seolah-olah suara menyebar tanpa mempertimbangkan karakter loudspeaker. Dalam kenyataannya, speaker menara umumnya berupa <strong>horn atau corong</strong> yang bersifat <strong>directional</strong>.</p>
+
+<p>Artinya, energi suara terutama dipancarkan ke arah tertentu, bukan sama kuat ke segala arah. Horn di menara juga umumnya tidak diarahkan tajam ke bawah, melainkan mendatar atau sedikit menurun karena fungsi utamanya adalah memperoleh jangkauan horizontal yang jauh.</p>
+
+<div class="callout"><strong>Konsekuensinya:</strong> orang yang berdiri tepat di bawah menara tidak otomatis menerima SPL maksimum yang sama dengan SPL pada sumbu utama pancaran horn. Posisi terhadap <em>beam axis</em> loudspeaker ikut menentukan tingkat suara yang diterima.</div>
+
+<h2>Bagaimana dengan ilustrasi 100 dB?</h2>
+<p>Pada gambar masjid ditampilkan pula angka merah tebal yang menggunakan <strong>100 dB</strong> sebagai basis ilustrasi, mengikuti ketentuan maksimum yang disebut dalam narasi sebagai acuan Kementerian Agama RI.</p>
+
+<p>Jika angka 100 dB pada 1 meter dipakai hanya sebagai titik awal ilustrasi dan model penurunan yang sama diterapkan, hasil teoritisnya menjadi:</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Jarak</th><th>SPL teoritis dari acuan 100 dB @ 1 m</th></tr></thead>
+<tbody>
+<tr><td>1 m</td><td class="red">100 dB</td></tr>
+<tr><td>2 m</td><td class="red">94 dB</td></tr>
+<tr><td>4 m</td><td class="red">88 dB</td></tr>
+<tr><td>8 m</td><td class="red">82 dB</td></tr>
+<tr><td>16 m</td><td class="red">76 dB</td></tr>
+<tr><td>32 m</td><td class="red">70 dB</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Angka tersebut tetap harus dibaca sebagai <strong>ilustrasi matematis</strong>, bukan sebagai klaim bahwa setiap speaker menara pasti menghasilkan angka-angka tersebut di lapangan.</p>
+
+<h2>Jadi, apakah klaim “150 dB” cukup untuk dibandingkan?</h2>
+<p><strong>Tidak.</strong> Menyebut sound menara masjid “150 dB” tanpa menjelaskan konteks pengukurannya secara teknis tidak cukup untuk dijadikan pembanding dengan sound horeg.</p>
+
+<p>Minimal harus dijelaskan:</p>
+<ul>
+<li><strong>Di mana</strong> SPL diukur dan pada titik ukur seperti apa.</li>
+<li><strong>Pada jarak berapa</strong> pengukuran dilakukan dari loudspeaker.</li>
+<li><strong>Di arah mana</strong> mikrofon berada terhadap sumbu utama loudspeaker.</li>
+<li>Jenis dan karakteristik <strong>loudspeaker</strong> yang digunakan, termasuk directivity/horn.</li>
+<li>Kondisi lingkungan dan apakah pengukuran dilakukan dalam <strong>free field</strong> atau ruang/lingkungan dengan pantulan.</li>
+<li>Instrumen, metode, dan pembobotan pengukuran yang digunakan.</li>
+</ul>
+
+<div class="callout"><strong>Intinya:</strong> angka dB adalah hasil pengukuran pada suatu kondisi tertentu. Dua sistem tidak dapat dibandingkan secara adil hanya dengan mengambil angka tertinggi yang pernah disebut tanpa menyamakan jarak, titik ukur, arah, metode, dan kondisi pengukuran.</div>
+
+<h2>Kesimpulan</h2>
+<p>Perdebatan sound horeg dan sound menara masjid sebaiknya tidak berhenti pada pertanyaan “mana yang lebih tinggi dB-nya?”. Pertanyaan yang lebih tepat adalah <strong>berapa SPL yang diterima manusia pada posisi tertentu, pada jarak tertentu, dengan arah pancaran dan kondisi pengukuran yang jelas?</strong></p>
+
+<p>Dalam model ideal, setiap penggandaan jarak memberikan penurunan sekitar 6 dB. Pada sistem yang dipasang tinggi, jarak vertikal sudah memberikan kontribusi signifikan. Pada speaker horn yang directional, distribusi suara juga tidak merata ke segala arah.</p>
+
+<p>Karena itu, klaim angka seperti <strong>150 dB</strong> perlu ditempatkan dalam konteks pengukuran yang lengkap sebelum digunakan sebagai dasar perbandingan dengan sound horeg.</p>
+
+<div class="signature">
+<p><strong>Salam, Kang Eep</strong><br>Konsultan Akustik &amp; Sound Masjid</p>
+</div>
+
+<!--wajib ini tulis signature artikel oleh LayarKosong-->
+</article>
+
+<footer>
+<p>Artikel oleh <strong>Fakhrul Rijal</strong> · Layar Kosong · Blog Frijal</p>
+</footer>
+</main>
+</body>
+</html>
