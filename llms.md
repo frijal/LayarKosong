@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.78
+document_version: 25.79
 last_updated: 2026-09-13
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 13 September 2026)
-> Menampilkan 1627 artikel versi 25.78.
+> Menampilkan 1628 artikel versi 25.79.
 
 ## Gaya Hidup
 - [Koperasi Desa Bisa Dibangun Sukses di Pelosok, Mengapa Sekolah Tidak?](https://dalam.web.id/gaya-hidup/koperasi-desa-sukses-mengapa-sekolah-tidak) : Fenomena Koperasi Desa Merah Putih yang dibangun seragam hingga pelosok menyoroti kontrasnya prioritas pembangunan fasilitas pendidikan kita.
@@ -168,6 +168,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Sound Horeg vs Sound Menara Masjid: Jangan Hanya Membandingkan Angka dB](https://dalam.web.id/jejak-sejarah/sound-horeg-vs-sound-menara-masjid) : angka dB sound horeg dan pengeras suara menara masjid tidak bisa dibandingkan begitu saja? Bahas SPL, jarak, arah horn, dan ketinggian.
 - [Mengapa Muhammadiyah Lebih Banyak Membangun Sekolah?](https://dalam.web.id/jejak-sejarah/mengapa-muhammadiyah-lebih-banyak-membangun-sekolah) : Alasan mendasar mengapa Muhammadiyah lebih dominan mendirikan sekolah dan perguruan tinggi dibanding pesantren berdasarkan integrasi ilmu KH Ahmad Dahlan.
 - [Rahasia Muktamar Muhammadiyah Selalu Adem dan Dewasa](https://dalam.web.id/jejak-sejarah/rahasia-muktamar-muhammadiyah-selalu-adem) : mengapa Muktamar Muhammadiyah selalu berlangsung adem, matangnya sistem Formatur 13, dan etos kepemimpinan berbasis amanah publik.
 - [Al-Qur'an Memerintahkan Luzūmul Jamā'ah? Keajaiban Persatuan Umat](https://dalam.web.id/jejak-sejarah/al-quran-memerintahkan-luzumul-jamaah-keajaiban-persatuan-umat) : Makna Luzūmul Jamā'ah dalam Islam bukan sekadar berkumpul, melainkan bersatu di atas kebenaran. Pelajari prinsip persatuan yang diajarkan Al-Qur'an dan Sunnah.
@@ -8950,6 +8951,67 @@ Jika suatu waktu kendaraan di depan Anda mengerem mendadak, dengan menjaga jarak
 
 
 ## Kategori: Jejak Sejarah
+
+### Sound Horeg vs Sound Menara Masjid: Jangan Hanya Membandingkan Angka dB
+
+**Kategori:** Jejak-sejarah | **Tanggal:** 2026-09-13T17:26:57.439Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/jejak-sejarah/sound-horeg-vs-sound-menara-masjid)
+
+Menjawab pernyataan sebagian pengusaha sound horeg bahwa suara dari menara masjid dapat mencapai 150 dB, mari kita lihat persoalannya secara teknis melalui hubungan antara tingkat tekanan suara (Sound Pressure Level/SPL) dan jarak.
+
+#### Setiap jarak menjadi dua kali, SPL turun sekitar 6 dB
+
+Dalam kondisi ideal free field, ketika jarak dari sumber suara menjadi dua kali lebih jauh, SPL akan berkurang sekitar 6 dB. Prinsip ini dikenal sebagai inverse-square law untuk penyebaran energi suara dari sumber titik dalam medan bebas.
+
+#### Di sinilah sound horeg dan speaker menara mulai berbeda
+
+Sound horeg berada relatif dekat dengan permukaan tanah. Karena itu, masyarakat dapat berada hanya beberapa meter dari sistem loudspeaker dengan SPL yang sangat tinggi. Dalam situasi seperti ini, jarak pendengar terhadap sumber menjadi faktor yang sangat penting.
+
+Sementara itu, loudspeaker masjid ditempatkan di atas menara. Jika ketinggian menara kita ilustrasikan sekitar 15 meter, jarak antara loudspeaker dengan orang yang berada di permukaan tanah sudah cukup besar bahkan sebelum memperhitungkan jarak horizontal.
+
+#### Jarak sebenarnya bukan sekadar jarak horizontal
+
+Misalnya loudspeaker berada 15 meter di atas tanah dan seseorang berdiri tepat di bawahnya, jarak geometris antara sumber dan penerima secara sederhana sudah sekitar 15 meter. Dalam model free field dengan acuan 120 dB pada 1 meter, penurunan karena jarak saja sudah membuat SPL berada di kisaran pertengahan 96 dB dan 90 dB.
+
+Namun, contoh tersebut bukan hasil pengukuran lapangan. Kondisi nyata jauh lebih kompleks karena sumber suara bukan sumber titik ideal, lingkungan memiliki pantulan dan hambatan, dan karakter loudspeaker menentukan distribusi energinya.
+
+#### Horn atau corong membuat penyebaran suara menjadi directional
+
+Itu pun baru perhitungan teoritis free field, seolah-olah suara menyebar tanpa mempertimbangkan karakter loudspeaker. Dalam kenyataannya, speaker menara umumnya berupa horn atau corong yang bersifat directional.
+
+Artinya, energi suara terutama dipancarkan ke arah tertentu, bukan sama kuat ke segala arah. Horn di menara juga umumnya tidak diarahkan tajam ke bawah, melainkan mendatar atau sedikit menurun karena fungsi utamanya adalah memperoleh jangkauan horizontal yang jauh.
+
+#### Bagaimana dengan ilustrasi 100 dB?
+
+Pada gambar masjid ditampilkan pula angka merah tebal yang menggunakan 100 dB sebagai basis ilustrasi, mengikuti ketentuan maksimum yang disebut dalam narasi sebagai acuan Kementerian Agama RI.
+
+Jika angka 100 dB pada 1 meter dipakai hanya sebagai titik awal ilustrasi dan model penurunan yang sama diterapkan, hasil teoritisnya menjadi:
+
+Angka tersebut tetap harus dibaca sebagai ilustrasi matematis, bukan sebagai klaim bahwa setiap speaker menara pasti menghasilkan angka-angka tersebut di lapangan.
+
+#### Jadi, apakah klaim “150 dB” cukup untuk dibandingkan?
+
+Tidak. Menyebut sound menara masjid “150 dB” tanpa menjelaskan konteks pengukurannya secara teknis tidak cukup untuk dijadikan pembanding dengan sound horeg.
+
+Minimal harus dijelaskan:
+
+- Di mana SPL diukur dan pada titik ukur seperti apa.
+- Pada jarak berapa pengukuran dilakukan dari loudspeaker.
+- Di arah mana mikrofon berada terhadap sumbu utama loudspeaker.
+- Jenis dan karakteristik loudspeaker yang digunakan, termasuk directivity/horn.
+- Kondisi lingkungan dan apakah pengukuran dilakukan dalam free field atau ruang/lingkungan dengan pantulan.
+- Instrumen, metode, dan pembobotan pengukuran yang digunakan.
+#### Kesimpulan
+
+Perdebatan sound horeg dan sound menara masjid sebaiknya tidak berhenti pada pertanyaan “mana yang lebih tinggi dB-nya?”. Pertanyaan yang lebih tepat adalah berapa SPL yang diterima manusia pada posisi tertentu, pada jarak tertentu, dengan arah pancaran dan kondisi pengukuran yang jelas?
+
+Dalam model ideal, setiap penggandaan jarak memberikan penurunan sekitar 6 dB. Pada sistem yang dipasang tinggi, jarak vertikal sudah memberikan kontribusi signifikan. Pada speaker horn yang directional, distribusi suara juga tidak merata ke segala arah.
+
+Karena itu, klaim angka seperti 150 dB perlu ditempatkan dalam konteks pengukuran yang lengkap sebelum digunakan sebagai dasar perbandingan dengan sound horeg.
+
+Salam, Kang EepKonsultan Akustik & Sound Masjid
+
+---
+
 
 ### Mengapa Muhammadiyah Lebih Banyak Membangun Sekolah?
 
