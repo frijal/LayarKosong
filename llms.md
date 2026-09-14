@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.80
-last_updated: 2026-09-13
+document_version: 25.81
+last_updated: 2026-09-14
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -39,8 +39,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 13 September 2026)
-> Menampilkan 1628 artikel versi 25.80.
+## Index Artikel Terbaru (Updated: 14 September 2026)
+> Menampilkan 1629 artikel versi 25.81.
 
 ## Gaya Hidup
 - [Koperasi Desa Bisa Dibangun Sukses di Pelosok, Mengapa Sekolah Tidak?](https://dalam.web.id/gaya-hidup/koperasi-desa-sukses-mengapa-sekolah-tidak) : Fenomena Koperasi Desa Merah Putih yang dibangun seragam hingga pelosok menyoroti kontrasnya prioritas pembangunan fasilitas pendidikan kita.
@@ -168,6 +168,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Belajar dari Daun Kelor untuk Muhammadiyah](https://dalam.web.id/jejak-sejarah/belajar-dari-daun-kelor-untuk-muhammadiyah) : Daun kelor dalam logo Milad Muhammadiyah ke-114 menjadi refleksi tentang kepemimpinan sederhana, gerakan sehat, keberlanjutan, dan kemanfaatan bagi umat.
 - [Sound Horeg vs Sound Menara Masjid: Jangan Hanya Membandingkan Angka dB](https://dalam.web.id/jejak-sejarah/sound-horeg-vs-sound-menara-masjid) : angka dB sound horeg dan pengeras suara menara masjid tidak bisa dibandingkan begitu saja? Bahas SPL, jarak, arah horn, dan ketinggian.
 - [Mengapa Muhammadiyah Lebih Banyak Membangun Sekolah?](https://dalam.web.id/jejak-sejarah/mengapa-muhammadiyah-lebih-banyak-membangun-sekolah) : Alasan mendasar mengapa Muhammadiyah lebih dominan mendirikan sekolah dan perguruan tinggi dibanding pesantren berdasarkan integrasi ilmu KH Ahmad Dahlan.
 - [Rahasia Muktamar Muhammadiyah Selalu Adem dan Dewasa](https://dalam.web.id/jejak-sejarah/rahasia-muktamar-muhammadiyah-selalu-adem) : mengapa Muktamar Muhammadiyah selalu berlangsung adem, matangnya sistem Formatur 13, dan etos kepemimpinan berbasis amanah publik.
@@ -8951,6 +8952,121 @@ Jika suatu waktu kendaraan di depan Anda mengerem mendadak, dengan menjaga jarak
 
 
 ## Kategori: Jejak Sejarah
+
+### Belajar dari Daun Kelor untuk Muhammadiyah
+
+**Kategori:** Jejak-sejarah | **Tanggal:** 2026-09-14T16:46:24.143Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/jejak-sejarah/belajar-dari-daun-kelor-untuk-muhammadiyah)
+
+Ada sesuatu yang menarik perhatian saya ketika melihat logo Milad Muhammadiyah ke-114 dan Tanwir Muhammadiyah yang akan berlangsung di Kota Palu, Sulawesi Tengah, pada 19–21 November 2026. Di dalam logo tersebut terdapat daun kelor.
+
+Bagi sebagian orang, mungkin itu hanya bagian dari desain. Tetapi bagi saya, sebuah simbol sering kali bisa menjadi pintu masuk untuk merenungkan sesuatu yang lebih besar. Saya kemudian bertanya dalam hati: mengapa daun kelor?
+
+Kelor adalah tanaman yang tampak sederhana. Ia dekat dengan kehidupan masyarakat, relatif mudah tumbuh, dan dikenal memiliki beragam kegunaan. Dari sesuatu yang sederhana itu, kita bisa menemukan sejumlah nilai yang menarik: kesederhanaan, ketahanan, kesehatan, keberlanjutan, dan kemanfaatan.
+
+#### Dari Daun Kelor ke Makna Kepemimpinan
+
+Menariknya, filosofi tersebut terasa selaras dengan pembicaraan kami di ruang Rektor UMSU, Sabtu sore kemarin. Kami berbicara tentang pimpinan Muhammadiyah dan bagaimana seorang pimpinan semestinya tidak harus tampil mewah atau merasa istimewa karena amanah yang sedang diembannya.
+
+Yang lebih penting justru bagaimana seorang pimpinan menjadi pribadi yang sederhana, tetapi kaya manfaat bagi umat dan bangsa.
+
+Seorang pimpinan boleh sederhana dalam penampilan, tetapi luas dalam pikiran. Sederhana dalam gaya hidup, tetapi besar dalam pengabdian. Tidak terlalu banyak berbicara tentang dirinya, tetapi kehadirannya dapat dirasakan melalui kerja, keteladanan, dan manfaat yang ditinggalkannya.
+
+Amanah kepemimpinan bukan fasilitas untuk mendapatkan keistimewaan, melainkan kesempatan untuk memperbesar manfaat.
+
+Muhammadiyah sejak awal bukanlah gerakan untuk membesarkan pribadi. Yang hendak dibesarkan adalah dakwah, umat, bangsa, dan kemanusiaan. Karena itu, amanah kepemimpinan seharusnya tidak dipahami sebagai fasilitas untuk mendapatkan keistimewaan, tetapi sebagai kesempatan untuk memperbesar manfaat.
+
+#### Besarnya Gerakan Tidak Cukup Tanpa Kesehatan
+
+Usia Muhammadiyah yang kini telah mencapai 114 tahun, dengan segala dinamika, tantangan, dan perannya dalam perjalanan umat dan bangsa, tentu diharapkan terus selaras dengan filosofi yang dapat kita renungkan dari daun kelor tersebut.
+
+Muhammadiyah harus terus tumbuh, tetapi tidak kehilangan akar. Harus berkembang, tetapi tetap sehat. Harus besar, tetapi tidak kehilangan kesederhanaan. Dan yang paling penting, harus terus memberi manfaat dari generasi ke generasi.
+
+Daun kelor juga dapat dimaknai sebagai lambang keberlanjutan dan kesehatan. Dua hal yang sangat fundamental dalam kehidupan sebuah gerakan.
+
+#### Kesehatan gerakan lebih luas daripada kesehatan fisik
+
+Kesehatan gerakan bukan hanya soal sehat secara fisik, tetapi juga menyangkut banyak aspek yang menentukan daya hidup sebuah organisasi. Ideologi, kaderisasi, kepemimpinan, manajemen, keuangan, komunikasi, dan hubungan sosial semuanya membutuhkan perhatian.
+
+Organisasi yang besar pun membutuhkan perawatan. Ukuran yang besar tidak otomatis menunjukkan bahwa sebuah organisasi selalu sehat. Sebaliknya, sesuatu yang sederhana juga tidak berarti kecil dalam manfaatnya.
+
+Karena itu, ukuran keberhasilan tidak semestinya berhenti pada banyaknya lembaga, besarnya amal usaha, atau tingginya posisi yang berhasil dicapai. Pertanyaan yang lebih penting adalah apakah seluruh kebesaran itu membuat gerakan semakin sehat dan semakin dekat dengan tujuan pengabdiannya.
+
+#### Keberlanjutan Dimulai dari Kaderisasi
+
+Keberlanjutan berarti Muhammadiyah tidak hanya memikirkan apa yang dicapai hari ini, tetapi juga bagaimana kaderisasi, kepemimpinan, amal usaha, dakwah, dan sistem persyarikatan dapat terus berjalan setelah generasi kita selesai menjalankan amanah.
+
+Sebuah gerakan tidak akan benar-benar berkelanjutan jika terlalu bergantung pada satu atau beberapa figur. Figur dapat berganti, tetapi nilai, sistem, pengetahuan, dan budaya kerja harus mampu diwariskan.
+
+#### Kader tidak hanya disiapkan untuk menduduki posisi
+
+Kaderisasi yang sehat bukan sekadar menyiapkan orang untuk mengisi kursi kepemimpinan. Kader juga perlu dipersiapkan untuk memahami nilai, membaca perubahan zaman, bekerja bersama orang lain, dan menyelesaikan persoalan masyarakat.
+
+Dengan cara pandang seperti itu, keberlanjutan bukan sekadar mempertahankan organisasi agar tetap berdiri. Keberlanjutan berarti memastikan bahwa generasi berikutnya memiliki akar yang cukup kuat untuk bertumbuh, sekaligus ruang yang cukup luas untuk beradaptasi.
+
+#### Tidak Semua Orang Harus Menjadi Pimpinan
+
+Filosofi daun kelor ini tentu tidak hanya ditujukan kepada pimpinan Muhammadiyah. Ia juga menjadi refleksi bagi seluruh warga Muhammadiyah.
+
+Tidak semua orang harus menjadi pimpinan. Ada yang mengajar, berdakwah, mengelola amal usaha, menjadi profesional, mengurus masjid, membina keluarga, menjadi relawan, membangun usaha, mendampingi masyarakat, atau menjalankan tugasnya sebagai warga negara dengan baik.
+
+Semua memiliki ruang untuk memberi manfaat.
+
+Kadang kita terlalu sibuk memikirkan siapa yang berada di atas dan siapa yang menjadi pimpinan. Padahal sebuah gerakan sesungguhnya hidup karena banyak orang yang bekerja di bawah permukaan, tidak selalu terlihat, tidak selalu disebut namanya, tetapi terus berbuat.
+
+Tidak harus menjadi tokoh untuk berbuat baik. Tidak harus memiliki jabatan untuk memberi manfaat. Tidak harus terkenal untuk meninggalkan kebaikan.
+
+Seperti daun kelor, sesuatu tidak harus menjadi pusat perhatian untuk memiliki manfaat yang nyata.
+
+#### Makna yang Lebih Luas bagi Kehidupan
+
+Bahkan lebih luas lagi, filosofi ini sesungguhnya dapat menjadi renungan bagi umat Islam. Kita tidak hanya diajak untuk menjadi besar di hadapan manusia, tetapi juga menjadi manusia yang membawa kemanfaatan.
+
+Boleh jadi kita bukan siapa-siapa dalam pandangan manusia, tetapi menjadi sesuatu yang berarti bagi keluarga, tetangga, jamaah, masyarakat, dan bangsa. Nilai sebuah kehidupan tidak selalu terlihat dari jabatan atau popularitasnya.
+
+Ada kebaikan yang bekerja dalam diam. Ada orang yang tidak banyak disebut, tetapi pekerjaannya membuat banyak hal tetap berjalan. Dalam sebuah gerakan besar, mereka bukan pelengkap. Mereka justru merupakan bagian dari energi yang membuat gerakan tetap hidup.
+
+#### Tanwir, Arah Gerakan, dan Ajakan untuk Bercermin
+
+Tanwir merupakan ruang untuk melihat persoalan dengan lebih terang dan menentukan arah gerakan. Karena itu, kehadiran daun kelor dalam logo tersebut terasa semakin menarik untuk direnungkan.
+
+Ia seakan menyampaikan pesan sederhana: bertumbuhlah, tetapi tetap berakar; jadilah sehat, bertahanlah, dan teruslah memberi manfaat.
+
+Di tengah perjalanan Muhammadiyah yang sudah 114 tahun, pesan seperti ini terasa penting. Tantangan organisasi ke depan mungkin bukan hanya bagaimana menjadi semakin besar, tetapi bagaimana memastikan kebesaran itu tetap sehat dan bermanfaat.
+
+Bukan hanya bagaimana membangun banyak amal usaha, tetapi bagaimana amal usaha benar-benar menjadi amal yang menghadirkan kemaslahatan. Bukan hanya bagaimana melahirkan banyak kader, tetapi bagaimana melahirkan kader yang memudahkan dan menguatkan langkah Muhammadiyah.
+
+Dan bukan hanya bagaimana mendapatkan posisi, tetapi bagaimana menjalankan amanah dengan sebaik-baiknya ketika posisi itu datang.
+
+Di sinilah simbol sederhana dapat berubah menjadi pertanyaan yang cukup serius bagi sebuah gerakan: apakah pertumbuhan kita selalu diikuti oleh kesehatan? Apakah kebesaran kita selalu menghasilkan kemanfaatan? Apakah regenerasi kita benar-benar menyiapkan masa depan?
+
+#### Belajar Menjadi Besar Tanpa Kehilangan Kesederhanaan
+
+Mungkin di situlah kita perlu belajar dari daun kelor. Tidak harus tampil istimewa untuk menjadi berarti. Tidak harus besar untuk menjadi bermanfaat.
+
+Yang diperlukan adalah terus tumbuh, memiliki akar yang kuat, menjaga kesehatan, mampu bertahan dalam perubahan zaman, dan memberi manfaat sebanyak mungkin.
+
+Pada akhirnya, orang mungkin tidak selalu mengingat berapa banyak jabatan yang pernah kita sandang. Tetapi kebaikan yang kita tinggalkan bisa hidup jauh lebih lama daripada jabatan itu sendiri.
+
+Maka Milad Muhammadiyah ke-114 dan Tanwir di Palu bukan sekadar momentum memperingati usia dan bermusyawarah menentukan arah. Ia juga bisa menjadi kesempatan untuk bercermin:
+
+Apakah kita masih sederhana?
+
+Apakah kita masih sehat sebagai gerakan?
+
+Apakah kita masih mampu bertumbuh?
+
+Apakah kita sedang menyiapkan keberlanjutan?
+
+Dan yang paling penting, apakah kehadiran kita masih memberi manfaat?
+
+Mungkin itulah pesan sederhana dari daun kelor yang ada dalam logo tersebut: sederhana pribadinya, luas pikirannya, sehat gerakannya, berkelanjutan perjuangannya, tulus pengabdiannya, dan kaya manfaat bagi umat, bangsa, dan semesta.
+
+Semoga kita tidak hanya menjadi bagian dari perjalanan panjang Muhammadiyah, tetapi juga ikut memastikan agar perjalanan itu terus menghadirkan cahaya dan kemanfaatan bagi kehidupan.
+
+Salam Silaturahmi, Kolaborasi, Sinergi, Harmoni.
+
+---
+
 
 ### Sound Horeg vs Sound Menara Masjid: Jangan Hanya Membandingkan Angka dB
 
