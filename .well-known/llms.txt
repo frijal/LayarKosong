@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.83
-last_updated: 2026-09-14
+document_version: 25.84
+last_updated: 2026-09-15
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -39,8 +39,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 14 September 2026)
-> Menampilkan 1630 artikel versi 25.83.
+## Index Artikel Terbaru (Updated: 15 September 2026)
+> Menampilkan 1630 artikel versi 25.84.
 
 ## Gaya Hidup
 - [Koperasi Desa Bisa Dibangun Sukses di Pelosok, Mengapa Sekolah Tidak?](https://dalam.web.id/gaya-hidup/koperasi-desa-sukses-mengapa-sekolah-tidak) : Fenomena Koperasi Desa Merah Putih yang dibangun seragam hingga pelosok menyoroti kontrasnya prioritas pembangunan fasilitas pendidikan kita.
