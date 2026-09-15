@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.84
+document_version: 25.85
 last_updated: 2026-09-15
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 15 September 2026)
-> Menampilkan 1630 artikel versi 25.84.
+> Menampilkan 1631 artikel versi 25.85.
 
 ## Gaya Hidup
 - [Koperasi Desa Bisa Dibangun Sukses di Pelosok, Mengapa Sekolah Tidak?](https://dalam.web.id/gaya-hidup/koperasi-desa-sukses-mengapa-sekolah-tidak) : Fenomena Koperasi Desa Merah Putih yang dibangun seragam hingga pelosok menyoroti kontrasnya prioritas pembangunan fasilitas pendidikan kita.
@@ -656,6 +656,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Solusi LibreOffice Lambat di Jaringan](https://dalam.web.id/olah-media/solusi-libreoffice-lambat-jaringan) : Mengatasi masalah LibreOffice yang lambat saat membuka dokumen dari jaringan di Ubuntu. Panduan mudah dengan gvfs-fuse dan perintah sed.
 
 ## Opini Sosial
+- [Purbaya Diganti: Siapa Terganggu dan Arah Reformasi Pajak](https://dalam.web.id/opini-sosial/purbaya-diganti-siapa-terganggu-reformasi-pajak) : Bedah tuntas 8 kebijakan berani Purbaya Yudhi Sadewa dari Coretax hingga penertiban perusahaan nakal serta dampak pergantian Menteri Keuangan RI.
 - [Analisis Hukum Jam Kerja & Roster Tambang Batubara: Permenaker 15/2005 & UU Ketenagakerjaan](https://dalam.web.id/opini-sosial/hukum-jam-kerja-roster-tambang) : Kaji tuntas hukum ketenagakerjaan sektor tambang batubara. Bedah legalitas roster kerja 6:2, batas jam kerja harian 08:00-17:00, hak libur mid-roster, dan kalkulasi upah lembur sektoral.
 - [Sekolah Negeri Sepi Peminat: Analisis dan Solusi di Era Digital](https://dalam.web.id/opini-sosial/sekolah-negeri-sepi-peminat-analisis-dan-solusi) : Fenomena sekolah negeri yang tidak kebagian siswa baru menjadi masalah serius. Analisis lengkap penyebab dan solusi preventif yang bisa dilakukan pemerintah.
 - [Ruang Publik yang Makin Sempit: Tempat Duduk Gratis di Kota Makin Susah](https://dalam.web.id/opini-sosial/ruang-publik-yang-makin-sempit-di-kota-besar) : Di kota besar, tempat untuk sekadar duduk tanpa membeli sesuatu makin sulit ditemukan. Ruang publik yang hilang dan dampaknya bagi kehidupan sosial warga.
@@ -37473,6 +37474,73 @@ Setelah itu, coba buka kembali dokumen jaringan — LibreOffice akan terasa jauh
 
 
 ## Kategori: Opini Sosial
+
+### Purbaya Diganti: Siapa Terganggu dan Arah Reformasi Pajak
+
+**Kategori:** Opini-sosial | **Tanggal:** 2026-09-15T19:36:47.731Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/opini-sosial/purbaya-diganti-siapa-terganggu-reformasi-pajak)
+
+Pergantian tampuk kepemimpinan di gedung Kementerian Keuangan selalu menjadi sorotan nasional. Kebijakan fiskal bukan sekadar urusan penyusunan angka APBN atau perhitungan rasio utang di atas kertas, melainkan sebuah instrumen politik ekonomi yang bersentuhan langsung dengan stabilitas pasar, investasi, hingga daya beli masyarakat bawah. Ketika posisi kunci ini mengalami pergeseran mendadak, publik wajar jika bertanya-tanya mengenai alasan mendasar di baliknya.
+
+Selama masa jabatannya, Purbaya Yudhi Sadewa dikenal kerap mengambil keputusan yang tergolong radikal dan tidak populer bagi sebagian kalangan birokrat maupun elit pengusaha. Berbagai gebrakan berani meluncur deras, mulai dari pembersihan internal aparat perpajakan hingga penagihan piutang kakap yang membeku bertahun-tahun. Pergerakan cepat ini menciptakan gelombang kejutan di dalam ekosistem penerimaan negara.
+
+Pergantian pejabat tinggi ini meninggalkan sebuah narasi besar yang belum tuntas. Di satu sisi, ada optimisme bahwa pejabat baru akan membawa stabilitas baru. Namun di sisi lain, muncul kekhawatiran bahwa langkah-langkah penertiban yang telah dimulai justru akan mengendur atau bahkan berbalik arah.
+
+#### 8 Langkah Kebijakan Berani yang Mengguncang Status Quo
+
+Rekam jejak kebijakan yang ditinggalkan Purbaya mencakup serangkaian keputusan krusial yang menyasar langsung zona nyaman para pelaku korupsi dan mafia penunggak pajak. Berikut adalah perincian dari delapan kebijakan utama tersebut:
+
+#### 1. Penundaan PPh E-commerce demi Daya Beli
+
+Salah satu langkah awal yang cukup responsif adalah keputusan untuk menunda pemungutan PPh Pasal 22 bagi para pedagang di platform marketplace. Kebijakan ini diambil guna memelihara efisiensi dan menjaga daya beli masyarakat di tengah ketidakpastian ekonomi global.
+
+#### 2. Pembongkaran Coretax dan Mutasi 1.227 Pegawai DJP
+
+Purbaya melakukan pembenahan mendasar pada sistem Coretax serta merombak struktur internal Direktorat Jenderal Pajak (DJP). Langkah konkret ini diwujudkan dengan memutasi sebanyak 1.227 pegawai guna memutus jaringan komunikasi dan relasi tidak sehat yang terindikasi praktik korupsi.
+
+#### 3. Penolakan Pinjaman IMF dan Tagihan Danantara
+
+Dalam pengelolaan pembiayaan negara, kebijakan tegas diambil dengan menolak opsi pinjaman dari IMF untuk menutup defisit APBN. Sebaliknya, dorongan kuat diberikan kepada Danantara untuk menyetorkan dana segar hingga Rp120 triliun, mengusung strategi berburu di kolam ikan besar tanpa mematikan usaha kecil.
+
+#### 4. Pengejaran Perusahaan Penunggak Pajak Kakap
+
+Langkah taktis lainnya adalah menyasar perusahaan-perusahaan besar yang menunggak pajak. Temuan menunjukkan banyak korporasi memiliki utang pajak mencapai Rp200 miliar per perusahaan, bahkan ada yang menyimpan potensi tunggakan hingga Rp1 triliun.
+
+#### 5. Pengusutan 40 Perusahaan Baja China
+
+Pemeriksaan ketat dilakukan terhadap 40 perusahaan industri baja yang terindikasi melakukan penghindaran pajak secara masif. Proses pengusutan ini juga menyasar dugaan keterlibatan oknum internal Kementerian Keuangan yang menjadi penyokong praktik tersebut.
+
+#### 6. Akses Bebas KPK Tanpa Intervensi
+
+Purbaya membuka pintu lebar-lebar bagi Komisi Pemberantasan Korupsi (KPK) dan aparat penegak hukum lainnya untuk menyelidiki dugaan penyimpangan, suap, dan penyelewengan di lingkungan Direktorat Jenderal Bea dan Cukai (DJBC) secara independen.
+
+#### 7. Pembongkaran "Bemper" Perlindungan Oknum
+
+Dalam perbincangan terbuka di saluran media publik, diungkapkan bahwa di masa lalu terdapat mekanisme perlindungan terselubung yang membuat aparatur nakal sulit diperiksa. Praktek perlindungan oknum tersebut dihentikan secara total.
+
+#### 8. Doktrin "Purbayanomics" vs Mafia
+
+Pendekatan yang dijuluki Purbayanomics ini berfokus pada efisiensi tanpa menaikkan basis pajak warga biasa dan tanpa utang luar negeri. Strategi ini secara langsung mengganggu kenyamanan jaringan mafia pajak, pengusaha impor ilegal, serta oknum birokrasi korup.
+
+#### Tekanan Politik dan Mafia: Pihak yang Terusik Reformasi
+
+Setiap reformasi radikal selalu menghasilkan pembagian dua kubu: pihak yang diuntungkan oleh keadilan sistem, dan pihak yang dirugikan karena kehilangan privilege haram. Gebrakan melibas 1.227 pegawai terindikasi korupsi dan membongkar gurita bisnis baja impor yang diduga main mata dengan oknum internal tentu memicu perlawanan balik dari status quo.
+
+Ketika potensi penagihan pajak menyasar angka triliunan rupiah dari korporasi kakap, tekanan politik dipastikan mengalir deras. Pengusaha nakal yang terbiasa 'membeli' perlindungan dari oknum aparatur kini mendadak harus berhadapan dengan hukum tanpa benteng pertahanan. Kondisi ini membuat suhu politik di lingkaran penerimaan negara memanas secara signifikan.
+
+Oleh karena itu, muncul dugaan kuat bahwa pergeseran posisi Menteri Keuangan dari Purbaya Yudhi Sadewa ke Suahasil Nazara bukan sekadar penyegaran organisasi. Ada dorongan besar dari elemen-elemen yang merasa terancam oleh transparansi radikal ini untuk segera menghentikan laju reformasi yang dipandang terlalu berisiko bagi kelangsungan bisnis haram mereka.
+
+Publik kini mengamati dengan seksama apakah estafet kepemimpinan baru ini akan melanjutkan langkah berani tersebut, atau justru menjadi titik balik menuju pola lama yang kompromistis terhadap penyimpangan.
+
+#### Pertanyaan Besar Masa Depan Reformasi Penerimaan Negara
+
+Kini kepemimpinan telah berpindah ke tangan Suahasil Nazara. Tantangan utama yang dihadapi bukan lagi sekadar menyusun angka-angka penerimaan dalam target APBN, melainkan membuktikan kepada publik bahwa spirit pemberantasan korupsi dan penataan birokrasi di tubuh Kementerian Keuangan tidak surut selangkah pun.
+
+Masyarakat berhak mempertanyakan dan mengawal kelanjutan dari agenda-agenda besar yang telah dirintis. Apakah pembenahan sistem Coretax, pembersihan Bea Cukai, serta pemburuan penunggak pajak triliunan rupiah akan tetap berjalan konsisten? Ataukah pergantian pejabat ini menjadi penanda melandainya ketegasan negara terhadap para pelaku kejahatan keuangan?
+
+Jawaban atas pertanyaan-pertanyaan tersebut akan terlihat dari kebijakan konkret yang diambil dalam beberapa bulan ke depan. Transparansi dan integritas tetap menjadi tolok ukur utama untuk menilai apakah pergantian ini murni penyesuaian strategi fiskal, ataukah sebuah kekalahan dari tekanan kepentingan elit.
+
+---
+
 
 ### Analisis Hukum Jam Kerja & Roster Tambang Batubara: Permenaker 15/2005 & UU Ketenagakerjaan
 
