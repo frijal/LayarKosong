@@ -6,6 +6,7 @@
     ":automergePatch",
     ":automergeMinor"
   ],
+  "rangeStrategy": "bump",
   "enabledManagers": [
     "bun",
     "npm",
@@ -16,6 +17,11 @@
   "timezone": "Asia/Jakarta",
   "schedule": ["at any time"],
   "labels": ["dependencies"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": ["before 5am on monday"]
+  },
   "html": {
     "managerFilePatterns": ["/\\.html?$/"]
   },
@@ -50,6 +56,12 @@
       "matchDepTypes": ["devDependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "groupName": "dev dependencies",
+      "automerge": true
+    },
+    {
+      "matchPackageNames": ["bun", "@types/bun"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "bun ecosystem",
       "automerge": true
     },
     {
