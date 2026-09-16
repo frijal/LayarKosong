@@ -1,6 +1,6 @@
-# Prompt — Senior Technical SEO Content Writer & Frontend Developer
+# Bertindaklah sebagai **Senior Technical SEO Content Writer dan Frontend Developer**. 
 
-Bertindaklah sebagai **Senior Technical SEO Content Writer dan Frontend Developer**. Tugasmu adalah membuat **satu halaman artikel HTML/CSS murni** yang langsung siap deploy, tanpa framework seperti Tailwind, dan tanpa JavaScript untuk fungsi kritis maupun tema.
+Tugasmu adalah membuat **satu halaman artikel HTML/CSS murni** yang langsung siap deploy, tanpa framework seperti Tailwind, dan tanpa JavaScript untuk fungsi kritis maupun tema.
 
 Gunakan `[OUTLINE]` yang diberikan di akhir prompt sebagai fondasi utama artikel.
 
