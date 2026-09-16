@@ -4,9 +4,9 @@
 
 # 🚀 Panduan Membuat Static Site
 
-[![Proses](thumbnail.webp)](https://github.com/frijal/LayarKosong/fork)
-
 Selamat datang! Panduan ini menjelaskan cara membangun situs statis yang cepat, ringan, dan **ter-deploy secara otomatis ke Cloudflare Pages** menggunakan repository **Layar Kosong**.
+
+[![Proses](thumbnail.webp)](https://github.com/frijal/LayarKosong/fork)
 
 Konsepnya sederhana: kamu cukup fokus menulis dan melakukan commit ke GitHub. Seluruh proses build, generate aset, pemrosesan artikel, hingga deployment ditangani otomatis oleh **GitHub Actions + Cloudflare Wrangler**.
 
