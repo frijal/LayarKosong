@@ -4,9 +4,9 @@
 
 # 🚀 Static Site Deployment Guide
 
-[![Process](thumbnail.webp)](https://github.com/frijal/LayarKosong/fork)
-
 Welcome! This guide explains how to build a high-performance, lightweight static website with **automated deployment to Cloudflare Pages** using the **Layar Kosong** repository.
+
+[![Process](thumbnail.webp)](https://github.com/frijal/LayarKosong/fork)
 
 The core concept is simple: you focus on writing and committing content to GitHub, while **GitHub Actions + Cloudflare Wrangler** handle the build pipeline and publish your site to the internet automatically.
 
