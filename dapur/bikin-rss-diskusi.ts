@@ -1,5 +1,4 @@
 // --- BUN NATIVE API - RSS 2.0 PARSER ---
-// Tanpa dependensi eksternal, dieksekusi dengan Bun Runtime
 import { mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 
@@ -7,7 +6,6 @@ const REPO_OWNER = 'frijal';
 const REPO_NAME = 'LayarKosong';
 const TRACKER_FILE = 'mini/posted-github.txt';
 
-// File asli menggunakan ekstensi .rss
 const RSS_FILES = [
   'gaya-hidup.rss', 'jejak-sejarah.rss', 'lainnya.rss',
   'olah-media.rss', 'opini-sosial.rss',
@@ -39,12 +37,13 @@ async function githubGraphQL(query: string, variables: any = {}) {
     body: JSON.stringify({ query, variables })
   });
 
-  if (!response.ok) {
-    throw new Error(`GitHub API Error: ${response.status} ${response.statusText}`);
+  const result: any = await response.json();
+  
+  if (!response.ok || result.errors) {
+    const errorMsg = result.errors ? JSON.stringify(result.errors) : `${response.status} ${response.statusText}`;
+    throw new Error(errorMsg);
   }
 
-  const result: any = await response.json();
-  if (result.errors) throw new Error(JSON.stringify(result.errors, null, 2));
   return result.data;
 }
 
@@ -53,45 +52,29 @@ function extractMatch(text: string, regex: RegExp): string {
   return match ? match[1].trim() : "";
 }
 
-/**
- * Custom RSS 2.0 Parser
- * Dirancang khusus untuk membaca format <item> dan <![CDATA[ ]]>
- */
 function parseRSSSafe(xml: string) {
   const items: any[] = [];
   
-  // Ambil judul channel (Kategori)
   let channelTitle = extractMatch(xml, /<title><!\[CDATA\[([\s\S]*?)\]\]><\/title>/i);
   if (!channelTitle) channelTitle = extractMatch(xml, /<title>([^<]+)<\/title>/i);
   
-  // Pisahkan berdasarkan <item>
   const rawItems = xml.split("<item>");
-  rawItems.shift(); // Buang bagian header channel
+  rawItems.shift();
 
   for (const rawItem of rawItems) {
     const content = rawItem.split("</item>")[0];
     
-    // Title sering dibungkus CDATA di filemu
     let title = extractMatch(content, /<title><!\[CDATA\[([\s\S]*?)\]\]><\/title>/i);
     if (!title) title = extractMatch(content, /<title>([\s\S]*?)<\/title>/i);
     
     const link = extractMatch(content, /<link>([^<]+)<\/link>/i);
     const pubDate = extractMatch(content, /<pubDate>([^<]+)<\/pubDate>/i);
-    
-    // Ambil gambar dari tag <enclosure url="..." />
     const imageUrl = extractMatch(content, /<enclosure[^>]*url="([^"]+)"/i) || null;
 
-    // Ambil deskripsi UTUH dari dalam CDATA
     let description = extractMatch(content, /<description><!\[CDATA\[([\s\S]*?)\]\]><\/description>/i);
     if (!description) description = extractMatch(content, /<description>([\s\S]*?)<\/description>/i);
 
-    items.push({
-      title,
-      link,
-      description,
-      pubDate,
-      image: imageUrl
-    });
+    items.push({ title, link, description, pubDate, image: imageUrl });
   }
   
   return { title: channelTitle, items };
@@ -148,7 +131,6 @@ async function run() {
       }
 
       for (const item of items) {
-        // Karena link dari RSS berbentuk https://dalam.web.id/kategori/slug
         const slug = item.link.split('/').filter(Boolean).pop();
         if (slug && !postedSlugs.has(slug)) {
           allArticles.push({
@@ -162,12 +144,19 @@ async function run() {
       }
     }
 
-    // Urutkan dari terlama ke terbaru
     allArticles.sort((a, b) => a.pubDateParsed - b.pubDateParsed);
     console.log(`📦 Terdeteksi ${allArticles.length} artikel baru yang siap dipublish.`);
 
     for (const art of allArticles) {
-      console.log(`📤 Posting ke GitHub: ${art.title}`);
+      if (!art.title) {
+        console.warn(`⚠️ Melewati artikel tanpa judul (slug: ${art.slug})`);
+        continue;
+      }
+
+      // Potong judul jika melebihi batas 240 karakter (Maksimal GitHub = 256)
+      const safeTitle = art.title.length > 240 ? `${art.title.slice(0, 237)}...` : art.title;
+
+      console.log(`📤 Posting ke GitHub: ${safeTitle}`);
 
       let displayImage = "";
       if (art.image) {
@@ -179,26 +168,39 @@ async function run() {
 
       const bodyContent = `### [${art.title}](${art.link})${displayImage}\n\n${art.description}\n\n---\n**Kupas Tuntas semuanya di:** [${art.link}](${art.link})`;
 
-      await githubGraphQL(`
-        mutation($repoId: ID!, $catId: ID!, $body: String!, $title: String!) {
-          createDiscussion(input: { repositoryId: $repoId, categoryId: $catId, body: $body, title: $title }) {
-            discussion { id }
+      try {
+        await githubGraphQL(`
+          mutation($repoId: ID!, $catId: ID!, $body: String!, $title: String!) {
+            createDiscussion(input: { repositoryId: $repoId, categoryId: $catId, body: $body, title: $title }) {
+              discussion { id }
+            }
           }
-        }
-      `, {
-        repoId,
-        catId: art.targetCategoryId,
-        title: art.title,
-        body: bodyContent
-      });
+        `, {
+          repoId,
+          catId: art.targetCategoryId,
+          title: safeTitle,
+          body: bodyContent
+        });
 
-      postedSlugs.add(art.slug);
-      await Bun.write(TRACKER_FILE, Array.from(postedSlugs).join('\n'));
-      
-      await sleep(2500); 
+        // Catat tracker hanya jika posting sukses
+        postedSlugs.add(art.slug);
+        await Bun.write(TRACKER_FILE, Array.from(postedSlugs).join('\n'));
+        
+        // Jeda 5 detik per postingan untuk menghindari secondary rate limit
+        await sleep(5000);
+
+      } catch (postError: any) {
+        console.error(`❌ Gagal posting "${safeTitle}":`, postError.message);
+
+        // Jika terkena Secondary Rate Limit / Spam detection, beri jeda panjang lalu lanjut
+        if (postError.message.includes("secondary rate limit") || postError.message.includes("403") || postError.message.includes("WAS_SUBMITTED_TOO_QUICKLY")) {
+          console.warn("⏳ Terkena Secondary Rate Limit GitHub. Mengistirahatkan skrip selama 40 detik...");
+          await sleep(40000);
+        }
+      }
     }
 
-    console.log("✨ Done! Semua sinkronisasi RSS 2.0 berhasil.");
+    console.log("✨ Done! Proses sinkronisasi selesai.");
 
   } catch (err: any) {
     console.error("❌ Fatal Error:", err.message);
