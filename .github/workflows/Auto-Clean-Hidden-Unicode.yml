@@ -12,12 +12,7 @@ on:
           - all
           - preload
           - unicode
-  # Ditambahkan jika ingin otomatis jalan tiap ada push file HTML di main branch
-  push:
-    branches: [main]
-    paths:
-      - '**/*.html'
-
+  
 jobs:
   cleanup-html:
     runs-on: ubuntu-latest
