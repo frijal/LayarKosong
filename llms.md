@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.93
+document_version: 25.94
 last_updated: 2026-09-17
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 17 September 2026)
-> Menampilkan 1647 artikel versi 25.93.
+> Menampilkan 1648 artikel versi 25.94.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -1332,6 +1332,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Catatan perjalanan Ubuntu Jogja ke GCOS Jakarta: bus malam, singgah Kebumen, silaturahmi KPLI, dan penghargaan Komunitas FOSS terbaik.
 
 ## Warta Tekno
+- [Panduan Static Site GitHub Cloudflare Pages](https://dalam.web.id/warta-tekno/panduan-static-site-github-cloudflare-pages) : Panduan membangun static site cepat dengan GitHub Actions, Bun.js, Cloudflare Wrangler, Pages, dan D1 melalui pipeline otomatis Layar Kosong.
 - [Memilih Windows LTSC atau Windows Pro: Panduan Lengkap](https://dalam.web.id/warta-tekno/memilih-windows-ltsc-atau-windows-pro) : Bingung memilih antara Windows LTSC dan Windows Pro? Pelajari perbedaan fitur, stabilitas, dan peruntukannya agar tak salah instalasi OS di PC Anda.
 - [Firefox Punya VPN Gratis 50 GB, Ganti VPN Biasa?](https://dalam.web.id/warta-tekno/firefox-vpn-gratis-50-gb-gantikan-vpn-biasa) : Firefox kini memiliki VPN bawaan gratis hingga 50 GB per bulan. Kenali cara kerja, batasan, privasi, dan apakah cukup menggantikan VPN biasa.
 - [Mengenal Fennec Browser Android: Firefox Tanpa Pelacak](https://dalam.web.id/warta-tekno/mengenal-fennec-browser-android-firefox-tanpa-pelacak) : Fennec F-Droid menghadirkan ketangguhan Firefox di Android tanpa kode pelacak proprietary. Nikmati web bebas telemetri dengan dukungan penuh add-on favorit.
@@ -79414,6 +79415,200 @@ Catatan seperti ini penting karena menunjukkan bahwa open source bukan hanya uru
 
 
 ## Kategori: Warta Tekno
+
+### Panduan Static Site GitHub Cloudflare Pages
+
+**Kategori:** Warta-tekno | **Tanggal:** 2026-09-17T11:52:44.995Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/warta-tekno/panduan-static-site-github-cloudflare-pages)
+
+Static site sering dianggap sederhana karena halaman akhirnya hanya berupa HTML, CSS, JavaScript, gambar, dan beberapa file data. Namun, ketika jumlah artikel mulai bertambah, pekerjaan di belakang layar ikut berkembang: gambar perlu dioptimalkan, metadata harus konsisten, sitemap harus diperbarui, feed perlu dibuat, indeks pencarian harus disinkronkan, dan hasil akhirnya harus dikirim ke hosting.
+
+Repository Layar Kosong menggunakan pendekatan yang mengotomatisasi rangkaian pekerjaan tersebut. Penulis cukup menyiapkan artikel pada direktori staging, melakukan commit dan push ke branch main, lalu GitHub Actions menjalankan proses produksi menggunakan Bun.js dan Cloudflare Wrangler.
+
+Yang menarik bukan sekadar penggunaan layanan cloud, melainkan cara seluruh proses tersebut dirangkai. Artikel tidak langsung disalin mentah ke server. Ia melewati beberapa tahap transformasi sebelum menjadi bagian dari situs production.
+
+#### Dari Artikel Staging Menjadi Situs Production
+
+Alur utama Layar Kosong menggunakan satu workflow GitHub Actions bernama 📡 Artikel Baru Kombo. Workflow tersebut berjalan dalam satu job dan membagi pekerjaan menjadi tiga fase berurutan: pemrosesan artikel, build dan generate site files, kemudian persiapan deployment, sinkronisasi D1, dan deployment Cloudflare Pages.
+
+Trigger otomatisnya sengaja dibuat spesifik. Push ke branch main hanya memicu workflow ketika ada perubahan pada pola artikelx/*.html. Dengan demikian, artikelx berfungsi sebagai staging area untuk artikel baru sebelum diproses.
+
+Selain trigger otomatis, workflow menyediakan workflow_dispatch. Mekanisme manual ini memungkinkan proses tertentu dijalankan kembali tanpa harus memasukkan artikel baru, misalnya ketika hanya perlu melakukan rebuild data, membuat ulang srcset gambar, melakukan injeksi Schema.org, atau menjalankan deployment tertentu.
+
+#### Fase 1: Memproses Artikel di artikelx/
+
+Fase pertama berfokus pada bahan mentah yang masuk melalui direktori artikelx/. Beberapa script Bun.js bekerja secara berurutan untuk mengubah struktur HTML, menyesuaikan aset, memperbaiki metadata SEO, melakukan mirror gambar, dan menghasilkan format WebP.
+
+#### Struktur HTML dan aset
+
+Edit-Komponen-HTML.ts menangani modifikasi struktur dasar HTML. Setelah itu gantifontshighlight.ts mengelola aset font dan kebutuhan highlight yang digunakan oleh situs.
+
+Langkah berikutnya dijalankan oleh seo-fixer.ts. Script tersebut menangani pemrosesan metadata SEO, mirror gambar, serta konversi gambar ke WebP sehingga artikel yang masuk staging dapat mengikuti standar produksi repository.
+
+#### Perpindahan ke direktori production
+
+Setelah berhasil diproses, file HTML yang berada di artikelx/ dipindahkan ke artikel/. Perubahan fase ini kemudian dibuat menjadi local commit oleh GitHub Actions.
+
+#### Fase 2: Build, Generate, dan Optimasi
+
+Fase kedua bertugas membangun berbagai data pendukung situs. Di sinilah artikel yang telah diproses diubah menjadi bagian dari ekosistem static site yang lebih lengkap: indeks artikel, sitemap, RSS, routing, structured data, dan aset gambar yang lebih adaptif.
+
+#### Generator data
+
+generator-pro.ts menghasilkan artikel.json, XML, dan RSS Feed. Data tersebut menjadi bagian penting dari sistem publikasi dan pencarian situs.
+
+#### Optimasi gambar
+
+srcset-generator.ts menghasilkan varian gambar untuk berbagai resolusi layar. Pendekatan ini membantu browser memilih aset yang lebih sesuai dengan kondisi perangkat dan ukuran tampilan.
+
+#### Sitemap dan routing
+
+Toolchain yang terdiri dari koki.ts, bikin-sitemap-txt.ts, generate_llms.ts, dan redirectmap.ts memperbarui data sitemap, informasi yang digunakan sistem AI, serta peta redirect.
+
+#### Structured data dan minifikasi
+
+inject-schema.ts menginjeksi structured data Schema.org. Setelah itu minify-html.ts dan minify-jsonxml.ts melakukan minifikasi terhadap HTML, JSON, dan XML.
+
+Setelah seluruh proses selesai, perubahan hasil build dibuat menjadi local commit kedua. Push ke repository baru dilakukan pada langkah final pipeline, sehingga seluruh transformasi dapat dikumpulkan sebelum perubahan dikirim kembali ke branch main.
+
+#### Sinkronisasi Cloudflare D1 Menggunakan Diff
+
+Mesin pencarian Layar Kosong menggunakan data artikel.json dan indeks pada Cloudflare D1. Pipeline tidak harus membangun ulang seluruh indeks remote pada setiap deployment. Sebaliknya, ia menggunakan pendekatan state → diff → patch.
+
+Pipeline terlebih dahulu mengambil state indeks yang sedang berada di D1. Query yang digunakan mengambil id, date, dan code dari articles_fts, kemudian menyimpannya sebagai current_d1_state.json.
+
+Script sync-d1-diff.ts membandingkan state tersebut dengan data repository dan menghasilkan d1-patch.sql. Patch hanya dieksekusi ketika memang terdapat perubahan, sehingga pipeline tidak perlu melakukan operasi database yang tidak diperlukan.
+
+#### deploy_dir sebagai Batas Deployment
+
+Sebelum Cloudflare Pages menerima hasil build, workflow membuat direktori deploy_dir/. Direktori ini menjadi deployment boundary, yaitu batas yang menentukan file mana yang boleh masuk ke deployment production.
+
+Pipeline menggunakan rsync untuk menyalin aset yang memang diperlukan. Direktori pengembangan seperti .git/, .github/, node_modules/, dapur/, mini/, artikelx/, dan artikel/ tidak ikut dikirim sebagai direktori mentah.
+
+Sebaliknya, direktori production seperti kategori artikel, img/, ext/, search/, serta .well-known/ dan berbagai aset HTML, XML, TXT, maupun media yang dibutuhkan akan dimasukkan ke dalam deploy_dir/.
+
+Pemisahan tersebut memberikan satu keuntungan praktis: deployment tidak bergantung pada seluruh isi repository. Hanya hasil yang telah dipilih oleh aturan pipeline yang diteruskan ke Cloudflare Pages.
+
+#### Wrangler Configuration Dibuat Saat Pipeline Berjalan
+
+Workflow tidak bergantung pada wrangler.toml yang disimpan secara manual sebagai konfigurasi utama deployment. Sebelum deployment, file tersebut dihapus jika ada dan pipeline membuat wrangler.jsonc secara dinamis.
+
+Konfigurasi tersebut menentukan nama project, compatibility date, lokasi output Pages, variable environment, dan binding database D1. Nilai database_id berasal dari GitHub Secret sehingga tidak perlu ditulis secara langsung ke repository.
+
+Pendekatan tersebut juga membuat konfigurasi deployment lebih mudah disesuaikan ketika repository dijadikan dasar untuk situs lain. Nama project, compatibility date, dan binding database dapat diubah mengikuti kebutuhan deployment baru.
+
+#### Deployment Langsung ke Cloudflare Pages
+
+Setelah deploy_dir/ siap dan kebutuhan D1 diproses, pipeline melakukan deployment langsung menggunakan Wrangler. Tidak ada branch site sebagai perantara dalam arsitektur saat ini.
+
+Deployment memiliki mekanisme retry maksimal tiga kali. Jika percobaan pertama gagal, workflow menunggu sebelum mencoba kembali. Apabila seluruh percobaan gagal, job dinyatakan gagal sehingga kegagalan deployment tidak diam-diam dianggap sukses.
+
+Setelah deployment berhasil, workflow dapat menjalankan purge cache katalog dan membersihkan deployment Cloudflare lama melalui script pemeliharaan repository.
+
+#### GitHub Secrets Menjaga Kredensial Tetap Terpisah
+
+Karena pipeline berinteraksi dengan Cloudflare, beberapa kredensial harus tersedia di lingkungan GitHub Actions. Nilai tersebut disimpan sebagai repository secrets, bukan sebagai teks biasa di source code.
+
+Prinsip dasarnya sederhana: repository boleh berisi konfigurasi dan kode, tetapi kredensial akses tetap berada di secret store GitHub. Dengan cara ini, konfigurasi deployment dapat dibaca dan dikelola tanpa mengekspos token maupun identifier sensitif.
+
+#### Menyiapkan Environment Lokal
+
+Untuk bekerja dengan repository, kebutuhan dasarnya adalah Git dan Bun. Git digunakan untuk mengambil repository dan mengirim perubahan, sedangkan Bun merupakan JavaScript runtime yang digunakan oleh build system dan script TypeScript di direktori dapur/.
+
+#### Windows
+
+#### Linux
+
+Pada Debian atau Ubuntu, Git dapat dipasang menggunakan:
+
+Untuk Fedora dan distribusi yang menggunakan DNF:
+
+Arch Linux, CachyOS, Manjaro, dan EndeavourOS dapat menggunakan:
+
+Instruksi instalasi Bun mengikuti dokumentasi resmi Bun sesuai sistem operasi yang digunakan.
+
+#### Menyiapkan Repository dan Cloudflare Pages
+
+Langkah awal penggunaan repository adalah melakukan fork repository Layar Kosong ke akun GitHub sendiri dan tetap menggunakan branch main. Branch site tidak menjadi bagian dari arsitektur deployment saat ini.
+
+Setelah repository siap, buat project Cloudflare Pages dan sesuaikan nama project dengan nilai yang digunakan workflow. Untuk basis repository ini, nama project yang digunakan adalah layarkosong.
+
+Berikutnya buat API Token Cloudflare dengan permission yang diperlukan untuk Pages dan D1. Simpan Account ID, API Token, dan D1 Database ID secara aman, lalu masukkan nilai yang diperlukan ke GitHub Repository Secrets.
+
+- Fork repository ke akun GitHub.
+- Gunakan branch main.
+- Buat project Cloudflare Pages.
+- Siapkan API Token Cloudflare dengan permission yang diperlukan.
+- Siapkan Account ID dan D1 Database ID.
+- Tambahkan seluruh secret ke pengaturan GitHub Actions.
+- Hapus sample content dari artikel/ dan gambar contoh dari img/ jika repository digunakan sebagai basis situs baru.
+- Sesuaikan domain, branding, dan konfigurasi pada file root serta direktori ext/.
+#### Menulis Artikel dengan Production Pipeline
+
+Alur kerja penulis sebenarnya cukup singkat. Buat artikel HTML, simpan di artikelx/, commit perubahan, kemudian push ke main. Perubahan tersebut akan dikenali oleh filter path workflow dan memulai proses otomatis.
+
+- Buat file HTML artikel baru.
+- Letakkan file di artikelx/.
+- Lakukan git commit.
+- Push ke branch main.
+- Workflow memproses HTML, SEO, gambar, dan WebP.
+- Artikel dipindahkan dari artikelx/ ke artikel/.
+- Generator memperbarui data site, sitemap, RSS, routing, Schema.org, dan aset.
+- Pipeline menyiapkan deploy_dir/.
+- State indeks D1 dibandingkan dan patch diterapkan bila diperlukan.
+- Cloudflare Pages menerima hasil production.
+Dengan demikian, pekerjaan manual tidak perlu berulang setiap kali artikel diterbitkan. Penulis berinteraksi terutama dengan Git dan direktori staging, sementara pekerjaan transformasi dan deployment ditangani pipeline.
+
+#### Menjalankan Pipeline Secara Manual
+
+workflow_dispatch memberikan kontrol tambahan ketika kebutuhan tidak selalu berupa artikel baru. Beberapa proses dapat dijalankan secara terpisah menggunakan toggle yang tersedia pada halaman GitHub Actions.
+
+#### Mode deployment
+
+Mode full menjalankan persiapan deployment, sinkronisasi D1, deployment Pages, serta purge cache. Mode update-only menyiapkan deploy_dir/ dan melakukan deployment Pages tanpa sinkronisasi D1 dan purge cache.
+
+Sementara itu, skip melewati deployment Cloudflare Pages. Namun, langkah final commit dan push tetap merupakan bagian dari workflow sehingga hasil perubahan script masih dapat di-commit dan dikirim ke repository.
+
+#### Branding dan File yang Perlu Disesuaikan
+
+Setelah deployment awal berhasil, repository dapat disesuaikan dengan identitas situs yang akan dibangun. Bagian yang perlu diperhatikan meliputi domain, warna, logo, informasi kontak, metadata, dan konfigurasi pada direktori ext/.
+
+Beberapa file root juga memiliki fungsi khusus, seperti index.html untuk halaman utama, search.html untuk pencarian, 404.html untuk halaman not-found, robots.txt, sitemap HTML, favicon, halaman disclaimer, serta halaman privasi dan penghapusan data.
+
+artikel.json merupakan indeks utama yang digunakan mesin pencari situs. File tersebut sebaiknya dibiarkan diperbarui oleh pipeline agar hasil generator tidak tertimpa perubahan manual.
+
+- Ganti seluruh URL dalam.web.id dengan domain situs sendiri.
+- Perbarui informasi kontak dan metadata.
+- Sesuaikan warna, logo, dan branding.
+- Validasi seluruh internal link.
+- Verifikasi sitemap dan robots.txt.
+- Pastikan secret Cloudflare sudah benar.
+- Pastikan binding D1 mengarah ke database yang benar.
+- Pastikan deployment Cloudflare Pages berhasil.
+- Verifikasi situs production melalui HTTPS.
+#### Custom Domain di Cloudflare Pages
+
+Jika situs akan menggunakan domain sendiri, konfigurasi dilakukan melalui bagian Custom Domains pada project Cloudflare Pages. Domain ditambahkan melalui dashboard Cloudflare, kemudian DNS dikonfigurasi mengikuti instruksi yang diberikan platform.
+
+Dalam arsitektur ini, file CNAME tidak digunakan sebagai mekanisme utama deployment. File tersebut lebih umum ditemukan pada pola deployment GitHub Pages, sedangkan Cloudflare Pages memiliki mekanisme domain tersendiri.
+
+#### Kenapa Pendekatan Ini Cocok untuk Static Site?
+
+Kekuatan utama arsitektur Layar Kosong terletak pada pembagian tanggung jawab yang jelas. Repository menjadi sumber data dan kode, GitHub Actions menjadi orchestrator, Bun.js menjalankan toolchain transformasi, Cloudflare D1 menyimpan indeks pencarian remote, sedangkan Cloudflare Pages menjadi tujuan deployment.
+
+Pemisahan tersebut membuat proses publikasi dapat diprediksi. Artikel masuk melalui staging, diproses menjadi aset production, indeks dibandingkan dengan state database, lalu hanya output yang diperlukan yang dikirim ke hosting.
+
+Model seperti ini juga mengurangi pekerjaan repetitif. Ketika pipeline sudah stabil, aktivitas penerbitan artikel berubah menjadi proses sederhana: menulis, menyimpan di artikelx/, commit, dan push.
+
+#### Penutup
+
+Membangun static site bukan hanya persoalan menghasilkan HTML yang cepat. Ketika situs sudah memiliki banyak artikel, kualitas workflow di belakangnya ikut menentukan seberapa mudah situs tersebut dirawat dan dikembangkan.
+
+Layar Kosong memilih pendekatan satu pipeline dengan tiga fase: memproses artikel, menghasilkan seluruh aset pendukung, lalu menyiapkan dan melakukan deployment. Bun.js menyediakan runtime untuk toolchain TypeScript, GitHub Actions menjadi mesin otomatisasi, Cloudflare D1 menangani indeks pencarian, dan Cloudflare Pages menjadi tujuan publikasi.
+
+Hasil akhirnya adalah alur kerja yang cukup sederhana dari sudut pandang penulis, tetapi memiliki rangkaian otomasi yang lengkap di belakangnya. Selama struktur staging, secrets, generator, database, dan deployment tetap konsisten, proses publikasi dapat berjalan berulang dengan pola yang sama.
+
+---
+
 
 ### Memilih Windows LTSC atau Windows Pro: Panduan Lengkap
 
