@@ -1,6 +1,6 @@
 # 🗓️ Dashboard Jadwal Otomatis Layar Kosong
 
-> **Terakhir Diperbarui:** Minggu, 13 September 2026 pukul 13.46.08 WITA
+> **Terakhir Diperbarui:** Kamis, 17 September 2026 pukul 17.17.13 WITA
 
 | 🛠️ Nama Workflow | ⏰ Cron (UTC) | 📖 Jadwal Lokal (Balikpapan) |
 | :--- | :--- | :--- |
@@ -8,7 +8,7 @@
 | 🧬 Zemester Content Aggregation | `25 1 1 1,7 *` | Setiap pukul 09:25 WITA, tanggal 1, bulan ke-1,7 |
 | 🟢 Automation & MedSos (Full Bun) | `3 2,8,14,20 * * *` | Setiap pukul 04:03, 10:03, 16:03, 22:03 WITA |
 | 🛠️ Dapur Maintenance (All-in-One) | `20 9 */6 * *` | Setiap pukul 17:20 WITA, setiap 6 hari |
-| 🔆 Pengecekan & Laporan Konten Harian | `0 13 * * *` | Setiap pukul 21:00 WITA |
+| 🔆 Pengecekan & Laporan Konten Harian | `0 13 */6 * *` | Setiap pukul 21:00 WITA, setiap 6 hari |
 
 ---
 *Dashboard ini dibuat otomatis oleh robot dapur.*
