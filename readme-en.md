@@ -1,159 +1,267 @@
-[![Prompt Edan](https://img.shields.io/badge/Raw-Prompt_Edan-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/frijal/LayarKosong/main/sementara/prompt-edan.md)
-[![Google Preferred Source](https://img.shields.io/badge/Google-Preferred_Source-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://www.google.com/preferences/source?q=dalam.web.id)
+[![Prompt Edan](https://img.shields.io/badge/Raw-Prompt_Edan-blue?style=for-the-badge\&logo=github)](https://raw.githubusercontent.com/frijal/LayarKosong/main/sementara/prompt-edan.md)
+[![Google Preferred Source](https://img.shields.io/badge/Google-Preferred_Source-4285F4?style=for-the-badge\&logo=google\&logoColor=white)](https://www.google.com/preferences/source?q=dalam.web.id)
 [![Bahasa Indonesia](https://img.shields.io/badge/README-Bahasa_Indonesia-blue?style=for-the-badge&logo=readme&logoColor=white)](README.md)
 
-# 🚀 Static Site Deployment Guide
+# 🚀 Static Site Builder Guide
 
-Welcome! This guide explains how to build a high-performance, lightweight static website with **automated deployment to Cloudflare Pages** using the **Layar Kosong** repository.
+Welcome! This guide explains how to build a fast, lightweight static website that is **automatically deployed to Cloudflare Pages** using the **Layar Kosong** repository.
 
 [![Process](thumbnail.webp)](https://github.com/frijal/LayarKosong/fork)
 
-The core concept is simple: you focus on writing and committing content to GitHub, while **GitHub Actions + Cloudflare Wrangler** handle the build pipeline and publish your site to the internet automatically.
+The concept is simple: focus on writing content and committing it to GitHub. The entire build process, asset generation, article processing, search-index synchronization, and deployment are handled automatically by **GitHub Actions + Bun.js + Cloudflare Wrangler**.
 
 **Key Features:**
 
-* **Direct Deploy:** Uses Wrangler for direct and fast deployment without an intermediate deployment branch.
-* **Search Engine:** High-performance client-side JavaScript powered by `artikel.json` and Cloudflare D1.
-* **Clean URLs:** Supports extensionless URLs (`.html` omitted) for cleaner and more readable navigation.
+* **Single Pipeline:** The entire publishing process is handled by a single GitHub Actions workflow, `📡 Artikel Baru Kombo`, divided into three sequential phases.
+* **Direct Deploy:** Deployment goes directly to Cloudflare Pages using Wrangler, without an intermediate `site` branch.
+* **Search Engine:** A client-side search engine powered by `artikel.json` and a Cloudflare D1 search index.
+* **Clean URLs:** Supports URLs without the `.html` extension for cleaner navigation.
+* **Image Optimization:** Image processing, WebP conversion, and `srcset` variants are handled as part of the production pipeline.
 
 ---
 
-## 🧠 CI/CD Automation Architecture
+## 🧠 Automation Architecture (CI/CD)
 
-Wondering how **Layar Kosong** transforms a raw article draft into a production-ready website? The following diagram illustrates the complete automated pipeline:
+How does **Layar Kosong** turn a staged article into a production-ready page?
+
+The repository currently uses **one workflow**:
+
+`📡 Artikel Baru Kombo`
+
+The workflow is divided into three sequential phases running within **a single job**:
+
+1. **🔰 Phase 1 — ArtikelX Processing**
+2. **🏗️ Phase 2 — Build & Generate Site Files**
+3. **🚀 Phase 3 — Prepare, Sync D1 & Deploy to Cloudflare Pages**
+
+The primary automatic trigger is a push to the `main` branch that changes an `artikelx/*.html` file. The workflow also provides `workflow_dispatch` for manually running selected parts of the pipeline.
+
+### Pipeline Diagram
 
 ```mermaid
 graph TD
-    %% ==========================================
-    %% WORKFLOW 1: 🔄 ARTIKELX PROCESSING
-    %% ==========================================
-    subgraph WF1 ["🔄 Workflow 1: ArtikelX Processing (Initial Preparation)"]
+    Start(((Push / Manual))) --> Trigger{"Trigger"}
+
+    Trigger -->|Push to main<br>artikelx/*.html| Phase1
+    Trigger -->|workflow_dispatch| Manual["Select process toggles<br>and deploy_mode"]
+
+    Manual --> Phase1
+
+    subgraph WF["📡 Workflow: Artikel Baru Kombo"]
         direction TB
-        Start1(((Start))) --> Trig1{"Trigger:<br>Push (artikelx/*.html)<br>or Manual"}
-        Trig1 --> Check1["1️⃣ Checkout Repository & Setup Bun.js"]
-        
-        Check1 --> S_HTML[/"2️⃣ Modify HTML Components (Edit-Komponen-HTML.ts)"/]
-        S_HTML --> S_Clean[/"3️⃣ Sanitize Schema (clean-schema.ts)"/]
-        S_Clean --> S_Font[/"4️⃣ Localize External Assets (gantifontshighlight.ts)"/]
-        S_Font --> S_SEO[/"5️⃣ Inject SEO, Mirror Images, Convert to WebP (seo-fixer.ts)"/]
-        
-        S_SEO --> Move["6️⃣ Move HTML files from 'artikelx/' to 'artikel/'"]
-        Move --> Commit1["7️⃣ Commit & Push Changes"]
+
+        Phase1["🔰 Phase 1<br>ArtikelX Processing"]
+        A1["Edit-Komponen-HTML.ts"]
+        A2["gantifontshighlight.ts"]
+        A3["seo-fixer.ts"]
+        A4["Move artikelx/ → artikel/<br>+ local commit"]
+
+        Phase1 --> A1 --> A2 --> A3 --> A4
+
+        A4 --> Phase2["🏗️ Phase 2<br>Build & Generate"]
+        B1["generator-pro.ts<br>artikel.json + XML + RSS"]
+        B2["srcset-generator.ts"]
+        B3["koki.ts + sitemap + llms + redirectmap"]
+        B4["inject-schema.ts"]
+        B5["minify-html.ts + minify-jsonxml.ts"]
+        B6["Final local commit"]
+
+        Phase2 --> B1 --> B2 --> B3 --> B4 --> B5 --> B6
+
+        B6 --> Phase3["🚀 Phase 3<br>Prepare & Deploy"]
+        C1["rsync → deploy_dir/"]
+        C2["Generate wrangler.jsonc"]
+        C3["Download current D1 state"]
+        C4["Diff → d1-patch.sql"]
+        C5["Execute D1 patch"]
+        C6["Cloudflare Pages Deploy<br>maximum 3 retries"]
+        C7["Purge catalog cache<br>+ clean up old deployments"]
+
+        Phase3 --> C1 --> C2 --> C3 --> C4 --> C5 --> C6 --> C7
     end
 
-    %% ==========================================
-    %% WORKFLOW 2: ☢️ BUILD AND GENERATE
-    %% ==========================================
-    subgraph WF2 ["☢️ Workflow 2: Build & Generate Site Files (Production Pipeline)"]
-        direction TB
-        Trig2{"Trigger:<br>WF1 Success<br>or Manual (Toggles)"}
-        
-        Trig2 --> Check2["1️⃣ Checkout Repository & Setup Bun.js"]
-        Check2 --> Build1{"Generate Data?"}
-        
-        Build1 -- Yes --> S_Gen[/"2️⃣ generator-pro.ts<br>(JSON, XML, RSS)"/] --> Build2
-        Build1 -- No --> Build2{"Generate Srcset?"}
-        
-        S_Gen --> Build2
-        Build2 -- Yes --> S_Srcset[/"3️⃣ srcset-generator.ts"/] --> Build3
-        Build2 -- No --> Build3{"Update Sitemap TXT?"}
-        
-        S_Srcset --> Build3
-        Build3 -- Yes --> S_SiteTXT[/"4️⃣ koki.ts, bikin-sitemap-txt.ts, etc."/] --> Build4
-        Build3 -- No --> Build4{"Inject Schema?"}
-        
-        S_SiteTXT --> Build4
-        Build4 -- Yes --> S_Inject[/"5️⃣ inject-schema.ts"/] --> Build5
-        Build4 -- No --> Build5{"Convert to Markdown?"}
-        
-        S_Inject --> Build5
-        Build5 -- Yes --> S_MD[/"6️⃣ html-to-markdown.ts"/] --> Build6
-        Build5 -- No --> Build6{"Minify Files?"}
-        
-        S_MD --> Build6
-        Build6 -- Yes --> S_Min[/"7️⃣ Minify HTML, JSON & XML"/] --> Commit2
-        Build6 -- No --> Commit2["8️⃣ Commit, Pull --rebase & Push Data"]
-    end
-
-    %% ==========================================
-    %% WORKFLOW 3: 🚀 CLOUDFLARE DEPLOYER
-    %% ==========================================
-    subgraph WF3 ["🚀 Workflow 3: Cloudflare Deployer (Public Release)"]
-        direction TB
-        Trig3{"Trigger:<br>WF2 Success<br>or Push (Paths: _redirects, _headers)"}
-        
-        Trig3 --> Check3["1️⃣ Checkout 'main' Branch (into 'source' directory)"]
-        Check3 --> Setup3["2️⃣ Setup Node v24 & Bun.js"]
-        
-        Setup3 --> Rsync["3️⃣ Clean Directories & Stage Files<br>(rsync to 'deploy_dir')"]
-        
-        Rsync --> Config["4️⃣ Inject Cloudflare Credentials (D1 & KV)<br>into /tmp/wrangler.toml"]
-        
-        Config --> D1Build[/"5️⃣ Execute build-d1.ts (Update D1 Database)"/]
-        
-        D1Build --> DeploySetup["6️⃣ Move 'wrangler.toml' and 'functions'<br>into the root directory"]
-        
-        DeploySetup --> Cloudflare{"7️⃣ Deploy to Cloudflare Pages<br>(bunx wrangler pages deploy)"}
-        
-        Cloudflare -- "Success" --> Success(((Layar Kosong<br>Go Live! 🎉)))
-        Cloudflare -- "Failure" --> Retry["⚠️ Retry (Maximum 3 Attempts)"]
-        Retry --> Cloudflare
-    end
-
-    %% ==========================================
-    %% WORKFLOW HANDOFFS
-    %% ==========================================
-    Commit1 -- Triggers (workflow_run) --> Trig2
-    Commit2 -- Triggers (workflow_run) --> Trig3
+    C7 --> Live(((Layar Kosong<br>Go Live! 🎉)))
 ```
 
-### 🛠️ Automation Internals: Bun.js & TypeScript Scripts
+> **Important:** The diagram represents the current pipeline. There is no longer a `workflow_run` handoff between separate ArtikelX Processing, Build, and Cloudflare Deployer workflows. All three phases now run inside one workflow and one job.
 
-Interested in the implementation behind the architecture above? The following links provide direct access to the scripts that power the automation pipeline:
+### Automatic Trigger
 
-<details>
-<summary><strong>1️⃣ Preparation Stage Scripts (ArtikelX Processing)</strong></summary>
+The workflow automatically runs when:
 
-* [`Edit-Komponen-HTML.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/Edit-Komponen-HTML.ts) — Modifies the base HTML structure to comply with the site's SEO standards.
-* [`clean-schema.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/clean-schema.ts) — Removes unnecessary or redundant tags and schema markup.
-* [`gantifontshighlight.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/gantifontshighlight.ts) — Converts third-party assets such as fonts and external CSS into local assets.
-* [`seo-fixer.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/seo-fixer.ts) — Injects SEO metadata, automatically mirrors images, and converts images to WebP.
+```yaml
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "artikelx/*.html"
+```
 
-</details>
+This means an ordinary push that does not modify `artikelx/*.html` does not automatically trigger this workflow.
 
-<details>
-<summary><strong>2️⃣ Production Stage Scripts (Build & Generate)</strong></summary>
+Changes generated by the workflow itself are also not automatically treated as new articles simply because the workflow performs a `git push`. The primary trigger remains changes to `artikelx/*.html`.
 
-* [`generator-pro.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/generator-pro.ts) — Core generator for `artikel.json`, XML files, and RSS feeds.
-* [`srcset-generator.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/srcset-generator.ts) — Generates optimized image variants for different screen resolutions.
-* **Sitemap & Redirect Bundle:** Generates sitemap data and routing metadata ([`koki.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/koki.ts), [`bikin-sitemap-txt.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/bikin-sitemap-txt.ts), [`generate_llms.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/generate_llms.ts), [`redirectmap.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/redirectmap.ts)).
-* [`inject-schema.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/inject-schema.ts) — Injects Schema.org structured data for enhanced search-engine metadata and rich results.
-* [`html-to-markdown.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/html-to-markdown.ts) — Converts HTML documents into Markdown.
-* **Minifiers:** High-performance file compressors for HTML, JSON, and XML ([`minify-html.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/minify-html.ts), [`minify-jsonxml.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/minify-jsonxml.ts)).
+### Manual Run
 
-</details>
+The workflow supports `workflow_dispatch` with the following inputs:
 
-<details>
-<summary><strong>3️⃣ Deployment Stage Scripts (Cloudflare)</strong></summary>
+| Input                 | Function                                                          |
+| --------------------- | ----------------------------------------------------------------- |
+| `run_proses_artikel`  | Runs Phase 1: processes articles from `artikelx/`.                |
+| `run_build_generator` | Runs data generators, sitemap, LLMs, and redirect-map generation. |
+| `run_srcset`          | Runs the image `srcset` generator.                                |
+| `run_schema`          | Runs Schema.org structured-data injection.                        |
+| `run_minify`          | Minifies HTML, JSON, and XML.                                     |
+| `deploy_mode`         | Controls deployment: `full`, `update-only`, or `skip`.            |
 
-* [`build-d1.ts`](https://github.com/frijal/LayarKosong/blob/main/search/build-d1.ts) — Builds the search index and updates the Cloudflare D1 database.
+`deploy_mode` values:
 
-</details>
+* **`full`** — prepares deployment, synchronizes D1, deploys to Pages, and purges cache.
+* **`update-only`** — prepares `deploy_dir/` and deploys to Pages without D1 synchronization or cache purge.
+* **`skip`** — skips Cloudflare Pages deployment.
+
+For an automatic **push** trigger, the pipeline runs all phases according to the workflow conditions.
 
 ---
 
-## 🛠️ Stage 1: Environment Preparation (Git & Bun)
+## 🛠️ Automation Kitchen: Bun.js & TypeScript
 
-The first requirement is to have **Git and Bun installed**, as the deployment process uses `bunx wrangler`.
+The following section documents the scripts that run the pipeline. The main automation scripts are stored in the **`dapur/`** directory. The name **“dapur”** (“kitchen”) remains part of the repository structure.
 
-* **Git:** [Download Git](https://git-scm.com/downloads) or install it using `winget install Git.Git` on Windows.
-* **Bun:** [Bun installation guide](https://bun.sh/) — a fast JavaScript runtime used by the build system.
+### 1️⃣ Phase 1 Scripts — ArtikelX Processing
+
+* [`Edit-Komponen-HTML.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/Edit-Komponen-HTML.ts) — Modifies the base HTML structure.
+* [`gantifontshighlight.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/gantifontshighlight.ts) — Manages font/highlight asset replacement using the assets required by the site.
+* [`seo-fixer.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/seo-fixer.ts) — Processes SEO metadata, mirrors images, and converts images to WebP.
+
+At the end of this phase, successfully processed `artikelx/*.html` files are moved into `artikel/`, and the resulting changes are committed locally by GitHub Actions.
+
+### 2️⃣ Phase 2 Scripts — Build & Generate
+
+* [`generator-pro.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/generator-pro.ts) — Main generator for `artikel.json`, XML files, and RSS feeds.
+* [`srcset-generator.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/srcset-generator.ts) — Generates optimized image variants for different screen resolutions.
+* **Sitemap & Routing Toolchain** — Handles updates through [`koki.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/koki.ts), [`bikin-sitemap-txt.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/bikin-sitemap-txt.ts), [`generate_llms.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/generate_llms.ts), and [`redirectmap.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/redirectmap.ts).
+* [`inject-schema.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/inject-schema.ts) — Injects Schema.org structured data.
+* **Minifier** — Minifies HTML, JSON, and XML through [`minify-html.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/minify-html.ts) and [`minify-jsonxml.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/minify-jsonxml.ts).
+
+After Phase 2 completes, additional changes are committed locally. The repository push is performed by the final pipeline step.
+
+### 3️⃣ Phase 3 Scripts — Search Index, D1 & Deployment
+
+* [`sync-d1-diff.ts`](https://github.com/frijal/LayarKosong/blob/main/search/sync-d1-diff.ts) — Compares the current remote D1 search-index state against repository data and generates `d1-patch.sql`.
+* [`rapikan-cloudflare.ts`](https://github.com/frijal/LayarKosong/blob/main/dapur/rapikan-cloudflare.ts) — Handles cleanup of obsolete Cloudflare deployments.
+
+This phase also dynamically creates `wrangler.jsonc` from GitHub Actions secrets. The generated configuration is used by Wrangler for deployment and D1 binding.
+
+---
+
+## 🧾 D1 Data Flow
+
+D1 synchronization does not rebuild the entire search index on every deployment. Instead, the pipeline uses a **state → diff → patch** approach.
+
+```text
+Current Cloudflare D1
+        │
+        ▼
+SELECT id, date, code FROM articles_fts
+        │
+        ▼
+current_d1_state.json
+        │
+        ▼
+sync-d1-diff.ts
+        │
+        ▼
+d1-patch.sql
+        │
+        ▼
+Cloudflare D1 --remote
+```
+
+This approach allows the workflow to identify the required database changes before executing the SQL patch against the remote database.
+
+The `d1-patch.sql` file is executed only when it contains changes.
+
+---
+
+## 📦 Deployment Boundary
+
+Before deployment, the workflow creates:
+
+```text
+deploy_dir/
+```
+
+This directory acts as the **deployment boundary** for Cloudflare Pages.
+
+The workflow uses `rsync` to copy production assets while excluding files and directories that should not be published, including:
+
+* `.git/`
+* `.github/`
+* `node_modules/`
+* `dapur/`
+* `mini/`
+* `artikelx/`
+* `artikel/`
+* `deploy_dir/`
+
+Production directories such as category directories, `img/`, `ext/`, `search/`, `.well-known/`, together with the required HTML/XML/TXT and media assets, are included in `deploy_dir/`.
+
+> The `artikel/` directory is intentionally not copied as a raw directory into `deploy_dir/`. The production output follows the site's file and routing rules.
+
+---
+
+## 🌐 Wrangler Configuration
+
+The workflow does not rely on a manually maintained `wrangler.toml` stored in the repository.
+
+Before deployment, the workflow:
+
+1. Removes `wrangler.toml` if it exists.
+2. Creates `wrangler.jsonc`.
+3. Obtains `database_id` from the GitHub Secret `CLOUDFLARE_ID_D1`.
+4. Sets `pages_build_output_dir` to `deploy_dir`.
+5. Uses the compatibility date defined by the workflow.
+
+Example structure:
+
+```jsonc
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "layarkosong",
+  "compatibility_date": "2026-09-16",
+  "pages_build_output_dir": "deploy_dir",
+  "vars": {
+    "BUN_VERSION": "latest",
+    "NODE_VERSION": "24"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "layarkosong-db",
+      "database_id": "..."
+    }
+  ]
+}
+```
+
+> **Note:** The `database_id` is supplied through a secret and is not stored directly in the repository.
+
+---
+
+## 🌐 Stage 1: Environment Setup (Git & Bun)
+
+Make sure **Git and Bun** are installed before working with the pipeline. Deployment uses `bunx wrangler`.
+
+* **Git:** [Download Git](https://git-scm.com/downloads), or use `winget install Git.Git` on Windows.
+* **Bun:** [Bun installation guide](https://bun.sh/) — the JavaScript runtime used by the build system.
 
 ### 🪟 Windows
 
-Download and install the official package from [git-scm.com](https://git-scm.com/download/win).
+Download and install Git from [git-scm.com](https://git-scm.com/download/win).
 
-Alternatively, install Git using `winget`:
+Or use `winget`:
 
 ```bash
 winget install --id Git.Git -e --source winget
@@ -161,7 +269,7 @@ winget install --id Git.Git -e --source winget
 
 ### 🍎 macOS
 
-Open Terminal and run the following command if you are using Homebrew:
+If you use Homebrew:
 
 ```bash
 brew install git
@@ -210,86 +318,145 @@ brew install git
 
 ### 1. Fork the Repository
 
-Fork this repository into your own GitHub account.
+Fork this repository to your GitHub account.
 
-Only the `main` branch is required; the legacy `site` branch is no longer used.
+Use the `main` branch. The `site` branch is no longer used.
 
-> 👉 **[Fork the Repository](https://github.com/frijal/LayarKosong/fork)**
+> 👉 **[Fork Repository](https://github.com/frijal/LayarKosong/fork)**
 
 ### 2. Create a Cloudflare Pages Project
 
-1. Log in to the [Cloudflare Dashboard](https://dash.cloudflare.com/).
-2. Navigate to **Workers & Pages** > **Create application** > **Pages** > **Upload assets**.
-3. Assign a project name, for example `my-blog`.
+1. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com/).
+2. Go to **Workers & Pages** → **Create application** → **Pages** → **Upload assets**.
+3. Choose a project name according to your requirements.
 
-### 3. Create a Cloudflare API Token
+> For this repository, the workflow uses `layarkosong` as the Cloudflare Pages project name. If you use the repository as the basis for another site, update the `name` value and the `--project-name` argument in the workflow.
 
-1. Open **My Profile** > **API Tokens** > **Create Token**.
-2. Use the **Edit Cloudflare Workers** template or configure the token with access to **Cloudflare Pages** at the account level.
-3. Store your **Account ID** and **API Token** securely.
+### 3. Create an API Token
+
+1. Go to **My Profile** → **API Tokens** → **Create Token**.
+2. Grant the permissions required for Cloudflare Pages and D1.
+3. Store the **Account ID**, **API Token**, and **D1 Database ID** securely.
+
+> Never store these credentials in source code, workflow files, or committed configuration files.
 
 ---
 
 ## 🏗️ Stage 3: Automation Configuration (GitHub Secrets)
 
-The deployment pipeline requires Cloudflare credentials to authenticate GitHub Actions.
+The deployment pipeline requires Cloudflare credentials for authentication from GitHub Actions.
 
-### 1. Remove the Sample Content 🧹
+### 1. Clean Sample Content 🧹
 
-Clean the repository before publishing your own content:
+Before using the repository:
 
-* Delete all files inside the `artikel/` directory.
-* Delete all images inside the `img/` directory.
+* Remove sample files from the `artikel/` directory.
+* Remove sample images from the `img/` directory.
+* Keep the directory structure required by the pipeline.
 
-### 2. Configure Repository Secrets
+### 2. Repository Secrets
 
-Add your Cloudflare credentials to the forked repository:
+Add the following secrets under:
 
-1. Open **Settings** > **Secrets and variables** > **Actions**.
-2. Click **New repository secret**.
-3. Add the following secrets:
+**Settings → Secrets and variables → Actions → New repository secret**
 
-   * `CF_API_TOKEN`: Your Cloudflare API token.
-   * `CF_ACCOUNT_ID`: Your Cloudflare account ID.
+| Secret             | Purpose                                                       |
+| ------------------ | ------------------------------------------------------------- |
+| `CF_API_TOKEN`     | Cloudflare API token used by Wrangler and the Cloudflare API. |
+| `CF_ACCOUNT_ID`    | Cloudflare Account ID.                                        |
+| `CLOUDFLARE_ID_D1` | D1 database ID used by the `DB` binding.                      |
+| `CF_ZONE_ID`       | Cloudflare Zone ID used for cache purging.                    |
+| `CF_PROJECT_NAME`  | Cloudflare project name used by deployment/cache maintenance. |
 
-> Keep these credentials private. Do not hard-code them into source files, workflow definitions, or committed configuration.
+> `CF_ZONE_ID` and `CF_PROJECT_NAME` are used by the purge/cache-maintenance step. Make sure they match your domain and project configuration.
+>
+> Never hard-code secret values into source code.
 
 ---
 
-## ✍️ Stage 4: Content Authoring & Production
+## ✍️ Stage 4: Content Writing & Production Pipeline
 
-This is where the automated content pipeline takes over.
+At this stage, simply place your article in the staging directory.
 
-You do not need to place article files directly into the public production directory. Instead, use the `artikelx/` staging directory.
+1. Create a new HTML article file.
+2. Place it in **`artikelx/`** — note the `x` suffix.
+3. Run `git commit` and `git push` to the `main` branch.
+4. Because the workflow monitors `artikelx/*.html`, the push triggers **`📡 Artikel Baru Kombo`**.
+5. **Phase 1** processes the HTML, SEO metadata, images, and WebP assets.
+6. The processed HTML file is moved from `artikelx/` to `artikel/`.
+7. **Phase 2** updates site data, sitemap, RSS, routing, Schema.org, and generated assets.
+8. **Phase 3** creates `deploy_dir/`, synchronizes search-index changes to D1, and deploys to Cloudflare Pages.
+9. Cloudflare deployment has a maximum of **3 attempts**. If all three attempts fail, the job fails.
+10. After deployment, the pipeline can purge the catalog cache and clean up obsolete Cloudflare deployments.
 
-1. Create a new HTML article.
-2. Place the file inside **`artikelx/`** — note the trailing `x`.
-3. Run `git commit` and `git push` to your repository.
-4. **Let GitHub Actions handle the pipeline:** The workflow detects the new article, processes SEO metadata, generates WebP assets, updates sitemap data, and moves the processed file into the production `artikel/` directory.
+🎉 Once the workflow completes successfully and the deployment succeeds, the page is available on the public website.
 
-🎉 **Done!** Your page is now processed and deployed to the public site.
+For the next article, repeat the same workflow.
 
-Repeat the same workflow for subsequent articles.
+---
+
+## 🖐️ Running the Pipeline Manually
+
+In addition to the new-article trigger, the workflow can be started from:
+
+**GitHub → Actions → 📡 Artikel Baru Kombo → Run workflow**
+
+Use the available toggles according to the operation you need.
+
+### Example: Rebuild Site Data Only
+
+Enable:
+
+```text
+run_build_generator = true
+```
+
+If you also want to deploy the result:
+
+```text
+deploy_mode = update-only
+```
+
+### Example: Full Synchronization & Deployment
+
+Select:
+
+```text
+deploy_mode = full
+```
+
+`full` enables the deployment steps that require the current D1 state and cache purge.
+
+### Example: Build Without Deployment
+
+Enable the required build toggles and use:
+
+```text
+deploy_mode = skip
+```
+
+> **Note:** `Final Commit & Push ke Repositori` remains part of the workflow. Therefore, changes generated by scripts can still be committed and pushed even when deployment is set to `skip`.
 
 ---
 
 ## 🎨 Stage 5: Branding & Configuration
 
-After the initial deployment succeeds, customize the repository so that the generated site represents your own domain, identity, and branding.
+After the initial deployment succeeds, customize the repository so that the site's identity, domain, and branding match your requirements.
 
-### Core Configuration — Required
+### Core Configuration
 
-* **`wrangler.toml`**: Change `name = "layarkosong"` to your Cloudflare project name.
-* **`artikel.json`**: This file powers the site's search index. Let the automation pipeline update it automatically.
-* **`ext/` directory**: Update URLs and domain-specific configuration throughout the files in this directory.
+* **GitHub Actions workflow** — update `name`, `--project-name`, compatibility date, and D1 binding if you are using the repository as the basis for another site.
+* **`artikel.json`** — the main index file used by the site's search engine. Let the pipeline update it automatically.
+* **`ext/` directory** — update domain URLs and configuration where required.
+* **`wrangler.jsonc`** — this file is generated automatically by the main pipeline. Do not rely on an unrelated local configuration file.
 
-### Root-Level Pages & Site Identity
+### Root Pages & Site Identity
 
-Review and customize the following files in the repository root:
+Customize the following files in the repository root:
 
-* `index.html` — Main landing page.
-* `search.html` — Search interface.
-* `404.html` — Custom not-found page.
+* `index.html` — Main page.
+* `search.html` — Search page.
+* `404.html` — Not-found page.
 * `BingSiteAuth.xml` — Bing Webmaster verification.
 * `CODE_OF_CONDUCT.md` — Repository code of conduct.
 * `data-deletion-form.html` & `data-deletion.html` — Privacy and data-deletion pages.
@@ -297,7 +464,7 @@ Review and customize the following files in the repository root:
 * `favicon.ico` / `favicon.png` / `favicon.svg` — Site icons.
 * `feed.html` — Latest RSS feed page.
 * `img.html` — Image gallery.
-* `robots.txt` — Search-engine crawler directives.
+* `robots.txt` — Search crawler instructions.
 * `sitemap.html` — HTML sitemap.
 * `thumbnail.jpg` / `thumbnail.png` / `thumbnail.webp` — Default social-sharing thumbnails.
 
@@ -308,49 +475,43 @@ Review and customize the following files in the repository root:
 * [ ] Customize colors, logo, and branding.
 * [ ] Validate all internal links.
 * [ ] Verify `sitemap` and `robots.txt`.
-* [ ] Confirm Cloudflare Pages deployment succeeds.
-* [ ] Verify the production site over HTTPS.
+* [ ] Verify all Cloudflare secrets.
+* [ ] Verify that the D1 binding points to the correct database.
+* [ ] Confirm that Cloudflare Pages deployment succeeds.
+* [ ] Verify the production website over HTTPS.
 
 ---
 
 ## 🌐 Stage 6: Custom Domain (Optional)
 
-If you have your own domain and do not want to use the default Cloudflare Pages hostname (`*.pages.dev`):
+For Cloudflare Pages, domain configuration is handled through **Cloudflare Pages → Custom Domains**.
 
-1. Add a `CNAME` file to the repository root.
+1. Open your Cloudflare Pages project.
+2. Select **Custom Domains**.
+3. Add the domain you want to use.
+4. Follow the DNS configuration provided by Cloudflare.
 
-2. Set its content to your domain, for example:
-
-   ```text
-   example.com
-   ```
-
-3. Configure DNS with your domain provider:
-
-   * Add an A record to GitHub Pages IP addresses if you are using GitHub Pages.
-   * Or configure the domain directly through **Cloudflare Pages > Custom Domains** for a native Cloudflare Pages integration.
-
-> **Note:** If the site is deployed to Cloudflare Pages, the Cloudflare Pages **Custom Domains** configuration is generally the relevant deployment path. A `CNAME` file is primarily associated with GitHub Pages workflows.
+> A `CNAME` file is not required as the primary mechanism for Cloudflare Pages deployment. It is more commonly associated with GitHub Pages workflows.
 
 ---
 
 ## 💬 Need Help?
 
-If the workflow fails or you encounter problems configuring Cloudflare, refer to the original repository and its discussion area.
+If the workflow fails or you encounter problems configuring Cloudflare, check the original repository and use its discussion page for information or to report an issue.
 
-> 👉 **[Discuss on the LayarKosong Repository](https://github.com/frijal/LayarKosong/discussions)**
+> 👉 **[LayarKosong Repository Discussions](https://github.com/frijal/LayarKosong/discussions)**
 
 ---
 
 ## License
 
-See the [License](LICENSE) file for licensing information.
+See the [License](LICENSE) file for complete licensing information.
 
 ## Contributors
 
-Thank you to everyone who has contributed to this project. 🙏
+Thank you to everyone who has contributed to the development of this project. 🙏
 
-<p align="center"><a href="#top">(Back to top)</a></p>
+<p align="center"><a href="#top">(back to top)</a></p>
 
 ---
 
@@ -366,17 +527,11 @@ Thank you to everyone who has contributed to this project. 🙏
 [![Website](https://img.shields.io/badge/Website-Live-2ea44f?logo=google-chrome\&logoColor=white)](https://dalam.web.id)
 [![HTTPS Enabled](https://img.shields.io/badge/HTTPS-Enabled-blue?logo=letsencrypt\&logoColor=white)](#readme)
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Yes-blue?logo=github\&logoColor=white)](#readme)
-[![Google Drive](https://img.shields.io/badge/Google%20Drive-Available-34A853?logo=googledrive\&logoColor=white)](#readme)
-[![Release Continuous](https://img.shields.io/badge/Release-Continuous-orange?logo=github\&logoColor=white)](#readme)
-[![Last Commit](https://img.shields.io/github/last-commit/frijal/frijal.github.io?logo=github\&logoColor=white)](#readme)
-
 **Automation & CI/CD:**
 
-[![🔄 ArtikelX Processing](https://github.com/frijal/LayarKosong/actions/workflows/proses-artikelx.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/proses-artikelx.yml)
-[![☢️ Build and Generate Site Files](https://github.com/frijal/LayarKosong/actions/workflows/generate-json-xml.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/generate-json-xml.yml)
-[![🔆 Daily Content Validation & Reporting](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml)
-[![🚀 Deploy to Cloudflare](https://github.com/frijal/LayarKosong/actions/workflows/CloudflarePages.yml/badge.svg)](https://github.com/frijal/LayarKosong/actions/workflows/CloudflarePages.yml)
+[![📡 Artikel Baru Kombo](https://github.com/frijal/LayarKosong/actions/workflows/artikel-baru-combo.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/artikel-baru-combo.yml)
+[![🔆 Daily Content Check & Report](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml)
+[![🐳 Build and Push to GHCR](https://github.com/frijal/LayarKosong/actions/workflows/Docker-Build-Layar-Kosong.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/Docker-Build-Layar-Kosong.yml)
 
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Yes-2088FF?logo=githubactions\&logoColor=white)](#readme)
 [![GitHub Bot](https://img.shields.io/badge/GitHub%20Bot-Active-blue?logo=github\&logoColor=white)](#readme)
@@ -392,10 +547,6 @@ Thank you to everyone who has contributed to this project. 🙏
 [![TypeScript](https://img.shields.io/badge/TypeScript-Yes-3178C6?logo=typescript\&logoColor=white)](#readme)
 [![Bun](https://img.shields.io/badge/Bun-Yes-000000?logo=bun\&logoColor=white)](#readme)
 [![Node.js](https://img.shields.io/badge/Node.js-Yes-339933?logo=node.js\&logoColor=white)](#readme)
-[![npm](https://img.shields.io/badge/npm-Yes-CB3837?logo=npm\&logoColor=white)](#readme)
-[![pnpm](https://img.shields.io/badge/pnpm-Yes-F69220?logo=pnpm\&logoColor=white)](#readme)
-[![pipx](https://img.shields.io/badge/pipx-Yes-3776AB?logo=python\&logoColor=white)](#readme)
-[![Perl](https://img.shields.io/badge/Perl-Yes-808080?logo=perl\&logoColor=white)](#readme)
 
 **Data Formats:**
 
@@ -413,7 +564,7 @@ Thank you to everyone who has contributed to this project. 🙏
 [![Facebook](https://img.shields.io/badge/Facebook-frijal-1877F2?logo=facebook\&logoColor=white)](https://facebook.com/frijal)
 [![GitHub](https://img.shields.io/badge/GitHub-frijal-black?logo=github\&logoColor=white)](https://github.com/frijal)
 
-**AI Tooling:**
+**AI Support:**
 
 [![Gemini](https://img.shields.io/badge/Gemini-Yes-blueviolet?logo=google\&logoColor=white)](#readme)
 [![ChatGPT](https://img.shields.io/badge/ChatGPT-Yes-blue?logo=openai\&logoColor=white)](#readme)
