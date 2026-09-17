@@ -1,0 +1,377 @@
+name: "🟢 Automation & MedSos (Full Bun)"
+
+on:
+  schedule:
+    - cron: "3 2,8,14,20 * * *"
+
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "✅ Jalankan semua tugas"
+        required: false
+        default: true
+        type: boolean
+
+      blogspot:
+        description: "🧡 Blogspot Planet Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      cloudflare:
+        description: "🧹 Cloudflare Cleanup"
+        required: false
+        default: false
+        type: boolean
+
+      discord:
+        description: "🦋 Discord Feed"
+        required: false
+        default: false
+        type: boolean
+
+      facebook:
+        description: "🚀 Facebook Page Process"
+        required: false
+        default: false
+        type: boolean
+
+      linkedin:
+        description: "🆕 LinkedIn Post"
+        required: false
+        default: false
+        type: boolean
+
+      mastodon:
+        description: "🐘 Mastodon Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      diskusi_rss:
+        description: "📰 RSS kirim ke Diskusi GitHub"
+        required: false
+        default: false
+        type: boolean
+
+      gist_rss:
+        description: "📝 RSS kirim ke GitHub Gist"
+        required: false
+        default: false
+        type: boolean
+
+      threads:
+        description: "⚙️ Threads Post"
+        required: false
+        default: false
+        type: boolean
+
+      tumblr:
+        description: "🎨 Tumblr Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      twitter:
+        description: "🐦 Twitter / X Autopost"
+        required: false
+        default: false
+        type: boolean
+
+      wordpress:
+        description: "🪐 WordPress Planet Autopost"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  discussions: write
+  issues: write
+
+jobs:
+  everything-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛰️ Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: 🚀 Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: 📦 Install
+        run: bun install
+
+      - name: 🧾 Siapkan Log Automation MedSos
+        run: |
+          echo "MEDSOS_LOG_FILE=$RUNNER_TEMP/automation-medsos.log" >> "$GITHUB_ENV"
+          : > "$RUNNER_TEMP/automation-medsos.log"
+
+      # =========================================================
+      # 🟢 AUTOMATION SCRIPTS (SEKUANSIAL KHUSUS RSS & MAINTENANCE)
+      # =========================================================
+
+      - name: 📰 RSS kirim ke Diskusi Github
+        id: diskusi_rss
+        if: github.event_name == 'schedule' || inputs.all || inputs.diskusi_rss
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -o pipefail
+          bun run dapur/post-to-github-disc.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+
+      - name: 📝 RSS kirim ke GitHub Gist
+        id: gist_rss
+        if: github.event_name == 'schedule' || inputs.all || inputs.gist_rss
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIST_TOKEN }}
+        run: |
+          set -o pipefail
+          bun run dapur/post-to-github-gist.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+
+      - name: 🧹 Cloudflare Cleanup
+        id: cloudflare
+        if: github.event_name == 'schedule' || inputs.all || inputs.cloudflare
+        continue-on-error: true
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: |
+          set -o pipefail
+          bun run dapur/rapikan-cloudflare.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+
+      # =========================================================
+      # 🚀 EKSEKUSI PARALEL SELURUH MEDSOS (BACKGROUND JOBS)
+      # =========================================================
+
+      - name: 🚀 Eksekusi Paralel MedSos
+        id: medsos_parallel
+        if: github.event_name == 'schedule' || inputs.all || inputs.mastodon || inputs.threads || inputs.linkedin || inputs.tumblr || inputs.discord || inputs.facebook || inputs.twitter || inputs.wordpress || inputs.blogspot
+        continue-on-error: true
+        env:
+          MASTODON_INSTANCE: mastodon.social
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_ID: ${{ secrets.LINKEDIN_PERSON_ID }}
+          TUMBLR_CONSUMER_KEY: ${{ secrets.TUMBLR_CONSUMER_KEY }}
+          TUMBLR_CONSUMER_SECRET: ${{ secrets.TUMBLR_CONSUMER_SECRET }}
+          TUMBLR_TOKEN: ${{ secrets.TUMBLR_TOKEN }}
+          TUMBLR_TOKEN_SECRET: ${{ secrets.TUMBLR_TOKEN_SECRET }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          TWITTER_COOKIES: ${{ secrets.TWITTER_COOKIES }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          WP_POST_EMAIL: ${{ secrets.WP_POST_EMAIL }}
+          BLOGSPOT_POST_EMAIL: ${{ secrets.BLOGSPOT_POST_EMAIL }}
+        run: |
+          set -o pipefail
+
+          run_task() {
+            local name="$1"
+            local script="$2"
+            echo "🚀 [Paralel] Menjalankan $name..."
+            bun run "$script" 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+          }
+
+          IS_SCHEDULE="${{ github.event_name == 'schedule' }}"
+          IS_ALL="${{ inputs.all }}"
+
+          if [ "$IS_SCHEDULE" = "true" ] || [ "$IS_ALL" = "true" ] || [ "${{ inputs.mastodon }}" = "true" ]; then
+            run_task "Mastodon" "dapur/post-to-mastodon.ts" &
+          fi
+
+          if [ "$IS_SCHEDULE" = "true" ] || [ "$IS_ALL" = "true" ] || [ "${{ inputs.threads }}" = "true" ]; then
+            run_task "Threads" "dapur/post-to-threads.ts" &
+          fi
+
+          if [ "$IS_SCHEDULE" = "true" ] || [ "$IS_ALL" = "true" ] || [ "${{ inputs.linkedin }}" = "true" ]; then
+            run_task "LinkedIn" "dapur/post-to-linkedin.ts" &
+          fi
+
+          if [ "$IS_SCHEDULE" = "true" ] || [ "$IS_ALL" = "true" ] || [ "${{ inputs.tumblr }}" = "true" ]; then
+            run_task "Tumblr" "dapur/post-to-tumblr.ts" &
+          fi
+
+          if [ "$IS_SCHEDULE" = "true" ] || [ "$IS_ALL" = "true" ] || [ "${{ inputs.discord }}" = "true" ]; then
+            run_task "Discord" "dapur/post-to-discord.ts" &
+          fi
+
+          if [ "$IS_SCHEDULE" = "true" ] || [ "$IS_ALL" = "true" ] || [ "${{ inputs.facebook }}" = "true" ]; then
+            run_task "Facebook" "dapur/post-to-facebook.ts" &
+          fi
+
+          if [ "$IS_SCHEDULE" = "true" ] || [ "$IS_ALL" = "true" ] || [ "${{ inputs.twitter }}" = "true" ]; then
+            run_task "Twitter" "dapur/post-to-twitter.ts" &
+          fi
+
+          if [ "$IS_SCHEDULE" = "true" ] || [ "$IS_ALL" = "true" ] || [ "${{ inputs.wordpress }}" = "true" ]; then
+            run_task "WordPress" "dapur/post-to-wordpress.ts" &
+          fi
+
+          if [ "$IS_SCHEDULE" = "true" ] || [ "$IS_ALL" = "true" ] || [ "${{ inputs.blogspot }}" = "true" ]; then
+            run_task "Blogspot" "dapur/post-to-blogspot.ts" &
+          fi
+
+          # Tunggu seluruh proses MedSos paralel selesai
+          wait
+
+      # =========================================================
+      # 📋 RINGKASAN HASIL
+      # =========================================================
+
+      - name: 📋 Ringkasan Hasil Job
+        if: always()
+        env:
+          STATUS_DISKUSI_RSS: ${{ steps.diskusi_rss.outcome }}
+          STATUS_GIST_RSS: ${{ steps.gist_rss.outcome }}
+          STATUS_CLOUDFLARE: ${{ steps.cloudflare.outcome }}
+          STATUS_MEDSOS_PARALLEL: ${{ steps.medsos_parallel.outcome }}
+        run: |
+          status_icon() {
+            local outcome="$1"
+            case "$outcome" in
+              success)   echo "✅ Berhasil" ;;
+              skipped)   echo "⏭️ Dilewati (toggle off)" ;;
+              failure)   echo "❌ Gagal" ;;
+              cancelled) echo "🚫 Dibatalkan" ;;
+              *)         echo "⏸️ Nonaktif / tidak diketahui" ;;
+            esac
+          }
+
+          esc_md() {
+            local value="$1"
+            value="$(printf '%s' "$value" | tr '\r\n' '  ' | sed 's/|/\\|/g')"
+            printf '%s' "$value"
+          }
+
+          clean_log() {
+            if [ -n "${MEDSOS_LOG_FILE:-}" ] && [ -f "$MEDSOS_LOG_FILE" ]; then
+              sed -E \
+                -e 's/\x1b\[[0-9;]*m//g' \
+                -e 's/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[^ ]+Z[[:space:]]+//' \
+                "$MEDSOS_LOG_FILE"
+            fi
+          }
+
+          get_last() {
+            local pattern="$1"
+            local replace="$2"
+            printf '%s\n' "$LOG" \
+              | grep -E "$pattern" \
+              | tail -n 1 \
+              | sed -E "$replace" || true
+          }
+
+          get_status() {
+            local title="$1"
+            if [ -n "$title" ]; then
+              echo "${STATUS_MEDSOS_PARALLEL:-success}"
+            else
+              echo "skipped"
+            fi
+          }
+
+          row() {
+            local task="$1"
+            local outcome="$2"
+            local report="$3"
+            printf '| %s | %s | %s |\n' \
+              "$(esc_md "$task")" \
+              "$(esc_md "$(status_icon "$outcome")")" \
+              "$(esc_md "$report")" \
+              >> "$GITHUB_STEP_SUMMARY"
+          }
+
+          LOG="$(clean_log || true)"
+
+          RSS_COUNT="$(get_last '📦 Terdeteksi [0-9]+ artikel baru\.' 's/.*📦 Terdeteksi ([0-9]+) artikel baru\./\1/')"
+          GIST_COUNT="$(get_last '📦 Terdeteksi [0-9]+ artikel baru secara keseluruhan\.' 's/.*📦 Terdeteksi ([0-9]+) artikel baru secara keseluruhan\./\1/')"
+
+          CF_DELETE="$(get_last '🗑 Preview total akan dihapus: [0-9]+' 's/.*🗑 Preview total akan dihapus: ([0-9]+).*/\1/')"
+          CF_KEEP="$(get_last '🧾 Menyisakan [0-9]+ preview terbaru\.' 's/.*🧾 Menyisakan ([0-9]+) preview terbaru\./\1/')"
+
+          CF_REPORT=""
+          if [ -n "$CF_DELETE" ]; then
+            CF_REPORT="${CF_DELETE} preview dihapus"
+          fi
+
+          if [ -n "$CF_KEEP" ]; then
+            if [ -n "$CF_REPORT" ]; then
+              CF_REPORT="${CF_REPORT}, ${CF_KEEP} preview disisakan"
+            else
+              CF_REPORT="${CF_KEEP} preview disisakan"
+            fi
+          fi
+
+          RSS_REPORT=""
+          if [ -n "$RSS_COUNT" ]; then
+            RSS_REPORT="${RSS_COUNT} artikel baru"
+          fi
+
+          GIST_REPORT=""
+          if [ -n "$GIST_COUNT" ]; then
+            GIST_REPORT="${GIST_COUNT} artikel terdeteksi"
+          fi
+
+          BLOGSPOT_TITLE="$(get_last '🚀 Mengirim Email Post ke Blogspot Planet: ' 's/.*🚀 Mengirim Email Post ke Blogspot Planet: (.*)$/\1/')"
+          DISCORD_TITLE="$(get_last '🚀 Mengirim Plain Text ke Discord: ' 's/.*🚀 Mengirim Plain Text ke Discord: (.*)$/\1/')"
+          FACEBOOK_TITLE="$(get_last '🚀 Mengirim ke Facebook Page: ' 's/.*🚀 Mengirim ke Facebook Page: (.*)$/\1/')"
+          LINKEDIN_TITLE="$(get_last '🚀 Menyiapkan postingan LinkedIn: ' 's/.*🚀 Menyiapkan postingan LinkedIn: (.*)$/\1/')"
+          MASTODON_TITLE="$(get_last '🚀 Mengirim ke Mastodon: ' 's/.*🚀 Mengirim ke Mastodon: (.*)$/\1/')"
+          THREADS_TITLE="$(get_last '🚀 Menyiapkan Threads: ' 's/.*🚀 Menyiapkan Threads: (.*)$/\1/')"
+          TUMBLR_TITLE="$(get_last '🚀 Mengirim ke Tumblr: ' 's/.*🚀 Mengirim ke Tumblr: (.*)$/\1/')"
+          TWITTER_TITLE="$(get_last '🚀 Menyiapkan postingan baru ke X: ' 's/.*🚀 Menyiapkan postingan baru ke X: (.*)$/\1/')"
+          WORDPRESS_TITLE="$(get_last '🚀 Mengirim Email Post ke WordPress Planet: ' 's/.*🚀 Mengirim Email Post ke WordPress Planet: (.*)$/\1/')"
+
+          {
+            echo "## 📊 Ringkasan Automation & MedSos"
+            echo ""
+            echo "| Tugas | Status | Laporan |"
+            echo "|---|---|---|"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          row "Cloudflare Cleanup 🧹"    "$STATUS_CLOUDFLARE"              "$CF_REPORT"
+          row "Blogspot Planet 🧡"       "$(get_status "$BLOGSPOT_TITLE")" "$BLOGSPOT_TITLE"          
+          row "Discord 🦋"               "$(get_status "$DISCORD_TITLE")"  "$DISCORD_TITLE"
+          row "Facebook 🚀"              "$(get_status "$FACEBOOK_TITLE")" "$FACEBOOK_TITLE"
+          row "LinkedIn 🆕"              "$(get_status "$LINKEDIN_TITLE")" "$LINKEDIN_TITLE"
+          row "Mastodon 🐘"              "$(get_status "$MASTODON_TITLE")" "$MASTODON_TITLE"
+          row "RSS ke Diskusi GitHub 📰" "$STATUS_DISKUSI_RSS"             "$RSS_REPORT"
+          row "RSS ke GitHub Gist 📝"    "$STATUS_GIST_RSS"                "$GIST_REPORT"
+          row "Threads ⚙️"               "$(get_status "$THREADS_TITLE")"  "$THREADS_TITLE"
+          row "Tumblr 🎨"                "$(get_status "$TUMBLR_TITLE")"   "$TUMBLR_TITLE"
+          row "Twitter / X 🐦"           "$(get_status "$TWITTER_TITLE")"  "$TWITTER_TITLE"
+          row "WordPress Planet 🪐"      "$(get_status "$WORDPRESS_TITLE")" "$WORDPRESS_TITLE"
+
+      # =========================================================
+      # 💾 FINAL COMMIT
+      # =========================================================
+
+      - name: 💾 Save All Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+
+          if git diff --staged --quiet; then
+            echo "ℹ️ Ga ada kerjaan baru, skip commit."
+          else
+            git commit -m "chore: MedSos Post [$(date +'%Y-%m-%d %H:%M')]"
+            git pull origin main --rebase --autostash
+            git push
+          fi
