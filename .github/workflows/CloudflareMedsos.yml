@@ -138,8 +138,7 @@ jobs:
         if: github.event_name == 'schedule' || inputs.all || inputs.gist_rss
         continue-on-error: true
         env:
-          # Mengutamakan GIST_TOKEN (PAT dengan scope 'gist'), fallback ke GITHUB_TOKEN
-          GITHUB_TOKEN: ${{ secrets.GIST_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIST_TOKEN }} # Gunakan GIST_TOKEN hasil PAT
         run: |
           set -o pipefail
           bun run dapur/post-to-github-gist.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
