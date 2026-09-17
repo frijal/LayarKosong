@@ -1,29 +1,67 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Panduan Static Site GitHub Cloudflare Pages</title>
-<link rel="canonical" href="https://dalam.web.id/artikel/panduan-static-site-github-cloudflare-pages.html">
-<meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
-<meta name="description" content="Panduan membangun static site cepat dengan GitHub Actions, Bun.js, Cloudflare Wrangler, Pages, dan D1 melalui pipeline otomatis Layar Kosong.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Panduan Static Site GitHub Cloudflare Pages">
-<meta property="og:url" content="https://dalam.web.id/artikel/panduan-static-site-github-cloudflare-pages.html">
-<meta property="og:description" content="Pelajari alur Layar Kosong dari artikel staging, proses otomatis, sinkronisasi D1, optimasi aset, hingga deployment langsung ke Cloudflare Pages.">
-<meta property="og:image" content="https://dalam.web.id/thumbnail.webp">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Panduan Static Site GitHub Cloudflare Pages">
-<meta name="twitter:description" content="Mengenal cara kerja pipeline static site berbasis GitHub Actions dan Bun.js yang menyiapkan aset, indeks pencarian, lalu melakukan deployment otomatis.">
-<meta name="twitter:image" content="https://dalam.web.id/thumbnail.webp">
-<meta name="news_keywords" content="static site, GitHub Actions, Bun.js, Cloudflare Pages, Cloudflare D1, Wrangler">
-<meta property="article:tag" content="Static Site">
-<meta property="article:tag" content="GitHub Actions">
-<meta property="article:tag" content="Bun.js">
-<meta property="article:tag" content="Cloudflare Pages">
-<meta property="article:tag" content="Cloudflare D1">
-<meta name="promphint" content="Bagaimana membangun static site otomatis dengan GitHub Actions dan Cloudflare Pages? Layar Kosong menggunakan pipeline Bun.js yang memproses artikel, menghasilkan aset, menyinkronkan D1, dan melakukan deployment langsung.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
+<!DOCTYPE html><html lang="id-ID" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Panduan Static Site GitHub Cloudflare Pages - Layar Kosong</title>
+    <meta name="description" content="Panduan membangun static site cepat dengan GitHub Actions, Bun.js, Cloudflare Wrangler, Pages, dan D1 melalui pipeline otomatis Layar Kosong.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/panduan-static-site-github-cloudflare-pages">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="static site, GitHub Actions, Bun.js, Cloudflare Pages, Cloudflare D1, Wrangler">
+    <meta name="promphint" content="Bagaimana membangun static site otomatis dengan GitHub Actions dan Cloudflare Pages? Layar Kosong menggunakan pipeline Bun.js yang memproses artikel, menghasilkan aset, menyinkronkan D1, dan melakukan deployment langsung.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/panduan-static-site-github-cloudflare-pages">
+    <meta property="og:title" content="Panduan Static Site GitHub Cloudflare Pages">
+    <meta property="og:description" content="alur Layar Kosong dari artikel staging, proses otomatis, sinkronisasi D1, optimasi aset, hingga deployment langsung ke Cloudflare Pages.">
+    <meta property="og:updated_time" content="2026-09-17T11:58:45.747Z">
+    <meta property="og:image" content="/thumbnail.webp">
+    <meta property="og:image:url" content="/thumbnail.webp">
+    <meta property="og:image:secure_url" content="/thumbnail.webp">
+    <meta property="og:image:alt" content="Panduan Static Site GitHub Cloudflare Pages">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="633">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/panduan-static-site-github-cloudflare-pages">
+    <meta name="twitter:title" content="Panduan Static Site GitHub Cloudflare Pages">
+    <meta name="twitter:description" content="cara kerja pipeline static site berbasis GitHub Actions dan Bun.js yang menyiapkan aset, indeks pencarian, lalu melakukan deployment otomatis.">
+    <meta name="twitter:image" content="/thumbnail.webp">
+    <meta name="twitter:image:alt" content="Panduan Static Site GitHub Cloudflare Pages">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="twitter:account_id" content="1872520777138122752">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.rss">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.atom">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="Static Site">
+    <meta property="article:tag" content="GitHub Actions">
+    <meta property="article:tag" content="Bun.js">
+    <meta property="article:tag" content="Cloudflare Pages">
+    <meta property="article:tag" content="Cloudflare D1">
+    <meta property="article:published_time" content="2026-09-17T11:52:44.995Z">
+    <meta property="article:modified_time" content="2026-09-17T11:58:45.747Z">
+<link rel="stylesheet" href="/ext/github-dark.min.css">
 <style>
 :root{--bg:#fff;--surface:#f5f7fa;--text:#20242a;--muted:#4d5662;--accent:#075db5;--border:#d9dee5;--code:#17191d;--screen-padding:1rem;--nested-padding:0rem}
 @media(prefers-color-scheme:dark){:root{--bg:#121416;--surface:#1b1f23;--text:#e8eaed;--muted:#c1c7cf;--accent:#6eb1ff;--border:#363c44;--code:#0d0f12}}
@@ -64,9 +102,9 @@ th{background:var(--surface)}
 footer{border-top:1px solid var(--border);margin-top:3rem;padding:1.5rem var(--nested-padding);text-align:center;color:var(--muted);font-size:.92rem}
 footer p{margin:.35rem 0}
 </style>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-<script defer>document.addEventListener("DOMContentLoaded",()=>{hljs.highlightAll()});</script>
-</head>
+<script defer="" src="/ext/highlight.js"></script>
+<script defer="">document.addEventListener("DOMContentLoaded",()=>{hljs.highlightAll()});</script>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <main class="container">
 <article>
@@ -79,80 +117,58 @@ footer p{margin:.35rem 0}
 <span>Static Site &amp; CI/CD</span>
 </div>
 </header>
-
 <div class="article-body">
 <p>Static site sering dianggap sederhana karena halaman akhirnya hanya berupa HTML, CSS, JavaScript, gambar, dan beberapa file data. Namun, ketika jumlah artikel mulai bertambah, pekerjaan di belakang layar ikut berkembang: gambar perlu dioptimalkan, metadata harus konsisten, sitemap harus diperbarui, feed perlu dibuat, indeks pencarian harus disinkronkan, dan hasil akhirnya harus dikirim ke hosting.</p>
-
 <p>Repository <b>Layar Kosong</b> menggunakan pendekatan yang mengotomatisasi rangkaian pekerjaan tersebut. Penulis cukup menyiapkan artikel pada direktori staging, melakukan commit dan push ke branch <code>main</code>, lalu GitHub Actions menjalankan proses produksi menggunakan <b>Bun.js</b> dan <b>Cloudflare Wrangler</b>.</p>
-
 <p>Yang menarik bukan sekadar penggunaan layanan cloud, melainkan cara seluruh proses tersebut dirangkai. Artikel tidak langsung disalin mentah ke server. Ia melewati beberapa tahap transformasi sebelum menjadi bagian dari situs production.</p>
-
 <figure>
 <img src="https://dalam.web.id/thumbnail.webp" width="1200" height="675" fetchpriority="high" decoding="async" alt="Ilustrasi pipeline static site Layar Kosong dengan GitHub Actions, Bun.js, Cloudflare Pages, dan Cloudflare D1">
 <figcaption>Pipeline publikasi Layar Kosong menghubungkan staging artikel, proses build, indeks pencarian, dan deployment production.</figcaption>
 </figure>
-
 <section>
 <h2>Dari Artikel Staging Menjadi Situs Production</h2>
 <p>Alur utama Layar Kosong menggunakan satu workflow GitHub Actions bernama <code>📡 Artikel Baru Kombo</code>. Workflow tersebut berjalan dalam satu job dan membagi pekerjaan menjadi tiga fase berurutan: pemrosesan artikel, build dan generate site files, kemudian persiapan deployment, sinkronisasi D1, dan deployment Cloudflare Pages.</p>
-
 <p>Trigger otomatisnya sengaja dibuat spesifik. Push ke branch <code>main</code> hanya memicu workflow ketika ada perubahan pada pola <code>artikelx/*.html</code>. Dengan demikian, <b>artikelx</b> berfungsi sebagai staging area untuk artikel baru sebelum diproses.</p>
-
 <pre><code class="language-yaml">on:
   push:
     branches:
       - main
     paths:
       - "artikelx/*.html"</code></pre>
-
 <p>Selain trigger otomatis, workflow menyediakan <code>workflow_dispatch</code>. Mekanisme manual ini memungkinkan proses tertentu dijalankan kembali tanpa harus memasukkan artikel baru, misalnya ketika hanya perlu melakukan rebuild data, membuat ulang srcset gambar, melakukan injeksi Schema.org, atau menjalankan deployment tertentu.</p>
 </section>
-
 <section>
 <h2>Fase 1: Memproses Artikel di artikelx/</h2>
 <p>Fase pertama berfokus pada bahan mentah yang masuk melalui direktori <code>artikelx/</code>. Beberapa script Bun.js bekerja secara berurutan untuk mengubah struktur HTML, menyesuaikan aset, memperbaiki metadata SEO, melakukan mirror gambar, dan menghasilkan format WebP.</p>
-
 <h3>Struktur HTML dan aset</h3>
 <p><code>Edit-Komponen-HTML.ts</code> menangani modifikasi struktur dasar HTML. Setelah itu <code>gantifontshighlight.ts</code> mengelola aset font dan kebutuhan highlight yang digunakan oleh situs.</p>
-
 <p>Langkah berikutnya dijalankan oleh <code>seo-fixer.ts</code>. Script tersebut menangani pemrosesan metadata SEO, mirror gambar, serta konversi gambar ke WebP sehingga artikel yang masuk staging dapat mengikuti standar produksi repository.</p>
-
 <h3>Perpindahan ke direktori production</h3>
 <p>Setelah berhasil diproses, file HTML yang berada di <code>artikelx/</code> dipindahkan ke <code>artikel/</code>. Perubahan fase ini kemudian dibuat menjadi local commit oleh GitHub Actions.</p>
-
 <div class="note"><b>Intinya:</b> <code>artikelx/</code> bukan direktori production. Ia adalah pintu masuk pipeline. Setelah artikel diproses, file tersebut keluar dari staging dan diteruskan ke tahap build berikutnya.</div>
 </section>
-
 <section>
 <h2>Fase 2: Build, Generate, dan Optimasi</h2>
 <p>Fase kedua bertugas membangun berbagai data pendukung situs. Di sinilah artikel yang telah diproses diubah menjadi bagian dari ekosistem static site yang lebih lengkap: indeks artikel, sitemap, RSS, routing, structured data, dan aset gambar yang lebih adaptif.</p>
-
 <details>
 <summary><b>Klik untuk melihat detail script pada Fase 2</b></summary>
 <div>
 <h3>Generator data</h3>
 <p><code>generator-pro.ts</code> menghasilkan <code>artikel.json</code>, XML, dan RSS Feed. Data tersebut menjadi bagian penting dari sistem publikasi dan pencarian situs.</p>
-
 <h3>Optimasi gambar</h3>
 <p><code>srcset-generator.ts</code> menghasilkan varian gambar untuk berbagai resolusi layar. Pendekatan ini membantu browser memilih aset yang lebih sesuai dengan kondisi perangkat dan ukuran tampilan.</p>
-
 <h3>Sitemap dan routing</h3>
 <p>Toolchain yang terdiri dari <code>koki.ts</code>, <code>bikin-sitemap-txt.ts</code>, <code>generate_llms.ts</code>, dan <code>redirectmap.ts</code> memperbarui data sitemap, informasi yang digunakan sistem AI, serta peta redirect.</p>
-
 <h3>Structured data dan minifikasi</h3>
 <p><code>inject-schema.ts</code> menginjeksi structured data Schema.org. Setelah itu <code>minify-html.ts</code> dan <code>minify-jsonxml.ts</code> melakukan minifikasi terhadap HTML, JSON, dan XML.</p>
 </div>
 </details>
-
 <p>Setelah seluruh proses selesai, perubahan hasil build dibuat menjadi local commit kedua. Push ke repository baru dilakukan pada langkah final pipeline, sehingga seluruh transformasi dapat dikumpulkan sebelum perubahan dikirim kembali ke branch <code>main</code>.</p>
 </section>
-
 <section>
 <h2>Sinkronisasi Cloudflare D1 Menggunakan Diff</h2>
 <p>Mesin pencarian Layar Kosong menggunakan data <code>artikel.json</code> dan indeks pada Cloudflare D1. Pipeline tidak harus membangun ulang seluruh indeks remote pada setiap deployment. Sebaliknya, ia menggunakan pendekatan <b>state → diff → patch</b>.</p>
-
 <p>Pipeline terlebih dahulu mengambil state indeks yang sedang berada di D1. Query yang digunakan mengambil <code>id</code>, <code>date</code>, dan <code>code</code> dari <code>articles_fts</code>, kemudian menyimpannya sebagai <code>current_d1_state.json</code>.</p>
-
 <pre><code class="language-text">Cloudflare D1 saat ini
         │
         ▼
@@ -169,20 +185,14 @@ d1-patch.sql
         │
         ▼
 Cloudflare D1 --remote</code></pre>
-
 <p>Script <code>sync-d1-diff.ts</code> membandingkan state tersebut dengan data repository dan menghasilkan <code>d1-patch.sql</code>. Patch hanya dieksekusi ketika memang terdapat perubahan, sehingga pipeline tidak perlu melakukan operasi database yang tidak diperlukan.</p>
-
 <div class="tip"><b>Pola ini penting:</b> database remote diperlakukan sebagai state yang perlu dibandingkan, bukan sesuatu yang selalu harus dibangun ulang dari nol pada setiap deployment.</div>
 </section>
-
 <section>
 <h2>deploy_dir sebagai Batas Deployment</h2>
 <p>Sebelum Cloudflare Pages menerima hasil build, workflow membuat direktori <code>deploy_dir/</code>. Direktori ini menjadi <b>deployment boundary</b>, yaitu batas yang menentukan file mana yang boleh masuk ke deployment production.</p>
-
 <p>Pipeline menggunakan <code>rsync</code> untuk menyalin aset yang memang diperlukan. Direktori pengembangan seperti <code>.git/</code>, <code>.github/</code>, <code>node_modules/</code>, <code>dapur/</code>, <code>mini/</code>, <code>artikelx/</code>, dan <code>artikel/</code> tidak ikut dikirim sebagai direktori mentah.</p>
-
 <p>Sebaliknya, direktori production seperti kategori artikel, <code>img/</code>, <code>ext/</code>, <code>search/</code>, serta <code>.well-known/</code> dan berbagai aset HTML, XML, TXT, maupun media yang dibutuhkan akan dimasukkan ke dalam <code>deploy_dir/</code>.</p>
-
 <pre><code class="language-bash">rsync -a --delete \
   --exclude='.git/***' \
   --exclude='.github/***' \
@@ -191,16 +201,12 @@ Cloudflare D1 --remote</code></pre>
   --exclude='artikelx/***' \
   --exclude='artikel/***' \
   ./ deploy_dir/</code></pre>
-
 <p>Pemisahan tersebut memberikan satu keuntungan praktis: deployment tidak bergantung pada seluruh isi repository. Hanya hasil yang telah dipilih oleh aturan pipeline yang diteruskan ke Cloudflare Pages.</p>
 </section>
-
 <section>
 <h2>Wrangler Configuration Dibuat Saat Pipeline Berjalan</h2>
 <p>Workflow tidak bergantung pada <code>wrangler.toml</code> yang disimpan secara manual sebagai konfigurasi utama deployment. Sebelum deployment, file tersebut dihapus jika ada dan pipeline membuat <code>wrangler.jsonc</code> secara dinamis.</p>
-
 <p>Konfigurasi tersebut menentukan nama project, compatibility date, lokasi output Pages, variable environment, dan binding database D1. Nilai <code>database_id</code> berasal dari GitHub Secret sehingga tidak perlu ditulis secara langsung ke repository.</p>
-
 <pre><code class="language-jsonc">{
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "layarkosong",
@@ -218,19 +224,14 @@ Cloudflare D1 --remote</code></pre>
     }
   ]
 }</code></pre>
-
 <p>Pendekatan tersebut juga membuat konfigurasi deployment lebih mudah disesuaikan ketika repository dijadikan dasar untuk situs lain. Nama project, compatibility date, dan binding database dapat diubah mengikuti kebutuhan deployment baru.</p>
 </section>
-
 <section>
 <h2>Deployment Langsung ke Cloudflare Pages</h2>
 <p>Setelah <code>deploy_dir/</code> siap dan kebutuhan D1 diproses, pipeline melakukan deployment langsung menggunakan Wrangler. Tidak ada branch <code>site</code> sebagai perantara dalam arsitektur saat ini.</p>
-
 <p>Deployment memiliki mekanisme retry maksimal tiga kali. Jika percobaan pertama gagal, workflow menunggu sebelum mencoba kembali. Apabila seluruh percobaan gagal, job dinyatakan gagal sehingga kegagalan deployment tidak diam-diam dianggap sukses.</p>
-
 <pre><code class="language-bash">max_attempts=3
 attempt=1
-
 while [ "$attempt" -le "$max_attempts" ]; do
   if bunx wrangler@latest pages deploy deploy_dir \
     --project-name=layarkosong \
@@ -238,23 +239,17 @@ while [ "$attempt" -le "$max_attempts" ]; do
     --commit-dirty=true; then
     exit 0
   fi
-
   if [ "$attempt" -lt "$max_attempts" ]; then
     sleep 15
   fi
-
   attempt=$((attempt + 1))
 done
-
 exit 1</code></pre>
-
 <p>Setelah deployment berhasil, workflow dapat menjalankan purge cache katalog dan membersihkan deployment Cloudflare lama melalui script pemeliharaan repository.</p>
 </section>
-
 <section>
 <h2>GitHub Secrets Menjaga Kredensial Tetap Terpisah</h2>
 <p>Karena pipeline berinteraksi dengan Cloudflare, beberapa kredensial harus tersedia di lingkungan GitHub Actions. Nilai tersebut disimpan sebagai repository secrets, bukan sebagai teks biasa di source code.</p>
-
 <table>
 <thead>
 <tr><th>Secret</th><th>Fungsi</th></tr>
@@ -267,39 +262,28 @@ exit 1</code></pre>
 <tr><td><code>CF_PROJECT_NAME</code></td><td>Nama project Cloudflare untuk proses pemeliharaan deployment dan cache.</td></tr>
 </tbody>
 </table>
-
 <p>Prinsip dasarnya sederhana: repository boleh berisi konfigurasi dan kode, tetapi kredensial akses tetap berada di secret store GitHub. Dengan cara ini, konfigurasi deployment dapat dibaca dan dikelola tanpa mengekspos token maupun identifier sensitif.</p>
 </section>
-
 <section>
 <h2>Menyiapkan Environment Lokal</h2>
 <p>Untuk bekerja dengan repository, kebutuhan dasarnya adalah <b>Git</b> dan <b>Bun</b>. Git digunakan untuk mengambil repository dan mengirim perubahan, sedangkan Bun merupakan JavaScript runtime yang digunakan oleh build system dan script TypeScript di direktori <code>dapur/</code>.</p>
-
 <h3>Windows</h3>
 <pre><code class="language-bash">winget install --id Git.Git -e --source winget</code></pre>
-
 <h3>Linux</h3>
 <p>Pada Debian atau Ubuntu, Git dapat dipasang menggunakan:</p>
 <pre><code class="language-bash">sudo apt update
 sudo apt install git</code></pre>
-
 <p>Untuk Fedora dan distribusi yang menggunakan DNF:</p>
 <pre><code class="language-bash">sudo dnf install git</code></pre>
-
 <p>Arch Linux, CachyOS, Manjaro, dan EndeavourOS dapat menggunakan:</p>
 <pre><code class="language-bash">sudo pacman -S git</code></pre>
-
 <p>Instruksi instalasi Bun mengikuti dokumentasi resmi Bun sesuai sistem operasi yang digunakan.</p>
 </section>
-
 <section>
 <h2>Menyiapkan Repository dan Cloudflare Pages</h2>
 <p>Langkah awal penggunaan repository adalah melakukan fork repository Layar Kosong ke akun GitHub sendiri dan tetap menggunakan branch <code>main</code>. Branch <code>site</code> tidak menjadi bagian dari arsitektur deployment saat ini.</p>
-
 <p>Setelah repository siap, buat project Cloudflare Pages dan sesuaikan nama project dengan nilai yang digunakan workflow. Untuk basis repository ini, nama project yang digunakan adalah <code>layarkosong</code>.</p>
-
 <p>Berikutnya buat API Token Cloudflare dengan permission yang diperlukan untuk Pages dan D1. Simpan Account ID, API Token, dan D1 Database ID secara aman, lalu masukkan nilai yang diperlukan ke GitHub Repository Secrets.</p>
-
 <details>
 <summary><b>Klik untuk melihat checklist konfigurasi awal</b></summary>
 <div>
@@ -316,11 +300,9 @@ sudo apt install git</code></pre>
 </div>
 </details>
 </section>
-
 <section>
 <h2>Menulis Artikel dengan Production Pipeline</h2>
 <p>Alur kerja penulis sebenarnya cukup singkat. Buat artikel HTML, simpan di <code>artikelx/</code>, commit perubahan, kemudian push ke <code>main</code>. Perubahan tersebut akan dikenali oleh filter path workflow dan memulai proses otomatis.</p>
-
 <ol>
 <li>Buat file HTML artikel baru.</li>
 <li>Letakkan file di <code>artikelx/</code>.</li>
@@ -333,14 +315,11 @@ sudo apt install git</code></pre>
 <li>State indeks D1 dibandingkan dan patch diterapkan bila diperlukan.</li>
 <li>Cloudflare Pages menerima hasil production.</li>
 </ol>
-
 <p>Dengan demikian, pekerjaan manual tidak perlu berulang setiap kali artikel diterbitkan. Penulis berinteraksi terutama dengan Git dan direktori staging, sementara pekerjaan transformasi dan deployment ditangani pipeline.</p>
 </section>
-
 <section>
 <h2>Menjalankan Pipeline Secara Manual</h2>
 <p><code>workflow_dispatch</code> memberikan kontrol tambahan ketika kebutuhan tidak selalu berupa artikel baru. Beberapa proses dapat dijalankan secara terpisah menggunakan toggle yang tersedia pada halaman GitHub Actions.</p>
-
 <table>
 <thead>
 <tr><th>Input</th><th>Fungsi</th></tr>
@@ -354,24 +333,17 @@ sudo apt install git</code></pre>
 <tr><td><code>deploy_mode</code></td><td>Menentukan mode deployment: <code>full</code>, <code>update-only</code>, atau <code>skip</code>.</td></tr>
 </tbody>
 </table>
-
 <h3>Mode deployment</h3>
 <p>Mode <code>full</code> menjalankan persiapan deployment, sinkronisasi D1, deployment Pages, serta purge cache. Mode <code>update-only</code> menyiapkan <code>deploy_dir/</code> dan melakukan deployment Pages tanpa sinkronisasi D1 dan purge cache.</p>
-
 <p>Sementara itu, <code>skip</code> melewati deployment Cloudflare Pages. Namun, langkah final commit dan push tetap merupakan bagian dari workflow sehingga hasil perubahan script masih dapat di-commit dan dikirim ke repository.</p>
-
 <pre><code class="language-text">run_build_generator = true
 deploy_mode = update-only</code></pre>
 </section>
-
 <section>
 <h2>Branding dan File yang Perlu Disesuaikan</h2>
 <p>Setelah deployment awal berhasil, repository dapat disesuaikan dengan identitas situs yang akan dibangun. Bagian yang perlu diperhatikan meliputi domain, warna, logo, informasi kontak, metadata, dan konfigurasi pada direktori <code>ext/</code>.</p>
-
 <p>Beberapa file root juga memiliki fungsi khusus, seperti <code>index.html</code> untuk halaman utama, <code>search.html</code> untuk pencarian, <code>404.html</code> untuk halaman not-found, <code>robots.txt</code>, sitemap HTML, favicon, halaman disclaimer, serta halaman privasi dan penghapusan data.</p>
-
 <p><code>artikel.json</code> merupakan indeks utama yang digunakan mesin pencari situs. File tersebut sebaiknya dibiarkan diperbarui oleh pipeline agar hasil generator tidak tertimpa perubahan manual.</p>
-
 <details>
 <summary><b>Klik untuk melihat checklist pra-launch</b></summary>
 <div>
@@ -389,39 +361,28 @@ deploy_mode = update-only</code></pre>
 </div>
 </details>
 </section>
-
 <section>
 <h2>Custom Domain di Cloudflare Pages</h2>
 <p>Jika situs akan menggunakan domain sendiri, konfigurasi dilakukan melalui bagian <b>Custom Domains</b> pada project Cloudflare Pages. Domain ditambahkan melalui dashboard Cloudflare, kemudian DNS dikonfigurasi mengikuti instruksi yang diberikan platform.</p>
-
 <p>Dalam arsitektur ini, file <code>CNAME</code> tidak digunakan sebagai mekanisme utama deployment. File tersebut lebih umum ditemukan pada pola deployment GitHub Pages, sedangkan Cloudflare Pages memiliki mekanisme domain tersendiri.</p>
 </section>
-
 <section>
 <h2>Kenapa Pendekatan Ini Cocok untuk Static Site?</h2>
 <p>Kekuatan utama arsitektur Layar Kosong terletak pada pembagian tanggung jawab yang jelas. Repository menjadi sumber data dan kode, GitHub Actions menjadi orchestrator, Bun.js menjalankan toolchain transformasi, Cloudflare D1 menyimpan indeks pencarian remote, sedangkan Cloudflare Pages menjadi tujuan deployment.</p>
-
 <p>Pemisahan tersebut membuat proses publikasi dapat diprediksi. Artikel masuk melalui staging, diproses menjadi aset production, indeks dibandingkan dengan state database, lalu hanya output yang diperlukan yang dikirim ke hosting.</p>
-
 <p>Model seperti ini juga mengurangi pekerjaan repetitif. Ketika pipeline sudah stabil, aktivitas penerbitan artikel berubah menjadi proses sederhana: menulis, menyimpan di <code>artikelx/</code>, commit, dan push.</p>
 </section>
-
 <section>
 <h2>Penutup</h2>
 <p>Membangun static site bukan hanya persoalan menghasilkan HTML yang cepat. Ketika situs sudah memiliki banyak artikel, kualitas workflow di belakangnya ikut menentukan seberapa mudah situs tersebut dirawat dan dikembangkan.</p>
-
 <p>Layar Kosong memilih pendekatan satu pipeline dengan tiga fase: memproses artikel, menghasilkan seluruh aset pendukung, lalu menyiapkan dan melakukan deployment. Bun.js menyediakan runtime untuk toolchain TypeScript, GitHub Actions menjadi mesin otomatisasi, Cloudflare D1 menangani indeks pencarian, dan Cloudflare Pages menjadi tujuan publikasi.</p>
-
 <p>Hasil akhirnya adalah alur kerja yang cukup sederhana dari sudut pandang penulis, tetapi memiliki rangkaian otomasi yang lengkap di belakangnya. Selama struktur staging, secrets, generator, database, dan deployment tetap konsisten, proses publikasi dapat berjalan berulang dengan pola yang sama.</p>
-
-<!--wajib ini tulis signature artikel oleh LayarKosong-->
-</div>
+<div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>
+</section></div>
 </article>
-
 <footer>
 <p><b>Layar Kosong</b> · Catatan Teknologi, Linux, dan Kehidupan.</p>
-<p>Ditulis oleh Fakhrul Rijal · 17 September 2026 · <a href="https://dalam.web.id/">dalam.web.id</a></p>
-</footer>
+<p>Artikel dari Fakhrul Rijal · 17 September 2026 · <a href="https://dalam.web.id/">Jaga Data Pribadi Tetap Aman</a></p>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </main>
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
