@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.91
-last_updated: 2026-09-16
+document_version: 25.92
+last_updated: 2026-09-17
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -39,8 +39,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 16 September 2026)
-> Menampilkan 1640 artikel versi 25.91.
+## Index Artikel Terbaru (Updated: 17 September 2026)
+> Menampilkan 1640 artikel versi 25.92.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -84301,7 +84301,7 @@ GitHub sering jadi tempat kita menyimpan kode. Tapi saat ingin mengakses file me
 
 File raw berguna untuk integrasi langsung ke aplikasi, script, atau layanan lain. Misalnya, saat ingin memuat file konfigurasi tanpa tampilan GitHub, raw link lebih efisien.
 
-#### Langsung: Cara Manual yang Singkat
+#### Cara Manual yang Singkat
 
 Kalau mau mengubah URL GitHub ke versi raw.githubusercontent.com, cukup ganti pola github.com/{user}/{repo}/blob/main/{path} menjadi raw.githubusercontent.com/{user}/{repo}/main/{path}.
 
@@ -84311,23 +84311,21 @@ Versi raw-nya adalah:
 
 Dengan begitu file bisa langsung diakses sebagai konten mentah (raw) tanpa tampilan GitHub.
 
-Mau aku tunjukkan juga cara otomatis konversi URL GitHub ke raw dengan script kecil di JavaScript atau Python?
-
 #### Contoh Script
 
 #### JavaScript
 
 #### Python
 
-#### Langsung Coba di Sini
+#### Coba Langsung di Sini
 
 #### Alat Konversi
+
+Tempel URL GitHub, hasil raw langsung bisa disalin.
 
 Contoh: https://github.com/frijal/LayarKosong/blob/main/search/build-d1.ts
 
 #### Catatan Singkat
-
-Jika URL sudah berupa raw.githubusercontent.com, fungsi akan mengembalikannya apa adanya. Untuk fitur copy, beberapa browser mengharuskan halaman dijalankan di https atau localhost agar akses clipboard bekerja tanpa prompt.
 
 ---
 
