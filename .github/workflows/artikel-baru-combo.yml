@@ -266,21 +266,29 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+        shell: bash
         run: |
+          set -euo pipefail
           max_attempts=3
           attempt=1
-          until [ $attempt -gt $max_attempts ]
-          do
-            echo "🚀 Attempt $attempt to deploy..."
-            if bunx wrangler pages deploy deploy_dir --project-name=layarkosong --branch=main --commit-dirty=true; then
-              echo "✅ Deploy succeeded on attempt $attempt!"
-              break
-            else
-              echo "⚠️ Deploy failed on attempt $attempt"
-              attempt=$((attempt+1))
-              [ $attempt -le $max_attempts ] && sleep 15
+          while [ "$attempt" -le "$max_attempts" ]; do
+            echo "🚀 Deploy attempt $attempt/$max_attempts..."
+            if bunx wrangler@latest pages deploy deploy_dir \
+              --project-name=layarkosong \
+              --branch=main \
+              --commit-dirty=true; then
+              echo "✅ Cloudflare Pages deployment succeeded on attempt $attempt."
+              exit 0
             fi
+            echo "⚠️ Cloudflare Pages deployment failed on attempt $attempt."
+            if [ "$attempt" -lt "$max_attempts" ]; then
+              echo "⏳ Retrying in 15 seconds..."
+              sleep 15
+            fi
+            attempt=$((attempt + 1))
           done
+          echo "❌ Cloudflare Pages deployment failed after $max_attempts attempts."
+          exit 1
 
       - name: 🔥 Purge Cache API Katalog Spesifik (Single-file Purge)
         if: github.event_name == 'push' || github.event.inputs.deploy_mode == 'full'
