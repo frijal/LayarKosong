@@ -9,6 +9,15 @@ const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 const slugify = (text: string) =>
   text.toLowerCase().trim().replace(/\s+/g, '-');
 
+// Helper untuk mengubah path gambar relatif menjadi URL absolut valid
+function normalizeUrl(url: string | null | undefined): string {
+  if (!url) return `${BASE_URL}/favicon.ico`;
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  
+  const cleanPath = url.startsWith('/') ? url : `/${url}`;
+  return `${BASE_URL}${cleanPath}`;
+}
+
 // --- Helper Functions ---
 async function httpPost(url: string, body: any, headers: Record<string,string> = {}) {
   const res = await fetch(url, {
@@ -66,7 +75,7 @@ async function postToLinkedIn() {
           title: p[0],
           url: fullUrl,
           slug: fileSlug,
-          image: p[2],
+          image: normalizeUrl(p[2]), // FIX: Otomatis diubah jadi https://dalam.web.id/thumbnail.webp
           date: p[3],
           desc: p[4] || "Archive."
         });
