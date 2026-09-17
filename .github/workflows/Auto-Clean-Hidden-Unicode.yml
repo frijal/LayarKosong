@@ -12,6 +12,11 @@ on:
           - all
           - preload
           - unicode
+  # Ditambahkan jika ingin otomatis jalan tiap ada push file HTML di main branch
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
 
 jobs:
   cleanup-html:
@@ -28,9 +33,10 @@ jobs:
           fetch-depth: 1
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
         with:
-          bun-version: latest         
+          bun-version: latest
+          cache: true
 
       - name: Show Selected Cleanup Target
         run: |
@@ -44,7 +50,8 @@ jobs:
       - name: 2. Clean Hidden Unicode (Perl)
         if: ${{ github.event_name == 'push' || github.event.inputs.cleanup_target == 'all' || github.event.inputs.cleanup_target == 'unicode' }}
         run: |
-          find . -type f -name "*.html" -print0 | xargs -0 -r perl -i -CSD -pe 's/\x{00A0}/&nbsp;/g; s/\x{200B}|\x{200C}|\x{200D}|\x{FEFF}//g'
+          # Prune folder .git agar Perl tidak menyusuri dan menyentuh internal repository
+          find . -type d -name ".git" -prune -o -type f -name "*.html" -print0 | xargs -0 -r perl -i -CSD -pe 's/\x{00A0}/&nbsp;/g; s/\x{200B}|\x{200C}|\x{200D}|\x{FEFF}//g'
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v8
@@ -56,11 +63,9 @@ jobs:
             Halo Frijal! Bot telah melakukan pembersihan otomatis pada file HTML kamu.
 
             Target cleanup yang dijalankan:
-
             `${{ github.event.inputs.cleanup_target || 'all' }}`
 
             Rincian pekerjaan:
-
             - `all`: Menghapus preload image yang tidak diinginkan dan membersihkan karakter Unicode tersembunyi.
             - `preload`: Menghapus tag link preload image yang tidak diinginkan.
             - `unicode`: Menghapus karakter Unicode tersembunyi seperti zero-width character dan memperbaiki spasi non-breaking.
