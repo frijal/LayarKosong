@@ -131,7 +131,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -o pipefail
-          bun run dapur/bikin-rss-diskusi.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+          bun run dapur/post-to-github-disc.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
 
       - name: 📝 RSS kirim ke GitHub Gist
         id: gist_rss
@@ -142,7 +142,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GIST_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           set -o pipefail
-          bun run dapur/bikin-rss-gist.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+          bun run dapur/post-to-github-gist.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
 
       - name: 🧹 1. Cloudflare Cleanup
         id: cloudflare
