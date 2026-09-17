@@ -3,6 +3,7 @@ import { mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 
 const TRACKER_FILE = 'mini/posted-gist.txt'; // Tracker terpisah khusus Gist
+const MAX_PER_CATEGORY = 5; // Batas 5 post per kategori (7 kategori x 5 = maks 35 post per run)
 
 const RSS_FILES = [
   'gaya-hidup.rss', 'jejak-sejarah.rss', 'lainnya.rss',
@@ -105,8 +106,10 @@ async function run() {
       postedSlugs = new Set(text.split('\n').map(s => s.trim()).filter(Boolean));
     }
 
-    const allArticles: Article[] = [];
+    const articlesToPost: Article[] = [];
+    let totalUnpostedDetected = 0;
 
+    // Filter dan batasi 5 artikel terlama per kategori
     for (const fileName of RSS_FILES) {
       const file = Bun.file(fileName);
       if (!(await file.exists())) {
@@ -118,10 +121,12 @@ async function run() {
       const { title: channelTitle, items } = parseRSSSafe(xmlData);
       const rawCategory = channelTitle.split(' - ')[0].replace(/Kategori\s+/i, '').trim();
 
+      const categoryArticles: Article[] = [];
+
       for (const item of items) {
         const slug = item.link.split('/').filter(Boolean).pop();
         if (slug && !postedSlugs.has(slug)) {
-          allArticles.push({
+          categoryArticles.push({
             ...item,
             slug,
             categoryName: rawCategory,
@@ -129,12 +134,24 @@ async function run() {
           });
         }
       }
+
+      totalUnpostedDetected += categoryArticles.length;
+
+      // Urutkan artikel dalam kategori dari yang terlama
+      categoryArticles.sort((a, b) => a.pubDateParsed - b.pubDateParsed);
+
+      // Ambil maksimal 5 artikel untuk kategori ini
+      const selected = categoryArticles.slice(0, MAX_PER_CATEGORY);
+      articlesToPost.push(...selected);
     }
 
-    allArticles.sort((a, b) => a.pubDateParsed - b.pubDateParsed);
-    console.log(`📦 Terdeteksi ${allArticles.length} artikel baru yang siap di-upload ke Gist.`);
+    // Urutkan gabungan seluruh antrean agar postingan berjalan teratur secara kronologis
+    articlesToPost.sort((a, b) => a.pubDateParsed - b.pubDateParsed);
 
-    for (const art of allArticles) {
+    console.log(`📦 Terdeteksi ${totalUnpostedDetected} artikel baru secara keseluruhan.`);
+    console.log(`🎯 Menyiapkan ${articlesToPost.length} artikel baru (maksimal 5 artikel per kategori) yang siap di-upload ke Gist.`);
+
+    for (const art of articlesToPost) {
       if (!art.title) {
         console.warn(`⚠️ Melewati artikel tanpa judul (slug: ${art.slug})`);
         continue;
@@ -143,7 +160,7 @@ async function run() {
       const safeTitle = art.title.length > 240 ? `${art.title.slice(0, 237)}...` : art.title;
       const filename = `${art.slug}.md`;
 
-      console.log(`📤 Upload ke Gist: ${safeTitle}`);
+      console.log(`📤 Upload ke Gist [${art.categoryName}]: ${safeTitle}`);
 
       let displayImage = "";
       if (art.image) {
@@ -154,14 +171,14 @@ async function run() {
       }
 
       // Format Markdown untuk isi Gist
-      const bodyContent = `# [${art.title}](${art.link})\n\n> **Kategori:** ${art.categoryName}  \n> **Link Asli:** [${art.link}](${art.link})${displayImage}\n\n${art.description}\n\n---\n*Diimpor otomatis dari Layar Kosong*`;
+      const bodyContent = `# [${art.title}](${art.link})\n\n> **Kategori:** ${art.categoryName}  \n> **Sumber:** [${art.link}](${art.link})${displayImage}\n\n${art.description}\n\n---\n*terkirim otomatis dari halaman [Layar Kosong](https://dalam.web.id)*`;
 
       try {
         const gistResult = await createGist(
           safeTitle,
           filename,
           bodyContent,
-          true // Set 'false' jika ingin dijadikan Secret Gist
+          true
         );
 
         console.log(`✅ Berhasil! Gist URL: ${gistResult.html_url}`);
