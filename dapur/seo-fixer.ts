@@ -15,7 +15,7 @@ const CHUNK_SIZE    = 10;
 // diperlakukan lebih baik karena dikenali sebagai "compliant client".
 // Ganti bagian kontak sesuai kebutuhan (email/halaman about kamu).
 const MIRROR_USER_AGENT =
-"LayarKosongImageMirror/1.0 (+https://dalam.web.id/about; kontak via halaman /about) Bun-fetch";
+  "LayarKosongImageMirror/1.0 (+https://dalam.web.id/about; kontak via halaman /about) Bun-fetch";
 
 // Set Lock untuk mencegah Race Condition (TOCTOU) saat parallel download
 const downloadingUrls = new Set<string>();
@@ -23,8 +23,8 @@ const downloadingUrls = new Set<string>();
 // --- HELPER UTILS ---
 const normalizeText = (text: string): string => {
   return String(text || "")
-  .replace(/\s+/g, " ")
-  .trim();
+    .replace(/\s+/g, " ")
+    .trim();
 };
 
 const prepareDesc = (text: string): string => {
@@ -33,17 +33,17 @@ const prepareDesc = (text: string): string => {
 
 const toWebPath = (value: string): string => {
   return String(value || "")
-  .replace(/\\/g, "/")
-  .replace(/^\.\//, "")
-  .replace(/^\/+/, "")
-  .replace(/\/+$/, "");
+    .replace(/\\/g, "/")
+    .replace(/^\.\//, "")
+    .replace(/^\/+/, "")
+    .replace(/\/+$/, "");
 };
 
 const getImageMimeType = (imageUrl: string): string => {
   try {
     const parsed = imageUrl.startsWith("http")
-    ? new URL(imageUrl)
-    : new URL(imageUrl, BASE_URL);
+      ? new URL(imageUrl)
+      : new URL(imageUrl, BASE_URL);
 
     const ext = path.extname(parsed.pathname).toLowerCase();
 
@@ -60,6 +60,31 @@ const getImageMimeType = (imageUrl: string): string => {
   }
 };
 
+/**
+ * 🔧 FIX BARU: Deteksi WebP dari MAGIC BYTES, bukan dari ekstensi URL.
+ *
+ * Struktur container RIFF:
+ *   byte 0-3   : "RIFF"
+ *   byte 4-7   : ukuran file - 8 (little endian, tidak dipakai di sini)
+ *   byte 8-11  : "WEBP"
+ *
+ * Kenapa tidak pakai ekstensi saja? Karena ekstensi bohong di dua arah:
+ *   - URL ".webp" tapi isinya JPEG (CDN ngawur/redirect) → kalau disalin mentah,
+ *     file JPEG akan tersimpan bernama .webp dan disajikan dengan header
+ *     Content-Type: image/webp. Crawler OG yang tidak melakukan sniffing
+ *     (Facebook, dll) gagal decode → thumbnail kosong tanpa jejak error.
+ *   - URL tanpa ekstensi / ".jpg?format=webp" tapi isinya memang WebP → kalau
+ *     dinilai dari ekstensi, file akan di-re-encode sia-sia (generation loss).
+ * Magic bytes menutup kedua lubang sekaligus.
+ */
+const isWebpBuffer = (buffer: Buffer): boolean => {
+  return (
+    buffer.length > 12 &&
+    buffer.toString("ascii", 0, 4) === "RIFF" &&
+    buffer.toString("ascii", 8, 12) === "WEBP"
+  );
+};
+
 const toUTCIso = (val: string | undefined, fallback: string): string => {
   if (!val) return fallback;
   const parsed = new Date(val);
@@ -72,8 +97,8 @@ const toUTCIso = (val: string | undefined, fallback: string): string => {
 const extractExistingDate = async (file: string): Promise<string> => {
   const content = await Bun.file(file).text();
   const match =
-  content.match(/property="article:published_time"[^>]*content="(\d{4}-\d{2}-\d{2})/i) ||
-  content.match(/content="(\d{4}-\d{2}-\d{2})[^"]*"[^>]*property="article:published_time"/i);
+    content.match(/property="article:published_time"[^>]*content="(\d{4}-\d{2}-\d{2})/i) ||
+    content.match(/content="(\d{4}-\d{2}-\d{2})[^"]*"[^>]*property="article:published_time"/i);
 
   return match ? match[1] : new Date().toISOString().split("T")[0];
 };
@@ -140,6 +165,9 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string): Promise<s
 
     const isSvg = detectedExt === ".svg";
     const isGif = detectedExt === ".gif";
+
+    // Catatan: sumber .webp tetap berakhir di ".webp" lewat cabang else di bawah,
+    // jadi baris ini TIDAK perlu diubah meski WebP sekarang disalin apa adanya.
     const finalExt = (isSvg || isGif) ? detectedExt : ".webp";
 
     const safeHostname = url.hostname.replace(/[^a-z0-9.]/gi, "_");
@@ -160,6 +188,9 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string): Promise<s
     downloadingUrls.add(cleanUrl);
 
     try {
+      // Cache: file yang sudah pernah di-mirror TIDAK diproses ulang.
+      // Konsekuensi: gambar WebP yang terlanjur di-re-encode sebelum patch ini
+      // akan tetap apa adanya. Itu memang disengaja — hasil lama dibiarkan.
       if (await fileTarget.exists()) {
         return `/${localPath.replace(/\\/g, "/")}`;
       }
@@ -168,9 +199,9 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string): Promise<s
       // beberapa CDN pihak ketiga butuh waktu lebih untuk merespons)
       const response = await fetch(externalUrl, {
         signal: AbortSignal.timeout(20_000),
-                                   headers: {
-                                     "User-Agent": MIRROR_USER_AGENT
-                                   }
+        headers: {
+          "User-Agent": MIRROR_USER_AGENT
+        }
       });
 
       if (!response.ok) {
@@ -184,21 +215,45 @@ async function mirrorAndConvert(externalUrl: string, baseUrl: string): Promise<s
       const buffer = Buffer.from(await response.arrayBuffer());
       await mkdir(path.dirname(localPath), { recursive: true });
 
-      if (isSvg || isGif) {
+      // 🔧 FIX BARU: WEBP PASSTHROUGH
+      // Gambar yang SUDAH berformat WebP tidak perlu disentuh sharp sama sekali.
+      // Cukup disalin apa adanya, sama seperti perlakuan SVG dan GIF.
+      //
+      // Keuntungan langsung:
+      //   1. Nol generation loss — re-encode lossy→lossy q95 selalu merusak,
+      //      paling terasa di infografis/screenshot bertext tajam.
+      //   2. WebP lossless tetap lossless (sebelumnya dipaksa jadi lossy q95).
+      //   3. WebP ANIMASI tetap utuh. sharp() tanpa opsi { animated: true }
+      //      cuma mengambil frame pertama — selama ini setiap WebP animasi
+      //      diam-diam berubah jadi gambar diam.
+      //   4. Lebih cepat: effort:6 adalah pencarian kompresi paling agresif,
+      //      melewatinya menghemat waktu paling terasa di artikel padat gambar.
+      //
+      // Kalau suatu saat mau memasang pagar ukuran (misal WebP > 1,5 MB tetap
+      // dikompres ulang), ubah kondisi di bawah jadi:
+      //   const passthroughWebp = isWebpBuffer(buffer) && buffer.length <= 1_500_000;
+      const passthrough = isSvg || isGif || isWebpBuffer(buffer);
+
+      if (passthrough) {
         await Bun.write(localPath, buffer);
+
+        if (!isSvg && !isGif) {
+          const kb = (buffer.length / 1024).toFixed(1);
+          console.log(`   ↳ 📦 WebP asli disalin tanpa re-encode (${kb} KB): ${cleanUrl}`);
+        }
       } else {
         // 🔥 UPDATE SHARP: Mode Infografis (Teks Tajam, Tanpa Blur)
         await sharp(buffer)
-        .rotate()
-        // Menambahkan sharpen ringan untuk mengembalikan detail yang hilang saat konversi format
-        .sharpen({ sigma: 0.3 })
-        .webp({
-          quality: 95,            // Kualitas dinaikkan sedikit karena ini master image
-          preset: 'text',         // Mencegah blur/mbleber pada teks (infografis mode)
-        smartSubsample: true,   // Mempertahankan kontras warna tajam
-        effort: 6               // Pencarian kompresi maksimal
-        })
-        .toFile(localPath);
+          .rotate()
+          // Menambahkan sharpen ringan untuk mengembalikan detail yang hilang saat konversi format
+          .sharpen({ sigma: 0.3 })
+          .webp({
+            quality: 95,            // Kualitas dinaikkan sedikit karena ini master image
+            preset: "text",         // Mencegah blur/mbleber pada teks (infografis mode)
+            smartSubsample: true,   // Mempertahankan kontras warna tajam
+            effort: 6               // Pencarian kompresi maksimal
+          })
+          .toFile(localPath);
       }
 
       return `/${localPath.replace(/\\/g, "/")}`;
@@ -275,8 +330,8 @@ async function processFile(file: string, baseUrl: string, fallbackTime: string) 
 
     // Deteksi atribut mana yang benar-benar dipakai di elemen ini
     const hrefAttr = $img.attr("href") !== undefined
-    ? "href"
-    : ($img.attr("xlink:href") !== undefined ? "xlink:href" : null);
+      ? "href"
+      : ($img.attr("xlink:href") !== undefined ? "xlink:href" : null);
 
     if (!hrefAttr) return;
 
@@ -327,218 +382,221 @@ async function processFile(file: string, baseUrl: string, fallbackTime: string) 
     const tag = $(el).attr("content")?.trim();
     if (tag) existingTags.push(tag);
   });
-    const uniqueTags = Array.from(new Set(existingTags));
+  const uniqueTags = Array.from(new Set(existingTags));
 
-    const firstP = $("p").first().text().trim();
-    const fallbackDesc = firstP
+  const firstP = $("p").first().text().trim();
+  const fallbackDesc = firstP
     ? prepareDesc(firstP.substring(0, 160))
     : "Layar Kosong - Catatan dan Opini.";
 
-    const finalMetaDesc = prepareDesc(rawMetaDesc || fallbackDesc);
-    const finalOgDesc = prepareDesc(rawOgDesc || rawMetaDesc || fallbackDesc);
-    const finalTwitterDesc = prepareDesc(rawTwitterDesc || rawMetaDesc || fallbackDesc);
+  const finalMetaDesc = prepareDesc(rawMetaDesc || fallbackDesc);
+  const finalOgDesc = prepareDesc(rawOgDesc || rawMetaDesc || fallbackDesc);
+  const finalTwitterDesc = prepareDesc(rawTwitterDesc || rawMetaDesc || fallbackDesc);
 
-    const finalNewsKeywords = prepareDesc(
-      rawNewsKeys ||
-      uniqueTags.join(", ") ||
-      `${ogTitle}, Layar Kosong` // Menghilangkan tag kategori dari fallback
-    );
+  const finalNewsKeywords = prepareDesc(
+    rawNewsKeys ||
+    uniqueTags.join(", ") ||
+    `${ogTitle}, Layar Kosong` // Menghilangkan tag kategori dari fallback
+  );
 
-    const finalPromphint = prepareDesc(
-      rawPromphint ||
-      `${ogTitle} | ${fallbackDesc}`
-    );
+  const finalPromphint = prepareDesc(
+    rawPromphint ||
+    `${ogTitle} | ${fallbackDesc}`
+  );
 
-    let metaImgUrl = $('meta[property="og:image"]').attr("content") ||
+  let metaImgUrl = $('meta[property="og:image"]').attr("content") ||
     $('meta[name="twitter:image"]').attr("content") ||
     $("img").first().attr("src") ||
     "/thumbnail.webp";
 
-    if (metaImgUrl && metaImgUrl.startsWith("http")) {
-      const mirroredPath = await mirrorAndConvert(metaImgUrl, baseUrl);
-      if (mirroredPath.startsWith("/img")) {
-        metaImgUrl = `${baseUrl}${mirroredPath}`;
-      } else {
-        metaImgUrl = mirroredPath;
-      }
+  if (metaImgUrl && metaImgUrl.startsWith("http")) {
+    const mirroredPath = await mirrorAndConvert(metaImgUrl, baseUrl);
+    if (mirroredPath.startsWith("/img")) {
+      metaImgUrl = `${baseUrl}${mirroredPath}`;
     } else {
-      metaImgUrl = new URL(metaImgUrl, canonicalUrl).href;
+      metaImgUrl = mirroredPath;
+    }
+  } else {
+    metaImgUrl = new URL(metaImgUrl, canonicalUrl).href;
+  }
+
+  const imageMimeType = getImageMimeType(metaImgUrl);
+
+  // --- FIX: BACA DIMENSI GAMBAR ASLI UNTUK OG:IMAGE ---
+  // Catatan: sharp tetap dipakai di sini, tapi hanya untuk MEMBACA metadata.
+  // Tidak ada re-encode, jadi WebP hasil passthrough aman-aman saja.
+  let ogImageWidth = "1024";
+  let ogImageHeight = "633";
+
+  try {
+    let localImgPathForMeta = "";
+    if (metaImgUrl.startsWith(baseUrl)) {
+      localImgPathForMeta = path.join(process.cwd(), metaImgUrl.replace(baseUrl, ""));
+    } else if (metaImgUrl.startsWith("/img")) {
+      localImgPathForMeta = path.join(process.cwd(), metaImgUrl);
     }
 
-    const imageMimeType = getImageMimeType(metaImgUrl);
-
-    // --- FIX: BACA DIMENSI GAMBAR ASLI UNTUK OG:IMAGE ---
-    let ogImageWidth = "1024";
-    let ogImageHeight = "633";
-
-    try {
-      let localImgPathForMeta = "";
-      if (metaImgUrl.startsWith(baseUrl)) {
-        localImgPathForMeta = path.join(process.cwd(), metaImgUrl.replace(baseUrl, ""));
-      } else if (metaImgUrl.startsWith("/img")) {
-        localImgPathForMeta = path.join(process.cwd(), metaImgUrl);
-      }
-
-      if (localImgPathForMeta && await Bun.file(localImgPathForMeta).exists()) {
-        const imgMeta = await sharp(localImgPathForMeta).metadata();
-        ogImageWidth = imgMeta.width?.toString() || "1024";
-        ogImageHeight = imgMeta.height?.toString() || "633";
-      }
-    } catch (err) {
-      // Abaikan error, tetap pakai fallback 1024x633
+    if (localImgPathForMeta && await Bun.file(localImgPathForMeta).exists()) {
+      const imgMeta = await sharp(localImgPathForMeta).metadata();
+      ogImageWidth = imgMeta.width?.toString() || "1024";
+      ogImageHeight = imgMeta.height?.toString() || "633";
     }
+  } catch (err) {
+    // Abaikan error, tetap pakai fallback 1024x633
+  }
 
-    // --- 3. OPERASI STERILISASI (CLEANUP) ---
-    $("html")
+  // --- 3. OPERASI STERILISASI (CLEANUP) ---
+  $("html")
     .attr("lang", "id-ID")
     .attr("prefix", "og: https://ogp.me/ns# article: https://ogp.me/ns/article#");
 
-    $("title").remove();
-    $("meta[charset]").remove();
-    $('meta[name="viewport"]').remove();
+  $("title").remove();
+  $("meta[charset]").remove();
+  $('meta[name="viewport"]').remove();
 
-    $([
-      'link[rel="canonical"]',
-      'link[rel="icon"]',
-      'link[rel="shortcut icon"]',
-      'link[rel="license"]',
-      'link[rel="sitemap"]',
-      'link[rel="search"]',
-      'link[rel="manifest"]',
-      'link[rel="alternate"]',
-      'link[rel="me"]'
-    ].join(", ")).remove();
+  $([
+    'link[rel="canonical"]',
+    'link[rel="icon"]',
+    'link[rel="shortcut icon"]',
+    'link[rel="license"]',
+    'link[rel="sitemap"]',
+    'link[rel="search"]',
+    'link[rel="manifest"]',
+    'link[rel="alternate"]',
+    'link[rel="me"]'
+  ].join(", ")).remove();
 
-    $('script[src="/ext/data-provider.js"]').remove();
+  $('script[src="/ext/data-provider.js"]').remove();
 
-    $([
-      'meta[itemprop="image"]',
-      'meta[name="application-name"]',
-      'meta[name="apple-mobile-web-app-title"]',
-      'meta[name="author"]',
-      'meta[name="color-scheme"]',
-      'meta[name="description"]',
-      'meta[name="googlebot"]',
-      'meta[name="news_keywords"]',
-      'meta[name="promphint"]',
-      'meta[name="referrer"]',
-      'meta[name="robots"]',
-      'meta[name="theme-color"]',
-      'meta[name^="bluesky:"]',
-      'meta[name^="fediverse:"]',
-      'meta[name^="twitter:"]',
-      'meta[property="description"]',
-      'meta[property="fb:app_id"]',
-      'meta[property="fb:pages"]',
-      'meta[property^="article:"]',
-      'meta[property^="og:"]',
-      'meta[property^="twitter:"]'
-    ].join(", ")).remove();
+  $([
+    'meta[itemprop="image"]',
+    'meta[name="application-name"]',
+    'meta[name="apple-mobile-web-app-title"]',
+    'meta[name="author"]',
+    'meta[name="color-scheme"]',
+    'meta[name="description"]',
+    'meta[name="googlebot"]',
+    'meta[name="news_keywords"]',
+    'meta[name="promphint"]',
+    'meta[name="referrer"]',
+    'meta[name="robots"]',
+    'meta[name="theme-color"]',
+    'meta[name^="bluesky:"]',
+    'meta[name^="fediverse:"]',
+    'meta[name^="twitter:"]',
+    'meta[property="description"]',
+    'meta[property="fb:app_id"]',
+    'meta[property="fb:pages"]',
+    'meta[property^="article:"]',
+    'meta[property^="og:"]',
+    'meta[property^="twitter:"]'
+  ].join(", ")).remove();
 
-    // --- 4. PENYUNTIKAN (INJECT) DATA BARU ---
-    const htmlTag = {
-      title(text: string) { return $.html($("<title></title>").text(text)); },
-      metaCharset(charset: string) { return $.html($("<meta>").attr("charset", charset)); },
-      metaName(name: string, content: string) { return $.html($("<meta>").attr("name", name).attr("content", content)); },
-      metaProperty(property: string, content: string) { return $.html($("<meta>").attr("property", property).attr("content", content)); },
-      link(attrs: Record<string, string>) {
-        const el = $("<link>");
-        Object.entries(attrs).forEach(([key, value]) => el.attr(key, value));
-        return $.html(el);
-      },
-      script(attrs: Record<string, string>) {
-        const el = $("<script></script>");
-        Object.entries(attrs).forEach(([key, value]) => el.attr(key, value));
-        return $.html(el);
-      }
-    };
+  // --- 4. PENYUNTIKAN (INJECT) DATA BARU ---
+  const htmlTag = {
+    title(text: string) { return $.html($("<title></title>").text(text)); },
+    metaCharset(charset: string) { return $.html($("<meta>").attr("charset", charset)); },
+    metaName(name: string, content: string) { return $.html($("<meta>").attr("name", name).attr("content", content)); },
+    metaProperty(property: string, content: string) { return $.html($("<meta>").attr("property", property).attr("content", content)); },
+    link(attrs: Record<string, string>) {
+      const el = $("<link>");
+      Object.entries(attrs).forEach(([key, value]) => el.attr(key, value));
+      return $.html(el);
+    },
+    script(attrs: Record<string, string>) {
+      const el = $("<script></script>");
+      Object.entries(attrs).forEach(([key, value]) => el.attr(key, value));
+      return $.html(el);
+    }
+  };
 
-    const metaTags = [
-      htmlTag.metaCharset("UTF-8"),
-      htmlTag.metaName("viewport", "width=device-width,initial-scale=1"),
-      htmlTag.title(seoTitle),
-      htmlTag.metaName("description", finalMetaDesc),
-      htmlTag.link({ rel: "canonical", href: canonicalUrl }),
-      htmlTag.metaName("robots", "index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large"),
-      htmlTag.metaName("googlebot", "index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large"),
-      htmlTag.metaName("author", "Fakhrul Rijal"),
-      htmlTag.metaName("theme-color", "#00b0ed"),
-      htmlTag.metaName("color-scheme", "light dark"),
-      htmlTag.metaName("referrer", "strict-origin-when-cross-origin"),
-      htmlTag.metaName("application-name", "Layar Kosong"),
-      htmlTag.metaName("apple-mobile-web-app-title", "Layar Kosong"),
-      htmlTag.metaName("news_keywords", finalNewsKeywords),
-      htmlTag.metaName("promphint", finalPromphint),
-      htmlTag.metaProperty("og:site_name", "Layar Kosong"),
-      htmlTag.metaProperty("og:locale", "id_ID"),
-      htmlTag.metaProperty("og:type", "article"),
-      htmlTag.metaProperty("og:url", canonicalUrl),
-      htmlTag.metaProperty("og:title", ogTitle),
-      htmlTag.metaProperty("og:description", finalOgDesc),
-      htmlTag.metaProperty("og:updated_time", modifiedTime),
-      htmlTag.metaProperty("og:image", metaImgUrl),
-      htmlTag.metaProperty("og:image:url", metaImgUrl),
-      htmlTag.metaProperty("og:image:secure_url", metaImgUrl),
-      htmlTag.metaProperty("og:image:alt", ogTitle),
-      htmlTag.metaProperty("og:image:width", ogImageWidth), // Fix Dimensi Dinamis
-      htmlTag.metaProperty("og:image:height", ogImageHeight), // Fix Dimensi Dinamis
-      htmlTag.metaProperty("og:image:type", imageMimeType),
-      htmlTag.metaName("twitter:card", "summary_large_image"),
-      htmlTag.metaName("twitter:domain", "dalam.web.id"),
-      htmlTag.metaName("twitter:url", canonicalUrl),
-      htmlTag.metaName("twitter:title", ogTitle),
-      htmlTag.metaName("twitter:description", finalTwitterDesc),
-      htmlTag.metaName("twitter:image", metaImgUrl),
-      htmlTag.metaName("twitter:image:alt", ogTitle),
-      htmlTag.metaName("twitter:widgets:new-embed-design", "on"),
-      htmlTag.metaName("twitter:site", "@responaja"),
-      htmlTag.metaName("twitter:creator", "@responaja"),
-      htmlTag.metaName("twitter:account_id", "1872520777138122752"),
-      htmlTag.metaName("fediverse:creator", "@frijal@mastodon.social"),
-      htmlTag.metaProperty("article:author", "https://facebook.com/frijal"),
-      htmlTag.metaProperty("article:publisher", "https://facebook.com/frijalpage"),
-      htmlTag.metaProperty("fb:app_id", "175216696195384"),
-      htmlTag.metaProperty("fb:pages", "917962134736490"),
-      htmlTag.link({ rel: "icon", href: "/favicon.svg", type: "image/svg+xml", sizes: "any" }),
-      htmlTag.link({ rel: "alternate icon", href: "/favicon.ico", type: "image/x-icon" }),
-      htmlTag.link({ rel: "manifest", href: "/site.webmanifest" }),
-      htmlTag.link({ rel: "alternate", type: "application/rss+xml", title: "Feed 30 artikel baru bikin.", href: `${baseUrl}/rss.rss` }),
-      htmlTag.link({ rel: "alternate", type: "application/atom+xml", title: "Atom 30 artikel baru bikin.", href: `${baseUrl}/atom.atom` }),
-      htmlTag.link({ rel: "search", type: "application/opensearchdescription+xml", title: "Layar Kosong", href: "/opensearch.xml" }),
-      htmlTag.link({ rel: "license", href: "https://creativecommons.org/licenses/by/4.0/" }),
-      htmlTag.link({ rel: "me", href: "https://mastodon.social/@frijal" }),
-      htmlTag.link({ rel: "me", href: "https://github.com/frijal" }),
-      htmlTag.script({ defer: "", src: "/ext/data-provider.js" })
-    ];
+  const metaTags = [
+    htmlTag.metaCharset("UTF-8"),
+    htmlTag.metaName("viewport", "width=device-width,initial-scale=1"),
+    htmlTag.title(seoTitle),
+    htmlTag.metaName("description", finalMetaDesc),
+    htmlTag.link({ rel: "canonical", href: canonicalUrl }),
+    htmlTag.metaName("robots", "index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large"),
+    htmlTag.metaName("googlebot", "index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large"),
+    htmlTag.metaName("author", "Fakhrul Rijal"),
+    htmlTag.metaName("theme-color", "#00b0ed"),
+    htmlTag.metaName("color-scheme", "light dark"),
+    htmlTag.metaName("referrer", "strict-origin-when-cross-origin"),
+    htmlTag.metaName("application-name", "Layar Kosong"),
+    htmlTag.metaName("apple-mobile-web-app-title", "Layar Kosong"),
+    htmlTag.metaName("news_keywords", finalNewsKeywords),
+    htmlTag.metaName("promphint", finalPromphint),
+    htmlTag.metaProperty("og:site_name", "Layar Kosong"),
+    htmlTag.metaProperty("og:locale", "id_ID"),
+    htmlTag.metaProperty("og:type", "article"),
+    htmlTag.metaProperty("og:url", canonicalUrl),
+    htmlTag.metaProperty("og:title", ogTitle),
+    htmlTag.metaProperty("og:description", finalOgDesc),
+    htmlTag.metaProperty("og:updated_time", modifiedTime),
+    htmlTag.metaProperty("og:image", metaImgUrl),
+    htmlTag.metaProperty("og:image:url", metaImgUrl),
+    htmlTag.metaProperty("og:image:secure_url", metaImgUrl),
+    htmlTag.metaProperty("og:image:alt", ogTitle),
+    htmlTag.metaProperty("og:image:width", ogImageWidth), // Fix Dimensi Dinamis
+    htmlTag.metaProperty("og:image:height", ogImageHeight), // Fix Dimensi Dinamis
+    htmlTag.metaProperty("og:image:type", imageMimeType),
+    htmlTag.metaName("twitter:card", "summary_large_image"),
+    htmlTag.metaName("twitter:domain", "dalam.web.id"),
+    htmlTag.metaName("twitter:url", canonicalUrl),
+    htmlTag.metaName("twitter:title", ogTitle),
+    htmlTag.metaName("twitter:description", finalTwitterDesc),
+    htmlTag.metaName("twitter:image", metaImgUrl),
+    htmlTag.metaName("twitter:image:alt", ogTitle),
+    htmlTag.metaName("twitter:widgets:new-embed-design", "on"),
+    htmlTag.metaName("twitter:site", "@responaja"),
+    htmlTag.metaName("twitter:creator", "@responaja"),
+    htmlTag.metaName("twitter:account_id", "1872520777138122752"),
+    htmlTag.metaName("fediverse:creator", "@frijal@mastodon.social"),
+    htmlTag.metaProperty("article:author", "https://facebook.com/frijal"),
+    htmlTag.metaProperty("article:publisher", "https://facebook.com/frijalpage"),
+    htmlTag.metaProperty("fb:app_id", "175216696195384"),
+    htmlTag.metaProperty("fb:pages", "917962134736490"),
+    htmlTag.link({ rel: "icon", href: "/favicon.svg", type: "image/svg+xml", sizes: "any" }),
+    htmlTag.link({ rel: "alternate icon", href: "/favicon.ico", type: "image/x-icon" }),
+    htmlTag.link({ rel: "manifest", href: "/site.webmanifest" }),
+    htmlTag.link({ rel: "alternate", type: "application/rss+xml", title: "Feed 30 artikel baru bikin.", href: `${baseUrl}/rss.rss` }),
+    htmlTag.link({ rel: "alternate", type: "application/atom+xml", title: "Atom 30 artikel baru bikin.", href: `${baseUrl}/atom.atom` }),
+    htmlTag.link({ rel: "search", type: "application/opensearchdescription+xml", title: "Layar Kosong", href: "/opensearch.xml" }),
+    htmlTag.link({ rel: "license", href: "https://creativecommons.org/licenses/by/4.0/" }),
+    htmlTag.link({ rel: "me", href: "https://mastodon.social/@frijal" }),
+    htmlTag.link({ rel: "me", href: "https://github.com/frijal" }),
+    htmlTag.script({ defer: "", src: "/ext/data-provider.js" })
+  ];
 
-    uniqueTags.forEach(tag => {
-      metaTags.push(htmlTag.metaProperty("article:tag", tag));
-    });
+  uniqueTags.forEach(tag => {
+    metaTags.push(htmlTag.metaProperty("article:tag", tag));
+  });
 
-    // 🔥 PENYUNTIKAN YANG SUDAH DIVALIDASI 🔥
-    metaTags.push(htmlTag.metaProperty("article:published_time", publishedTime));
-    metaTags.push(htmlTag.metaProperty("article:modified_time", modifiedTime));
+  // 🔥 PENYUNTIKAN YANG SUDAH DIVALIDASI 🔥
+  metaTags.push(htmlTag.metaProperty("article:published_time", publishedTime));
+  metaTags.push(htmlTag.metaProperty("article:modified_time", modifiedTime));
 
-    head.prepend("\n    " + metaTags.join("\n    ") + "\n");
+  head.prepend("\n    " + metaTags.join("\n    ") + "\n");
 
-    $("img").each((_, el) => {
-      if (!$(el).attr("alt")) {
-        $(el).attr("alt", seoTitle);
-      }
-    });
+  $("img").each((_, el) => {
+    if (!$(el).attr("alt")) {
+      $(el).attr("alt", seoTitle);
+    }
+  });
 
-    const finalHtml = $.html()
+  const finalHtml = $.html()
     .replace(/\u00A0/g, " ")
     .replace(/[\u200B\u200C\u200D\uFEFF]/g, "")
     .replace(/^\s*[\r\n]/gm, "");
 
-    await Bun.write(file, finalHtml);
+  await Bun.write(file, finalHtml);
 }
 
 async function fixSEO() {
   const baseUrl = BASE_URL;
   console.log("🧼 Memulai SEO Fixer v2 (Bun Turbo TS Mode)");
   console.log("🔒 SEO Timestamp: published_time ≤ modified_time GUARANTEED");
+  console.log("📦 WebP Passthrough: gambar sumber WebP disalin apa adanya (deteksi magic bytes)");
   console.log(`🪪 Mirror User-Agent: ${MIRROR_USER_AGENT}\n`);
 
   const startTime = performance.now();
