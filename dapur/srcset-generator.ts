@@ -23,6 +23,7 @@ const TARGET_MOBILE  = 720;
 
 // ========== GLOBAL SETS ==========
 const activeCache = new Set<string>(); // Untuk menampung daftar fresh
+let totalAnimatedSkipped = 0; // 🛡️ Penghitung WebP animasi yang diselamatkan dari overwrite
 
 mkdirSync(path.dirname(CACHE_FILE), { recursive: true });
 
@@ -69,6 +70,11 @@ function loadRelatedImages() {
 const relatedImages = loadRelatedImages();
 
 async function generateRgImages() {
+  // Catatan: aman dari bug overwrite-master karena nama filenya SELALU punya
+  // suffix "-rg" — tidak pernah bertabrakan dengan nama file sumber, apapun
+  // ekstensi aslinya. Thumbnail 150px ini juga memang wajar kalau statis
+  // (tidak ada ekspektasi animasi jalan di ukuran sekecil itu), jadi tidak
+  // diberi guard animasi seperti processHtmlFile().
   let count = 0;
   for (const cleanPath of relatedImages) { 
     const fullPathSource = path.join(process.cwd(), cleanPath);
@@ -221,6 +227,46 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
         actualHeight = meta.width;
       }
 
+      // 🛡️ GUARD BARU: WEBP ANIMASI — WAJIB berhenti di sini, SEBELUM baris
+      // manapun di bawah dieksekusi.
+      //
+      // Ini bukan cuma soal "animasi ilang kalau di-resize". Ada bug struktural
+      // di bawah: `desktopPath` dibentuk dari nama file TANPA ekstensi + ".webp"
+      // — persis nama file sumbernya kalau sumbernya memang sudah .webp. Karena
+      // `existsSync(fullPathSource)` di atas sudah membuktikan file itu ada,
+      // `absDesktopPath` akan sama persis dengan `fullPathSource`. `toFile()`
+      // di bawah TIDAK menulis salinan baru — dia MENIMPA MASTER ASLI. Dan
+      // karena `sharp()` dipanggil tanpa opsi `{ animated: true }`, dia cuma
+      // membaca frame pertama dari buffer, lalu menulis ulang sebagai WebP
+      // satu-frame ke lokasi yang sama dengan aslinya. Hasilnya: WebP animasi
+      // diratakan jadi gambar diam SECARA PERMANEN, pada run pertama, tanpa
+      // ada salinan cadangan yang selamat di mana pun.
+      //
+      // Untuk WebP animasi: lewati total, jangan hasilkan varian desktop/
+      // medium/mobile sama sekali. Cukup set width/height/alt di HTML untuk
+      // mencegah layout shift — itu aman karena hanya mengubah teks HTML,
+      // tidak menyentuh file gambar.
+      const frameCount = meta.pages ?? 1;
+      if (frameCount > 1) {
+        const currentW = $img.attr("width");
+        const currentH = $img.attr("height");
+        if (currentW !== actualWidth.toString() || currentH !== actualHeight.toString()) {
+          $img.attr("width", actualWidth.toString());
+          $img.attr("height", actualHeight.toString());
+          fileHasChanged = true;
+        }
+
+        if (!$img.attr("alt")?.trim()) {
+          const altText = imageCounter > 1 ? `${pageTitle} - ${imageCounter}` : pageTitle;
+          $img.attr("alt", altText.replace(/"/g, "&quot;"));
+          fileHasChanged = true;
+        }
+
+        totalAnimatedSkipped++;
+        console.log(`   ↳ 🎞️  WebP animasi terdeteksi (${frameCount} frame) — dibiarkan apa adanya: ${cleanPath}`);
+        continue;
+      }
+
       const needsMobile = actualWidth > TARGET_MOBILE;
       const needsMedium = actualWidth > TARGET_MEDIUM;
 
@@ -322,6 +368,7 @@ async function processHtmlFile(htmlPath: string): Promise<string> {
 // ========== MAIN ==========
 async function main() {
   console.log("🚀 Memulai Srcset & Thumbnail Generator...");
+  console.log("🛡️  Guard WebP Animasi: AKTIF (master tidak akan pernah ditimpa)");
   console.log("🔍 Mengecek dan merekap seluruh data gambar aktif...");
 
   const allFiles = ALLOWED_CATEGORIES.flatMap(cat => {
@@ -356,6 +403,7 @@ async function main() {
 🖼️  File HTML Diproses  : ${results.processed} (Baru diinjeksi srcset)
 ⏭️  File HTML Di-skip   : ${results.skipped} (Aman)
 📄  HTML Tanpa Gambar   : ${results.noImage}
+🎞️  WebP Animasi Aman   : ${totalAnimatedSkipped} gambar (dilewati, tidak diubah)
 🎯  Target JSON Lite    : ${relatedImages.size} file -rg
 ✨  Thumbnail -rg Baru  : ${rgCreatedCount} file dibuat
 📝  Catatan Srcset Baru : ${activeCache.size} gambar ditulis ulang ke srcset-gambar.txt
