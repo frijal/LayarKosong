@@ -189,6 +189,10 @@ https://:version.:project.pages.dev/*
   Content-Type: application/rss+xml; charset=utf-8
 /sistem-terbuka.atom
   Content-Type: application/atom+xml; charset=utf-8
+/olah-media.rss
+  Content-Type: application/rss+xml; charset=utf-8
+/olah-media.atom
+  Content-Type: application/atom+xml; charset=utf-8
 /warta-tekno.rss
   Content-Type: application/rss+xml; charset=utf-8
 /warta-tekno.atom
@@ -208,9 +212,5 @@ https://:version.:project.pages.dev/*
 /gaya-hidup.rss
   Content-Type: application/rss+xml; charset=utf-8
 /gaya-hidup.atom
-  Content-Type: application/atom+xml; charset=utf-8
-/olah-media.rss
-  Content-Type: application/rss+xml; charset=utf-8
-/olah-media.atom
   Content-Type: application/atom+xml; charset=utf-8
 # --- END LK-AUTOGEN ---

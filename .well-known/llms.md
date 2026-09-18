@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.94
-last_updated: 2026-09-17
+document_version: 25.95
+last_updated: 2026-09-18
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -39,8 +39,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 17 September 2026)
-> Menampilkan 1648 artikel versi 25.94.
+## Index Artikel Terbaru (Updated: 18 September 2026)
+> Menampilkan 1650 artikel versi 25.95.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -568,6 +568,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Menepis Gelap, Menyambut Terang: Perspektif Ujian Hidup](https://dalam.web.id/lainnya/menepis-gelap-menyambut-terang) : makna baru dari ujian hidup: kejujuran menghitung nikmat, janji kemudahan dalam Al-Insyirah, dan ikhtiar yang menjemput terang di balik gelap.
 
 ## Olah Media
+- [Cara Cepat Ekstrak Semua Gambar dari Dokumen LibreOffice](https://dalam.web.id/olah-media/cara-cepat-ekstrak-semua-gambar-dari-dokumen-libreoffice) : Simpan dokumen sebagai HTML di LibreOffice untuk mengekstrak semua gambar sekaligus. Panduan langkah demi langkah yang cepat dan mudah.
 - [Firefox Bisa Merge PDF Gratis, Tapi Bukan di Android](https://dalam.web.id/olah-media/firefox-bisa-merge-pdf-gratis-tapi-bukan-di-android) : Firefox bisa menggabungkan PDF secara gratis di desktop tanpa layanan berlangganan. Simak langkahnya dan pahami mengapa fitur ini berbeda di Fennec Android.
 - [Generator Roster Kerja Pertambangan Online Siap Paste Excel](https://dalam.web.id/olah-media/generator-roster-kerja-pertambangan) : Generator roster kerja pertambangan untuk membuat jadwal kerja dan OFF karyawan secara otomatis. Mendukung pola 6:1, hari wajib masuk, pembatasan OFF, dan output siap paste ke Excel.
 - [Surat Terbuka Calon Guru: Stop Paksa Siswa Posting Video MPLS](https://dalam.web.id/olah-media/stop-paksa-siswa-posting-mpls) : Calon guru menyuarakan penolakan terhadap praktik MPLS yang memaksa siswa SMP mengunggah video kegiatan ke media sosial pribadi. Baca selengkapnya.
@@ -882,6 +883,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Sikap Oportunis dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya pihak yang mengambil keuntungan sepihakan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [GNOME 51 Rilis, Bawa Shell Lebih Halus dan Aplikasi Anyar](https://dalam.web.id/sistem-terbuka/gnome-51-rilis-shell-lebih-halus) : GNOME 51 resmi hadir dengan shell yang lebih stabil, GDM dan Mutter yang diperbaiki, plus sejumlah aplikasi bawaan yang mendapat peningkatan penting.
 - [20 Meme & Slogan Ikonik dari Dunia Distro Linux](https://dalam.web.id/sistem-terbuka/20-meme-slogan-ikonik-dunia-distro-linux) : Dari 'I use Arch btw' sampai mitos hacker Kali Linux. Temukan 20 meme dan slogan legendaris yang mendefinisikan kepribadian setiap distro Linux. Kamu tim mana?
 - [Conky Manager Qt: Kelola Tema Linux Tanpa Edit Kode](https://dalam.web.id/sistem-terbuka/conky-manager-qt-kelola-tema-linux-tanpa-edit-kode) : cara mudah mengelola tema Conky di Linux menggunakan Conky Manager Qt. Atur posisi, warna, dan widget tanpa perlu menyentuh file konfigurasi.
 - [Bedah Teknis Deepin 25.2.2: Lompatan Treeland Wayland](https://dalam.web.id/sistem-terbuka/deepin-25-2-2-treeland-wayland) : Ulasan teknis deepin 25.2.2: migrasi Treeland ke wlroots 0.20, refraksi Liquid Glass berbasis fisika, dan protokol pointer mutakhir untuk gaming di Wayland.
@@ -34240,6 +34242,54 @@ Semoga renungan ini menjadi pelecut semangat dan penguat iman. Karena pada akhir
 
 ## Kategori: Olah Media
 
+### Cara Cepat Ekstrak Semua Gambar dari Dokumen LibreOffice
+
+**Kategori:** Olah-media | **Tanggal:** 2026-09-18T02:47:56.844Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/olah-media/cara-cepat-ekstrak-semua-gambar-dari-dokumen-libreoffice)
+
+Pernahkah Anda berada dalam situasi di mana sebuah dokumen berisi banyak gambar, lalu Anda perlu menyimpan gambar-gambar itu? Mungkin hanya beberapa yang dipilih, atau mungkin semuanya sekaligus.
+
+Melakukan klik kanan pada setiap gambar memang cara yang paling mudah ditebak, tetapi juga sangat melelahkan. Apalagi jika gambar yang harus diambil jumlahnya puluhan atau bahkan ratusan.
+
+Ada cara tercepat untuk mengekstrak semua gambar dari dokumen kerja. Caranya cukup memanfaatkan fitur Save As yang sudah ada di hampir semua aplikasi perkantoran, termasuk LibreOffice.
+
+Yang perlu Anda lakukan adalah membuka menu File, lalu pilih Save As. Di jendela yang muncul, ubah tipe file menjadi HTML. LibreOffice akan membuat beberapa berkas web di folder yang sama dengan dokumen Anda, dan yang terpenting, semua gambar akan ikut diekstrak ke folder tersebut.
+
+#### Langkah Ekstrak Gambar di LibreOffice
+
+Berikut panduan lengkapnya. Trik ini bekerja di LibreOffice Writer, Calc, Impress, dan hampir semua komponen lainnya. Pastikan Anda mengikuti urutan langkah agar hasilnya maksimal.
+
+Peringatan penting: Buat folder baru terlebih dahulu, lalu pindahkan dokumen yang ingin diekstrak gambarnya ke folder tersebut. Secara default, file HTML dan gambar akan diekstrak di folder yang sama dengan dokumen asli. Anda tentu tidak ingin folder utama berantakan dengan puluhan atau ratusan gambar.
+
+Pertama, buat folder baru dan pindahkan dokumen target ke dalamnya. Setelah itu, buka dokumen tersebut di LibreOffice.
+
+Klik menu File di bagian atas, lalu pilih Save As. Anda juga bisa menggunakan pintasan keyboard Ctrl+Shift+S.
+
+Ketika muncul opsi penyimpanan, pastikan Anda mengubah tipe file menjadi HTML. Ada beberapa pilihan format file yang tersedia, jadi Anda perlu mencari dan memilih HTML di daftar tersebut.
+
+Setelah memastikan tipe file sudah HTML, klik tombol Save. LibreOffice mungkin akan menanyakan konfirmasi format, pilih saja untuk tetap menggunakan HTML.
+
+Setelah proses selesai, Anda akan melihat semua file gambar dan media dari dokumen, bersama dengan satu file HTML, berada di folder yang sama. Lokasi defaultnya sama dengan tempat dokumen asli disimpan.
+
+Seperti terlihat pada tangkapan layar di atas, LibreOffice juga menyimpan gambar GIF bersama file PNG. Ada file HTML dan dokumen asli di sana. Cara ini jauh lebih praktis dibandingkan mengklik kanan setiap gambar satu per satu.
+
+Bagaimana jika Anda hanya ingin mengambil beberapa gambar, bukan semuanya? Anda bisa menyimpan gambar yang diinginkan secara manual, atau mengekstrak semuanya lalu menghapus yang tidak diperlukan. Sepenuhnya terserah Anda.
+
+Ada beberapa situasi lain di mana trik Save As HTML ini sangat berguna:
+
+- Jika dokumen Anda memiliki terlalu banyak gambar dan Anda hanya ingin mengekstrak dari bab tertentu, buat dokumen baru, salin bab tersebut ke dokumen baru, lalu simpan sebagai HTML.
+- Trik ini juga bekerja di Microsoft Office, ONLYOFFICE, dan Google Docs. Anggap saja sebagai cara universal untuk mengekstrak gambar dari dokumen.
+- Anda bisa memanfaatkan opsi ini di berbagai situasi, tidak hanya untuk mengekstrak gambar, tetapi juga untuk mengonversi dokumen ke format web.
+#### Trik Ini Juga Bekerja di Platform Lain
+
+Trik kecil ini ternyata tidak eksklusif untuk LibreOffice. Sebagian besar aplikasi perkantoran modern memiliki fitur serupa. Mulai dari Microsoft Office, ONLYOFFICE, hingga Google Docs, semuanya mendukung penyimpanan atau ekspor ke format HTML.
+
+Dengan menyimpan dokumen sebagai HTML, semua gambar yang tertanam di dalamnya akan diekstrak ke folder yang sama. Ini menjadikannya sebagai trik universal yang bisa Anda andalkan di berbagai platform.
+
+Semoga trik singkat LibreOffice ini bermanfaat. Jika Anda menyukainya, jangan ragu untuk membagikannya kepada rekan atau kolega yang sering bekerja dengan dokumen bergambar.
+
+---
+
+
 ### Firefox Bisa Merge PDF Gratis, Tapi Bukan di Android
 
 **Kategori:** Olah-media | **Tanggal:** 2026-09-09T21:23:20.781Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/olah-media/firefox-bisa-merge-pdf-gratis-tapi-bukan-di-android)
@@ -53468,6 +53518,89 @@ Ketika keputusan strategis dibuat berdasarkan ilusi dan opini yang dipoles (apa 
 
 
 ## Kategori: Sistem Terbuka
+
+### GNOME 51 Rilis, Bawa Shell Lebih Halus dan Aplikasi Anyar
+
+**Kategori:** Sistem-terbuka | **Tanggal:** 2026-09-18T11:10:42.606Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/sistem-terbuka/gnome-51-rilis-shell-lebih-halus)
+
+Bagi banyak orang, GNOME adalah pintu masuk pertama ke dunia Linux. Distribusi arus utama seperti Ubuntu dan Fedora Workstation mengirimkannya sebagai desktop bawaan, jadi pengguna baru langsung berkenalan dengan ekosistem ini tanpa harus memilih apa pun sejak awal.
+
+Memang, belakangan ini adopsi window manager tiling dinamis seperti Hyprland terus naik. Meski begitu, desktop environment konvensional tetap menjadi kendaraan harian bagi mayoritas pengguna karena sifatnya yang siap pakai, minim konfigurasi, dan konsisten di berbagai perangkat.
+
+Kini GNOME 51 hadir membawa sejumlah peningkatan. Mulai dari shell yang berperilaku lebih rapi, wallpaper baru yang tampil menawan, sampai sederet aplikasi bawaan yang diperbarui cukup serius. Berikut ulasan lengkapnya.
+
+#### Shell yang Makin Rapi
+
+GNOME Shell adalah bagian yang paling sering Anda sentuh tanpa sadar. Ia mencakup top bar, overview, app grid, notifikasi, layar kunci, dan cara jendela berpindah antar workspace. Karena itu, perbaikan kecil di lapisan ini terasa besar dampaknya bagi kenyamanan sehari-hari.
+
+Pada rilis kali ini, sejumlah detail kasar dipoles. Kecerahan monitor kini disimpan dan dipulihkan antar sesi, sehingga Anda tidak perlu mengatur ulang setiap kali login. Bingkai tangkapan layar juga lebih presisi karena seleksi bisa ditarik hingga menyentuh tepi monitor, bukan berhenti beberapa piksel sebelum tepi.
+
+Navigasi pembaca layar di dalam app grid dirombak agar lebih mudah diikuti. Dua gangguan lama pun dibereskan: bug jendela yang diminimalkan di workspace lain, serta format tanggal Jerman yang sebelumnya tampil keliru. Prompt autorun yang muncul saat USB dicolok juga mengalami perbaikan perilaku.
+
+#### GDM dan Mutter
+
+Dua komponen ini jarang disadari keberadaannya, padahal keduanya memegang peran krusial. GDM adalah display manager di balik layar login yang memulai sesi setelah Anda terautentikasi, sedangkan Mutter adalah compositor yang menggambar jendela, menentukan posisinya, dan menangani input.
+
+Di sisi GDM, ada penambahan pengaturan untuk sesi fallback, yaitu sesi yang dipakai ketika pengguna belum punya preferensi atau sesi pilihannya gagal dijalankan. Administrator kini bisa mengarahkan akun yang belum pernah login ke sesi tertentu sesuai kebutuhan. Yang tak kalah penting, celah bypass autologin sudah ditutup: sebelumnya greeter yang berhasil dikompromikan bisa meminta autologin untuk akun lokal mana pun.
+
+Pada Mutter, dukungan untuk driver NVIDIA legacy sudah dihapus. Di layar HDR, konten SDR tidak lagi tampak pudar atau kehilangan warna. Penanganan jendela juga mendapat sejumlah perbaikan, mulai dari jendela yang menempel di tepi layar kini bisa masuk mode fullscreen dengan benar, hingga jendela maximized yang bisa dipindahkan ke monitor lain lewat keyboard tanpa masalah.
+
+Ada beberapa perbaikan tambahan yang sifatnya lebih teknis namun tetap terasa bagi pengguna tingkat lanjut:
+
+- Mutter berhenti melaporkan beberapa monitor sebagai primary secara bersamaan, masalah yang kerap membingungkan aplikasi berbasis XWayland.
+- Kursor mouse kini menyembunyikan diri saat sesi input capture berjalan, misalnya ketika alat remote desktop sedang mengambil alih kendali.
+- Perbaikan ini berdampak langsung pada stabilitas sesi jarak jauh dan konsistensi penempatan jendela di konfigurasi multi-monitor.
+#### Peningkatan Aplikasi Bawaan
+
+Aplikasi bawaan GNOME 51 mendapat porsi upgrade yang cukup besar. Perubahan paling terasa ada di Settings dan Software yang kini lebih informatif, sementara Files memperbaiki sejumlah interaksi yang sebelumnya terasa mengganggu saat menyalin banyak berkas sekaligus.
+
+#### Settings
+
+Aplikasi Settings menambahkan opsi pencarian domain DNS di halaman Network, menerima berbagai pembaruan terjemahan, dan kini menangani berbagi Wi-Fi melalui widget kode QR milik GNOME. Halaman About dirapikan dengan menghapus kolom Windowing System serta memperluas kelompok informasi perangkat lunak dan perangkat keras. Berkat itu, tombol khusus System Details tidak lagi diperlukan.
+
+#### Software
+
+Aplikasi Software sekarang memberi peringatan sebelum Anda memasang aplikasi yang sudah mencapai status end-of-life. Daftar izin Flatpak diperluas, dan perhitungan rata-rata rating aplikasi memakai pendekatan pengukuran yang berbeda agar hasilnya lebih representatif.
+
+#### Files
+
+Files atau Nautilus menampilkan badge jumlah berkas saat Anda menyeret beberapa item sekaligus. Berkas yang disalin tetap dalam kondisi terpilih setelah proses penyalinan selesai. Lokasi yang dibuka dari aplikasi lain ditampilkan di tab baru, sedangkan fitur previewer kini mendukung operasi rename dan pemindahan ke trash.
+
+Tips singkat: fungsi previewer bisa diakses dengan memilih sebuah berkas atau folder lalu menekan tombol Space. Jendela kecil itu akan menampilkan pratinjau item terpilih beserta sejumlah detail pentingnya.
+
+#### Calendar
+
+Bagian internal aplikasi Calendar dirombak cukup berat dan kini dibangun di atas GListModel. Tampilan minggu, bulan, dan agenda berjalan di atas model yang sama, begitu pula objek di balik linimasa acaranya. Lokasi kini dibuka di Maps melalui maps URI, dan dialog About menampilkan indikator status ketika aplikasi tidak berjalan di dalam sandbox Flatpak.
+
+#### Maps
+
+Pengguna Maps kini bisa mengunduh peta untuk penggunaan offline lewat alat unduh baru. Caranya, buka wilayah yang diinginkan, lalu masuk ke menu hamburger di kanan atas dan pilih Preferences. Di bagian Downloads, klik Add untuk memulai proses unduhan.
+
+#### Web
+
+Web atau Epiphany, browser bawaan GNOME, menerima perbaikan untuk kasus crash yang muncul saat menghapus mesin pencari default atau ketika membuka menu preferensi.
+
+#### Perubahan Lain yang Patut Diketahui
+
+Sejumlah perubahan kecil berikut mungkin tidak mencolok, tetapi tetap layak Anda ketahui sebelum melakukan pembaruan:
+
+- Roundhex menjadi wallpaper default baru, ditemani tiga tambahan lain yaitu Curvaturingster, Glass Stripes, dan Tubes.
+- Komponen gnome-desktop kini menyertakan API untuk menghasilkan kode QR, dan widget berbagi Wi-Fi yang disebut sebelumnya memanfaatkan API tersebut.
+- GNOME Bluetooth 47.2 menambahkan mnemonics pada beberapa tombol serta memperbaiki sejumlah kebocoran memori.
+- Loupe, penampil gambar bawaan, kini menampilkan informasi pembuat, hak cipta, lensa kamera, dan perangkat lunak yang tersimpan di metadata foto.
+- Settings mendapat manajer sidik jari baru di panel Users.
+#### Cara Mendapatkan GNOME 51
+
+Pengguna distribusi rolling release seperti Arch Linux, CachyOS, atau EndeavourOS akan menjadi kelompok pertama yang menerima rilis ini begitu maintainer mendorongnya ke repositori. Bagi Anda yang memakai distribusi arus utama seperti Ubuntu atau Fedora, GNOME 51 akan hadir melalui rilis Ubuntu 26.10 dan Fedora 45.
+
+Ada pula GNOME OS, yang berfungsi sebagai testbed resmi proyek ini untuk menguji perangkat lunak baru. Sistem tersebut bisa dipasang di mesin cadangan atau mesin virtual jika Anda ingin mencoba GNOME 51 lebih awal tanpa mengubah instalasi utama.
+
+Unduh GNOME OS
+
+Bagi pengguna yang ingin menyelami detail teknis lebih dalam, catatan rilis resmi GNOME 51 menyediakan daftar perubahan yang jauh lebih rinci, termasuk catatan kompatibilitas untuk pengembang aplikasi dan integrator distribusi.
+
+---
+
 
 ### 20 Meme & Slogan Ikonik dari Dunia Distro Linux
 
