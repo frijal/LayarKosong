@@ -46,7 +46,7 @@ permissions:
 
 jobs:
   master_executor:
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:
