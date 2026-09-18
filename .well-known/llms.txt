@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.96
+document_version: 25.97
 last_updated: 2026-09-18
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 18 September 2026)
-> Menampilkan 1655 artikel versi 25.96.
+> Menampilkan 1655 artikel versi 25.97.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
