@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.95
+document_version: 25.96
 last_updated: 2026-09-18
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 18 September 2026)
-> Menampilkan 1650 artikel versi 25.95.
+> Menampilkan 1655 artikel versi 25.96.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -568,6 +568,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Menepis Gelap, Menyambut Terang: Perspektif Ujian Hidup](https://dalam.web.id/lainnya/menepis-gelap-menyambut-terang) : makna baru dari ujian hidup: kejujuran menghitung nikmat, janji kemudahan dalam Al-Insyirah, dan ikhtiar yang menjemput terang di balik gelap.
 
 ## Olah Media
+- [LibreOffice 26.8 Rilis Tanpa AI, Fokus Privasi dan Fitur Baru](https://dalam.web.id/olah-media/libreoffice-26-8-rilis-tanpa-ai-fokus-privasi-dan-fitur-baru) : LibreOffice 26.8 hadir tanpa fitur AI, menekankan privasi dan kontrol penuh. Simak fitur baru Writer, Calc, Impress, dan cara upgrade.
 - [Cara Cepat Ekstrak Semua Gambar dari Dokumen LibreOffice](https://dalam.web.id/olah-media/cara-cepat-ekstrak-semua-gambar-dari-dokumen-libreoffice) : Simpan dokumen sebagai HTML di LibreOffice untuk mengekstrak semua gambar sekaligus. Panduan langkah demi langkah yang cepat dan mudah.
 - [Firefox Bisa Merge PDF Gratis, Tapi Bukan di Android](https://dalam.web.id/olah-media/firefox-bisa-merge-pdf-gratis-tapi-bukan-di-android) : Firefox bisa menggabungkan PDF secara gratis di desktop tanpa layanan berlangganan. Simak langkahnya dan pahami mengapa fitur ini berbeda di Fennec Android.
 - [Generator Roster Kerja Pertambangan Online Siap Paste Excel](https://dalam.web.id/olah-media/generator-roster-kerja-pertambangan) : Generator roster kerja pertambangan untuk membuat jadwal kerja dan OFF karyawan secara otomatis. Mendukung pola 6:1, hari wajib masuk, pembatasan OFF, dan output siap paste ke Excel.
@@ -883,7 +884,11 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Sikap Oportunis dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya pihak yang mengambil keuntungan sepihakan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [CachyOS 2608 Rilis, Shelly v3 Ditulis Ulang dengan Zig](https://dalam.web.id/sistem-terbuka/cachyos-2608-rilis-shelly-v3-ditulis-ulang-dengan-zig) : CachyOS 2608 hadir dengan Shelly v3 yang ditulis ulang dalam Zig, dukungan eksperimental Server Edition, dan peningkatan installer grafis serta CLI.
+- [Linus Torvalds Pakai AI Perbaiki Bug Kernel Linux](https://dalam.web.id/sistem-terbuka/linus-torvalds-pakai-ai-perbaiki-bug-kernel-linux) : Linus Torvalds memakai AI untuk melacak bug di driver Intel Xe. Butuh 18 boot dan 24 patch debug untuk menemukan satu baris salah.
+- [GenOffice: Alternatif Open Source AI untuk Office](https://dalam.web.id/sistem-terbuka/genoffice-alternatif-open-source-ai-untuk-microsoft-office) : GenOffice adalah alternatif open source Microsoft Office dengan AI terintegrasi. Buka dan simpan file .docx, .xlsx, .pptx, dan PDF dengan kontrol penuh.
 - [GNOME 51 Rilis, Bawa Shell Lebih Halus dan Aplikasi Anyar](https://dalam.web.id/sistem-terbuka/gnome-51-rilis-shell-lebih-halus) : GNOME 51 resmi hadir dengan shell yang lebih stabil, GDM dan Mutter yang diperbaiki, plus sejumlah aplikasi bawaan yang mendapat peningkatan penting.
+- [Linux Mint Kelola Kernel Lewat System Administration](https://dalam.web.id/sistem-terbuka/linux-mint-kelola-kernel-lewat-system-administration) : Linux Mint memindahkan pengelolaan kernel dari Update Manager ke System Administration. Simak cara kerja fitur baru ini dan perbandingannya dengan Fedora.
 - [20 Meme & Slogan Ikonik dari Dunia Distro Linux](https://dalam.web.id/sistem-terbuka/20-meme-slogan-ikonik-dunia-distro-linux) : Dari 'I use Arch btw' sampai mitos hacker Kali Linux. Temukan 20 meme dan slogan legendaris yang mendefinisikan kepribadian setiap distro Linux. Kamu tim mana?
 - [Conky Manager Qt: Kelola Tema Linux Tanpa Edit Kode](https://dalam.web.id/sistem-terbuka/conky-manager-qt-kelola-tema-linux-tanpa-edit-kode) : cara mudah mengelola tema Conky di Linux menggunakan Conky Manager Qt. Atur posisi, warna, dan widget tanpa perlu menyentuh file konfigurasi.
 - [Bedah Teknis Deepin 25.2.2: Lompatan Treeland Wayland](https://dalam.web.id/sistem-terbuka/deepin-25-2-2-treeland-wayland) : Ulasan teknis deepin 25.2.2: migrasi Treeland ke wlroots 0.20, refraksi Liquid Glass berbasis fisika, dan protokol pointer mutakhir untuk gaming di Wayland.
@@ -34242,6 +34247,51 @@ Semoga renungan ini menjadi pelecut semangat dan penguat iman. Karena pada akhir
 
 ## Kategori: Olah Media
 
+### LibreOffice 26.8 Rilis Tanpa AI, Fokus Privasi dan Fitur Baru
+
+**Kategori:** Olah-media | **Tanggal:** 2026-09-18T11:26:20.504Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/olah-media/libreoffice-26-8-rilis-tanpa-ai-fokus-privasi-dan-fitur-baru)
+
+Ketegangan antara The Document Foundation (TDF) dan Collabora sudah berlangsung sejak April, ketika Komite Keanggotaan TDF mengeluarkan seluruh staf dan mitra Collabora dalam satu langkah, dengan lebih dari 30 orang tersingkir. Meski demikian, Collabora tetap meluncurkan berbagai rilis baru, termasuk Collabora Office 26.04 yang memperkenalkan AI sebagai fitur opsional dan nonaktif secara default.
+
+Kini, LibreOffice dan TDF justru menempatkan penolakan terhadap AI di garis depan melalui rilis LibreOffice 26.8. Penolakan itu bahkan disebutkan langsung dalam judul pengumuman rilis resmi mereka.
+
+LibreOffice 26.8 tidak menyertakan AI sama sekali. Tidak ada bagian dari suite ini yang berkomunikasi dengan server jarak jauh, dan tidak ada yang membutuhkan koneksi internet untuk bekerja. Ini bukan kelalaian. TDF menyatakan bahwa jika pekerjaan Anda tidak boleh keluar dari gedung karena alasan hukum atau privasi, satu-satunya cara untuk membuktikannya di kemudian hari, misalnya saat audit, adalah jika perangkat lunak tersebut memang tidak pernah memberi tempat untuk data itu pergi.
+
+#### Pembaruan di Berbagai Modul
+
+Writer kini mendeteksi arah paragraf secara otomatis saat Anda membuka atau menempelkan dokumen. Jarak akhir baris mengikuti arah paragraf, bukan arah baca, dan kontrol pengubahan ukuran objek bekerja lebih baik dengan dokumen RTL serta CJK vertikal. Ada juga cara untuk melihat baseline grid saat mengedit, dan grid itu sendiri kini sejajar dengan benar di dalam text frame. Tampilan Draft View baru tersedia untuk menghilangkan header, footer, dan margin halaman agar menulis lebih fokus.
+
+Calc menerima deteksi RTL yang sama. Mengetik teks kanan-ke-kiri di sel kosong akan mengatur arahnya secara otomatis tanpa perlu toggle manual. Ada pula peningkatan seperti Calculated Fields untuk pivot table dan perintah Shuffle untuk mengacak urutan sel dalam rentang terpilih.
+
+Math mendapat fungsi dan operator bernama baru untuk dua sistem tulisan Afrika Barat, yaitu N'Ko dan Adlam, yang mencakup bahasa Manding dan Fulani, plus panah vektor mengarah ke kiri untuk formula yang ditulis kanan-ke-kiri.
+
+Chart memiliki dukungan dasar untuk membaca dan menulis kembali format chart yang lebih baru (chartex) yang muncul di file OOXML Microsoft, mencakup tipe box-and-whisker, funnel, Pareto, sunburst, treemap, dan waterfall.
+
+Impress dan Draw dapat mencampur ukuran halaman dalam satu file alih-alih memaksa setiap slide atau halaman memiliki ukuran yang sama. Impress juga mendapat fitur presentation sections, yang memungkinkan Anda mengelompokkan slide di bawah satu nama alih-alih menggulir satu daftar panjang.
+
+Secara umum, Calc, Writer, Impress, dan Draw kini masing-masing memiliki warna latar berbeda di Notebookbar, yaitu antarmuka bergaya ribbon di bagian atas. Dengan begitu, Anda bisa mengetahui aplikasi mana yang sedang dibuka tanpa harus membaca title bar.
+
+Ada juga Paragraph Composer baru yang menyeimbangkan spasi kata di seluruh paragraf alih-alih menilai setiap baris sendiri-sendiri. Ini memperbaiki tampilan tidak rata yang muncul akibat justify per baris.
+
+Banyak perubahan, seperti calculated fields, perintah shuffle, dukungan multi-page-size di Impress dan Draw, serta presentation sections, merupakan kontribusi dari engineer Collabora: Balazs Varga, Tomaž Vajngerl, Mohit Marathe, dan Pranam Lashkari.
+
+Beberapa peningkatan lain yang patut dicatat:
+
+- Deteksi arah paragraf otomatis juga berlaku saat menempelkan teks dari sumber lain.
+- Baseline grid di Writer kini sejajar dengan benar di dalam text frame.
+- Draft View menghilangkan elemen tata letak agar menulis lebih fokus.
+- Dukungan chartex mencakup box-and-whisker, funnel, Pareto, sunburst, treemap, dan waterfall.
+- Presentation sections di Impress memudahkan pengelompokan slide.
+- Warna Notebookbar membantu identifikasi aplikasi secara visual.
+#### Cara Install atau Upgrade
+
+LibreOffice biasanya sudah terpasang di banyak distribusi Linux populer, dan hanya soal waktu sebelum rilis ini muncul sebagai bagian dari pembaruan sistem rutin. Jika Anda tidak ingin menunggu, mengunduh paket DEB atau RPM adalah cara tercepat untuk mendapatkan rilis ini. Alternatifnya, Anda bisa memilih Flatpak, tetapi ketahuilah bahwa pembaruannya sedikit lebih lambat.
+
+Untuk melihat perubahan secara langsung, Anda bisa merujuk ke catatan rilis resmi yang disediakan oleh The Document Foundation. Di sana tersedia daftar lengkap fitur baru, perbaikan bug, dan catatan kompatibilitas.
+
+---
+
+
 ### Cara Cepat Ekstrak Semua Gambar dari Dokumen LibreOffice
 
 **Kategori:** Olah-media | **Tanggal:** 2026-09-18T02:47:56.844Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/olah-media/cara-cepat-ekstrak-semua-gambar-dari-dokumen-libreoffice)
@@ -53519,6 +53569,285 @@ Ketika keputusan strategis dibuat berdasarkan ilusi dan opini yang dipoles (apa 
 
 ## Kategori: Sistem Terbuka
 
+### CachyOS 2608 Rilis, Shelly v3 Ditulis Ulang dengan Zig
+
+**Kategori:** Sistem-terbuka | **Tanggal:** 2026-09-18T20:00:59.906Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/sistem-terbuka/cachyos-2608-rilis-shelly-v3-ditulis-ulang-dengan-zig)
+
+Suka atau tidak suka, distro rolling release sudah berhasil mengambil sebagian pangsa pasar desktop Linux. Mereka menawarkan pengalaman bleeding-edge yang tetap cukup stabil jika dirawat dengan baik, tetapi bisa merepotkan jika ditangani sembarangan.
+
+CachyOS adalah salah satu opsi yang popularitasnya terus naik dari hari ke hari. Distro ini menawarkan tumpukan paket Arch yang dibangun ulang dengan optimasi khusus CPU dan kernel kustom yang disetel untuk responsivitas, menghasilkan performa yang mengesankan.
+
+Anda mungkin masih ingat akhir tahun lalu ketika pengembangnya mengumumkan rencana untuk Server Edition khusus yang menyasar setup NAS dan penyedia hosting. Rilis terbaru ini menunjukkan di mana sebagian pekerjaan itu berlangsung, bersama dengan peningkatan khas distro pada umumnya.
+
+#### Pembaruan di Installer dan Shelly
+
+Installer grafis menerima banyak tambahan baru. Opsi Noctalia milik Hyprland menggantikan SDDM dengan noctalia-greeter, Cinnamon beralih ke lightdm-slick-greeter, GNOME mendapatkan gvfs-dnssd, dan COSMIC mengambil cosmic-monitor.
+
+Untuk installer CLI, selain pekerjaan rutin memperbaiki bug dan merapikan kode, ada dukungan eksperimental untuk profil instalasi Server Edition. Ini menandai tonggak penting dalam pengembangan varian baru tersebut.
+
+Shelly menjadi manajer paket GUI default CachyOS sejak April, menggantikan Octopi, dan kami menilainya sebagai pergantian yang menjanjikan setelah menggunakannya beberapa waktu. Pada rilis CachyOS kali ini, Shelly mendapat perubahan paling signifikan lewat iterasi v3-nya.
+
+Shelly kini ditulis ulang dari C# ke Zig, menggantikan runtime terkelola dengan biner native yang lebih cepat dimulai dan lebih hemat memori. Ada juga layar onboarding baru yang muncul saat pertama kali dijalankan, tampilan daftar dan grid untuk menjelajahi paket, serta pratinjau PKGBUILD AUR dengan output build.
+
+Anda juga mendapat halaman Utilities baru untuk menyinkronkan basis data, membersihkan cache, dan menghapus paket yatim. Versi CLI-nya kini bisa mencari repositori dan AUR dari satu tempat, menjalankan pemeriksaan pembaruan di seluruh repo, AUR, AppImage, dan Flatpak.
+
+Cachy-Update kini berjalan di atas Arch-Update v4.x, dengan applet systray yang di-porting ke Rust. Flag baru --check --enable menggabungkan dua langkah yang sebelumnya terpisah, menyalakan pemeriksaan pembaruan otomatis dan meluncurkan ikon tray secara bersamaan.
+
+Ada juga deteksi handheld dengan chwd, yang saat ini bekerja berdasarkan pencocokan pola nama board. Fitur ini juga menerima lokalisasi bahasa Bulgaria dan tidak lagi bermasalah ketika file DMI board_name hilang.
+
+Terakhir, ada Welcome app yang penanganan DNS-nya dirombak, menyelesaikan masalah yang membuat pemeringkatan berbasis uji kecepatan tidak benar-benar memilih server tercepat.
+
+Berikut poin-poin penting dari rilis CachyOS 2608:
+
+- Installer grafis: Noctalia untuk Hyprland, lightdm-slick-greeter untuk Cinnamon, gvfs-dnssd untuk GNOME, cosmic-monitor untuk COSMIC.
+- Installer CLI: dukungan eksperimental profil Server Edition.
+- Shelly v3: ditulis ulang dari C# ke Zig, onboarding screen baru, tampilan daftar dan grid, pratinjau PKGBUILD AUR.
+- Halaman Utilities baru untuk sinkronisasi basis data, pembersihan cache, dan penghapusan paket yatim.
+- Shelly CLI: pencarian repo dan AUR dari satu tempat, pemeriksaan pembaruan lintas repo, AUR, AppImage, dan Flatpak.
+- Cachy-Update: berjalan di Arch-Update v4.x, applet systray di-porting ke Rust, flag --check --enable baru.
+- chwd: deteksi handheld berbasis pola nama board, lokalisasi Bulgaria, penanganan DMI board_name yang hilang.
+- Welcome app: penanganan DNS dirombak agar pemeringkatan server berfungsi benar.
+#### Cara Mendapatkan Rilis Ini
+
+ISO segar untuk kedua edisi sudah tersedia. Ambil Desktop Edition untuk pengalaman desktop lengkap dengan optimasi CPU, atau Handheld Edition jika Anda memakai Steam Deck, ROG Ally, Legion Go, atau Legion Go S.
+
+Pengguna yang sudah ada tidak perlu menginstal ulang apa pun untuk mendapatkan rilis ini. Cukup buka Shelly dari peluncur aplikasi dan masuk ke halaman Update. Di sana, tunggu sebentar hingga sinkronisasi selesai, atau klik Check Again untuk menarik pembaruan dari repositori resmi, AUR, dan Flatpak sekaligus.
+
+Jika Anda lebih suka terminal, CLI Shelly bisa menangani pekerjaan yang sama dengan satu perintah:
+
+Untuk mengetahui perubahan kecil yang tidak dibahas di sini, Anda bisa merujuk ke blog pengumuman rilis resmi. Di sana tersedia catatan teknis lengkap dan tautan unduhan untuk kedua edisi.
+
+---
+
+
+### Linus Torvalds Pakai AI Perbaiki Bug Kernel Linux
+
+**Kategori:** Sistem-terbuka | **Tanggal:** 2026-09-18T14:27:36.680Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/sistem-terbuka/linus-torvalds-pakai-ai-perbaiki-bug-kernel-linux)
+
+Linus Torvalds baru saja menggunakan AI untuk membantu memperbaiki bug di kernel Linux. Ini peristiwa langka, bukan karena ia memakai AI, melainkan karena ia sudah jarang menyentuh kode secara langsung. Sejak beberapa tahun terakhir, perannya lebih banyak sebagai maintainer yang meninjau kiriman dan menggabungkan pull request.
+
+Liburan Natal lalu, Torvalds memang sempat memakai AI untuk pertama kalinya pada proyek hobi pribadi. Awalnya ia menolak, tetapi kemudian ia berdamai dengan teknologi ini, bahkan untuk kontribusi kode yang dibantu AI di proyek kernel. Namun, kejadian kali ini istimewa karena ia membuat patch kernel sendiri.
+
+Bug yang ia tangani berada di driver grafis Intel Xe untuk kartu Battlemage G21. Akibatnya, GDM, display manager yang menangani layar login, restart terus-menerus tanpa henti. Masalah ini cukup mengganggu karena membuat sesi login tidak bisa stabil.
+
+#### Debugging dengan Bantuan AI
+
+Melacak akar masalah bukan pekerjaan sepele. Torvalds membutuhkan 24 patch debug dan 18 kali boot kernel. Pada akhirnya, biang keladinya adalah satu baris kode di mana round_up() seharusnya round_down(). Perubahan satu baris, tetapi proses menemukannya yang menghabiskan waktu dan tenaga.
+
+AI membantu Torvalds melakukan pekerjaan kasar: menambahkan instrumentasi debug, menjalankan analisis, dan bahkan menulis pesan commit akhir. Bagian terakhir itu memang membosankan tetapi tetap harus dilakukan. Menurut Torvalds, ini adalah sesi debug yang sangat berat, dan AI membantu banyak.
+
+Meski demikian, prosesnya tidak mulus. AI beberapa kali mengatakan bahwa masalahnya mustahil dan tidak bisa diselesaikan. Torvalds menolak menyerah. Ia menduga AI dilatih oleh orang-orang yang mungkin tidak sekeras kepalanya.
+
+#### AI Hanya Alat, Manusia Tetap Penentu
+
+Banyak orang di industri perangkat lunak memahami hal ini: AI hanyalah alat, dan menjadi sangat berguna ketika ada manusia mampu yang mengendalikan prosesnya. Contoh Torvalds memperjelas hal itu. Seorang vibe coder tanpa pengetahuan tentang kode mungkin akan menyerahkan keputusan sepenuhnya kepada AI, dan AI akan menyatakan bug tidak bisa diperbaiki lalu berhenti.
+
+Tetapi Torvalds punya pengalaman. Ia bisa menilai mana yang benar dan salah dari apa yang dilakukan AI. Ia bertahan dan memperbaiki bug tersebut. Patch itu akan masuk ke Linux 7.3 dan telah ditandai untuk di-backport ke cabang kernel stabil.
+
+Beberapa detail teknis yang patut dicatat dari insiden ini:
+
+- Bug terjadi pada driver Intel Xe untuk kartu Battlemage G21, menyebabkan GDM restart tanpa henti.
+- Proses pelacakan memerlukan 24 patch debug dan 18 kali boot kernel.
+- Akar masalah: pemanggilan round_up() yang seharusnya round_down().
+- AI membantu menambahkan instrumentasi debug, menjalankan analisis, dan menulis pesan commit.
+- AI sempat menyatakan masalah tidak bisa diselesaikan, tetapi Torvalds terus melanjutkan.
+- Patch dijadwalkan masuk Linux 7.3 dan akan di-backport ke cabang stabil.
+#### Pelajaran dari Insiden Ini
+
+Pencipta Linux itu membutuhkan 18 kali boot untuk menemukan perbaikan satu baris. AI membantunya sampai ke sana. Meski begitu, Torvalds kemungkinan akan tetap menemukannya sendiri, hanya saja butuh waktu lebih lama. Tidak ada informasi tentang model atau alat AI apa yang ia gunakan kali ini.
+
+Pada proyek pribadinya dulu, ia memakai Gemini dari Google. Sepertinya ia belum tertarik pada AI lokal untuk saat ini. Semoga ia menemukan cukup minat dan memberi kita hadiah baru setelah kernel Linux dan Git. Harapan yang mungkin terlalu muluk, tetapi tidak ada salahnya berharap.
+
+---
+
+
+### GenOffice: Alternatif Open Source AI untuk Office
+
+**Kategori:** Sistem-terbuka | **Tanggal:** 2026-09-18T12:20:53.253Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/sistem-terbuka/genoffice-alternatif-open-source-ai-untuk-microsoft-office)
+
+GenOffice adalah alternatif gratis dan open source untuk Microsoft Office yang tersedia di macOS, Windows, dan Linux. Ia membuka dan menyimpan file .docx, .xlsx, dan .pptx native, mengedit PDF, Markdown, dan HTML, serta menempatkan agen AI di samping setiap dokumen.
+
+Ini bukan kotak obrolan yang ditempel di sisi aplikasi. Ini adalah editor yang membaca file, melakukan perubahan, dan menunjukkan dengan tepat apa yang disentuhnya. Semua perubahan dapat ditinjau, dikembalikan, dan disimpan dalam format asli yang tetap kompatibel dengan Microsoft Office.
+
+Dengan pendekatan lokal, file Anda tidak pernah meninggalkan komputer untuk dibuka, diedit, disimpan, atau dikonversi. Hanya panggilan AI yang keluar, dan itu pun ke penyedia yang Anda pilih sendiri.
+
+#### Fitur Utama
+
+- Format asli, byte-preserving. Hanya yang Anda edit yang ditulis ulang. Bagian file yang tidak disentuh tetap utuh byte-per-byte, sehingga dokumen tetap berfungsi di Word, Excel, dan PowerPoint.
+- AI yang bisa Anda tinjau. Edit muncul sebagai tracked changes dan diff dengan rollback satu klik. Spreadsheet mendapatkan formula hidup, bukan angka yang ditempel. Dek dan halaman dibuat di kanvas dan tetap sepenuhnya dapat diedit.
+- Lokal secara desain. File dibuka, diedit, disimpan, dan dikonversi di mesin Anda. PDF → Word / Excel / PowerPoint, Markdown → Word, dan HTML → Word semuanya berjalan di perangkat. Hanya panggilan AI yang meninggalkan mesin, ke penyedia yang Anda pilih.
+- Kunci Anda atau tidak sama sekali. Masuk dengan Genspark dan lewati kunci, atau bawa kunci Anda sendiri untuk Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, atau endpoint apa pun yang kompatibel dengan OpenAI, termasuk server lokal.
+- Scriptable dan siap agen. Aplikasi menyertakan perintah genoffice dan skill untuk Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode, dan Windsurf. Agen coding dapat membuat, mengonversi, membaca, dan mengedit file Office asli di mesin Anda tanpa membuka jendela.
+#### Demo
+
+Enam aplikasi, satu panel AI, dan command line untuk agen coding Anda. Setiap tangkapan layar adalah aplikasi asli di macOS, dengan AI yang digerakkan dari prompt yang bisa Anda baca di panel.
+
+#### 1 · Docs — buka dan edit .docx dengan AI yang bisa ditinjau
+
+GenOffice Docs membuka file Word dengan tata letak asli: kolom ganda, gambar full-bleed, tabel berbayang, header dan footer, serta pagination sesuai metrik baris Word. Anda bisa meminta AI mengedit, dan setiap perubahan dapat dikembalikan.
+
+#### 2 · Sheets — .xlsx dengan formula hidup dan grafik
+
+Dari satu kalimat, agen menambahkan sheet Summary dengan SUMIF asli berdasarkan wilayah dan kategori, menyisipkan grafik kolom, dan menerapkan perubahan sebagai satu batch yang dapat di-undo. Anda juga bisa bertanya tentang workbook dan mendapatkan jawaban dengan sitasi sel yang bisa diklik.
+
+#### 3 · Slides — dari prompt ke dek .pptx
+
+Cukup satu baris: "Buat dek pitch investor 10 slide untuk Aurora Home…". GenOffice merencanakan alur cerita, meneliti angka, dan menyusun setiap slide ke kanvas sebagai file .pptx asli. Anda bisa terus mengedit dengan master, layout, smart guides, dan cropping non-destruktif.
+
+#### 4 · PDF — edit teks PDF di tempat, konversi PDF ke Word di perangkat
+
+Mode Edit text menguraikan setiap blok teks untuk pengeditan di tempat; aliran konten ditulis ulang melalui PDFium dengan font asli, bukan anotasi penutup. Anda juga bisa mengonversi PDF ke Word, Excel, atau PowerPoint sepenuhnya di perangkat, dengan OCR sistem untuk halaman pindaian.
+
+#### 5 · HTML — pembuat halaman dan UI dengan AI, desain brief dulu
+
+Katakan untuk apa halaman itu dan untuk siapa. AI mengusulkan design brief terlebih dahulu — hook, palet, tipografi, dan arah gaya — lalu membangun satu file .html mandiri sesuai token tersebut. Anda bisa merestyling, mengedit kode, atau mengekspor ke PDF atau Word.
+
+#### 6 · Markdown — editor blok di atas .md biasa, dengan Ask AI
+
+Pilih bagian mana pun dan chip Ask AI akan muncul: ketik instruksi atau pilih saran, kirim sekarang, atau antrekan beberapa edit anchor dan jalankan dalam satu pass. Entri yang sama ada di setiap aplikasi. Markdown dirender dengan tabel, diagram Mermaid, dan task list, lalu ditulis kembali sebagai .md biasa.
+
+#### 7 · CLI — agen coding Anda menggerakkan GenOffice, di mesin Anda
+
+GenOffice menyertakan command line genoffice dan skill agen. Instal skill dan Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode, atau Windsurf dapat membuat, mengonversi, membaca, dan mengedit file Office asli melalui mesin yang sama dengan aplikasi, tanpa membuka jendela.
+
+#### 8 · MCP — alat yang sama melalui Model Context Protocol
+
+Setiap perintah genoffice juga merupakan alat MCP. Claude Code, Claude Desktop, Cursor, dan klien MCP lainnya dapat menjalankan genoffice mcp sendiri, tanpa skill yang perlu diinstal dan tanpa jendela terbuka, dan mendapatkan 29 alat plus referensi op sebagai resource. Server HTTP kedua di dalam aplikasi memungkinkan agen membangun dokumen Word di tab editor yang terlihat saat Anda menonton.
+
+#### Mengapa GenOffice
+
+- Open source, Apache-2.0, dibangun terbuka di GitHub.
+- Milik Anda untuk dijalankan. Aplikasi native untuk macOS, Windows, dan Linux; file tetap di disk Anda dan setiap edit, simpan, dan konversi terjadi di mesin Anda.
+- File Office asli. .docx, .xlsx, dan .pptx native, byte-preserving: bagian file yang tidak Anda sentuh disalin persis seperti aslinya.
+- AI yang mengedit dokumen itu sendiri. Tracked changes di Docs, formula dan grafik hidup di Sheets, slide digambar ke kanvas, setiap giliran AI adalah snapshot yang bisa Anda kembalikan.
+- Model Anda, kunci Anda. Masuk dengan Genspark, atau bawa kunci untuk Claude, OpenAI, Gemini, DeepSeek, dan lainnya, termasuk server lokal dan endpoint apa pun yang kompatibel dengan OpenAI.
+- PDF ditangani dengan benar. Edit teks di dalam halaman, dan konversi PDF ke Word, Excel, atau PowerPoint di perangkat, dengan OCR sistem untuk pindaian.
+- Markdown dan HTML juga, dengan panel AI yang sama dan ekspor lokal ke Word.
+- Scriptable. Command line genoffice, skill agen, dan server MCP menempatkan setiap mesin di layanan Claude Code, Claude Desktop, Codex, Cursor, dan agen lain, tetap di perangkat.
+- Gratis, untuk individu maupun tim.
+#### Backend AI
+
+Masuk dengan Genspark dan tidak ada yang perlu dikonfigurasi: panggilan model dirutekan melalui proxy Genspark (keluarga Claude, GPT, dan Gemini) dan agen mendapatkan pencarian web dan gambar, generasi gambar, serta analisis gambar/audio/video.
+
+Atau bawa kunci Anda sendiri. Settings → AI mencantumkan Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, dan OpenCode Zen/Go, plus slot khusus untuk endpoint apa pun yang kompatibel dengan OpenAI (base URL + key), termasuk server model lokal. Pencarian dan media memiliki penyedia per-kapabilitas sendiri di bawah AI Media & Search: Serper atau Tavily untuk pencarian web, dan OpenAI, Gemini, Doubao/Seedream, GLM, Grok, Qwen, MiniMax, atau endpoint gambar apa pun yang kompatibel dengan OpenAI untuk generasi gambar dan analisis gambar/video.
+
+Seluruh suite hadir dengan tema terang, gelap, dan sistem. Tema hanya mengubah apa yang ada di layar: ekspor, cetak, dan file yang disimpan selalu mempertahankan warna dokumen itu sendiri.
+
+#### Command Line dan Skill Agen
+
+Semua yang bisa dilakukan aplikasi terhadap file, command line genoffice bisa melakukannya dari terminal: memeriksa, mengonversi, membuat, membaca, dan mengedit Word, Excel, PowerPoint, PDF, Markdown, dan HTML pada mesin yang sama, headless. Ia terinstal bersama GenOffice, tidak memerlukan runtime sendiri, dan tidak pernah mengirim dokumen ke mana pun. Dipasangkan dengan skill agen bawaan, ia mengubah agen coding menjadi pekerja dokumen yang menghasilkan file Office asli, bukan perkiraan Markdown.
+
+Bekerja dengan: Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode, dan Windsurf langsung, agen lain yang membaca skill, dan melalui server MCP, Claude Desktop serta setiap klien MCP.
+
+#### Instal Skill
+
+Lalu mulai obrolan baru dan minta dokumen. Skill mengajarkan agen kapan harus menjangkau genoffice, cara membaca file sebelum mengeditnya, dan cara memeriksa pekerjaannya sendiri.
+
+#### Quickstart dari Terminal
+
+Setiap perintah mencetak ringkasan satu baris, atau satu objek JSON dengan --json. Edit bersifat atomik: op yang ditolak membiarkan file tidak tersentuh dan kembali dengan error terpandu. genoffice help mencantumkan permukaan perintah saat ini; referensi lengkap ada di packages/cli/README.md.
+
+#### Apa yang Sebenarnya Dijalankan Agen
+
+Dek Solar System di demo membutuhkan satu prompt di Claude Code. Di baliknya, agen mengikuti alur kerja bertahap dari skill dan CLI memeriksa setiap tahap sebelum tahap berikutnya dimulai:
+
+Tidak ada panggilan model yang terjadi di dalam genoffice: agen yang berpikir, CLI yang membangun dan memeriksa, dan hasilnya terbuka di GenOffice atau PowerPoint sebagai .pptx biasa.
+
+#### Server MCP
+
+Perintah yang sama tersedia sebagai alat Model Context Protocol, untuk asisten yang tidak dapat menjalankan terminal atau yang Anda tidak ingin memberikannya. Ada dua cara masuk, keduanya ditampilkan dengan cuplikan siap salin di Settings → Integrations → MCP:
+
+Melalui HTTP setiap sesi mendapatkan folder scratch pribadi, path relatif dan folder dek diselesaikan di dalamnya, open tidak ditawarkan, dan dengan GENOFFICE_ALLOWED_ROOTS tidak disetel, alat tidak dapat meninggalkan penyimpanan file server sendiri. render, convert ke PDF, dan create_pdf tetap memulai proses GenOffice tersembunyi, sehingga host headless memerlukan aplikasi terinstal dan display virtual (xvfb-run).
+
+genoffice di sini adalah CLI yang dikirim di dalam aplikasi (di macOS /Applications/GenOffice.app/Contents/Resources/cli/genoffice; panel pengaturan mencetak path tepat untuk instalasi Anda). Server membawa instruksi alur kerjanya sendiri dan mengekspos referensi op sebagai resource genoffice://guide/*, sehingga tidak perlu skill; skill dan server MCP dapat hidup berdampingan dan asisten memilih salah satu. Fitur cloud (search, image, media) tetap melalui penyedia yang dikonfigurasi di GenOffice; semuanya berjalan lokal, dan GENOFFICE_ALLOWED_ROOTS membatasi setiap alat ke folder yang Anda daftarkan.
+
+Dek energi terbarukan di demo adalah apa yang terlihat dari sisi protokol ketika satu prompt di Claude Code hanya dengan server MCP genoffice terpasang:
+
+Tiga puluh delapan panggilan, sekitar tiga belas menit, dan asisten tidak pernah menyentuh shell: angka, foto, panduan, pemeriksaan, dan render semuanya bepergian sebagai hasil alat MCP. Hanya search dan media yang meninggalkan mesin, ke penyedia yang dikonfigurasi di GenOffice.
+
+#### Unduh
+
+Semua build berasal dari main; installer macOS dan Windows ditandatangani. Versi lama ada di halaman Releases.
+
+Paket deb diinstal dengan apt — ia menarik dependensi dan menambahkan GenOffice ke menu aplikasi:
+
+Di Fedora / keluarga RHEL / openSUSE, instal rpm sebagai gantinya:
+
+AppImage berjalan di tempat: instal runtime FUSE 2 (sudo apt install libfuse2; di Ubuntu 24.04 paketnya libfuse2t64), buat file dapat dieksekusi, lalu jalankan:
+
+#### Cara Kerjanya
+
+Tujuh aplikasi Electron — Docs, Sheets, Slides, PDF, Markdown, HTML, dan shell bertab — berbagi satu lapisan mesin dari paket TypeScript murni plus sidecar Rust untuk .xlsx. File asli selalu menjadi sumber kebenaran: edit diterapkan sebagai patch sempit, dan semua yang tidak disentuh editor tetap utuh dalam round trip.
+
+Tur paket demi paket (mesin docx/pptx, pdf2docx, html2docx, inti agen, dan penyedia) ada di CONTRIBUTING.md.
+
+#### Pengembangan
+
+Aplikasi sheets juga memerlukan toolchain Rust untuk sidecar xlsx-nya (cargo di PATH); npm run build -w @genoffice/sheets mengompilasinya secara otomatis. Lihat CONTRIBUTING.md untuk pemeriksaan yang harus dilewati setiap perubahan dan bagaimana pull request diterima.
+
+#### Komunitas
+
+GenOffice sedang dalam pengembangan aktif dan umpan balik Anda membentuknya.
+
+- Laporkan bug atau minta fitur di GitHub Issues.
+- Bergabung dengan obrolan grup GenOffice di GenTeam untuk berbicara dengan tim dan pengguna lain.
+- Beri bintang pada repo jika GenOffice bermanfaat bagi Anda — itu cara terbaik untuk mendukung proyek.
+#### FAQ
+
+Ya. GenOffice gratis dan open-source di bawah lisensi Apache-2.0 — tanpa trial, tanpa tingkatan berbayar untuk aplikasi itu sendiri.
+
+Ya. GenOffice membuka dan menyimpan file .docx, .xlsx, dan .pptx native. Penyimpanan bersifat byte-preserving: bagian file yang tidak Anda sentuh ditulis kembali byte-per-byte, sehingga dokumen tetap berfungsi di Microsoft Office.
+
+Pengeditan dokumen sepenuhnya lokal — file tidak pernah meninggalkan mesin Anda untuk dibuka, diedit, disimpan, atau dikonversi. Fitur AI (agen, pencarian, alat gambar) memerlukan koneksi jaringan, dengan masuk Genspark atau kunci API model Anda sendiri.
+
+Ya — pengeditan teks dan gambar PDF asli yang menulis ulang aliran konten halaman dengan font asli yang dipertahankan, bukan anotasi penutup.
+
+Ya — sepenuhnya di perangkat: ekstraksi karakter tingkat PDFium plus analisis tata letak berbasis geometri, tanpa layanan cloud, tanpa unggahan. Halaman pindaian juga tercakup: di macOS dan Windows, OCR sistem membacanya, sehingga dikonversi ke teks yang dapat diedit alih-alih gambar halaman.
+
+Ya. Selain masuk Genspark tanpa kunci, GenOffice mendukung bring your own key untuk Claude, OpenAI, Gemini, DeepSeek, Kimi, GLM, Qwen, Doubao, MiniMax, Grok, Mistral, OpenRouter, Requesty, Opper, dan OpenCode Zen/Go, plus endpoint apa pun yang kompatibel dengan OpenAI — termasuk server model lokal. Pencarian, generasi gambar, dan analisis gambar/video mengambil kunci mereka sendiri di bawah Settings → AI Media & Search.
+
+Ya — Export as Word di aplikasi HTML menghasilkan .docx native yang dapat diedit sepenuhnya di perangkat. Halaman dirender di Chromium bawaan dan direduksi menjadi struktur Word asli: heading, paragraf, daftar, tabel, kartu, baris KPI, kolom formulir, dan latar belakang halaman; hanya visual yang tidak memiliki padanan di Word (grafik, ikon, kotak berdekorasi) yang disematkan sebagai gambar.
+
+Ya. GenOffice menginstal command line genoffice yang menjalankan mesin yang sama headless: memeriksa, mengonversi, membuat, membaca, dan mengedit dokumen dari terminal atau skrip, dengan output --json untuk program. Skill agen bawaan mengajarkan Claude Code, Codex, Cursor, Gemini CLI, GitHub Copilot, OpenCode, dan Windsurf untuk menggunakannya; instal dari Settings → Integrations. Lihat Command line and agent skill.
+
+Build resmi yang dipaketkan mengirim analitik penggunaan terbatas secara default, dan Anda dapat menonaktifkan pelaporan kapan saja di bawah Settings → General. Analitik tidak pernah mengirim konten dokumen, nama file, path file, identitas akun, atau alamat email. Lihat GenOffice Privacy untuk pengungkapan peristiwa dan data lengkap.
+
+#### Keamanan
+
+Lihat SECURITY.md untuk postur keamanan proses (sandboxing renderer, validasi IPC, pembatasan tautan eksternal) dan model ancaman untuk konten yang dihasilkan AI.
+
+#### Ucapan Terima Kasih
+
+GenOffice tidak akan mungkin tanpa proyek open-source berikut:
+
+- Electron — runtime desktop untuk setiap aplikasi.
+- Univer (Apache-2.0) — inti UI spreadsheet yang diperluas Sheets.
+- PDFium (BSD-3-Clause, dibundel melalui @embedpdf/pdfium) — mesin aliran konten di balik pengeditan teks dan gambar PDF yang sesungguhnya.
+- pdf.js (Apache-2.0) dan pdf-lib (MIT) — rendering PDF dan perakitan dokumen.
+- Tiptap / ProseMirror — editor blok di Docs dan Markdown.
+- CodeMirror (MIT) — editor sumber di HTML.
+- Konva — rendering kanvas untuk Slides dan grafik Sheets.
+- HarfBuzz (wasm) — metrik text-shaping untuk skrip kompleks.
+- calamine dan IronCalc — lapisan baca dan kalkulasi dari sidecar xlsx Rust.
+- libeot (MPL-2.0) — dekoder MicroType Express untuk font PowerPoint tertanam, di-porting ke TypeScript.
+- React (MIT) — lapisan UI setiap aplikasi.
+- Mermaid (MIT) dan KaTeX (MIT) — diagram dan matematika di Markdown dan Docs.
+- opentype.js (MIT) — parsing font untuk metrik dan pencarian glyph.
+- JSZip (MIT) dan fast-xml-parser (MIT) — kontainer OOXML dan lapisan XML.
+- Fluent UI System Icons (MIT) — set ikon di seluruh ribbon.
+- electron-updater (MIT) — pembaruan dalam aplikasi.
+- Font Liberation, Carlito, Caladea, dan Noto CJK (OFL/Apache-2.0) — font dokumen yang dibundel.
+npm run notices meregenerasi ringkasan lisensi pihak ketiga yang dibundel (tools/gen-third-party-notices.mjs); semua dependensi runtime adalah MIT/Apache-2.0/BSD-3-Clause/OFL.
+
+#### Lisensi
+
+GenOffice dilisensikan di bawah Apache License 2.0, dengan satu pengecualian: direktori ee/ disediakan untuk modul enterprise di masa depan dan dilindungi oleh GenOffice Enterprise License.
+
+Nama dan logo GenOffice dan Genspark adalah merek dagang Mainfunc, Inc. Lisensi Apache-2.0 tidak memberikan izin untuk menggunakannya (lihat bagian 6); fork harus menggunakan branding mereka sendiri.
+
+---
+
+
 ### GNOME 51 Rilis, Bawa Shell Lebih Halus dan Aplikasi Anyar
 
 **Kategori:** Sistem-terbuka | **Tanggal:** 2026-09-18T11:10:42.606Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/sistem-terbuka/gnome-51-rilis-shell-lebih-halus)
@@ -53598,6 +53927,60 @@ Ada pula GNOME OS, yang berfungsi sebagai testbed resmi proyek ini untuk menguji
 Unduh GNOME OS
 
 Bagi pengguna yang ingin menyelami detail teknis lebih dalam, catatan rilis resmi GNOME 51 menyediakan daftar perubahan yang jauh lebih rinci, termasuk catatan kompatibilitas untuk pengembang aplikasi dan integrator distribusi.
+
+---
+
+
+### Linux Mint Kelola Kernel Lewat System Administration
+
+**Kategori:** Sistem-terbuka | **Tanggal:** 2026-09-18T08:13:51.557Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/sistem-terbuka/linux-mint-kelola-kernel-lewat-system-administration)
+
+Proyek Linux Mint rutin menerbitkan kabar bulanan yang memberi gambaran tentang apa yang sedang dikerjakan para pengembang dan ke arah mana proyek ini bergerak. Update Juli mereka menunjukkan bagaimana distribusi ini berniat menangani kernel ke depannya.
+
+Pekerjaan itu dipindahkan seluruhnya keluar dari Update Manager dan dimasukkan ke alat yang sama sekali berbeda. Ini bukan sekadar reorganisasi tampilan, melainkan perubahan cara pengguna berinteraksi dengan kernel di sistem mereka.
+
+Sebelumnya, Update Manager memang pernah membiarkan pengguna melihat dan menghapus kernel satu per satu. Namun, fungsi tersebut dihilangkan pada suatu titik. Implementasi baru ini berusaha mengembalikan kontrol itu dengan pendekatan yang lebih terstruktur.
+
+#### Fitur Baru yang Sedang Disiapkan
+
+Implementasi baru ini berada di dalam alat System Administration, dan dibangun agar berperilaku sama baik saat Anda memakai Linux Mint maupun LMDE. Alih-alih melacak versi kernel satu per satu, halaman Kernels yang baru mengelompokkan beberapa versi kernel berdasarkan seri.
+
+Menyiapkan alat ini adalah pilihan satu kali: Anda memberi tahu seri kernel mana yang penting bagi Anda dan seberapa dalam tumpukan yang ingin disimpan untuk masing-masing seri. Setelah itu, semuanya berjalan sendiri.
+
+Seri yang Anda ikuti akan terus diperbarui melalui Update Manager seperti biasa. Sementara itu, apa pun yang melewati batas yang Anda tetapkan akan dibuang pada proses terjadwal yang berjalan sekali sepekan.
+
+Pembersihan manual juga tersedia untuk saat-saat Anda ingin cepat membebaskan ruang demi konten lain. Kernel individual juga bisa ditandai sebagai Protected, yang menjaganya dari penghapusan terlepas dari apakah serinya dilacak atau seberapa tua usianya.
+
+Sebelum Anda mencarinya di sistem sendiri, ketahuilah bahwa fitur ini belum aktif. Project lead Linux Mint, Clement Lefebvre, mengatakan bahwa ini adalah pratinjau dari apa yang akan datang ke rilis Mint berikutnya.
+
+Berikut poin-poin penting dari pendekatan baru Linux Mint:
+
+- Pengelolaan kernel dipindahkan dari Update Manager ke System Administration.
+- Perilaku sama baik di Linux Mint maupun LMDE.
+- Versi kernel dikelompokkan berdasarkan seri, bukan dilacak satu per satu.
+- Pengaturan dilakukan sekali: pilih seri yang diikuti dan kedalaman tumpukan yang disimpan.
+- Pembaruan seri tetap lewat Update Manager seperti biasa.
+- Kernel di luar batas dihapus otomatis pada proses mingguan.
+- Pembersihan manual tersedia kapan saja.
+- Kernel bisa ditandai Protected agar tidak dihapus.
+- Fitur belum dirilis, hanya pratinjau untuk rilis Mint berikutnya.
+#### Fedora Sudah Punya Solusi Serupa
+
+Linux Mint memang harus mengimplementasikan solusinya sendiri, tetapi Fedora sudah menyelesaikan masalah ini bertahun-tahun lalu. Manajer paket DNF miliknya melakukan hal ini secara default sejak dulu.
+
+Pengaturan di baliknya bernama installonly_limit, dan nilainya default ke 3. Hanya tiga build kernel terbaru yang tetap terpasang pada satu waktu. Setiap kali kernel baru masuk melalui pembaruan rutin, DNF menghapus apa pun yang berada di luar batas tersebut sebagai bagian dari transaksi yang sama.
+
+Tidak ada tugas terjadwal terpisah di baliknya, berbeda dari pembersihan mingguan Mint yang baru. Mekanisme Fedora hanya berjalan saat Anda benar-benar memperbarui, sehingga kernel yang dipasang di luar alur normal DNF akan tetap berada di sana tanpa disentuh.
+
+Kedua pendekatan pada akhirnya menyelesaikan masalah serupa dengan cara berbeda. Pendekatan Fedora bersifat datar dan selalu aktif, terikat langsung pada transaksi pembaruan. Implementasi baru Mint, setelah dirilis, akan memberi Anda kontrol yang lebih langsung.
+
+#### Kabar Lain dari Juli
+
+Pengelolaan kernel bukan satu-satunya hal dalam posting Juli Mint. Tim juga merilis ISO HWE baru untuk Linux Mint 22.3, kali ini dibangun di atas Linux 7.0.
+
+Selain itu, dukungan Fcitx5 masuk ke Cinnamon, berjalan dengan cara yang sama baik di Wayland maupun X11. Ini kabar penting bagi pengguna yang mengandalkan metode masukan non-Latin.
+
+Untuk rangkuman lengkap, termasuk halaman environment variables baru dan perbaikan panel, blog asli Linux Mint adalah bacaan wajib. Di sana Anda bisa melihat tangkapan layar, catatan teknis, dan diskusi komunitas seputar perubahan ini.
 
 ---
 
