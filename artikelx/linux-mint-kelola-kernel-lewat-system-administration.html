@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linux Mint Kelola Kernel Lewat System Administration</title>
+<link rel="canonical" href="https://dalam.web.id/artikel/linux-mint-kelola-kernel-lewat-system-administration.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+<meta name="description" content="Linux Mint memindahkan pengelolaan kernel dari Update Manager ke System Administration. Simak cara kerja fitur baru ini dan perbandingannya dengan Fedora.">
+<meta property="og:description" content="Update Manager tidak lagi menangani kernel. Linux Mint menyiapkan halaman Kernels baru yang mengelompokkan versi berdasarkan seri dan membersihkan otomatis tiap pekan.">
+<meta name="twitter:description" content="Fedora sudah lama punya installonly_limit. Kini Linux Mint menyiapkan pendekatan sendiri yang lebih manual namun tetap otomatis. Mana yang lebih cocok untukmu?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Mint Kelola Kernel Lewat System Administration">
+<meta property="og:url" content="https://dalam.web.id/artikel/linux-mint-kelola-kernel-lewat-system-administration.html">
+<meta property="og:image" content="https://itsfoss.com/content/images/2026/08/linux-mint-kernel-removal-1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Linux Mint Kelola Kernel Lewat System Administration">
+<meta name="twitter:image" content="https://itsfoss.com/content/images/2026/08/linux-mint-kernel-removal-1.png">
+<meta name="news_keywords" content="Linux Mint, Kernel Linux, System Administration, Update Manager, Fedora DNF">
+<meta property="article:tag" content="Linux Mint">
+<meta property="article:tag" content="Kernel">
+<meta property="article:tag" content="Linux Desktop">
+<meta name="promphint" content="Apa yang baru di Linux Mint terkait kernel? Proyek ini memindahkan pengelolaan kernel dari Update Manager ke System Administration dengan pengelompokan berdasarkan seri.">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#ffffff;--text:#1f2225;--muted:#4b5157;--accent:#0056b3;--card:#f2f4f7;--border:#d7dbe0;--screen-padding:1rem;--nested-padding:0rem}
+@media (prefers-color-scheme:dark){:root{--bg:#121212;--text:#e6e6e6;--muted:#b7b7b7;--accent:#6cb2ff;--card:#1c1c1c;--border:#343434}}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:1.0625rem;line-height:1.7}
+.container{width:min(100%,64rem);margin-inline:auto;padding-inline:var(--screen-padding)}
+main{padding-block:2rem}
+header.artikel{text-align:left;margin-bottom:1.5rem}
+h1{font-size:clamp(1.75rem,5vw,2.4rem);line-height:1.25;margin:0 0 1rem}
+.lead{font-size:1.125rem;color:var(--muted);margin:0}
+.article-body{padding-inline:var(--nested-padding)}
+h2{font-size:clamp(1.4rem,3.2vw,1.7rem);line-height:1.3;margin:2.5rem 0 1rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+h3{font-size:clamp(1.2rem,2.6vw,1.35rem);line-height:1.35;margin:1.75rem 0 .6rem}
+p{margin:0 0 1.1rem;font-size:1.0625rem}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+ul{margin:0 0 1.25rem;padding-left:1.35rem}
+li{margin-bottom:.6rem}
+figure{margin:1.75rem 0}
+img{display:block;width:100%;height:auto;border-radius:.5rem}
+figcaption{font-size:.9rem;color:var(--muted);text-align:center;margin-top:.6rem}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.95em;background:var(--card);padding:.15em .4em;border-radius:.25rem}
+details{background:var(--card);border:1px solid var(--border);border-radius:.5rem;padding:.35rem 1rem;margin:1.5rem 0}
+summary{cursor:pointer;padding:.75rem .25rem;font-size:1rem;color:var(--text)}
+summary:hover{color:var(--accent)}
+details[open] summary{margin-bottom:.5rem;border-bottom:1px solid var(--border)}
+footer{border-top:1px solid var(--border);margin-top:3rem;padding:1.75rem 0 2.5rem;text-align:center;font-size:.95rem;color:var(--muted)}
+footer p{margin:.25rem 0;font-size:.95rem}
+@media (min-width:1024px){:root{--screen-padding:2.5rem;--nested-padding:1.5rem}}
+</style>
+</head>
+<body>
+<main>
+<div class="container">
+<article>
+<header class="artikel">
+<h1>Linux Mint Kelola Kernel Lewat System Administration</h1>
+<p class="lead">Proyek Linux Mint memindahkan seluruh urusan kernel dari Update Manager ke alat baru. Fitur ini belum aktif, tetapi sudah diperlihatkan sebagai pratinjau rilis berikutnya.</p>
+</header>
+
+<div class="article-body">
+
+<p>Proyek Linux Mint rutin menerbitkan kabar bulanan yang memberi gambaran tentang apa yang sedang dikerjakan para pengembang dan ke arah mana proyek ini bergerak. Update Juli mereka menunjukkan bagaimana distribusi ini berniat menangani kernel ke depannya.</p>
+
+<p>Pekerjaan itu dipindahkan seluruhnya keluar dari <a target="_blank" href="https://github.com/linuxmint/mintupdate?ref=dalam.web.id">Update Manager</a> dan dimasukkan ke alat yang sama sekali berbeda. Ini bukan sekadar reorganisasi tampilan, melainkan perubahan cara pengguna berinteraksi dengan kernel di sistem mereka.</p>
+
+<p>Sebelumnya, Update Manager memang pernah membiarkan pengguna melihat dan menghapus kernel satu per satu. Namun, fungsi tersebut dihilangkan pada suatu titik. Implementasi baru ini berusaha mengembalikan kontrol itu dengan pendekatan yang lebih terstruktur.</p>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/08/linux-mint-kernel-removal-1.png" alt="Tampilan halaman pengelolaan kernel baru di Linux Mint" width="1079" height="748" fetchpriority="high" decoding="async">
+<figcaption><i>Halaman pengelolaan kernel baru di Linux Mint. Sumber: The Linux Mint Blog.</i></figcaption>
+</figure>
+
+<h2>Fitur Baru yang Sedang Disiapkan</h2>
+
+<p>Implementasi baru ini berada di dalam alat <a target="_blank" href="https://github.com/linuxmint/mintsysadm?ref=dalam.web.id">System Administration</a>, dan dibangun agar berperilaku sama baik saat Anda memakai Linux Mint maupun LMDE. Alih-alih melacak versi kernel satu per satu, halaman <i>Kernels</i> yang baru mengelompokkan beberapa versi kernel berdasarkan seri.</p>
+
+<p>Menyiapkan alat ini adalah pilihan satu kali: Anda memberi tahu seri kernel mana yang penting bagi Anda dan seberapa dalam tumpukan yang ingin disimpan untuk masing-masing seri. Setelah itu, semuanya berjalan sendiri.</p>
+
+<p>Seri yang Anda ikuti akan terus diperbarui melalui Update Manager seperti biasa. Sementara itu, apa pun yang melewati batas yang Anda tetapkan akan dibuang pada proses terjadwal yang berjalan sekali sepekan.</p>
+
+<p>Pembersihan manual juga tersedia untuk saat-saat Anda ingin cepat membebaskan ruang demi konten lain. Kernel individual juga bisa ditandai sebagai <i>Protected</i>, yang menjaganya dari penghapusan terlepas dari apakah serinya dilacak atau seberapa tua usianya.</p>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/08/linux-mint-kernel-removal-2.png" alt="Opsi penandaan kernel sebagai Protected di Linux Mint" width="628" height="573" loading="lazy" decoding="async">
+<figcaption><i>Opsi penandaan kernel sebagai Protected.</i></figcaption>
+</figure>
+
+<p>Sebelum Anda mencarinya di sistem sendiri, ketahuilah bahwa fitur ini belum aktif. Project lead Linux Mint, Clement Lefebvre, mengatakan bahwa ini adalah pratinjau dari apa yang akan datang ke rilis Mint berikutnya.</p>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/08/linux-mint-kernel-removal-3.png" alt="Konfirmasi penghapusan kernel di System Administration Linux Mint" width="734" height="568" loading="lazy" decoding="async">
+<figcaption><i>Konfirmasi penghapusan kernel di System Administration.</i></figcaption>
+</figure>
+
+<details>
+<summary><b>Ringkasan cara kerja fitur kernel baru</b></summary>
+<p>Berikut poin-poin penting dari pendekatan baru Linux Mint:</p>
+<ul>
+<li>Pengelolaan kernel dipindahkan dari Update Manager ke System Administration.</li>
+<li>Perilaku sama baik di Linux Mint maupun LMDE.</li>
+<li>Versi kernel dikelompokkan berdasarkan seri, bukan dilacak satu per satu.</li>
+<li>Pengaturan dilakukan sekali: pilih seri yang diikuti dan kedalaman tumpukan yang disimpan.</li>
+<li>Pembaruan seri tetap lewat Update Manager seperti biasa.</li>
+<li>Kernel di luar batas dihapus otomatis pada proses mingguan.</li>
+<li>Pembersihan manual tersedia kapan saja.</li>
+<li>Kernel bisa ditandai <i>Protected</i> agar tidak dihapus.</li>
+<li>Fitur belum dirilis, hanya pratinjau untuk rilis Mint berikutnya.</li>
+</ul>
+</details>
+
+<h2>Fedora Sudah Punya Solusi Serupa</h2>
+
+<p>Linux Mint memang harus mengimplementasikan solusinya sendiri, tetapi <a target="_blank" href="https://fedoraproject.org/?ref=dalam.web.id">Fedora</a> sudah menyelesaikan masalah ini bertahun-tahun lalu. Manajer paket <a target="_blank" href="https://docs.fedoraproject.org/en-US/quick-docs/dnf/?ref=dalam.web.id">DNF</a> miliknya melakukan hal ini secara default sejak dulu.</p>
+
+<p>Pengaturan di baliknya bernama <code>installonly_limit</code>, dan nilainya <a target="_blank" href="https://discussion.fedoraproject.org/t/kernels-are-accumulating-in-boot/179352/5?ref=dalam.web.id">default ke 3</a>. Hanya tiga build kernel terbaru yang tetap terpasang pada satu waktu. Setiap kali kernel baru masuk melalui pembaruan rutin, DNF menghapus apa pun yang berada di luar batas tersebut sebagai bagian dari transaksi yang sama.</p>
+
+<p>Tidak ada tugas terjadwal terpisah di baliknya, berbeda dari pembersihan mingguan Mint yang baru. Mekanisme Fedora hanya berjalan saat Anda benar-benar memperbarui, sehingga kernel yang dipasang di luar alur normal DNF akan tetap berada di sana tanpa disentuh.</p>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/08/fedora-workstation-linux-kernel-removal.png" alt="Jendela terminal di Fedora Workstation yang menunjukkan penanganan paket kernel saat sudo dnf update" width="1010" height="1098" loading="lazy" decoding="async">
+<figcaption><i>Penanganan paket kernel di Fedora Workstation saat pembaruan DNF.</i></figcaption>
+</figure>
+
+<p>Kedua pendekatan pada akhirnya menyelesaikan masalah serupa dengan cara berbeda. Pendekatan Fedora bersifat datar dan selalu aktif, terikat langsung pada transaksi pembaruan. Implementasi baru Mint, setelah dirilis, akan memberi Anda kontrol yang lebih langsung.</p>
+
+<h2>Kabar Lain dari Juli</h2>
+
+<p>Pengelolaan kernel bukan satu-satunya hal dalam posting Juli Mint. Tim juga merilis ISO <a target="_blank" href="https://www.linuxmint.com/hwe.php?ref=dalam.web.id">HWE</a> baru untuk Linux Mint 22.3, kali ini dibangun di atas <a target="_blank" href="https://itsfoss.com/news/linux-kernel-7-0-release/">Linux 7.0</a>.</p>
+
+<p>Selain itu, dukungan <a target="_blank" href="https://github.com/fcitx/fcitx5?ref=dalam.web.id">Fcitx5</a> masuk ke Cinnamon, berjalan dengan cara yang sama baik di Wayland maupun X11. Ini kabar penting bagi pengguna yang mengandalkan metode masukan non-Latin.</p>
+
+<p>Untuk rangkuman lengkap, termasuk halaman environment variables baru dan perbaikan panel, <a target="_blank" href="https://blog.linuxmint.com/?p=5050">blog asli Linux Mint</a> adalah bacaan wajib. Di sana Anda bisa melihat tangkapan layar, catatan teknis, dan diskusi komunitas seputar perubahan ini.</p>
+
+<!--wajib ini tulis signature artikel oleh LayarKosong-->
+</div>
+</article>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<p>Ditulis oleh Tim LayarKosong</p>
+<p>Dirilis dan diperbarui pada 18 September 2026</p>
+<p><a target="_blank" href="https://dalam.web.id">dalam.web.id</a></p>
+</div>
+</footer>
+</body>
+</html>
