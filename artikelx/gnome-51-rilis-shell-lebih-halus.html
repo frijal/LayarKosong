@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GNOME 51 Rilis, Bawa Shell Lebih Halus dan Aplikasi Anyar</title>
+<link rel="canonical" href="https://dalam.web.id/artikel/gnome-51-rilis-shell-lebih-halus.html">
+<meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+<meta name="description" content="GNOME 51 resmi hadir dengan shell yang lebih stabil, GDM dan Mutter yang diperbaiki, plus sejumlah aplikasi bawaan yang mendapat peningkatan penting.">
+<meta property="og:description" content="Rilis terbaru GNOME 51 membawa pengalaman desktop Linux yang lebih mulus. Simak apa saja yang berubah sebelum Anda melakukan upgrade di distro favorit.">
+<meta name="twitter:description" content="Penasaran apa yang baru di GNOME 51? Mulai dari wallpaper Roundhex hingga perbaikan Mutter, ini rangkuman lengkapnya untuk pengguna Linux.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GNOME 51 Rilis, Bawa Shell Lebih Halus dan Aplikasi Anyar">
+<meta property="og:url" content="https://dalam.web.id/artikel/gnome-51-rilis-shell-lebih-halus.html">
+<meta property="og:image" content="https://itsfoss.com/content/images/2026/09/gnome-51-overview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GNOME 51 Rilis, Bawa Shell Lebih Halus dan Aplikasi Anyar">
+<meta name="twitter:image" content="https://itsfoss.com/content/images/2026/09/gnome-51-overview.png">
+<meta name="news_keywords" content="GNOME 51, GNOME Shell, Mutter, GDM, Desktop Linux">
+<meta property="article:tag" content="GNOME">
+<meta property="article:tag" content="Linux Desktop">
+<meta property="article:tag" content="Open Source">
+<meta name="promphint" content="Apa saja yang baru di GNOME 51? Rilis ini memperbaiki perilaku shell, menutup celah autologin GDM, menghapus dukungan driver NVIDIA legacy di Mutter, dan memperbarui aplikasi bawaan seperti Settings, Software, Files, serta Calendar.">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#ffffff;--text:#1f2225;--muted:#4b5157;--accent:#0056b3;--card:#f2f4f7;--border:#d7dbe0;--screen-padding:1rem;--nested-padding:0rem}
+@media (prefers-color-scheme:dark){:root{--bg:#121212;--text:#e6e6e6;--muted:#b7b7b7;--accent:#6cb2ff;--card:#1c1c1c;--border:#343434}}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:1.0625rem;line-height:1.7}
+.container{width:min(100%,64rem);margin-inline:auto;padding-inline:var(--screen-padding)}
+main{padding-block:2rem}
+header.artikel{text-align:left;margin-bottom:1.5rem}
+h1{font-size:clamp(1.75rem,5vw,2.4rem);line-height:1.25;margin:0 0 1rem}
+.lead{font-size:1.125rem;color:var(--muted);margin:0}
+.article-body{padding-inline:var(--nested-padding)}
+h2{font-size:clamp(1.4rem,3.2vw,1.7rem);line-height:1.3;margin:2.5rem 0 1rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+h3{font-size:clamp(1.2rem,2.6vw,1.35rem);line-height:1.35;margin:1.75rem 0 .6rem}
+p{margin:0 0 1.1rem;font-size:1.0625rem}
+a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+ul{margin:0 0 1.25rem;padding-left:1.35rem}
+li{margin-bottom:.6rem}
+figure{margin:1.75rem 0}
+img{display:block;width:100%;height:auto;border-radius:.5rem}
+figcaption{font-size:.9rem;color:var(--muted);text-align:center;margin-top:.6rem}
+details{background:var(--card);border:1px solid var(--border);border-radius:.5rem;padding:.35rem 1rem;margin:1.5rem 0}
+summary{cursor:pointer;padding:.75rem .25rem;font-size:1rem;color:var(--text)}
+summary:hover{color:var(--accent)}
+details[open] summary{margin-bottom:.5rem;border-bottom:1px solid var(--border)}
+details h3:first-of-type{margin-top:1rem}
+.aksi{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:.7rem 1.4rem;border-radius:.5rem;margin:.5rem 0 1rem}
+footer{border-top:1px solid var(--border);margin-top:3rem;padding:1.75rem 0 2.5rem;text-align:center;font-size:.95rem;color:var(--muted)}
+footer p{margin:.25rem 0;font-size:.95rem}
+@media (min-width:1024px){:root{--screen-padding:2.5rem;--nested-padding:1.5rem}}
+</style>
+</head>
+<body>
+<main>
+<div class="container">
+<article>
+<header class="artikel">
+<h1>GNOME 51 Rilis, Bawa Shell Lebih Halus dan Aplikasi Anyar</h1>
+<p class="lead">Rilis terbaru desktop environment paling populer di dunia Linux ini menyentuh hampir semua lapisan: shell, layar login, compositor, hingga aplikasi sehari-hari.</p>
+</header>
+
+<div class="article-body">
+
+<p>Bagi banyak orang, GNOME adalah pintu masuk pertama ke dunia Linux. Distribusi arus utama seperti Ubuntu dan Fedora Workstation mengirimkannya sebagai desktop bawaan, jadi pengguna baru langsung berkenalan dengan ekosistem ini tanpa harus memilih apa pun sejak awal.</p>
+
+<p>Memang, belakangan ini adopsi window manager tiling dinamis seperti Hyprland terus naik. Meski begitu, desktop environment konvensional tetap menjadi kendaraan harian bagi mayoritas pengguna karena sifatnya yang siap pakai, minim konfigurasi, dan konsisten di berbagai perangkat.</p>
+
+<p>Kini GNOME 51 hadir membawa sejumlah peningkatan. Mulai dari shell yang berperilaku lebih rapi, wallpaper baru yang tampil menawan, sampai sederet aplikasi bawaan yang diperbarui cukup serius. Berikut ulasan lengkapnya.</p>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/09/gnome-51-overview.png" alt="Tampilan overview GNOME 51 dengan beberapa jendela aplikasi terbuka" width="1920" height="1080" fetchpriority="high" decoding="async">
+<figcaption><i>Tampilan overview GNOME 51.</i></figcaption>
+</figure>
+
+<h2>Shell yang Makin Rapi</h2>
+
+<p>GNOME Shell adalah bagian yang paling sering Anda sentuh tanpa sadar. Ia mencakup top bar, overview, app grid, notifikasi, layar kunci, dan cara jendela berpindah antar workspace. Karena itu, perbaikan kecil di lapisan ini terasa besar dampaknya bagi kenyamanan sehari-hari.</p>
+
+<p>Pada rilis kali ini, sejumlah detail kasar dipoles. Kecerahan monitor kini disimpan dan dipulihkan antar sesi, sehingga Anda tidak perlu mengatur ulang setiap kali login. Bingkai tangkapan layar juga lebih presisi karena seleksi bisa ditarik hingga menyentuh tepi monitor, bukan berhenti beberapa piksel sebelum tepi.</p>
+
+<p>Navigasi pembaca layar di dalam app grid dirombak agar lebih mudah diikuti. Dua gangguan lama pun dibereskan: bug jendela yang diminimalkan di workspace lain, serta format tanggal Jerman yang sebelumnya tampil keliru. Prompt autorun yang muncul saat USB dicolok juga mengalami perbaikan perilaku.</p>
+
+<h2>GDM dan Mutter</h2>
+
+<p>Dua komponen ini jarang disadari keberadaannya, padahal keduanya memegang peran krusial. GDM adalah display manager di balik layar login yang memulai sesi setelah Anda terautentikasi, sedangkan Mutter adalah compositor yang menggambar jendela, menentukan posisinya, dan menangani input.</p>
+
+<p>Di sisi GDM, ada penambahan pengaturan untuk sesi fallback, yaitu sesi yang dipakai ketika pengguna belum punya preferensi atau sesi pilihannya gagal dijalankan. Administrator kini bisa mengarahkan akun yang belum pernah login ke sesi tertentu sesuai kebutuhan. Yang tak kalah penting, celah bypass autologin sudah ditutup: sebelumnya greeter yang berhasil dikompromikan bisa meminta autologin untuk akun lokal mana pun.</p>
+
+<p>Pada Mutter, dukungan untuk driver NVIDIA legacy sudah dihapus. Di layar HDR, konten SDR tidak lagi tampak pudar atau kehilangan warna. Penanganan jendela juga mendapat sejumlah perbaikan, mulai dari jendela yang menempel di tepi layar kini bisa masuk mode fullscreen dengan benar, hingga jendela maximized yang bisa dipindahkan ke monitor lain lewat keyboard tanpa masalah.</p>
+
+<details>
+<summary><b>Detail teknis perbaikan Mutter lainnya</b></summary>
+<p>Ada beberapa perbaikan tambahan yang sifatnya lebih teknis namun tetap terasa bagi pengguna tingkat lanjut:</p>
+<ul>
+<li>Mutter berhenti melaporkan beberapa monitor sebagai primary secara bersamaan, masalah yang kerap membingungkan aplikasi berbasis XWayland.</li>
+<li>Kursor mouse kini menyembunyikan diri saat sesi input capture berjalan, misalnya ketika alat remote desktop sedang mengambil alih kendali.</li>
+<li>Perbaikan ini berdampak langsung pada stabilitas sesi jarak jauh dan konsistensi penempatan jendela di konfigurasi multi-monitor.</li>
+</ul>
+</details>
+
+<h2>Peningkatan Aplikasi Bawaan</h2>
+
+<p>Aplikasi bawaan GNOME 51 mendapat porsi upgrade yang cukup besar. Perubahan paling terasa ada di Settings dan Software yang kini lebih informatif, sementara Files memperbaiki sejumlah interaksi yang sebelumnya terasa mengganggu saat menyalin banyak berkas sekaligus.</p>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/09/gnome-51-settings.png" alt="Halaman pengaturan jaringan di aplikasi Settings GNOME 51" width="1247" height="979" loading="lazy" decoding="async">
+<figcaption><i>Aplikasi Settings GNOME 51.</i></figcaption>
+</figure>
+
+<h3>Settings</h3>
+
+<p>Aplikasi Settings menambahkan opsi pencarian domain DNS di halaman <i>Network</i>, menerima berbagai pembaruan terjemahan, dan kini menangani berbagi Wi-Fi melalui widget kode QR milik GNOME. Halaman <i>About</i> dirapikan dengan menghapus kolom <i>Windowing System</i> serta memperluas kelompok informasi perangkat lunak dan perangkat keras. Berkat itu, tombol khusus <i>System Details</i> tidak lagi diperlukan.</p>
+
+<h3>Software</h3>
+
+<p>Aplikasi Software sekarang memberi peringatan sebelum Anda memasang aplikasi yang sudah mencapai status end-of-life. Daftar izin Flatpak diperluas, dan perhitungan rata-rata rating aplikasi memakai pendekatan pengukuran yang berbeda agar hasilnya lebih representatif.</p>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/09/gnome-51-software.png" alt="Antarmuka aplikasi Software GNOME 51 dengan daftar aplikasi" width="1116" height="996" loading="lazy" decoding="async">
+<figcaption><i>Aplikasi Software GNOME 51.</i></figcaption>
+</figure>
+
+<h3>Files</h3>
+
+<p>Files atau Nautilus menampilkan badge jumlah berkas saat Anda menyeret beberapa item sekaligus. Berkas yang disalin tetap dalam kondisi terpilih setelah proses penyalinan selesai. Lokasi yang dibuka dari aplikasi lain ditampilkan di tab baru, sedangkan fitur previewer kini mendukung operasi rename dan pemindahan ke trash.</p>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/09/gnome-51-nautilus.png" alt="Antarmuka file manager Nautilus di GNOME 51" width="1038" height="675" loading="lazy" decoding="async">
+<figcaption><i>Files (Nautilus) di GNOME 51.</i></figcaption>
+</figure>
+
+<p><b>Tips singkat:</b> fungsi previewer bisa diakses dengan memilih sebuah berkas atau folder lalu menekan tombol <i>Space</i>. Jendela kecil itu akan menampilkan pratinjau item terpilih beserta sejumlah detail pentingnya.</p>
+
+<details>
+<summary><b>Pembaruan Calendar, Maps, dan Web</b></summary>
+<h3>Calendar</h3>
+<p>Bagian internal aplikasi Calendar dirombak cukup berat dan kini dibangun di atas <i>GListModel</i>. Tampilan minggu, bulan, dan agenda berjalan di atas model yang sama, begitu pula objek di balik linimasa acaranya. Lokasi kini dibuka di Maps melalui <i>maps URI</i>, dan dialog <i>About</i> menampilkan indikator status ketika aplikasi tidak berjalan di dalam sandbox Flatpak.</p>
+<h3>Maps</h3>
+<p>Pengguna Maps kini bisa mengunduh peta untuk penggunaan offline lewat alat unduh baru. Caranya, buka wilayah yang diinginkan, lalu masuk ke menu hamburger di kanan atas dan pilih <i>Preferences</i>. Di bagian <i>Downloads</i>, klik <i>Add</i> untuk memulai proses unduhan.</p>
+<h3>Web</h3>
+<p>Web atau Epiphany, browser bawaan GNOME, menerima perbaikan untuk kasus crash yang muncul saat menghapus mesin pencari default atau ketika membuka menu preferensi.</p>
+</details>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/09/gnome-51-calendar.png" alt="Aplikasi Calendar GNOME 51 dengan tampilan agenda mingguan" width="1280" height="913" loading="lazy" decoding="async">
+<figcaption><i>Calendar GNOME 51.</i></figcaption>
+</figure>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/09/gnome-51-maps.png" alt="Aplikasi Maps GNOME 51 menampilkan peta dan opsi unduhan offline" width="1258" height="781" loading="lazy" decoding="async">
+<figcaption><i>Maps GNOME 51.</i></figcaption>
+</figure>
+
+<figure>
+<img src="https://itsfoss.com/content/images/2026/09/gnome-51-epiphany.png" alt="Browser Web Epiphany di GNOME 51 dengan halaman preferensi" width="1169" height="833" loading="lazy" decoding="async">
+<figcaption><i>Web (Epiphany) di GNOME 51.</i></figcaption>
+</figure>
+
+<h2>Perubahan Lain yang Patut Diketahui</h2>
+
+<p>Sejumlah perubahan kecil berikut mungkin tidak mencolok, tetapi tetap layak Anda ketahui sebelum melakukan pembaruan:</p>
+
+<ul>
+<li><b>Roundhex</b> menjadi wallpaper default baru, ditemani tiga tambahan lain yaitu <i>Curvaturingster</i>, <i>Glass Stripes</i>, dan <i>Tubes</i>.</li>
+<li>Komponen gnome-desktop kini menyertakan API untuk menghasilkan kode QR, dan widget berbagi Wi-Fi yang disebut sebelumnya memanfaatkan API tersebut.</li>
+<li>GNOME Bluetooth 47.2 menambahkan <i>mnemonics</i> pada beberapa tombol serta memperbaiki sejumlah kebocoran memori.</li>
+<li>Loupe, penampil gambar bawaan, kini menampilkan informasi pembuat, hak cipta, lensa kamera, dan perangkat lunak yang tersimpan di metadata foto.</li>
+<li>Settings mendapat manajer sidik jari baru di panel <i>Users</i>.</li>
+</ul>
+
+<h2>Cara Mendapatkan GNOME 51</h2>
+
+<p>Pengguna distribusi rolling release seperti Arch Linux, CachyOS, atau EndeavourOS akan menjadi kelompok pertama yang menerima rilis ini begitu maintainer mendorongnya ke repositori. Bagi Anda yang memakai distribusi arus utama seperti Ubuntu atau Fedora, GNOME 51 akan hadir melalui rilis Ubuntu 26.10 dan Fedora 45.</p>
+
+<p>Ada pula GNOME OS, yang berfungsi sebagai testbed resmi proyek ini untuk menguji perangkat lunak baru. Sistem tersebut bisa dipasang di mesin cadangan atau mesin virtual jika Anda ingin mencoba GNOME 51 lebih awal tanpa mengubah instalasi utama.</p>
+
+<p><a class="aksi" target="_blank" href="https://os.gnome.org/?ref=dalam.web.id">Unduh GNOME OS</a></p>
+
+<p>Bagi pengguna yang ingin menyelami detail teknis lebih dalam, catatan rilis resmi GNOME 51 menyediakan daftar perubahan yang jauh lebih rinci, termasuk catatan kompatibilitas untuk pengembang aplikasi dan integrator distribusi.</p>
+
+<!--wajib ini tulis signature artikel oleh LayarKosong-->
+</div>
+</article>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<p>Ditulis oleh Tim LayarKosong</p>
+<p>Dirilis dan diperbarui pada 18 September 2026</p>
+<p><a href="https://dalam.web.id">dalam.web.id</a></p>
+</div>
+</footer>
+</body>
+</html>
