@@ -531,7 +531,6 @@ Terima kasih kepada semua kontributor yang telah membantu mengembangkan proyek i
 
 [![📡 Artikel Baru Kombo](https://github.com/frijal/LayarKosong/actions/workflows/artikel-baru-combo.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/artikel-baru-combo.yml)
 [![🔆 Pengecekan & Laporan Konten Harian](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/hapushitung.yml)
-[![🐳 Build and Push to GHCR](https://github.com/frijal/LayarKosong/actions/workflows/Docker-Build-Layar-Kosong.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/Docker-Build-Layar-Kosong.yml)
 
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Yes-2088FF?logo=githubactions\&logoColor=white)](#readme)
 [![GitHub Bot](https://img.shields.io/badge/GitHub%20Bot-Active-blue?logo=github\&logoColor=white)](#readme)
@@ -573,13 +572,3 @@ Terima kasih kepada semua kontributor yang telah membantu mengembangkan proyek i
 </details>
 
 ---
-
-## Container Image
-
-[![🐳 Build and Push to GHCR](https://github.com/frijal/LayarKosong/actions/workflows/Docker-Build-Layar-Kosong.yml/badge.svg?branch=main)](https://github.com/frijal/LayarKosong/actions/workflows/Docker-Build-Layar-Kosong.yml)
-
-[![GHCR Image](https://img.shields.io/badge/ghcr.io-frijal%2Flayarkosong\:latest-blue?logo=github\&logoColor=white)](https://github.com/frijal/layarkosong/pkgs/container/layarkosong)
-
-```bash
-docker pull ghcr.io/frijal/layarkosong:latest
-```
