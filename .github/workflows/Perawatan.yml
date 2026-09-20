@@ -12,10 +12,10 @@ on:
         type: choice
         options:
           - audit        # Hanya cek kesehatan dapur & audit isi (Read Only)
-          - upgrade      # Update versi paket di package.json + Sync Aset
+          - upgrade      # Update versi paket via NCU + Sync Aset (Manual)
           - paket        # Tambah paket baru + Sync Aset
       upgrade_type:
-        description: 'Tipe upgrade (khusus mode upgrade)'
+        description: 'Tipe upgrade (khusus mode upgrade manual)'
         required: false
         default: 'minor'
         type: choice
@@ -51,9 +51,10 @@ jobs:
           persist-credentials: true
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
 
-      # --- STEP 1: EKSEKUSI PAKET (Hanya Upgrade & Tambah) ---
+      # --- STEP 1: MANAJEMEN PAKET MANUAL (Hanya jika dipicu manual 'upgrade' atau 'paket') ---
+      # Catatan: Cron otomatis TIDAK MENJALANKAN NCU karena update package.json sudah ditangani Renovate.
       - name: 🚀 Upgrade/Manage Packages
-        if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket')
+        if: github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket'
         run: |
           MODE="${{ github.event.inputs.mode }}"
           ACTION="${{ github.event.inputs.action || 'add' }}"
@@ -61,8 +62,8 @@ jobs:
           IS_DEV="${{ github.event.inputs.is_dev }}"
           UPGRADE_TYPE="${{ github.event.inputs.upgrade_type || 'minor' }}"
           
-          if [[ "$MODE" == "upgrade" || "${{ github.event_name }}" == "schedule" ]]; then
-            echo "Running Version Upgrade..."
+          if [[ "$MODE" == "upgrade" ]]; then
+            echo "Running Manual Version Upgrade..."
             bun install
             bunx npm-check-updates -u --target "$UPGRADE_TYPE"
             bun install
@@ -85,14 +86,14 @@ jobs:
         if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket')
         run: |
           set -euo pipefail
-          # Install dependensi sync secara terisolasi tanpa mengubah package.json root
+          mkdir -p dapur/fontawesome-webfonts
+          mkdir -p mini
+
+          # 1. Install dependensi sync secara terisolasi tanpa merusak package.json root
           bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest html2canvas@latest html2pdf.js@latest --no-save --trusted || true
           bun pm untrusted
           
-          mkdir -p dapur/fontawesome-webfonts
-          mkdir -p mini
-          
-          # Copy Aset
+          # 2. Copy Aset Statis
           cp -f node_modules/@fortawesome/fontawesome-free/webfonts/* dapur/fontawesome-webfonts/
           cp -f node_modules/@fortawesome/fontawesome-free/css/all.min.css dapur/fontawesome.css
           cp -f node_modules/@highlightjs/cdn-assets/highlight.min.js dapur/highlight.js
@@ -109,45 +110,47 @@ jobs:
           cp -f node_modules/html2canvas/dist/html2canvas.min.js dapur/html2canvas.min.js
           cp -f node_modules/html2pdf.js/dist/html2pdf.bundle.min.js dapur/html2pdf.bundle.min.js
           
-          # Fetch Marked & QR Code
+          # 3. Fetch Marked & QR Code
           MARKED_VER=$(curl -fsSL https://registry.npmjs.org/marked/latest | jq -r .version)
           curl -fsSL "https://cdn.jsdelivr.net/npm/marked@${MARKED_VER}/lib/marked.umd.js" -o dapur/marked.min.js
           curl -fsSL https://raw.githubusercontent.com/davidshimjs/qrcodejs/master/qrcode.min.js -o dapur/qrcode.min.js
           
+          # 4. Patch Path CSS FontAwesome
           sed -i 's|\.\./webfonts/|./fontawesome-webfonts/|g' dapur/fontawesome.css
           
-          # Transpile via Koki
+          # 5. Transpile via Koki
           bun dapur/koki.ts --once
           
-          # Metadata
+          # 6. Metadata
           FA_VER=$(jq -r .version node_modules/@fortawesome/fontawesome-free/package.json)
           H2C_VER=$(jq -r .version node_modules/html2canvas/package.json)
           H2PDF_VER=$(jq -r .version node_modules/html2pdf.js/package.json)
           HLJS_VER=$(jq -r .version node_modules/@highlightjs/cdn-assets/package.json)
           MARKED_VER="${MARKED_VER:-$(curl -fsSL https://registry.npmjs.org/marked/latest | jq -r .version)}"
           
-          # 9. Simpan ke asset-info.txt
+          # 7. Simpan ke asset-info.txt (Lengkap dengan html2pdf)
           echo -e "fontawesome=$FA_VER\nhtml2canvas=$H2C_VER\nhtml2pdf=$H2PDF_VER\nhljs=$HLJS_VER\nmarked=$MARKED_VER\nqrcode=1.0.0-davidshimjs" | sort > mini/asset-info.txt
 
-      # --- STEP 3: AUDIT READ-ONLY ---
+      # --- STEP 3: AUDIT DEPENDENSI & FILE (READ-ONLY) ---
       - name: 🧹 Jalankan Sapu Bersih (Audit)
         run: |
           bun run dapur/sapu-bersih.ts
 
+      # --- STEP 4: VERIFIKASI INTEGRITAS FONT ---
       - name: 🔍 Font Integrity Check (Statis)
         id: font_check
         run: |
           mkdir -p mini
           OUTPUT="mini/fontawesome-verify.txt"
           PREV="mini/fontawesome-verify-prev.txt"
-          [ -f "$OUTPUT" ] && cp "$OUTPUT" "$PREV" || touch "$PREV"
+          [ -f "$OUTPUT" ] && cp "$OUTPUT" "$PREV" \vert{}\vert{} touch "$PREV"
           printf "Font Integrity Report\nFilename | Size | SHA-256\n" > "$OUTPUT"
-          find dapur/fontawesome-webfonts -type f -regex ".*\.\(woff\|woff2\|ttf\)" | sort | while read -r f; do
-              printf "%s | %s | %s\n" "$(basename "$f")" "$(stat -c%s "$f")" "$(sha256sum "$f" | awk '{print $1}')" >> "$OUTPUT"
+          find dapur/fontawesome-webfonts -type f -regex ".*\.\(woff\Vert{}woff2\Vert{}ttf\)" | sort | while read -r f; do
+              printf "%s | %s | %s\n" "$(basename "$f")" "$(stat -c\%s "$f")" "$(sha256sum "$f" | awk '{print $1}')" >> "$OUTPUT"
           done
-          [ -s "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null && echo "alert=true" >> $GITHUB_OUTPUT || echo "alert=false" >> $GITHUB_OUTPUT
+          [ -s "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null && echo "alert=true" >> $GITHUB_OUTPUT \vert{}\vert{} echo "alert=false" >> $GITHUB_OUTPUT
 
-      # --- STEP 4: DETEKSI PERUBAHAN & PR ---
+      # --- STEP 5: DETEKSI PERUBAHAN & BUAT PR ---
       - name: 🛡️ Change Detection
         id: filter
         run: |
