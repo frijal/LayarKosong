@@ -11,16 +11,17 @@ on:
         default: 'sync'
         type: choice
         options:
-          - sync       # Sync Aset Vendor (@latest) + Transpile Koki + Audit
-          - audit      # Hanya Cek Kesehatan & Audit File (Read-Only / Cepat)
-          - paket      # Tambah Paket Baru ke package.json + Sync Aset
+          - sync        # Sync Aset Vendor + Transpile + Audit
+          - install     # Install / Tambah Paket Baru (bun add)
+          - uninstall   # Uninstall / Hapus Paket (bun remove)
+          - audit       # Hanya Audit File & Health Check (Read-Only)
       packages:
-        description: 'Nama Paket (Khusus mode "paket", contoh: "lodash axios")'
+        description: 'Nama Paket (Khusus mode install/uninstall, pisahkan dengan spasi, misal: "lodash axios")'
         required: false
         default: ''
         type: string
       is_dev:
-        description: 'Simpan sebagai devDependency? (--dev / -d)'
+        description: 'Simpan sebagai devDependency? (--dev / -d) [Khusus mode Install]'
         required: false
         type: boolean
         default: false
@@ -41,31 +42,37 @@ jobs:
           
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
 
-      # --- STEP 1: TAMBAH PAKET BARU (Hanya jika mode 'paket') ---
-      - name: 🚀 Tambah Paket Baru
-        if: github.event.inputs.mode == 'paket' && github.event.inputs.packages != ''
+      # --- STEP 1: MANAJEMEN PAKET (INSTALL / UNINSTALL) ---
+      - name: 🚀 Kelola Paket (Install / Uninstall)
+        if: (github.event.inputs.mode == 'install' || github.event.inputs.mode == 'uninstall') && github.event.inputs.packages != ''
         run: |
+          MODE="${{ github.event.inputs.mode }}"
           PKGS="${{ github.event.inputs.packages }}"
           IS_DEV="${{ github.event.inputs.is_dev }}"
           
-          echo "Adding packages: $PKGS (DevDependency:$IS_DEV)"
-          if [[ "$IS_DEV" == "true" ]]; then
-            bun add -d $PKGS
-          else
-            bun add $PKGS
+          if [[ "$MODE" == "install" ]]; then
+            echo "Installing packages: $PKGS (DevDependency:$IS_DEV)"
+            if [[ "$IS_DEV" == "true" ]]; then
+              bun add -d $PKGS
+            else
+              bun add $PKGS
+            fi
+          elif [[ "$MODE" == "uninstall" ]]; then
+            echo "Uninstalling packages: $PKGS"
+            bun remove $PKGS
           fi
+          
           bun install
 
       # --- STEP 2: SYNC & MAP ASET VENDOR ---
-      # Berjalan otomatis pada Cron (Schedule), atau mode 'sync' & 'paket'
       - name: 🌈 Sync & Map Assets
-        if: github.event_name == 'schedule' || (github.event.inputs.mode == 'sync' || github.event.inputs.mode == 'paket')
+        if: github.event_name == 'schedule' || (github.event.inputs.mode == 'sync' || github.event.inputs.mode == 'install' || github.event.inputs.mode == 'uninstall')
         run: |
           set -euo pipefail
           mkdir -p dapur/fontawesome-webfonts
           mkdir -p mini
 
-          # 1. Install dependensi sync secara terisolasi (--no-save agar package.json root tidak tersentuh)
+          # 1. Install dependensi sync secara terisolasi tanpa merusak package.json root
           bun add @highlightjs/cdn-assets@latest @fortawesome/fontawesome-free@latest html2canvas@latest html2pdf.js@latest --no-save --trusted || true
           bun pm untrusted
           
