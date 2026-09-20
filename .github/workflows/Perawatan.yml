@@ -6,32 +6,29 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'Pilih Mode Operasi'
+        description: 'Pilih Mode Operasi (audit: Cek/Sync | upgrade: Update NCU | paket: Tambah Paket)'
         required: true
         default: 'audit'
         type: choice
         options:
-          - audit        # Hanya cek kesehatan dapur & audit isi (Read Only)
-          - upgrade      # Update versi paket via NCU + Sync Aset (Manual)
-          - paket        # Tambah paket baru + Sync Aset
+          - audit
+          - upgrade
+          - paket
       upgrade_type:
-        description: 'Tipe upgrade (khusus mode upgrade manual)'
+        description: 'Tipe Upgrade (Khusus mode "upgrade": minor = aman, latest = major/terbaru)'
         required: false
         default: 'minor'
         type: choice
-        options: [minor, latest]
-      action:
-        description: 'Aksi (khusus mode paket)'
-        required: false
-        default: 'add'
-        type: choice
-        options: [add]
+        options:
+          - minor
+          - latest
       packages:
-        description: 'Nama paket yang ingin ditambah'
+        description: 'Nama Paket (Khusus mode "paket", pisahkan dengan spasi, contoh: "lodash axios")'
         required: false
         default: ''
+        type: string
       is_dev:
-        description: 'DevDependency?'
+        description: 'Simpan sebagai devDependency? (--dev / -d)'
         required: false
         type: boolean
         default: false
@@ -49,30 +46,25 @@ jobs:
         with:
           fetch-depth: 1
           persist-credentials: true
+          
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
 
-      # --- STEP 1: MANAJEMEN PAKET MANUAL (Hanya jika dipicu manual 'upgrade' atau 'paket') ---
-      # Catatan: Cron otomatis TIDAK MENJALANKAN NCU karena update package.json sudah ditangani Renovate.
+      # --- STEP 1: MANAJEMEN PAKET MANUAL (Hanya jika mode 'upgrade' atau 'paket') ---
       - name: 🚀 Upgrade/Manage Packages
         if: github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket'
         run: |
           MODE="${{ github.event.inputs.mode }}"
-          ACTION="${{ github.event.inputs.action || 'add' }}"
           PKGS="${{ github.event.inputs.packages }}"
           IS_DEV="${{ github.event.inputs.is_dev }}"
           UPGRADE_TYPE="${{ github.event.inputs.upgrade_type || 'minor' }}"
           
           if [[ "$MODE" == "upgrade" ]]; then
-            echo "Running Manual Version Upgrade..."
+            echo "Running Manual Version Upgrade ($UPGRADE_TYPE)..."
             bun install
             bunx npm-check-updates -u --target "$UPGRADE_TYPE"
             bun install
           elif [[ "$MODE" == "paket" && -n "$PKGS" ]]; then
-            if [[ "$ACTION" != "add" ]]; then
-              echo "::error::Aksi '$ACTION' dilarang. Workflow ini hanya diperbolehkan menambah paket (add)."
-              exit 1
-            fi
-            echo "Adding packages: $PKGS"
+            echo "Adding packages: $PKGS (DevDependency:$IS_DEV)"
             if [[ "$IS_DEV" == "true" ]]; then
               bun add -d $PKGS
             else
@@ -83,7 +75,6 @@ jobs:
 
       # --- STEP 2: SYNC & MAP ASSETS ---
       - name: 🌈 Sync & Map Assets
-        if: github.event_name == 'schedule' || (github.event.inputs.mode == 'upgrade' || github.event.inputs.mode == 'paket')
         run: |
           set -euo pipefail
           mkdir -p dapur/fontawesome-webfonts
@@ -128,7 +119,7 @@ jobs:
           HLJS_VER=$(jq -r .version node_modules/@highlightjs/cdn-assets/package.json)
           MARKED_VER="${MARKED_VER:-$(curl -fsSL https://registry.npmjs.org/marked/latest | jq -r .version)}"
           
-          # 7. Simpan ke asset-info.txt (Lengkap dengan html2pdf)
+          # 7. Simpan ke asset-info.txt
           echo -e "fontawesome=$FA_VER\nhtml2canvas=$H2C_VER\nhtml2pdf=$H2PDF_VER\nhljs=$HLJS_VER\nmarked=$MARKED_VER\nqrcode=1.0.0-davidshimjs" | sort > mini/asset-info.txt
 
       # --- STEP 3: AUDIT DEPENDENSI & FILE (READ-ONLY) ---
