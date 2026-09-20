@@ -61,10 +61,9 @@ jobs:
           IS_DEV="${{ github.event.inputs.is_dev }}"
           UPGRADE_TYPE="${{ github.event.inputs.upgrade_type || 'minor' }}"
           
-          if [[ "$MODE" == "upgrade" \vert{}\vert{} "${{ github.event_name }}" == "schedule" ]]; then
+          if [[ "$MODE" == "upgrade" || "${{ github.event_name }}" == "schedule" ]]; then
             echo "Running Version Upgrade..."
             bun install
-            # ncu -u HANYA mengubah versi angka di package.json, TIDAK BISA menghapus baris
             bunx npm-check-updates -u --target "$UPGRADE_TYPE"
             bun install
           elif [[ "$MODE" == "paket" && -n "$PKGS" ]]; then
