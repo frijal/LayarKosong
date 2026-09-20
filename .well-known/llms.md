@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 25.99
-last_updated: 2026-09-18
+document_version: 26.0
+last_updated: 2026-09-20
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -39,8 +39,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 18 September 2026)
-> Menampilkan 1660 artikel versi 25.99.
+## Index Artikel Terbaru (Updated: 20 September 2026)
+> Menampilkan 1661 artikel versi 26.0.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -400,6 +400,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Keajaiban Istighfar: Kunci Sederhana Pembuka Pintu Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : keajaiban istighfar sebagai kunci pembuka pintu langit dan rezeki. Pelajari rahasia spiritual dan janji Allah dalam QS Nuh untuk hidup yang lebih lapang.
 
 ## Lainnya
+- [Merasa Berjasa dan Lupa Hakikat Pemberi Nikmat](https://dalam.web.id/lainnya/merasa-berjasa-lupa-pemberi-nikmat) : mengenai bahaya merasa paling berjasa atas kebaikan diri, serta pengingat hakiki bahwa Allah merupakan sumber utama segala karunia hidup.
 - [Evolusi Firmware PC: Perbedaan Arsitektur UEFI dan Legacy BIOS](https://dalam.web.id/lainnya/perbedaan-arsitektur-uefi-dan-bios-konvensional) : Ulasan lengkap perbedaan arsitektur UEFI dan BIOS konvensional, mulai dari batas MBR vs GPT, kecepatan boot, hingga fitur Secure Boot modern.
 - [Jebakan Produktivitas: Saat Manusia Diukur dari Kesibukan](https://dalam.web.id/lainnya/jebakan-produktivitas-manusia-diukur-dari-kesibukan) : jawaban mengapa kesibukan tanpa henti seringkali berujung pada hilangnya kebebasan. Pahami cara melepaskan diri dari siklus eksploitasi modern.
 - [6 Qari Murattal Populer Dunia dan Ciri Bacaannya](https://dalam.web.id/lainnya/6-qari-murattal-populer-dunia-dan-ciri-bacaannya) : enam qari murattal populer dunia, karakter suara dan gaya bacaan mereka, serta pilihan qari untuk tajwid, renungan, hafalan, dan murajaah.
@@ -23962,6 +23963,63 @@ Istighfar bukan sekadar deretan kata tanpa makna; ia adalah cara terbaik untuk p
 
 
 ## Kategori: Lainnya
+
+### Merasa Berjasa dan Lupa Hakikat Pemberi Nikmat
+
+**Kategori:** Lainnya | **Tanggal:** 2026-09-20T14:15:14.922Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/lainnya/merasa-berjasa-lupa-pemberi-nikmat)
+
+Bismillahir rahmanir rahim. Assalamu’alaikum warahmatullahi wabarakatuh.
+
+Menolong sesama sering kali mendatangkan kepuasan batin yang mendalam. Namun, di balik rasa syukur tersebut, ada perangkap halus yang kerap mengintai hati nurani kita: keinginan tak kasatmata untuk diakui, dikenang, serta dipandang sebagai pahlawan kehidupan bagi orang lain.
+
+Ketika sebuah pertolongan telah tuntas diberikan, ego manusia terkadang berbisik lirih menuntut penghormatan. Ucapan seperti "Kalau bukan karena saya, mungkin dia tidak akan bisa berdiri di posisinya sekarang" meluncur dengan begitu mudah, menyiratkan seolah roda takdir berputar semata-mata berkat uluran tangan pribadi kita.
+
+#### Peringatan Qur'ani dari Surah Al-Hujurat Ayat 17
+
+Kecenderungan merasa paling berjasa bukanlah penyakit baru dalam sejarah manusia. Al-Qur'an merekam fenomena psikologis ini secara gamblang, mengingatkan hamba-hamba-Nya agar tidak tersesat dalam ilusi kebaikan personal.
+
+Allah Subhanahu wa Ta'ala berfirman:
+
+"Mereka merasa telah berjasa kepadamu karena keislaman mereka. Katakanlah: 'Janganlah kamu merasa berjasa kepadaku dengan keislamanmu. Sebenarnya Allah yang melimpahkan karunia kepadamu dengan memberi petunjuk kepadamu kepada keimanan, jika kamu benar.'"
+
+(QS. Al-Hujurat: 17)
+
+Ayat yang mulia ini menyingkap tabir ilusi yang kerap menyelubungi amal perbuatan kita. Pesan utamanya sangat tegas: jangan pernah menempatkan diri sebagai sumber mata air kebaikan, tatkala seluruh sel tubuh dan hembusan napas kita sejatinya adalah penerima limpahan nikmat tiada henti.
+
+#### Mengurai Ilusi Kepemilikan dalam Setiap Bantuan
+
+Saat seseorang berhasil keluar dari jerat kesulitan finansial setelah kita bantu, wajar timbul rasa lega. Namun, siapakah yang sesungguhnya memberikan kita kelapangan harta dan kemurahan rezeki sehingga saldo rekening kita cukup untuk disisihkan?
+
+Ketika kita berhasil membimbing rekan kerja mendapatkan posisi yang mapan, siapa yang menganugerahkan kita kapasitas berpikir, kredibilitas komunikasi, dan jaringan relasi yang memungkinkan rekomendasi itu berbobot? Begitu pula saat kita mengajarkan ilmu kepada orang lain, siapa yang meniupkan akal sehat, daya ingat, serta mempertemukan kita dengan guru-guru hebat terdahulu?
+
+Fakta mendasar menunjukkan bahwa kemampuan kita untuk mengulurkan tangan bukanlah bukti kehebatan diri. Kemampuan itu adalah bukti nyata bahwa Allah sedang meminjamkan tenaga, waktu, dan materi-Nya kepada kita untuk diuji pertanggungjawabannya.
+
+#### Meruntuhkan Sikap Mengungkit yang Mengikis Kebaikan
+
+Kebaikan yang ternodai oleh rasa memiliki berisiko menjelma menjadi alat penindasan emosional. Kita memberi pinjaman, lalu menuntut kepatuhan mutlak; kita membukakan jalan karier, lalu mengharapkan sanjungan tiada akhir di ruang publik.
+
+Sikap merasa berjasa secara perlahan merusak hubungan persaudaraan dan menggugurkan nilai amal kebajikan itu sendiri. Menahan lisan dari mengungkit jasa masa lalu merupakan disiplin spiritual yang membutuhkan kejujuran nurani tingkat tinggi.
+
+Kerap kali rasa bangga diri menyusup tanpa disadari. Beberapa indikator batin berikut patut dijadikan cermin kejujuran diri:
+
+- Tersinggung saat tidak dihargai: Merasa kesal atau diremehkan ketika orang yang pernah dibantu tidak menyapa dengan hormat atau tidak meminta pendapat kita dalam keputusan penting hidupnya.
+- Sering menceritakan pertolongan kepada pihak ketiga: Mengulang kisah bagaimana kita telah menyelamatkan orang lain saat berbincang dengan kawan karib, meskipun dibungkus dalih berbagi pengalaman.
+- Menuntut keberpihakan buta: Menganggap orang yang pernah dibantu wajib selalu sependapat dan mendukung segala pandangan pribadi kita tanpa syarat.
+- Merasa posisi diri lebih tinggi: Menempatkan diri sebagai sosok penyelamat, sementara pihak yang ditolong dipandang sebagai pihak yang lemah dan berutang budi seumur hidup.
+#### Menemukan Kedamaian Sebagai Perantara Takdir
+
+Paradigma hidup akan berubah total ketika kita menyadari bahwa setiap kesempatan menolong sesama sejatinya adalah pertolongan Allah bagi diri kita sendiri. Allah berkenan membuka pintu pahala dan ladang amal jariyah melalui kehadiran orang yang membutuhkan uluran tangan kita.
+
+Oleh karena itu, ketika kawan, kerabat, atau murid kita mencapai kesuksesan gemilang berkat secuil bantuan yang pernah kita berikan, redamlah keangkuhan lisan. Hindari kalimat "Dia sukses karena bimbingan saya", dan gantilah dengan bisikan penuh rasa syukur di dalam dada:
+
+"Alhamdulillah, segala puji bagi Allah yang telah berkenan memilih raga yang lemah ini menjadi jalan perantara bagi kebaikan hamba-Nya."
+
+Betapa sering manusia sibuk mengkalkulasi jasa-jasa kecilnya kepada sesama, namun pada saat yang sama menutup mata dari ribuan nikmat dan ampunan Allah yang tak terhitung jumlahnya setiap hari. Menjaga kerendahan hati adalah benteng terbaik agar amal kebaikan tetap bernilai abadi di hadapan Sang Maha Pencipta.
+
+Allaahu a'lam wabaarakallaah. Selamat beraktivitas, semoga Allah Subhanahu wa Ta'ala senantiasa melimpahkan hidayah, rahmat, berkah, ampunan, kelapangan rezeki, kesehatan prima, keselamatan, kesuksesan, serta kebahagiaan sejati di dunia hingga akhirat kelak.
+
+---
+
 
 ### Evolusi Firmware PC: Perbedaan Arsitektur UEFI dan Legacy BIOS
 
