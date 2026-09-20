@@ -119,18 +119,31 @@ jobs:
           bun run dapur/sapu-bersih.ts
 
       # --- STEP 4: VERIFIKASI INTEGRITAS FONT ---
+      # --- STEP 4: VERIFIKASI INTEGRITAS FONT ---
       - name: 🔍 Font Integrity Check (Statis)
         id: font_check
         run: |
           mkdir -p mini
           OUTPUT="mini/fontawesome-verify.txt"
           PREV="mini/fontawesome-verify-prev.txt"
-          [ -f "$OUTPUT" ] && cp "$OUTPUT" "$PREV" \vert{}\vert{} touch "$PREV"
+          
+          if [ -f "$OUTPUT" ]; then
+            cp "$OUTPUT" "$PREV"
+          else
+            touch "$PREV"
+          fi
+
           printf "Font Integrity Report\nFilename | Size | SHA-256\n" > "$OUTPUT"
-          find dapur/fontawesome-webfonts -type f -regex ".*\.\(woff\Vert{}woff2\Vert{}ttf\)" | sort | while read -r f; do
-              printf "%s | %s | %s\n" "$(basename "$f")" "$(stat -c\%s "$f")" "$(sha256sum "$f" | awk '{print $1}')" >> "$OUTPUT"
+          
+          find dapur/fontawesome-webfonts -type f -regex ".*\.\(woff\|woff2\|ttf\)" | sort | while read -r f; do
+              printf "%s | %s | %s\n" "$(basename "$f")" "$(stat -c%s "$f")" "$(sha256sum "$f" | awk '{print $1}')" >> "$OUTPUT"
           done
-          [ -s "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null && echo "alert=true" >> $GITHUB_OUTPUT \vert{}\vert{} echo "alert=false" >> $GITHUB_OUTPUT
+
+          if [ -s "$PREV" ] && ! diff -q "$PREV" "$OUTPUT" > /dev/null; then
+            echo "alert=true" >> $GITHUB_OUTPUT
+          else
+            echo "alert=false" >> $GITHUB_OUTPUT
+          fi
 
       # --- STEP 5: DETEKSI PERUBAHAN & BUAT PR ---
       - name: 🛡️ Change Detection
