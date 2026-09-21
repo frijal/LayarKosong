@@ -11,7 +11,6 @@
     <meta name="color-scheme" content="light dark">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="application-name" content="Layar Kosong">
-    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
     <meta name="news_keywords" content="produktivitas dump truck, fuel ratio, hauling road, cycle time, ton kilometer per liter">
     <meta name="promphint" content="Bagaimana cara mengukur produktivitas dump truck? Hitung produktivitas ton per jam dari payload dibagi cycle time, lalu bagi konsumsi bahan bakar untuk memperoleh fuel ratio dalam liter per ton.">
     <meta property="og:site_name" content="Layar Kosong">
@@ -138,18 +137,39 @@ color:var(--muted);
 text-align:center;
 margin-top:.5rem;
 }
+/* Styling Khusus Notasi Matematika & Rumus */
 .rumus{
-font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 background:var(--card);
 border:1px solid var(--border);
-border-left:3px solid var(--accent);
+border-left:4px solid var(--accent);
 border-radius:.5rem;
-padding:.85rem 1rem;
-margin:1rem 0;
+padding:1.15rem 1rem;
+margin:1.25rem 0;
 overflow-x:auto;
+text-align:center;
+box-shadow:inset 0 1px 2px rgba(0,0,0,.03);
+}
+.rumus-duo{
+display:flex;
+align-items:center;
+justify-content:center;
+flex-wrap:wrap;
+gap:1rem 2rem;
+}
+.pemisah-rumus{
+font-style:italic;
+color:var(--muted);
 font-size:.95rem;
-line-height:1.9;
-white-space:nowrap;
+}
+math{
+font-family:"STIX Two Math","Cambria Math","Latin Modern Math",math,serif;
+font-size:1.05em;
+}
+.rumus math{
+font-size:1.25rem;
+}
+math[display="block"]{
+margin:0 auto;
 }
 ul,ol{padding-left:1.25rem;margin:0 0 1rem}
 li{margin-bottom:.4rem}
@@ -177,7 +197,7 @@ th,td{
 padding:.65rem .85rem;
 text-align:left;
 border-bottom:1px solid var(--border);
-vertical-align:top;
+vertical-align:middle;
 }
 thead th{background:var(--card);font-weight:700}
 tbody tr:last-child td{border-bottom:0}
@@ -236,39 +256,113 @@ footer a:hover{text-decoration:underline}
 <p>Karena itu, pendekatan yang dipakai di sini adalah pendekatan gabungan: hitung produktivitas fisik terlebih dahulu, ukur konsumsi energinya, lalu bandingkan keduanya dalam satu indikator yang bisa dipakai untuk mengambil keputusan harian di lapangan.</p>
 <h2>Menghitung Produktivitas, Waktu Edar, dan Konsumsi Bahan Bakar</h2>
 <p>Tiga perhitungan dasar berikut menjadi fondasi seluruh analisis. Produktivitas mengukur keluaran, waktu edar mengukur hambatan waktu, dan <i>fuel ratio</i> mengukur harga energi dari keluaran tersebut.</p>
+
 <h3>Produktivitas fisik per jam</h3>
-<p>Produktivitas menyatakan berapa ton material yang benar-benar berpindah dalam satu jam operasi. Angka ini diperoleh dari beban muatan rata-rata, waktu edar, dan efisiensi kerja armada.</p>
-<div class="rumus">P = (C × 60 / CT) × E</div>
+<p>Produktivitas mengukur berapa ton material yang benar-benar berpindah dalam kurun waktu satu jam operasi. Angka ini diperoleh dari beban muatan rata-rata, waktu edar total, dan faktor efisiensi kerja:</p>
+<div class="rumus">
+<math display="block">
+  <mi>P</mi>
+  <mo>=</mo>
+  <mfrac>
+    <mrow>
+      <mi>C</mi>
+      <mo>×</mo>
+      <mn>60</mn>
+    </mrow>
+    <mrow>
+      <mi>C</mi><mi>T</mi>
+    </mrow>
+  </mfrac>
+  <mo>×</mo>
+  <mi>E</mi>
+</math>
+</div>
 <ul>
-<li><b>P</b> = produktivitas alat dalam ton per jam</li>
-<li><b>C</b> = beban muatan rata-rata atau <i>payload</i> per trip dalam ton</li>
-<li><b>CT</b> = waktu edar total dalam menit</li>
-<li><b>E</b> = efisiensi kerja armada, misalnya 0,83 yang setara 50 menit kerja efektif per jam</li>
+<li><math><mi>P</mi></math> = produktivitas alat dalam ton per jam</li>
+<li><math><mi>C</mi></math> = beban muatan rata-rata atau <i>payload</i> per trip dalam ton</li>
+<li><math><mi>C</mi><mi>T</mi></math> = waktu edar (<i>cycle time</i>) total dalam menit</li>
+<li><math><mi>E</mi></math> = efisiensi kerja armada (misalnya 0,83 yang setara 50 menit kerja efektif per jam)</li>
 </ul>
+
 <h3>Waktu edar dan pengaruh jarak</h3>
 <p>Waktu edar adalah total waktu satu siklus penuh, mulai dari pemuatan sampai kembali ke titik muat berikutnya. Di dalamnya, jarak dan kondisi jalan masuk melalui waktu angkut dan waktu kembali.</p>
-<div class="rumus">CT = t_muat + t_angkut + t_dump + t_kembali + t_spot</div>
+<div class="rumus">
+<math display="block">
+  <mi>C</mi><mi>T</mi>
+  <mo>=</mo>
+  <msub><mi>t</mi><mtext>muat</mtext></msub>
+  <mo>+</mo>
+  <msub><mi>t</mi><mtext>angkut</mtext></msub>
+  <mo>+</mo>
+  <msub><mi>t</mi><mtext>dump</mtext></msub>
+  <mo>+</mo>
+  <msub><mi>t</mi><mtext>kembali</mtext></msub>
+  <mo>+</mo>
+  <msub><mi>t</mi><mtext>spot</mtext></msub>
+</math>
+</div>
 <p>Waktu angkut dan waktu kembali dihitung dari jarak dibagi kecepatan rata-rata, lalu dikonversi ke menit. Kecepatan rata-rata inilah yang paling sensitif terhadap kualitas jalan.</p>
-<div class="rumus">t_angkut = (D / V_muat) × 60&nbsp;&nbsp;&nbsp;&nbsp;t_kembali = (D / V_kosong) × 60</div>
+<div class="rumus rumus-duo">
+<math display="block">
+  <msub><mi>t</mi><mtext>angkut</mtext></msub>
+  <mo>=</mo>
+  <mfrac>
+    <mi>D</mi>
+    <msub><mi>V</mi><mtext>muat</mtext></msub>
+  </mfrac>
+  <mo>×</mo>
+  <mn>60</mn>
+</math>
+<span class="pemisah-rumus">dan</span>
+<math display="block">
+  <msub><mi>t</mi><mtext>kembali</mtext></msub>
+  <mo>=</mo>
+  <mfrac>
+    <mi>D</mi>
+    <msub><mi>V</mi><mtext>kosong</mtext></msub>
+  </mfrac>
+  <mo>×</mo>
+  <mn>60</mn>
+</math>
+</div>
 <ul>
-<li><b>D</b> = jarak angkut satu arah dalam kilometer</li>
-<li><b>V</b> = kecepatan rata-rata dalam kilometer per jam</li>
+<li><math><mi>D</mi></math> = jarak angkut satu arah dalam kilometer</li>
+<li><math><mi>V</mi></math> = kecepatan rata-rata armada dalam kilometer per jam (<math><msub><mi>V</mi><mtext>muat</mtext></msub></math> saat bermuatan dan <math><msub><mi>V</mi><mtext>kosong</mtext></msub></math> saat kosongan)</li>
 </ul>
+
 <h3>Fuel ratio sebagai ukuran efisiensi energi</h3>
 <p><i>Fuel ratio</i> membandingkan konsumsi bahan bakar per jam dengan volume kerja yang dihasilkan. Semakin kecil nilainya, semakin efisien unit tersebut memindahkan material.</p>
-<div class="rumus">FR = F / P</div>
+<div class="rumus">
+<math display="block">
+  <mi>F</mi><mi>R</mi>
+  <mo>=</mo>
+  <mfrac>
+    <mi>F</mi>
+    <mi>P</mi>
+  </mfrac>
+</math>
+</div>
 <ul>
-<li><b>FR</b> = <i>fuel ratio</i> dalam liter per ton</li>
-<li><b>F</b> = konsumsi bahan bakar per jam dalam liter</li>
-<li><b>P</b> = produktivitas fisik dalam ton per jam</li>
+<li><math><mi>F</mi><mi>R</mi></math> = <i>fuel ratio</i> dalam liter per ton</li>
+<li><math><mi>F</mi></math> = konsumsi bahan bakar per jam dalam liter/jam</li>
+<li><math><mi>P</mi></math> = produktivitas fisik dalam ton/jam</li>
 </ul>
+
 <h2>Kondisi Hauling Road dan Rantai Dampaknya</h2>
-<p>Kualitas jalan angkut diringkas dalam satu besaran bernama <i>Total Resistance</i>, yaitu jumlah dari tahanan gulung permukaan jalan dan tahanan kemiringan. Ketika total tahanan naik, kecepatan operasional turun, waktu edar membengkak, dan mesin dipaksa bekerja lebih berat sehingga bahan bakar boros. Dua komponen itulah yang perlu dipisahkan agar perbaikan jalan bisa tepat sasaran.</p>
-<h3>Rolling resistance</h3>
+<p>Kondisi jalan angkut (<i>hauling road</i>) diringkas dalam satu besaran bernama <b>Total Resistance (<math><mi>T</mi><mi>R</mi></math>)</b>, yaitu jumlah dari tahanan gulung permukaan jalan dan tahanan kemiringan. Ketika total tahanan naik, kecepatan operasional turun, waktu edar membengkak, dan mesin dipaksa bekerja lebih berat sehingga solar boros.</p>
+<h3>Rolling resistance (<math><mi>R</mi><mi>R</mi></math>)</h3>
 <p><i>Rolling resistance</i> berasal dari tipe dan kondisi permukaan jalan. Jalan keras dan padat memberi tahanan kecil, sedangkan jalan berlumpur, berdebu tebal, atau bergelombang memberi tahanan besar karena roda terus tenggelam dan kehilangan traksi.</p>
-<h3>Grade resistance</h3>
+<h3>Grade resistance (<math><mi>G</mi><mi>R</mi></math>)</h3>
 <p><i>Grade resistance</i> berasal dari kemiringan jalur, baik tanjakan maupun turunan. Tanjakan memaksa mesin mengeluarkan tenaga ekstra, sementara turunan panjang menuntut pengendalian kecepatan yang juga memengaruhi ritme siklus dan keausan rem.</p>
-<div class="rumus">TR = RR + GR</div>
+<div class="rumus">
+<math display="block">
+  <mtext>Total Resistance (TR)</mtext>
+  <mo>=</mo>
+  <mi>R</mi><mi>R</mi>
+  <mo>+</mo>
+  <mi>G</mi><mi>R</mi>
+</math>
+</div>
 <details>
 <summary><b>Klik untuk melihat detail teknis pengukuran hambatan jalan</b></summary>
 <div class="isi-detail">
@@ -285,11 +379,28 @@ footer a:hover{text-decoration:underline}
 <h3>Dampak berantai ke produktivitas dan konsumsi</h3>
 <p>Rantai dampaknya berjalan lurus dan mudah dilacak. Tahanan jalan yang tinggi menurunkan kecepatan angkut maupun kecepatan kembali, sehingga waktu edar memanjang. Waktu edar yang panjang menurunkan tonase per jam, sementara mesin yang bekerja lebih keras menaikkan konsumsi bahan bakar per jam.</p>
 <p>Karena pembilang naik dan penyebut turun, <i>fuel ratio</i> melonjak tajam. Inilah alasan mengapa perbaikan jalan sering kali menjadi intervensi dengan hasil tercepat dibandingkan menambah unit baru.</p>
+
 <h2>Ton-Kilometer per Liter sebagai Indikator Gabungan</h2>
-<p>Untuk menilai efisiensi secara menyeluruh, dibutuhkan indikator yang memasukkan unsur jarak sekaligus. Indikator tersebut adalah <b>Ton-Kilometer per Liter</b> atau TKPL, yang mengukur berapa ton material yang berhasil dipindahkan sejauh satu kilometer untuk setiap liter bahan bakar.</p>
-<div class="rumus">TKPL = (Payload × Jarak) / Total Bahan Bakar Terpakai</div>
+<p>Untuk menilai efisiensi secara menyeluruh, dibutuhkan indikator yang memasukkan unsur jarak sekaligus. Indikator tersebut adalah <b>Ton-Kilometer per Liter (TKPL)</b>, yang mengukur berapa ton material yang berhasil dipindahkan sejauh satu kilometer untuk setiap liter bahan bakar.</p>
+<div class="rumus">
+<math display="block">
+  <mtext>TKPL</mtext>
+  <mo>=</mo>
+  <mfrac>
+    <mrow>
+      <mtext>Payload (ton)</mtext>
+      <mo>×</mo>
+      <mtext>Jarak (km)</mtext>
+    </mrow>
+    <mrow>
+      <mtext>Total Bahan Bakar Terpakai (Liter)</mtext>
+    </mrow>
+  </mfrac>
+</math>
+</div>
 <p>Semakin tinggi nilai TKPL, semakin efisien unit tersebut. Indikator ini sangat berguna ketika membandingkan dua area kerja dengan jarak angkut berbeda, karena produktivitas ton per jam saja tidak adil untuk dibandingkan secara langsung.</p>
 <p>Perlu diingat bahwa TKPL tidak menggantikan <i>fuel ratio</i>, melainkan melengkapinya. <i>Fuel ratio</i> menjawab pertanyaan seberapa boros unit per ton material, sedangkan TKPL menjawab seberapa efisien unit memindahkan material per satuan energi dan jarak.</p>
+
 <h2>Simulasi: Jalan Baik Dibanding Jalan Berlumpur</h2>
 <p>Bayangkan sebuah dump truck berkapasitas muat 30 ton yang beroperasi pada jarak 3 kilometer satu arah. Unit yang sama dijalankan pada dua kondisi jalan yang berbeda, dengan efisiensi kerja yang diasumsikan sama.</p>
 <div class="tabel-wrap">
@@ -303,17 +414,17 @@ footer a:hover{text-decoration:underline}
 </tr>
 </thead>
 <tbody>
-<tr><td>Beban muatan (C)</td><td>30 ton</td><td>30 ton</td></tr>
-<tr><td>Jarak angkut (D)</td><td>3 km</td><td>3 km</td></tr>
-<tr><td>Kecepatan angkut</td><td>25 km/jam</td><td>15 km/jam</td></tr>
-<tr><td>Kecepatan kembali</td><td>35 km/jam</td><td>20 km/jam</td></tr>
+<tr><td>Beban muatan (<math><mi>C</mi></math>)</td><td>30 ton</td><td>30 ton</td></tr>
+<tr><td>Jarak angkut (<math><mi>D</mi></math>)</td><td>3 km</td><td>3 km</td></tr>
+<tr><td>Kecepatan angkut (<math><msub><mi>V</mi><mtext>muat</mtext></msub></math>)</td><td>25 km/jam</td><td>15 km/jam</td></tr>
+<tr><td>Kecepatan kembali (<math><msub><mi>V</mi><mtext>kosong</mtext></msub></math>)</td><td>35 km/jam</td><td>20 km/jam</td></tr>
 <tr><td>Waktu angkut dan kembali</td><td>12,34 menit</td><td>21,00 menit</td></tr>
-<tr><td>Waktu tetap</td><td>5,00 menit</td><td>5,00 menit</td></tr>
-<tr><td><b>Total cycle time</b></td><td><b>17,34 menit</b></td><td><b>26,00 menit</b></td></tr>
-<tr><td>Efisiensi kerja</td><td>0,83</td><td>0,83</td></tr>
-<tr><td><b>Produktivitas (P)</b></td><td><b>86,16 ton/jam</b></td><td><b>57,46 ton/jam</b></td></tr>
-<tr><td>Konsumsi bahan bakar (F)</td><td>25 liter/jam</td><td>28 liter/jam</td></tr>
-<tr><td><b>Fuel ratio (FR)</b></td><td><b>0,29 liter/ton</b></td><td><b>0,49 liter/ton</b></td></tr>
+<tr><td>Waktu tetap (<math><msub><mi>t</mi><mtext>load</mtext></msub><mo>+</mo><msub><mi>t</mi><mtext>dump</mtext></msub><mo>+</mo><msub><mi>t</mi><mtext>wait</mtext></msub></math>)</td><td>5,00 menit</td><td>5,00 menit</td></tr>
+<tr><td><b>Total cycle time (<math><mi>C</mi><mi>T</mi></math>)</b></td><td><b>17,34 menit</b></td><td><b>26,00 menit</b></td></tr>
+<tr><td>Efisiensi kerja (<math><mi>E</mi></math>)</td><td>0,83</td><td>0,83</td></tr>
+<tr><td><b>Produktivitas (<math><mi>P</mi></math>)</b></td><td><b>86,16 ton/jam</b></td><td><b>57,46 ton/jam</b></td></tr>
+<tr><td>Konsumsi bahan bakar (<math><mi>F</mi></math>)</td><td>25 liter/jam</td><td>28 liter/jam (karena beban mesin)</td></tr>
+<tr><td><b>Fuel ratio (<math><mi>F</mi><mi>R</mi></math>)</b></td><td><b>0,29 liter/ton</b></td><td><b>0,49 liter/ton</b></td></tr>
 </tbody>
 </table>
 </div>
@@ -322,20 +433,22 @@ footer a:hover{text-decoration:underline}
 <div class="catatan">
 <p>Perhatikan bahwa beban muatan dan jarak tidak berubah sama sekali dalam simulasi ini. Seluruh perbedaan kinerja murni berasal dari kondisi jalan angkut.</p>
 </div>
+
 <h2>Langkah Analisis Praktis di Lapangan</h2>
 <p>Analisis yang rapi bertumpu pada lima data pokok: payload rata-rata, waktu edar, jarak angkut, kondisi jalan, dan konsumsi bahan bakar. Ketika kelima data ini tersedia secara konsisten, nilai <i>fuel ratio</i> dan TKPL bisa dihitung, lalu dibandingkan antar unit maupun antar shift untuk menemukan sumber pemborosan.</p>
 <details>
 <summary><b>Klik untuk melihat detail teknis / langkah lanjutan</b></summary>
 <div class="isi-detail">
 <ol>
-<li><b>Ukur payload rata-rata.</b> Lakukan penimbangan berkala menggunakan <i>weightometer</i> atau <i>payload meter</i> bawaan unit untuk memastikan muatan optimal, tidak kurang dan tidak berlebih.</li>
-<li><b>Catat waktu edar dan jarak.</b> Manfaatkan GPS atau <i>Fleet Management System</i> untuk merekam waktu angkut, waktu kembali, serta jarak tempuh aktual per siklus.</li>
-<li><b>Evaluasi kondisi jalan.</b> Jika waktu tempuh membengkak pada jarak yang sama, telusuri titik dengan tahanan gulung tinggi atau kemiringan ekstrem, lalu prioritaskan perbaikannya.</li>
-<li><b>Ukur konsumsi bahan bakar.</b> Catat pengisian solar per jam operasi, atau ambil data langsung dari sistem telemetri <i>CAN bus</i> bila tersedia.</li>
-<li><b>Hitung dan bandingkan.</b> Kalkulasi <i>fuel ratio</i> serta TKPL antar unit dan antar shift. Jika nilainya tinggi, tentukan apakah penyebabnya waktu edar yang lambat atau masalah teknis pada unit.</li>
+<li><b>Ukur payload rata-rata (<math><mi>C</mi></math>).</b> Lakukan penimbangan berkala menggunakan <i>weightometer</i> atau <i>payload meter</i> bawaan unit untuk memastikan muatan optimal, tidak kurang dan tidak berlebih.</li>
+<li><b>Catat waktu edar (<math><mi>C</mi><mi>T</mi></math>) dan jarak (<math><mi>D</mi></math>).</b> Manfaatkan GPS atau <i>Fleet Management System</i> (FMS) untuk merekam waktu angkut, waktu kembali, serta jarak tempuh aktual per siklus.</li>
+<li><b>Evaluasi kondisi jalan.</b> Jika waktu tempuh membengkak pada jarak yang sama, telusuri titik dengan tahanan gulung (<math><mi>R</mi><mi>R</mi></math>) tinggi atau kemiringan (<math><mi>G</mi><mi>R</mi></math>) ekstrem, lalu prioritaskan perbaikannya.</li>
+<li><b>Ukur konsumsi bahan bakar (<math><mi>F</mi></math>).</b> Catat pengisian solar per jam operasi, atau ambil data langsung dari sistem telemetri <i>CAN bus</i> bila tersedia.</li>
+<li><b>Hitung dan bandingkan (<math><mi>F</mi><mi>R</mi></math> &amp; TKPL).</b> Kalkulasi <i>fuel ratio</i> serta TKPL antar unit dan antar shift. Jika nilainya tinggi, tentukan apakah penyebabnya waktu edar yang lambat atau masalah teknis pada unit.</li>
 </ol>
 </div>
 </details>
+
 <h2>Menutup Siklus: dari Data Lapangan ke Keputusan</h2>
 <p>Produktivitas dump truck pada akhirnya bukan sekadar pertanyaan berapa ritase yang selesai, melainkan berapa ton material yang berpindah untuk setiap liter solar yang dikorbankan. Beban muatan, jarak, kondisi jalan, dan konsumsi bahan bakar adalah satu kesatuan yang saling menentukan.</p>
 <p>Ketika keempatnya diukur dan dihitung secara konsisten, keputusan operasional menjadi jauh lebih terarah. Perbaikan jalan, penyesuaian rute, evaluasi payload, hingga penjadwalan perawatan unit bisa diprioritaskan berdasarkan angka, bukan berdasarkan dugaan.</p>
