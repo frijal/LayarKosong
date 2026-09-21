@@ -1,48 +1,131 @@
-name: 📂 pindahkan file ke folder lainnya
+name: File Mover & Copier
 
 on:
   workflow_dispatch:
     inputs:
-      file_extension:
-        description: 'Jenis file yang ingiin dipindahkan (contoh: mp3, jpg, txt)'
+      operation:
+        description: 'Pilih operasi'
         required: true
-        default: 'mp3'
-      source_folder:
-        description: 'Folder asal'
+        default: 'copy'
+        type: choice
+        options:
+          - copy
+          - move
+      source:
+        description: 'Path sumber (contoh: artikel/index.html atau artikel/*.html)'
         required: true
-        default: 'input'
-      destination_folder:
-        description: 'Folder tujuan'
+        type: string
+      destination:
+        description: 'Folder tujuan (contoh: backup/ atau arsip/2026/)'
         required: true
-        default: 'output'
+        type: string
+      commit_message:
+        description: 'Pesan commit (opsional)'
+        required: false
+        default: 'chore: pindahkan file via dispatch'
+        type: string
+      create_dest:
+        description: 'Buat folder tujuan jika belum ada'
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
 
 jobs:
-  move-files:
+  file-operation:
     runs-on: ubuntu-latest
-   
     steps:
       - name: Checkout repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 1
-          persist-credentials: true
+          fetch-depth: 0
 
-      - name: Buat folder tujuan jika belum ada
+      - name: Konfigurasi Git
         run: |
-          mkdir -p "${{ github.event.inputs.destination_folder }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Pindahkan file sesuai ekstensi
+      - name: Validasi input
+        run: |
+          echo "Operasi   : ${{ inputs.operation }}"
+          echo "Sumber    : ${{ inputs.source }}"
+          echo "Tujuan    : ${{ inputs.destination }}"
+          echo "Buat folder: ${{ inputs.create_dest }}"
+
+          if [ -z "${{ inputs.source }}" ]; then
+            echo "::error::Path sumber tidak boleh kosong."
+            exit 1
+          fi
+          if [ -z "${{ inputs.destination }}" ]; then
+            echo "::error::Path tujuan tidak boleh kosong."
+            exit 1
+          fi
+          if [ "${{ inputs.source }}" = "${{ inputs.destination }}" ]; then
+            echo "::error::Sumber dan tujuan tidak boleh sama."
+            exit 1
+          fi
+
+      - name: Siapkan folder tujuan
+        if: ${{ inputs.create_dest == true }}
+        run: |
+          mkdir -p "${{ inputs.destination }}"
+
+      - name: Cek folder tujuan
+        if: ${{ inputs.create_dest == false }}
+        run: |
+          if [ ! -d "${{ inputs.destination }}" ]; then
+            echo "::error::Folder tujuan '${{ inputs.destination }}' tidak ditemukan."
+            exit 1
+          fi
+
+      - name: Eksekusi copy
+        if: ${{ inputs.operation == 'copy' }}
         run: |
           shopt -s nullglob
-          for file in "${{ github.event.inputs.source_folder }}"/*.${{ github.event.inputs.file_extension }}; do
-            echo "Memindahkan $file ke ${{ github.event.inputs.destination_folder }}/"
-            mv "$file" "${{ github.event.inputs.destination_folder }}/"
+          set -e
+          matched=0
+          for f in ${{ inputs.source }}; do
+            if [ -f "$f" ]; then
+              echo "Menyalin: $f -> ${{ inputs.destination }}"
+              cp -v "$f" "${{ inputs.destination }}"
+              matched=$((matched+1))
+            elif [ -d "$f" ]; then
+              echo "Menyalin folder: $f -> ${{ inputs.destination }}"
+              cp -rv "$f" "${{ inputs.destination }}"
+              matched=$((matched+1))
+            fi
           done
+          if [ "$matched" -eq 0 ]; then
+            echo "::error::Tidak ada file/folder yang cocok dengan '${{ inputs.source }}'."
+            exit 1
+          fi
 
-      - name: Commit perubahan
+      - name: Eksekusi move
+        if: ${{ inputs.operation == 'move' }}
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          shopt -s nullglob
+          set -e
+          matched=0
+          for f in ${{ inputs.source }}; do
+            if [ -e "$f" ]; then
+              echo "Memindahkan: $f -> ${{ inputs.destination }}"
+              mv -v "$f" "${{ inputs.destination }}"
+              matched=$((matched+1))
+            fi
+          done
+          if [ "$matched" -eq 0 ]; then
+            echo "::error::Tidak ada file/folder yang cocok dengan '${{ inputs.source }}'."
+            exit 1
+          fi
+
+      - name: Commit dan push
+        run: |
           git add -A
-          git commit -m "Move *.${{ github.event.inputs.file_extension }} from ${{ github.event.inputs.source_folder }} to ${{ github.event.inputs.destination_folder }}" || echo "Tidak ada perubahan"
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan untuk di-commit."
+            exit 0
+          fi
+          git commit -m "${{ inputs.commit_message }}"
           git push
