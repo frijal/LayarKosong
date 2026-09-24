@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 26.12
+document_version: 26.13
 last_updated: 2026-09-24
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 24 September 2026)
-> Menampilkan 1671 artikel versi 26.12.
+> Menampilkan 1672 artikel versi 26.13.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -171,6 +171,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ## Jejak Sejarah
 - [Mengapa Muhammadiyah Tidak Alergi Pakar dalam Membangun Peradaban](https://dalam.web.id/jejak-sejarah/muhammadiyah-tidak-alergi-pakar-membangun-peradaban) : Muhammadiyah membuktikan peradaban maju tidak cukup dibangun dengan penceramah, melainkan mengandalkan sains, kepakaran, dan profesionalisme berkelanjutan.
+- [Jejak Internasionalisasi Muhammadiyah Menuju Kesemestaan](https://dalam.web.id/jejak-sejarah/jejak-internasionalisasi-muhammadiyah-menuju-kesemestaan) : Menelusuri transformasi gerakan Muhammadiyah dari Islam Berkemajuan hingga perumusan Risalah Kesemestaan dalam kancah peradaban global.
 - [Muhammadiyah Menembus Batas Negara: Dari Klang Lama Hingga Akar Gerakan](https://dalam.web.id/jejak-sejarah/muhammadiyah-menembus-batas-negara-ranting-klang-lama) : Pelantikan PRIM dan PRIA Klang Lama di Kuala Lumpur membuktikan bahwa ranting adalah akar kuat dakwah Muhammadiyah yang mampu menembus batas negara.
 - [Gereja Tua Jadi Masjid: Kisah Bangunan $1 di Utica](https://dalam.web.id/jejak-sejarah/gereja-jadi-masjid-utica) : Kisah bangunan gereja tua di Utica yang diselamatkan dari kerusakan, dibeli seharga $1, lalu dipulihkan menjadi masjid.
 - [Ternyata Abu Jahl Bukan Paman Nabi Muhammad](https://dalam.web.id/jejak-sejarah/ternyata-abu-jahl-bukan-paman-nabi-muhammad) : Abu Jahl dikenal sebagai penentang keras Nabi Muhammad ﷺ, tetapi banyak yang keliru menyebutnya paman Nabi. Simak penjelasan silsilahnya di sini.
@@ -9128,6 +9129,47 @@ Dalam praktik keorganisasian, keterlibatan pakar tercermin jelas dalam berbagai 
 Pelajaran terpenting dari perjalanan sejarah Muhammadiyah adalah pentingnya mencetak individu yang tidak sekadar pandai berwacana. Negeri ini telah memiliki banyak orator, namun masih terus membutuhkan para praktisi berilmu yang mampu menerjemahkan teori menjadi kebermanfaatan publik.
 
 Menciptakan peradaban pencerahan berarti melahirkan generasi yang kompeten di bidangnya masing-masing, berpegang teguh pada etika profesional, dan mendedikasikan keahliannya untuk kemanusiaan.
+
+---
+
+
+### Jejak Internasionalisasi Muhammadiyah Menuju Kesemestaan
+
+**Kategori:** Jejak-sejarah | **Tanggal:** 2026-09-24T02:51:16.602Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/jejak-sejarah/jejak-internasionalisasi-muhammadiyah-menuju-kesemestaan)
+
+Dalam beberapa tahun terakhir, Muhammadiyah menunjukkan dinamika perkembangan yang sangat menarik untuk dicermati. Gerakan Islam yang berakar kuat di tanah air ini tidak lagi hanya berbicara mengenai dinamika keumatan dan kebangsaan lokal, tetapi semakin aktif membangun jaringan, institusi, gagasan, serta kolaborasi di tingkat internasional.
+
+Apakah barisan aktivitas di mancanegara tersebut berjalan secara acak dan berdiri sendiri? Ataukah seluruh langkah strategis ini merupakan bagian dari orientasi yang lebih besar: sebuah proyek internasionalisasi berkelanjutan yang tengah bertransformasi menuju pilar Gerakan Kesemestaan?
+
+#### Perluasan Peran dan Institusi di Berbagai Belahan Dunia
+
+Jejak internasionalisasi Muhammadiyah sebenarnya telah terpetakan dengan sangat terang. Sebagaimana tertera dalam Risalah Islam Berkemajuan, misi internasionalisasi tidak hanya dimaknai sempit sebatas pembentukan Pimpinan Cabang Istimewa Muhammadiyah (PCIM) di luar negeri. Cakupannya meliputi dialog antar-peradaban, pendidikan global, bantuan kemanusiaan lintas batas, hingga perumusan sistem penanggalan universal.
+
+Pasca-Muktamar ke-48 di Surakarta pada tahun 2022, arah ini semakin nyata dan konkret. Muhammadiyah mengintensifkan internasionalisasi pada tiga ranah utama: gagasan, peran, dan gerakan nyata di lapangan.
+
+Penguatan simpul-simpul internasional Muhammadiyah tersebar secara strategis di berbagai kawasan dunia dengan fokus program yang terarah:
+
+- Malaysia: PCIM difungsikan sebagai jembatan komunikasi dengan institusi pemerintah serta memelopori pendirian Sekolah Internasional Muhammadiyah dan Universiti Muhammadiyah Malaysia (UMAM).
+- Thailand: Menjalin kemitraan akademik di bidang pendidikan, riset ilmiah, pengembangan inovasi halal, dan pemberdayaan masyarakat lokal.
+- Inggris: Memperluas jaringan dengan institusi terkemuka seperti East London Mosque, University of Cambridge, Oxford Centre for Islamic Studies, serta badan pemerintah Inggris terkait isu iklim, beasiswa, dan kemanusiaan.
+- Spanyol: Langkah monumental dilakukan oleh PWM Jawa Timur melalui akuisisi kompleks bangunan di Alcalá de Henares untuk dikembangkan sebagai pusat kebudayaan dan aktivitas umat Islam.
+#### Ekspor Produk Pemikiran Melalui Kalender Hijriah Global Tunggal
+
+Satu hal yang membedakan internasionalisasi Muhammadiyah adalah keberaniannya melakukan ekspor produk pemikiran ke tingkatan global. Salah satu karya intelektual terpenting yang diusung adalah Kalender Hijriah Global Tunggal (KHGT).
+
+Melalui KHGT, Muhammadiyah tidak sekadar hadir membawa nama organisasi, melainkan menawarkan solusi kepastian hukum dan keteraturan penanggalan bagi umat Islam di seluruh belahan bumi. Ini menunjukkan kapasitas persyarikatan dalam menyumbangkan kepakaran astronomi dan fikih yang relevan untuk peradaban modern.
+
+#### Menuju Muktamar ke-49: Menakar Paradigma Risalah Kesemestaan
+
+Apabila titik-titik perkembangan tersebut ditarik dalam satu garis lurus, terlihat sebuah pola evolusi gerakan yang sangat sistematis:
+
+Islam Berkemajuan → Internasionalisasi Gagasan → Internasionalisasi Peran → Internasionalisasi Gerakan → Jejaring Global → Gerakan Kesemestaan
+
+Persiapan menuju Muktamar ke-49 tahun 2027 mendatang kini mulai diramaikan dengan perumusan Risalah Kesemestaan. Konsep ini hadir sebagai konsekuensi logis dari semangat internasionalisasi yang telah dirintis. Kesemestaan menegaskan bahwa nilai-nilai keislaman dan kemanusiaan harus memberikan kemanfaatan universal bagi seluruh alam tanpa terbatas sekat geografis.
+
+Pertanyaan terpenting bagi masa depan persyarikatan kini bukan lagi apakah Muhammadiyah sedang melakukan ekspansi global, melainkan seberapa jauh gagasan kesemestaan ini mampu menjawab krisis peradaban, kemanusiaan, dan lingkungan hidup dunia.
+
+وَاللَّهُ أَعْلَمُ بِالصَّوَابِ
 
 ---
 
