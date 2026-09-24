@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 26.11
-last_updated: 2026-09-23
+document_version: 26.12
+last_updated: 2026-09-24
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -39,8 +39,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 23 September 2026)
-> Menampilkan 1669 artikel versi 26.11.
+## Index Artikel Terbaru (Updated: 24 September 2026)
+> Menampilkan 1671 artikel versi 26.12.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -170,6 +170,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Panduan Touring Kode Isyarat Konvoi Motor Resmi: Safety Riding Ala Bikers Indonesia 🏍️](https://dalam.web.id/gaya-hidup/rumus-dan-tata-cara-touring-sepeda-motor) : Panduan ini menjelaskan kode isyarat konvoi motor resmi yang wajib dipahami bikers saat touring, berdasarkan aturan Mabes Polri, untuk memastikan keselamatan dan kelancaran perjalanan. Berbagai isyarat tangan, kaki, dan klakson dibahas untuk komunikasi efektif antar anggota rombongan.
 
 ## Jejak Sejarah
+- [Mengapa Muhammadiyah Tidak Alergi Pakar dalam Membangun Peradaban](https://dalam.web.id/jejak-sejarah/muhammadiyah-tidak-alergi-pakar-membangun-peradaban) : Muhammadiyah membuktikan peradaban maju tidak cukup dibangun dengan penceramah, melainkan mengandalkan sains, kepakaran, dan profesionalisme berkelanjutan.
 - [Muhammadiyah Menembus Batas Negara: Dari Klang Lama Hingga Akar Gerakan](https://dalam.web.id/jejak-sejarah/muhammadiyah-menembus-batas-negara-ranting-klang-lama) : Pelantikan PRIM dan PRIA Klang Lama di Kuala Lumpur membuktikan bahwa ranting adalah akar kuat dakwah Muhammadiyah yang mampu menembus batas negara.
 - [Gereja Tua Jadi Masjid: Kisah Bangunan $1 di Utica](https://dalam.web.id/jejak-sejarah/gereja-jadi-masjid-utica) : Kisah bangunan gereja tua di Utica yang diselamatkan dari kerusakan, dibeli seharga $1, lalu dipulihkan menjadi masjid.
 - [Ternyata Abu Jahl Bukan Paman Nabi Muhammad](https://dalam.web.id/jejak-sejarah/ternyata-abu-jahl-bukan-paman-nabi-muhammad) : Abu Jahl dikenal sebagai penentang keras Nabi Muhammad ﷺ, tetapi banyak yang keliru menyebutnya paman Nabi. Simak penjelasan silsilahnya di sini.
@@ -895,6 +896,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Bahaya Sikap Oportunis dalam Institusi: Mengapa Kebenaran Jadi Korban?](https://dalam.web.id/opini-sosial/bahaya-penjilat-dalam-institusi) : Budaya pihak yang mengambil keuntungan sepihakan adalah masalah struktural dan budaya yang merusak institusi dengan mengikis meritokrasi, meminggirkan orang kompeten, serta menyebabkan disfungsi, korupsi, dan nepotisme. Ini menciptakan lingkungan toksik di mana kebenaran dihindari dan ketaatan buta dihargai di atas kompetensi, mengarah pada kegagalan besar.
 
 ## Sistem Terbuka
+- [BlankOn Linux 26.09 Sinambung Resmi Dirilis untuk Publik](https://dalam.web.id/sistem-terbuka/blankon-linux-26-09-sinambung) : Dapatkan informasi lengkap rilis BlankOn Linux 26.09 Sinambung berbasis Debian Sid dengan desktop Praya, repository staging teruji, serta tautan unduh resminya.
 - [ubuntu-latest Beralih ke Ubuntu 26.04: Apa Dampaknya?](https://dalam.web.id/sistem-terbuka/ubuntu-latest-beralih-ke-ubuntu-26-04) : Label ubuntu-latest di GitHub Actions dan Azure DevOps beralih ke Ubuntu 26.04 mulai 19 Oktober 2026. Simak jadwal, dampak, dan cara mitigasinya.
 - [CachyOS 2608 Rilis, Shelly v3 Ditulis Ulang dengan Zig](https://dalam.web.id/sistem-terbuka/cachyos-2608-rilis-shelly-v3-ditulis-ulang-dengan-zig) : CachyOS 2608 hadir dengan Shelly v3 yang ditulis ulang dalam Zig, dukungan eksperimental Server Edition, dan peningkatan installer grafis serta CLI.
 - [Linus Torvalds Pakai AI Perbaiki Bug Kernel Linux](https://dalam.web.id/sistem-terbuka/linus-torvalds-pakai-ai-perbaiki-bug-kernel-linux) : Linus Torvalds memakai AI untuk melacak bug di driver Intel Xe. Butuh 18 boot dan 24 patch debug untuk menemukan satu baris salah.
@@ -9089,6 +9091,46 @@ Jika suatu waktu kendaraan di depan Anda mengerem mendadak, dengan menjaga jarak
 
 
 ## Kategori: Jejak Sejarah
+
+### Mengapa Muhammadiyah Tidak Alergi Pakar dalam Membangun Peradaban
+
+**Kategori:** Jejak-sejarah | **Tanggal:** 2026-09-24T10:34:27.269Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/jejak-sejarah/muhammadiyah-tidak-alergi-pakar-membangun-peradaban)
+
+Pernahkah terlintas di benak kita, mengapa sebuah persyarikatan seperti Muhammadiyah mampu bertahan lebih dari satu abad, menaungi ribuan sekolah, puluhan perguruan tinggi, hingga ratusan rumah sakit di seluruh pelosok negeri? Rahasia utamanya terletak pada keterbukaan terhadap ilmu pengetahuan. Muhammadiyah tidak pernah alergi pada pakar.
+
+Semangat yang membara dan niat tulus memang menjadi bahan bakar utama pergerakan. Namun, dalam membangun peradaban yang berkesinambungan, semangat saja jelas tidak pernah cukup. Ia membutuhkan struktur ilmu yang teruji, metodologi yang presisi, serta kepakaran yang relevan dengan perkembangan zaman.
+
+#### Kesadaran Realistis Atas Kompleksitas Masalah Umat
+
+Sejak pertama kali didirikan oleh KH. Ahmad Dahlan, Muhammadiyah tumbuh dengan keinsafan mendalam bahwa persoalan sosial tidak bisa diselesaikan hanya dari atas mimbar. Ceramah agama dan nasihat moral adalah pilar spiritual, tetapi eksekusi solusi nyata membutuhkan kecakapan teknis dari para ahli.
+
+Tantangan zaman membutuhkan pembagian peran yang jelas berbasis keahlian spesifik:
+
+- Pendidikan: Membutuhkan para guru, pedagog, dan ilmuwan yang menguasai kurikulum serta ilmu pengajaran modern.
+- Kesehatan: Mengandalkan dokter, apoteker, dan tenaga medis yang bekerja berbasis metodologi ilmiah murni.
+- Hukum & Kebijakan: Memerlukan pakar hukum untuk memastikan keadilan sosial terwujud dalam koridor regulasi yang legal.
+- Ekonomi & Sosial: Menuntut kehadiran profesional bisnis, akuntan, dan sosiolog demi mengelola aset publik secara akuntabel.
+Tradisi menghargai keahlian inilah yang membuat Muhammadiyah selalu rasional dalam mengambil keputusan organisasi maupun keumatan.
+
+#### Menguji Pendapat Tanpa Meremehkan Keahlian
+
+Sikap menghargai pakar bukan berarti menciptakan kultus individu atau menganggap seorang ilmuwan tidak pernah salah. Muhammadiyah memandang pakar sebagai manusia yang pendapatnya tetap bisa keliru, berhak dikritik, serta wajib diuji secara ilmiah.
+
+Kuncinya terletak pada adab akademis. Ketika sebuah masyarakat bertransformasi menjadi masyarakat yang maju, mereka akan menguji argumen pakar dengan data dan metodologi yang sepadan, bukan membalas temuan ilmiah dengan tuduhan, asumsi liar, atau sekadar sentimen pribadi.
+
+Dalam praktik keorganisasian, keterlibatan pakar tercermin jelas dalam berbagai majelis dan lembaga teknis:
+
+- Majelis Tarjih dan Tajdid: Tidak hanya melibatkan ahli fikih, tetapi juga astronom dan ilmuwan falak untuk menetapkan kalender hijriah dan arah kiblat.
+- Majelis Pembina Kesehatan Umum (MPKU): Dikelola oleh dokter dan pakar manajemen rumah sakit secara profesional tanpa intervensi dogma non-medis.
+- MDMC (Muhammadiyah Disaster Management Center): Mengintegrasikan keahlian geologi, meteorologi, dan manajemen krisis dalam merespons bencana alam secara cepat dan terukur.
+#### Mengubah Kepakaran Menjadi Kemajuan Nyata
+
+Pelajaran terpenting dari perjalanan sejarah Muhammadiyah adalah pentingnya mencetak individu yang tidak sekadar pandai berwacana. Negeri ini telah memiliki banyak orator, namun masih terus membutuhkan para praktisi berilmu yang mampu menerjemahkan teori menjadi kebermanfaatan publik.
+
+Menciptakan peradaban pencerahan berarti melahirkan generasi yang kompeten di bidangnya masing-masing, berpegang teguh pada etika profesional, dan mendedikasikan keahliannya untuk kemanusiaan.
+
+---
+
 
 ### Muhammadiyah Menembus Batas Negara: Dari Klang Lama Hingga Akar Gerakan
 
@@ -54349,6 +54391,42 @@ Ketika keputusan strategis dibuat berdasarkan ilusi dan opini yang dipoles (apa 
 
 
 ## Kategori: Sistem Terbuka
+
+### BlankOn Linux 26.09 Sinambung Resmi Dirilis untuk Publik
+
+**Kategori:** Sistem-terbuka | **Tanggal:** 2026-09-24T08:54:57.824Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/sistem-terbuka/blankon-linux-26-09-sinambung)
+
+Kabar gembira yang dinantikan oleh penggiat open source dan pengembang teknologi nasional akhirnya tiba. Setelah melewati masa pengerjaan intensif selama 303 hari sejak proyek ini dibangkitkan kembali pada 23 November 2025, tim pengembang secara resmi mengumumkan peluncuran BlankOn Linux 26.09 Sinambung.
+
+Sistem operasi kebanggaan Indonesia ini hadir membawa nama kode ISO Verbeek. Perilisan ini menjadi tonggak sejarah penting yang membuktikan konsistensi komunitas dalam merawat kedaulatan digital dan menyediakan sistem operasi yang tangguh untuk kebutuhan harian.
+
+#### Arsitektur Rolling Release Berbasis Debian Sid yang Ditingkatkan
+
+Salah satu perubahan mendasar pada rilis Sinambung adalah adopsi skema rolling release berbasis Debian Sid. Pendekatan ini memungkinkan pengguna untuk mendapatkan pembaruan perangkat lunak paling mutakhir tanpa perlu melakukan instalasi ulang secara berkala saat ada versi baru.
+
+Untuk menjaga keandalan sistem, setiap paket perangkat lunak dari Debian Sid tidak langsung disalurkan ke pengguna akhir. Tim pengembang menerapkan mekanisme penyaringan ketat melalui staging repository terlebih dahulu untuk pengujian stabilitas.
+
+Pendekatan bertahap ini menjamin bahwa paket-paket terbaru tetap aman digunakan untuk aktivitas komputasi harian, baik untuk kebutuhan perkantoran, edukasi, maupun pengembangan perangkat lunak.
+
+#### Kehadiran Praya: Penerus Lingkungan Meja Manokwari
+
+Sisi antarmuka menjadi salah satu keunggulan utama dari rilis ini. BlankOn Linux 26.09 Sinambung memperkenalkan Praya, sebuah lingkungan meja (desktop environment) modern yang dirancang sebagai penerus resmi dari Manokwari.
+
+Praya menyajikan pengalaman visual yang bersih, intuitif, dan ringan. Tampilan ini didesain agar ramah bagi pengguna baru sekaligus efisien untuk mendongkrak produktivitas para pengguna berpengalaman.
+
+Anda dapat mengunduh ISO resmi BlankOn Linux Sinambung serta berpartisipasi langsung dalam mendukung keberlanjutan proyek ini melalui tautan berikut:
+
+- Unduh ISO Resmi: https://blankonlinux.id/id
+- Program Sponsorship: https://blankon.id/en/sponsorship
+- Dukungan Donasi: https://blankon.id/en/donate
+#### Kolaborasi Komunitas dan Semangat Gotong Royong
+
+Peluncuran rilis Sinambung merupakan buah dari kolaborasi panjang antara kontributor, donatur, sponsor, dan seluruh anggota komunitas open source. Keberhasilan ini menegaskan bahwa kerja bersama mampu menghasilkan karya teknologi yang berdampak luas bagi bangsa.
+
+Mari unduh, uji coba, dan berikan kontribusi terbaik untuk terus memajukan sistem operasi lokal ini. Salam Merdeka! ✊
+
+---
+
 
 ### ubuntu-latest Beralih ke Ubuntu 26.04: Apa Dampaknya?
 
