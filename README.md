@@ -39,48 +39,111 @@ Trigger otomatis utamanya adalah push ke branch `main` yang mengubah file `artik
 ### Diagram Pipeline
 
 ```mermaid
-graph TD
+flowchart TD
+
     Start(((Push / Manual))) --> Trigger{"Trigger"}
 
     Trigger -->|Push ke main<br>artikelx/*.html| Phase1
-    Trigger -->|workflow_dispatch| Manual["Pilih toggle proses<br>dan deploy_mode"]
+    Trigger -->|workflow_dispatch| Manual["Pilih proses<br>+ deploy mode"]
 
     Manual --> Phase1
 
     subgraph WF["📡 Workflow: Artikel Baru Kombo"]
         direction TB
 
-        Phase1["🔰 Fase 1<br>Proses ArtikelX"]
+        %% =========================
+        %% FASE 1
+        %% =========================
+
+        Phase1["🔰 Fase 1<br><b>Proses ArtikelX</b>"]
+
         A1["Edit-Komponen-HTML.ts"]
         A2["gantifontshighlight.ts"]
         A3["seo-fixer.ts"]
         A4["Move artikelx/ → artikel/<br>+ local commit"]
 
-        Phase1 --> A1 --> A2 --> A3 --> A4
+        Phase1 --> A1
+        A1 --> A2
+        A2 --> A3
+        A3 --> A4
 
-        A4 --> Phase2["🏗️ Fase 2<br>Build & Generate"]
+
+        %% =========================
+        %% FASE 2
+        %% =========================
+
+        A4 --> Phase2["🏗️️ Fase 2<br><b>Build & Generate</b>"]
+
         B1["generator-pro.ts<br>artikel.json + XML + RSS"]
         B2["srcset-generator.ts"]
-        B3["koki.ts + sitemap + llms + redirectmap"]
+        B3["koki.ts<br>sitemap + llms + redirectmap"]
         B4["inject-schema.ts"]
-        B5["minify-html.ts + minify-jsonxml.ts"]
+        B5["minify-html.ts<br>+ minify-jsonxml.ts"]
         B6["Final local commit"]
 
-        Phase2 --> B1 --> B2 --> B3 --> B4 --> B5 --> B6
+        Phase2 --> B1
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+        B4 --> B5
+        B5 --> B6
 
-        B6 --> Phase3["🚀 Fase 3<br>Prepare & Deploy"]
+
+        %% =========================
+        %% FASE 3
+        %% =========================
+
+        B6 --> Phase3["🚀 Fase 3<br><b>Prepare & Deploy</b>"]
+
         C1["rsync → deploy_dir/"]
         C2["Generate wrangler.jsonc"]
         C3["Download current D1 state"]
         C4["Diff → d1-patch.sql"]
         C5["Execute D1 patch"]
-        C6["Cloudflare Pages Deploy<br>retry maksimal 3x"]
+        C6["Cloudflare Pages Deploy<br>retry maksimal 3×"]
         C7["Purge cache katalog<br>+ rapikan deployment lama"]
 
-        Phase3 --> C1 --> C2 --> C3 --> C4 --> C5 --> C6 --> C7
+        Phase3 --> C1
+        C1 --> C2
+        C2 --> C3
+        C3 --> C4
+        C4 --> C5
+        C5 --> C6
+        C6 --> C7
     end
 
     C7 --> Live(((Layar Kosong<br>Go Live! 🎉)))
+
+
+    %% =========================
+    %% RAW GITHUB LINKS
+    %% =========================
+
+    click A1 "https://raw.githubusercontent.com/frijal/layarkosong/main/dapur/Edit-Komponen-HTML.ts"
+    click A2 "https://raw.githubusercontent.com/frijal/layarkosong/main/dapur/gantifontshighlight.ts"
+    click A3 "https://raw.githubusercontent.com/frijal/layarkosong/main/dapur/seo-fixer.ts"
+
+    click B1 "https://raw.githubusercontent.com/frijal/layarkosong/main/dapur/generator-pro.ts"
+    click B2 "https://raw.githubusercontent.com/frijal/layarkosong/main/dapur/srcset-generator.ts"
+    click B3 "https://raw.githubusercontent.com/frijal/layarkosong/main/dapur/koki.ts"
+    click B4 "https://raw.githubusercontent.com/frijal/layarkosong/main/dapur/inject-schema.ts"
+    click B5 "https://raw.githubusercontent.com/frijal/layarkosong/main/dapur/minify-html.ts"
+
+    %% =========================
+    %% STYLES
+    %% =========================
+
+    classDef trigger fill:#e0e7ff,stroke:#4f46e5,stroke-width:2px,color:#312e81
+    classDef phase1 fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#172554
+    classDef phase2 fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f
+    classDef phase3 fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+    classDef live fill:#ccfbf1,stroke:#0f766e,stroke-width:2px,color:#134e4a
+
+    class Start,Trigger,Manual trigger
+    class Phase1,A1,A2,A3,A4 phase1
+    class Phase2,B1,B2,B3,B4,B5,B6 phase2
+    class Phase3,C1,C2,C3,C4,C5,C6,C7 phase3
+    class Live live
 ```
 
 > **Catatan penting:** diagram ini menggambarkan pipeline yang sekarang digunakan. Tidak ada lagi handoff antar-`workflow_run` untuk Proses ArtikelX → Build → Cloudflare Deployer. Ketiga fase tersebut berada dalam satu workflow dan satu job.
