@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: 📥 Checkout Repo Utama (Layar Kosong)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           path: main-repo
 
       - name: 📥 Checkout Repo Wiki
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: ${{ github.repository }}.wiki
           path: main-repo/wiki # Ditaruh di dalam folder repo utama biar gampang dibaca script
