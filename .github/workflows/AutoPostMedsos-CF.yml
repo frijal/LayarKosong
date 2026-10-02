@@ -95,31 +95,27 @@ jobs:
 
     steps:
       - name: 🛰️ Checkout Repository Utama
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
           persist-credentials: true
           path: main-repo
-
-      - name: 📥 Checkout Repo Wiki
-        uses: actions/checkout@v7
-        with:
-          repository: ${{ github.repository }}.wiki
-          path: main-repo/wiki
-          persist-credentials: true
-          submodules: false
-
-      - name: 🧹 Buang .git Wiki Biar Gak Dianggap Submodule
-        run: rm -rf main-repo/wiki/.git
 
       - name: 🚀 Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: 📦 Install
+      - name: 📦 Install Dependencies
         working-directory: ./main-repo
         run: bun install
+
+      - name: 📖 Clone Wiki Manual (Tanpa Submodule Action)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Clone repo wiki langsung via HTTPS dengan token, dijamin bersih dari pantauan submodule GitHub Actions!
+          git clone https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.wiki.git main-repo/wiki
 
       - name: 🧾 Siapkan Log Automation MedSos
         run: |
