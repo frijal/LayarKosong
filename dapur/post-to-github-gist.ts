@@ -188,7 +188,7 @@ async function run() {
         await Bun.write(TRACKER_FILE, Array.from(postedSlugs).join('\n'));
         
         // Jeda 5 detik antar request untuk menghindari rate limit GitHub
-        await sleep(1000);
+        await sleep(800);
 
       } catch (postError: any) {
         console.error(`❌ Gagal upload Gist "${safeTitle}":`, postError.message);
@@ -196,7 +196,7 @@ async function run() {
         // Penanganan secondary rate limit GitHub API
         if (postError.message.includes("secondary rate limit") || postError.message.includes("403") || postError.message.includes("submitted too quickly")) {
           console.warn("⏳ Terkena Rate Limit GitHub. Mengistirahatkan skrip selama 40 detik...");
-          await sleep(40000);
+          await sleep(1000);
         }
       }
     }
