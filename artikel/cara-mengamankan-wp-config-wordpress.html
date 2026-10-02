@@ -1,27 +1,64 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cara Mengamankan wp-config.php WordPress</title>
-<link rel="canonical" href="https://dalam.web.id/artikel/cara-mengamankan-wp-config-wordpress.html">
-<meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
-<meta name="description" content="Pelajari cara mengamankan wp-config.php WordPress dengan mematikan editor, membatasi revisi, memaksa SSL, dan mengganti salt keys.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Cara Mengamankan wp-config.php WordPress">
-<meta property="og:url" content="https://dalam.web.id/artikel/cara-mengamankan-wp-config-wordpress.html">
-<meta property="og:description" content="Panduan praktis memperkuat wp-config.php WordPress agar dashboard, sesi login, dan database lebih terlindungi tanpa konfigurasi berlebihan.">
-<meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/WordPress%20Security%20Configuration%20Guide.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cara Mengamankan wp-config.php WordPress">
-<meta name="twitter:description" content="Mengenal konfigurasi penting wp-config.php, termasuk DISALLOW_FILE_EDIT, FORCE_SSL_ADMIN, revisi artikel, autosave, serta salt keys.">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/WordPress%20Security%20Configuration%20Guide.png">
-<meta name="news_keywords" content="WordPress, wp-config.php, keamanan WordPress, salt keys, database WordPress">
-<meta property="article:tag" content="WordPress">
-<meta property="article:tag" content="Keamanan Website">
-<meta property="article:tag" content="wp-config.php">
-<meta name="promphint" content="Bagaimana mengamankan wp-config.php WordPress? Matikan editor file, paksa SSL admin, batasi revisi, atur autosave, dan gunakan salt keys acak.">
-
+<!DOCTYPE html><html lang="id-ID" prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article#"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cara Mengamankan wp-config.php WordPress - Layar Kosong</title>
+    <meta name="description" content="cara mengamankan wp-config.php WordPress dengan mematikan editor, membatasi revisi, memaksa SSL, dan mengganti salt keys.">
+    <link rel="canonical" href="https://dalam.web.id/artikelx/cara-mengamankan-wp-config-wordpress">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="googlebot" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+    <meta name="author" content="Fakhrul Rijal">
+    <meta name="theme-color" content="#00b0ed">
+    <meta name="color-scheme" content="light dark">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="application-name" content="Layar Kosong">
+    <meta name="apple-mobile-web-app-title" content="Layar Kosong">
+    <meta name="news_keywords" content="WordPress, wp-config.php, keamanan WordPress, salt keys, database WordPress">
+    <meta name="promphint" content="Bagaimana mengamankan wp-config.php WordPress? Matikan editor file, paksa SSL admin, batasi revisi, atur autosave, dan gunakan salt keys acak.">
+    <meta property="og:site_name" content="Layar Kosong">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://dalam.web.id/artikelx/cara-mengamankan-wp-config-wordpress">
+    <meta property="og:title" content="Cara Mengamankan wp-config.php WordPress">
+    <meta property="og:description" content="Panduan praktis memperkuat wp-config.php WordPress agar dashboard, sesi login, dan database lebih terlindungi tanpa konfigurasi berlebihan.">
+    <meta property="og:updated_time" content="2026-10-02T05:02:03.082Z">
+    <meta property="og:image" content="https://dalam.web.id/img/raw.githubusercontent.com/f4ce38f6976ab866.webp">
+    <meta property="og:image:url" content="https://dalam.web.id/img/raw.githubusercontent.com/f4ce38f6976ab866.webp">
+    <meta property="og:image:secure_url" content="https://dalam.web.id/img/raw.githubusercontent.com/f4ce38f6976ab866.webp">
+    <meta property="og:image:alt" content="Cara Mengamankan wp-config.php WordPress">
+    <meta property="og:image:width" content="1672">
+    <meta property="og:image:height" content="941">
+    <meta property="og:image:type" content="image/webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" content="dalam.web.id">
+    <meta name="twitter:url" content="https://dalam.web.id/artikelx/cara-mengamankan-wp-config-wordpress">
+    <meta name="twitter:title" content="Cara Mengamankan wp-config.php WordPress">
+    <meta name="twitter:description" content="konfigurasi penting wp-config.php, termasuk DISALLOW_FILE_EDIT, FORCE_SSL_ADMIN, revisi artikel, autosave, serta salt keys.">
+    <meta name="twitter:image" content="https://dalam.web.id/img/raw.githubusercontent.com/f4ce38f6976ab866.webp">
+    <meta name="twitter:image:alt" content="Cara Mengamankan wp-config.php WordPress">
+    <meta name="twitter:widgets:new-embed-design" content="on">
+    <meta name="twitter:site" content="@responaja">
+    <meta name="twitter:creator" content="@responaja">
+    <meta name="twitter:account_id" content="1872520777138122752">
+    <meta name="fediverse:creator" content="@frijal@mastodon.social">
+    <meta property="article:author" content="https://facebook.com/frijal">
+    <meta property="article:publisher" content="https://facebook.com/frijalpage">
+    <meta property="fb:app_id" content="175216696195384">
+    <meta property="fb:pages" content="917962134736490">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="alternate" type="application/rss+xml" title="Feed 30 artikel baru bikin." href="https://dalam.web.id/rss.rss">
+    <link rel="alternate" type="application/atom+xml" title="Atom 30 artikel baru bikin." href="https://dalam.web.id/atom.atom">
+    <link rel="search" type="application/opensearchdescription+xml" title="Layar Kosong" href="/opensearch.xml">
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
+    <link rel="me" href="https://mastodon.social/@frijal">
+    <link rel="me" href="https://github.com/frijal">
+    <script defer="" src="/ext/data-provider.js"></script>
+    <meta property="article:tag" content="WordPress">
+    <meta property="article:tag" content="Keamanan Website">
+    <meta property="article:tag" content="wp-config.php">
+    <meta property="article:published_time" content="2026-10-02T04:55:35.330Z">
+    <meta property="article:modified_time" content="2026-10-02T05:02:03.082Z">
 <style>
 :root{--bg:#fff;--text:#222;--muted:#555;--accent:#0675d8;--border:#d9d9d9;--code:#f4f6f8;--screen-padding:1rem;--nested-padding:0rem}
 @media(prefers-color-scheme:dark){
@@ -57,12 +94,10 @@ ul,ol{padding-left:1.4rem}
 :root{--screen-padding:2.5rem;--nested-padding:1.5rem}
 }
 </style>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-<script defer>document.addEventListener("DOMContentLoaded",()=>{hljs.highlightAll()});</script>
-</head>
-
+<link rel="stylesheet" href="/ext/github-dark.min.css">
+<script defer="" src="/ext/highlight.js"></script>
+<script defer="">document.addEventListener("DOMContentLoaded",()=>{hljs.highlightAll()});</script>
+<link rel="stylesheet" href="/ext/pemandu.css"></head>
 <body>
 <main class="container">
 <article>
@@ -70,60 +105,35 @@ ul,ol{padding-left:1.4rem}
 <h1>Cara Mengamankan wp-config.php WordPress</h1>
 <p class="lead">File <code>wp-config.php</code> adalah salah satu komponen penting WordPress karena menyimpan konfigurasi database dan berbagai pengaturan inti. Setelah konfigurasi dasar berfungsi, beberapa pengaturan tambahan dapat membantu memperkecil permukaan serangan sekaligus menjaga database tetap terkendali.</p>
 </header>
-
 <div class="article-body">
-
 <p>WordPress memang dapat berjalan dengan konfigurasi yang relatif sederhana. Namun, pada website yang sudah aktif dan memiliki banyak artikel, membiarkan seluruh kemampuan administrasi terbuka tanpa alasan yang jelas dapat menambah risiko yang sebenarnya tidak perlu.</p>
-
 <p>Pengamanan pada tahap ini bukan berarti memasang puluhan aturan yang sulit dipelihara. Justru beberapa konstanta bawaan WordPress sudah menyediakan cara sederhana untuk mematikan editor file, membatasi revisi artikel, memaksa HTTPS pada area administrasi, dan memperkuat mekanisme cookie serta nonce.</p>
-
 <figure>
-<img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/WordPress%20Security%20Configuration%20Guide.png" width="1200" height="630" fetchpriority="high" decoding="async" alt="Ilustrasi pengamanan konfigurasi WordPress dan database website">
+<img src="https://dalam.web.id/img/raw.githubusercontent.com/f4ce38f6976ab866.webp" width="1200" height="630" fetchpriority="high" decoding="async" alt="Ilustrasi pengamanan konfigurasi WordPress dan database website">
 <figcaption>Pengamanan <code>wp-config.php</code> sebaiknya dilakukan secara terukur agar keamanan meningkat tanpa membuat konfigurasi sulit dirawat.</figcaption>
 </figure>
-
 <h2>Empat pengaturan yang layak diperhatikan</h2>
-
 <p>Jika konfigurasi dasar WordPress sudah normal dan mode debug untuk website produksi telah dimatikan, perhatian berikutnya dapat diarahkan pada empat bagian: editor file, revisi artikel, koneksi HTTPS untuk administrasi, dan secret keys atau salts. Keempatnya menangani masalah yang berbeda sehingga tidak sebaiknya dianggap sebagai satu pengaturan keamanan yang sama.</p>
-
 <h3>1. Matikan editor file WordPress</h3>
-
 <p>Konstanta <code>DISALLOW_FILE_EDIT</code> dapat digunakan untuk menghilangkan kemampuan mengedit file tema dan plugin langsung dari dashboard WordPress.</p>
-
 <pre><code class="language-php">define( 'DISALLOW_FILE_EDIT', true );</code></pre>
-
 <p>Ini penting karena dashboard administrator bukan tempat yang ideal untuk mengubah source code secara langsung. Dengan editor tersebut dimatikan, akun yang memiliki akses administrasi tidak otomatis mendapatkan antarmuka untuk menyisipkan atau mengubah kode PHP tema maupun plugin.</p>
-
 <p>Perlu dibedakan antara <i>file editing</i> dan instalasi atau pembaruan plugin. <code>DISALLOW_FILE_EDIT</code> berfokus pada editor kode di dashboard, bukan berarti seluruh kemampuan pengelolaan plugin WordPress otomatis hilang.</p>
-
 <h3>2. Batasi jumlah revisi artikel</h3>
-
 <p>WordPress menyimpan revisi tulisan sehingga pengguna dapat kembali ke versi sebelumnya. Fitur tersebut berguna, tetapi pada website dengan aktivitas penerbitan tinggi jumlah revisi dapat terus bertambah.</p>
-
 <pre><code class="language-php">define( 'WP_POST_REVISIONS', 5 );</code></pre>
-
 <p>Nilai <code>5</code> pada contoh tersebut berarti WordPress dibatasi untuk menyimpan hingga lima revisi. Pengaturan ini bukan sekadar soal keamanan, tetapi juga pengendalian pertumbuhan data yang tidak selalu memberikan manfaat setelah jumlah revisi tertentu.</p>
-
 <p>Jika kebutuhan editorial website berbeda, angka tersebut dapat disesuaikan. Jangan menganggap angka lima sebagai nilai universal untuk semua website karena kebutuhan situs berita, blog pribadi, dokumentasi, dan website dengan banyak editor bisa berbeda.</p>
-
 <h3>3. Paksa SSL untuk area administrasi</h3>
-
 <p>Untuk website yang sudah berjalan melalui HTTPS, area login dan administrasi WordPress sebaiknya juga menggunakan koneksi terenkripsi.</p>
-
 <pre><code class="language-php">define( 'FORCE_SSL_ADMIN', true );</code></pre>
-
 <p>Dengan pengaturan tersebut, WordPress diarahkan menggunakan HTTPS ketika menangani halaman administrasi. Ini membantu melindungi lalu lintas antara browser dan server ketika kredensial serta data sesi digunakan.</p>
-
 <div class="note">
 <p><b>Penting:</b> pastikan HTTPS pada domain memang sudah aktif dan berfungsi dengan benar sebelum menerapkan pengaturan ini. Konfigurasi SSL yang belum siap dapat menyebabkan masalah ketika mengakses area administrasi.</p>
 </div>
-
 <h2>Mengapa Salt Keys perlu diganti?</h2>
-
 <p>WordPress menggunakan sekumpulan <i>secret keys</i> dan <i>salts</i> untuk membantu mengamankan cookie, sesi autentikasi, serta token keamanan tertentu. Nilai ini seharusnya berupa string acak yang hanya tersimpan pada konfigurasi server.</p>
-
 <p>Bagian ini berbeda dari password administrator. Kamu tidak mengetik salt ketika login dan tidak perlu menghafalnya. WordPress menggunakannya secara internal untuk memperkuat mekanisme autentikasi dan keamanan sesi.</p>
-
 <pre><code class="language-php">define('AUTH_KEY',         'isi-dengan-string-acak');
 define('SECURE_AUTH_KEY',  'isi-dengan-string-acak');
 define('LOGGED_IN_KEY',    'isi-dengan-string-acak');
@@ -132,25 +142,15 @@ define('AUTH_SALT',        'isi-dengan-string-acak');
 define('SECURE_AUTH_SALT', 'isi-dengan-string-acak');
 define('LOGGED_IN_SALT',   'isi-dengan-string-acak');
 define('NONCE_SALT',       'isi-dengan-string-acak');</code></pre>
-
 <p>Jangan menggunakan contoh teks di atas sebagai nilai sebenarnya. Gunakan generator resmi WordPress untuk mendapatkan nilai acak baru, kemudian tempelkan hasilnya ke dalam <code>wp-config.php</code>.</p>
-
 <p>Generator resmi yang disebut dalam konfigurasi tersebut dapat diakses melalui <a href="https://api.wordpress.org/secret-key/1.1/salt/" rel="noopener noreferrer">API Secret Key WordPress</a>.</p>
-
 <h2>Apakah Salt Keys perlu disimpan secara offline?</h2>
-
 <p>Untuk penggunaan sehari-hari, kamu tidak perlu menyimpan Salt Keys dalam catatan offline hanya agar dapat menggunakannya saat login. WordPress membaca nilainya langsung dari <code>wp-config.php</code>, sementara pengguna tidak perlu memasukkannya secara manual.</p>
-
 <p>Namun, ada perbedaan antara <b>tidak perlu menghafal</b> dan <b>tidak perlu memiliki cadangan sama sekali</b>. Jika kamu mempunyai sistem backup konfigurasi server yang aman, menyertakan file konfigurasi tersebut dalam backup terenkripsi dapat berguna ketika website harus dipulihkan.</p>
-
 <p>Yang harus dihindari adalah menyimpan salinan <code>wp-config.php</code> secara sembarangan, terutama jika file tersebut juga berisi kredensial database. Salinan konfigurasi sebaiknya diperlakukan sebagai informasi rahasia dan tidak diletakkan pada repository publik, cloud drive tanpa perlindungan, atau perangkat yang tidak dipercaya.</p>
-
 <h3>Penggantian salt akan memengaruhi sesi login</h3>
-
 <p>Salah satu konsekuensi penting ketika Salt Keys diganti adalah sesi autentikasi yang sedang aktif dapat menjadi tidak valid. Artinya, pengguna yang sedang login, termasuk administrator, mungkin harus masuk kembali.</p>
-
 <p>Dalam konteks keamanan, perilaku tersebut dapat berguna ketika ada dugaan bahwa secret lama pernah diketahui pihak yang tidak berwenang. Setelah salt diganti, sesi lama tidak seharusnya diperlakukan sebagai sesi yang masih dipercaya.</p>
-
 <details>
 <summary><b>Kapan sebaiknya Salt Keys diganti?</b></summary>
 <div>
@@ -158,16 +158,12 @@ define('NONCE_SALT',       'isi-dengan-string-acak');</code></pre>
 <p>Untuk website yang normal dan tidak memiliki indikasi kompromi, tidak ada alasan untuk mengganti salt secara terus-menerus. Yang lebih penting adalah memastikan nilainya acak, rahasia, dan tidak terekspos melalui source repository atau backup yang tidak terlindungi.</p>
 </div>
 </details>
-
 <h2>Contoh konfigurasi yang lebih rapi</h2>
-
 <p>Berikut contoh bagian konfigurasi yang dapat dijadikan pola. Kredensial database sengaja tidak dicantumkan karena nilai tersebut merupakan rahasia yang tidak boleh dipublikasikan.</p>
-
 <pre><code class="language-php">&lt;?php
 /**
  * Konfigurasi Utama WordPress - Hardened Version
  */
-
 /* Pengaturan Database */
 define( 'DB_NAME', 'nama_database' );
 define( 'DB_USER', 'nama_user_database' );
@@ -175,21 +171,17 @@ define( 'DB_PASSWORD', 'password_database' );
 define( 'DB_HOST', 'localhost' );
 define( 'DB_CHARSET', 'utf8mb4' );
 define( 'DB_COLLATE', '' );
-
 /* Prefix Tabel Database */
 $table_prefix = 'wp_';
-
 /* Mode Debug */
 define( 'WP_DEBUG', false );
 define( 'WP_DEBUG_LOG', false );
 define( 'WP_DEBUG_DISPLAY', false );
-
 /* Keamanan dan Optimasi */
 define( 'DISALLOW_FILE_EDIT', true );
 define( 'FORCE_SSL_ADMIN', true );
 define( 'WP_POST_REVISIONS', 5 );
 define( 'AUTOSAVE_INTERVAL', 160 );
-
 /* Authentication Unique Keys and Salts */
 define('AUTH_KEY',         'string-acak-dari-generator-wordpress');
 define('SECURE_AUTH_KEY',  'string-acak-dari-generator-wordpress');
@@ -199,20 +191,14 @@ define('AUTH_SALT',        'string-acak-dari-generator-wordpress');
 define('SECURE_AUTH_SALT', 'string-acak-dari-generator-wordpress');
 define('LOGGED_IN_SALT',   'string-acak-dari-generator-wordpress');
 define('NONCE_SALT',       'string-acak-dari-generator-wordpress');
-
 /* ABSPATH WordPress */
 if ( ! defined( 'ABSPATH' ) ) {
     define( 'ABSPATH', __DIR__ . '/' );
 }
-
 require_once ABSPATH . 'wp-settings.php';</code></pre>
-
 <p>Nilai <code>AUTOSAVE_INTERVAL</code> pada contoh tersebut mengatur jeda autosave dalam detik. Pengaturan ini sebaiknya disesuaikan dengan kebutuhan kerja editor, karena autosave dan revisi adalah dua mekanisme yang berbeda.</p>
-
 <h2>Urutan penerapan yang aman</h2>
-
 <p>Sebelum mengubah <code>wp-config.php</code>, buat backup terlebih dahulu. Pastikan kamu mempunyai cara untuk mengembalikan file apabila terdapat kesalahan sintaks atau konfigurasi.</p>
-
 <ol>
 <li>Backup <code>wp-config.php</code> dan database.</li>
 <li>Pastikan website sudah dapat diakses menggunakan HTTPS.</li>
@@ -223,38 +209,26 @@ require_once ABSPATH . 'wp-settings.php';</code></pre>
 <li>Ganti delapan nilai key dan salt dengan hasil generator.</li>
 <li>Simpan konfigurasi dan uji login ke dashboard.</li>
 </ol>
-
 <p>Setelah selesai, periksa halaman depan, login administrator, editor artikel, plugin, serta fungsi penting lainnya. Hardening yang baik bukan hanya membuat konfigurasi terlihat lebih ketat, tetapi juga tetap menjaga website dapat beroperasi sebagaimana mestinya.</p>
-
 <h2>Satu hal yang lebih penting: jangan membocorkan kredensial database</h2>
-
 <p><code>wp-config.php</code> biasanya mengandung informasi yang jauh lebih sensitif daripada sekadar pengaturan WordPress. Nama database, username database, dan terutama password database tidak boleh ditempelkan pada forum publik, repository terbuka, screenshot, atau percakapan yang dapat diakses pihak lain.</p>
-
 <p>Jika kredensial database pernah terlanjur terekspos, langkah yang lebih aman adalah mengganti password user database tersebut melalui panel hosting atau sistem administrasi database, kemudian memperbarui nilai <code>DB_PASSWORD</code> di <code>wp-config.php</code>.</p>
-
 <p>Prinsipnya sederhana: <b>anggap semua kredensial yang pernah dipublikasikan sebagai kredensial yang sudah tidak rahasia</b>. Mengganti password jauh lebih aman daripada berharap informasi tersebut tidak pernah digunakan oleh pihak lain.</p>
-
 <h2>Hardening tidak harus rumit</h2>
-
 <p>Pengamanan <code>wp-config.php</code> tidak harus dilakukan dengan menambahkan konfigurasi sebanyak mungkin. Beberapa pengaturan yang tepat sasaran sudah dapat mengurangi risiko pada area yang penting: editor kode, penyimpanan revisi, koneksi administrasi, dan mekanisme autentikasi.</p>
-
 <p>Salt Keys juga tidak perlu diperlakukan seperti password yang harus kamu hafalkan. Yang paling penting adalah menjaga nilainya tetap rahasia, menggunakan nilai acak dari generator resmi, serta memiliki backup konfigurasi yang aman bila website memang membutuhkan prosedur pemulihan.</p>
-
 <p>Dengan pendekatan seperti ini, konfigurasi WordPress tetap sederhana untuk dipelihara, sementara beberapa permukaan risiko yang tidak diperlukan dapat ditutup.</p>
-
-<!--wajib ini tulis signature artikel oleh LayarKosong-->
+<div id="related-articles-grid"></div><div id="response"></div><div id="iposbrowser"></div>
 </div>
 </article>
-
 <footer class="container">
 <div class="meta">
-<span>Ditulis oleh Fakhrul Rijal</span>
+<span>Artikel dari Fakhrul Rijal</span>
 <span>•</span>
 <span>Diperbarui 2 Oktober 2026</span>
 <span>•</span>
-<a href="https://dalam.web.id/">dalam.web.id</a>
+<a href="https://dalam.web.id/">Jaga Data Pribadi Tetap Aman</a>
 </div>
-</footer>
+ <a target="_blank" rel="noopener noreferrer" href="/about">☕</a> <a target="_blank" rel="noopener noreferrer" href="/data-deletion">🛡️</a> <a target="_blank" rel="noopener noreferrer" href="/disclaimer">⚠️</a> <a target="_blank" rel="noopener noreferrer" href="/disclosure">📝</a> <a target="_blank" rel="noopener noreferrer" href="/lisensi">📚</a> <a target="_blank" rel="noopener noreferrer" href="/privacy">🔰</a> <a target="_blank" rel="noopener noreferrer" href="/security-policy">⚔️</a></footer>
 </main>
-</body>
-</html>
+<div id="progress"></div><a id="layar-kosong-header" href="https://dalam.web.id/"></a><div class="search-floating-container"><input type="text" id="floatingSearchInput" placeholder="cari artikel..." autocomplete="off"><span id="floatingSearchClear" class="clear-button"></span><div id="floatingSearchResults" class="floating-results-container"></div></div><div id="internal-nav"></div><script defer="" src="/ext/pemandu.js"></script><script defer="" src="/ext/iposbrowser.js"></script><script defer="" src="/ext/lightbox.js"></script><script defer="" src="/ext/response.js"></script><script>if('modelContext' in navigator){navigator.modelContext.provideContext({tools:[{name:"baca_llms_index",description:"Mengambil daftar lengkap artikel Layar Kosong",inputSchema:{type:"object",properties:{}},execute:async()=>{const res=await fetch('/llms.txt');return await res.text()}}]})}</script></body></html>
