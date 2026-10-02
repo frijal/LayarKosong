@@ -255,7 +255,7 @@ Layar Kosong Wiki
         const footerContent = `
 <div align="center">
 
-**Layar Kosong Wiki** • Dikelola oleh [Fakhrul Rijal](https://dalam.web.id)  
+**Layar Kosong Wiki** • Dikelola oleh [Fakhrul Rijal](https://github.com/frijal)  
 Kunjungi situs utama kami di [dalam.web.id](https://dalam.web.id)
 
 <small>© ${new Date().getFullYear()} Layar Kosong. Arsip Pengetahuan & Dokumentasi Digital.</small>
