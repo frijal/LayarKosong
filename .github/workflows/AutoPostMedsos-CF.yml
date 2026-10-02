@@ -48,8 +48,8 @@ on:
         default: false
         type: boolean
 
-      diskusi_rss:
-        description: "📰 RSS kirim ke Diskusi GitHub"
+      github_wiki:
+        description: "📖 Sync ke GitHub Wiki"
         required: false
         default: false
         type: boolean
@@ -94,10 +94,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🛰️ Checkout Repository
+      - name: 🛰️ Checkout Repository Utama
         uses: actions/checkout@v7
         with:
           fetch-depth: 1
+          persist-credentials: true
+          path: main-repo
+
+      - name: 📥 Checkout Repo Wiki
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ github.repository }}.wiki
+          path: main-repo/wiki
           persist-credentials: true
 
       - name: 🚀 Setup Bun
@@ -106,6 +114,7 @@ jobs:
           bun-version: latest
 
       - name: 📦 Install
+        working-directory: ./main-repo
         run: bun install
 
       - name: 🧾 Siapkan Log Automation MedSos
@@ -114,23 +123,38 @@ jobs:
           : > "$RUNNER_TEMP/automation-medsos.log"
 
       # =========================================================
-      # 🟢 AUTOMATION SCRIPTS (SEKUANSIAL KHUSUS RSS & MAINTENANCE)
+      # 🟢 AUTOMATION SCRIPTS (SEKUANSIAL KHUSUS WIKI, GIST & MAINTENANCE)
       # =========================================================
 
-      - name: 📰 RSS kirim ke Diskusi Github
-        id: diskusi_rss
-        if: github.event_name == 'schedule' || inputs.all || inputs.diskusi_rss
+      - name: 📖 Sync ke GitHub Wiki
+        id: github_wiki
+        if: github.event_name == 'schedule' || inputs.all || inputs.github_wiki
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -o pipefail
-          bun run dapur/post-to-github-disc.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+          # Jalankan script wiki dari dalam folder main-repo
+          cd main-repo
+          bun run dapur/post-to-github-wiki.ts 2>&1 | tee -a "$MEDSOS_LOG_FILE"
+          
+          # Commit & Push khusus untuk folder Wiki
+          cd wiki
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          if git diff --staged --quiet; then
+            echo "ℹ️ Wiki: Tidak ada perubahan baru."
+          else
+            git commit -m "📝 Auto-update: Wiki & Tracker Sync [$(date +'%Y-%m-%d %H:%M')]"
+            git push origin master || git push origin main
+          fi
 
       - name: 📝 RSS kirim ke GitHub Gist
         id: gist_rss
         if: github.event_name == 'schedule' || inputs.all || inputs.gist_rss
         continue-on-error: true
+        working-directory: ./main-repo
         env:
           GITHUB_TOKEN: ${{ secrets.GIST_TOKEN }}
         run: |
@@ -141,6 +165,7 @@ jobs:
         id: cloudflare
         if: github.event_name == 'schedule' || inputs.all || inputs.cloudflare
         continue-on-error: true
+        working-directory: ./main-repo
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
@@ -157,6 +182,7 @@ jobs:
         id: medsos_parallel
         if: github.event_name == 'schedule' || inputs.all || inputs.mastodon || inputs.threads || inputs.linkedin || inputs.tumblr || inputs.discord || inputs.facebook || inputs.twitter || inputs.wordpress || inputs.blogspot
         continue-on-error: true
+        working-directory: ./main-repo
         env:
           MASTODON_INSTANCE: mastodon.social
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
@@ -237,7 +263,7 @@ jobs:
       - name: 📋 Ringkasan Hasil Job
         if: always()
         env:
-          STATUS_DISKUSI_RSS: ${{ steps.diskusi_rss.outcome }}
+          STATUS_GITHUB_WIKI: ${{ steps.github_wiki.outcome }}
           STATUS_GIST_RSS: ${{ steps.gist_rss.outcome }}
           STATUS_CLOUDFLARE: ${{ steps.cloudflare.outcome }}
           STATUS_MEDSOS_PARALLEL: ${{ steps.medsos_parallel.outcome }}
@@ -299,7 +325,7 @@ jobs:
 
           LOG="$(clean_log || true)"
 
-          RSS_COUNT="$(get_last '📦 Terdeteksi [0-9]+ artikel baru\.' 's/.*📦 Terdeteksi ([0-9]+) artikel baru\./\1/')"
+          WIKI_COUNT="$(get_last '✅ BERHASIL MERENDER : [0-9]+ ARTIKEL BARU' 's/.*✅ BERHASIL MERENDER : ([0-9]+) ARTIKEL BARU.*/\1/')"
           GIST_COUNT="$(get_last '📦 Terdeteksi [0-9]+ artikel baru secara keseluruhan\.' 's/.*📦 Terdeteksi ([0-9]+) artikel baru secara keseluruhan\./\1/')"
 
           CF_DELETE="$(get_last '🗑 Preview total akan dihapus: [0-9]+' 's/.*🗑 Preview total akan dihapus: ([0-9]+).*/\1/')"
@@ -318,9 +344,9 @@ jobs:
             fi
           fi
 
-          RSS_REPORT=""
-          if [ -n "$RSS_COUNT" ]; then
-            RSS_REPORT="${RSS_COUNT} artikel baru"
+          WIKI_REPORT=""
+          if [ -n "$WIKI_COUNT" ]; then
+            WIKI_REPORT="${WIKI_COUNT} artikel di-sync"
           fi
 
           GIST_REPORT=""
@@ -345,33 +371,34 @@ jobs:
             echo "|---|---|---|"
           } >> "$GITHUB_STEP_SUMMARY"
 
-          row "Cloudflare Cleanup 🧹"    "$STATUS_CLOUDFLARE"              "$CF_REPORT"
-          row "Blogspot Planet 🧡"       "$(get_status "$BLOGSPOT_TITLE")" "$BLOGSPOT_TITLE"          
-          row "Discord 🦋"               "$(get_status "$DISCORD_TITLE")"  "$DISCORD_TITLE"
-          row "Facebook 🚀"              "$(get_status "$FACEBOOK_TITLE")" "$FACEBOOK_TITLE"
-          row "LinkedIn 🆕"              "$(get_status "$LINKEDIN_TITLE")" "$LINKEDIN_TITLE"
-          row "Mastodon 🐘"              "$(get_status "$MASTODON_TITLE")" "$MASTODON_TITLE"
-          row "RSS ke Diskusi GitHub 📰" "$STATUS_DISKUSI_RSS"             "$RSS_REPORT"
-          row "RSS ke GitHub Gist 📝"    "$STATUS_GIST_RSS"                "$GIST_REPORT"
-          row "Threads ⚙️"               "$(get_status "$THREADS_TITLE")"  "$THREADS_TITLE"
-          row "Tumblr 🎨"                "$(get_status "$TUMBLR_TITLE")"   "$TUMBLR_TITLE"
-          row "Twitter / X 🐦"           "$(get_status "$TWITTER_TITLE")"  "$TWITTER_TITLE"
-          row "WordPress Planet 🪐"      "$(get_status "$WORDPRESS_TITLE")" "$WORDPRESS_TITLE"
+          row "Cloudflare Cleanup 🧹"        "$STATUS_CLOUDFLARE"            "$CF_REPORT"
+          row "Blogspot Planet 🧡"        "$(get_status "$BLOGSPOT_TITLE")" "$BLOGSPOT_TITLE"         
+          row "Discord 🦋"                "$(get_status "$DISCORD_TITLE")"  "$DISCORD_TITLE"
+          row "Facebook 🚀"               "$(get_status "$FACEBOOK_TITLE")" "$FACEBOOK_TITLE"
+          row "LinkedIn 🆕"               "$(get_status "$LINKEDIN_TITLE")" "$LINKEDIN_TITLE"
+          row "Mastodon 🐘"               "$(get_status "$MASTODON_TITLE")" "$MASTODON_TITLE"
+          row "Sync ke GitHub Wiki 📖"    "$STATUS_GITHUB_WIKI"             "$WIKI_REPORT"
+          row "RSS ke GitHub Gist 📝"     "$STATUS_GIST_RSS"                "$GIST_REPORT"
+          row "Threads ⚙️"                "$(get_status "$THREADS_TITLE")"  "$THREADS_TITLE"
+          row "Tumblr 🎨"                 "$(get_status "$TUMBLR_TITLE")"   "$TUMBLR_TITLE"
+          row "Twitter / X 🐦"            "$(get_status "$TWITTER_TITLE")"  "$TWITTER_TITLE"
+          row "WordPress Planet 🪐"       "$(get_status "$WORDPRESS_TITLE")" "$WORDPRESS_TITLE"
 
       # =========================================================
-      # 💾 FINAL COMMIT
+      # 💾 FINAL COMMIT (UNTUK REPO UTAMA)
       # =========================================================
 
-      - name: 💾 Save All Changes
+      - name: 💾 Save All Changes (Main Repo)
+        working-directory: ./main-repo
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
 
           if git diff --staged --quiet; then
-            echo "ℹ️ Ga ada kerjaan baru, skip commit."
+            echo "ℹ️ Ga ada perubahan di main repo, skip commit."
           else
-            git commit -m "chore: MedSos Post [$(date +'%Y-%m-%d %H:%M')]"
-            git pull origin main --rebase --autostash
-            git push
+            git commit -m "chore: MedSos & Wiki Sync [$(date +'%Y-%m-%d %H:%M')]"
+            git pull origin main --rebase --autostash || git pull origin master --rebase --autostash
+            git push origin main || git push origin master
           fi
