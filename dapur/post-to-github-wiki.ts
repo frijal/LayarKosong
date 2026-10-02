@@ -261,7 +261,7 @@ Kunjungi situs utama kami di [dalam.web.id](https://dalam.web.id)
 <small>© ${new Date().getFullYear()} Layar Kosong. Arsip Pengetahuan & Dokumentasi Digital.</small>
 
 </div>
----`;
+`;
         await Bun.write(join(WIKI_DIR, "_Footer.md"), footerContent);
         console.log("✅ Halaman _Footer.md berhasil digenerate!");
         
