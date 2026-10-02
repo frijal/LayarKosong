@@ -95,19 +95,22 @@ jobs:
 
     steps:
       - name: 🛰️ Checkout Repository Utama
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
           persist-credentials: true
           path: main-repo
 
       - name: 📥 Checkout Repo Wiki
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.repository }}.wiki
           path: main-repo/wiki
           persist-credentials: true
-          submodules: false # <-- TAMBAHKAN INI BIAR GITHUB NGGAK ANGGAP SEBAGAI SUBMODULE
+          submodules: false
+
+      - name: 🧹 Buang .git Wiki Biar Gak Dianggap Submodule
+        run: rm -rf main-repo/wiki/.git
 
       - name: 🚀 Setup Bun
         uses: oven-sh/setup-bun@v2
