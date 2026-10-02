@@ -3,9 +3,9 @@ import { mkdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
 // --- KONFIGURASI ---
-const WIKI_DIR = './wiki'; // Folder repo wiki (sesuai setup GitHub Actions)
+const WIKI_DIR = process.env.WIKI_DIR || './wiki'; // Mendukung path eksternal via ENV
 const DB_PATH = './artikel.json'; // Database utama
-const TRACKER_FILE = 'wiki/mini/posted-githubwiki.txt'; 
+const TRACKER_FILE = join(WIKI_DIR, 'mini/posted-githubwiki.txt'); // Dinamis mengikuti WIKI_DIR!
 const MAX_PER_CATEGORY = 4; // Sesuai kesepakatan: 4 artikel per kategori per run
 const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/frijal/layarkosong/main/';
 
