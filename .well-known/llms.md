@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 26.21
-last_updated: 2026-10-01
+document_version: 26.22
+last_updated: 2026-10-02
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -39,8 +39,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 1 Oktober 2026)
-> Menampilkan 1683 artikel versi 26.21.
+## Index Artikel Terbaru (Updated: 2 Oktober 2026)
+> Menampilkan 1684 artikel versi 26.22.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -1364,6 +1364,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Ubuntu Jogja ke GCOS Jakarta](https://dalam.web.id/sistem-terbuka/perjalanan-ubuntu-jogja-gcos) : Catatan perjalanan Ubuntu Jogja ke GCOS Jakarta: bus malam, singgah Kebumen, silaturahmi KPLI, dan penghargaan Komunitas FOSS terbaik.
 
 ## Warta Tekno
+- [Cara Mengamankan wp-config.php WordPress](https://dalam.web.id/warta-tekno/cara-mengamankan-wp-config-wordpress) : cara mengamankan wp-config.php WordPress dengan mematikan editor, membatasi revisi, memaksa SSL, dan mengganti salt keys.
 - [Sejarah Windows Longhorn: Proyek Gagal yang Menjadi DNA Windows 11](https://dalam.web.id/warta-tekno/sejarah-windows-longhorn-dna-windows-11) : kisah di balik Windows Longhorn, OS revolusioner Microsoft yang batal rilis namun mewariskan teknologi canggih seperti TPM dan widget ke Windows 11.
 - [Evolusi Desain Laptop: Menemukan Titik Keseimbangan Era Keandalan](https://dalam.web.id/warta-tekno/evolusi-desain-laptop) : Menelusuri sejarah evolusi fisik laptop dari era 1990-an hingga 2020-an. Temukan alasan mengapa akhir 2000-an dianggap sebagai era keandalan komputasi terbaik.
 - [Paradoks BIOS Legendaris: Minta F1 Saat Keyboard Tak Ada](https://dalam.web.id/warta-tekno/paradoks-bios-keyboard-not-found) : fenomena pesan error BIOS jadul Keyboard Not Found Press F1 To Continue yang menjadi meme Catch-22 paling legendaris dalam dunia komputer.
@@ -81629,6 +81630,109 @@ Catatan seperti ini penting karena menunjukkan bahwa open source bukan hanya uru
 
 
 ## Kategori: Warta Tekno
+
+### Cara Mengamankan wp-config.php WordPress
+
+**Kategori:** Warta-tekno | **Tanggal:** 2026-10-02T04:55:35.330Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/warta-tekno/cara-mengamankan-wp-config-wordpress)
+
+WordPress memang dapat berjalan dengan konfigurasi yang relatif sederhana. Namun, pada website yang sudah aktif dan memiliki banyak artikel, membiarkan seluruh kemampuan administrasi terbuka tanpa alasan yang jelas dapat menambah risiko yang sebenarnya tidak perlu.
+
+Pengamanan pada tahap ini bukan berarti memasang puluhan aturan yang sulit dipelihara. Justru beberapa konstanta bawaan WordPress sudah menyediakan cara sederhana untuk mematikan editor file, membatasi revisi artikel, memaksa HTTPS pada area administrasi, dan memperkuat mekanisme cookie serta nonce.
+
+#### Empat pengaturan yang layak diperhatikan
+
+Jika konfigurasi dasar WordPress sudah normal dan mode debug untuk website produksi telah dimatikan, perhatian berikutnya dapat diarahkan pada empat bagian: editor file, revisi artikel, koneksi HTTPS untuk administrasi, dan secret keys atau salts. Keempatnya menangani masalah yang berbeda sehingga tidak sebaiknya dianggap sebagai satu pengaturan keamanan yang sama.
+
+#### 1. Matikan editor file WordPress
+
+Konstanta DISALLOW_FILE_EDIT dapat digunakan untuk menghilangkan kemampuan mengedit file tema dan plugin langsung dari dashboard WordPress.
+
+Ini penting karena dashboard administrator bukan tempat yang ideal untuk mengubah source code secara langsung. Dengan editor tersebut dimatikan, akun yang memiliki akses administrasi tidak otomatis mendapatkan antarmuka untuk menyisipkan atau mengubah kode PHP tema maupun plugin.
+
+Perlu dibedakan antara file editing dan instalasi atau pembaruan plugin. DISALLOW_FILE_EDIT berfokus pada editor kode di dashboard, bukan berarti seluruh kemampuan pengelolaan plugin WordPress otomatis hilang.
+
+#### 2. Batasi jumlah revisi artikel
+
+WordPress menyimpan revisi tulisan sehingga pengguna dapat kembali ke versi sebelumnya. Fitur tersebut berguna, tetapi pada website dengan aktivitas penerbitan tinggi jumlah revisi dapat terus bertambah.
+
+Nilai 5 pada contoh tersebut berarti WordPress dibatasi untuk menyimpan hingga lima revisi. Pengaturan ini bukan sekadar soal keamanan, tetapi juga pengendalian pertumbuhan data yang tidak selalu memberikan manfaat setelah jumlah revisi tertentu.
+
+Jika kebutuhan editorial website berbeda, angka tersebut dapat disesuaikan. Jangan menganggap angka lima sebagai nilai universal untuk semua website karena kebutuhan situs berita, blog pribadi, dokumentasi, dan website dengan banyak editor bisa berbeda.
+
+#### 3. Paksa SSL untuk area administrasi
+
+Untuk website yang sudah berjalan melalui HTTPS, area login dan administrasi WordPress sebaiknya juga menggunakan koneksi terenkripsi.
+
+Dengan pengaturan tersebut, WordPress diarahkan menggunakan HTTPS ketika menangani halaman administrasi. Ini membantu melindungi lalu lintas antara browser dan server ketika kredensial serta data sesi digunakan.
+
+Penting: pastikan HTTPS pada domain memang sudah aktif dan berfungsi dengan benar sebelum menerapkan pengaturan ini. Konfigurasi SSL yang belum siap dapat menyebabkan masalah ketika mengakses area administrasi.
+
+#### Mengapa Salt Keys perlu diganti?
+
+WordPress menggunakan sekumpulan secret keys dan salts untuk membantu mengamankan cookie, sesi autentikasi, serta token keamanan tertentu. Nilai ini seharusnya berupa string acak yang hanya tersimpan pada konfigurasi server.
+
+Bagian ini berbeda dari password administrator. Kamu tidak mengetik salt ketika login dan tidak perlu menghafalnya. WordPress menggunakannya secara internal untuk memperkuat mekanisme autentikasi dan keamanan sesi.
+
+Jangan menggunakan contoh teks di atas sebagai nilai sebenarnya. Gunakan generator resmi WordPress untuk mendapatkan nilai acak baru, kemudian tempelkan hasilnya ke dalam wp-config.php.
+
+Generator resmi yang disebut dalam konfigurasi tersebut dapat diakses melalui API Secret Key WordPress.
+
+#### Apakah Salt Keys perlu disimpan secara offline?
+
+Untuk penggunaan sehari-hari, kamu tidak perlu menyimpan Salt Keys dalam catatan offline hanya agar dapat menggunakannya saat login. WordPress membaca nilainya langsung dari wp-config.php, sementara pengguna tidak perlu memasukkannya secara manual.
+
+Namun, ada perbedaan antara tidak perlu menghafal dan tidak perlu memiliki cadangan sama sekali. Jika kamu mempunyai sistem backup konfigurasi server yang aman, menyertakan file konfigurasi tersebut dalam backup terenkripsi dapat berguna ketika website harus dipulihkan.
+
+Yang harus dihindari adalah menyimpan salinan wp-config.php secara sembarangan, terutama jika file tersebut juga berisi kredensial database. Salinan konfigurasi sebaiknya diperlakukan sebagai informasi rahasia dan tidak diletakkan pada repository publik, cloud drive tanpa perlindungan, atau perangkat yang tidak dipercaya.
+
+#### Penggantian salt akan memengaruhi sesi login
+
+Salah satu konsekuensi penting ketika Salt Keys diganti adalah sesi autentikasi yang sedang aktif dapat menjadi tidak valid. Artinya, pengguna yang sedang login, termasuk administrator, mungkin harus masuk kembali.
+
+Dalam konteks keamanan, perilaku tersebut dapat berguna ketika ada dugaan bahwa secret lama pernah diketahui pihak yang tidak berwenang. Setelah salt diganti, sesi lama tidak seharusnya diperlakukan sebagai sesi yang masih dipercaya.
+
+Penggantian dapat dipertimbangkan ketika kamu sedang melakukan hardening setelah migrasi, memulihkan website dari insiden keamanan, atau memiliki alasan untuk menganggap secret lama sudah tidak lagi aman.
+
+Untuk website yang normal dan tidak memiliki indikasi kompromi, tidak ada alasan untuk mengganti salt secara terus-menerus. Yang lebih penting adalah memastikan nilainya acak, rahasia, dan tidak terekspos melalui source repository atau backup yang tidak terlindungi.
+
+#### Contoh konfigurasi yang lebih rapi
+
+Berikut contoh bagian konfigurasi yang dapat dijadikan pola. Kredensial database sengaja tidak dicantumkan karena nilai tersebut merupakan rahasia yang tidak boleh dipublikasikan.
+
+Nilai AUTOSAVE_INTERVAL pada contoh tersebut mengatur jeda autosave dalam detik. Pengaturan ini sebaiknya disesuaikan dengan kebutuhan kerja editor, karena autosave dan revisi adalah dua mekanisme yang berbeda.
+
+#### Urutan penerapan yang aman
+
+Sebelum mengubah wp-config.php, buat backup terlebih dahulu. Pastikan kamu mempunyai cara untuk mengembalikan file apabila terdapat kesalahan sintaks atau konfigurasi.
+
+- Backup wp-config.php dan database.
+- Pastikan website sudah dapat diakses menggunakan HTTPS.
+- Tambahkan DISALLOW_FILE_EDIT.
+- Tentukan batas WP_POST_REVISIONS sesuai kebutuhan.
+- Aktifkan FORCE_SSL_ADMIN setelah HTTPS dipastikan normal.
+- Generate Salt Keys baru melalui generator resmi WordPress.
+- Ganti delapan nilai key dan salt dengan hasil generator.
+- Simpan konfigurasi dan uji login ke dashboard.
+Setelah selesai, periksa halaman depan, login administrator, editor artikel, plugin, serta fungsi penting lainnya. Hardening yang baik bukan hanya membuat konfigurasi terlihat lebih ketat, tetapi juga tetap menjaga website dapat beroperasi sebagaimana mestinya.
+
+#### Satu hal yang lebih penting: jangan membocorkan kredensial database
+
+wp-config.php biasanya mengandung informasi yang jauh lebih sensitif daripada sekadar pengaturan WordPress. Nama database, username database, dan terutama password database tidak boleh ditempelkan pada forum publik, repository terbuka, screenshot, atau percakapan yang dapat diakses pihak lain.
+
+Jika kredensial database pernah terlanjur terekspos, langkah yang lebih aman adalah mengganti password user database tersebut melalui panel hosting atau sistem administrasi database, kemudian memperbarui nilai DB_PASSWORD di wp-config.php.
+
+Prinsipnya sederhana: anggap semua kredensial yang pernah dipublikasikan sebagai kredensial yang sudah tidak rahasia. Mengganti password jauh lebih aman daripada berharap informasi tersebut tidak pernah digunakan oleh pihak lain.
+
+#### Hardening tidak harus rumit
+
+Pengamanan wp-config.php tidak harus dilakukan dengan menambahkan konfigurasi sebanyak mungkin. Beberapa pengaturan yang tepat sasaran sudah dapat mengurangi risiko pada area yang penting: editor kode, penyimpanan revisi, koneksi administrasi, dan mekanisme autentikasi.
+
+Salt Keys juga tidak perlu diperlakukan seperti password yang harus kamu hafalkan. Yang paling penting adalah menjaga nilainya tetap rahasia, menggunakan nilai acak dari generator resmi, serta memiliki backup konfigurasi yang aman bila website memang membutuhkan prosedur pemulihan.
+
+Dengan pendekatan seperti ini, konfigurasi WordPress tetap sederhana untuk dipelihara, sementara beberapa permukaan risiko yang tidak diperlukan dapat ditutup.
+
+---
+
 
 ### Sejarah Windows Longhorn: Proyek Gagal yang Menjadi DNA Windows 11
 
