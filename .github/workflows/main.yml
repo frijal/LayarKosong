@@ -1,0 +1,47 @@
+name: Auto Update Wiki Layar Kosong
+
+on:  
+  # 2. Bisa di-klik manual lewat tab "Actions" di GitHub
+  workflow_dispatch:   
+
+jobs:
+  update-wiki:
+    runs-on: ubuntu-latest
+    
+    # 🔒 Beri izin bot untuk nulis/push ke repo
+    permissions:
+      contents: write 
+
+    steps:
+      - name: 📥 Checkout Repo Utama (Layar Kosong)
+        uses: actions/checkout@v4
+        with:
+          path: main-repo
+
+      - name: 📥 Checkout Repo Wiki
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}.wiki
+          path: main-repo/wiki # Ditaruh di dalam folder repo utama biar gampang dibaca script
+
+      - name: 🥟 Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: 🚀 Eksekusi Script Injector Wiki
+        working-directory: ./main-repo
+        run: bun run dapur/post-to-github-wiki.ts
+
+      - name: 💾 Commit & Push Hasil ke Repo Wiki
+        working-directory: ./main-repo/wiki
+        run: |
+          # Set identitas bot GitHub Actions
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # Tambahkan semua perubahan (halaman wiki & file mini/post-to-githubwiki.txt)
+          git add .
+          
+          # Cek apakah ada perubahan? Kalau ada, commit dan push. Kalau nggak, skip biar nggak error.
+          git diff --staged --quiet || (git commit -m "📝 Auto-update: Tambah tumpukan 4 artikel ke Wiki & Update Log" && git push)
