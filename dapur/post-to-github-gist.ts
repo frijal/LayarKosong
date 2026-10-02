@@ -188,7 +188,7 @@ async function run() {
         await Bun.write(TRACKER_FILE, Array.from(postedSlugs).join('\n'));
         
         // Jeda 5 detik antar request untuk menghindari rate limit GitHub
-        await sleep(5000);
+        await sleep(1000);
 
       } catch (postError: any) {
         console.error(`❌ Gagal upload Gist "${safeTitle}":`, postError.message);
