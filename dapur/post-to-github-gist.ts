@@ -3,8 +3,8 @@ import { mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 
 const TRACKER_FILE = 'mini/posted-gist.txt'; // Tracker terpisah khusus Gist
-const ARTIKEL_JSON = 'artikel.json'; // Sumber data utama menggantikan RSS
-const MAX_PER_CATEGORY = 4; // Batas 4 post per kategori (7 kategori x 4 = maks 28 post per run)
+const ARTIKEL_JSON = 'artikel.json'; // Sumber data utama
+const MAX_PER_CATEGORY = 4; // Batas 4 post per kategori per run workflow
 
 interface Article {
   title: string;
@@ -16,7 +16,6 @@ interface Article {
   pubDateParsed: number;
 }
 
-// Mendukung GITHUB_TOKEN atau GIST_TOKEN dari environment
 const GITHUB_TOKEN = Bun.env.GITHUB_TOKEN || Bun.env.GIST_TOKEN;
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -78,78 +77,80 @@ async function run() {
     }
 
     const rawData = await jsonFile.json();
-    
-    // Normalisasi struktur JSON (dukung Array maupun Object per kategori)
-    let allRawArticles: any[] = [];
-    if (Array.isArray(rawData)) {
-      allRawArticles = rawData;
-    } else if (typeof rawData === 'object' && rawData !== null) {
-      for (const [catName, items] of Object.entries(rawData)) {
-        if (Array.isArray(items)) {
-          items.forEach((it: any) => {
-            allRawArticles.push({ ...it, category: it.category || catName });
+    const categoryArticlesMap: Record<string, Article[]> = {};
+    let totalUnpostedDetected = 0;
+
+    // 3. Parser khusus struktur artikel.json
+    // Key = Nama Kategori, Value = Array dari [title, rawSlug, image, pubDate, description]
+    for (const [categoryName, items] of Object.entries(rawData)) {
+      if (!Array.isArray(items)) continue;
+
+      const categoryList: Article[] = [];
+
+      for (const item of items) {
+        let title = '';
+        let rawSlug = '';
+        let image: string | null = null;
+        let pubDate = '';
+        let description = '';
+
+        if (Array.isArray(item)) {
+          // Unpack elemen array [title, slug, image, pubDate, description]
+          [title, rawSlug, image, pubDate, description] = item;
+        } else if (typeof item === 'object' && item !== null) {
+          // Fallback jika suatu saat ada format Object
+          title = (item as any).title || (item as any).judul || '';
+          rawSlug = (item as any).slug || (item as any).link || (item as any).url || '';
+          image = (item as any).image || (item as any).thumbnail || null;
+          pubDate = (item as any).pubDate || (item as any).date || '';
+          description = (item as any).description || (item as any).summary || '';
+        }
+
+        if (!title || !rawSlug) continue;
+
+        // Ekstrak & bersihkan slug (hilangkan ekstensi .html jika ada)
+        const cleanSlug = rawSlug.split('/').filter(Boolean).pop()?.replace(/\.html$/i, '') || rawSlug;
+        const fullLink = rawSlug.startsWith('http') ? rawSlug : `https://dalam.web.id/${rawSlug.replace(/^\//, '')}`;
+
+        // Cek apakah slug belum pernah diposting ke Gist
+        if (cleanSlug && !postedSlugs.has(cleanSlug)) {
+          categoryList.push({
+            title,
+            link: fullLink,
+            description: description || '',
+            image: image || null,
+            slug: cleanSlug,
+            categoryName,
+            pubDateParsed: new Date(pubDate || Date.now()).getTime()
           });
         }
       }
+
+      if (categoryList.length > 0) {
+        totalUnpostedDetected += categoryList.length;
+
+        // Urutkan dari artikel terlama ke terbaru berdasarkan tanggal publikasi
+        categoryList.sort((a, b) => a.pubDateParsed - b.pubDateParsed);
+
+        categoryArticlesMap[categoryName] = categoryList;
+      }
     }
 
-    // Filter artikel yang belum terposting & kelompokkan per Kategori
-    const categorizedArticles: Record<string, Article[]> = {};
-    let totalUnpostedDetected = 0;
-
-    for (const item of allRawArticles) {
-      let slug = item.slug;
-      if (!slug && item.link) {
-        slug = item.link.split('/').filter(Boolean).pop();
-      }
-
-      if (!slug || postedSlugs.has(slug)) {
-        continue;
-      }
-
-      const categoryName = item.category || item.categoryName || 'Lainnya';
-      const pubDate = item.pubDate || item.date || item.created_at || Date.now();
-      const link = item.link || item.url || `https://dalam.web.id/${slug}`;
-      const description = item.description || item.summary || item.content || '';
-      const image = item.image || item.thumbnail || item.enclosure || null;
-
-      const articleObj: Article = {
-        title: item.title || '',
-        link,
-        description,
-        image,
-        slug,
-        categoryName,
-        pubDateParsed: new Date(pubDate).getTime() || Date.now()
-      };
-
-      if (!categorizedArticles[categoryName]) {
-        categorizedArticles[categoryName] = [];
-      }
-
-      categorizedArticles[categoryName].push(articleObj);
-      totalUnpostedDetected++;
-    }
-
-    // 3. Ambil maksimal 4 artikel terlama dari tiap kategori
+    // 4. Ambil maksimal 4 artikel terlama per kategori
     const articlesToPost: Article[] = [];
 
-    for (const [catName, articles] of Object.entries(categorizedArticles)) {
-      // Urutkan artikel dalam kategori dari yang paling lama
-      articles.sort((a, b) => a.pubDateParsed - b.pubDateParsed);
-
-      // Ambil maksimal 4 artikel per kategori
-      const selected = articles.slice(0, MAX_PER_CATEGORY);
+    for (const categoryList of Object.values(categoryArticlesMap)) {
+      const selected = categoryList.slice(0, MAX_PER_CATEGORY);
       articlesToPost.push(...selected);
     }
 
-    // Urutkan gabungan seluruh antrean secara kronologis agar posting teratur
+    // Urutkan gabungan seluruh antrean kronologis agar pengiriman rapi
     articlesToPost.sort((a, b) => a.pubDateParsed - b.pubDateParsed);
 
-    console.log(`📦 Terdeteksi ${totalUnpostedDetected} artikel baru secara keseluruhan di ${ARTIKEL_JSON}.`);
+    console.log(`📦 Terdeteksi ${totalUnpostedDetected} artikel baru belum terposting di ${ARTIKEL_JSON}.`);
     console.log(`🎯 Menyiapkan ${articlesToPost.length} artikel baru (maksimal ${MAX_PER_CATEGORY} artikel per kategori) yang siap di-upload ke Gist.`);
 
-    // 4. Eksekusi Upload ke GitHub Gist
+    // 5. Eksekusi Upload ke GitHub Gist
     for (const art of articlesToPost) {
       if (!art.title) {
         console.warn(`⚠️ Melewati artikel tanpa judul (slug: ${art.slug})`);
@@ -182,17 +183,17 @@ async function run() {
 
         console.log(`✅ Berhasil! Gist URL: ${gistResult.html_url}`);
 
-        // Catat slug yang sukses terposting ke tracker
+        // Catat slug yang sukses ke tracker
         postedSlugs.add(art.slug);
         await Bun.write(TRACKER_FILE, Array.from(postedSlugs).join('\n'));
         
-        // Jeda 5 detik antar request untuk mencegah rate limit
+        // Jeda 5 detik antar request untuk menghindari rate limit GitHub
         await sleep(5000);
 
       } catch (postError: any) {
         console.error(`❌ Gagal upload Gist "${safeTitle}":`, postError.message);
 
-        // Penanganan jika terkena secondary rate limit GitHub
+        // Penanganan secondary rate limit GitHub API
         if (postError.message.includes("secondary rate limit") || postError.message.includes("403") || postError.message.includes("submitted too quickly")) {
           console.warn("⏳ Terkena Rate Limit GitHub. Mengistirahatkan skrip selama 40 detik...");
           await sleep(40000);
