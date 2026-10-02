@@ -250,6 +250,20 @@ Layar Kosong Wiki
 
         // 8. Update Sidebar Navigasi
         await Bun.write(join(WIKI_DIR, "_Sidebar.md"), sidebarContent);
+
+        // 8.5 Generate Custom Footer (_Footer.md)
+        const footerContent = `---
+<div align="center">
+
+**Layar Kosong Wiki** • Dikelola oleh [Fakhrul Rijal](https://dalam.web.id)  
+Kunjungi situs utama kami di [dalam.web.id](https://dalam.web.id)
+
+<small>© ${new Date().getFullYear()} Layar Kosong. Arsip Pengetahuan & Dokumentasi Digital.</small>
+
+</div>
+`;
+        await Bun.write(join(WIKI_DIR, "_Footer.md"), footerContent);
+        console.log("✅ Halaman _Footer.md berhasil digenerate!");
         
         // 9. Tulis Ulang Tracker File (Kalau ada tambahan)
         if (totalBaruDiinject > 0) {
