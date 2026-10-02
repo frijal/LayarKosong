@@ -7,7 +7,7 @@ const WIKI_DIR = './wiki'; // Folder repo wiki (sesuai setup GitHub Actions)
 const DB_PATH = './artikel.json'; // Database utama
 const TRACKER_FILE = 'wiki/mini/posted-githubwiki.txt'; 
 const MAX_PER_CATEGORY = 4; // Sesuai kesepakatan: 4 artikel per kategori per run
-const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/frijal/layarkosong/main/';
+const GITHUB_BASE_URL = 'https://raw.githubusercontent.com/frijal/LayarKosong/main/';
 
 // --- TIPE DATA ---
 type ArticleTuple = [
