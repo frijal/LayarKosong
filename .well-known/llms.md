@@ -6,8 +6,8 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 26.22
-last_updated: 2026-10-02
+document_version: 26.23
+last_updated: 2026-10-03
 document_type: llm_behavior_and_entity_guidance
 ---
 
@@ -39,8 +39,8 @@ document_type: llm_behavior_and_entity_guidance
 
 ---
 
-## Index Artikel Terbaru (Updated: 2 Oktober 2026)
-> Menampilkan 1684 artikel versi 26.22.
+## Index Artikel Terbaru (Updated: 3 Oktober 2026)
+> Menampilkan 1685 artikel versi 26.23.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -409,6 +409,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Keajaiban Istighfar: Kunci Sederhana Pembuka Pintu Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : keajaiban istighfar sebagai kunci pembuka pintu langit dan rezeki. Pelajari rahasia spiritual dan janji Allah dalam QS Nuh untuk hidup yang lebih lapang.
 
 ## Lainnya
+- [Daftar 26 Anggota Wantimpres 2026 yang Dilantik Prabowo](https://dalam.web.id/lainnya/26-anggota-wantimpres-2026) : Presiden Prabowo melantik 26 anggota Wantimpres pada 2 Oktober 2026. Simak susunan pimpinan dan daftar lengkap tokoh yang dilantik.
 - [Menata Tauhid: Ikhtiar Tanpa Bergantung pada Makhluk](https://dalam.web.id/lainnya/menata-tauhid-ikhtiar-tanpa-bergantung-pada-makhluk) : Memahami cara menata tauhid dalam kehidupan dengan tetap berikhtiar, menggunakan sebab, dan menjaga hati agar hanya bergantung kepada Allah.
 - [Syirik yang Halus: Ketika Hati Bergantung pada Makhluk](https://dalam.web.id/lainnya/syirik-ketika-hati-bergantung-pada-makhluk) : Memahami syirik yang halus dalam kehidupan, dari ketergantungan kepada manusia hingga kekeliruan membedakan sebab, doa, dan kuasa Allah.
 - [Harta Halal dan Ketenangan dalam Rumah Tangga](https://dalam.web.id/lainnya/harta-halal-dan-ketenangan-dalam-rumah-tangga) : Memahami hubungan makanan, harta halal, keberkahan, dan ketenangan keluarga melalui panduan Islam serta kebiasaan menjaga rezeki.
@@ -24408,6 +24409,103 @@ Istighfar bukan sekadar deretan kata tanpa makna; ia adalah cara terbaik untuk p
 
 
 ## Kategori: Lainnya
+
+### Daftar 26 Anggota Wantimpres 2026 yang Dilantik Prabowo
+
+**Kategori:** Lainnya | **Tanggal:** 2026-10-02T13:00:00.000Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/lainnya/26-anggota-wantimpres-2026)
+
+Pelantikan anggota Wantimpres 2026 berlangsung di Istana Negara, Jakarta, berdasarkan Keputusan Presiden Republik Indonesia Nomor 107/P Tahun 2026 tentang Pengangkatan Keanggotaan Dewan Pertimbangan Presiden Republik Indonesia.
+
+Jumlah yang dilantik mencapai 26 orang. Komposisinya terdiri atas tiga unsur pimpinan yang sekaligus menjadi anggota serta 23 anggota lainnya dari berbagai bidang dan pengalaman.
+
+Keberadaan Wantimpres penting karena lembaga ini berada di lingkungan kepresidenan untuk memberikan nasihat dan pertimbangan kepada Presiden. Karena itu, susunan orang yang mengisinya menarik diperhatikan, terutama dari sisi pengalaman, latar belakang, serta perspektif yang dapat dibawa ke dalam proses pemberian masukan kepada kepala negara.
+
+#### Susunan Pimpinan Wantimpres 2026
+
+Tiga tokoh mendapat posisi khusus dalam struktur Wantimpres 2026. Mereka adalah Pratikno sebagai ketua merangkap anggota, Muhammad Hatta Rajasa sebagai wakil ketua merangkap anggota, dan Muhammad Qodari sebagai sekretaris merangkap anggota.
+
+Posisi tersebut membuat ketiganya memiliki peran penting dalam mengoordinasikan kerja Wantimpres. Di luar tiga posisi pimpinan itu, terdapat 23 anggota lain yang menjadi bagian dari komposisi keseluruhan sebanyak 26 orang.
+
+#### Daftar Lengkap 26 Anggota Wantimpres 2026
+
+Berikut susunan lengkap Wantimpres yang diangkat melalui Keppres Nomor 107/P Tahun 2026. Tiga nama pertama merupakan pimpinan yang sekaligus berstatus sebagai anggota.
+
+- Pratikno — Ketua merangkap anggota
+- Muhammad Hatta Rajasa — Wakil Ketua merangkap anggota
+- Muhammad Qodari — Sekretaris merangkap anggota
+- Agum Gumelar
+- Anwar Iskandar
+- Anwar Usman
+- Bambang Soesatyo
+- Budi Gunawan
+- Budi Santoso Tanuwibowo
+- Chairul Tanjung
+- Dato' Sri Tahir
+- Ida Bagus Purwalaksana
+- Ignasius Jonan
+- Jacky Manuputty
+- Jusuf Hamka
+- Jusuf Wanandi
+- Margarito Kamis
+- Mohamad Hatta
+- Muhammad Quraish Shihab
+- Philip Kuncoro Wijaya
+- Rocky Gerung
+- Said Aqiel Siradj
+- Salim Segaf Al-Jufri
+- Sinta Nuriyah Wahid
+- Soekarwo
+- Yahya Cholil Staquf
+#### Komposisi yang Berasal dari Beragam Latar Belakang
+
+Daftar tersebut memperlihatkan bahwa Wantimpres 2026 tidak hanya diisi oleh satu kelompok profesi. Di dalamnya terdapat tokoh pemerintahan, militer, dunia usaha, akademisi, tokoh agama, politisi, pengamat, serta figur yang memiliki pengalaman panjang dalam kehidupan publik.
+
+Keberagaman latar belakang tersebut dapat menjadi modal untuk menghasilkan sudut pandang yang berbeda ketika Presiden membutuhkan pertimbangan mengenai persoalan nasional. Masukan dari orang dengan pengalaman yang berbeda dapat membantu melihat sebuah persoalan dari sisi ekonomi, sosial, politik, hukum, agama, maupun tata kelola pemerintahan.
+
+Dalam praktiknya, keberagaman juga membawa tantangan tersendiri. Perbedaan pengalaman dan cara melihat persoalan harus dipertemukan dalam pembahasan yang konstruktif agar pertimbangan yang diberikan benar-benar membantu Presiden mengambil keputusan.
+
+#### Posisi Wantimpres dalam pemerintahan
+
+Wantimpres merupakan lembaga yang memberikan nasihat dan pertimbangan kepada Presiden. Kedudukannya berbeda dari kementerian karena fungsi utamanya bukan menjalankan program pemerintahan sektoral, melainkan memberikan masukan kepada Presiden sesuai kebutuhan dan bidang yang menjadi perhatian.
+
+#### Nasihat tidak sama dengan keputusan Presiden
+
+Pertimbangan Wantimpres menjadi bahan masukan bagi Presiden. Keputusan akhir mengenai kebijakan dan penyelenggaraan pemerintahan tetap berada pada Presiden sesuai kewenangan konstitusionalnya.
+
+#### Mengapa komposisi anggotanya penting?
+
+Anggota dengan pengalaman yang berbeda memungkinkan adanya variasi perspektif. Hal ini menjadi relevan ketika pemerintah menghadapi persoalan yang tidak berdiri sendiri, misalnya ketika kebijakan ekonomi berkaitan sekaligus dengan aspek sosial, politik, hukum, dan kepentingan masyarakat.
+
+#### Pelantikan Berlangsung di Istana Negara
+
+Pelantikan berlangsung pada Jumat, 2 Oktober 2026 di Istana Negara, Jakarta. Presiden Prabowo mengambil sumpah para pejabat yang dilantik sebelum acara dilanjutkan dengan pemberian ucapan selamat.
+
+Dalam sumpah jabatan tersebut, para anggota menyatakan komitmen untuk setia kepada Undang-Undang Dasar Negara Republik Indonesia Tahun 1945, menjalankan peraturan perundang-undangan dengan selurus-lurusnya, serta menjunjung tinggi etika jabatan dan tanggung jawab.
+
+Acara tersebut turut dihadiri Wakil Presiden Gibran Rakabuming, pimpinan lembaga negara, sejumlah menteri dan wakil menteri Kabinet Merah Putih, serta tamu undangan lainnya.
+
+#### Yang Menarik dari Wantimpres 2026
+
+Salah satu hal yang langsung terlihat dari daftar ini adalah luasnya spektrum pengalaman para anggota. Nama-nama yang masuk mencakup figur yang pernah memegang jabatan publik, tokoh keagamaan, pengusaha, akademisi, mantan pejabat, hingga pengamat yang dikenal aktif menyampaikan pandangan mengenai persoalan nasional.
+
+Komposisi tersebut membuat Wantimpres berpotensi menjadi ruang pertukaran perspektif yang cukup luas. Bagi pemerintahan, nilai tambahnya bukan semata-mata jumlah anggota, tetapi kualitas pertimbangan yang dapat dihasilkan dari pengalaman dan pengetahuan mereka.
+
+Pada akhirnya, ukuran keberhasilan Wantimpres bukan hanya siapa yang duduk di dalamnya. Hal yang lebih penting adalah sejauh mana nasihat dan pertimbangan yang diberikan dapat membantu Presiden memahami persoalan secara lebih lengkap dan menghasilkan kebijakan yang bermanfaat bagi masyarakat.
+
+#### Daftar Singkat Pimpinan dan Anggota
+
+Jika hanya membutuhkan ringkasan cepat, struktur Wantimpres 2026 dapat dibaca dalam tiga lapisan. Pratikno memimpin sebagai ketua, Muhammad Hatta Rajasa menjadi wakil ketua, dan Muhammad Qodari bertugas sebagai sekretaris. Mereka bersama 23 anggota lainnya membentuk total 26 anggota Wantimpres.
+
+Dengan pelantikan ini, Presiden Prabowo memiliki susunan Dewan Pertimbangan Presiden baru yang diharapkan dapat memberikan masukan dari berbagai perspektif selama menjalankan pemerintahan.
+
+#### Sumber Informasi
+
+Informasi pelantikan dan daftar anggota merujuk pada sumber resmi pemerintah yang tercantum dalam outline artikel ini.
+
+- Dewan Pertimbangan Presiden Republik Indonesia
+- Sekretariat Negara Republik Indonesia
+---
+
 
 ### Menata Tauhid: Ikhtiar Tanpa Bergantung pada Makhluk
 
