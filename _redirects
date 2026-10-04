@@ -1,94 +1,58 @@
-/artikel        /sitemap    301
-/artikel/       /sitemap    301
-/artikel.html   /sitemap    301
+# ── Halaman statis & alias lama ───────────────────────────
+/artikel        /sitemap  301
+/artikel/       /sitemap  301
+/artikel.html   /sitemap  301
 
-/home           /index.html	301
-/home.html      /index.html	301
-/tentang	/about		301		
+/home           /         301
+/home.html      /         301
+/tentang        /about    301
 
-/rss            /feed       301
-/rss/           /feed       301
-/rss.html       /feed       301
+/rss            /feed     301
+/rss/           /feed     301
+/rss.html       /feed     301
 
-/apple-touch-icon.png /artikel/apple-touch-icon.png 301
-/artikel/-/opini-sosial /opini-sosial   301
-/artikel/-/gaya-hidup   /gaya-hidup 301
-/artikel/-/sistem-terbuka   /sistem-terbuka 301
-/artikel/-/lainnya  /lainnya    301
-/artikel/-/olah-media   /olah-media 301
-/artikel/-/jejak-sejarah    /jejak-sejarah  301
-/artikel/-/warta-tekno  /warta-tekno    301
+/apple-touch-icon.png  /artikel/apple-touch-icon.png  301
 
-/artikel/-/opini-sosial/ /opini-sosial   301
-/artikel/-/gaya-hidup/   /gaya-hidup 301
-/artikel/-/sistem-terbuka/   /sistem-terbuka 301
-/artikel/-/lainnya/  /lainnya    301
-/artikel/-/olah-media/   /olah-media 301
-/artikel/-/jejak-sejarah/    /jejak-sejarah  301
-/artikel/-/warta-tekno/  /warta-tekno    301
-
-# Menangani semua halaman agregat lama
-/lainnya/agregat-* /  410
-/opini-sosial/agregat-* /  410
-
-# Menangani URL rusak atau pola salah
-/artikel/${url}              /  410
-/artikel/github-             /  410
-/artikel/microsoft-365-* /  410
-/artikel/FFmpeg-* /  410
-/artikel/rekor-ddos          /  410
-/artikel/fix-partial-* /  410
-/artikel/published-time-* /  410
-
-# Menangani path spesifik lainnya
-/s480/* /  410
-/s1600/* /  410
-/s0/* /  410
-/home/user                   /  410
-/video/* /  410
-/dpi-circumvention-config    /  410
-/undefined                   /  410
-/image-sitemap-1.xml         /  410
-
-# Menangani legacy URL dengan domain lama
-/enc1/1-1342-1230/* /  410
+# ── Kategori lama: /artikel/-/<kategori> → /<kategori> ────
+/artikel/-/:kategori    /:kategori  301
+/artikel/-/:kategori/   /:kategori  301
 
 # --- BEGIN LK-AUTOGEN (komposisi.ts — jangan edit manual) ---
-/rss.xml   /rss.rss    301
-/atom.xml  /atom.atom  301
+/rss.xml                    /rss.rss        301
+/atom.xml                   /atom.atom      301
 /feed-gaya-hidup.xml        /gaya-hidup.rss   301
 /feed-gaya-hidup-atom.xml   /gaya-hidup.atom  301
 /feed-gaya-hidup.rss        /gaya-hidup.rss   301
 /feed-gaya-hidup.atom       /gaya-hidup.atom  301
 /sitemap-gaya-hidup.xml     /gaya-hidup.xml   301
-/feed-jejak-sejarah.xml        /jejak-sejarah.rss   301
-/feed-jejak-sejarah-atom.xml   /jejak-sejarah.atom  301
-/feed-jejak-sejarah.rss        /jejak-sejarah.rss   301
-/feed-jejak-sejarah.atom       /jejak-sejarah.atom  301
-/sitemap-jejak-sejarah.xml     /jejak-sejarah.xml   301
-/feed-lainnya.xml        /lainnya.rss   301
-/feed-lainnya-atom.xml   /lainnya.atom  301
-/feed-lainnya.rss        /lainnya.rss   301
-/feed-lainnya.atom       /lainnya.atom  301
-/sitemap-lainnya.xml     /lainnya.xml   301
-/feed-olah-media.xml        /olah-media.rss   301
-/feed-olah-media-atom.xml   /olah-media.atom  301
-/feed-olah-media.rss        /olah-media.rss   301
-/feed-olah-media.atom       /olah-media.atom  301
-/sitemap-olah-media.xml     /olah-media.xml   301
-/feed-opini-sosial.xml        /opini-sosial.rss   301
-/feed-opini-sosial-atom.xml   /opini-sosial.atom  301
-/feed-opini-sosial.rss        /opini-sosial.rss   301
-/feed-opini-sosial.atom       /opini-sosial.atom  301
-/sitemap-opini-sosial.xml     /opini-sosial.xml   301
-/feed-sistem-terbuka.xml        /sistem-terbuka.rss   301
-/feed-sistem-terbuka-atom.xml   /sistem-terbuka.atom  301
-/feed-sistem-terbuka.rss        /sistem-terbuka.rss   301
-/feed-sistem-terbuka.atom       /sistem-terbuka.atom  301
-/sitemap-sistem-terbuka.xml     /sistem-terbuka.xml   301
-/feed-warta-tekno.xml        /warta-tekno.rss   301
-/feed-warta-tekno-atom.xml   /warta-tekno.atom  301
-/feed-warta-tekno.rss        /warta-tekno.rss   301
-/feed-warta-tekno.atom       /warta-tekno.atom  301
-/sitemap-warta-tekno.xml     /warta-tekno.xml   301
+/feed-jejak-sejarah.xml     /jejak-sejarah.rss   301
+/feed-jejak-sejarah-atom.xml /jejak-sejarah.atom 301
+/feed-jejak-sejarah.rss     /jejak-sejarah.rss   301
+/feed-jejak-sejarah.atom    /jejak-sejarah.atom  301
+/sitemap-jejak-sejarah.xml  /jejak-sejarah.xml   301
+/feed-lainnya.xml           /lainnya.rss    301
+/feed-lainnya-atom.xml      /lainnya.atom   301
+/feed-lainnya.rss           /lainnya.rss    301
+/feed-lainnya.atom          /lainnya.atom   301
+/sitemap-lainnya.xml        /lainnya.xml    301
+/feed-olah-media.xml        /olah-media.rss 301
+/feed-olah-media-atom.xml   /olah-media.atom 301
+/feed-olah-media.rss        /olah-media.rss 301
+/feed-olah-media.atom       /olah-media.atom 301
+/sitemap-olah-media.xml     /olah-media.xml 301
+/feed-opini-sosial.xml      /opini-sosial.rss 301
+/feed-opini-sosial-atom.xml /opini-sosial.atom 301
+/feed-opini-sosial.rss      /opini-sosial.rss 301
+/feed-opini-sosial.atom     /opini-sosial.atom 301
+/sitemap-opini-sosial.xml   /opini-sosial.xml 301
+/feed-sistem-terbuka.xml    /sistem-terbuka.rss 301
+/feed-sistem-terbuka-atom.xml /sistem-terbuka.atom 301
+/feed-sistem-terbuka.rss    /sistem-terbuka.rss 301
+/feed-sistem-terbuka.atom   /sistem-terbuka.atom 301
+/sitemap-sistem-terbuka.xml /sistem-terbuka.xml 301
+/feed-warta-tekno.xml       /warta-tekno.rss 301
+/feed-warta-tekno-atom.xml  /warta-tekno.atom 301
+/feed-warta-tekno.rss       /warta-tekno.rss 301
+/feed-warta-tekno.atom      /warta-tekno.atom 301
+/sitemap-warta-tekno.xml    /warta-tekno.xml 301
 # --- END LK-AUTOGEN ---
