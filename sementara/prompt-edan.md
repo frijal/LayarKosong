@@ -275,7 +275,7 @@ Jika ada pembahasan subtopik yang panjang, memuat beberapa sub-poin, atau rincia
 
 ```html
 <details>
-  <summary><b>Klik untuk melihat detail teknis / langkah lanjutan</b></summary>
+  <summary><b>header summary yang sesuai dengan konteks di dalam details</b></summary>
   <!-- Konten rincian atau sub-langkah di sini -->
 </details>
 ```
