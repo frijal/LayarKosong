@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 26.26
+document_version: 26.27
 last_updated: 2026-10-04
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 4 Oktober 2026)
-> Menampilkan 1687 artikel versi 26.26.
+> Menampilkan 1688 artikel versi 26.27.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -409,6 +409,7 @@ document_type: llm_behavior_and_entity_guidance
 - [Keajaiban Istighfar: Kunci Sederhana Pembuka Pintu Rezeki](https://dalam.web.id/jejak-sejarah/istighfar-kunci-rezeki) : keajaiban istighfar sebagai kunci pembuka pintu langit dan rezeki. Pelajari rahasia spiritual dan janji Allah dalam QS Nuh untuk hidup yang lebih lapang.
 
 ## Lainnya
+- [Kupas Tuntas Perhitungan Iuran BPJS Ketenagakerjaan](https://dalam.web.id/lainnya/perhitungan-iuran-bpjs-ketenagakerjaan) : Panduan menghitung iuran BPJS Ketenagakerjaan untuk karyawan: tarif JKK, JK, JHT, dan JP lengkap dengan simulasi gaji serta kalkulator otomatis.
 - [Daftar 26 Anggota Wantimpres 2026 yang Dilantik Prabowo](https://dalam.web.id/lainnya/26-anggota-wantimpres-2026) : Presiden Prabowo melantik 26 anggota Wantimpres pada 2 Oktober 2026. Simak susunan pimpinan dan daftar lengkap tokoh yang dilantik.
 - [Menata Tauhid: Ikhtiar Tanpa Bergantung pada Makhluk](https://dalam.web.id/lainnya/menata-tauhid-ikhtiar-tanpa-bergantung-pada-makhluk) : Memahami cara menata tauhid dalam kehidupan dengan tetap berikhtiar, menggunakan sebab, dan menjaga hati agar hanya bergantung kepada Allah.
 - [Syirik yang Halus: Ketika Hati Bergantung pada Makhluk](https://dalam.web.id/lainnya/syirik-ketika-hati-bergantung-pada-makhluk) : Memahami syirik yang halus dalam kehidupan, dari ketergantungan kepada manusia hingga kekeliruan membedakan sebab, doa, dan kuasa Allah.
@@ -24411,6 +24412,87 @@ Istighfar bukan sekadar deretan kata tanpa makna; ia adalah cara terbaik untuk p
 
 
 ## Kategori: Lainnya
+
+### Kupas Tuntas Perhitungan Iuran BPJS Ketenagakerjaan
+
+**Kategori:** Lainnya | **Tanggal:** 2026-10-04T17:42:01.026Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/lainnya/perhitungan-iuran-bpjs-ketenagakerjaan)
+
+Setiap bulan, slip gaji karyawan selalu memuat baris potongan yang jumlahnya tidak berubah-ubah: iuran jaminan sosial ketenagakerjaan. Bagi sebagian orang, angka itu hanya lewat begitu saja tanpa pernah dicek asal-usulnya. Padahal di balik satu baris potongan tersebut terdapat empat program berbeda dengan tarif, plafon, dan porsi pembayaran yang tidak sama.
+
+Bagi tim human resource maupun pemilik usaha kecil, kesalahan kecil dalam membaca tarif bisa berakibat fatal. Setoran ke BPJS Ketenagakerjaan menjadi kurang bayar, denda menumpuk, dan laporan payroll tidak pernah cocok dengan rekening koran perusahaan. Belum lagi ketika ada karyawan yang mempertanyakan kenapa potongannya berbeda dari rekan kerjanya yang bergaji sama.
+
+Ulasan berikut memkupas struktur iuran BPJS Ketenagakerjaan untuk Pekerja Penerima Upah (PPU) di sektor formal. Mulai dari daftar tarif tiap program, tabel pembagian beban, dua studi kasus perhitungan, hingga kalkulator simulasi yang bisa langsung dicoba di bawah ini.
+
+#### Empat Program Wajib dan Tarif Iurannya
+
+Iuran BPJS Ketenagakerjaan untuk pekerja formal dihitung dari upah sebulan, yaitu gaji pokok ditambah tunjangan tetap. Dari basis upah tersebut, empat program dihitung secara terpisah lalu dijumlahkan. Totalnya berkisar antara 9,24% sampai 10,74% dari upah, tergantung tingkat risiko kecelakaan kerja yang dimiliki perusahaan.
+
+#### Jaminan Kecelakaan Kerja (JKK)
+
+Program ini menanggung biaya pengobatan dan santunan ketika pekerja mengalami kecelakaan yang berhubungan dengan tugasnya. Seluruh iuran JKK dibebankan kepada pemberi kerja, tanpa potongan sepeser pun dari gaji karyawan. Besaran tarifnya mengikuti profil risiko lingkungan kerja, mulai dari 0,24% untuk pekerja kantoran hingga 1,74% untuk sektor pertambangan dan perikanan laut dalam.
+
+#### Jaminan Kematian (JK)
+
+JK memberikan santunan kepada ahli waris apabila pekerja meninggal dunia bukan karena kecelakaan kerja. Tarifnya flat 0,3% dari upah sebulan dan sepenuhnya ditanggung perusahaan. Karena nilainya kecil, banyak karyawan tidak menyadari bahwa perlindungan ini ikut dibayarkan setiap bulan.
+
+#### Jaminan Hari Tua (JHT)
+
+JHT adalah tabungan jangka panjang yang bisa dicairkan saat pensiun, mengundurkan diri, atau terkena pemutusan hubungan kerja. Total iurannya 5,7% dari upah, dengan pembagian 3,7% dari perusahaan dan 2% dipotong dari gaji pekerja. Program ini tidak mengenal batas upah maksimal, sehingga karyawan bergaji tinggi tetap dihitung penuh.
+
+#### Jaminan Pensiun (JP)
+
+JP memberi penghasilan berkala setelah pekerja memasuki usia pensiun. Total iurannya 3% dari upah, terdiri dari 2% tanggungan perusahaan dan 1% potongan pekerja. Berbeda dari JHT, dasar perhitungan JP dibatasi plafon upah sebesar Rp10.547.400. Jika gaji karyawan melampaui angka itu, iuran JP tetap dihitung dari nilai plafon.
+
+Yang dimaksud upah dalam perhitungan ini adalah gaji pokok ditambah tunjangan tetap. Tunjangan tidak tetap seperti uang makan harian, lembur, atau bonus insentif biasanya tidak masuk ke basis perhitungan, meskipun praktiknya bisa berbeda tergantung kebijakan perusahaan dan kesepakatan kerja.
+
+- JKK, JK, dan JHT: tidak memiliki batas upah maksimal, sehingga dihitung dari upah penuh.
+- JP: dibatasi plafon Rp10.547.400 sesuai ketentuan yang berlaku.
+- Karyawan baru: iuran mulai dihitung sejak bulan pertama bekerja, bukan setelah masa percobaan selesai.
+- Karyawan resign: iuran tetap dibayarkan untuk bulan berjalan sampai tanggal terakhir bekerja.
+Karena komponen upah bisa berbeda antar perusahaan, sebaiknya pastikan struktur gaji yang dipakai konsisten setiap bulan agar rekonsiliasi dengan BPJS tidak membingungkan.
+
+#### Porsi Pembayaran: Perusahaan dan Karyawan
+
+Dari keseluruhan iuran, karyawan hanya menanggung 3% dari upah, yaitu 2% untuk JHT dan 1% untuk JP. Sisanya menjadi beban pemberi kerja. Tabel berikut merangkum pembagian tersebut secara lengkap.
+
+Catatan penting: total yang benar-benar memotong gaji karyawan hanya 3%, yaitu 2% JHT ditambah 1% JP. Sisanya dibayarkan perusahaan sebagai beban pemberi kerja. Jadi jika ada karyawan yang merasa potongannya terlalu besar, penyebabnya biasanya bukan tarif BPJS, melainkan komponen lain seperti PPh 21, pinjaman, atau koperasi.
+
+#### Simulasi Perhitungan Dua Studi Kasus
+
+Angka tarif memang mudah dibaca, tetapi sering kali terasa abstrak sampai dicoba pada nominal nyata. Dua contoh berikut menggunakan gaji di bawah dan di atas plafon JP agar terlihat perbedaan perilaku perhitungannya.
+
+#### Kasus A: Upah Rp5.000.000 dengan Risiko Sangat Rendah
+
+Untuk pekerja administrasi dengan tarif JKK 0,24%, beban perusahaan terdiri dari JKK Rp12.000, JK Rp15.000, JHT 3,7% sebesar Rp185.000, dan JP 2% sebesar Rp100.000, sehingga subtotalnya Rp312.000. Dari sisi karyawan, potongan JHT 2% senilai Rp100.000 dan JP 1% senilai Rp50.000 menghasilkan subtotal Rp150.000. Total iuran yang disetorkan ke BPJS Ketenagakerjaan adalah Rp462.000.
+
+#### Kasus B: Upah Rp12.000.000 dengan Risiko Sedang
+
+Karena upah melampaui plafon, perhitungan JP memakai dasar Rp10.547.400. Perusahaan menanggung JKK Rp106.800, JK Rp36.000, JHT Rp444.000, dan JP Rp210.948, dengan subtotal Rp797.748. Karyawan dipotong JHT Rp240.000 dan JP Rp105.474, dengan subtotal Rp345.474. Total iuran menjadi Rp1.143.222.
+
+Perhatikan bahwa saat upah naik dari Rp5 juta ke Rp12 juta atau sekitar 2,4 kali, total iuran hanya naik sekitar 2,47 kali. Efek plafon JP inilah yang membuat kenaikannya tidak sepenuhnya proporsional.
+
+#### Kalkulator Simulasi Interaktif
+
+Untuk mempermudah pengecekan, gunakan kalkulator di bawah ini. Masukkan upah sebulan dan pilih tingkat risiko JKK, maka rincian iuran akan langsung dihitung secara otomatis. Kalkulator ini menggunakan rumus yang sama dengan penjelasan di atas, termasuk penerapan plafon JP.
+
+#### Hal yang Sering Terlewat Saat Menghitung
+
+Sebagian besar selisih antara hitungan internal dan tagihan resmi BPJS berasal dari empat hal sederhana: plafon JP yang diabaikan, komponen tunjangan yang keliru dimasukkan, tarif JKK yang tidak diperbarui setelah perusahaan pindah lokasi atau berganti bidang usaha, serta pembulatan desimal yang dilakukan terlalu dini.
+
+- Pastikan tarif JKK yang dipakai sesuai klasifikasi risiko terbaru dari BPJS, bukan tarif lama yang masih tersimpan di file spreadsheet.
+- Periksa apakah upah yang dipakai sudah mencakup gaji pokok dan seluruh tunjangan tetap.
+- Terapkan plafon Rp10.547.400 khusus untuk komponen JP, bukan untuk JHT.
+- Jangan membulatkan hasil perhitungan per program sebelum semua komponen dijumlahkan.
+- Rekonsiliasi jumlah karyawan aktif dengan data peserta agar tidak ada nama yang tertinggal atau dobel.
+- Simpan riwayat perubahan upah setiap karyawan, karena kenaikan gaji di tengah tahun mengubah dasar perhitungan bulan berikutnya.
+#### Menutup Perhitungan dengan Rapi
+
+Perhitungan iuran BPJS Ketenagakerjaan sebenarnya berpijak pada logika yang sederhana: satu basis upah, empat program, dan dua pihak yang berbagi beban. Begitu tarif tiap program dipahami, seluruh angka pada slip gaji bisa ditelusuri kembali tanpa perlu menebak-nebak.
+
+Yang membuatnya terasa rumit biasanya bukan tarifnya, melainkan konsistensi dalam menerapkannya setiap bulan. Dengan kalkulator simulasi di atas dan daftar periksa sederhana, tim payroll bisa memangkas waktu rekonsiliasi sekaligus menjaga kepercayaan karyawan terhadap transparansi potongan gaji mereka.
+
+---
+
 
 ### Daftar 26 Anggota Wantimpres 2026 yang Dilantik Prabowo
 
