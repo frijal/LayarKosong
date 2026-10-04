@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/ext/*",
+    "/favicon.ico",
+    "/favicon.svg",
+    "/favicon.png",
+    "/site.webmanifest",
+    "/thumbnail*"
+  ]
+}
