@@ -176,6 +176,9 @@ jobs:
             --exclude='mini/***' \
             --exclude='artikelx/***' \
             --exclude='artikel/***' \
+            --include='_headers' \
+            --include='_redirects' \
+            --include='_routes.json' \
             --include='.well-known/***' \
             --include='ext/***' \
             --include='gaya-hidup/***' \
