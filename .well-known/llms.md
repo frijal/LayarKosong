@@ -6,7 +6,7 @@ Layar Kosong (dalam.web.id) adalah platform publikasi digital milik Fakhrul Rija
 
 ---
 schema_version: 1.0
-document_version: 26.28
+document_version: 26.29
 last_updated: 2026-10-05
 document_type: llm_behavior_and_entity_guidance
 ---
@@ -40,7 +40,7 @@ document_type: llm_behavior_and_entity_guidance
 ---
 
 ## Index Artikel Terbaru (Updated: 5 Oktober 2026)
-> Menampilkan 1689 artikel versi 26.28.
+> Menampilkan 1690 artikel versi 26.29.
 
 ## Gaya Hidup
 - [Resep Kesehatan Jiwa Ibnu Sina: Harmoni Pikiran dan Tubuh](https://dalam.web.id/gaya-hidup/resep-kesehatan-jiwa-ibnu-sina) : rahasia kesehatan jiwa holistik dari Ibnu Sina yang memadukan logika, keseimbangan fisik, dan pengelolaan emosi secara mendalam.
@@ -410,6 +410,7 @@ document_type: llm_behavior_and_entity_guidance
 
 ## Lainnya
 - [Jangan Jadikan Penilaian Manusia Sebagai Ukuran Harga Dirimu](https://dalam.web.id/lainnya/jangan-jadikan-penilaian-manusia-ukuran-harga-diri) : Menggantungkan harga diri pada penilaian manusia hanya akan membuatmu lelah. Temukan alasan mengapa nilai sejatimu hanya ditentukan oleh ketakwaan di sisi Allah.
+- [Ada Masalah? Perbaiki, Jangan Jadikan Masalah Identitas](https://dalam.web.id/lainnya/ada-masalah-perbaiki-jangan-jadikan-masalah-identitas) : Masalah dalam organisasi bukan alasan untuk berhenti. Belajar memperbaiki kekurangan sambil menjaga syukur, kritik, adab, dan martabat gerakan.
 - [Kupas Tuntas Perhitungan Iuran BPJS Ketenagakerjaan](https://dalam.web.id/lainnya/perhitungan-iuran-bpjs-ketenagakerjaan) : Panduan menghitung iuran BPJS Ketenagakerjaan untuk karyawan: tarif JKK, JK, JHT, dan JP lengkap dengan simulasi gaji serta kalkulator otomatis.
 - [Daftar 26 Anggota Wantimpres 2026 yang Dilantik Prabowo](https://dalam.web.id/lainnya/26-anggota-wantimpres-2026) : Presiden Prabowo melantik 26 anggota Wantimpres pada 2 Oktober 2026. Simak susunan pimpinan dan daftar lengkap tokoh yang dilantik.
 - [Menata Tauhid: Ikhtiar Tanpa Bergantung pada Makhluk](https://dalam.web.id/lainnya/menata-tauhid-ikhtiar-tanpa-bergantung-pada-makhluk) : Memahami cara menata tauhid dalam kehidupan dengan tetap berikhtiar, menggunakan sebab, dan menjaga hati agar hanya bergantung kepada Allah.
@@ -24457,6 +24458,117 @@ Mulai hari ini, pindahkan letak harga dirimu. Jangan lagi ditaruh di tangan manu
 Teruslah memperbaiki dirimu setiap hari, tak peduli jika orang lain masih dengan sinis mengingat kesalahan-kesalahan masa lalumu. Karena mungkin manusia belum menyadari perubahan positifmu, tetapi percayalah, Allah tidak pernah melewatkan satu langkah pun dari usahamu untuk kembali dan mendekat kepada-Nya.
 
 Kesimpulannya sangat sederhana: Kamu tidak harus selalu terlihat hebat, kaya, atau sukses di mata manusia. Cukup pastikan saja bahwa setiap helaan napas dan langkah hidupmu bernilai dan berbobot di hadapan Allah.
+
+---
+
+
+### Ada Masalah? Perbaiki, Jangan Jadikan Masalah Identitas
+
+**Kategori:** Lainnya | **Tanggal:** 2026-10-05T00:00:00.000Z | **Tautan Asli:** [Baca di Web](https://dalam.web.id/lainnya/ada-masalah-perbaiki-jangan-jadikan-masalah-identitas)
+
+Sebuah organisasi yang telah berjalan melewati banyak generasi tentu tidak mungkin selalu berada dalam keadaan sempurna. Ada keputusan yang perlu dievaluasi, ada dinamika yang harus diselesaikan, ada kekurangan yang mesti diperbaiki, dan ada kritik yang memang perlu didengarkan.
+
+Hal yang sama berlaku bagi Muhammadiyah. Sebagai gerakan besar yang telah melewati perjalanan panjang, Muhammadiyah tentu memiliki tantangan dan persoalan. Mengakui kenyataan tersebut bukan berarti merendahkan organisasi. Justru, kesediaan melihat kekurangan dengan jernih merupakan bagian dari kedewasaan dalam menjaga sebuah gerakan.
+
+Persoalannya muncul ketika masalah mulai mengambil seluruh ruang dalam cara pandang kita. Kita terlalu sibuk menghitung penyakit sampai lupa bahwa ada tubuh yang selama puluhan bahkan lebih dari satu abad terus bekerja, melayani, mendidik, dan memberi manfaat.
+
+#### Masalah Itu Nyata, Tetapi Bukan Seluruh Cerita
+
+Ketua Umum PP Muhammadiyah Haedar Nashir mengingatkan pentingnya memiliki kesadaran terhadap masalah tanpa mendramatisasinya. Pesan ini sederhana, tetapi relevan bagi organisasi mana pun: masalah harus diakui agar dapat diperbaiki, tetapi tidak boleh dibiarkan mendefinisikan seluruh perjalanan organisasi.
+
+Dalam praktiknya, kita sering mengalami bias perhatian. Satu persoalan yang belum selesai dapat terasa jauh lebih besar daripada puluhan program yang berjalan baik. Satu konflik dapat menutupi kerja banyak orang yang selama bertahun-tahun membangun sesuatu dengan sabar.
+
+Karena itu, melihat organisasi secara sehat membutuhkan dua kemampuan sekaligus. Kita perlu cukup kritis untuk menemukan bagian yang sakit, tetapi juga cukup adil untuk melihat bagian yang sehat dan menghargai kerja yang telah dilakukan.
+
+#### Jangan Sampai Kritik Berubah Menjadi Identitas
+
+Kritik memiliki fungsi penting dalam kehidupan organisasi. Kritik membantu menemukan kesalahan, menguji keputusan, membuka ruang evaluasi, dan mencegah sebuah lembaga merasa selalu benar.
+
+Namun, kritik kehilangan manfaatnya ketika tujuan akhirnya bukan lagi perbaikan. Jika setiap kekurangan terus diulang tanpa menawarkan jalan keluar, kritik dapat berubah menjadi sekadar narasi tentang kegagalan.
+
+Di titik itulah masalah mulai berbahaya. Bukan karena masalahnya tidak nyata, melainkan karena perhatian yang berlebihan terhadap masalah membuat orang lupa bahwa organisasi masih memiliki kemampuan untuk memperbaiki keadaan.
+
+Sadari masalahnya. Jangan menutup mata terhadap kenyataan.
+
+Perbaiki kekurangannya. Ubah kritik menjadi tindakan yang konstruktif.
+
+Jaga martabat gerakannya. Kritik tidak harus dilakukan dengan mempermalukan.
+
+Teruskan perjuangannya. Satu masalah tidak menghapus seluruh manfaat yang telah dibangun.
+
+#### Melihat Penyakit Tanpa Melupakan Kesehatan
+
+Analogi sederhana dapat membantu memahami persoalan ini. Ketika seseorang sakit, pemeriksaan memang diperlukan. Dokter perlu menemukan bagian yang bermasalah dan menentukan tindakan yang tepat.
+
+Tetapi tujuan pemeriksaan bukan untuk membuat seseorang terus-menerus memikirkan penyakitnya. Tujuannya adalah mengembalikan kesehatan. Begitu pula dalam organisasi: evaluasi seharusnya menghasilkan pembenahan, bukan membuat seluruh perhatian berhenti pada kekurangan.
+
+Organisasi terdiri atas manusia, sehingga selalu memiliki kemungkinan mengalami kesalahan, perbedaan pandangan, pergantian kepemimpinan, persoalan administrasi, konflik kepentingan, maupun tantangan dalam menyesuaikan diri dengan perubahan zaman.
+
+Jika setiap persoalan diperlakukan sebagai bukti bahwa seluruh organisasi gagal, penilaian menjadi tidak proporsional. Sebaliknya, jika semua kritik dianggap sebagai serangan, organisasi juga kehilangan kesempatan untuk belajar.
+
+Perspektif yang sehat berada di antara dua ekstrem tersebut: tidak menutup mata terhadap masalah dan tidak membesar-besarkan masalah hingga meniadakan seluruh hal baik yang telah dikerjakan.
+
+#### Syukur Bukan Berarti Menutup Mata
+
+Salah satu bagian paling penting dari pesan ini adalah hubungan antara kritik dan rasa syukur. Keduanya tidak harus dipertentangkan.
+
+Kita dapat mengakui adanya kekurangan sambil tetap bersyukur atas apa yang telah tumbuh. Kita dapat meminta perubahan tanpa harus menghapus penghargaan kepada orang-orang yang telah berjuang sebelum kita.
+
+“Syukur kita harus selalu lebih besar ketimbang kita melihat masalah.”
+
+— Haedar Nashir
+
+Kalimat tersebut tidak berarti bahwa masalah boleh diabaikan. Justru sebaliknya, masalah tetap perlu dilihat secara jernih. Yang perlu dijaga adalah proporsinya: jangan sampai kekurangan yang sedang kita hadapi membuat kita kehilangan kemampuan untuk melihat nikmat, kontribusi, dan perjalanan panjang yang telah Allah tumbuhkan melalui perjuangan banyak generasi.
+
+Rasa syukur juga dapat menjadi sumber energi untuk memperbaiki keadaan. Orang yang menyadari bahwa sesuatu memiliki nilai cenderung lebih terdorong untuk merawatnya daripada meruntuhkannya.
+
+#### Berbenah Tanpa Meruntuhkan
+
+Menjaga sebuah organisasi bukan berarti mempertahankan semua hal apa adanya. Ada saat ketika kebiasaan perlu ditinjau ulang, sistem perlu diperbaiki, dan cara kerja perlu disesuaikan dengan kebutuhan zaman.
+
+Namun, perubahan yang sehat tidak selalu membutuhkan penghancuran. Banyak hal dapat diperbaiki dengan cara memperkuat bagian yang lemah tanpa menghilangkan fondasi yang sudah terbukti memberi manfaat.
+
+Inilah perbedaan antara berbenah dan sekadar mencari kesalahan. Berbenah memiliki orientasi ke depan. Ia bertanya bukan hanya tentang siapa yang salah, tetapi juga tentang apa yang dapat dilakukan agar keadaan menjadi lebih baik.
+
+#### Fokus pada persoalan, bukan penghukuman pribadi
+
+Kritik yang baik membahas keputusan, kebijakan, proses, atau dampak yang dapat dievaluasi. Menyerang martabat pribadi justru sering membuat persoalan utama kehilangan perhatian.
+
+#### Bedakan fakta, persepsi, dan emosi
+
+Sebelum mengambil kesimpulan, penting memisahkan apa yang benar-benar terjadi dari interpretasi dan perasaan kita terhadap kejadian tersebut. Pemisahan ini membuat evaluasi lebih adil.
+
+#### Usulkan jalan keluar
+
+Kritik akan jauh lebih bermanfaat ketika disertai alternatif yang masuk akal. Tidak semua solusi harus langsung sempurna, tetapi adanya arah tindakan membuat kritik memiliki tujuan yang jelas.
+
+#### Jaga adab dalam menyampaikan perbedaan
+
+Perbedaan pendapat tidak mengharuskan seseorang kehilangan rasa hormat. Cara menyampaikan kritik ikut menentukan apakah sebuah percakapan menghasilkan perbaikan atau justru memperlebar perpecahan.
+
+#### Masalah Seharusnya Memanggil Kita untuk Bergerak
+
+Setiap organisasi pada akhirnya akan berhadapan dengan masalah. Yang membedakan bukan ada atau tidak adanya persoalan, melainkan kemampuan untuk meresponsnya.
+
+Jika masalah diperlakukan sebagai alasan untuk berhenti, organisasi akan kehilangan energi. Tetapi jika masalah diperlakukan sebagai panggilan untuk berbuat, persoalan justru dapat menjadi pintu masuk menuju pembelajaran dan perbaikan.
+
+Dalam konteks Muhammadiyah, sikap tersebut menjadi penting karena gerakan besar tidak hanya diwarisi, tetapi juga harus dirawat dan diteruskan. Setiap generasi memiliki tugas untuk menerima apa yang telah dibangun, memperbaiki apa yang kurang, lalu meninggalkan keadaan yang lebih baik bagi generasi berikutnya.
+
+Dengan cara pandang seperti ini, kritik tidak menjadi musuh gerakan. Kritik menjadi salah satu alat untuk menjaga agar gerakan tetap sehat.
+
+#### Merawat Tradisi Besar dengan Cara yang Dewasa
+
+Tradisi besar tidak dirawat dengan mengatakan bahwa semuanya sempurna. Tradisi besar justru dirawat dengan keberanian mengakui kekurangan tanpa kehilangan penghargaan terhadap perjalanan yang telah ditempuh.
+
+Kita boleh kecewa terhadap sebuah keputusan. Kita boleh mempertanyakan kebijakan. Kita boleh meminta perbaikan. Bahkan, dalam kondisi tertentu, perubahan memang harus diperjuangkan.
+
+Tetapi semua itu dapat dilakukan tanpa kehilangan perspektif bahwa sebuah gerakan dibangun oleh banyak manusia, banyak pengorbanan, dan banyak generasi. Mengkritik satu bagian tidak berarti harus menghapus seluruh cerita.
+
+Pada akhirnya, mungkin sikap yang paling sehat adalah sederhana: kritik untuk memperbaiki, bukan kritik untuk mempermalukan.
+
+Berbenah tanpa meruntuhkan. Mengkritik tanpa kehilangan adab. Bergerak tanpa kehilangan rasa syukur.
+
+Sebab masalah memang perlu diperbaiki. Tetapi jangan pernah membiarkan masalah menjadi identitas.
 
 ---
 
