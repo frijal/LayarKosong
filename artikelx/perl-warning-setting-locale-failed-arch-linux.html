@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Warning Perl Setting Locale Failed di Arch Linux</title>
+  <link rel="canonical" href="https://dalam.web.id/artikel/perl-warning-setting-locale-failed-arch-linux.html">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-video-preview:-1,max-image-preview:large">
+
+  <!-- Variasi Deskripsi Meta -->
+  <meta name="description" content="Solusi praktis mengatasi masalah perl warning setting locale failed di Arch Linux dan CachyOS dengan mengonfigurasi file locale.gen serta jalankan locale-gen.">
+  <meta property="og:description" content="Sering melihat peringatan locale pudar saat update sistem Arch Linux? Simak panduan cepat mengaktifkan id_ID.UTF-8 dan en_US.UTF-8 secara permanen di sini!">
+  <meta name="twitter:description" content="Atasi perl warning setting locale failed di CachyOS dan Arch Linux hanya dalam empat langkah mudah tanpa ribet. Pelajari caranya sekarang!">
+
+  <!-- Open Graph & Twitter Card -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Warning Perl Setting Locale Failed di Arch Linux">
+  <meta property="og:url" content="https://dalam.web.id/artikel/perl-warning-setting-locale-failed-arch-linux.html">
+  <meta property="og:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_wh8ezkwh8ezkwh8e.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Warning Perl Setting Locale Failed di Arch Linux">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_wh8ezkwh8ezkwh8e.jpg">
+
+  <!-- Tags & Promphint -->
+  <meta name="news_keywords" content="Arch Linux, CachyOS, Perl Warning, Locale Failed, locale-gen, Linux Terminal">
+  <meta property="article:tag" content="Arch Linux">
+  <meta property="article:tag" content="CachyOS">
+  <meta property="article:tag" content="Linux Tips">
+  <meta name="promphint" content="Bagaimana cara mengatasi perl warning setting locale failed di Arch Linux? Aktifkan locale yang dibutuhkan di /etc/locale.gen lalu jalankan perintah sudo locale-gen.">
+
+  <!-- Syntax Highlighting CDN (Loaded conditionally for code blocks) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #222222;
+      --accent: #0066cc;
+      --border: #e0e0e0;
+      --code-bg: #1e1e1e;
+      --screen-padding: 1rem;
+      --nested-padding: 0rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121212;
+        --text: #e0e0e0;
+        --accent: #4d94ff;
+        --border: #333333;
+        --code-bg: #181818;
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .container {
+      width: min(100%, 64rem);
+      margin-inline: auto;
+      padding-inline: var(--screen-padding);
+    }
+
+    @media (min-width: 1024px) {
+      :root {
+        --screen-padding: 2.5rem;
+        --nested-padding: 1.5rem;
+      }
+    }
+
+    .article-body {
+      padding-inline: var(--nested-padding);
+      padding-block: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      font-weight: 500;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-block: 1.5rem;
+      display: block;
+    }
+
+    details {
+      background-color: rgba(128, 128, 128, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-block: 1.5rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 1.05rem;
+      user-select: none;
+    }
+
+    summary:hover {
+      color: var(--accent);
+    }
+
+    pre {
+      background-color: var(--code-bg);
+      border-radius: 0.4rem;
+      padding: 1rem;
+      overflow-x: auto;
+      font-size: 0.95rem;
+      margin-block: 1rem;
+    }
+
+    code {
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <article class="article-body">
+      <header>
+        <h1>Warning Perl Setting Locale Failed di Arch Linux</h1>
+        <p class="lead">Pengguna Arch Linux atau CachyOS sering kali mendapati peringatan berulang dari Perl saat melakukan pembaruan sistem. Berikut panduan perbaikannya secara permanen.</p>
+      </header>
+
+      <p>Pengalaman memperbarui paket perangkat lunak di sistem Linux berbasis Arch, seperti CachyOS, terkadang diwarnai oleh deretan pesan peringatan yang cukup mengganggu visual terminal. Salah satu masalah yang sangat sering dijumpai adalah munculnya pesan dari Perl yang bertuliskan <i>perl: warning: Setting locale failed</i> secara berulang-ulang.</p>
+
+      <p>Peringatan ini umumnya hadir ketika sebuah aplikasi atau perkakas sistem mencoba mengakses pengaturan bahasa, format angka, atau zona waktu tertentu yang belum dikonfigurasi. Meskipun tidak sampai menghentikan proses instalasi paket, pesan ini menandakan adanya ketidakcocokan antara variabel lingkungan lokal dengan berkas biner sistem yang terpasang.</p>
+
+      <p>Sebelum melangkah ke solusi teknis, penting untuk memahami bahwa masalah ini bersumber dari berkas konfigurasi lokasi yang belum di-generate secara sempurna di dalam direktori sistem utama Anda.</p>
+
+      <img src="https://raw.githubusercontent.com/frijal/LayarKosong/main/img/AAAAAA/Gemini_Generated_Image_wh8ezkwh8ezkwh8e.jpg" alt="Ilustrasi konfigurasi terminal Linux pada Arch Linux dan CachyOS" width="1200" height="675" fetchpriority="high" decoding="async">
+
+      <h2>Akar Penyebab Peringatan Locale Perl</h2>
+      <p>Saat aplikasi Perl dijalankan, skrip secara otomatis membaca variabel lingkungan sistem seperti <b>LANG</b>, <b>LC_NUMERIC</b>, atau <b>LC_TIME</b>. Jika variabel tersebut menunjuk ke nilai lokasi tertentu seperti <b>id_ID.UTF-8</b> atau <b>en_US.UTF-8</b>, tetapi berkas biner pendukungnya belum dibuat oleh sistem, Perl akan memunculkan peringatan dan melakukan <i>fallback</i> ke locale standar.</p>
+
+      <h2>Langkah Praktis Menyelesaikan Masalah Locale</h2>
+      <p>Untuk menghilangkan pesan peringatan ini secara permanen, kita hanya perlu mengaktifkan pengaturan bahasa yang sesuai di berkas sistem dan mengompilasi ulang berkas lokasi tersebut.</p>
+
+      <p>Prosedur perbaikan ini dapat diselesaikan dalam beberapa langkah sederhana menggunakan terminal dan akses administrator (sudo).</p>
+
+      <details>
+        <summary><b>Cara Perbaikan Teknis (Klik untuk membuka)</b></summary>
+
+        <h3>1. Sunting Berkas Konfigurasi locale.gen</h3>
+        <p>Buka berkas konfigurasi locale utama menggunakan teks editor terminal pilihan Anda, misalnya nano:</p>
+        <pre><code class="language-bash">sudo nano /etc/locale.gen</code></pre>
+
+        <h3>2. Aktifkan Locale yang Dibutuhkan</h3>
+        <p>Cari baris bahasa yang ingin digunakan pada sistem Anda. Sebagai contoh, hilangkan tanda pagar (<b>#</b>) di depan dua baris berikut:</p>
+        <pre><code class="language-plaintext">en_US.UTF-8 UTF-8
+id_ID.UTF-8 UTF-8</code></pre>
+        <p>Simpan perubahan berkas dengan menekan kombinasi tombol <b>Ctrl + O</b>, ikuti dengan <b>Enter</b>, lalu keluar menggunakan <b>Ctrl + X</b>.</p>
+
+        <h3>3. Kompilasi Ulang Berkas Locale</h3>
+        <p>Jalankan perintah pengompilasi locale agar sistem membuat biner pengaturan bahasa yang baru saja diaktifkan:</p>
+        <pre><code class="language-bash">sudo locale-gen</code></pre>
+
+        <h3>4. Verifikasi Hasil Konfigurasi</h3>
+        <p>Uji apakah peringatan Perl sudah benar-benar hilang dengan menjalankan perintah tes singkat berikut:</p>
+        <pre><code class="language-bash">perl -e ""</code></pre>
+        <p>Jika terminal kembali ke prompt tanpa menampilkan pesan peringatan apa pun, berarti konfigurasi locale sistem Anda telah berhasil diperbaiki sepenuhnya.</p>
+      </details>
+
+      <h2>Konfigurasi Tambahan untuk Sesi SSH dan Environment</h2>
+      <p>Pada beberapa kasus khusus, peringatan ini mungkin tetap muncul saat Anda melakukan koneksi jarak jauh melalui protokol SSH. Hal tersebut terjadi karena klien SSH secara otomatis meneruskan variabel locale dari komputer lokal ke server tujuan.</p>
+
+      <p>Anda dapat menetapkan locale standar sistem di dalam berkas <b>/etc/locale.conf</b> agar sistem selalu memiliki acuan lingkungan yang jelas dan konsisten saat menangani sesi pengguna baru.</p>
+
+      <pre><code class="language-bash">echo "LANG=en_US.UTF-8" | sudo tee /etc/locale.conf</code></pre>
+
+      <p>Dengan menerapkan langkah-langkah di atas, seluruh proses pembaruan sistem dan eksekusi skrip berbasis Perl di CachyOS maupun Arch Linux akan berjalan bersih tanpa dihiasi pesan peringatan locale yang mengganggu.</p>
+
+      <!--wajib ini tulis signature artikel oleh LayarKosong-->
+    </article>
+  </main>
+
+  <footer>
+    <p>Dipublikasikan oleh <b>Fakhrul Rijal</b> | Diperbarui pada <time datetime="2026-10-15">15 Oktober 2026</time> | <a href="https://dalam.web.id/">Layar Kosong</a></p>
+  </footer>
+
+</body>
+</html>
